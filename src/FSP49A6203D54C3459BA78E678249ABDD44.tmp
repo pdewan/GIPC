@@ -1,0 +1,142 @@
+package nioip;
+
+import java.io.EOFException;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+import java.util.List;
+
+import ip.AConnectionSendReceiptNotifier;
+import ip.ClientInputPort;
+import ip.ConnectionListener;
+import ip.PrintingConnectionListener;
+import ip.InputPortFactory;
+import ip.InputPortSelector;
+import ip.ConnectListener;
+import ip.ReceiveListener;
+import ip.SendConnectionListener;
+import ip.SendToUnconnectedPortException;
+import ip.ServerInputPort;
+
+public class AnNIOClientInputPort extends AConnectionSendReceiptNotifier implements NIOClientInputPort {
+	InetAddress host;
+	int port;
+	protected SelectingRunnable selectingRunnable;
+	String myName;
+	protected String serverName;
+	SocketChannel socketChannel;
+	boolean connected = false;
+	String[] remoteNames;
+	public AnNIOClientInputPort(SelectingRunnable theSelectingRunnable, String theRemoteHostName, String theRemotePort, String theMyName) {
+		try {
+			host = InetAddress.getByName(theRemoteHostName);
+			port = Integer.parseInt(theRemotePort);
+			selectingRunnable = theSelectingRunnable;
+			myName = theMyName;
+			serverName = theRemoteHostName+":"+theRemotePort;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void connect() {
+		createSocketChannel();
+		sendClientName();
+		registerWithSelectionRunnable();
+		connected = true;
+	}
+	void sendClientName() {
+		ByteBuffer message =  ByteBuffer.wrap (myName.getBytes());
+		BufferedWrite bufferedWrite = new ABufferedWrite(selectingRunnable, socketChannel, message, null);
+		selectingRunnable.putBufferedWrite(bufferedWrite);
+	}
+	
+	void registerWithSelectionRunnable() {
+		selectingRunnable.registerCloseListener(socketChannel, this);
+		ConnectRequestResponse connectRequestResponse = 
+			new AConnectRequestResponse(selectingRunnable, socketChannel, host, port, this);
+		selectingRunnable.puRequestResponse(connectRequestResponse);
+		selectingRunnable.getSelector().wakeup();
+		//selectingRunnable.registerReadListener(this);
+	}
+	void createSocketChannel() {
+		try {			
+			socketChannel = SocketChannel.open();
+			socketChannel.configureBlocking(false);	
+			//selectingRunnable.registerReadListener(socketChannel, this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public void send(ByteBuffer message) {
+		if (!connected) throw new SendToUnconnectedPortException();
+		BufferedWrite bufferedWrite = new ABufferedWrite(selectingRunnable, socketChannel, message, this);
+		selectingRunnable.putBufferedWrite(bufferedWrite);
+//		return bufferedWrite.getId();
+		
+	}
+	void sendMyNameMessage() {
+		ByteBuffer myNameMessage = ByteBuffer.wrap(myName.getBytes());
+		BufferedWrite bufferedWrite = new ABufferedWrite(selectingRunnable, socketChannel, myNameMessage, null);
+		selectingRunnable.putBufferedWrite(bufferedWrite);	
+	}
+	@Override
+	public void connected(SocketChannel theSocketChannel) {
+		notifyConnect(serverName);
+		
+	}
+	@Override
+	public void notConnected(
+			SocketChannel theSocketChannel, Exception e) {
+		notifyConnectFailure(serverName, e);
+		
+	}
+
+	@Override
+	public void disconnect() {
+		try {
+			socketChannel.close();
+			connected = false;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+//	@Override
+//	public String[] getPeerNames() {
+//		String[] retVal = {serverName};
+//		return retVal;
+//	}
+//	
+	@Override
+	public void closed(SocketChannel theSocketChannel,
+			Exception theReadException) {
+		notifyDisconnect(serverName, (theReadException instanceof EOFException), theReadException.getMessage());		
+	}
+	@Override
+	public void written(SocketChannel socketChannel,
+			ByteBuffer theWriteBuffer, int sendId) {
+		notifyPortSend(theWriteBuffer, sendId);		
+	}
+	public static void main (String[] args) {
+		InputPortFactory inputPortFactory = new AnNIOInputPortFactory();
+		InputPortSelector.setInputPortFactory(inputPortFactory);
+		ClientInputPort clientInputPort = InputPortSelector.createClientInputPort("localhost", "9090", "test client");
+		SendConnectionListener echoingConnectionListener = new SendConnectionListener();
+		clientInputPort.addConnectionListener(echoingConnectionListener);
+		clientInputPort.connect();
+		ByteBuffer message =  ByteBuffer.wrap("hello server".getBytes());
+//		byte[] padding = new byte[10];
+//		message.position(message.limit());
+//		message.put(padding);
+//		message.flip();
+		System.out.println("String with padding:" + new String(message.array()));		
+		clientInputPort.send(message);
+	}
+	
+	
+}

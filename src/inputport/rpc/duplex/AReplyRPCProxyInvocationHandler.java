@@ -1,0 +1,27 @@
+package inputport.rpc.duplex;
+
+
+import inputport.rpc.ACachingAbstractRPCProxyInvocationHandler;
+
+import java.lang.reflect.Method;
+public  class AReplyRPCProxyInvocationHandler extends ACachingAbstractRPCProxyInvocationHandler {
+	DuplexRPCInputPort duplexInputPort;
+	String lastSender;
+	
+	public AReplyRPCProxyInvocationHandler (DuplexRPCServerInputPort theRPCPort, Class theRemoteInterface, String theName ) {
+		super(theRPCPort, null, theRemoteInterface, theName);
+		duplexInputPort = theRPCPort;
+	}	
+	@Override
+	protected Object call(String aRemoteEndPoint, String name, Method method, Object[] args) {		
+		return rpcInputPort.call(duplexInputPort.getSender(), name, method, args);
+	}
+	@Override
+	protected Object call(String aRemoteEndPoint, Method method, Object[] args) {
+		return rpcInputPort.call(duplexInputPort.getSender(), method, args);
+	}	
+	@Override
+	protected Object call(String aRemoteEndPoint, Class type, Method method, Object[] args) {
+		return rpcInputPort.call(duplexInputPort.getSender(), remoteType, method,  args);
+	}
+}

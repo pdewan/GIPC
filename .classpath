@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/javareflectcommon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/javareflectserver"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/remotereflect"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Shapes"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/virtualtoolkit"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/util"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ObjectEditor"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

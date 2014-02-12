@@ -1,0 +1,12 @@
+/AJitterControllingGroupTrapperFactory.class
+/AJitterControllingPortLauncherSupport.class
+/AJitterControllingReceiveTrapper.class
+/AJitterControllingTrapperFactory.class
+/AMessageWithTimeStamp.class
+/AReceiveMessageDeliverer.class
+/ATimeStampingGroupSendTrapper.class
+/ATimeStampingSendTrapper.class
+/JitterDelayQueueSelector.class
+/JitterUtility.class
+/MessageWithTimeStamp.class
+/TimeStampUtility.class

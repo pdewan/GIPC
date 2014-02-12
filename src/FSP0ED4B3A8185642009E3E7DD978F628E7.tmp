@@ -1,0 +1,168 @@
+package nioip;
+import ip.AListenablePort;
+import ip.EchoingReceiverListener;
+import ip.InputPortFactory;
+import ip.InputPortSelector;
+import ip.PortReceiveListener;
+import ip.ServerInputPort;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.nio.ByteBuffer;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+
+public class AnNIOServerInputPort extends AListenablePort implements NIOServerInputPort  {
+	protected SelectingRunnable selectingRunnable;
+	int portNumber;
+	ServerSocketChannel serverSocketChannel;	
+	String serverId;
+//	List<SocketChannel> connectedSocketChannels = new ArrayList();
+//	boolean isRelayer;
+	String myName;
+	protected Map<SocketChannel, ClientProxy> socketChannelToClientProxy = new Hashtable();
+
+	//InetAddress localHost;
+	public AnNIOServerInputPort (SelectingRunnable theSelectingRunnable, String thePortId, String theMyName) {
+		selectingRunnable = theSelectingRunnable;
+		portNumber = Integer.parseInt(thePortId);
+		myName = theMyName;	
+	}
+	@Override
+	public void makeConnectable() {
+		createSocketChannel();
+		registerWithSelectionRunnable();
+	}
+	void registerWithSelectionRunnable() {		
+		AcceptRequestResponse acceptRequestResponse = new AnAcceptRequestResponse(selectingRunnable, serverSocketChannel, this);
+		selectingRunnable.puRequestResponse(acceptRequestResponse);	
+		selectingRunnable.getSelector().wakeup();
+		//selectingRunnable.registerReadListener(this);
+	}
+	void createSocketChannel() {
+		try {			
+			//localHost = InetAddress.getLocalHost();
+			serverSocketChannel = ServerSocketChannel.open();
+			serverSocketChannel.configureBlocking(false);
+			InetSocketAddress isa = new InetSocketAddress(portNumber);
+			serverSocketChannel.socket().bind(isa);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+//	@Override
+//	public void send(ByteBuffer message) {
+//		
+//	}
+	
+	@Override
+	public void socketChannelAccepted(
+			ServerSocketChannel theServerSocketChannel,
+			SocketChannel theSocketChannel) {
+		selectingRunnable.registerCloseListener(theSocketChannel, this);
+		selectingRunnable.registerReadListener(theSocketChannel, this);
+		socketChannelToClientProxy.put(theSocketChannel, new AClientProxy(this));
+			
+	}
+//	@Override
+//	public void socketChannelRead(SocketChannel theSocketChannel,
+//			ByteBuffer message) {
+//		String clientSocketAddress = theSocketChannel.socket().getRemoteSocketAddress().toString();
+//		InetAddress host = theSocketChannel.socket().getInetAddress();
+//		String clientName = socketAddressToClientName.get(clientSocketAddress);		
+//		if (clientName == null) {
+//			byte[] stringBytes = new byte[message.remaining()];
+//			message.get(stringBytes);
+//			clientName = new String(stringBytes);
+//			socketAddressToClientName.put(clientSocketAddress, clientName);
+//			notifyPortConnectListeners(host, clientName);
+//		} else {
+//			notifyPortReceiveListeners(host, clientName, message);			
+//		}		
+//	}
+//	@Override
+//	public void socketChannelRead(SocketChannel theSocketChannel,
+//			ByteBuffer message) {
+//		String clientSocketAddress = theSocketChannel.socket().getRemoteSocketAddress().toString();
+//		InetAddress host = theSocketChannel.socket().getInetAddress();
+//		String clientName = socketAddressToClientName.get(clientSocketAddress);		
+//		if (clientName == null) {
+//			byte[] stringBytes = new byte[message.remaining()];
+//			message.get(stringBytes);
+//			clientName = new String(stringBytes);
+//			socketAddressToClientName.put(clientSocketAddress, clientName);
+//			notifyPortConnectListeners(clientName);
+//		} else {
+//			notifyPortReceiveListeners(clientName, message);			
+//		}		
+//	}
+//	@Override
+//	public void init(String serverID) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+	@Override
+	public void socketChannelConnected(SocketChannel theSocketChannel) {
+		socketChannelToClientProxy.put(theSocketChannel, new AClientProxy(this));
+		selectingRunnable.registerReadListener(theSocketChannel, this);
+		//selectingRunnable.registerReadListener(theSocketChannel, new AClientProxy(this));
+		//connectedSocketChannels.add(theSocketChannel);
+	}
+	public static void main (String[] args) {
+		InputPortFactory inputPortFactory = new AnNIOInputPortFactory();
+		InputPortSelector.setInputPortFactory(inputPortFactory);
+		ServerInputPort serverInputPort = InputPortSelector.createServerInputPort("9090", "test server");
+		serverInputPort.makeConnectable();
+		serverInputPort.addPortReceiveListener(new EchoingReceiverListener());
+	}
+//	@Override
+//	public void remove(SocketChannel socketChannel) {
+//		connectedSocketChannels.remove(socketChannel);
+//	}
+	
+	
+	@Override
+	public String[] getPeerNames() {
+		Collection<ClientProxy> clientProxies = socketChannelToClientProxy.values();
+		int numClients = clientProxies.size();
+		String[] retVal = new String[numClients];
+		int i = 0;
+		for (ClientProxy clientProxy: clientProxies) {
+			retVal[i] = clientProxy.getClientName();
+			i++;
+		}
+		
+		return retVal;
+	}
+	@Override
+	public void socketChannelClosed(SocketChannel theSocketChannel,
+			IOException theReadException) {
+		socketChannelToClientProxy.get(theSocketChannel).socketChannelClosed(theSocketChannel, theReadException);
+		socketChannelToClientProxy.remove(theSocketChannel);		
+	}
+	@Override
+	public void socketChannelRead(SocketChannel theSocketChannel,
+			ByteBuffer theMessage) {
+		socketChannelToClientProxy.get(theSocketChannel).socketChannelRead(theSocketChannel, theMessage);
+	}
+	@Override
+	public void disconnect() {
+		for (SocketChannel socketChannel: socketChannelToClientProxy.keySet()) {
+			try {
+				socketChannel.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		socketChannelToClientProxy.clear();
+		//Collection<ClientProxy> clientProxies = socketChannelToClientProxy.values();
+		
+	}	
+}
