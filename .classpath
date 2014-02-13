@@ -8,6 +8,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Shapes"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/virtualtoolkit"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/util"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ObjectEditor"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/uigen"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
