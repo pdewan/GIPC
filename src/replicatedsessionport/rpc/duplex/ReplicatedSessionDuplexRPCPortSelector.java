@@ -3,7 +3,6 @@ package replicatedsessionport.rpc.duplex;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.group.GroupRPCServerInputPort;
-import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionParticipantDescription;
 
 public class ReplicatedSessionDuplexRPCPortSelector {

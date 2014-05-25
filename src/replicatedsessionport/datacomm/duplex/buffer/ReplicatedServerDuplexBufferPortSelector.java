@@ -5,10 +5,6 @@ import inputport.datacomm.duplex.DuplexServerInputPort;
 
 import java.nio.ByteBuffer;
 
-import port.ParticipantChoice;
-import port.sessionserver.ServerPortDescription;
-
-import replicatedserverport.datacomm.duplex.ReplicatedServerDuplexClientPortFactory;
 import replicatedsessionport.datacomm.duplex.ReplicatedSessionDuplexPortFactory;
 
 public class ReplicatedServerDuplexBufferPortSelector {

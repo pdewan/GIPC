@@ -1,8 +1,7 @@
-package port.sessionserver.example;
+package port.sessionserver.asymmetricexample;
 
 import port.sessionserver.JoinInfo;
 import port.sessionserver.SessionObserver;
-import inputport.datacomm.duplex.DuplexClientInputPort;
 
 
 

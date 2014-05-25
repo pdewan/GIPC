@@ -1,4 +1,4 @@
-package port.sessionserver.example;
+package port.sessionserver.asymmetricexample;
 
 import inputport.ConnectionListener;
 import inputport.InputPort;
@@ -18,9 +18,9 @@ import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.delay.example.AnEchoingObjectReceiveListener;
 import port.sessionserver.AServerPortDescription;
+import port.sessionserver.ASessionServer;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionObserver;
-import port.sessionserver.SessionServer;
 
 public class ASessionServerClientLauncher extends 
 	AnAbstractInteractiveSessionServerClientLauncher 	{
@@ -74,7 +74,7 @@ public class ASessionServerClientLauncher extends
 
 	@Override
 	protected  ConnectionListener getConnectionListener (InputPort anInputPort) {
-		return createParticipatingConnectionListener(anInputPort, participantChoice, SessionServer.class, myPortDescription, observer, this);
+		return createParticipatingConnectionListener(anInputPort, participantChoice, ASessionServer.class, myPortDescription, observer, this);
 //		switch (participantChoice) {
 //		case JOIN_AND_OBSERVE_ALL:
 //		case JOIN_AND_OBSERVE: {
@@ -112,6 +112,10 @@ public class ASessionServerClientLauncher extends
 		default: return null;
 		}
 		
+	}
+	// as the connect listener is creating or not creatint the ui, we do not duplicate this step here 
+	protected void doPostConnectsAsyncOperations() {
+//		createUI(mainPort);
 	}
 	@Override
 	public  ConnectionListener getAuxilliaryConnectionListener (InputPort anInputPort) {

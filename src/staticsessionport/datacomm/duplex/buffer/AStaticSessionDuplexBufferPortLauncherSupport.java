@@ -1,7 +1,7 @@
 package staticsessionport.datacomm.duplex.buffer;
 
-import port.PortLauncherSupport;
 import inputport.datacomm.duplex.buffer.ADuplexBufferInputPortLauncherSupport;
+import port.PortLauncherSupport;
 import sessionport.datacomm.duplex.object.ObjectDuplexSessionPortSelector;
 import sessionport.datacomm.duplex.object.direct.ADirectObjectDuplexSessionPortFactory;
 import sessionport.datacomm.group.object.ObjectGroupSessionPortSelector;

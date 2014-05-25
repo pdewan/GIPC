@@ -5,7 +5,6 @@ import java.util.List;
 
 import port.sessionserver.JoinInfo;
 import port.sessionserver.SessionParticipantDescription;
-
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
 
 public class ALatecomerJoinInfo extends ALatecomerMessages implements LatecomerJoinInfo {

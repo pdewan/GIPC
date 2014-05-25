@@ -4,8 +4,6 @@ import inputport.InputPort;
 import inputport.datacomm.AnAbstractReceiveTrapper;
 import inputport.datacomm.ReceiveNotifier;
 import inputport.datacomm.ReceiveTrapper;
-import inputport.datacomm.duplex.DuplexInputPort;
-import inputport.datacomm.simplex.SenderQueryable;
 import inputport.datacomm.simplex.SimplexClientInputPort;
 import util.trace.Tracer;
 

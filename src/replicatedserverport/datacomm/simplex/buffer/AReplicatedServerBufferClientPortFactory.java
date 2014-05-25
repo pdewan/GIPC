@@ -4,11 +4,10 @@ import inputport.datacomm.simplex.SimplexClientInputPort;
 
 import java.nio.ByteBuffer;
 
-import port.ParticipantChoice;
-import port.sessionserver.SessionParticipantDescription;
-
 import multiserverport.datacomm.group.GroupMultiServerClientPort;
 import multiserverport.datacomm.group.buffer.BufferGroupMultiServerClientPortSelector;
+import port.ParticipantChoice;
+import port.sessionserver.SessionParticipantDescription;
 import replicatedserverport.datacomm.simplex.AReplicatedServerClientPort;
 import replicatedserverport.datacomm.simplex.ReplicatedServerClientPortFactory;
 

@@ -6,14 +6,10 @@ import inputport.rpc.duplex.DuplexRPCClientInputPort;
 
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
-import java.util.List;
-import java.util.Set;
 
 import port.ParticipantChoice;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.ServerPortDescription;
-import port.sessionserver.SessionParticipantDescription;
-
 import sessionport.datacomm.duplex.DuplexSessionPort;
 import sessionport.datacomm.duplex.buffer.example.ABufferDuplexSessionPortLauncher;
 import variableserverport.SimplexVariableServerClientPort;

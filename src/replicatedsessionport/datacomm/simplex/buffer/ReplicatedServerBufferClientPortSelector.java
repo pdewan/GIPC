@@ -5,8 +5,6 @@ import inputport.datacomm.simplex.SimplexServerInputPort;
 
 import java.nio.ByteBuffer;
 
-import port.ParticipantChoice;
-
 import replicatedsessionport.datacomm.simplex.ReplicatedSessionPortFactory;
 
 public class ReplicatedServerBufferClientPortSelector {

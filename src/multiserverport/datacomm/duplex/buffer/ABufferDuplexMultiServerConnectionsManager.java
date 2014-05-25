@@ -12,7 +12,6 @@ import java.util.Set;
 
 import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
-
 import util.trace.Tracer;
 import variableserverport.datacomm.duplex.DuplexVariableServerClientPort;
 import variableserverport.datacomm.duplex.buffer.AnAbstractDuplexBufferVariableServerConnectionsManager;

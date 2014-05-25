@@ -1,8 +1,8 @@
-package port.sessionserver.example;
+package port.sessionserver.asymmetricexample;
 
-import port.sessionserver.SessionObserver;
 import inputport.InputPort;
 import inputport.datacomm.simplex.buffer.example.UICreator;
+import port.sessionserver.SessionObserver;
 
 public class AnObservingConnectListener extends ASessionParticipatingConnectListener implements Runnable {
 	

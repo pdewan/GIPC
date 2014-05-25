@@ -1,6 +1,5 @@
 package sessionport.rpc.group.mvc.latecomer.example;
 
-import port.SessionChoice;
 import port.sessionserver.SessionServerLauncher;
 import port.sessionserverAndRelay.mvc.example.UpperCaseSession;
 import sessionport.rpc.group.mvc.flexible.example.AFlexibleSessionPortMVCClientLauncher;

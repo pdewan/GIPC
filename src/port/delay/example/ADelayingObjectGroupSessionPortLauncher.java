@@ -13,7 +13,6 @@ import port.sessionserver.relay.RelayerClientAndServerSupport;
 import sessionport.datacomm.group.GroupSessionPort;
 import sessionport.datacomm.group.object.ObjectGroupSessionPortSelector;
 import sessionport.datacomm.group.object.example.AnObjectGroupSendingConnectListener;
-import util.trace.Tracer;
 
 
 public class ADelayingObjectGroupSessionPortLauncher {

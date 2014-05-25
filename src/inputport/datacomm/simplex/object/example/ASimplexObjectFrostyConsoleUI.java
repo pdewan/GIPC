@@ -4,10 +4,6 @@ import inputport.datacomm.simplex.SimplexClientInputPort;
 import inputport.datacomm.simplex.buffer.example.ASimplexBufferFrostyConsoleUI;
 import inputport.datacomm.simplex.buffer.example.UserInterfaceManager;
 
-import java.nio.ByteBuffer;
-
-import util.misc.Console;
-
 public class ASimplexObjectFrostyConsoleUI extends ASimplexBufferFrostyConsoleUI  implements UserInterfaceManager{
 //	public static final String FROSTY_PROMPT = "Please enter an excerpt from Frost's Stopping by Woods on a Snowy Evening";
 	SimplexClientInputPort<Object>  simplexObjectClientPort;

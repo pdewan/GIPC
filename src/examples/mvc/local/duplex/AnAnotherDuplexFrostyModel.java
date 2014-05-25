@@ -4,10 +4,9 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import util.models.PropertyListenerRegisterer;
 import examples.mvc.local.simplex.ASimplexFrostyModel;
 import examples.mvc.rmi.collaborative.relaying.Echoer;
-
-import util.models.PropertyListenerRegisterer;
 
 
 public class AnAnotherDuplexFrostyModel extends ASimplexFrostyModel implements AnotherDuplexFrostyModel {

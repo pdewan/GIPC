@@ -18,7 +18,7 @@ import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionParticipantDescription;
 import port.sessionserver.SessionServer;
 import port.sessionserver.SessionServerLauncher;
-import port.sessionserver.example.APrintingSessionObserver;
+import port.sessionserver.asymmetricexample.APrintingSessionObserver;
 
 public class AThreeIndepPortClientLauncher extends ATwoServerClientLauncher  {
 	String sessionServerHost, sessionServerId, sessionServerName, sessionName;

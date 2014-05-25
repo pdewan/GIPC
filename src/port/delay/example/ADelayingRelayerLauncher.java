@@ -13,7 +13,6 @@ import port.relay.Relayer;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.relay.RelayerSupportingSessionServer;
-import util.trace.Tracer;
 
 
 public class ADelayingRelayerLauncher {

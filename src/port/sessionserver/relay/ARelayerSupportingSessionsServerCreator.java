@@ -1,9 +1,8 @@
 package port.sessionserver.relay;
 
+import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import port.sessionserver.ASessionsServerCreator;
 import port.sessionserver.LocalSessionsServer;
-import inputport.rpc.duplex.DuplexRPCServerInputPort;
-import util.trace.Tracer;
 
 
 

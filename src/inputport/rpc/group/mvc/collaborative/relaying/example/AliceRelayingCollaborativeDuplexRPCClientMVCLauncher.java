@@ -1,12 +1,7 @@
 package inputport.rpc.group.mvc.collaborative.relaying.example;
 
 
-import util.trace.Tracer;
-import bus.uigen.OEFrame;
-import bus.uigen.ObjectEditor;
-import bus.uigen.trace.TraceableDisplayAndWaitManagerFactory;
 import inputport.rpc.duplex.mvc.singleuser.example.ADuplexRPCClientMVCLauncher;
-import inputport.rpc.simplex.mvc.example.ASimplexRPCClientMVCLauncher;
 import inputport.rpc.simplex.mvc.example.SimplexRPCServerMVCLauncher;
 
 

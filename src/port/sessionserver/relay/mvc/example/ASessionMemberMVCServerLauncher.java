@@ -8,14 +8,11 @@ import inputport.rpc.group.mvc.collaborative.example.AGroupRPCServerCollaborativ
 
 import java.net.InetAddress;
 
-import port.ParticipantChoice;
-import port.PortLauncherSupport;
-import port.SessionChoice;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.ASessionServer;
 import port.sessionserver.SessionServer;
 import port.sessionserver.SessionServerLauncher;
-import port.sessionserver.example.APrintingSessionObserver;
+import port.sessionserver.asymmetricexample.APrintingSessionObserver;
 import port.sessionserverAndRelay.mvc.example.UpperCaseSession;
 import sessionport.rpc.group.mvc.flexible.example.ServerSessionPort;
 

@@ -1,7 +1,5 @@
 package inputport.datacomm.group;
 
-import inputport.rpc.SerializableCall;
-
 import java.util.HashSet;
 import java.util.Set;
 

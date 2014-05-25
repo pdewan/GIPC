@@ -5,7 +5,6 @@ import java.nio.ByteBuffer;
 
 import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
-
 import sessionport.datacomm.duplex.DuplexSessionPort;
 import sessionport.datacomm.duplex.object.direct.AnObjectDuplexSessionPort;
 import sessionport.datacomm.group.GroupSessionPort;

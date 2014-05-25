@@ -1,6 +1,5 @@
 package inputport.datacomm;
 
-import inputport.InputPort;
 
 public interface TrapperSelector<SendInMessageType, SendOutMessageType>
 extends ReceiveTrapperSelector<SendInMessageType, SendOutMessageType>,

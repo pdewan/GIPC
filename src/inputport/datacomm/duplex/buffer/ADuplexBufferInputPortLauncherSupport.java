@@ -6,8 +6,6 @@ import inputport.datacomm.simplex.buffer.ASimplexBufferInputPortLauncherSupport;
 
 import java.nio.ByteBuffer;
 
-import util.trace.Tracer;
-
 
 public class ADuplexBufferInputPortLauncherSupport extends ASimplexBufferInputPortLauncherSupport {
 	public  void setFactories() {

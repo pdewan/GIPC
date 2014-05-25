@@ -1,11 +1,11 @@
 package inputport.datacomm.simplex.object.example;
 
-import port.PortLauncherSupport;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.simplex.buffer.example.ASimplexBufferServerInputPortLauncher;
 import inputport.datacomm.simplex.object.ASimplexObjectInputPortLauncherSupport;
 import inputport.datacomm.simplex.object.SimplexObjectInputPortSelector;
+import port.PortLauncherSupport;
 
 public class ASimplexObjectServerInputPortLauncher extends ASimplexBufferServerInputPortLauncher {
 public ASimplexObjectServerInputPortLauncher(String aServerName,

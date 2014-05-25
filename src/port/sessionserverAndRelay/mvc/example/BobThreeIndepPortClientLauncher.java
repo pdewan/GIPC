@@ -3,7 +3,6 @@ package port.sessionserverAndRelay.mvc.example;
 
 import inputport.rpc.simplex.mvc.example.SimplexRPCServerMVCLauncher;
 import port.relay.RelayerLauncher;
-import port.relay.mvc.example.BobTwoServerClientLauncher;
 import port.sessionserver.SessionServerLauncher;
 
 

@@ -1,8 +1,6 @@
 package sessionport.rpc.group.mvc.direct.example;
 
-import port.ParticipantChoice;
 import port.PortLauncherSupport;
-import port.SessionChoice;
 
 public interface TrapperParameters {
 	public static final boolean DO_DELAY = false;

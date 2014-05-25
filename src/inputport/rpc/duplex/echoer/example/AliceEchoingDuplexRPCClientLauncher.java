@@ -1,9 +1,6 @@
 package inputport.rpc.duplex.echoer.example;
 
 
-import inputport.rpc.duplex.mvc.singleuser.example.ADuplexRPCClientMVCLauncher;
-import inputport.rpc.simplex.mvc.example.ASimplexRPCClientMVCLauncher;
-import inputport.rpc.simplex.mvc.example.SimplexRPCServerMVCLauncher;
 
 
 

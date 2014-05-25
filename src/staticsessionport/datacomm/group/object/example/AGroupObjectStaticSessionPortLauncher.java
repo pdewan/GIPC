@@ -16,7 +16,6 @@ import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.sessionserver.ASessionParticipantDescription;
 import port.sessionserver.SessionParticipantDescription;
-
 import staticsessionport.datacomm.duplex.buffer.AStaticSessionDuplexBufferPortLauncherSupport;
 import staticsessionport.datacomm.group.object.GroupObjectStaticSessionPortSelector;
 

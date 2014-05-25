@@ -1,13 +1,8 @@
 package port.relay;
 
-import port.sessionserver.AServerPortDescription;
-import port.sessionserver.ServerPortDescription;
-import port.sessionserver.relay.RelayerObjectSelector;
-import inputport.rpc.DirectedRPCProxyGenerator;
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
-import inputport.rpc.duplex.DuplexRPCInputPortSelector;
 import inputport.rpc.group.GroupRPCInputPortSelector;
 import inputport.rpc.group.GroupRPCServerInputPort;
+import port.sessionserver.relay.RelayerObjectSelector;
 
 
 public class ARelayerPortFactory implements RelayerPortFactory {

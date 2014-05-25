@@ -2,8 +2,8 @@ package port.old;
 
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.duplex.ReplyRPCProxyGenerator;
-import inputport.rpc.duplex.example.AnAnotherCounter;
 import inputport.rpc.duplex.example.ARegisteredEchoer;
+import inputport.rpc.duplex.example.AnAnotherCounter;
 import inputport.rpc.duplex.example.AnotherCounter;
 import inputport.rpc.duplex.example.AnotherEchoer;
 import inputport.rpc.simplex.example.AnUpperCasePrinter;

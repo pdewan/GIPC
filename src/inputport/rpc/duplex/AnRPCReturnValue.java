@@ -1,6 +1,5 @@
 package inputport.rpc.duplex;
 
-import java.io.Serializable;
 
 public class AnRPCReturnValue implements RPCReturnValue {
 	Object returnValue;

@@ -8,9 +8,7 @@ import sessionport.datacomm.group.object.ObjectGroupSessionPortSelector;
 import sessionport.datacomm.group.object.direct.ALayeredObjectGroupSessionPortFactory;
 import sessionport.datacomm.group.object.relayed.AnEfficientObjectGroupSessionRelayedPortFactory;
 import sessionport.datacomm.group.object.relayed.RelayingGroupConnectionManagerSelector;
-import sessionport.datacomm.group.object.relayed.latecomer.ALatecomerObjectGroupSessionRelayedPortFactory;
 import sessionport.datacomm.group.object.relayed.latecomer.ALatecomerRelayingGroupConnectionManagerFactory;
-import sessionport.datacomm.group.object.relayed.latecomer.ALatecomerRelayingGroupConnectionsManager;
 
 public class ALatecomerRelayerAndSessionServerLauncherSupport extends AGroupRPCInputPortLauncherSupport {	
 public  void setFactories() {

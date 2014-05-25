@@ -1,6 +1,5 @@
 package inputport.rpc.group.adder.example;
 
-import util.trace.Tracer;
 import inputport.rpc.duplex.example.ADuplexCounterAndSenderAwareSummer;
 import inputport.rpc.duplex.example.ARegisteredEchoer;
 import inputport.rpc.duplex.example.AnotherEchoer;

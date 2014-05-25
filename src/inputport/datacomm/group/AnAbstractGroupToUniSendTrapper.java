@@ -2,7 +2,6 @@ package inputport.datacomm.group;
 
 import inputport.datacomm.NamingSender;
 
-import java.nio.ByteBuffer;
 import java.util.HashSet;
 import java.util.Set;
 

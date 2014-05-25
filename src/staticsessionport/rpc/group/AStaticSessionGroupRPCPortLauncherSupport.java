@@ -1,8 +1,8 @@
 package staticsessionport.rpc.group;
 
+import inputport.rpc.group.AGroupRPCInputPortLauncherSupport;
 import port.PortLauncherSupport;
 import port.sessionserver.relay.RelayerClientAndServerSupport;
-import inputport.rpc.group.AGroupRPCInputPortLauncherSupport;
 
 public class AStaticSessionGroupRPCPortLauncherSupport extends AGroupRPCInputPortLauncherSupport implements PortLauncherSupport {
 	public  void setFactories() {

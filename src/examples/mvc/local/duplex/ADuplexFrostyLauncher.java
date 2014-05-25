@@ -1,18 +1,8 @@
 package examples.mvc.local.duplex;
 
 
-import java.awt.Color;
-import java.util.List;
-
-import javax.swing.JFrame;
-
-import shapes.FlexibleShape;
-import util.models.AListenableVector;
-
 import bus.uigen.OEFrame;
 import bus.uigen.ObjectEditor;
-import bus.uigen.shapes.AnOvalModel;
-import examples.mvc.local.simplex.ASimplexFrostyConsoleUI;
 import examples.mvc.local.simplex.ASimplexFrostyLauncher;
 import examples.mvc.local.simplex.FrostyConsoleInteractor;
 import examples.mvc.local.simplex.ProgramLauncher;

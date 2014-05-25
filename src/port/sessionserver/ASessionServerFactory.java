@@ -42,8 +42,11 @@ public class ASessionServerFactory implements SessionServerFactory {
 		DuplexRPCServerInputPort serverInputPort = DuplexRPCInputPortSelector.createDuplexRPCServerInputPort(aServerId, aServerName);
 //		SessionsServer sessionServer = new ASessionsServer(serverInputPort);
 		aSessionsServer.setDuplexRPCServerInputPort(serverInputPort);
-		for (Class aSessionsServerInterface:aSessionsServerInterfaces)
-		   serverInputPort.register(aSessionsServerInterface, aSessionsServer);
+//		for (Class aSessionsServerInterface:aSessionsServerInterfaces)
+//		   serverInputPort.register(aSessionsServerInterface, aSessionsServer);
+		serverInputPort.register(aSessionsServer);
+//		serverInputPort.register(LatecomerSessionsServer.class, sessionsServer);
+//		serverInputPort.register(aSessionsServerName, sessionsServer);
 		serverInputPort.register(aRegisteredServerName, aSessionsServer);
 //		serverInputPort.connect();	
 		return serverInputPort;

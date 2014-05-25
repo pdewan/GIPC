@@ -1,7 +1,6 @@
 package inputport.datacomm.group.object;
 
 import inputport.InputPort;
-import inputport.datacomm.SendToUnconnectedPortException;
 import inputport.datacomm.group.AnAbstractGroupSendTrapper;
 import inputport.datacomm.group.GroupNamingSender;
 import inputport.datacomm.simplex.buffer.SendRegistrar;

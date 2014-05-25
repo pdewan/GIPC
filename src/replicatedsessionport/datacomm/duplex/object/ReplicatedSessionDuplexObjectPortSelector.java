@@ -2,7 +2,6 @@ package replicatedsessionport.datacomm.duplex.object;
 
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.DuplexServerInputPort;
-import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionParticipantDescription;
 import replicatedsessionport.datacomm.duplex.ReplicatedSessionDuplexPortFactory;
 

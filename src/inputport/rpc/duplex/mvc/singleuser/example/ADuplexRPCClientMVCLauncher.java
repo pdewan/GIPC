@@ -1,20 +1,15 @@
 package inputport.rpc.duplex.mvc.singleuser.example;
 
 
+import inputport.InputPort;
+import inputport.rpc.duplex.DuplexRPCClientInputPort;
+import inputport.rpc.simplex.mvc.example.ASimplexRPCClientMVCLauncher;
+import inputport.rpc.simplex.mvc.example.SimplexRPCServerMVCLauncher;
 import port.ParticipantChoice;
 import port.PortAccessKind;
 import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
-import port.sessionserver.SessionServer;
-import inputport.InputPort;
-import inputport.rpc.DirectedRPCProxyGenerator;
-import inputport.rpc.RPCProxyGenerator;
-import inputport.rpc.duplex.ADuplexRPCInputPortLauncherSupport;
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
-import inputport.rpc.duplex.DuplexRPCInputPortSelector;
-import inputport.rpc.simplex.mvc.example.ASimplexRPCClientMVCLauncher;
-import inputport.rpc.simplex.mvc.example.SimplexRPCServerMVCLauncher;
 import examples.mvc.local.duplex.ACounter;
 import examples.mvc.local.duplex.ADuplexFrostyAWTGUI;
 import examples.mvc.local.duplex.ADuplexFrostyConsoleUI;
@@ -23,11 +18,7 @@ import examples.mvc.local.duplex.ADuplexFrostyVerticalGUI;
 import examples.mvc.local.duplex.Counter;
 import examples.mvc.local.duplex.DuplexFrostyModel;
 import examples.mvc.local.duplex.DuplexUpperCaser;
-import examples.mvc.local.simplex.ASimplexFrostyModel;
 import examples.mvc.local.simplex.FrostyConsoleInteractor;
-import examples.mvc.local.simplex.SimplexFrostyModel;
-import examples.mvc.rmi.collaborative.relaying.AnEchoer;
-import examples.mvc.rmi.collaborative.relaying.Echoer;
 
 
 

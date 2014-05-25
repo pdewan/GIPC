@@ -1,4 +1,4 @@
-package port.sessionserver.example;
+package port.sessionserver.asymmetricexample;
 
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.object.DuplexObjectInputPortSelector;

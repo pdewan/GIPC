@@ -1,4 +1,4 @@
-package port.sessionserver.example;
+package port.sessionserver.asymmetricexample;
 
 import inputport.InputPort;
 import inputport.datacomm.simplex.buffer.example.UICreator;

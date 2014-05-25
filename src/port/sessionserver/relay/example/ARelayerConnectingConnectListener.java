@@ -1,11 +1,5 @@
 package port.sessionserver.relay.example;
 
-import port.ParticipantChoice;
-import port.relay.Relayer;
-import port.sessionserver.ServerPortDescription;
-import port.sessionserver.example.ASessionParticipatingConnectListener;
-import port.sessionserver.example.ASessionServerClientLauncher;
-import port.sessionserver.relay.RelayerSupportingSessionServer;
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
@@ -13,6 +7,12 @@ import inputport.datacomm.simplex.buffer.example.UICreator;
 import inputport.rpc.DirectedRPCProxyGenerator;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCInputPortSelector;
+import port.ParticipantChoice;
+import port.relay.Relayer;
+import port.sessionserver.ServerPortDescription;
+import port.sessionserver.asymmetricexample.ASessionParticipatingConnectListener;
+import port.sessionserver.asymmetricexample.ASessionServerClientLauncher;
+import port.sessionserver.relay.RelayerSupportingSessionServer;
 
 public class ARelayerConnectingConnectListener extends ASessionParticipatingConnectListener implements RelayerConnectingConnectListener {
 	DuplexRPCClientInputPort relayerPort;

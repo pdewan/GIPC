@@ -1,8 +1,8 @@
 package replicatedserverport.rpc.duplex.singleresponse.example;
 
+import inputport.rpc.group.adder.example.AGroupRPCServerInputPortLauncher;
 import port.PortLauncherSupport;
 import port.sessionserver.ServerPortDescription;
-import inputport.rpc.group.adder.example.AGroupRPCServerInputPortLauncher;
 import replicatedserverport.rpc.groupserver.singleresponse.ASingleResponseReplicatedGroupServerLauncherSupport;
 
 public  class AGroupRPCSingleResponseServerLauncher extends AGroupRPCServerInputPortLauncher{

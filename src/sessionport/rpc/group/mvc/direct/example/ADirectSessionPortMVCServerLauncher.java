@@ -1,13 +1,9 @@
 package sessionport.rpc.group.mvc.direct.example;
 
 import inputport.rpc.simplex.mvc.example.SimplexRPCServerMVCLauncher;
-import port.ParticipantChoice;
-import port.PortLauncherSupport;
-import port.SessionChoice;
 import port.sessionserver.SessionServerLauncher;
 import port.sessionserverAndRelay.mvc.example.UpperCaseSession;
 import sessionport.rpc.group.mvc.flexible.example.AFlexibleSessionPortMVCServerLauncher;
-import sessionport.rpc.group.mvc.flexible.example.ServerSessionPort;
 
 public class ADirectSessionPortMVCServerLauncher
 	implements ServerDirectSessionPort, SimplexRPCServerMVCLauncher {

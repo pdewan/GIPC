@@ -1,7 +1,6 @@
 package serialization.examples;
 
 import java.nio.ByteBuffer;
-import java.rmi.server.RMIClassLoader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;

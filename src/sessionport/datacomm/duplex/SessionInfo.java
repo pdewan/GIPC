@@ -2,7 +2,6 @@ package sessionport.datacomm.duplex;
 
 import java.util.List;
 
-import port.sessionserver.ASession;
 import port.sessionserver.SessionParticipantDescription;
 
 public interface SessionInfo {

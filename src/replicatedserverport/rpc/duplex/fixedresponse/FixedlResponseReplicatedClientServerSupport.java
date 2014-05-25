@@ -6,7 +6,6 @@ import inputport.rpc.duplex.DuplexClientSerializableCallTrapperSelector;
 import replicatedserverport.datacomm.duplex.ADuplexMultiToReplicatedTrapperFactory;
 import replicatedserverport.datacomm.simplex.ClientMultiToReplicatedTrapperSelector;
 import replicatedserverport.datacomm.simplex.MultiToReplicatedTrapperFactory;
-import replicatedserverport.datacomm.simplex.ReplicatedServerObjectTrapperSelector;
 
 public class FixedlResponseReplicatedClientServerSupport {
 

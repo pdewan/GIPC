@@ -6,11 +6,9 @@ import inputport.datacomm.group.GroupServerInputPort;
 import java.nio.ByteBuffer;
 
 import port.ParticipantChoice;
-
 import sessionport.datacomm.duplex.buffer.ABufferDuplexReceiveListener;
 import sessionport.datacomm.group.buffer.AGroupSendingConnectListener;
 import sessionport.datacomm.group.buffer.BufferGroupSessionPortSelector;
-import util.trace.Tracer;
 
 
 public class ABufferGroupSessionPortLauncher {

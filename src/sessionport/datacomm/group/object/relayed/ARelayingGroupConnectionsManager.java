@@ -3,7 +3,6 @@ package sessionport.datacomm.group.object.relayed;
 import java.util.Set;
 
 import port.ParticipantChoice;
-
 import sessionport.datacomm.duplex.object.relayed.AMessageWithSource;
 import sessionport.datacomm.duplex.object.relayed.ARelayingDuplexConnectionsManager;
 import sessionport.datacomm.group.GroupSessionPort;

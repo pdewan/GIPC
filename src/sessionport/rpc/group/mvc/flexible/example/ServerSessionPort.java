@@ -2,7 +2,6 @@ package sessionport.rpc.group.mvc.flexible.example;
 
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
-import port.SessionChoice;
 
 public interface ServerSessionPort {
 	public static final boolean DO_DELAY = false;

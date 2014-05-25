@@ -1,8 +1,8 @@
 package replicatedserverport.rpc.group.fixedresponse.direct.example;
 
+import inputport.datacomm.simplex.object.example.AliceClientLauncher;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
-import inputport.datacomm.simplex.object.example.AliceClientLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
 import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;

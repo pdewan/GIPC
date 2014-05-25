@@ -1,7 +1,7 @@
 package replicatedserverport.rpc.duplex.singleresponse;
 
-import util.trace.TraceableListener;
 import inputport.datacomm.SendTrapper;
+import util.trace.TraceableListener;
 
 public interface ClientMessagesManager extends TraceableListener {
 	

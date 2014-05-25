@@ -1,8 +1,6 @@
 package examples.mvc.rmi.muser;
 
-import examples.mvc.local.duplex.Counter;
 import examples.mvc.local.duplex.DuplexFrostyModel;
-import examples.mvc.rmi.collaborative.relaying.Echoer;
 import examples.mvc.rmi.duplex.ADistributedRMIFrostyModel;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 

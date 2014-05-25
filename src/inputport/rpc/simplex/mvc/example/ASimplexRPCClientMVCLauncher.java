@@ -1,6 +1,10 @@
 package inputport.rpc.simplex.mvc.example;
 
 
+import inputport.ConnectionListener;
+import inputport.InputPort;
+import inputport.rpc.DirectedRPCProxyGenerator;
+import inputport.rpc.simplex.SimplexRPCClientInputPort;
 import port.ATracingConnectionListener;
 import port.AnAbstractPortLauncher;
 import port.ParticipantChoice;
@@ -8,10 +12,6 @@ import port.PortAccessKind;
 import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
-import inputport.ConnectionListener;
-import inputport.InputPort;
-import inputport.rpc.DirectedRPCProxyGenerator;
-import inputport.rpc.simplex.SimplexRPCClientInputPort;
 import examples.mvc.local.simplex.ASimplexFrostyAWTGUI;
 import examples.mvc.local.simplex.ASimplexFrostyConsoleUI;
 import examples.mvc.local.simplex.ASimplexFrostyModel;

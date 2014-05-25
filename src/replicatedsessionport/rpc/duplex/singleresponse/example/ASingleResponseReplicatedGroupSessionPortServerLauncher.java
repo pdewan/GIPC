@@ -1,23 +1,12 @@
 package replicatedsessionport.rpc.duplex.singleresponse.example;
 
 import inputport.InputPort;
-import inputport.rpc.RPCRegistry;
-import inputport.rpc.duplex.example.AnotherCounter;
 import inputport.rpc.duplex.example.DuplexCounterAndSenderAwareSummer;
 import inputport.rpc.group.GroupRPCServerInputPort;
-import inputport.rpc.group.adder.example.ACounterWithObjectValue;
 import inputport.rpc.group.adder.example.AGroupCounterAndSenderAwareSumPrinter;
-import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.SessionChoice;
-import port.jitter.AJitterControllingPortLauncherSupport;
-import replicatedsessionport.datacomm.duplex.object.ReplicatedSessionDuplexObjectPortSelector;
 import replicatedsessionport.rpc.duplex.ReplicatedSessionDuplexRPCPortSelector;
-import sessionport.datacomm.group.object.ObjectGroupSessionPortSelector;
-import sessionport.datacomm.group.object.direct.AnObjectGroupSessionPortDirectLauncherSupport;
-import sessionport.datacomm.group.object.flexible.jitter.example.AJitteryFlexibleSessionPortClientLauncher;
-import sessionport.datacomm.group.object.relayed.AnObjectGroupSessionPortRelayedLauncherSupport;
-import sessionport.datacomm.group.object.relayed.latecomer.AnObjectGroupSessionPortLatecomerLauncherSupport;
 
 public class ASingleResponseReplicatedGroupSessionPortServerLauncher 
 	extends AJitteryFlexibleReplicatedGroupSessionPortServerLauncher{

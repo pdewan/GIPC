@@ -1,8 +1,8 @@
 package port.sessionserver.relay;
 
+import inputport.datacomm.duplex.DuplexServerInputPort;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.Session;
-import inputport.datacomm.duplex.DuplexServerInputPort;
 
 public interface RelayingSession extends Session {
 	void setRelayingPort (DuplexServerInputPort<Object> aDuplexServeInputPort);

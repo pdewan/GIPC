@@ -2,7 +2,6 @@ package port.ot;
 import util.session.AServerSentMessageQueuerSelector;
 import util.session.ASessionManager;
 import util.session.ServerMessageFilterCreator;
-import util.trace.Tracer;
 public class OTSessionManagerServerStarter {
 	static ASessionManager server;
 	public static void main (String[] args) {

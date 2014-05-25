@@ -1,21 +1,12 @@
 package examples.mvc.local.duplex;
 
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.GridLayout;
-import java.awt.Label;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 
-import examples.mvc.local.simplex.ASimplexFrostyGUI;
-import examples.mvc.local.simplex.SimplexFrostyModel;
-
-
-import util.awt.ATextField;
 import util.awt.TextComponentInterface;
 import util.models.PropertyListenerRegisterer;
+import examples.mvc.local.simplex.ASimplexFrostyGUI;
+import examples.mvc.local.simplex.SimplexFrostyModel;
 
 
 public abstract class ADuplexFrostyGUI extends ASimplexFrostyGUI  implements DuplexUserInterfaceManager{

@@ -1,11 +1,10 @@
 package sessionport.datacomm.duplex.object.example;
 
-import port.ParticipantChoice;
 import inputport.ConnectionListener;
+import port.ParticipantChoice;
 import sessionport.datacomm.duplex.DuplexSessionPort;
 import sessionport.datacomm.duplex.object.AnObjectDuplexReceiveListener;
 import sessionport.datacomm.duplex.object.ObjectDuplexSessionPortSelector;
-import util.trace.Tracer;
 
 
 public class AnObjectDuplexSessionPortLauncher {

@@ -18,7 +18,7 @@ import port.sessionserver.JoinInfo;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionParticipantDescription;
 import port.sessionserver.SessionServerLauncher;
-import port.sessionserver.example.APrintingSessionObserver;
+import port.sessionserver.asymmetricexample.APrintingSessionObserver;
 import port.sessionserver.relay.ARelayerSupportingSessionServer;
 import port.sessionserver.relay.RelayerSupportingSessionServer;
 import port.sessionserverAndRelay.mvc.example.UpperCaseSession;

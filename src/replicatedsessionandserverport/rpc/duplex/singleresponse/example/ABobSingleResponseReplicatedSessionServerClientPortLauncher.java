@@ -2,13 +2,9 @@ package replicatedsessionandserverport.rpc.duplex.singleresponse.example;
 
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
-import bus.uigen.OEFrame;
-import bus.uigen.ObjectEditor;
-import bus.uigen.trace.TraceableDisplayAndWaitManagerFactory;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedsessionport.rpc.duplex.singleresponse.example.ASingleResponseReplicatedGroupSessionPortClientLauncher;
 import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
-import util.trace.Tracer;
 
 public class ABobSingleResponseReplicatedSessionServerClientPortLauncher {
 	public static String USER_NAME  = "Bob";

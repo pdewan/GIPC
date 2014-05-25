@@ -1,11 +1,11 @@
 package replicatedsessionport.datacomm.duplex.object;
 
-import port.ParticipantChoice;
-import port.sessionserver.ServerPortDescription;
-import port.sessionserver.SessionParticipantDescription;
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.DuplexServerInputPort;
 import inputport.datacomm.group.GroupServerInputPort;
+import port.ParticipantChoice;
+import port.sessionserver.ServerPortDescription;
+import port.sessionserver.SessionParticipantDescription;
 import replicatedserverport.datacomm.duplex.AReplicatedServerDuplexClientPort;
 import replicatedsessionport.datacomm.duplex.ReplicatedSessionDuplexPortFactory;
 import replicatedsessionport.datacomm.group.object.ReplicatedObjectGroupSessionPortSelector;

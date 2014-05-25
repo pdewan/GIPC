@@ -8,13 +8,11 @@ import inputport.datacomm.simplex.object.ASimplexObjectServerInputPort;
 import inputport.datacomm.simplex.object.ObjectTranslatingIPTrapperSelector;
 import inputport.datacomm.simplex.object.ServerObjectTrapperSelector;
 
-import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.util.Set;
 
 import port.trace.AConnectionEvent;
 import port.trace.ConnectiontEventBus;
-import util.trace.Tracer;
 
 
 

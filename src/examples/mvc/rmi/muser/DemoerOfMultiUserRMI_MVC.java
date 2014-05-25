@@ -1,9 +1,5 @@
 package examples.mvc.rmi.muser;
 
-import examples.mvc.rmi.duplex.DistributedRMIRegistryStarter;
-import util.models.ListenableVector;
-import bus.uigen.ObjectEditor;
-import bus.uigen.models.AMainClassListLauncher;
 import bus.uigen.models.MainClassLaunchingUtility;
 
 public class DemoerOfMultiUserRMI_MVC {

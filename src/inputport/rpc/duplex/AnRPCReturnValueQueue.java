@@ -4,7 +4,6 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 import port.trace.BlockedForReturnValue;
-
 import util.trace.Tracer;
 
 public class AnRPCReturnValueQueue implements RPCReturnValueQueue {

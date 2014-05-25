@@ -1,7 +1,7 @@
 package sessionport.datacomm.duplex;
 
-import port.ParticipantChoice;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
+import port.ParticipantChoice;
 
 public interface DuplexSessionPortFactory<MessageType> {
 	DuplexSessionPort<MessageType> createDuplexSessionPort(

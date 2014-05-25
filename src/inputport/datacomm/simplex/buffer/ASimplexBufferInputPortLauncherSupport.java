@@ -8,8 +8,6 @@ import java.nio.ByteBuffer;
 import port.AnAbstractPortLauncherSupport;
 import port.PortLauncherSupport;
 
-import util.trace.Tracer;
-
 
 public class ASimplexBufferInputPortLauncherSupport extends AnAbstractPortLauncherSupport implements PortLauncherSupport{
 	public  void setFactories() {

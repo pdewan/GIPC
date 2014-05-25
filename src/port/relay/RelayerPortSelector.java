@@ -1,6 +1,5 @@
 package port.relay;
 
-import port.sessionserver.relay.SessionServerRelayerPortFactory;
 import inputport.rpc.group.GroupRPCServerInputPort;
 
 public class RelayerPortSelector {

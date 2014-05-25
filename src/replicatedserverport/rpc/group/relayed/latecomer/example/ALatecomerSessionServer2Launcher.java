@@ -1,6 +1,5 @@
 package replicatedserverport.rpc.group.relayed.latecomer.example;
 
-import util.trace.Tracer;
 
 public class ALatecomerSessionServer2Launcher implements LatecomerSessionServer2Launcher{
 	public static void main (String args[]) {

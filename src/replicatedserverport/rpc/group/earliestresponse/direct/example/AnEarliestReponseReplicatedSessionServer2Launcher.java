@@ -2,7 +2,6 @@ package replicatedserverport.rpc.group.earliestresponse.direct.example;
 
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AnEarliestReponseReplicatedSessionServerLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server2Launcher;
-import util.trace.Tracer;
 
 public class AnEarliestReponseReplicatedSessionServer2Launcher implements Server2Launcher{
 	public static void main (String args[]) {

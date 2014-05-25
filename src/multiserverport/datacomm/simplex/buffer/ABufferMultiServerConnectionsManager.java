@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.nio.ByteBuffer;
 
 import port.ParticipantChoice;
-
 import variableserverport.SimplexVariableServerClientPort;
 import variableserverport.datacomm.simplex.buffer.AnAbstractSimplexBufferVariableServerConnectionsManager;
 

@@ -5,7 +5,6 @@ import java.rmi.Remote;
 
 import examples.mvc.local.simplex.ProgramLauncher;
 import examples.mvc.rmi.collaborative.ACollaborativeRMIServerMVCLauncher;
-import examples.mvc.rmi.collaborative.ACollaborativeRMIUpperCaser;
 
 public class ARelayingCollaborativeRMIServerMVC_Launcher extends ACollaborativeRMIServerMVCLauncher implements ProgramLauncher{
 	@Override

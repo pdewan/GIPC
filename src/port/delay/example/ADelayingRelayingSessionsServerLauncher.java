@@ -1,16 +1,15 @@
 package port.delay.example;
 
+import inputport.rpc.duplex.DuplexRPCInputPortSelector;
+import inputport.rpc.duplex.DuplexRPCServerInputPort;
+import inputport.rpc.group.GroupRPCInputPortSelector;
+import inputport.rpc.group.GroupRPCServerInputPort;
 import port.relay.ARelayer;
 import port.relay.Relayer;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.relay.ARelayerSupportingSessionServer;
 import port.sessionserver.relay.RelayerSupportingSessionServer;
-import inputport.rpc.duplex.DuplexRPCInputPortSelector;
-import inputport.rpc.duplex.DuplexRPCServerInputPort;
-import inputport.rpc.group.GroupRPCInputPortSelector;
-import inputport.rpc.group.GroupRPCServerInputPort;
-import util.trace.Tracer;
 
 
 public class ADelayingRelayingSessionsServerLauncher {

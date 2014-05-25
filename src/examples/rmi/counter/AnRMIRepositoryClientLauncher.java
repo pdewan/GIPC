@@ -7,8 +7,6 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
-import examples.mvc.rmi.collaborative.relaying.ADistributedRMIEchoer;
-import examples.mvc.rmi.collaborative.relaying.RelayingCollaborativeRMIUpperCaser;
 import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 

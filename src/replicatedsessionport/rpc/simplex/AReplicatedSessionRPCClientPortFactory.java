@@ -1,9 +1,8 @@
 package replicatedsessionport.rpc.simplex;
 
-import port.ParticipantChoice;
-import port.sessionserver.ServerPortDescription;
 import inputport.datacomm.simplex.SimplexClientInputPort;
 import inputport.rpc.simplex.SimplexRPCClientInputPort;
+import port.ParticipantChoice;
 import replicatedserverport.rpc.simplex.AReplicatedServerRPCClientPort;
 import replicatedsessionport.datacomm.simplex.object.ReplicatedSessionObjectClientPortSelector;
 

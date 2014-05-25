@@ -1,8 +1,7 @@
-package port.sessionserver.example;
+package port.sessionserver.asymmetricexample;
 
 import port.AnAbstractPortLauncher;
 import port.ParticipantChoice;
-import port.sessionserver.SessionObserver;
 
 public abstract class AnAbstractSessionServerClientLauncher extends AnAbstractPortLauncher{
 

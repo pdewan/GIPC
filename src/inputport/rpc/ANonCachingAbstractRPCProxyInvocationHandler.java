@@ -4,16 +4,7 @@ import inputport.rpc.simplex.SimplexRPC;
 
 import java.lang.reflect.Method;
 
-import port.trace.AsyncReplayEndInfo;
-import port.trace.CallReceived;
-import port.trace.ReceivedCallEnded;
-import port.trace.ReplayStartInfo;
-import port.trace.SyncReplayEndInfo;
-
 import util.remote.InvocationHandlerWithProperties;
-import util.trace.TraceableBus;
-import util.trace.TraceableListener;
-import util.trace.Tracer;
 
 public abstract class ANonCachingAbstractRPCProxyInvocationHandler implements
 		InvocationHandlerWithProperties{

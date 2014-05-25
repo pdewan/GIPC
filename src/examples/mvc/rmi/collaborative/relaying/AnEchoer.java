@@ -3,8 +3,6 @@ package examples.mvc.rmi.collaborative.relaying;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import util.models.PropertyListenerRegisterer;
-
 
 public class AnEchoer implements Echoer {
 	PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);

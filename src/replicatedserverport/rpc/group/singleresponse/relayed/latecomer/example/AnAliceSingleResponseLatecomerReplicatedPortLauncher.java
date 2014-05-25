@@ -4,10 +4,10 @@ import port.ParticipantChoice;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
 import port.trace.ConnectionEventManagerFactory;
-import bus.uigen.ObjectEditor;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
 import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
+import bus.uigen.ObjectEditor;
 
 public class AnAliceSingleResponseLatecomerReplicatedPortLauncher {
 	public static void main(String[] args) {

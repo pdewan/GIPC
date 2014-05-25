@@ -1,8 +1,8 @@
 package port.sessionserver.relay;
 
+import inputport.datacomm.duplex.DuplexServerInputPort;
 import port.sessionserver.ASession;
 import port.sessionserver.ServerPortDescription;
-import inputport.datacomm.duplex.DuplexServerInputPort;
 
 
 public class ARelayingSession extends ASession implements RelayingSession{

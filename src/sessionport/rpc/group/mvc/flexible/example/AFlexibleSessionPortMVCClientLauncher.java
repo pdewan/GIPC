@@ -11,8 +11,6 @@ import port.PortAccessKind;
 import port.PortKind;
 import port.PortLauncherSupport;
 import port.SessionChoice;
-import port.delay.example.AnEchoingObjectReceiveListener;
-import port.relay.mvc.example.AGenericRelayingCollaborativeFrostyModel;
 import port.sessionserver.SessionParticipantDescription;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import examples.mvc.local.duplex.DuplexFrostyModel;

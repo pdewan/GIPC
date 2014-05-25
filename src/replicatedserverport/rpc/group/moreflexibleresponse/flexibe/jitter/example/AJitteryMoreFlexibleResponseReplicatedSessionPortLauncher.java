@@ -1,12 +1,12 @@
 package replicatedserverport.rpc.group.moreflexibleresponse.flexibe.jitter.example;
 
+import inputport.ConnectionListener;
+import inputport.InputPort;
 import port.ATracingConnectionListener;
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
-import inputport.ConnectionListener;
-import inputport.InputPort;
 import replicatedserverport.rpc.duplex.preferredresponse.APreferredResponseReplicatedPortLauncherSupport;
 import replicatedserverport.rpc.group.flexibleresponse.flexibejitter.example.AJitteryFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;

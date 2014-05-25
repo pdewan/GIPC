@@ -3,7 +3,7 @@ package port.sessionserver.relay.example;
 import java.util.Set;
 
 import port.relay.Relayer;
-import port.sessionserver.example.JoinerProcessingSessionObserver;
+import port.sessionserver.asymmetricexample.JoinerProcessingSessionObserver;
 
 
 public interface JoinerTrackingSessionObserver extends JoinerProcessingSessionObserver{

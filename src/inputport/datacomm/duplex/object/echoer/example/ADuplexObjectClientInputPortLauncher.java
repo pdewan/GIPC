@@ -1,20 +1,15 @@
 package inputport.datacomm.duplex.object.echoer.example;
 
-import java.nio.ByteBuffer;
-
-import port.PortLauncherSupport;
-
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
-import inputport.datacomm.Sender;
 import inputport.datacomm.duplex.buffer.echoer.example.ADuplexBufferClientInputPortLauncher;
 import inputport.datacomm.duplex.object.ADuplexObjectInputPortLauncherSupport;
 import inputport.datacomm.duplex.object.DuplexObjectInputPortSelector;
 import inputport.datacomm.simplex.SimplexClientInputPort;
-import inputport.datacomm.simplex.buffer.example.ASimplexBufferFrostyConsoleUI;
 import inputport.datacomm.simplex.buffer.example.UserInterfaceManager;
 import inputport.datacomm.simplex.object.example.ASimplexObjectFrostyConsoleUI;
 import inputport.datacomm.simplex.object.example.AnEchoingObjectReceiveListener;
+import port.PortLauncherSupport;
 
 
 

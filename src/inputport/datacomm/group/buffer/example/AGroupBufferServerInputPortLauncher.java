@@ -1,12 +1,12 @@
 package inputport.datacomm.group.buffer.example;
 
-import port.PortLauncherSupport;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.duplex.buffer.echoer.example.ADuplexBufferServerInputPortLauncher;
 import inputport.datacomm.group.GroupInputPort;
 import inputport.datacomm.group.buffer.AGroupBufferInputPortLauncherSupport;
 import inputport.datacomm.group.buffer.BufferGroupInputPortSelector;
+import port.PortLauncherSupport;
 
 public class AGroupBufferServerInputPortLauncher extends ADuplexBufferServerInputPortLauncher  {
 	protected PortLauncherSupport getPortLauncherSupport() {

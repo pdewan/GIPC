@@ -1,9 +1,9 @@
 package port.old;
 
 
+import inputport.ConnectionListener;
 import port.ParticipantChoice;
 import port.sessionserver.relay.RelayerClientAndServerSupport;
-import inputport.ConnectionListener;
 import sessionport.rpc.group.AGroupCallingConnectListener;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import sessionport.rpc.group.GroupRPCSessionPortSelector;

@@ -1,8 +1,8 @@
 package staticsessionport.datacomm.duplex.object;
 
+import inputport.datacomm.duplex.object.ADuplexObjectInputPortLauncherSupport;
 import port.PortLauncherSupport;
 import port.sessionserver.relay.RelayerClientAndServerSupport;
-import inputport.datacomm.duplex.object.ADuplexObjectInputPortLauncherSupport;
 
 public class AStaticSessionDuplexObjectPortLauncherSupport extends ADuplexObjectInputPortLauncherSupport implements PortLauncherSupport {
 	public  void setFactories() {

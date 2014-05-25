@@ -6,7 +6,6 @@ import inputport.datacomm.simplex.SimplexServerInputPort;
 import java.nio.ByteBuffer;
 
 import port.ParticipantChoice;
-
 import replicatedserverport.datacomm.simplex.AReplicatedServerClientPort;
 import replicatedsessionport.datacomm.simplex.ReplicatedSessionPortFactory;
 import sessionport.datacomm.duplex.DuplexSessionPort;

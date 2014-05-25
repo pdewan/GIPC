@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridLayout;
 
-
 import util.awt.AVerticalTextField;
 import util.awt.TextComponentInterface;
 

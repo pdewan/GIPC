@@ -2,7 +2,6 @@ package sessionport.rpc.group.mvc.flexible.example;
 
 import java.beans.PropertyChangeEvent;
 
-import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import util.trace.Tracer;
 import examples.mvc.local.duplex.ADuplexFrostyModel;

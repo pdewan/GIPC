@@ -1,7 +1,6 @@
 package replicatedserverport.rpc.duplex.singleresponse;
 
 import replicatedserverport.datacomm.duplex.AReplicatedPortLauncherSupport;
-import util.trace.Tracer;
 
 public class ASingleResponseReplicatedPortLauncherSupport extends AReplicatedPortLauncherSupport {	
 	

@@ -1,10 +1,10 @@
 package replicatedserverport.rpc.group.flexibleresponse.flexible.example;
 
+import inputport.InputPort;
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
-import inputport.InputPort;
 import replicatedserverport.datacomm.duplex.ADuplexMultiToReplicatedPortLauncherSupport;
 import replicatedserverport.datacomm.duplex.earliest.AnEarliestAcceptingReplicatedPortLauncherSupport;
 import replicatedserverport.rpc.duplex.singleresponse.ASingleResponseReplicatedPortLauncherSupport;

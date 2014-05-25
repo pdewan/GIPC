@@ -1,10 +1,10 @@
 package sessionport.rpc.group.object.relayed.latecomer.example;
 
+import inputport.InputPort;
 import port.PortLauncherSupport;
 import port.sessionserver.ASessionServerLauncher;
 import port.sessionserver.relay.late.ALatecomerServerLauncherSupport;
 import port.sessionserver.relay.late.LatecomerRelayerAndSessionServerSelector;
-import inputport.InputPort;
 
 
 

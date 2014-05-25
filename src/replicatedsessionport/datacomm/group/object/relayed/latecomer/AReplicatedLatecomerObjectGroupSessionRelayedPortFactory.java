@@ -1,14 +1,13 @@
 package replicatedsessionport.datacomm.group.object.relayed.latecomer;
 
 
+import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import replicatedserverport.rpc.duplex.ReplicatedServerDuplexRPCClientPortSelector;
 import replicatedsessionport.datacomm.group.ReplicatedGroupSessionPortFactory;
 import sessionport.datacomm.group.GroupSessionPort;
 import sessionport.datacomm.group.object.relayed.latecomer.ALatecomerObjectGroupSessionRelayedPortFactory;
-import sessionport.datacomm.group.object.relayed.latecomer.ALatecomerRelayingObjectGroupSessionPort;
 
 
 

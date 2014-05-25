@@ -5,7 +5,6 @@ package staticsessionport.datacomm.duplex.object;
 
 
 import port.ParticipantChoice;
-import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionParticipantDescription;
 import sessionport.datacomm.duplex.DuplexSessionPort;
 import staticsessionport.datacomm.duplex.DuplexStaticSessionPortFactory;

@@ -4,11 +4,10 @@ import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.simplex.SimplexClientInputPort;
 import inputport.datacomm.simplex.buffer.ASimplexBufferInputPortLauncherSupport;
-import inputport.datacomm.simplex.buffer.SimplexBufferInputPortSelector;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
+import inputport.datacomm.simplex.buffer.SimplexBufferInputPortSelector;
 
 import java.nio.ByteBuffer;
-import java.util.Scanner;
 
 import port.ATracingConnectionListener;
 import port.AnAbstractPortLauncher;

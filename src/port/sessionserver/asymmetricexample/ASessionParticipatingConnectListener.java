@@ -1,12 +1,11 @@
-package port.sessionserver.example;
+package port.sessionserver.asymmetricexample;
 
-import port.ATracingConnectionListener;
-import port.sessionserver.SessionServer;
-import port.sessionserver.relay.ARelayerSupportingSessionServer;
 import inputport.ConnectionType;
 import inputport.InputPort;
 import inputport.rpc.DirectedRPCProxyGenerator;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
+import port.ATracingConnectionListener;
+import port.sessionserver.SessionServer;
 
 public abstract class ASessionParticipatingConnectListener extends ATracingConnectionListener implements Runnable {
 	
@@ -37,6 +36,7 @@ public abstract class ASessionParticipatingConnectListener extends ATracingConne
 //		return ARelayerSupportingSessionsServer.class;
 //	}
 	@Override
+	// creating own thread so we do not need the thread created by launcher
 	public void connected(String aRemoteEnd, ConnectionType aConnectionType) {
 		(new Thread(this)).start();
 		

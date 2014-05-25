@@ -7,14 +7,12 @@ import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
 
 import java.nio.ByteBuffer;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import multiserverport.datacomm.duplex.buffer.ABufferDuplexMultiServerConnectionsManager;
 import port.ParticipantChoice;
 import port.sessionserver.ServerPortDescription;
-
-import multiserverport.datacomm.duplex.buffer.ABufferDuplexMultiServerConnectionsManager;
 import util.trace.Tracer;
 import variableserverport.datacomm.duplex.DuplexVariableServerClientPort;
 

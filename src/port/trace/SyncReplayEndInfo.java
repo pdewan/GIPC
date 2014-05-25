@@ -2,13 +2,9 @@ package port.trace;
 
 import java.util.List;
 
-import inputport.datacomm.ReceiveNotifier;
-import inputport.rpc.RemoteCall;
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
 import util.annotations.ComponentWidth;
 import util.annotations.DisplayToString;
-import util.trace.Traceable;
-import util.trace.Tracer;
 @DisplayToString(true)
 @ComponentWidth(1000)
 public class SyncReplayEndInfo extends ReplayListInfo {

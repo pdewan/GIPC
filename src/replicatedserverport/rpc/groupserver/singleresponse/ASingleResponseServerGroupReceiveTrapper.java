@@ -3,10 +3,6 @@ package replicatedserverport.rpc.groupserver.singleresponse;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveNotifier;
 import replicatedserverport.rpc.duplex.singleresponse.ASingleResponseServerDuplexReceiveTrapper;
-import replicatedserverport.rpc.duplex.singleresponse.ASingleResponseServerDuplexSendTrapper;
-import replicatedserverport.rpc.duplex.singleresponse.ControlMessage;
-import replicatedserverport.rpc.duplex.singleresponse.ServerMessagesManager;
-import util.trace.Tracer;
 
 
 public class ASingleResponseServerGroupReceiveTrapper 

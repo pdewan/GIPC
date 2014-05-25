@@ -25,6 +25,9 @@ public class ASessionParticipantDescription extends AServerPortDescription imple
 		paricipantChoice= aChoice;
 		participantDescription = aParticipantDescription;
 	}
+	public ASessionParticipantDescription (ParticipantChoice aChoice) {
+		paricipantChoice= aChoice;
+	}
 	public ASessionParticipantDescription () {
 	}
 

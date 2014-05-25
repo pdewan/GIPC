@@ -2,10 +2,7 @@ package replicatedserverport.rpc.duplex.singleresponse;
 
 import inputport.ConnectionListener;
 import inputport.InputPort;
-import inputport.datacomm.AnAbstractReceiveTrapper;
 import inputport.datacomm.ReceiveNotifier;
-import inputport.datacomm.simplex.SimplexClientInputPort;
-import util.trace.Tracer;
 
 //handles the connect and the server choice
 public class AnUpstreamSingleResponseClientDuplexRelayedCallReceiveTrapper 

@@ -1,7 +1,6 @@
 package inputport.rpc.duplex;
 
 
-import inputport.datacomm.NamingSender;
 import inputport.datacomm.duplex.DuplexInputPort;
 import inputport.rpc.RPCRegistry;
 import inputport.rpc.simplex.ASimplexReceivedCallInvoker;

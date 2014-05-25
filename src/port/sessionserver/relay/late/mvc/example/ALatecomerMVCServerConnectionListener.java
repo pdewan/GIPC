@@ -9,7 +9,6 @@ import java.util.List;
 import port.relay.mvc.example.GenericRelayingCollaborativeFrostyModel;
 import port.sessionserver.relay.mvc.example.AnMVCServerConnectionListener;
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
-import util.session.MessageReceiver;
 import util.trace.Tracer;
 
 public class ALatecomerMVCServerConnectionListener extends AnMVCServerConnectionListener{	

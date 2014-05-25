@@ -3,7 +3,6 @@ package port.trace;
 import port.ParticipantChoice;
 import util.annotations.DisplayToString;
 import util.trace.TraceableInfo;
-import util.trace.Tracer;
 @DisplayToString(true)
 public  class ConnectedToSessionServer  extends TraceableInfo {
 	String sessionServerName;

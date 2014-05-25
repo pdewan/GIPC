@@ -2,7 +2,6 @@ package multiserverport.rpc.group.example;
 
 import inputport.ConnectionListener;
 import inputport.rpc.group.GroupRPCServerInputPort;
-import sessionport.rpc.group.GroupRPCSessionPort;
 
 import java.util.Scanner;
 

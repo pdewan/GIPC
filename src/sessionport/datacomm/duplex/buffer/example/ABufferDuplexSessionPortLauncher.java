@@ -5,12 +5,10 @@ import inputport.ConnectionListener;
 import java.nio.ByteBuffer;
 
 import port.ParticipantChoice;
-
 import sessionport.datacomm.duplex.DuplexSessionPort;
 import sessionport.datacomm.duplex.buffer.ABufferDuplexReceiveListener;
 import sessionport.datacomm.duplex.buffer.ASendingConnectListener;
 import sessionport.datacomm.duplex.buffer.BufferDuplexSessionPortSelector;
-import util.trace.Tracer;
 
 
 public class ABufferDuplexSessionPortLauncher {

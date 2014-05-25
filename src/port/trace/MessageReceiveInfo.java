@@ -1,6 +1,5 @@
 package port.trace;
 
-import inputport.datacomm.ReceiveNotifier;
 import util.trace.TraceableInfo;
 
 public abstract class MessageReceiveInfo  extends TraceableInfo {

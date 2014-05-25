@@ -4,7 +4,6 @@ import inputport.datacomm.ReceiveTrapper;
 import inputport.datacomm.SendTrapper;
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.rpc.duplex.ADuplexRPCClientInputPort;
-import inputport.rpc.duplex.DuplexClientSerializableCallTrapperSelector;
 
 
 

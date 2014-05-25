@@ -3,7 +3,6 @@ package port.trace;
 import inputport.rpc.duplex.RPCReturnValueQueue;
 import util.annotations.DisplayToString;
 import util.trace.TraceableInfo;
-import util.trace.Tracer;
 @DisplayToString(true)
 public  class BlockedForReturnValue  extends TraceableInfo {
 //	RPCReturnValueQueue rpcReturnValueQueue;

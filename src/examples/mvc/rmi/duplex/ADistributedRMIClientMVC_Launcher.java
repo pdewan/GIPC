@@ -5,14 +5,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import examples.mvc.local.duplex.ADuplexFrostyAWTGUI;
-import examples.mvc.local.duplex.ADuplexFrostyConsoleUI;
-import examples.mvc.local.duplex.ADuplexFrostyVerticalGUI;
 import examples.mvc.local.duplex.ADuplexFrostyLauncher;
 import examples.mvc.local.duplex.Counter;
 import examples.mvc.local.duplex.DuplexFrostyModel;
 import examples.mvc.local.simplex.ProgramLauncher;
-import examples.mvc.rmi.collaborative.relaying.Echoer;
 
 public class ADistributedRMIClientMVC_Launcher extends ADuplexFrostyLauncher implements ProgramLauncher{
 	protected String name;

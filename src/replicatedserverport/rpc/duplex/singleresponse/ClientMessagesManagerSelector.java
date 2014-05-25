@@ -1,6 +1,5 @@
 package replicatedserverport.rpc.duplex.singleresponse;
 
-import inputport.InputPort;
 
 public class ClientMessagesManagerSelector {
 	static ClientMessagesManagerFactory factory;

@@ -2,8 +2,6 @@ package port.trace;
 
 import util.annotations.ComponentWidth;
 import util.annotations.DisplayToString;
-import util.trace.Tracer;
-import inputport.rpc.RemoteCall;
 @DisplayToString(true)
 @ComponentWidth(1000)
 public class ReturnValueQueued extends MessageReceiveInfo {

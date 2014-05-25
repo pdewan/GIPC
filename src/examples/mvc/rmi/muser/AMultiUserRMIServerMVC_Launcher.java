@@ -2,9 +2,6 @@ package examples.mvc.rmi.muser;
 
 
 import java.rmi.Remote;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 
 import examples.mvc.local.simplex.ProgramLauncher;
 import examples.mvc.rmi.duplex.ADistributedRMIServerMVC_Launcher;

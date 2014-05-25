@@ -3,10 +3,7 @@ package replicatedserverport.datacomm.duplex;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveNotifier;
 import inputport.datacomm.ReceiveTrapper;
-import inputport.datacomm.group.GroupSender;
-import inputport.datacomm.simplex.SenderQueryable;
 import replicatedserverport.datacomm.simplex.AMultiToReplicatedTrapperFactory;
-import replicatedserverport.datacomm.simplex.MultiToReplicatedSendTrapper;
 import replicatedserverport.datacomm.simplex.MultiToReplicatedTrapperFactory;
 // converts physical server to logical
 public class ADuplexMultiToReplicatedTrapperFactory<MessageType> 

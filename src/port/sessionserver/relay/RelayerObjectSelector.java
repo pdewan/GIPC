@@ -1,8 +1,8 @@
 package port.sessionserver.relay;
 
+import inputport.rpc.group.GroupRPCServerInputPort;
 import port.relay.Relayer;
 import port.relay.RelayerObjectFactory;
-import inputport.rpc.group.GroupRPCServerInputPort;
 
 public class RelayerObjectSelector {
 	static RelayerObjectFactory relayerObjectFactory;

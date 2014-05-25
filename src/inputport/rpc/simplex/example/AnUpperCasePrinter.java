@@ -1,6 +1,5 @@
 package inputport.rpc.simplex.example;
 
-import inputport.InputPort;
 import inputport.datacomm.simplex.object.example.AnUpperCaseObjectReceiveListener;
 import inputport.rpc.RPCInputPort;
 

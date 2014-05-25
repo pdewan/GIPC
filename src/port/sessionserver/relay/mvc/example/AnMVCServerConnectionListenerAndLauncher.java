@@ -1,6 +1,5 @@
 package port.sessionserver.relay.mvc.example;
 
-import inputport.ConnectionListener;
 import inputport.ConnectionListenerWithPort;
 import inputport.ConnectionType;
 import inputport.InputPort;

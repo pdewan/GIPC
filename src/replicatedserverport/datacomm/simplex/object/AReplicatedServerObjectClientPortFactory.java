@@ -1,10 +1,10 @@
 package replicatedserverport.datacomm.simplex.object;
 
-import port.ParticipantChoice;
-import port.sessionserver.SessionParticipantDescription;
 import inputport.datacomm.simplex.SimplexClientInputPort;
 import multiserverport.datacomm.group.GroupMultiServerClientPort;
 import multiserverport.datacomm.group.object.ObjectGroupMultiServerPortSelector;
+import port.ParticipantChoice;
+import port.sessionserver.SessionParticipantDescription;
 import replicatedserverport.datacomm.simplex.AReplicatedServerClientPort;
 import replicatedserverport.datacomm.simplex.ReplicatedServerClientPortFactory;
 

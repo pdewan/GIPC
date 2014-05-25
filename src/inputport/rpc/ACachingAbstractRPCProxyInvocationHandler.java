@@ -11,9 +11,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import port.trace.ReceivedCallEnded;
 import port.trace.CallReceived;
-import port.trace.AsyncReplayEndInfo;
 import port.trace.ReplayStartInfo;
 import port.trace.SyncReplayEndInfo;
 import util.introspect.JavaIntrospectUtility;

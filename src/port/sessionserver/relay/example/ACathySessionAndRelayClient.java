@@ -2,7 +2,7 @@ package port.sessionserver.relay.example;
 
 import port.ParticipantChoice;
 import port.sessionserver.ASessionServerLauncher;
-import port.sessionserver.example.ASessionServerClientLauncher;
+import port.sessionserver.asymmetricexample.ASessionServerClientLauncher;
 
 public class ACathySessionAndRelayClient {
 //	public static void launch (String myHost, String myID, String myName) {

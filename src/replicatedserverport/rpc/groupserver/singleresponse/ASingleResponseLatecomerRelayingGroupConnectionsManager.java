@@ -1,14 +1,11 @@
 package replicatedserverport.rpc.groupserver.singleresponse;
 
-import inputport.rpc.duplex.RPCReturnValue;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import port.ParticipantChoice;
-
 import replicatedserverport.rpc.duplex.singleresponse.ControlMessage;
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
 import sessionport.datacomm.group.GroupSessionPort;

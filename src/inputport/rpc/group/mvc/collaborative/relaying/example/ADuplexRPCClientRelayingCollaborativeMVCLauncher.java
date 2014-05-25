@@ -1,19 +1,12 @@
 package inputport.rpc.group.mvc.collaborative.relaying.example;
 
 
+import inputport.rpc.duplex.mvc.singleuser.example.ADuplexRPCClientMVCLauncher;
 import util.trace.Tracer;
 import bus.uigen.OEFrame;
 import bus.uigen.ObjectEditor;
 import bus.uigen.trace.TraceableDisplayAndWaitManagerFactory;
-import inputport.InputPort;
-import inputport.rpc.DirectedRPCProxyGenerator;
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
-import inputport.rpc.duplex.mvc.singleuser.example.ADuplexRPCClientMVCLauncher;
-import examples.mvc.local.duplex.ADuplexFrostyAWTGUI;
-import examples.mvc.local.duplex.ADuplexFrostyConsoleUI;
-import examples.mvc.local.duplex.ADuplexFrostyVerticalGUI;
 import examples.mvc.local.duplex.DuplexFrostyModel;
-import examples.mvc.local.duplex.DuplexUpperCaser;
 import examples.mvc.rmi.collaborative.relaying.AnEchoer;
 import examples.mvc.rmi.collaborative.relaying.Echoer;
 

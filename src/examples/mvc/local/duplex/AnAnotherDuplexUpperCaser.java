@@ -1,10 +1,5 @@
 package examples.mvc.local.duplex;
 
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.util.HashMap;
-import java.util.Map;
-
 import examples.mvc.local.simplex.ASimplexUpperCaser;
 import examples.mvc.rmi.collaborative.relaying.Echoer;
 

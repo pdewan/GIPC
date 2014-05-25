@@ -1,6 +1,5 @@
 package inputport.rpc.duplex.example;
 
-import port.PortLauncherSupport;
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.duplex.DuplexServerInputPort;
@@ -9,6 +8,7 @@ import inputport.rpc.duplex.ADuplexRPCInputPortLauncherSupport;
 import inputport.rpc.duplex.DuplexRPCInputPortSelector;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.simplex.example.ASimplexRPCServerInputPortLauncher;
+import port.PortLauncherSupport;
 
 
 

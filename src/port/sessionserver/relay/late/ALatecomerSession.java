@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import port.sessionserver.ASession;
-
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
 
 public class ALatecomerSession extends ASession implements LatecomerSession {

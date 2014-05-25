@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Set;
 
 import port.ParticipantChoice;
-
 import util.trace.Tracer;
 
 public class ASession implements Session {
@@ -100,7 +99,10 @@ public class ASession implements Session {
 	public void joinAsClient(ServerPortDescription aSessionClientDescription,
 			SessionObserver aSessionObserver) {
 		SessionParticipantDescription aSessionParticipantDescription;
-		if (aSessionClientDescription instanceof SessionParticipantDescription)
+		if (aSessionClientDescription == null) {
+			aSessionParticipantDescription = new ASessionParticipantDescription(ParticipantChoice.CLIENT_ONLY);
+		}
+		else if (aSessionClientDescription instanceof SessionParticipantDescription)
 			aSessionParticipantDescription = (SessionParticipantDescription) aSessionClientDescription;
 		else
 		

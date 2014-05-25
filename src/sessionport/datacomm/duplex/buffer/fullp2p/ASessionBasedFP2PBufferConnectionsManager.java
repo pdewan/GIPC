@@ -6,8 +6,6 @@ import inputport.rpc.DirectedRPCProxyGenerator;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
 
 import port.ParticipantChoice;
 import port.sessionserver.AJoinInfo;

@@ -1,9 +1,8 @@
 package port.sessionserver.relay.late;
 
-import port.sessionserver.AServerPortDescription;
-import port.sessionserver.ServerPortDescription;
 import inputport.rpc.group.GroupRPCInputPortSelector;
 import inputport.rpc.group.GroupRPCServerInputPort;
+import port.sessionserver.ServerPortDescription;
 import util.trace.Tracer;
 
 public class ALatecomerRelayerAndSessionServerFactory 

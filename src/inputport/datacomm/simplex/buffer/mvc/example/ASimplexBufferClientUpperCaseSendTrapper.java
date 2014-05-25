@@ -1,7 +1,6 @@
 package inputport.datacomm.simplex.buffer.mvc.example;
 
 import inputport.datacomm.ImplicitSender;
-import inputport.datacomm.simplex.object.mvc.example.PrintUpperCaseCall;
 
 import java.io.NotSerializableException;
 import java.nio.ByteBuffer;

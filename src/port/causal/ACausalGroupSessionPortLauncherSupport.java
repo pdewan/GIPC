@@ -1,11 +1,11 @@
 package port.causal;
 
-import port.PortLauncherSupport;
 import inputport.datacomm.ReceiveTrapper;
 import inputport.datacomm.group.GroupSendTrapper;
 import inputport.datacomm.group.GroupServerInputPort;
 import inputport.datacomm.group.GroupTrapperFactory;
 import inputport.datacomm.group.GroupTrapperSelector;
+import port.PortLauncherSupport;
 import sessionport.datacomm.group.object.SessionObjectGroupTrapperSelector;
 import util.trace.Tracer;
 

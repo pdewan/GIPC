@@ -1,12 +1,6 @@
 package examples.mvc.local.simplex;
 
-import java.beans.PropertyChangeEvent;
-
-import examples.mvc.local.duplex.DuplexFrostyModel;
-
-
 import util.misc.Console;
-import util.models.PropertyListenerRegisterer;
 
 public class ASimplexFrostyConsoleUI implements FrostyConsoleInteractor  {
 	protected SimplexFrostyModel clientModel;

@@ -1,7 +1,5 @@
 package inputport.rpc.duplex;
 
-import inputport.rpc.AnAbstractReceivedCallInvoker;
-import inputport.rpc.SerializableCall;
 
 
 public class FunctionReturnValueDeterminerSelector {

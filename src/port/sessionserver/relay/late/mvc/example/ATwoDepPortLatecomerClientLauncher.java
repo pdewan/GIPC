@@ -5,7 +5,6 @@ import inputport.ConnectionListenerWithPort;
 import inputport.ConnectionType;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ import port.relay.mvc.example.GenericRelayingCollaborativeFrostyModel;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.JoinInfo;
 import port.sessionserver.ServerPortDescription;
-import port.sessionserver.example.APrintingSessionObserver;
+import port.sessionserver.asymmetricexample.APrintingSessionObserver;
 import port.sessionserver.relay.late.ALatecomerSessionServer;
 import port.sessionserver.relay.late.ASynchronizedLatecomerMessageList;
 import port.sessionserver.relay.late.LatecomerJoinInfo;

@@ -1,6 +1,5 @@
 package inputport.datacomm.simplex.object.mvc.example;
 
-import java.io.Serializable;
 
 public class ASimplexClientUpperCaseMarshaller implements SimplexUpperCaseClientMarshaller{
 

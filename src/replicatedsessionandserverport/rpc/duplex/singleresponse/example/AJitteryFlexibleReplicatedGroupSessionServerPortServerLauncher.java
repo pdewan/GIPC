@@ -1,19 +1,17 @@
 package replicatedsessionandserverport.rpc.duplex.singleresponse.example;
 
+import inputport.ConnectionListener;
+import inputport.InputPort;
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
-import inputport.ConnectionListener;
-import inputport.InputPort;
-import replicatedserverport.rpc.duplex.singleresponse.ARelayedSingleResponseReplicatedPortLauncherSupport;
 import replicatedserverport.rpc.duplex.singleresponse.ASingleResponseReplicatedPortLauncherSupport;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
 import replicatedserverport.rpc.group.moreflexibleresponse.flexibe.jitter.example.AJitteryMoreFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.groupserver.singleresponse.ASingleResponseReplicatedGroupServerLauncherSupport;
 import replicatedserverport.rpc.groupserver.singleresponse.ASingleResponseReplicatedRelayedGroupServerLauncherSupport;
 import replicatedsessionport.rpc.duplex.ReplicatedSessionDuplexRPCPortSelector;
-import sessionport.datacomm.group.object.flexible.jitter.example.AJitteryFlexibleSessionPortClientLauncher;
 
 public class AJitteryFlexibleReplicatedGroupSessionServerPortServerLauncher 
 	extends AJitteryMoreFlexibleResponseReplicatedSessionPortLauncher{ // now this should inherit from the replicated choice

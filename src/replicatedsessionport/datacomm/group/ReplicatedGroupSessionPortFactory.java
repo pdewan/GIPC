@@ -2,7 +2,6 @@ package replicatedsessionport.datacomm.group;
 
 import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import sessionport.datacomm.group.GroupSessionPort;
 
 

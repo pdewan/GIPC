@@ -4,10 +4,6 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridLayout;
 
-import examples.mvc.local.duplex.ADuplexFrostyGUI;
-import examples.mvc.local.duplex.DuplexFrostyModel;
-
-
 import util.awt.AVerticalTextField;
 import util.awt.TextComponentInterface;
 

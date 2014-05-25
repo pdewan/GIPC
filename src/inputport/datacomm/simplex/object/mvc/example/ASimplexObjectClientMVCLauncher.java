@@ -1,18 +1,12 @@
 package inputport.datacomm.simplex.object.mvc.example;
 
 
-import port.PortLauncherSupport;
 import inputport.InputPort;
 import inputport.datacomm.simplex.SimplexClientInputPort;
 import inputport.datacomm.simplex.object.ASimplexObjectInputPortLauncherSupport;
 import inputport.datacomm.simplex.object.SimplexObjectInputPortSelector;
 import inputport.rpc.simplex.mvc.example.ASimplexRPCClientMVCLauncher;
-import examples.mvc.local.simplex.ASimplexFrostyAWTGUI;
-import examples.mvc.local.simplex.ASimplexFrostyConsoleUI;
-import examples.mvc.local.simplex.ASimplexFrostyModel;
-import examples.mvc.local.simplex.ASimplexFrostyVerticalGUI;
-import examples.mvc.local.simplex.SimplexFrostyModel;
-import examples.mvc.local.simplex.SimplexUpperCaser;
+import port.PortLauncherSupport;
 
 
 

@@ -2,20 +2,13 @@ package inputport.rpc.simplex.example;
 
 
 import inputport.InputPort;
-import inputport.datacomm.simplex.SimplexClientInputPort;
 import inputport.datacomm.simplex.buffer.example.UserInterfaceManager;
 import inputport.datacomm.simplex.object.example.ASimplexObjectClientInputPortLauncher;
-import inputport.datacomm.simplex.object.example.ASimplexObjectFrostyConsoleUI;
 import inputport.rpc.RPCProxyGenerator;
 import inputport.rpc.simplex.ASimplexRPCInputPortLauncherSupport;
 import inputport.rpc.simplex.SimplexRPCClientInputPort;
 import inputport.rpc.simplex.SimplexRPCInputPortSelector;
-
-import java.util.Scanner;
-
 import port.PortLauncherSupport;
-
-import util.misc.Console;
 
 
 

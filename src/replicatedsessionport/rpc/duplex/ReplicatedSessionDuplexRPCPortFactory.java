@@ -1,13 +1,8 @@
 package replicatedsessionport.rpc.duplex;
 
-import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.group.GroupRPCServerInputPort;
-
-import java.awt.TrayIcon.MessageType;
-
-import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
 
 

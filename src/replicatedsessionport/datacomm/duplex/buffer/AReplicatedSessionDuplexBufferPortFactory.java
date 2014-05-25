@@ -9,7 +9,6 @@ import java.nio.ByteBuffer;
 import port.ParticipantChoice;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionParticipantDescription;
-
 import replicatedserverport.datacomm.duplex.AReplicatedServerDuplexClientPort;
 import replicatedsessionport.datacomm.duplex.ReplicatedSessionDuplexPortFactory;
 import sessionport.datacomm.duplex.buffer.BufferDuplexSessionPortSelector;

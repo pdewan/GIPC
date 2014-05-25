@@ -1,9 +1,7 @@
 package inputport.rpc.duplex;
 
-import util.trace.Tracer;
 import inputport.datacomm.TrapperFactory;
 import inputport.rpc.RPCRegistrySelector;
-import inputport.rpc.simplex.ASimplexRPCClientInputPort;
 import inputport.rpc.simplex.ASimplexRPCInputPortLauncherSupport;
 
 public class ADuplexRPCInputPortLauncherSupport extends ASimplexRPCInputPortLauncherSupport {	

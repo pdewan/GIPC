@@ -11,8 +11,6 @@ import inputport.datacomm.simplex.object.mvc.example.ASimplexUpperCaserProxy;
 import java.nio.ByteBuffer;
 
 import port.PortLauncherSupport;
-
-import examples.mvc.local.duplex.ADuplexFrostyConsoleUI;
 import examples.mvc.local.simplex.ASimplexFrostyAWTGUI;
 import examples.mvc.local.simplex.ASimplexFrostyConsoleUI;
 import examples.mvc.local.simplex.ASimplexFrostyModel;

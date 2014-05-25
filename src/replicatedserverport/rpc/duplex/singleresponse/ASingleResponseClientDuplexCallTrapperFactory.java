@@ -1,6 +1,5 @@
 package replicatedserverport.rpc.duplex.singleresponse;
 
-import util.misc.HashIdentityMap;
 import inputport.InputPort;
 import inputport.datacomm.NamingSender;
 import inputport.datacomm.ReceiveNotifier;
@@ -8,6 +7,7 @@ import inputport.datacomm.ReceiveTrapper;
 import inputport.datacomm.SendTrapper;
 import inputport.datacomm.TrapperFactory;
 import inputport.rpc.duplex.ADuplexCallTrapperFactory;
+import util.misc.HashIdentityMap;
 
 // a new instance must be created for each send and receive trapper
 // this does not really happem as there is a single static class to 

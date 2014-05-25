@@ -9,7 +9,6 @@ import java.util.Set;
 
 import replicatedserverport.rpc.duplex.singleresponse.ASingleResponseServerDuplexSendTrapper;
 import replicatedserverport.rpc.duplex.singleresponse.BufferedMessageSender;
-import replicatedserverport.rpc.duplex.singleresponse.ServerMessagesManager;
 import util.trace.Tracer;
 
 

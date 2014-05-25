@@ -1,11 +1,11 @@
 package inputport.rpc.simplex.example;
 
-import port.PortLauncherSupport;
 import inputport.InputPort;
 import inputport.datacomm.simplex.object.example.ASimplexObjectServerInputPortLauncher;
 import inputport.rpc.simplex.ASimplexRPCInputPortLauncherSupport;
 import inputport.rpc.simplex.SimplexRPCInputPortSelector;
 import inputport.rpc.simplex.SimplexRPCServerInputPort;
+import port.PortLauncherSupport;
 
 
 

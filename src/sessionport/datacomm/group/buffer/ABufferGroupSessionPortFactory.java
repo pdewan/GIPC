@@ -6,7 +6,6 @@ import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import java.nio.ByteBuffer;
 
 import port.ParticipantChoice;
-
 import sessionport.datacomm.duplex.DuplexSessionPort;
 import sessionport.datacomm.duplex.buffer.BufferDuplexSessionPortSelector;
 import sessionport.datacomm.group.GroupSessionPort;

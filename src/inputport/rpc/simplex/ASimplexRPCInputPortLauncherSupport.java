@@ -1,11 +1,9 @@
 package inputport.rpc.simplex;
 
-import util.trace.Tracer;
 import inputport.datacomm.simplex.object.ASimplexObjectInputPortLauncherSupport;
 import inputport.rpc.AMarshallerFactory;
 import inputport.rpc.MarshallerSelector;
 import inputport.rpc.RPCRegistrySelector;
-import inputport.rpc.duplex.ADuplexRPCInputPortLauncherSupport;
 
 public class ASimplexRPCInputPortLauncherSupport extends ASimplexObjectInputPortLauncherSupport {	
 

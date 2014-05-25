@@ -1,10 +1,8 @@
 package replicatedsessionport.datacomm.simplex.object;
 
-import port.ParticipantChoice;
-import port.sessionserver.ServerPortDescription;
 import inputport.datacomm.simplex.SimplexClientInputPort;
 import inputport.datacomm.simplex.SimplexServerInputPort;
-import replicatedserverport.datacomm.simplex.ReplicatedServerClientPortFactory;
+import port.ParticipantChoice;
 import replicatedsessionport.datacomm.simplex.ReplicatedSessionPortFactory;
 
 public class ReplicatedSessionObjectClientPortSelector {

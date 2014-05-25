@@ -2,9 +2,7 @@ package port.sessionserver;
 
 import inputport.ConnectionListener;
 import inputport.InputPort;
-import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.simplex.SimplexServerInputPort;
-import inputport.datacomm.simplex.buffer.example.AnEchoingBufferReceiveListener;
 
 import java.nio.ByteBuffer;
 

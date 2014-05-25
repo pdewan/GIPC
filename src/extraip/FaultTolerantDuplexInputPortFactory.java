@@ -1,8 +1,8 @@
 package extraip;
 
-import port.sessionserver.ServerPortDescription;
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.DuplexServerInputPortFactory;
+import port.sessionserver.ServerPortDescription;
 
 public interface FaultTolerantDuplexInputPortFactory<MessageType> 
 	extends DuplexServerInputPortFactory<MessageType> {

@@ -4,7 +4,6 @@ import inputport.InputPort;
 import inputport.datacomm.group.GroupNamingSender;
 import inputport.datacomm.group.GroupSendTrapper;
 import inputport.datacomm.group.GroupTrapperFactory;
-import replicatedserverport.rpc.duplex.singleresponse.AServerMessagesManager;
 import replicatedserverport.rpc.duplex.singleresponse.ASingleResponseServerDuplexTrapperFactory;
 import replicatedserverport.rpc.duplex.singleresponse.ServerMessagesManager;
 

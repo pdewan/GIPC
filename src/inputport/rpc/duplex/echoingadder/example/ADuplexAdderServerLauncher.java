@@ -1,24 +1,9 @@
 package inputport.rpc.duplex.echoingadder.example;
 
 
-import port.APortDescription;
-import port.AnAbstractPortLauncher;
-import port.PortAccessKind;
-import port.PortDescription;
-import port.PortKind;
-import port.PortLauncherSupport;
-import port.PortMessageKind;
-import serialization.Serializer;
+import inputport.rpc.duplex.AnAbstractDuplexRPCServerPortLauncher;
 import util.trace.ImplicitKeywordKind;
 import util.trace.Tracer;
-import inputport.InputPort;
-import inputport.rpc.duplex.ADuplexRPCClientInputPort;
-import inputport.rpc.duplex.ADuplexRPCInputPortLauncherSupport;
-import inputport.rpc.duplex.AnAbstractDuplexRPCServerPortLauncher;
-import inputport.rpc.duplex.DuplexRPCInputPortSelector;
-import inputport.rpc.duplex.DuplexRPCServerInputPort;
-import inputport.rpc.simplex.ASimplexRPCClientInputPort;
-import examples.mvc.local.duplex.ACounter;
 
 public class ADuplexAdderServerLauncher extends AnAbstractDuplexRPCServerPortLauncher implements DuplexAdderServerLauncher {
 	public ADuplexAdderServerLauncher(String aServerName,

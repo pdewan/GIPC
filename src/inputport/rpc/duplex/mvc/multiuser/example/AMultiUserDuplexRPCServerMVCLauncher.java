@@ -1,15 +1,13 @@
 package inputport.rpc.duplex.mvc.multiuser.example;
 
+import inputport.rpc.duplex.DuplexRPCServerInputPort;
+import inputport.rpc.duplex.ReplyRPCProxyGenerator;
+import inputport.rpc.duplex.mvc.singleuser.example.ADuplexRPCServerMVCLauncher;
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
-import inputport.rpc.duplex.DuplexRPCInputPort;
-import inputport.rpc.duplex.DuplexRPCServerInputPort;
-import inputport.rpc.duplex.ReplyRPCProxyGenerator;
-import inputport.rpc.duplex.mvc.singleuser.example.ADuplexRPCServerMVCLauncher;
 import examples.mvc.local.duplex.Counter;
-import examples.mvc.local.simplex.SimplexUpperCaser;
 
 
 

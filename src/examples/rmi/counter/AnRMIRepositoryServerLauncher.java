@@ -1,12 +1,9 @@
 package examples.rmi.counter;
 
 
-import java.rmi.Remote;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-
-import examples.mvc.rmi.collaborative.relaying.ARelayingCollaborativeRMIUpperCaser;
 
 public class AnRMIRepositoryServerLauncher extends RemoteRepositoryLauncher {	
 	public static void main (String[] args) {

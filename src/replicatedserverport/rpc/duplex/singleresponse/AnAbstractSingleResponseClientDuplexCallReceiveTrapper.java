@@ -6,7 +6,6 @@ import inputport.InputPort;
 import inputport.datacomm.AnAbstractReceiveTrapper;
 import inputport.datacomm.ReceiveNotifier;
 import inputport.datacomm.duplex.DuplexInputPort;
-import inputport.datacomm.simplex.SimplexClientInputPort;
 import util.trace.Tracer;
 
 //does not just forwards also generates

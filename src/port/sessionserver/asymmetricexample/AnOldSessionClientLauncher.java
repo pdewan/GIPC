@@ -1,4 +1,4 @@
-package port.sessionserver.example;
+package port.sessionserver.asymmetricexample;
 
 import inputport.rpc.DirectedRPCProxyGenerator;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;

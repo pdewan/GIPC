@@ -3,9 +3,7 @@ package inputport.rpc.duplex.example;
 import inputport.datacomm.duplex.buffer.echoer.example.AReplyingUpperCaseBufferReceiveListener;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.duplex.ReplyRPCProxyGenerator;
-import inputport.rpc.group.adder.example.CounterWithObjectValue;
 import inputport.rpc.simplex.example.ASenderAwareUpperCasePrinter;
-import inputport.rpc.simplex.example.AnUpperCasePrinter;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;

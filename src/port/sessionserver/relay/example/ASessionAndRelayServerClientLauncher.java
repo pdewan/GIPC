@@ -1,23 +1,15 @@
 package port.sessionserver.relay.example;
 
-import port.ATracingConnectionListener;
+import inputport.ConnectionListener;
+import inputport.InputPort;
+import inputport.datacomm.ReceiveListener;
+import inputport.rpc.duplex.ADuplexRPCInputPortLauncherSupport;
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.relay.Relayer;
 import port.sessionserver.SessionObserver;
-import port.sessionserver.example.AJoiningAndObservingConnectListener;
-import port.sessionserver.example.AJoiningConnectListener;
-import port.sessionserver.example.ASessionServerClientLauncher;
-import port.sessionserver.example.AnObservingConnectListener;
-import port.sessionserver.example.JoinerConnectingSessionObserver;
+import port.sessionserver.asymmetricexample.ASessionServerClientLauncher;
 import port.sessionserver.relay.RelayerSupportingSessionServer;
-import inputport.ConnectionListener;
-import inputport.InputPort;
-import inputport.datacomm.ReceiveListener;
-import inputport.rpc.DirectedRPCProxyGenerator;
-import inputport.rpc.duplex.ADuplexRPCInputPortLauncherSupport;
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
-import inputport.rpc.duplex.DuplexRPCInputPortSelector;
 import sessionport.datacomm.duplex.object.relayed.AMessageWithSource;
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
 

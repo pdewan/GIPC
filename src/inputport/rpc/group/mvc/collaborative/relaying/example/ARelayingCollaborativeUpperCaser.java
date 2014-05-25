@@ -6,10 +6,7 @@ import inputport.rpc.group.mvc.collaborative.example.ACollaborativeUpperCaser;
 import java.util.HashMap;
 import java.util.Map;
 
-import util.trace.TraceableInfo;
-
 import examples.mvc.local.duplex.Counter;
-import examples.mvc.rmi.collaborative.relaying.DistributedRMIEchoer;
 import examples.mvc.rmi.collaborative.relaying.Echoer;
 
 public class ARelayingCollaborativeUpperCaser extends ACollaborativeUpperCaser implements RelayingCollaborativeUpperCaser{

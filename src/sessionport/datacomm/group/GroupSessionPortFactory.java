@@ -1,7 +1,7 @@
 package sessionport.datacomm.group;
 
-import port.ParticipantChoice;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
+import port.ParticipantChoice;
 
 
 

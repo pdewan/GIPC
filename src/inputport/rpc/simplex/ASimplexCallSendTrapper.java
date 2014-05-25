@@ -1,6 +1,5 @@
 package inputport.rpc.simplex;
 
-import inputport.ClientInputPort;
 import inputport.InputPort;
 import inputport.datacomm.AnAbstractSendTrapper;
 import inputport.datacomm.NamingSender;

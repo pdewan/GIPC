@@ -1,9 +1,7 @@
 package port.sessionserver.relay.mvc.example;
 
-import port.sessionserver.ServerPortDescription;
-import inputport.ConnectionListener;
 import inputport.ConnectionListenerWithPort;
-import inputport.InputPort;
+import port.sessionserver.ServerPortDescription;
 
 public interface ServerConnectingConnectionListener extends ConnectionListenerWithPort{
 	public void initNextServerPortDescription(ServerPortDescription aServerPortDescription) ;

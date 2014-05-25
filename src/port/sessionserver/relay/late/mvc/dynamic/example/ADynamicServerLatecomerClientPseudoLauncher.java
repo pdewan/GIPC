@@ -1,15 +1,12 @@
 package port.sessionserver.relay.late.mvc.dynamic.example;
 
 
-import inputport.ConnectionListenerWithPort;
 import inputport.ConnectionType;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.JoinInfo;
 import port.sessionserver.ServerPortDescription;
-import port.sessionserver.SessionObserver;
 import port.sessionserver.relay.late.LatecomerJoinInfo;
 import port.sessionserver.relay.late.LatecomerSessionServer;
-import port.sessionserver.relay.late.mvc.example.AnOldLatecomerRelayerConnectionListener;
 import port.sessionserver.relay.late.mvc.example.ATwoDepPortLatecomerPseudoClientLauncher;
 import util.trace.Tracer;
 

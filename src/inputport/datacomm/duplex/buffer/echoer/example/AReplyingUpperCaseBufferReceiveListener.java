@@ -5,8 +5,6 @@ import inputport.datacomm.simplex.buffer.example.AnUpperCaseBufferReceiveListene
 
 import java.nio.ByteBuffer;
 
-import port.common.DistMisc;
-
 public class AReplyingUpperCaseBufferReceiveListener extends AnUpperCaseBufferReceiveListener  {
 	public AReplyingUpperCaseBufferReceiveListener (InputPort anInputPort) {
 		super(anInputPort);

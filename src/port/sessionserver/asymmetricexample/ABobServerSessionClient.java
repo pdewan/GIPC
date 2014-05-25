@@ -1,9 +1,9 @@
-package port.sessionserver.example;
+package port.sessionserver.asymmetricexample;
 
 import port.ParticipantChoice;
 import port.sessionserver.ASessionServerLauncher;
 
-public class ABobSessionClient {
+public class ABobServerSessionClient {
 
 	public static void main (String[] args) {
 		(new ASessionServerClientLauncher(ASessionServerClientLauncher.SESSION_SERVER_HOST,

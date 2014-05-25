@@ -5,7 +5,6 @@ import java.rmi.registry.Registry;
 import java.util.HashMap;
 import java.util.Map;
 
-import examples.mvc.rmi.collaborative.relaying.DistributedRMIEchoer;
 import examples.mvc.rmi.duplex.ADistributedRMIUpperCaser;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 

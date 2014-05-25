@@ -16,9 +16,8 @@ import port.trace.AReplaceConnectionEvent;
 import port.trace.ConnectiontEventBus;
 import replicatedserverport.datacomm.simplex.AReplicatedServerClientPort;
 import replicatedserverport.datacomm.simplex.ClientMultiToReplicatedTrapperSelector;
-import replicatedserverport.datacomm.simplex.ReplicatedServerObjectTrapperSelector;
-import replicatedserverport.datacomm.simplex.MultiToReplicatedSendTrapper;
 import replicatedserverport.datacomm.simplex.MultiToReplicatedTrapperSelector;
+import replicatedserverport.datacomm.simplex.ReplicatedServerObjectTrapperSelector;
 import util.trace.Tracer;
 // even though this port is duplex, it involves group send and receive because it is replicated
 public class AReplicatedServerDuplexClientPort<MessageType> 

@@ -1,9 +1,9 @@
-package port.sessionserver.example;
+package port.sessionserver.asymmetricexample;
 
 import java.io.Serializable;
 
-import port.sessionserver.SessionParticipantDescription;
 import port.sessionserver.SessionObserver;
+import port.sessionserver.SessionParticipantDescription;
 
 public class APrintingSessionObserver implements SessionObserver {
 

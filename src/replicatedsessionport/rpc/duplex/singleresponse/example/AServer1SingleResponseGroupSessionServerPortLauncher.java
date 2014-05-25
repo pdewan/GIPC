@@ -1,11 +1,7 @@
 package replicatedsessionport.rpc.duplex.singleresponse.example;
 
-import port.ParticipantChoice;
-import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
-import replicatedserverport.rpc.duplex.singleresponse.example.GroupRPCServer1Launcher;
 import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
-import sessionport.datacomm.group.object.flexible.jitter.example.AJitteryFlexibleSessionPortClientLauncher;
 
 public class AServer1SingleResponseGroupSessionServerPortLauncher  {
 

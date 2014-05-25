@@ -1,6 +1,5 @@
 package extraip;
 
-import port.trace.ReturnValueQueued;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.rpc.SerializableCall;
@@ -10,6 +9,7 @@ import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
 import inputport.rpc.duplex.RPCReturnValue;
 import inputport.rpc.duplex.RPCReturnValueQueue;
+import port.trace.ReturnValueQueued;
 
 
 

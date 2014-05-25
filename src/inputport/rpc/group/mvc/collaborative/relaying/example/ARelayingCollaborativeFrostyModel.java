@@ -3,13 +3,9 @@ package inputport.rpc.group.mvc.collaborative.relaying.example;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import util.models.PropertyListenerRegisterer;
-import util.trace.TraceableInfo;
 import examples.mvc.local.duplex.ADuplexFrostyModel;
 import examples.mvc.local.duplex.Counter;
-import examples.mvc.rmi.collaborative.relaying.DistributedRMIEchoer;
 import examples.mvc.rmi.collaborative.relaying.Echoer;
-import examples.mvc.rmi.collaborative.relaying.RelayingCollaborativeRMIUpperCaser;
 
 
 public class ARelayingCollaborativeFrostyModel extends ADuplexFrostyModel implements PropertyChangeListener {

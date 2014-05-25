@@ -1,6 +1,5 @@
 package sessionport.datacomm.duplex.object.direct;
 
-import inputport.datacomm.duplex.DuplexServerInputPort;
 import inputport.datacomm.duplex.object.ADuplexObjectServerInputPort;
 
 import java.nio.ByteBuffer;
@@ -8,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 import port.sessionserver.SessionParticipantDescription;
-
 import sessionport.datacomm.duplex.DuplexSessionPort;
 
 

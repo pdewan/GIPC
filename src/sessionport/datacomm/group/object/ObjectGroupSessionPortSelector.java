@@ -1,6 +1,6 @@
 package sessionport.datacomm.group.object;
-import port.ParticipantChoice;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
+import port.ParticipantChoice;
 import sessionport.datacomm.group.GroupSessionPort;
 import sessionport.datacomm.group.GroupSessionPortFactory;
 import sessionport.datacomm.group.object.relayed.AnObjectGroupSessionPortRelayedFactory;

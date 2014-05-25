@@ -1,12 +1,5 @@
 package examples.mvc.rmi.collaborative;
 
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.util.HashMap;
-import java.util.Map;
-
-import examples.mvc.rmi.collaborative.relaying.DistributedRMIEchoer;
-import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.mvc.rmi.muser.AMultiUserRMIUpperCaser;
 
 public class ACollaborativeRMIUpperCaser extends AMultiUserRMIUpperCaser 

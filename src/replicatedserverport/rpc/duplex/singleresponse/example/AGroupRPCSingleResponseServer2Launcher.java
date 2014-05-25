@@ -1,6 +1,5 @@
 package replicatedserverport.rpc.duplex.singleresponse.example;
 
-import util.trace.Tracer;
 
 public class AGroupRPCSingleResponseServer2Launcher implements GroupRPCServer2Launcher{
 	public static void main (String args[]) {

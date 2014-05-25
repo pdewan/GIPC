@@ -1,6 +1,5 @@
 package replicatedserverport.rpc.group.singleresponse.relayed.latecomer.jitter.example;
 
-import bus.uigen.ObjectEditor;
 import port.ParticipantChoice;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
@@ -9,6 +8,7 @@ import replicatedserverport.rpc.group.flexibleresponse.flexibejitter.example.AJi
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
 import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
+import bus.uigen.ObjectEditor;
 
 public class ABobJitterySingleResponseLatecomerReplicatedPortLauncher {
 	public static void main(String[] args) {

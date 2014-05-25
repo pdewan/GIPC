@@ -1,10 +1,10 @@
 package replicatedserverport.rpc.duplex;
 
-import port.ParticipantChoice;
-import port.sessionserver.SessionParticipantDescription;
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.rpc.duplex.ADuplexRPCInputPortFactory;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
+import port.ParticipantChoice;
+import port.sessionserver.SessionParticipantDescription;
 import replicatedserverport.datacomm.duplex.object.ReplicatedServerDuplexObjectClientPortSelector;
 
 public class AReplicatedServerDuplexRPCClientPortFactory extends ADuplexRPCInputPortFactory implements ReplicatedServerDuplexRPCClientPortFactory {	

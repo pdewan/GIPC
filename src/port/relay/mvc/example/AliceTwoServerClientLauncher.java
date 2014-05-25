@@ -1,10 +1,9 @@
 package port.relay.mvc.example;
 
 
-import port.relay.RelayerLauncher;
-import inputport.rpc.duplex.mvc.singleuser.example.ADuplexRPCClientMVCLauncher;
 import inputport.rpc.simplex.mvc.example.ASimplexRPCClientMVCLauncher;
 import inputport.rpc.simplex.mvc.example.SimplexRPCServerMVCLauncher;
+import port.relay.RelayerLauncher;
 
 
 

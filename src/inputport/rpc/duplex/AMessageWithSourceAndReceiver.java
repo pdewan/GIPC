@@ -2,7 +2,6 @@ package inputport.rpc.duplex;
 
 import inputport.datacomm.ReceiveListener;
 import sessionport.datacomm.duplex.object.relayed.AMessageWithSource;
-import util.trace.Tracer;
 
 public class AMessageWithSourceAndReceiver 
 			extends AMessageWithSource

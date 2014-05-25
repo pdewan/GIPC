@@ -4,7 +4,6 @@ import inputport.InputPort;
 import inputport.datacomm.AReceiveMessageForwarder;
 import inputport.datacomm.ReceiveNotifier;
 import inputport.datacomm.ReceiveTrapper;
-import inputport.datacomm.ReceiveTrapperFactory;
 import inputport.datacomm.group.GroupSender;
 
 public class AMultiToReplicatedTrapperFactory<InMessageType> 

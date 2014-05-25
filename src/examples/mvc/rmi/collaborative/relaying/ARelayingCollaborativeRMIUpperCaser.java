@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import examples.mvc.rmi.collaborative.ACollaborativeRMIUpperCaser;
-import examples.mvc.rmi.collaborative.DisplayLibrary;
 
 public class ARelayingCollaborativeRMIUpperCaser extends
 		ACollaborativeRMIUpperCaser implements

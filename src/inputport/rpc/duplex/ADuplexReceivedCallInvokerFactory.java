@@ -1,9 +1,8 @@
 package inputport.rpc.duplex;
 
-import inputport.datacomm.NamingSender;
 import inputport.datacomm.duplex.DuplexInputPort;
-import inputport.rpc.RPCRegistry;
 import inputport.rpc.DuplexReceivedCallInvokerFactory;
+import inputport.rpc.RPCRegistry;
 
 public class ADuplexReceivedCallInvokerFactory implements DuplexReceivedCallInvokerFactory{
 

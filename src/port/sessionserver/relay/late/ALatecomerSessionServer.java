@@ -9,7 +9,6 @@ import port.sessionserver.ServerPortDescription;
 import port.sessionserver.Session;
 import port.sessionserver.SessionObserver;
 import port.sessionserver.relay.ARelayerSupportingSessionServer;
-
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
 import util.trace.Tracer;
 

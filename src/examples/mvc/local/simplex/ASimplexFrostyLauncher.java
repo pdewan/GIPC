@@ -5,7 +5,6 @@ import java.awt.Color;
 import javax.swing.JFrame;
 
 import shapes.FlexibleShape;
-
 import bus.uigen.OEFrame;
 import bus.uigen.ObjectEditor;
 import bus.uigen.shapes.AnOvalModel;

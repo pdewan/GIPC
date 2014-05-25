@@ -8,9 +8,8 @@ import port.sessionserver.AJoinInfo;
 import port.sessionserver.JoinInfo;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionParticipantDescription;
-import port.sessionserver.example.APrintingSessionObserver;
-import port.sessionserver.example.JoinerProcessingSessionObserver;
-
+import port.sessionserver.asymmetricexample.APrintingSessionObserver;
+import port.sessionserver.asymmetricexample.JoinerProcessingSessionObserver;
 import sessionport.datacomm.duplex.object.relayed.AMessageWithSource;
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
 

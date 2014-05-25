@@ -1,27 +1,14 @@
 package inputport.rpc.duplex.echoer.example;
-import port.ATracingConnectionListener;
-import port.AnAbstractPortLauncher;
-import port.ParticipantChoice;
-import port.PortAccessKind;
-import port.PortKind;
-import port.PortLauncherSupport;
-import port.SessionChoice;
-import port.sessionserver.SessionParticipantDescription;
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.rpc.duplex.AnAbstractDuplexRPCServerPortLauncher;
-import inputport.rpc.duplex.DuplexRPCInputPort;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.duplex.ReplyRPCProxyGenerator;
-import inputport.rpc.duplex.mvc.singleuser.example.ADuplexRPCClientMVCLauncher;
-import inputport.rpc.duplex.mvc.singleuser.example.ADuplexRPCServerMVCLauncher;
 import inputport.rpc.duplex.mvc.singleuser.example.DuplexRPCClientMVCLauncher;
-import inputport.rpc.simplex.SimplexRPCServerInputPort;
+import port.ATracingConnectionListener;
 import examples.mvc.local.duplex.ADuplexUpperCaser;
 import examples.mvc.local.duplex.Counter;
 import examples.mvc.local.duplex.DuplexUpperCaser;
-import examples.mvc.local.simplex.ASimplexUpperCaser;
-import examples.mvc.local.simplex.SimplexUpperCaser;
 public class AnEchoingDuplexRPCServerLauncher extends AnAbstractDuplexRPCServerPortLauncher implements EchoingDuplexServerLauncher  {
 	public AnEchoingDuplexRPCServerLauncher(String aServerName,
 			String aServerPort) {

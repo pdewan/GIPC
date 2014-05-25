@@ -3,8 +3,6 @@ package examples.mvc.rmi.duplex;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import oldrpcip.AUniCallRPCProxyInvocationHandler;
-
 import examples.mvc.local.duplex.ACounter;
 import examples.mvc.local.duplex.Counter;
 

@@ -9,13 +9,13 @@ import inputport.rpc.RPCRegistry;
 import inputport.rpc.duplex.ADuplexRPCInputPortLauncherSupport;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCInputPortSelector;
-import inputport.rpc.duplex.example.AnAnotherCounter;
 import inputport.rpc.duplex.example.ADuplexCounterAndSenderAwareSummer;
 import inputport.rpc.duplex.example.ARegisteredEchoer;
+import inputport.rpc.duplex.example.AnAnotherCounter;
 import inputport.rpc.duplex.example.AnUnregisteredEchoer;
 import inputport.rpc.duplex.example.AnotherCounter;
-import inputport.rpc.duplex.example.DuplexCounterAndSenderAwareSummer;
 import inputport.rpc.duplex.example.AnotherEchoer;
+import inputport.rpc.duplex.example.DuplexCounterAndSenderAwareSummer;
 import inputport.rpc.simplex.example.ASimplexRPCClientInputPortLauncher;
 
 import java.util.Scanner;

@@ -1,9 +1,7 @@
 package port.trace;
 
-import inputport.datacomm.ReceiveNotifier;
 import util.annotations.DisplayToString;
 import util.trace.TraceableInfo;
-import util.trace.Tracer;
 @DisplayToString(true)
 public  class JoinCallInitiated  extends TraceableInfo {
 	String remoteEndPoint;

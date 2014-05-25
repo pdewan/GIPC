@@ -1,6 +1,5 @@
 package replicatedserverport.rpc.duplex.preferredresponse;
 
-import inputport.InputPort;
 import replicatedserverport.rpc.duplex.singleresponse.ClientMessagesManager;
 import replicatedserverport.rpc.duplex.singleresponse.ClientMessagesManagerFactory;
 

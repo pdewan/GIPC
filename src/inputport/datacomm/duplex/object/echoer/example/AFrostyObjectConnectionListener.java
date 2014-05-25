@@ -1,9 +1,9 @@
 package inputport.datacomm.duplex.object.echoer.example;
 
-import port.ATracingConnectionListener;
 import inputport.ConnectionType;
 import inputport.datacomm.duplex.DuplexInputPort;
 import inputport.datacomm.duplex.buffer.echoer.example.AFrostyBufferConnectionListener;
+import port.ATracingConnectionListener;
 
 public class AFrostyObjectConnectionListener extends ATracingConnectionListener {
 	DuplexInputPort<Object> duplexInputPort;

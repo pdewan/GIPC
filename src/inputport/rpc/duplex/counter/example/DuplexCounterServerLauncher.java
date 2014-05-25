@@ -1,8 +1,6 @@
 package inputport.rpc.duplex.counter.example;
 
 import examples.mvc.local.duplex.ACounter;
-import examples.mvc.local.simplex.ASimplexUpperCaser;
-import inputport.rpc.duplex.ADuplexRPCInputPortLauncherSupport;
 
 public interface DuplexCounterServerLauncher  {
 	public static final Class REGISTERED_COUNTER_CLASS =  ACounter.class;

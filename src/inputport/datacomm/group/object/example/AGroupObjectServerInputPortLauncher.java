@@ -1,12 +1,12 @@
 package inputport.datacomm.group.object.example;
 
-import port.PortLauncherSupport;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.duplex.object.echoer.example.ADuplexObjectServerInputPortLauncher;
 import inputport.datacomm.group.GroupInputPort;
 import inputport.datacomm.group.object.AGroupObjectInputPortLauncherSupport;
 import inputport.datacomm.group.object.GroupObjectInputPortSelector;
+import port.PortLauncherSupport;
 
 public class AGroupObjectServerInputPortLauncher extends ADuplexObjectServerInputPortLauncher  {
 	@Override

@@ -1,7 +1,6 @@
 package sessionport.datacomm.group.object.relayed.latecomer;
 
 import inputport.ConnectionType;
-import inputport.rpc.SerializableCall;
 import inputport.rpc.duplex.RPCReturnValue;
 
 import java.util.List;

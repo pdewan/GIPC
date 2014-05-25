@@ -29,8 +29,10 @@ public class ASimplexCallReceiveTrapper extends AnAbstractReceiveTrapper<Object,
 	}
 	@Override
 	public void notifyPortReceive(String remoteEnd, Object message) {
-		Tracer.info(this, " Processing serialized call:" + message + " from:" + remoteEnd);
+//		Tracer.info(this, " Processing serialized call:" + message + " from:" + remoteEnd);
 		if (message instanceof RemoteCall) {
+			Tracer.info(this, " Processing serialized call:" + message + " from:" + remoteEnd);
+
 			RemoteCall aCall = (RemoteCall) message;
 			CallReceived.newCase(this, destination, inputPort.getLocalName(), aCall); 
 

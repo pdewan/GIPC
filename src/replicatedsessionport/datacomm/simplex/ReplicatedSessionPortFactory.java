@@ -1,10 +1,5 @@
 package replicatedsessionport.datacomm.simplex;
 
-import java.nio.ByteBuffer;
-
-import port.ParticipantChoice;
-import port.sessionserver.ServerPortDescription;
-
 import inputport.datacomm.simplex.SimplexClientInputPort;
 import inputport.datacomm.simplex.SimplexServerInputPort;
 

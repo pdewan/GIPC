@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Set;
 
 import port.sessionserver.SessionParticipantDescription;
-
 import sessionport.datacomm.duplex.DuplexSessionPort;
 import sessionport.datacomm.group.GroupSessionPort;
 

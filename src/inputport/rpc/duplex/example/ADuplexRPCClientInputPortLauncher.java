@@ -10,14 +10,8 @@ import inputport.rpc.RPCRegistry;
 import inputport.rpc.duplex.ADuplexRPCInputPortLauncherSupport;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCInputPortSelector;
-import inputport.rpc.simplex.SimplexRPCClientInputPort;
 import inputport.rpc.simplex.example.ASimplexRPCClientInputPortLauncher;
-import inputport.rpc.simplex.example.ASimplexRPCFrostyConsoleUI;
-import inputport.rpc.simplex.example.AnUpperCasePrinter;
 import inputport.rpc.simplex.example.UpperCasePrinter;
-
-import java.util.Scanner;
-
 import port.PortLauncherSupport;
 
 

@@ -1,7 +1,6 @@
 package inputport.rpc.duplex;
 
 
-import inputport.datacomm.NamingSender;
 import inputport.datacomm.SendToUnconnectedPortException;
 import inputport.datacomm.duplex.DuplexInputPort;
 import inputport.datacomm.simplex.buffer.nio.AScatterGatherSelectionManager;
@@ -10,8 +9,6 @@ import inputport.rpc.RPCRegistry;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import sessionport.datacomm.duplex.object.relayed.AMessageWithSource;
-import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
 import util.trace.Tracer;
 
 

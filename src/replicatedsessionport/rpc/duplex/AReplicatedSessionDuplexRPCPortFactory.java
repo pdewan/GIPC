@@ -1,14 +1,13 @@
 package replicatedsessionport.rpc.duplex;
 
-import port.ParticipantChoice;
-import port.sessionserver.AServerPortDescription;
-import port.sessionserver.SessionParticipantDescription;
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.DuplexServerInputPort;
 import inputport.rpc.duplex.ADuplexRPCInputPortFactory;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.group.GroupRPCServerInputPort;
+import port.ParticipantChoice;
+import port.sessionserver.SessionParticipantDescription;
 import replicatedserverport.rpc.duplex.AReplicatedServerDuplexRPCClientPort;
 import replicatedsessionport.datacomm.duplex.object.ReplicatedSessionDuplexObjectPortSelector;
 import replicatedsessionport.rpc.group.ReplicatedGroupRPCSessionPortSelector;

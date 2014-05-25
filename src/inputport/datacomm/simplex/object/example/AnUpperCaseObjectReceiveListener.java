@@ -1,7 +1,6 @@
 package inputport.datacomm.simplex.object.example;
 
 import inputport.InputPort;
-import inputport.datacomm.ReceiveListener;
 
 public class AnUpperCaseObjectReceiveListener extends AnEchoingObjectReceiveListener  {
 

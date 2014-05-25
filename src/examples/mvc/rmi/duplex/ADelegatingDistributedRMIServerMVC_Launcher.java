@@ -2,12 +2,6 @@ package examples.mvc.rmi.duplex;
 
 
 import java.rmi.Remote;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
-
-import examples.mvc.local.simplex.ProgramLauncher;
 
 public class ADelegatingDistributedRMIServerMVC_Launcher extends  ADistributedRMIServerMVC_Launcher{
 	

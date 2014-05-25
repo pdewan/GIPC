@@ -1,6 +1,5 @@
 package inputport.rpc.simplex.example;
 
-import inputport.datacomm.simplex.SimplexServerInputPort;
 import inputport.rpc.simplex.SimplexRPCServerInputPort;
 
 

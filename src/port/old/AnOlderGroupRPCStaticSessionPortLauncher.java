@@ -7,10 +7,8 @@ import java.util.Scanner;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.relay.RelayerClientAndServerSupport;
-
 import sessionport.rpc.group.AGroupCallingConnectListener;
 import sessionport.rpc.group.GroupRPCSessionPort;
-import staticsessionport.rpc.group.GroupRPCStaticSessionPortSelector;
 import util.trace.Tracer;
 
 

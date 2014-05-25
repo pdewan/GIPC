@@ -7,7 +7,6 @@ import inputport.datacomm.group.GroupNamingSender;
 import java.util.List;
 import java.util.Set;
 
-
 import replicatedserverport.rpc.duplex.singleresponse.MessageWithId;
 
 public class ASingleResponseServerGroupSendTrapperWrongAssumptions extends AnAbstractGroupSendTrapper<Object, Object> {

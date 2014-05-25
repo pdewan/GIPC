@@ -4,7 +4,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import util.models.PropertyListenerRegisterer;
-import examples.mvc.local.duplex.DuplexFrostyModel;
 import examples.mvc.rmi.collaborative.ACollaborativeRMIFrostyModel;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 

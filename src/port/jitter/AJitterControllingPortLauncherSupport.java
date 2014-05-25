@@ -2,7 +2,6 @@ package port.jitter;
 
 import port.AnAbstractPortLauncherSupport;
 import port.PortLauncherSupport;
-import util.trace.Tracer;
 
 public class AJitterControllingPortLauncherSupport extends AnAbstractPortLauncherSupport implements PortLauncherSupport{
 

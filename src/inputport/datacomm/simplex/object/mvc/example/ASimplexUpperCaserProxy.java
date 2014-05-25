@@ -1,7 +1,6 @@
 package inputport.datacomm.simplex.object.mvc.example;
 
 import inputport.datacomm.ImplicitSender;
-import inputport.datacomm.NamingSender;
 import examples.mvc.local.simplex.SimplexUpperCaser;
 
 public class ASimplexUpperCaserProxy implements SimplexUpperCaser{

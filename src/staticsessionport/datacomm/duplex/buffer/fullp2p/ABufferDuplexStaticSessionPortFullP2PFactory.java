@@ -4,7 +4,6 @@ import java.nio.ByteBuffer;
 
 import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
-
 import sessionport.datacomm.duplex.DuplexSessionPort;
 import staticsessionport.datacomm.duplex.DuplexStaticSessionPortFactory;
 

@@ -6,9 +6,6 @@ import inputport.datacomm.simplex.buffer.example.ASimplexBufferClientInputPortLa
 import inputport.datacomm.simplex.buffer.example.UserInterfaceManager;
 import inputport.datacomm.simplex.object.ASimplexObjectInputPortLauncherSupport;
 import inputport.datacomm.simplex.object.SimplexObjectInputPortSelector;
-
-import java.nio.ByteBuffer;
-
 import port.PortLauncherSupport;
 
 

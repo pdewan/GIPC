@@ -3,7 +3,6 @@ package replicatedserverport.datacomm.simplex;
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.datacomm.SendTrapper;
-import inputport.datacomm.TrapperSelector;
 import inputport.datacomm.simplex.SimplexClientInputPort;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 

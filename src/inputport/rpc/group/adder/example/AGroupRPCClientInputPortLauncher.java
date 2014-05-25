@@ -1,13 +1,13 @@
 package inputport.rpc.group.adder.example;
 
 
-import port.PortLauncherSupport;
 import inputport.InputPort;
 import inputport.rpc.RPCRegistry;
 import inputport.rpc.duplex.example.ADuplexRPCClientInputPortLauncher;
 import inputport.rpc.duplex.example.AnotherCounter;
 import inputport.rpc.group.AGroupRPCInputPortLauncherSupport;
 import inputport.rpc.group.GroupRPCInputPortSelector;
+import port.PortLauncherSupport;
 public class AGroupRPCClientInputPortLauncher extends ADuplexRPCClientInputPortLauncher  {
 	public AGroupRPCClientInputPortLauncher(String aClientName) {
 		super(aClientName);

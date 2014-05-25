@@ -1,7 +1,7 @@
-package port.sessionserver.example;
+package port.sessionserver.asymmetricexample;
 
-import port.sessionserver.ServerPortDescription;
 import inputport.InputPort;
+import port.sessionserver.ServerPortDescription;
 
 public class AJoiningConnectListener extends ASessionParticipatingConnectListener implements Runnable {
 	ServerPortDescription serverPortDescription;

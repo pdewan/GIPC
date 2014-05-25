@@ -1,13 +1,12 @@
 package sessionport.datacomm.group.object.example;
 
 
+import inputport.ConnectionListener;
 import port.ParticipantChoice;
 import port.sessionserver.relay.RelayerClientAndServerSupport;
-import inputport.ConnectionListener;
 import sessionport.datacomm.duplex.object.AnObjectDuplexReceiveListener;
 import sessionport.datacomm.group.GroupSessionPort;
 import sessionport.datacomm.group.object.ObjectGroupSessionPortSelector;
-import util.trace.Tracer;
 
 
 public class AnObjectGroupSessionPortLauncher {

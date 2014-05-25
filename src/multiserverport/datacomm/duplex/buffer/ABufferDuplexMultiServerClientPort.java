@@ -6,7 +6,6 @@ import java.nio.ByteBuffer;
 
 import multiserverport.datacomm.duplex.DuplexMultiServerClientPort;
 import port.ParticipantChoice;
-import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionParticipantDescription;
 import sessionport.datacomm.duplex.buffer.example.ABufferDuplexSessionPortLauncher;
 import util.trace.Tracer;

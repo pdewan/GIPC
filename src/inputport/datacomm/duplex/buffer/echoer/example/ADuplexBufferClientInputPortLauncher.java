@@ -1,12 +1,12 @@
 package inputport.datacomm.duplex.buffer.echoer.example;
 
-import port.PortLauncherSupport;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.duplex.buffer.ADuplexBufferInputPortLauncherSupport;
 import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
 import inputport.datacomm.simplex.buffer.example.ASimplexBufferClientInputPortLauncher;
 import inputport.datacomm.simplex.buffer.example.AnEchoingBufferReceiveListener;
+import port.PortLauncherSupport;
 
 
 public class ADuplexBufferClientInputPortLauncher extends ASimplexBufferClientInputPortLauncher{

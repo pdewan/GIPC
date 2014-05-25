@@ -1,9 +1,7 @@
 package examples.mvc.rmi.muser;
 
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import examples.mvc.rmi.collaborative.relaying.DistributedRMIEchoer;
 import examples.mvc.rmi.duplex.DistributedRMIUpperCaser;
 
 public interface MultiUserRMIUpperCaser extends DistributedRMIUpperCaser {

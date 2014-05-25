@@ -1,7 +1,7 @@
 package sessionport.datacomm.group.object.relayed;
 
-import port.sessionserver.relay.RelayerClientAndServerSupport;
 import inputport.rpc.group.AGroupRPCInputPortLauncherSupport;
+import port.sessionserver.relay.RelayerClientAndServerSupport;
 
 public class AnObjectGroupSessionPortRelayedLauncherSupport extends AGroupRPCInputPortLauncherSupport {	
 	

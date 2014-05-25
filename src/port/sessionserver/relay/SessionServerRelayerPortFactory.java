@@ -1,7 +1,7 @@
 package port.sessionserver.relay;
 
-import port.relay.RelayerPortFactory;
 import inputport.rpc.group.GroupRPCServerInputPort;
+import port.relay.RelayerPortFactory;
 
 public interface SessionServerRelayerPortFactory extends RelayerPortFactory{
 	public  GroupRPCServerInputPort createRelayerPort(

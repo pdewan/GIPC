@@ -1,7 +1,6 @@
 package staticsessionport.rpc.group.mvc.example;
 
 import inputport.rpc.simplex.mvc.example.SimplexRPCServerMVCLauncher;
-import port.ParticipantChoice;
 import port.sessionserver.ASessionParticipantDescription;
 import port.sessionserver.SessionParticipantDescription;
 import sessionport.rpc.group.mvc.direct.example.ClientDirectSessionPort;

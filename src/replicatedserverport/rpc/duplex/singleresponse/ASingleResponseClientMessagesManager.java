@@ -9,7 +9,6 @@ import java.util.List;
 import port.trace.AsyncReplayEndInfo;
 import port.trace.ConnectedToSessionServer;
 import port.trace.ReplayStartInfo;
-import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
 import util.trace.TraceableBus;
 import util.trace.Tracer;
 

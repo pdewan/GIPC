@@ -5,7 +5,6 @@ import port.sessionserver.ASessionServerLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedsessionport.rpc.duplex.singleresponse.example.ASingleResponseReplicatedGroupSessionPortClientLauncher;
 import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
-import util.trace.Tracer;
 
 public class ACathySingleResponseReplicatedSessionServerClientPortLauncher {
 	public static String USER_NAME  = "Cathy";

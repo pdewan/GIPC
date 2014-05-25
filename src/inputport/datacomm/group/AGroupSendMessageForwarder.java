@@ -1,6 +1,5 @@
 package inputport.datacomm.group;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import util.trace.Tracer;
