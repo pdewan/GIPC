@@ -11,7 +11,8 @@ public class DemoerOfTwoDepPortLatecomerClient {
 				ALatecomerSessionServerLauncher.class,
 				ASessionMemberMVCServerLauncher.class,
 				AliceTwoDepPortLatecomerClientLauncher.class,
-				BobTwoDepPortLatecomerClientLauncher.class
+				BobTwoDepPortLatecomerClientLauncher.class,
+				CathyTwoDepPortLatecomerClientLauncher.class
 		};
 		MainClassLaunchingUtility.interactiveLaunch(classes);
 	}	
