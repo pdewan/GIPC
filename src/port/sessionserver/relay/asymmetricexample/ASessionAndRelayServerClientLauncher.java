@@ -9,6 +9,7 @@ import port.PortLauncherSupport;
 import port.relay.Relayer;
 import port.sessionserver.SessionObserver;
 import port.sessionserver.asymmetricexample.ASessionServerClientLauncher;
+import port.sessionserver.relay.ARelayerSupportingSessionServer;
 import port.sessionserver.relay.RelayerSupportingSessionServer;
 import sessionport.datacomm.duplex.object.relayed.AMessageWithSource;
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
@@ -55,7 +56,7 @@ public class ASessionAndRelayServerClientLauncher extends ASessionServerClientLa
 	@Override
 	protected  ConnectionListener getConnectionListener (InputPort anInputPort) {
 		return new ARelayerConnectingConnectListener(anInputPort, SESSION_NAME, 
-				RelayerSupportingSessionServer.class,
+				ARelayerSupportingSessionServer.class,
 				myPortDescription,
 				myName,
 				participantChoice, (JoinerTrackingSessionObserver) observer, this);

@@ -8,10 +8,12 @@ import inputport.rpc.DirectedRPCProxyGenerator;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCInputPortSelector;
 import port.ParticipantChoice;
+import port.relay.ARelayer;
 import port.relay.Relayer;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.asymmetricexample.ASessionParticipatingConnectListener;
 import port.sessionserver.asymmetricexample.ASessionServerClientLauncher;
+import port.sessionserver.relay.ARelayerSupportingSessionServer;
 import port.sessionserver.relay.RelayerSupportingSessionServer;
 
 public class ARelayerConnectingConnectListener extends ASessionParticipatingConnectListener implements RelayerConnectingConnectListener {
@@ -42,7 +44,7 @@ public class ARelayerConnectingConnectListener extends ASessionParticipatingConn
 	@Override
 	protected void participateInSession() {
 		ConnectionListener connectionListener = ASessionServerClientLauncher.createParticipatingConnectionListener(
-				inputPort, participantChoice, RelayerSupportingSessionServer.class,  serverPortDescription, sessionObserver, uiCreator);
+				inputPort, participantChoice, ARelayerSupportingSessionServer.class,  serverPortDescription, sessionObserver, uiCreator);
 		ServerPortDescription relayerDesccription = ((RelayerSupportingSessionServer) sessionServerProxy).getRelayerDescripton(sessionName);
 
 		if (relayerDesccription == null) {
@@ -59,7 +61,7 @@ public class ARelayerConnectingConnectListener extends ASessionParticipatingConn
 		
 		try {
 			 relayerProxy = (Relayer) DirectedRPCProxyGenerator.generateRPCProxy((DuplexRPCClientInputPort) relayerPort, null,
-					Relayer.class, null);
+					ARelayer.class, null);
 		
 
 		} catch (Exception e) {
