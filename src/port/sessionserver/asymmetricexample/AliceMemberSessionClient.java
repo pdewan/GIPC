@@ -3,7 +3,7 @@ package port.sessionserver.asymmetricexample;
 import port.ParticipantChoice;
 import port.sessionserver.ASessionServerLauncher;
 
-public class AnAliceMemberSessionClient {
+public class AliceMemberSessionClient {
 
 	public static void main (String[] args) {
 		(new ASessionServerClientLauncher(ASessionServerClientLauncher.SESSION_SERVER_HOST,

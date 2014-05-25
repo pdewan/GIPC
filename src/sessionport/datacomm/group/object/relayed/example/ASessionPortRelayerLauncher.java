@@ -1,7 +1,7 @@
 package sessionport.datacomm.group.object.relayed.example;
 
 import port.sessionserver.ASessionServerLauncher;
-import port.sessionserver.relay.example.ASessionServerRelayerLauncher;
+import port.sessionserver.relay.asymmetricexample.ASessionServerRelayerLauncher;
 
 
 

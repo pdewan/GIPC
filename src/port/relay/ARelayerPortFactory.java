@@ -38,7 +38,9 @@ public class ARelayerPortFactory implements RelayerPortFactory {
 	public   GroupRPCServerInputPort createRelayerPort (String relayerId, String relayerName) {
 		GroupRPCServerInputPort serverInputPort = GroupRPCInputPortSelector.createGroupRPCServerInputPort(relayerId, relayerName);
 		Relayer relayer = RelayerObjectSelector.createRelayer(serverInputPort);
-		serverInputPort.register(ARelayer.class, relayer);
+//		serverInputPort.register(ARelayer.class, relayer);
+		serverInputPort.register(relayer);
+
 		serverInputPort.register(relayerName, relayer);
 		return serverInputPort;
 				

@@ -1,10 +1,10 @@
-package port.sessionserver.relay.example;
+package port.sessionserver.relay.asymmetricexample;
 
 import port.ParticipantChoice;
 import port.sessionserver.ASessionServerLauncher;
 import port.sessionserver.asymmetricexample.ASessionServerClientLauncher;
 
-public class AliceSessionAndRelayClient {
+public class CathyClientSessionAndRelayClient {
 //	public static void launch (String myHost, String myID, String myName) {
 //		SessionObserver observer = new APrintingSessionObserver();
 //		SessionClientDescription sessionClientDescription = new ASessionClientDescription(myHost, myID, myName);
@@ -28,7 +28,7 @@ public class AliceSessionAndRelayClient {
 //				ASessionAndRelayServerClientLauncher.RELAYER_HOST, 
 //				ARelayerLauncher.RELAYER_ID, 
 //				ARelayerLauncher.RELAYER_NAME, 
-				"9100", "Alice", ParticipantChoice.MEMBER)).launch();
+				"9102", "Cathy", ParticipantChoice.CLIENT_ONLY)).launch();
 	}
 	
 	

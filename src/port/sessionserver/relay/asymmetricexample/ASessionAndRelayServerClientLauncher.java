@@ -1,4 +1,4 @@
-package port.sessionserver.relay.example;
+package port.sessionserver.relay.asymmetricexample;
 
 import inputport.ConnectionListener;
 import inputport.InputPort;

@@ -1,8 +1,7 @@
-package port.sessionserver.relay.example;
+package port.sessionserver.relay.asymmetricexample;
 
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
 
 import port.relay.Relayer;
 import port.sessionserver.AJoinInfo;
@@ -10,21 +9,19 @@ import port.sessionserver.JoinInfo;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionParticipantDescription;
 import port.sessionserver.asymmetricexample.APrintingSessionObserver;
+import port.sessionserver.asymmetricexample.JoinerProcessingSessionObserver;
 import sessionport.datacomm.duplex.object.relayed.AMessageWithSource;
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
 
-public class AJoinerTrackingSessionObserver extends APrintingSessionObserver implements JoinerTrackingSessionObserver {
+public class AFrostyPeerSendingSessionObserver extends APrintingSessionObserver implements JoinerProcessingSessionObserver {
 	String myName;
-	Set<String> clients = new HashSet();
-	MessageWithSource messageWithSource = null;
+	Relayer relayer;
 	String sessionName;
-	Relayer relayerProxy;
 //	Map<String, DuplexClientInputPort<Object>> nameToPort = new HashMap();
-	public AJoinerTrackingSessionObserver(String aName, String aSessionName) {
+	public AFrostyPeerSendingSessionObserver(String aName, String aSessionName, Relayer aRelayer) {
 		myName = aName;
-		messageWithSource = new AMessageWithSource(myName, "Words of Robert Frost Please!" );
+		relayer = aRelayer;
 		sessionName = aSessionName;
-
 	}
 	@Override
 	public void joined(SessionParticipantDescription aServerPortDescription) {
@@ -38,24 +35,13 @@ public class AJoinerTrackingSessionObserver extends APrintingSessionObserver imp
 			processSessionMember(aServerPortDescription);
 		}		
 	}
-	void processSessionMember(ServerPortDescription aServerPortDescription) {		
+	void processSessionMember(ServerPortDescription aServerPortDescription) {
+		MessageWithSource messageWithSource = new AMessageWithSource(myName, "Words of Robert Frost Please!" );
 		if (!myName.equals( aServerPortDescription.getName())) {
-			clients.add(aServerPortDescription.getName());
-//			relayerProxy.relay(sessionName, aServerPortDescription.getName(), messageWithSource);
-			relayerProxy.relay(aServerPortDescription.getName(), messageWithSource);
+//			relayer.relay(sessionName, aServerPortDescription.getName(),messageWithSource );
+			relayer.relay(aServerPortDescription.getName(),messageWithSource );
 
-		
 		}
 	}
-	@Override
-	public Set<String> getJoiners() {
-		return clients;
-	}
-	@Override
-	public void setRelayerProxy(Relayer aRelayer) {
-		relayerProxy = aRelayer;
-		
-	}
-	
-	
+
 }

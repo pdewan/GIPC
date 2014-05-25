@@ -1,4 +1,4 @@
-package port.sessionserver.relay.example;
+package port.sessionserver.relay.asymmetricexample;
 
 import inputport.datacomm.ReceiveListener;
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;

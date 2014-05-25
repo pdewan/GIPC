@@ -1,10 +1,10 @@
-package port.sessionserver.relay.example;
+package port.sessionserver.relay.asymmetricexample;
 
 import port.ParticipantChoice;
 import port.sessionserver.ASessionServerLauncher;
 import port.sessionserver.asymmetricexample.ASessionServerClientLauncher;
 
-public class BobSessionAndRelayClient {
+public class BobServerSessionAndRelayClient {
 //	public static void launch (String myHost, String myID, String myName) {
 //		SessionObserver observer = new APrintingSessionObserver();
 //		SessionClientDescription sessionClientDescription = new ASessionClientDescription(myHost, myID, myName);

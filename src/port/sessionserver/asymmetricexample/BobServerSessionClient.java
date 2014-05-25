@@ -3,7 +3,7 @@ package port.sessionserver.asymmetricexample;
 import port.ParticipantChoice;
 import port.sessionserver.ASessionServerLauncher;
 
-public class ABobServerSessionClient {
+public class BobServerSessionClient {
 
 	public static void main (String[] args) {
 		(new ASessionServerClientLauncher(ASessionServerClientLauncher.SESSION_SERVER_HOST,

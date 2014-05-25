@@ -1,4 +1,4 @@
-package port.sessionserver.relay.example;
+package port.sessionserver.relay.asymmetricexample;
 
 import port.relay.Relayer;
 

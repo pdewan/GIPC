@@ -2,7 +2,7 @@ package port.sessionserver.asymmetricexample;
 
 import bus.uigen.models.MainClassLaunchingUtility;
 
-public class AsymmetricSessionServerDemoer {
+public class DemoerOfAsymmetricP2PWithSessionServer {
 	public static void main(String args[]) {
 		demo();
 	}
@@ -11,10 +11,10 @@ public class AsymmetricSessionServerDemoer {
 
 		
 		Class[] classes = {
-				ASessionServerLauncher.class,
-				AnAliceMemberSessionClient.class,
-				ABobServerSessionClient.class,
-				ACathyClientSessionClient.class
+				port.sessionserver.ASessionServerLauncher.class,
+				AliceMemberSessionClient.class,
+				BobServerSessionClient.class,
+				CathyClientSessionClient.class
 
 				
 		};
