@@ -345,8 +345,11 @@ public class ARelayingDuplexConnectionsManager implements
 			ServerPortDescription relayerDescription = logicalSessionsServerProxy
 					.getRelayerDescripton(sessionName);
 			if (relayerDescription == null) {
-				Tracer.error("No relayer registered with session server. Will not be able to send messages");
-			}
+//				Tracer.error("No relayer registered with session server. Will not be able to send messages");
+				relayerClientInputPort = sessionServerClientPort; // already regiustered as send and receive listener to this port
+				Tracer.info(this, "No separate relayer port, using session server as relayer");
+				processRelayerConnect(sessionServerClientPort.getLogicalRemoteEndPoint(), ConnectionType.TO_SERVER);
+			} else {
 			relayerClientInputPort = DuplexRPCInputPortSelector
 					.createDuplexRPCClientInputPort(
 							relayerDescription.getHost(),
@@ -358,6 +361,7 @@ public class ARelayingDuplexConnectionsManager implements
 			// relayerName = relayerDescription.getName();
 			Tracer.info(this, "Created relayer client port "
 					+ relayerClientInputPort + " for " + relayerDescription);
+			
 			Tracer.info(this, "Registering as receive and send listener for "
 					+ relayerClientInputPort);
 			ConnectiontEventBus.newEvent(new AConnectionEvent(this,
@@ -370,7 +374,9 @@ public class ARelayingDuplexConnectionsManager implements
 			// UniRPCProxyGenerator.generateUniRPCProxy(relayerClientInputPort,
 			// null,
 			// Relayer.class, null);
+			
 			relayerClientInputPort.connect();
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -446,8 +452,9 @@ public class ARelayingDuplexConnectionsManager implements
 	public  void run() {
 
 		if (!connectedToRelayer) {
-			setUpRelayer();
+			// reversing optimistically the order of operations
 			connectedToRelayer = true;
+			setUpRelayer();
 		} else {
 			joinSessionServer();
 		}
@@ -559,28 +566,50 @@ public class ARelayingDuplexConnectionsManager implements
 			joined(aCurrentMembers.get(i)); // members, clients and servers
 											// notified here
 	}
+	
+	protected void processRelayerConnect (String remoteEndName, ConnectionType aConnectionType) {
+		// connected to both relayer and session server, so can join session
+					// manager
+					// Runnable sessionServerRunnable =
+					// new ASessionServerJoiningRunnable(
+					// sessionClientDescription,sessionName, this,
+					// logicalSessionsServerProxy);
+					//
+					// Thread thread = new Thread (sessionServerRunnable);
+					ConnectedToSessionServer.newCase(this, remoteEndName, joinChoice);
+					Thread thread = new Thread(this);
+					thread.setName("An Async Session Joining Thread");
+					Tracer.info(
+							this,
+							" Created thread "
+									+ thread.getName()
+									+ " for making synchronou join call to session server/relayer");
+					thread.start();
+	}
 
 	@Override
 	public void connected(String remoteEndName, ConnectionType aConnectionType) {
 		if (remoteEndName.equals(relayerClientInputPort // should this not be duplexObjectSessionPort, I guess not we wait for relayer port to be opened
 				.getLogicalRemoteEndPoint())) {
-			// connected to both relayer and session server, so can join session
-			// manager
-			// Runnable sessionServerRunnable =
-			// new ASessionServerJoiningRunnable(
-			// sessionClientDescription,sessionName, this,
-			// logicalSessionsServerProxy);
-			//
-			// Thread thread = new Thread (sessionServerRunnable);
-			ConnectedToSessionServer.newCase(this, remoteEndName, joinChoice);
-			Thread thread = new Thread(this);
-			thread.setName("An Async Session Joining Thread");
-			Tracer.info(
-					this,
-					" Created thread "
-							+ thread.getName()
-							+ " for making synchronou join call to session server/relayer");
-			thread.start();
+			processRelayerConnect(remoteEndName, aConnectionType);
+//			// connected to both relayer and session server, so can join session
+//			// manager
+//			// Runnable sessionServerRunnable =
+//			// new ASessionServerJoiningRunnable(
+//			// sessionClientDescription,sessionName, this,
+//			// logicalSessionsServerProxy);
+//			//
+//			// Thread thread = new Thread (sessionServerRunnable);
+//			ConnectedToSessionServer.newCase(this, remoteEndName, joinChoice);
+//			Thread thread = new Thread(this);
+//			thread.setName("An Async Session Joining Thread");
+//			Tracer.info(
+//					this,
+//					" Created thread "
+//							+ thread.getName()
+//							+ " for making synchronou join call to session server/relayer");
+//			thread.start();
+			
 		}
 
 	}

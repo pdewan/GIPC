@@ -14,7 +14,8 @@ public class AnObjectSendingConnectListener implements ConnectionListener{
 	public void connected(String remoteEnd, ConnectionType aConnectionType) {
 		System.out.println("Connected as client to: " + remoteEnd);
 //		sessionPort.send(remoteEnd, ByteBuffer.wrap(("Hello from: " + sessionPort.getLocalName() + " to:" + remoteEnd).getBytes()));
-		sessionPort.send(remoteEnd, "Hello from: " + sessionPort.getLocalName() + " to:" + remoteEnd);		
+		if (aConnectionType == ConnectionType.MEMBER_TO_SESSION || aConnectionType == ConnectionType.SERVER_TO_SESSION)			
+			sessionPort.send(remoteEnd, "Hello from: " + sessionPort.getLocalName() + " to:" + remoteEnd);		
 	}
 
 	@Override

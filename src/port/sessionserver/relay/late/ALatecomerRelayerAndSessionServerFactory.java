@@ -63,6 +63,8 @@ public class ALatecomerRelayerAndSessionServerFactory
 		GroupRPCServerInputPort relayPort = serverInputPort; 
 //		ServerPortDescription relayerPortDescription = new AServerPortDescription("localhost", "" + aSessionServerId, aSessionsServerName);		
 //		ServerPortDescription relayerPortDescription = new AServerPortDescription(null, null, null);	
+		
+		// for some reason I put null here instead of a server port description
 		ServerPortDescription relayerPortDescription = null;	
 
 //		GroupRPCServerInputPort relayPort = GroupRPCInputPortSelector.createGroupRPCServerInputPort( 
