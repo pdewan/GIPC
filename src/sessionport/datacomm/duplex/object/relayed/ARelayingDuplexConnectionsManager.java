@@ -31,6 +31,8 @@ import util.trace.Tracer;
 public class ARelayingDuplexConnectionsManager implements
 		RelayingDuplexConnectionsManager {
 	protected Set<String> sessionParticipantNames = new HashSet();
+	protected Set<String> notifiedParticipantNames = new HashSet(); // messageReceived adds to sessionparticipant but not notified
+
 	protected Set<String> sessionClientNames = new HashSet();
 	protected Set<String> sessionServerNames = new HashSet();
 	protected Set<String> sessionMemberNames = new HashSet();
@@ -102,22 +104,22 @@ public class ARelayingDuplexConnectionsManager implements
 			// sent earlier
 			return;
 		}
-		if (sessionParticipantNames.contains(joinerName))
-			return;
-		sessionParticipantNames.add(joinerName);
+//		if (!sessionParticipantNames.contains(joinerName)) // notify people
+//			return;
+		sessionParticipantNames.add(joinerName); // set, we do not have to worry about duplicates
 		switch (sessionClientDescription.getParticipantChoice()) {
-		case SERVER_ONLY:
+		case SERVER_ONLY:		
 			sessionServerNames.add(joinerName);
 			if (!servers.contains(sessionClientDescription))
 				servers.add(sessionClientDescription);
 			break;
 		case CLIENT_ONLY:
-			sessionClientNames.add(joinerName);
+			sessionClientNames.add(joinerName); // set
 			if (!clients.contains(sessionClientDescription))
 				clients.add(sessionClientDescription);
 			break;
 		case MEMBER:
-			sessionMemberNames.add(joinerName);
+			sessionMemberNames.add(joinerName); // set
 			if (!members.contains(sessionClientDescription))
 				members.add(sessionClientDescription);
 			break;
@@ -132,7 +134,11 @@ public class ARelayingDuplexConnectionsManager implements
 		// connectType = ConnectionType.SERVER_TO_SESSION_SERVER;
 		// if (duplexObjectSessionPort.getLocalName().equals(joinerName))
 		// return;
-		duplexObjectSessionPort.notifyConnect(joinerName, connectType);
+		
+		if (!notifiedParticipantNames.contains(joinerName))	{		
+		    duplexObjectSessionPort.notifyConnect(joinerName, connectType);
+		    notifiedParticipantNames.add(joinerName);
+		}
 		// can make it more efficient by distinguishing initial join with
 		// notification, thru global var perhaps
 		if (!initialJoin && !logicalConnectionNotificationSent
@@ -298,6 +304,7 @@ public class ARelayingDuplexConnectionsManager implements
 											// this is bad, server should get
 											// all clients explicitly so it can
 											// keep track of who has left
+											// some of the actions are not taken that should be of join
 //			System.out.println ("Message received in Arelating duplex manager");
 
 			duplexObjectSessionPort.notifyPortReceive(
@@ -541,6 +548,7 @@ public class ARelayingDuplexConnectionsManager implements
 		servers = joinInfo.getServers();
 		clients = joinInfo.getClients();
 		members = joinInfo.getMembers();
+		Tracer.info(this, "Current members:" + members);
 				duplexObjectSessionPort.notifyConnect(
 				duplexObjectSessionPort.getLocalName(), null);
 
@@ -560,6 +568,7 @@ public class ARelayingDuplexConnectionsManager implements
 
 	protected void processCurrentMembers(
 			List<SessionParticipantDescription> aCurrentMembers) {
+		Tracer.info(this, "processing current members" + aCurrentMembers);
 		if (aCurrentMembers == null)
 			return;
 		for (int i = 0; i < aCurrentMembers.size(); i++)
