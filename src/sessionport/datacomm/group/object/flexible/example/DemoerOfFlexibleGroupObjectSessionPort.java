@@ -1,21 +1,22 @@
-package sessionport.datacomm.duplex.object.example;
+package sessionport.datacomm.group.object.flexible.example;
 
+import port.sessionserver.ASessionServerLauncher;
 import port.sessionserver.relay.RelayerSupportingSessionServerLauncher;
 import port.sessionserver.relay.SessionServerRelayerLauncher;
+import port.sessionserver.relay.late.LatecomerSessionServerLauncher;
 import sessionport.rpc.duplex.example.AnAliceDuplexRPCSessionPort;
 import bus.uigen.models.MainClassLaunchingUtility;
 
-public class DemoerOfDuplexObjectRelayingSessionPort {
+public class DemoerOfFlexibleGroupObjectSessionPort {
 	public static void main(String args[]) {
 		demo();
 	}	
 	public static void demo() {		
 		Class[] classes = {
-				RelayerSupportingSessionServerLauncher.class,
-				SessionServerRelayerLauncher.class, // seems that a relayer is not automatically registered with the session server
-				AliceObjectDuplexSessionPort.class,
-				BobObjectDuplexSessionPort.class,
-				CathyObjectDuplexSessionPort.class
+				LatecomerSessionServerLauncher.class, // can also have relayer
+				AnAliceGroupSessionPort.class,
+				ABobGroupSessionPort.class,
+				ACathyGroupSessionPort.class 
 		};
 		MainClassLaunchingUtility.interactiveLaunch(classes);
 	}	
