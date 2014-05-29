@@ -11,7 +11,7 @@ public class DemoerOfAsymmetricRelayerWithSessionServer {
 
 		
 		Class[] classes = {
-				port.sessionserver.relay.ARelayerSupportingSessionServerLauncher.class,
+				port.sessionserver.relay.RelayerSupportingSessionServerLauncher.class,
 				ASessionServerRelayerLauncher.class,
 				AliceMemberSessionAndRelayClient.class,
 				BobServerSessionAndRelayClient.class,

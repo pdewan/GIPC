@@ -9,17 +9,17 @@ import port.sessionserver.ASessionServerLauncher;
 
 
 
-public class ASessionServerRelayerLauncher extends ARelayerLauncher implements RelayerLauncher{;
+public class SessionServerRelayerLauncher extends ARelayerLauncher implements RelayerLauncher{;
 	String sessionServerHost;
 	String sessionServerId;
 	String sessionServerName;
 	String sessionName;
 	public static String SESSION_SERVER_HOST = "localhost";
 	public static void main (String args[]) {	
-		(new ASessionServerRelayerLauncher(RELAYER_ID, RELAYER_NAME, SESSION_SERVER_HOST, ASessionServerLauncher.SESSION_SERVER_ID, ASessionServerLauncher.SESSION_SERVER_NAME, null)).launch();
+		(new SessionServerRelayerLauncher(RELAYER_ID, RELAYER_NAME, SESSION_SERVER_HOST, ASessionServerLauncher.SESSION_SERVER_ID, ASessionServerLauncher.SESSION_SERVER_NAME, null)).launch();
 
 	}
-	public  ASessionServerRelayerLauncher (String aRelayerId, String aRelayerName, String aSessionServerHost, String aSessionServerId, String aSessionServerName, String aSessionName) {
+	public  SessionServerRelayerLauncher (String aRelayerId, String aRelayerName, String aSessionServerHost, String aSessionServerId, String aSessionServerName, String aSessionName) {
 		super(aRelayerId, aRelayerName);
 		sessionServerHost = aSessionServerHost;
 		sessionServerId = aSessionServerId;

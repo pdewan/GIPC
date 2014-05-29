@@ -5,11 +5,11 @@ import port.sessionserver.ASessionServerLauncher;
 
 
 
-public class ARelayerSupportingSessionServerLauncher extends ASessionServerLauncher {	
+public class RelayerSupportingSessionServerLauncher extends ASessionServerLauncher {	
 	public static void main (String args[]) {	
-		(new ARelayerSupportingSessionServerLauncher("" + SESSION_SERVER_PORT, SESSION_SERVER_NAME)).launch();
+		(new RelayerSupportingSessionServerLauncher("" + SESSION_SERVER_PORT, SESSION_SERVER_NAME)).launch();
 	}
-	public ARelayerSupportingSessionServerLauncher(String aSessionServerId, String aSessionServerName) {
+	public RelayerSupportingSessionServerLauncher(String aSessionServerId, String aSessionServerName) {
 		super(aSessionServerId, aSessionServerName );
 	}
 	protected PortLauncherSupport getPortLauncherSupport() {

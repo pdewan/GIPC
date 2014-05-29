@@ -1,10 +1,10 @@
 package sessionport.datacomm.group.object.relayed.example;
 
-import port.sessionserver.relay.ARelayerSupportingSessionServerLauncher;
+import port.sessionserver.relay.RelayerSupportingSessionServerLauncher;
 
 
 
-public class ASessionPortRelayerSupportingSessionServerLauncher extends ARelayerSupportingSessionServerLauncher {
+public class ASessionPortRelayerSupportingSessionServerLauncher extends RelayerSupportingSessionServerLauncher {
 	
 	public ASessionPortRelayerSupportingSessionServerLauncher(String aSessionServerId,
 			String aSessionServerName) {

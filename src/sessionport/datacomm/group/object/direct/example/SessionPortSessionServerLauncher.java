@@ -4,15 +4,15 @@ import port.sessionserver.ASessionServerLauncher;
 
 
 
-public class ASessionPortSessionServerLauncher extends ASessionServerLauncher {
+public class SessionPortSessionServerLauncher extends ASessionServerLauncher {
 	
-	public ASessionPortSessionServerLauncher(String aSessionServerId,
+	public SessionPortSessionServerLauncher(String aSessionServerId,
 			String aSessionServerName) {
 		super(aSessionServerId, aSessionServerName);
 	}
 
 	public static void main (String args[]) {	
-		(new ASessionPortSessionServerLauncher("" + SESSION_SERVER_PORT, SESSION_SERVER_NAME)).launch();
+		(new SessionPortSessionServerLauncher("" + SESSION_SERVER_PORT, SESSION_SERVER_NAME)).launch();
 	}
 	
 	

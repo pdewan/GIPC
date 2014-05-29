@@ -2,10 +2,10 @@ package replicatedserverport.rpc.group.flexibleresponse.flexible.example;
 
 import port.PortLauncherSupport;
 import port.sessionserver.ServerPortDescription;
-import port.sessionserver.relay.late.ALatecomerSessionServerLauncher;
+import port.sessionserver.relay.late.LatecomerSessionServerLauncher;
 import replicatedserverport.rpc.groupserver.singleresponse.ASingleResponseReplicatedGroupServerLauncherSupport;
 
-public  class ASingleReponseReplicatedLatecomerSessionServerLauncher extends ALatecomerSessionServerLauncher{
+public  class ASingleReponseReplicatedLatecomerSessionServerLauncher extends LatecomerSessionServerLauncher{
 //	public static String SESSION_SERVER_NAME = "Sessions Server";
 //	public static String RELAYER_NAME = "Relayer";
 
