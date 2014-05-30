@@ -6,19 +6,20 @@ import port.sessionserver.ASessionServerLauncher;
 import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
 import sessionport.datacomm.group.object.flexible.jitter.example.AJitteryFlexibleSessionPortClientLauncher;
 
-public class AJitteryBobGroupSessionPort {
+public class CathyJitteryGroupSessionPort {
 
 	public static void main (String[] args) {
 		(new AJitteryFlexibleSessionPortClientLauncher(AFlexibleSessionPortClientLauncher.SESSION_SERVER_HOST,
-				"" + ASessionServerLauncher.SESSION_SERVER_PORT, ASessionServerLauncher.SESSION_SERVER_NAME, "9101", 
-				"Bob",
+				"" + ASessionServerLauncher.SESSION_SERVER_PORT, 
+				ASessionServerLauncher.SESSION_SERVER_NAME, "9102", 
+				"Cathy",
 				SessionChoice.P2P,
-				true, // should delay
-				new port.delay.example.ABobDelaysSupport(),
+				true, // shouldDelay
+				new port.delay.example.ACathyDelaysSupport(),
 				AFlexibleSessionPortClientLauncher.DO_CAUSAL,
 				ParticipantChoice.MEMBER, true
 				)).launch();
-	
+		
 	}
 	
 	

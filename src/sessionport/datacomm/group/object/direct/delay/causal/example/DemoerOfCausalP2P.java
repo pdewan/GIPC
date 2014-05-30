@@ -1,4 +1,4 @@
-package sessionport.datacomm.group.object.direct.delayed.causal.example;
+package sessionport.datacomm.group.object.direct.delay.causal.example;
 
 
 import bus.uigen.models.MainClassLaunchingUtility;

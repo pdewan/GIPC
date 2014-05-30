@@ -1,4 +1,4 @@
-package sessionport.datacomm.group.object.direct.delayed.example;
+package sessionport.datacomm.group.object.direct.delay.example;
 
 import port.sessionserver.ASessionServerLauncher;
 

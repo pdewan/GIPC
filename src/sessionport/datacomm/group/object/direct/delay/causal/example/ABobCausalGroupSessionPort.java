@@ -1,4 +1,4 @@
-package sessionport.datacomm.group.object.direct.delayed.causal.example;
+package sessionport.datacomm.group.object.direct.delay.causal.example;
 
 import port.ParticipantChoice;
 import port.SessionChoice;

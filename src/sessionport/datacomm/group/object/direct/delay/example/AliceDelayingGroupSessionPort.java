@@ -1,11 +1,11 @@
-package sessionport.datacomm.group.object.direct.delayed.example;
+package sessionport.datacomm.group.object.direct.delay.example;
 
 import port.ParticipantChoice;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
 import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
 
-public class AnAliceDelayingGroupSessionPort {
+public class AliceDelayingGroupSessionPort {
 
 	public static void main (String[] args) {
 		(new AFlexibleSessionPortClientLauncher(AFlexibleSessionPortClientLauncher.SESSION_SERVER_HOST,

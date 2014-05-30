@@ -1,11 +1,11 @@
-package sessionport.datacomm.group.object.direct.delayed.example;
+package sessionport.datacomm.group.object.direct.delay.causal.example;
 
 import port.ParticipantChoice;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
 import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
 
-public class ACathyDelayingGroupSessionPort {
+public class ACathyCausalGroupSessionPort {
 
 	public static void main (String[] args) {
 		(new AFlexibleSessionPortClientLauncher(AFlexibleSessionPortClientLauncher.SESSION_SERVER_HOST,
@@ -15,7 +15,8 @@ public class ACathyDelayingGroupSessionPort {
 				SessionChoice.P2P,
 				true, // shouldDelay
 				new port.delay.example.ACathyDelaysSupport(),
-				AFlexibleSessionPortClientLauncher.DO_CAUSAL, ParticipantChoice.SYMMETRIC_JOIN
+				true // causal
+, ParticipantChoice.SYMMETRIC_JOIN
 				)).launch();
 		
 	}
