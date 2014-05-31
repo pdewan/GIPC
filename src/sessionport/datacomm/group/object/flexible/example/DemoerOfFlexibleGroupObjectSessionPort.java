@@ -1,7 +1,7 @@
 package sessionport.datacomm.group.object.flexible.example;
 
 import port.sessionserver.ASessionServerLauncher;
-import port.sessionserver.relay.RelayerSupportingSessionServerLauncher;
+import port.sessionserver.relay.ARelayerSupportingSessionServerLauncher;
 import port.sessionserver.relay.SessionServerRelayerLauncher;
 import port.sessionserver.relay.late.LatecomerSessionServerLauncher;
 import sessionport.rpc.duplex.example.AnAliceDuplexRPCSessionPort;

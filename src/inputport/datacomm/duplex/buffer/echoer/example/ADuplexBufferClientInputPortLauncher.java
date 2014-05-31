@@ -4,8 +4,8 @@ import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.duplex.buffer.ADuplexBufferInputPortLauncherSupport;
 import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
+import inputport.datacomm.simplex.buffer.AnEchoingBufferReceiveListener;
 import inputport.datacomm.simplex.buffer.example.ASimplexBufferClientInputPortLauncher;
-import inputport.datacomm.simplex.buffer.example.AnEchoingBufferReceiveListener;
 import port.PortLauncherSupport;
 
 

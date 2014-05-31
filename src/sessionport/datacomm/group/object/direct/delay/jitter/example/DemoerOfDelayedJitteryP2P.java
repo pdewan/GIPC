@@ -11,7 +11,7 @@ public class DemoerOfDelayedJitteryP2P {
 	
 	public static void demo() {
 		Class[] classes = {
-				AJitterySessionPortSessionServerLauncher.class, // do we need this server?
+				AJitterySessionPortSessionServerLauncher.class, // do we need this server, yes it ha sa special support?
 				AliceJitteryGroupSessionPort.class,
 				BobJitteryGroupSessionPort.class,
 				CathyJitteryGroupSessionPort.class};

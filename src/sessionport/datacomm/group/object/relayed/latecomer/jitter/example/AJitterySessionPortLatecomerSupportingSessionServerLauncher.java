@@ -2,7 +2,7 @@ package sessionport.datacomm.group.object.relayed.latecomer.jitter.example;
 
 import port.PortLauncherSupport;
 import port.jitter.AJitterControllingPortLauncherSupport;
-import sessionport.datacomm.group.object.relayed.latecomer.example.ASessionPortLatecomerSupportingSessionServerLauncher;
+import sessionport.datacomm.group.object.relayed.latecomer.ASessionPortLatecomerSupportingSessionServerLauncher;
 
 
 
