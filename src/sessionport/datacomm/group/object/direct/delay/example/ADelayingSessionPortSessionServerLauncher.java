@@ -3,7 +3,7 @@ package sessionport.datacomm.group.object.direct.delay.example;
 import port.sessionserver.ASessionServerLauncher;
 
 
-
+// do not need this class
 public class ADelayingSessionPortSessionServerLauncher extends ASessionServerLauncher {
 	
 	public ADelayingSessionPortSessionServerLauncher(String aSessionServerId,

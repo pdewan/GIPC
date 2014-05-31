@@ -5,7 +5,7 @@ import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
 import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
 
-public class AnAliceCausalGroupSessionPort {
+public class AliceCausalGroupSessionPort {
 
 	public static void main (String[] args) {
 		(new AFlexibleSessionPortClientLauncher(AFlexibleSessionPortClientLauncher.SESSION_SERVER_HOST,

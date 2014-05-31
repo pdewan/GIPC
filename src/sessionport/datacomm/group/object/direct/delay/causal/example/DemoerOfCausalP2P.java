@@ -1,6 +1,7 @@
 package sessionport.datacomm.group.object.direct.delay.causal.example;
 
 
+import port.sessionserver.ASessionServerLauncher;
 import bus.uigen.models.MainClassLaunchingUtility;
 
 public class DemoerOfCausalP2P {
@@ -10,10 +11,12 @@ public class DemoerOfCausalP2P {
 	
 	public static void demo() {
 		Class[] classes = {
-				ACausalSessionPortSessionServerLauncher.class,
-				AnAliceCausalGroupSessionPort.class,
-				ABobCausalGroupSessionPort.class,
-				ACathyCausalGroupSessionPort.class};
+				// we do not need a special server for causal
+//				ACausalSessionPortSessionServerLauncher.class,
+				ASessionServerLauncher.class,
+				AliceCausalGroupSessionPort.class,
+				BobCausalGroupSessionPort.class,
+				CathyCausalGroupSessionPort.class};
 		
 		MainClassLaunchingUtility.interactiveLaunch(classes);
 		
