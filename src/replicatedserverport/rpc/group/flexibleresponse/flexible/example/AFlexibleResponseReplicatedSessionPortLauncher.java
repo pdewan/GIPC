@@ -9,7 +9,7 @@ import replicatedserverport.datacomm.duplex.ADuplexMultiToReplicatedPortLauncher
 import replicatedserverport.datacomm.duplex.earliest.AnEarliestAcceptingReplicatedPortLauncherSupport;
 import replicatedserverport.rpc.duplex.singleresponse.ASingleResponseReplicatedPortLauncherSupport;
 import replicatedserverport.rpc.group.ReplicatedServerSessionPortSelector;
-import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
+import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
 public class AFlexibleResponseReplicatedSessionPortLauncher 
 			extends AFlexibleSessionPortClientLauncher{

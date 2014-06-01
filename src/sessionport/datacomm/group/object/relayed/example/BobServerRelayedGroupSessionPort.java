@@ -3,7 +3,7 @@ package sessionport.datacomm.group.object.relayed.example;
 import port.ParticipantChoice;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
-import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
+import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
 public class BobServerRelayedGroupSessionPort {
 

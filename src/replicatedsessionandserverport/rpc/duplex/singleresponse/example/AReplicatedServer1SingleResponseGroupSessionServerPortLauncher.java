@@ -3,7 +3,7 @@ package replicatedsessionandserverport.rpc.duplex.singleresponse.example;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
-import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
+import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 import bus.uigen.OEFrame;
 import bus.uigen.ObjectEditor;
 import bus.uigen.trace.TraceableDisplayAndWaitManagerFactory;

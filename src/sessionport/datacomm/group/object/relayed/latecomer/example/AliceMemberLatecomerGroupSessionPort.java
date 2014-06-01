@@ -4,7 +4,7 @@ import port.ParticipantChoice;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
 import port.trace.ConnectionEventManagerFactory;
-import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
+import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 import bus.uigen.ObjectEditor;
 
 public class AliceMemberLatecomerGroupSessionPort {

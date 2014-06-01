@@ -4,7 +4,7 @@ import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedsessionport.rpc.duplex.singleresponse.example.ASingleResponseReplicatedGroupSessionPortClientLauncher;
-import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
+import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
 public class ACathySingleResponseReplicatedSessionServerClientPortLauncher {
 	public static String USER_NAME  = "Cathy";

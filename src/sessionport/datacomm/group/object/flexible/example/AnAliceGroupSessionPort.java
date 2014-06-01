@@ -2,6 +2,7 @@ package sessionport.datacomm.group.object.flexible.example;
 
 import port.ParticipantChoice;
 import port.sessionserver.ASessionServerLauncher;
+import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
 public class AnAliceGroupSessionPort {
 //	public static void launch (String myHost, String myID, String myName) {

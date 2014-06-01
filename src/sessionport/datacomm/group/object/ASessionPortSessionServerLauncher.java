@@ -3,7 +3,7 @@ package sessionport.datacomm.group.object;
 import port.sessionserver.ASessionServerLauncher;
 
 
-
+// this class adds no functionality and is not used
 public class ASessionPortSessionServerLauncher extends ASessionServerLauncher {
 	
 	public ASessionPortSessionServerLauncher(String aSessionServerId,

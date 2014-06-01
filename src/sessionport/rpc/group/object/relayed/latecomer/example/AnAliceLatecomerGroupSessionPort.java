@@ -3,7 +3,7 @@ package sessionport.rpc.group.object.relayed.latecomer.example;
 import port.ParticipantChoice;
 import port.SessionChoice;
 import port.sessionserver.SessionServerLauncher;
-import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
+import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
 public class AnAliceLatecomerGroupSessionPort {
 //	public static final boolean DO_DELAY = false;

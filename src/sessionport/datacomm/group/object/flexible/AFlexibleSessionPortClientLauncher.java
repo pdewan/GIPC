@@ -1,4 +1,4 @@
-package sessionport.datacomm.group.object.flexible.example;
+package sessionport.datacomm.group.object.flexible;
 
 import inputport.ConnectionListener;
 import inputport.InputPort;
@@ -16,6 +16,8 @@ import port.sessionserver.example.APrintingSessionObserver;
 import port.sessionserver.example.ASessionServerClientLauncher;
 import sessionport.datacomm.group.object.ObjectGroupSessionPortSelector;
 import sessionport.datacomm.group.object.direct.AnObjectGroupSessionPortDirectLauncherSupport;
+import sessionport.datacomm.group.object.flexible.example.AFrostySessionConnectionListener;
+import sessionport.datacomm.group.object.flexible.example.ATracingSessionConnectionListener;
 import sessionport.datacomm.group.object.relayed.AnObjectGroupSessionPortRelayedLauncherSupport;
 import sessionport.datacomm.group.object.relayed.latecomer.AnObjectGroupSessionPortLatecomerLauncherSupport;
 

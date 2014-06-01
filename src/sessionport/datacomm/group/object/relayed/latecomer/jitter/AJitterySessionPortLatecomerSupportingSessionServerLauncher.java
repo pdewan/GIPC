@@ -1,4 +1,4 @@
-package sessionport.datacomm.group.object.relayed.latecomer.jitter.example;
+package sessionport.datacomm.group.object.relayed.latecomer.jitter;
 
 import port.PortLauncherSupport;
 import port.jitter.AJitterControllingPortLauncherSupport;

@@ -4,7 +4,7 @@ import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.jitter.AJitterControllingPortLauncherSupport;
-import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
+import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
 public class AJitteryFlexibleSessionPortClientLauncher 
 	extends AFlexibleSessionPortClientLauncher{

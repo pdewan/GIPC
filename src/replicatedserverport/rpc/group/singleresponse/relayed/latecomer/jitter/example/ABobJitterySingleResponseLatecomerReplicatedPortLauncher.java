@@ -7,7 +7,7 @@ import port.trace.ConnectionEventManagerFactory;
 import replicatedserverport.rpc.group.flexibleresponse.flexibejitter.example.AJitteryFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
-import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
+import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 import bus.uigen.ObjectEditor;
 
 public class ABobJitterySingleResponseLatecomerReplicatedPortLauncher {

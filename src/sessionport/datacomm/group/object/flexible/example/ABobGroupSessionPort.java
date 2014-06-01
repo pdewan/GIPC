@@ -2,6 +2,7 @@ package sessionport.datacomm.group.object.flexible.example;
 
 import port.ParticipantChoice;
 import port.sessionserver.ASessionServerLauncher;
+import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
 public class ABobGroupSessionPort {
 

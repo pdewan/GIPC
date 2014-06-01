@@ -3,7 +3,7 @@ package sessionport.rpc.group.object.relayed.latecomer.example;
 import port.ParticipantChoice;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
-import sessionport.datacomm.group.object.flexible.example.AFlexibleSessionPortClientLauncher;
+import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
 public class ACathyLatecomerGroupSessionPort {
 
