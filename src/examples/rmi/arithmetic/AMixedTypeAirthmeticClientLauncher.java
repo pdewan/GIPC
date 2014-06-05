@@ -4,9 +4,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
+import util.annotations.Tags;
 import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
-
+@Tags({"RMIClient"})
 public class AMixedTypeAirthmeticClientLauncher {
 	public static void main (String[] args) {	
 		try {

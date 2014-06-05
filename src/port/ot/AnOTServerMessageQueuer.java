@@ -18,7 +18,7 @@ public class AnOTServerMessageQueuer implements ServerMessageFilter{
 	
 
 	@Override
-	public synchronized void userJoined(String userName) {
+	public synchronized void userJoined(String aSessionName, String anApplicationName, String userName) {
 		OTManager otManager = new AnOTManager(true);
 		otManagers.put(userName, otManager);
 		//otManager.setSentMessageQueue(sentMessageQueue);
@@ -26,7 +26,7 @@ public class AnOTServerMessageQueuer implements ServerMessageFilter{
 	}
 
 	@Override
-	public void userLeft(String userName) {
+	public void userLeft(String aSessionName, String anApplicationName, String userName) {
 		// TODO Auto-generated method stub
 		
 	}
