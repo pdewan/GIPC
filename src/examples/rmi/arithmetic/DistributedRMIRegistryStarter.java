@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import util.annotations.Tags;
 
-@Tags({"RMIRegistry"})
+@Tags({"RMIRegistry", "Registry"})
 public class DistributedRMIRegistryStarter {
 	public static void main (String[] args) {
 		try {

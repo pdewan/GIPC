@@ -5,7 +5,7 @@ import java.rmi.registry.Registry;
 import java.util.Scanner;
 
 import util.annotations.Tags;
-@Tags({"RMIClient"})
+@Tags({"RMIClient", "Client"})
 public class AMixedTypeAirthmeticClientLauncher {
 	public static void main (String[] args) {	
 		try {
