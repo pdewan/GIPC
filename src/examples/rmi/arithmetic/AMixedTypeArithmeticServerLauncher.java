@@ -6,8 +6,6 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 import util.annotations.Tags;
-import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
-import examples.mvc.rmi.duplex.DistributedRMICounter;
 @Tags({"RMIServer"})
 public class AMixedTypeArithmeticServerLauncher implements MixedTypeAirthmeticServer {	
 	public static void main (String[] args) {
