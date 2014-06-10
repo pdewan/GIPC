@@ -33,7 +33,7 @@ public class AFlexibleSessionPortClientLauncher extends ASessionServerClientLaun
 	public static final boolean DO_CAUSAL = false; 
 	PortLauncherSupport delaysSupport;
 //	protected String id, name;
-	protected SessionChoice sessionChoice ;
+//	protected SessionChoice sessionChoice ;
 	protected boolean shouldDelay;
 	protected boolean doCausal;
 	public AFlexibleSessionPortClientLauncher(String aSessionServerHost, 
@@ -72,6 +72,8 @@ public class AFlexibleSessionPortClientLauncher extends ASessionServerClientLaun
 //		connect(mainPort);
 //	}
 //	
+	
+	// should we not be doing port kind here instead, maybe it was before I added that
 	protected  InputPort getPort() {
 		return ObjectGroupSessionPortSelector.createObjectGroupSessionPort(serverHost, 
 				serverId, serverName, SESSION_NAME, myId, myName, participantChoice);		

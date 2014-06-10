@@ -11,6 +11,8 @@ import sessionport.datacomm.group.object.relayed.latecomer.example.BobServerLate
 import bus.uigen.models.MainClassLaunchingUtility;
 // this is old stuff, need some kind of add method
 // Need to inheit the lanunchers otherwise the relayer proxy does not work
+// have the old and new stuff working as modular and non modular versions
+
 public class DemoerOfDuplexRPCSessionPort {
 	public static void main(String args[]) {
 		demo();
@@ -21,7 +23,7 @@ public class DemoerOfDuplexRPCSessionPort {
 				ASessionPortLatecomerSupportingSessionServerLauncher.class,
 				AnAliceDuplexRPCSessionPort.class,
 				ABobDuplexRPCSessionPort.class,
-				ACathyDuplexRPCSessionPort.class,
+				AModularCathyDuplexRPCSessionPort.class,
 		};
 		MainClassLaunchingUtility.interactiveLaunch(classes);
 	}	

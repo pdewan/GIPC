@@ -4,7 +4,6 @@ import inputport.ConnectionListener;
 import port.ParticipantChoice;
 import port.old.Adder;
 import port.old.AnAdder;
-import sessionport.rpc.duplex.ACallingConnectListener;
 import sessionport.rpc.duplex.DuplexRPCSessionPort;
 import sessionport.rpc.duplex.DuplexRPCSessionPortSelector;
 
