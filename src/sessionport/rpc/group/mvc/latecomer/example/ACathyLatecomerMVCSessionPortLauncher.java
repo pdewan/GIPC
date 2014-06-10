@@ -1,17 +1,19 @@
-package sessionport.rpc.group.mvc.direct.example;
+package sessionport.rpc.group.mvc.latecomer.example;
 
 import port.sessionserver.SessionServerLauncher;
 import port.sessionserverAndRelay.mvc.example.UpperCaseSession;
 import sessionport.rpc.group.mvc.flexible.example.AFlexibleSessionPortMVCClientLauncher;
-import sessionport.rpc.group.mvc.flexible.example.AliceSessionPort;
+import sessionport.rpc.group.mvc.flexible.example.BobSessionPort;
+import sessionport.rpc.group.mvc.flexible.example.CathySessionPort;
 
-public class AnAliceMVCDirectSessionPortLauncher implements AliceSessionPort,ClientDirectSessionPort {
-	public static void main (String[] args) {		
-		(new AFlexibleSessionPortMVCClientLauncher(
-				"localhost",
+public class ACathyLatecomerMVCSessionPortLauncher implements CathySessionPort, LatecomerClientSessionPort {
+
+	public static void main (String[] args) {
+		
+		(new AFlexibleSessionPortMVCClientLauncher("localhost",
 				SessionServerLauncher.SESSION_SERVER_ID,
 				SessionServerLauncher.SESSION_SERVER_NAME, 
-				ALICE_ID, ALICE_NAME, 
+				CATHY_ID, CATHY_NAME, 
 				UpperCaseSession.SESSION_NAME, 
 				SESSION_CHOICE,
 				DO_DELAY, 
@@ -20,4 +22,7 @@ public class AnAliceMVCDirectSessionPortLauncher implements AliceSessionPort,Cli
 				DO_CAUSAL, 
 				PARTICIPANT_CHOICE)).launch();
 	}
+	
+	
+
 }

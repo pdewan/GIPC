@@ -7,7 +7,7 @@ import port.sessionserver.relay.late.ALatecomerServerLauncherSupport;
 import port.sessionserver.relay.late.LatecomerRelayerAndSessionServerSelector;
 
 
-
+// hmm, this sounds like  a a regular latecomer launcher, nothing to do with session ports
 public class ASessionPortLatecomerSupportingSessionServerLauncher extends ASessionServerLauncher {
 	
 	public static void main (String args[]) {	

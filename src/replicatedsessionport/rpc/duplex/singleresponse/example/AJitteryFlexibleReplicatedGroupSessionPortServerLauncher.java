@@ -8,7 +8,7 @@ import port.SessionChoice;
 import replicatedserverport.rpc.groupserver.singleresponse.ASingleResponseReplicatedGroupServerLauncherSupport;
 import replicatedserverport.rpc.groupserver.singleresponse.ASingleResponseReplicatedRelayedGroupServerLauncherSupport;
 import replicatedsessionport.rpc.duplex.ReplicatedSessionDuplexRPCPortSelector;
-import sessionport.datacomm.group.object.flexible.jitter.example.AJitteryFlexibleSessionPortClientLauncher;
+import sessionport.datacomm.group.object.flexible.jitter.AJitteryFlexibleSessionPortClientLauncher;
 
 public class AJitteryFlexibleReplicatedGroupSessionPortServerLauncher 
 	extends AJitteryFlexibleSessionPortClientLauncher{ // now this should inherit from the replicated choice

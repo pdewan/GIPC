@@ -6,15 +6,15 @@ import port.sessionserver.ASessionServerLauncher;
 
 
 
-public class LatecomerSessionServerLauncher extends ASessionServerLauncher {	
+public class ALatecomerSessionServerLauncher extends ASessionServerLauncher {	
 	public static void main (String args[]) {	
-		(new LatecomerSessionServerLauncher("" + SESSION_SERVER_PORT, SESSION_SERVER_NAME)).launch();
+		(new ALatecomerSessionServerLauncher("" + SESSION_SERVER_PORT, SESSION_SERVER_NAME)).launch();
 	}
-	public LatecomerSessionServerLauncher(String aSessionServerId, String aSessionServerName) {
+	public ALatecomerSessionServerLauncher(String aSessionServerId, String aSessionServerName) {
 		super(aSessionServerId, aSessionServerName );
 
 	}
-	public LatecomerSessionServerLauncher(String aSessionServerId, String aSessionServerName, String aLogicalServerName) {
+	public ALatecomerSessionServerLauncher(String aSessionServerId, String aSessionServerName, String aLogicalServerName) {
 		super(aSessionServerId, aSessionServerName, aLogicalServerName);
 	}
 	protected PortLauncherSupport getPortLauncherSupport() {

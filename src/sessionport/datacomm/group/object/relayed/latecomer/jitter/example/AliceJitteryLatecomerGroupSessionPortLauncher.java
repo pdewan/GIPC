@@ -4,7 +4,7 @@ import port.ParticipantChoice;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
-import sessionport.datacomm.group.object.flexible.jitter.example.AJitteryFlexibleSessionPortClientLauncher;
+import sessionport.datacomm.group.object.flexible.jitter.AJitteryFlexibleSessionPortClientLauncher;
 import util.trace.Tracer;
 
 public class AliceJitteryLatecomerGroupSessionPortLauncher {

@@ -1,4 +1,4 @@
-package sessionport.datacomm.group.object.flexible.jitter.example;
+package sessionport.datacomm.group.object.flexible.jitter;
 
 import port.ParticipantChoice;
 import port.PortLauncherSupport;

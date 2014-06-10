@@ -6,6 +6,7 @@ import inputport.datacomm.group.GroupServerInputPort;
 import java.nio.ByteBuffer;
 
 import port.ParticipantChoice;
+import port.sessionserver.SessionServerLauncher;
 import sessionport.datacomm.duplex.buffer.ABufferDuplexReceiveListener;
 import sessionport.datacomm.group.buffer.AGroupSendingConnectListener;
 import sessionport.datacomm.group.buffer.BufferGroupSessionPortSelector;
@@ -13,11 +14,11 @@ import sessionport.datacomm.group.buffer.BufferGroupSessionPortSelector;
 
 public class ABufferGroupSessionPortLauncher {
 	public static int SESSION_SERVER_PORT = 9090;
-	public static String SESSION_SERVER_NAME = "Sessions Server";
+//	public static String SESSION_SERVER_NAME = "Sessions Server";
 	public static void launchSessionPartipant( String anId, String aName) {
 //		Tracer.showInfo(true);
 		GroupServerInputPort<ByteBuffer> sessionPort = BufferGroupSessionPortSelector.createBufferGroupSessionPort("localhost", 
-				"" + SESSION_SERVER_PORT, SESSION_SERVER_NAME, "Test Session", anId, aName, ParticipantChoice.MEMBER
+				"" + SESSION_SERVER_PORT, SessionServerLauncher.SESSION_SERVER_NAME, "Test Session", anId, aName, ParticipantChoice.MEMBER
 				);
 			
 //		DuplexServerInputPort<ByteBuffer> sessionPort =	new ADuplexBufferSessionPortFullP2P("localhost", 

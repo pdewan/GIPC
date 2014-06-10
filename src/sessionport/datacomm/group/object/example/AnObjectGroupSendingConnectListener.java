@@ -16,7 +16,7 @@ public class AnObjectGroupSendingConnectListener implements ConnectionListener{
 ////		sessionPort.send(remoteEnd, "Hello from: " + sessionPort.getLocalName() + " to:" + remoteEnd);	
 //		sessionPort.sendAll("Broadcasting that " + remoteEnd  + " connected to " + sessionPort.getLocalName());
 //		
-		if (!remoteEnd.equals(sessionPort.getLocalName())) {
+		if (!remoteEnd.equals(sessionPort.getLocalName()) && aConnectionType == ConnectionType.MEMBER_TO_SESSION) {
 			String message = sessionPort.getLocalName() + " connected to " + remoteEnd;
 //			System.out.println("Broadcasting message: " + message);
 			System.out.println(message);

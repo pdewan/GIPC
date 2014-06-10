@@ -9,7 +9,7 @@ import sessionport.rpc.group.mvc.direct.example.ClientDirectSessionPort;
 import sessionport.rpc.group.mvc.flexible.example.AFlexibleSessionPortMVCClientLauncher;
 import sessionport.rpc.group.mvc.flexible.example.CathySessionPort;
 
-public class AModularCathyDuplexRPCSessionPort implements CathySessionPort, ClientDirectSessionPort {
+public class AModularCathyDuplexRPCSessionPort implements CathySessionPort {
 	public static void main(String[] args) {
 //		ADuplexRPCSessionPortLauncher.launchSessionPartipant( "9093", "Cathy", ParticipantChoice.MEMBER);		
 //		(new CopyOfADuplexRPCSessionPortLauncher(AFlexibleSessionPortClientLauncher.SESSION_SERVER_HOST,
@@ -27,12 +27,12 @@ public class AModularCathyDuplexRPCSessionPort implements CathySessionPort, Clie
 				SessionServerLauncher.SESSION_SERVER_NAME, 
 				CATHY_ID, CATHY_NAME, 
 				"Test Session", 
-				SESSION_CHOICE,
-				DO_DELAY, 
-				DELAYS_SUPPORT, 
-				DO_JITTER, 
-				DO_CAUSAL, 
-				PARTICIPANT_CHOICE)).launch();
+				AFlexibleSessionPortClientLauncher.SESSION_CHOICE,
+				AFlexibleSessionPortClientLauncher.DO_DELAY, 
+				null, 
+				false, 
+				AFlexibleSessionPortClientLauncher.DO_CAUSAL, 
+				ParticipantChoice.MEMBER)).launch();
 	}
 
 

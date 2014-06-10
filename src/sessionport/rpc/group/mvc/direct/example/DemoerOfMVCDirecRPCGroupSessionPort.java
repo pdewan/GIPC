@@ -13,8 +13,9 @@ public class DemoerOfMVCDirecRPCGroupSessionPort {
 //				ASessionPortLatecomerSupportingSessionServerLauncher.class,
 				ASessionServerLauncher.class, // this is direct, so why use the other more complicated session servers
 				ADirectSessionPortMVCServerLauncher.class,
-				AnAliceMVCDirectSessionPortLauncher.class,
-				ABobMVCDirectSessionPortLauncher.class
+				AliceMVCDirectSessionPortLauncher.class,
+				BobMVCDirectSessionPortLauncher.class,
+				CathyMVCDirectSessionPortLauncher.class,
 				
 		};
 		MainClassLaunchingUtility.interactiveLaunch(classes);
