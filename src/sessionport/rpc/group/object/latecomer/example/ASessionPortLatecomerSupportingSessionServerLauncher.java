@@ -1,4 +1,4 @@
-package sessionport.rpc.group.object.relayed.latecomer.example;
+package sessionport.rpc.group.object.latecomer.example;
 
 import inputport.InputPort;
 import port.PortLauncherSupport;

@@ -23,13 +23,13 @@ import examples.mvc.local.simplex.SimplexUpperCaser;
 
 
 
-public class ASimplexBufferClientMVC_Launcher extends ASimplexObjectClientMVCLauncher  {
+public class ASimplexBufferClientMVCLauncher extends ASimplexObjectClientMVCLauncher  {
 	protected SimplexUpperCaser upperCaseProxy;
 
-	public ASimplexBufferClientMVC_Launcher(String aClientName) {
+	public ASimplexBufferClientMVCLauncher(String aClientName) {
 		super(aClientName);
 	}
-	public ASimplexBufferClientMVC_Launcher() {
+	public ASimplexBufferClientMVCLauncher() {
 	}
 	protected PortLauncherSupport getPortLauncherSupport() {
 		return new ASimplexBufferInputPortLauncherSupport();
@@ -65,7 +65,7 @@ public class ASimplexBufferClientMVC_Launcher extends ASimplexObjectClientMVCLau
 	}
 	
 	public static void main (String[] args) {		
-		(new ASimplexBufferClientMVC_Launcher()).launch();
+		(new ASimplexBufferClientMVCLauncher()).launch();
 	}
 	
 

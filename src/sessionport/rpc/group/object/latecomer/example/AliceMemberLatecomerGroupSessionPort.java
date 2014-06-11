@@ -1,11 +1,11 @@
-package sessionport.rpc.group.object.relayed.latecomer.example;
+package sessionport.rpc.group.object.latecomer.example;
 
 import port.ParticipantChoice;
 import port.SessionChoice;
 import port.sessionserver.SessionServerLauncher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
-public class AnAliceLatecomerGroupSessionPort {
+public class AliceMemberLatecomerGroupSessionPort {
 //	public static final boolean DO_DELAY = false;
 //	public static final PortLauncherSupport DELAYS_SUPPORT = null;
 //	public static final boolean DO_JITTER = false;

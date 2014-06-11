@@ -1,9 +1,9 @@
-package sessionport.rpc.group.mvc.latecomer.example;
+package sessionport.rpc.group.object.latecomer.example;
 
 import port.sessionserver.relay.late.ALatecomerSessionServerLauncher;
 import bus.uigen.models.MainClassLaunchingUtility;
 
-public class DemoerOfMVCLatecomerRPCGroupSessionPort {
+public class DemoerOfLatecomerRPCGroupSessionPort {
 	public static void main(String args[]) {
 		demo();
 	}	
@@ -11,10 +11,9 @@ public class DemoerOfMVCLatecomerRPCGroupSessionPort {
 		Class[] classes = {
 
 				ALatecomerSessionServerLauncher.class, 
-				ALatecomerSessionPortMVCServerLauncher.class,
-				AliceMVCLatecomerSessionPortLauncher.class,
-				BobLatecomerMVCSessionPortLauncher.class,
-				CathyLatecomerMVCSessionPortLauncher.class,
+				AliceMemberLatecomerGroupSessionPort.class,
+				CathyClientLatecomerGroupSessionPort.class,
+				BobServerLatecomerGroupSessionPort.class,
 
 				
 		};
