@@ -12,8 +12,8 @@ public class ADuplexAdderServerLauncher extends AnAbstractDuplexRPCServerPortLau
 	}
 	public void launch() {
 		super.launch();
-		getPortLauncherSupport().tracePrints();
-		Tracer.showInfo(true);
+//		getPortLauncherSupport().tracePrints();
+//		Tracer.showInfo(true);
 		Tracer.setKeywordPrintStatus(Tracer.ALL_KEYWORDS, false);
 		Tracer.setImplicitPrintKeywordKind(ImplicitKeywordKind.OBJECT_PACKAGE_NAME);
 		Tracer.setKeywordPrintStatus("inputport.rpc.duplex.echoingadder.example", true);	

@@ -21,9 +21,9 @@ import staticsessionport.datacomm.group.object.GroupObjectStaticSessionPortSelec
 
 
 public class AGroupObjectStaticSessionPortLauncher extends ADuplexObjectClientInputPortLauncher {
-	protected  static SessionParticipantDescription AliceDescription = new ASessionParticipantDescription("localhost", "9100", "Alice", null);
-	protected static  SessionParticipantDescription BobDescription = new ASessionParticipantDescription("localhost", "9101", "Bob", null);
-	protected static  SessionParticipantDescription CathyDescription = new ASessionParticipantDescription("localhost", "9102", "Cathy", null);
+	protected  static SessionParticipantDescription AliceDescription = new ASessionParticipantDescription("localhost", "9100", "Alice", ParticipantChoice.MEMBER);
+	protected static  SessionParticipantDescription BobDescription = new ASessionParticipantDescription("localhost", "9101", "Bob", ParticipantChoice.MEMBER);
+	protected static  SessionParticipantDescription CathyDescription = new ASessionParticipantDescription("localhost", "9102", "Cathy", ParticipantChoice.MEMBER);
 	protected static final String REMOTE_END_POINT = "Echo Servers" ; 
 
 //	protected  Echoer registerdEchoer;

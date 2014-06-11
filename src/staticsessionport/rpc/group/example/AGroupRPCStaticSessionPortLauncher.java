@@ -24,9 +24,9 @@ import examples.mvc.rmi.collaborative.relaying.Echoer;
 
 
 public class AGroupRPCStaticSessionPortLauncher extends AGroupRPCClientInputPortLauncher {
-	protected  static SessionParticipantDescription AliceDescription = new ASessionParticipantDescription("localhost", "9100", "Alice", null);
-	protected static  SessionParticipantDescription BobDescription = new ASessionParticipantDescription("localhost", "9101", "Bob", null);
-	protected static  SessionParticipantDescription CathyDescription = new ASessionParticipantDescription("localhost", "9102", "Cathy", null);
+	protected  static SessionParticipantDescription AliceDescription = new ASessionParticipantDescription("localhost", "9100", "Alice", ParticipantChoice.MEMBER);
+	protected static  SessionParticipantDescription BobDescription = new ASessionParticipantDescription("localhost", "9101", "Bob", ParticipantChoice.SERVER_ONLY);
+	protected static  SessionParticipantDescription CathyDescription = new ASessionParticipantDescription("localhost", "9102", "Cathy", ParticipantChoice.CLIENT_ONLY);
 	protected static final String REMOTE_END_POINT = "Echo Servers" ; 
 
 	protected  Echoer registerdEchoer;

@@ -3,7 +3,7 @@ package staticsessionport.datacomm.group.object.example;
 import port.old.AnOldGroupRPCStaticSessionPortLauncher;
 import port.sessionserver.SessionParticipantDescription;
 
-public class AGroupObjectSSPCathyLauncher extends AnOldGroupRPCStaticSessionPortLauncher {
+public class CathyClientGroupObjectSSPLauncher extends AnOldGroupRPCStaticSessionPortLauncher {
 	public static void main (String[] args) {
 		SessionParticipantDescription[] others = {AGroupObjectStaticSessionPortLauncher.AliceDescription, AGroupObjectStaticSessionPortLauncher.BobDescription};
 		(new AGroupObjectStaticSessionPortLauncher(others, 

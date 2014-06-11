@@ -17,7 +17,7 @@ public class ADuplexAdderClientLauncher extends  AnAbstractDuplexRPCClientPortLa
 	
 	public void launch() {
 		super.launch();
-		getPortLauncherSupport().tracePrints();
+//		getPortLauncherSupport().tracePrints();
 //		getPortLauncherSupport().tracePrints();
 //		Tracer.showInfo(true);
 //		Tracer.setKeywordPrintStatus(Tracer.ALL_KEYWORDS, false);

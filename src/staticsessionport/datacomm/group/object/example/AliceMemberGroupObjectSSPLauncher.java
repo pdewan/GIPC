@@ -2,7 +2,7 @@ package staticsessionport.datacomm.group.object.example;
 
 import port.sessionserver.SessionParticipantDescription;
 
-public class AGroupObjectSSPAliceLauncher {
+public class AliceMemberGroupObjectSSPLauncher {
 	
 	public static void main (String[] args) {
 		SessionParticipantDescription[] others = {AGroupObjectStaticSessionPortLauncher.BobDescription, AGroupObjectStaticSessionPortLauncher.CathyDescription};
