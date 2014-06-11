@@ -9,8 +9,8 @@ import sessionport.rpc.group.mvc.direct.example.ServerDirectSessionPort;
 import sessionport.rpc.group.mvc.flexible.example.AFlexibleSessionPortMVCServerLauncher;
 import staticsessionport.datacomm.group.object.example.AGroupObjectStaticSessionPortLauncher;
 
-public class AStaticSessionPortMVCServerLauncher extends AFlexibleSessionPortMVCServerLauncher implements ServerDirectSessionPort{
-	public AStaticSessionPortMVCServerLauncher(SessionParticipantDescription[] aServerList, String aMyId, String aMyName,
+public class MVCServerStaticSessionPortLauncher extends AFlexibleSessionPortMVCServerLauncher implements ServerDirectSessionPort{
+	public MVCServerStaticSessionPortLauncher(SessionParticipantDescription[] aServerList, String aMyId, String aMyName,
 			String aSessionName,
 			SessionChoice aSessionChoice, 
 			boolean aShouldDelay,
@@ -28,7 +28,7 @@ public class AStaticSessionPortMVCServerLauncher extends AFlexibleSessionPortMVC
 		SessionParticipantDescription[] others = {
 				ParticipantDescriptions.AliceDescription,
 				ParticipantDescriptions.BobDescription};
-		(new AStaticSessionPortMVCServerLauncher(others, 
+		(new MVCServerStaticSessionPortLauncher(others, 
 				MVC_SERVER_ID, MVC_SERVER_NAME, 
 				UpperCaseSession.SESSION_NAME, 
 				SESSION_CHOICE,

@@ -5,7 +5,7 @@ import port.sessionserverAndRelay.mvc.example.UpperCaseSession;
 import sessionport.rpc.group.mvc.direct.example.ClientDirectSessionPort;
 import sessionport.rpc.group.mvc.flexible.example.BobSessionPort;
 
-public class ABobMVCStaticSessionPortLauncher implements BobSessionPort,ClientDirectSessionPort {
+public class BobMVCStaticSessionPortLauncher implements BobSessionPort,ClientDirectSessionPort {
 
 	public static void main (String[] args) {
 		SessionParticipantDescription[] others = {
