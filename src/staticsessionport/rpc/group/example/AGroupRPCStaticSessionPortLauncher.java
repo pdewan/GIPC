@@ -4,6 +4,8 @@ import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.duplex.DuplexInputPort;
 import inputport.datacomm.duplex.object.echoer.example.AFrostyObjectConnectionListener;
+import inputport.rpc.duplex.example.ARegisteredEchoer;
+import inputport.rpc.duplex.example.AnotherEchoer;
 import inputport.rpc.duplex.example.DuplexCounterAndSenderAwareSummer;
 import inputport.rpc.group.GroupRPCProxyGenerator;
 import inputport.rpc.group.adder.example.AGroupCounterAndSenderAwareSumPrinter;
@@ -29,7 +31,9 @@ public class AGroupRPCStaticSessionPortLauncher extends AGroupRPCClientInputPort
 	protected static  SessionParticipantDescription CathyDescription = new ASessionParticipantDescription("localhost", "9102", "Cathy", ParticipantChoice.CLIENT_ONLY);
 	protected static final String REMOTE_END_POINT = "Echo Servers" ; 
 
-	protected  Echoer registerdEchoer;
+//	protected  Echoer registerdEchoer;
+	protected  AnotherEchoer registerdEchoer;
+
 //	protected  Echoer unregisteredEchoer;
 //	protected  Counter counter;
 	SessionParticipantDescription[] serverList;
@@ -103,8 +107,12 @@ public class AGroupRPCStaticSessionPortLauncher extends AGroupRPCClientInputPort
 		GroupRPCSessionPort aGroupRPCSessionPort = (GroupRPCSessionPort) mainPort;
 		DuplexCounterAndSenderAwareSummer adder = new AGroupCounterAndSenderAwareSumPrinter(aGroupRPCSessionPort);
 		aGroupRPCSessionPort.register(DuplexCounterAndSenderAwareSummer.class, adder);
-		registerdEchoer = new AnEchoer();
-		aGroupRPCSessionPort.register(Echoer.class, registerdEchoer);		
+//		registerdEchoer = new AnEchoer();
+		registerdEchoer = new ARegisteredEchoer();
+
+//		aGroupRPCSessionPort.register(Echoer.class, registerdEchoer);
+		aGroupRPCSessionPort.register(ARegisteredEchoer.class, registerdEchoer);		
+
 //		counter = new ACounter();
 //		counter = new ACounterWithObjectValue();
 //		aGroupRPCSessionPort.register(CounterWithObjectValue.class, counter);
