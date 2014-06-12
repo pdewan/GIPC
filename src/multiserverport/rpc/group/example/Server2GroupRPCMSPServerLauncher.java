@@ -1,6 +1,6 @@
 package multiserverport.rpc.group.example;
 
-public class AGroupRPCMSPServer2Launcher  {
+public class Server2GroupRPCMSPServerLauncher  {
 	public static String server2Id = "9091";
 	public static String server2Name = "Server 2";
 	

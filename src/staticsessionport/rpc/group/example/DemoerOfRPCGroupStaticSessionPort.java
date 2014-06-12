@@ -1,5 +1,9 @@
 package staticsessionport.rpc.group.example;
 
+import multiserverport.rpc.group.example.AliceGroupRPCMSPLauncher;
+import multiserverport.rpc.group.example.BobGroupRPCMSPLauncher;
+import multiserverport.rpc.group.example.Server1GroupRPCMSPServerLauncher;
+import multiserverport.rpc.group.example.Server2GroupRPCMSPServerLauncher;
 import port.sessionserver.relay.late.ALatecomerSessionServerLauncher;
 import bus.uigen.models.MainClassLaunchingUtility;
 // must click on each dialogue box after all processes have connected
@@ -15,15 +19,22 @@ public class DemoerOfRPCGroupStaticSessionPort {
 	public static void main(String args[]) {
 		demo();
 	}	
+	/*
+	 * This is much changed fromw what was there before, which probably was all wrong.
+	 * The clients join as client only and not symmetric join as they do not serve methods and also
+	 * as they do not have ids, which even the original did not provide. They also do not register 
+	 * remote objects.
+	 */
 	public static void demo() {		
 		Class[] classes = {
 				
-				// all of these are members regaredless of the join choice in the descriptions
+				// all of the clients are clients regaredless of the join choice in the descriptions
 				// because port is explicitly created
 
-				AliceGroupRPCSSPLauncher.class, 
-				BobGroupRPCSSPLauncher.class, 
-				CathyGroupRPCSSPLauncher.class,
+				Server1GroupRPCMSPServerLauncher.class, 
+				Server2GroupRPCMSPServerLauncher.class,
+				AliceGroupRPCMSPLauncher.class, 
+				BobGroupRPCMSPLauncher.class,
 
 				
 		};

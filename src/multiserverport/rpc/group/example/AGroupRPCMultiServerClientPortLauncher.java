@@ -32,9 +32,9 @@ import examples.mvc.rmi.collaborative.relaying.Echoer;
 
 public class AGroupRPCMultiServerClientPortLauncher extends AGroupRPCClientInputPortLauncher {
 	protected static SessionParticipantDescription server1Description = 
-			new ASessionParticipantDescription("localhost", AGroupRPCMSPServer1Launcher.server1Id, AGroupRPCServer1Launcher.server1Name, ParticipantChoice.MEMBER);
+			new ASessionParticipantDescription("localhost", Server1GroupRPCMSPServerLauncher.server1Id, AGroupRPCServer1Launcher.server1Name, ParticipantChoice.MEMBER);
 		protected static SessionParticipantDescription server2Description = 
-			new ASessionParticipantDescription("localhost", AGroupRPCMSPServer2Launcher.server2Id, AGroupRPCServer2Launcher.server2Name, ParticipantChoice.MEMBER);
+			new ASessionParticipantDescription("localhost", Server2GroupRPCMSPServerLauncher.server2Id, AGroupRPCServer2Launcher.server2Name, ParticipantChoice.MEMBER);
 		protected static SessionParticipantDescription[] servers = {server1Description, server2Description};
 		protected static final String REMOTE_END_POINT = "Echo Servers" ; 
 

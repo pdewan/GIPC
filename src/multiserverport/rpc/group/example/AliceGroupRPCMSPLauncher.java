@@ -2,9 +2,9 @@ package multiserverport.rpc.group.example;
 
 import port.sessionserver.SessionParticipantDescription;
 
-public class BobMemberGroupRPCMSPLauncher {
+public class AliceGroupRPCMSPLauncher {
 	
 	public static void main (String[] args) {
-		(new AGroupRPCMultiServerClientPortLauncher("Bob")).launch();
+		(new AGroupRPCMultiServerClientPortLauncher("Alice")).launch();
 	}
 }
