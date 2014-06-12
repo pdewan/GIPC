@@ -3,7 +3,7 @@ package staticsessionport.rpc.group.example;
 import port.old.AnOldGroupRPCStaticSessionPortLauncher;
 import port.sessionserver.SessionParticipantDescription;
 
-public class CathyClientGroupRPCSSPLauncher extends AnOldGroupRPCStaticSessionPortLauncher {
+public class CathyGroupRPCSSPLauncher extends AnOldGroupRPCStaticSessionPortLauncher {
 	public static void main (String[] args) {
 		SessionParticipantDescription[] others = {AGroupRPCStaticSessionPortLauncher.AliceDescription, AGroupRPCStaticSessionPortLauncher.BobDescription};
 		(new AGroupRPCStaticSessionPortLauncher(others, 

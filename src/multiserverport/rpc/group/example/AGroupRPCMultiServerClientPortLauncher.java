@@ -1,4 +1,4 @@
-package staticsessionport.rpc.group.example;
+package multiserverport.rpc.group.example;
 
 import inputport.ConnectionListener;
 import inputport.InputPort;
@@ -8,6 +8,7 @@ import inputport.rpc.duplex.example.ARegisteredEchoer;
 import inputport.rpc.duplex.example.AnotherEchoer;
 import inputport.rpc.duplex.example.DuplexCounterAndSenderAwareSummer;
 import inputport.rpc.group.GroupRPCProxyGenerator;
+import inputport.rpc.group.GroupRPCServerInputPort;
 import inputport.rpc.group.adder.example.AGroupCounterAndSenderAwareSumPrinter;
 import inputport.rpc.group.adder.example.AGroupRPCClientInputPortLauncher;
 
@@ -15,8 +16,12 @@ import java.util.Scanner;
 
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
+import port.old.Adder;
+import port.old.AnAdder;
 import port.sessionserver.ASessionParticipantDescription;
 import port.sessionserver.SessionParticipantDescription;
+import port.sessionserver.relay.RelayerClientAndServerSupport;
+import sessionport.rpc.group.AGroupCallingConnectListener;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import staticsessionport.datacomm.group.object.example.AGroupObjectStaticSessionPortLauncher;
 import staticsessionport.rpc.group.AStaticSessionGroupRPCPortLauncherSupport;
@@ -25,43 +30,36 @@ import examples.mvc.rmi.collaborative.relaying.AnEchoer;
 import examples.mvc.rmi.collaborative.relaying.Echoer;
 
 
-public class AGroupRPCStaticSessionPortLauncher extends AGroupRPCClientInputPortLauncher {
-	protected  static SessionParticipantDescription AliceDescription = new ASessionParticipantDescription("localhost", "9100", "Alice", ParticipantChoice.MEMBER);
-	protected static  SessionParticipantDescription BobDescription = new ASessionParticipantDescription("localhost", "9101", "Bob", ParticipantChoice.SERVER_ONLY);
-	protected static  SessionParticipantDescription CathyDescription = new ASessionParticipantDescription("localhost", "9102", "Cathy", ParticipantChoice.CLIENT_ONLY);
-	protected static final String REMOTE_END_POINT = "Echo Servers" ; 
+public class AGroupRPCMultiServerClientPortLauncher extends AGroupRPCClientInputPortLauncher {
+	protected static SessionParticipantDescription server1Description = 
+			new ASessionParticipantDescription("localhost", AGroupRPCMSPServer1Launcher.server1Id, AGroupRPCServer1Launcher.server1Name, ParticipantChoice.MEMBER);
+		protected static SessionParticipantDescription server2Description = 
+			new ASessionParticipantDescription("localhost", AGroupRPCMSPServer2Launcher.server2Id, AGroupRPCServer2Launcher.server2Name, ParticipantChoice.MEMBER);
+		protected static SessionParticipantDescription[] servers = {server1Description, server2Description};
+		protected static final String REMOTE_END_POINT = "Echo Servers" ; 
 
-//	protected  Echoer registerdEchoer;
-	protected  AnotherEchoer registerdEchoer;
-
-//	protected  Echoer unregisteredEchoer;
-//	protected  Counter counter;
-	SessionParticipantDescription[] serverList;
-	String id;
-	String name;
-	DuplexCounterAndSenderAwareSummer adderProxy;
+//
 	
 	
-	public AGroupRPCStaticSessionPortLauncher(SessionParticipantDescription[] aServerList, String anId, String aName) {
-		super(aName);
-		serverList = aServerList;
-		id = anId;
-		name = aName;
-//		GlobalState.setRelayedCommunicaton(false);
+	public AGroupRPCMultiServerClientPortLauncher(String aName) {
+		super(aName);		
 
 	}
 	protected PortLauncherSupport getPortLauncherSupport() {
 		return new AStaticSessionGroupRPCPortLauncherSupport();
 	}
-	// symmetric join here overrides the participant choice
+	
 	@Override
 	protected InputPort getPort() {
-		return GroupRPCStaticSessionPortSelector.createGroupRPCStaticSessionPort(serverList, id, name, REMOTE_END_POINT, ParticipantChoice.SYMMETRIC_JOIN
-				);	
+		RelayerClientAndServerSupport.setRelayedCommunicaton(false);
+
+//		return GroupRPCStaticSessionPortSelector.createGroupRPCStaticSessionPort(servers, REMOTE_END_POINT, clientName, "Add Servers", ParticipantChoice.SYMMETRIC_JOIN);					
+		return GroupRPCStaticSessionPortSelector.createGroupRPCStaticSessionPort(servers, REMOTE_END_POINT, clientName, "Add Servers", ParticipantChoice.CLIENT_ONLY);					
+
 	}
 	@Override
 	protected ConnectionListener getConnectionListener(InputPort anInputPort) {
-		return new AFrostyObjectConnectionListener((DuplexInputPort<Object>) anInputPort);
+		return   new AGroupCallingConnectListener(( GroupRPCSessionPort) anInputPort);
 	}
 	
 //	public  void waitForUserToOKConnectionThroughDialogBox() {
@@ -96,28 +94,13 @@ public class AGroupRPCStaticSessionPortLauncher extends AGroupRPCClientInputPort
 //		DistEventsBus.addConnectionEventListener(connectionManager);
 //		ObjectEditor.edit(connectionManager);
 //	}
-	protected  void createProxies() {
-		adderProxy = (DuplexCounterAndSenderAwareSummer) 
-				GroupRPCProxyGenerator.generateAllRPCProxy((GroupRPCSessionPort) mainPort, DuplexCounterAndSenderAwareSummer.class, null);
-		
-	}
-	@Override
-	protected  void registerRemoteObjects() {	
-		super.registerRemoteObjects();
-		GroupRPCSessionPort aGroupRPCSessionPort = (GroupRPCSessionPort) mainPort;
-		DuplexCounterAndSenderAwareSummer adder = new AGroupCounterAndSenderAwareSumPrinter(aGroupRPCSessionPort);
-		aGroupRPCSessionPort.register(DuplexCounterAndSenderAwareSummer.class, adder);
-//		registerdEchoer = new AnEchoer();
-		registerdEchoer = new ARegisteredEchoer();
-
-//		aGroupRPCSessionPort.register(Echoer.class, registerdEchoer);
-		aGroupRPCSessionPort.register(ARegisteredEchoer.class, registerdEchoer);		
-
-//		counter = new ACounter();
-//		counter = new ACounterWithObjectValue();
-//		aGroupRPCSessionPort.register(CounterWithObjectValue.class, counter);
-//		aGroupRPCSessionPort.register(Counter.class, counter);
-	}
+	
+//	@Override
+//	// why is this needed?
+//	protected  void registerRemoteObjects() {	
+//		Adder adder = new AnAdder();
+//		((GroupRPCSessionPort) mainPort).register(Adder.class, adder);
+//	}
 	
 
 //	public  void launchStaticSessionPartipant(SessionParticipantDescription[] aServerList, String anId, String aName) {
@@ -165,60 +148,64 @@ public class AGroupRPCStaticSessionPortLauncher extends AGroupRPCClientInputPort
 //		}
 //
 //	}
-	
+//	
 	@Override
-	public void launch() {
-		createAndBindConnectablePorts();
-		AGroupObjectStaticSessionPortLauncher.waitForUserToOKConnectionThroughDialogBox();
-		mainPort.connect();
-		createUI(mainPort);
-
-	}
-	
+//	public void launch() {
+//		createAndBindConnectablePorts();
+//		AGroupObjectStaticSessionPortLauncher.waitForUserToOKConnectionThroughDialogBox();
+//		mainPort.connect();
+////		createUI(mainPort);
+//
+//	}
 	public  void createUI(InputPort anInputPort) {
-
-		System.out.println("Race conditions galore in this example because of calls to getLastSender() by the registered methods");
-//		PortMisc.displayConnections();
-//		GlobalState.setRelayedCommunicaton(false);
-//		GroupRPCSessionPort sessionPort = GroupRPCStaticSessionPortSelector.createGroupRPCStaticSessionPort(aServerList, anId, aName
-//				);	
-//		GroupRPCSessionPort sessionPort = (GroupRPCSessionPort) inputPort;
-//		registerMethods(sessionPort);
-
-//		unregisteredEchoer = new AnUnregisteredEchoer();
-
-		Scanner in = new Scanner(System.in);
-
-
 		
-
-//		DuplexCounterAndSenderAwareSumComputerAndPrinter adderProxy = (DuplexCounterAndSenderAwareSumComputerAndPrinter) 
-//				GroupRPCProxyGenerator.generateAllRPCProxy(sessionPort, DuplexCounterAndSenderAwareSumComputerAndPrinter.class, null);
-
-//		waitForUserToOKConnectionThroughDialogBox();
-//		sessionPort.connect();
-		
-		while (true) {
-			System.out.println("Please enter two messages:");
-		    String stringMessage1  = in.nextLine();
-		    String stringMessage2 = in.nextLine();
-		    counter.increment(1);
-		    try {
-		    	// synchronous
-		    	Object[] retVal = (Object[]) adderProxy.sum(stringMessage1, stringMessage2);
-		    	for (Object val:retVal) {
-			    	System.out.println("Remote sum:" + val);
-		    	}
-//		    	// sync or async depending on RPC
-		    	adderProxy.printUppercase(stringMessage1);
-//		    	// sync or async depending on RPC, sync will cause deadlock
-		    	// lots of messages being sent. Race conditions determine what last sender is when call others is invoked
-		    	adderProxy.printSumAndCallBackProcedureAndFunction(unregisteredEchoer, stringMessage1, stringMessage2);
-		    			
-		    } catch (Exception e) {
-		    		e.printStackTrace();
-		    }
-		}
-
 	}
+
+	
+//	public  void createUI(InputPort anInputPort) {
+//
+//		System.out.println("Race conditions galore in this example because of calls to getLastSender() by the registered methods");
+////		PortMisc.displayConnections();
+////		GlobalState.setRelayedCommunicaton(false);
+////		GroupRPCSessionPort sessionPort = GroupRPCStaticSessionPortSelector.createGroupRPCStaticSessionPort(aServerList, anId, aName
+////				);	
+////		GroupRPCSessionPort sessionPort = (GroupRPCSessionPort) inputPort;
+////		registerMethods(sessionPort);
+//
+////		unregisteredEchoer = new AnUnregisteredEchoer();
+//
+//		Scanner in = new Scanner(System.in);
+//
+//
+//		
+//
+////		DuplexCounterAndSenderAwareSumComputerAndPrinter adderProxy = (DuplexCounterAndSenderAwareSumComputerAndPrinter) 
+////				GroupRPCProxyGenerator.generateAllRPCProxy(sessionPort, DuplexCounterAndSenderAwareSumComputerAndPrinter.class, null);
+//
+////		waitForUserToOKConnectionThroughDialogBox();
+////		sessionPort.connect();
+//		
+//		while (true) {
+//			System.out.println("Please enter two messages:");
+//		    String stringMessage1  = in.nextLine();
+//		    String stringMessage2 = in.nextLine();
+//		    counter.increment(1);
+//		    try {
+//		    	// synchronous
+//		    	Object[] retVal = (Object[]) adderProxy.sum(stringMessage1, stringMessage2);
+//		    	for (Object val:retVal) {
+//			    	System.out.println("Remote sum:" + val);
+//		    	}
+////		    	// sync or async depending on RPC
+//		    	adderProxy.printUppercase(stringMessage1);
+////		    	// sync or async depending on RPC, sync will cause deadlock
+//		    	// lots of messages being sent. Race conditions determine what last sender is when call others is invoked
+//		    	adderProxy.printSumAndCallBackProcedureAndFunction(unregisteredEchoer, stringMessage1, stringMessage2);
+//		    			
+//		    } catch (Exception e) {
+//		    		e.printStackTrace();
+//		    }
+//		}
+//
+//	}
 }

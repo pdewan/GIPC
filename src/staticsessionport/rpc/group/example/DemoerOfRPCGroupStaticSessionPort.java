@@ -17,10 +17,13 @@ public class DemoerOfRPCGroupStaticSessionPort {
 	}	
 	public static void demo() {		
 		Class[] classes = {
+				
+				// all of these are members regaredless of the join choice in the descriptions
+				// because port is explicitly created
 
-				AliceMemberGroupRPCSSPLauncher.class, 
-				BobServerGroupRPCSSPLauncher.class, 
-				CathyClientGroupRPCSSPLauncher.class,
+				AliceGroupRPCSSPLauncher.class, 
+				BobGroupRPCSSPLauncher.class, 
+				CathyGroupRPCSSPLauncher.class,
 
 				
 		};

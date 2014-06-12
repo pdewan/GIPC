@@ -18,9 +18,9 @@ import util.trace.Tracer;
 
 public class AGroupRPCClientLauncher {
 	protected static SessionParticipantDescription server1Description = 
-		new ASessionParticipantDescription("localhost", AGroupRPCServer1Launcher.server1Id, AGroupRPCServer1Launcher.server1Name, null);
+		new ASessionParticipantDescription("localhost", AGroupRPCServer1Launcher.server1Id, AGroupRPCServer1Launcher.server1Name, ParticipantChoice.MEMBER);
 	protected static SessionParticipantDescription server2Description = 
-		new ASessionParticipantDescription("localhost", AGroupRPCServer2Launcher.server2Id, AGroupRPCServer2Launcher.server2Name, null);
+		new ASessionParticipantDescription("localhost", AGroupRPCServer2Launcher.server2Id, AGroupRPCServer2Launcher.server2Name, ParticipantChoice.MEMBER);
 	protected static SessionParticipantDescription[] servers = {server1Description, server2Description};
 	protected static final String REMOTE_END_POINT = "Echo Servers" ; 
 
