@@ -1,4 +1,4 @@
-package inputport.rpc.group.adder.example;
+package inputport.rpc.group.example;
 
 import inputport.InputPort;
 import inputport.rpc.duplex.example.ADuplexRPCServerInputPortLauncher;

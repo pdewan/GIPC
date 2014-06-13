@@ -8,8 +8,8 @@ import inputport.rpc.duplex.example.ARegisteredEchoer;
 import inputport.rpc.duplex.example.AnotherEchoer;
 import inputport.rpc.duplex.example.DuplexCounterAndSenderAwareSummer;
 import inputport.rpc.group.GroupRPCProxyGenerator;
-import inputport.rpc.group.adder.example.AGroupCounterAndSenderAwareSumPrinter;
-import inputport.rpc.group.adder.example.AnOldGroupRPCClientInputPortLauncher;
+import inputport.rpc.group.example.AGroupCounterAndSenderAwareSumPrinter;
+import inputport.rpc.group.example.AnOldGroupRPCClientInputPortLauncher;
 
 import java.util.Scanner;
 

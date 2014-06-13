@@ -1,7 +1,7 @@
-package inputport.rpc.group.adder.example;
+package inputport.rpc.group.example;
 
 
-public class AnAliceGroupRPCInputPortLauncher {
+public class AliceGroupRPCInputPortLauncher {
 	public static  String ALICE = "Alice";
 	public static void main (String[] args) {	
 		(new AGroupRPCClientInputPortLauncher(ALICE)).launch();

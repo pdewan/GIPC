@@ -8,9 +8,9 @@ import inputport.rpc.duplex.example.ARegisteredEchoer;
 import inputport.rpc.duplex.example.AnUnregisteredEchoer;
 import inputport.rpc.duplex.example.AnotherCounter;
 import inputport.rpc.duplex.example.AnotherEchoer;
-import inputport.rpc.group.adder.example.ACounterWithObjectValue;
-import inputport.rpc.group.adder.example.AGroupCounterAndSenderAwareSumPrinter;
-import inputport.rpc.group.adder.example.GroupCounterAndSenderAwareSumPrinterAndCapitalizer;
+import inputport.rpc.group.example.ACounterWithObjectValue;
+import inputport.rpc.group.example.AGroupCounterAndSenderAwareSumPrinter;
+import inputport.rpc.group.example.GroupCounterAndSenderAwareSumPrinterAndCapitalizer;
 
 import java.util.Scanner;
 

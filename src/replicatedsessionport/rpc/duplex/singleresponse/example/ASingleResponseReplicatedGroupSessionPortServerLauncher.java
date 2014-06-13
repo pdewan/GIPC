@@ -3,7 +3,7 @@ package replicatedsessionport.rpc.duplex.singleresponse.example;
 import inputport.InputPort;
 import inputport.rpc.duplex.example.DuplexCounterAndSenderAwareSummer;
 import inputport.rpc.group.GroupRPCServerInputPort;
-import inputport.rpc.group.adder.example.AGroupCounterAndSenderAwareSumPrinter;
+import inputport.rpc.group.example.AGroupCounterAndSenderAwareSumPrinter;
 import port.PortLauncherSupport;
 import port.SessionChoice;
 import replicatedsessionport.rpc.duplex.ReplicatedSessionDuplexRPCPortSelector;
