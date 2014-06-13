@@ -1,15 +1,19 @@
 package replicatedserverport.rpc.duplex.singleresponse.example;
 
 import inputport.InputPort;
+import inputport.rpc.group.example.AGroupRPCClientInputPortLauncher;
 import inputport.rpc.group.example.AnOldGroupRPCClientInputPortLauncher;
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.sessionserver.SessionParticipantDescription;
 import replicatedserverport.rpc.duplex.ReplicatedServerDuplexRPCClientPortSelector;
 import replicatedserverport.rpc.duplex.singleresponse.ASingleResponseReplicatedPortLauncherSupport;
-
+// why is a duplex port extending a group launcher
 public class ASingleResponseGroupRPCDuplexClientPortLauncher 
-         extends AnOldGroupRPCClientInputPortLauncher{
+//         extends AnOldGroupRPCClientInputPortLauncher{
+	  extends AGroupRPCClientInputPortLauncher{
+	
+	
 //	final static int SESSION_SERVER_PORT = 9090;
 //	final static String SESSION_SERVER_NAME = "Session Server";
 //	final static String SESSION_NAME = "Test Session";
