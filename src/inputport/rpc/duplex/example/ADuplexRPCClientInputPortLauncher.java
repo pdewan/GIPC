@@ -11,6 +11,7 @@ import inputport.rpc.duplex.ADuplexRPCInputPortLauncherSupport;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCInputPortSelector;
 import inputport.rpc.simplex.example.ASimplexRPCClientInputPortLauncher;
+import inputport.rpc.simplex.example.AnUpperCasePrinter;
 import inputport.rpc.simplex.example.UpperCasePrinter;
 import port.PortLauncherSupport;
 
@@ -61,6 +62,11 @@ public class ADuplexRPCClientInputPortLauncher extends ASimplexRPCClientInputPor
 	protected void createProxies() {
 		rpcProxyGenerator = duplexRPCClientInputPort().getRPCProxyGenerator();
 //		RPCProxyGenerator rpcProxyGenerator = ((SimplexRPCClientInputPort) mainPort).getRPCProxyGenerator();
+		// binding it to ADuplexUpperCasePrinter causes problems when we deal with group adder as it is not a subclsas of a Duplex
+    	// that does not work as the group summer does not implement duplex function
+		// will have to override this method in the group version
+//		upperCaseProxy = (UpperCasePrinter) rpcProxyGenerator.generateRPCProxy(null, DuplexUpperCasePrinter.class, null);
+
     	upperCaseProxy = (UpperCasePrinter) rpcProxyGenerator.generateRPCProxy(null, ADuplexUpperCasePrinter.class, null);
 
 //		 adderProxy = (DuplexCounterAndSenderAwareSummer) 

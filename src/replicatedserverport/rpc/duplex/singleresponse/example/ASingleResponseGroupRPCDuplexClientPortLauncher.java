@@ -1,7 +1,7 @@
 package replicatedserverport.rpc.duplex.singleresponse.example;
 
 import inputport.InputPort;
-import inputport.rpc.group.adder.example.AGroupRPCClientInputPortLauncher;
+import inputport.rpc.group.adder.example.AnOldGroupRPCClientInputPortLauncher;
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.sessionserver.SessionParticipantDescription;
@@ -9,7 +9,7 @@ import replicatedserverport.rpc.duplex.ReplicatedServerDuplexRPCClientPortSelect
 import replicatedserverport.rpc.duplex.singleresponse.ASingleResponseReplicatedPortLauncherSupport;
 
 public class ASingleResponseGroupRPCDuplexClientPortLauncher 
-         extends AGroupRPCClientInputPortLauncher{
+         extends AnOldGroupRPCClientInputPortLauncher{
 //	final static int SESSION_SERVER_PORT = 9090;
 //	final static String SESSION_SERVER_NAME = "Session Server";
 //	final static String SESSION_NAME = "Test Session";

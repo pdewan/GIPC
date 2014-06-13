@@ -9,7 +9,7 @@ import inputport.rpc.duplex.example.AnotherEchoer;
 import inputport.rpc.duplex.example.DuplexCounterAndSenderAwareSummer;
 import inputport.rpc.group.GroupRPCProxyGenerator;
 import inputport.rpc.group.adder.example.AGroupCounterAndSenderAwareSumPrinter;
-import inputport.rpc.group.adder.example.AGroupRPCClientInputPortLauncher;
+import inputport.rpc.group.adder.example.AnOldGroupRPCClientInputPortLauncher;
 
 import java.util.Scanner;
 
@@ -25,7 +25,7 @@ import examples.mvc.rmi.collaborative.relaying.AnEchoer;
 import examples.mvc.rmi.collaborative.relaying.Echoer;
 
 
-public class AGroupRPCStaticSessionPortLauncher extends AGroupRPCClientInputPortLauncher {
+public class AGroupRPCStaticSessionPortLauncher extends AnOldGroupRPCClientInputPortLauncher {
 	protected  static SessionParticipantDescription AliceDescription = new ASessionParticipantDescription("localhost", "9100", "Alice", ParticipantChoice.MEMBER);
 	protected static  SessionParticipantDescription BobDescription = new ASessionParticipantDescription("localhost", "9101", "Bob", ParticipantChoice.SERVER_ONLY);
 	protected static  SessionParticipantDescription CathyDescription = new ASessionParticipantDescription("localhost", "9102", "Cathy", ParticipantChoice.CLIENT_ONLY);
