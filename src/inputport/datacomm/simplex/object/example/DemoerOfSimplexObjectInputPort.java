@@ -16,7 +16,7 @@ public class DemoerOfSimplexObjectInputPort {
 				ABobSimplexObjectInputPortLauncher.class
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

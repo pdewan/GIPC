@@ -10,6 +10,6 @@ public class DemoerOfEchoingDuplexRPCInputPort {
 				AliceEchoingDuplexRPCClientLauncher.class,	
 				BobEchoingDuplexRPCClientLauncher.class	
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 }

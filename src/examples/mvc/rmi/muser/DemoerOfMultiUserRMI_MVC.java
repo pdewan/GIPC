@@ -19,7 +19,7 @@ public class DemoerOfMultiUserRMI_MVC {
 
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

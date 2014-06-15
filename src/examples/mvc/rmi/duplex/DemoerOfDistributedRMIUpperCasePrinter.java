@@ -15,7 +15,7 @@ public class DemoerOfDistributedRMIUpperCasePrinter {
 				ADistributedRMIServerMVC_Launcher.class,
 				ADistributedRMIClientMVC_Launcher.class				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

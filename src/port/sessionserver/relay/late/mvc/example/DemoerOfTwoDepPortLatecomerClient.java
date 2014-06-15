@@ -14,7 +14,7 @@ public class DemoerOfTwoDepPortLatecomerClient {
 				BobTwoDepPortLatecomerClientLauncher.class,
 				CathyTwoDepPortLatecomerClientLauncher.class
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

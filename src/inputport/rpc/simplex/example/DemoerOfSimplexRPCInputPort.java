@@ -16,7 +16,7 @@ public class DemoerOfSimplexRPCInputPort {
 				BobSimplexRPCInputPortLauncher.class
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

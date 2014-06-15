@@ -19,7 +19,7 @@ public class DemoerOfGroupObjectP2PSessionPort {
 				BobP2PServerOnlyGroupSessionPort.class,
 				CathyP2PClientGroupSessionPort.class // cathy can receive changes even though she is a client-only
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

@@ -18,7 +18,7 @@ public class DemoerOfMVCDirecRPCGroupSessionPort {
 				CathyMVCDirectSessionPortLauncher.class,
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

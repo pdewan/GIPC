@@ -15,7 +15,7 @@ public class DemoerOMVCfSimplexObjectInputPort {
 				ASimplexObjectClientMVCLauncher.class,
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

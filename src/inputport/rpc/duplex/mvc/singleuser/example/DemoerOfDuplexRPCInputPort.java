@@ -11,7 +11,7 @@ public class DemoerOfDuplexRPCInputPort {
 				ADuplexRPCServerMVCLauncher.class,
 				ADuplexRPCClientMVCLauncher.class				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

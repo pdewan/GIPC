@@ -12,7 +12,7 @@ public class DemoerOfSimplexMVC {
 		Class[] classes = {
 				ASimplexFrostyLauncher.class				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

@@ -12,6 +12,6 @@ public class DemoerOfMultiiUserDuplexRPCInputPort {
 				AliceDuplexRPCClientMVCLauncher.class,	
 				BobDuplexRPCClientMVCLauncher.class	
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 }

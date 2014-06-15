@@ -17,7 +17,7 @@ public class DemoerOfLatecomerRPCGroupSessionPort {
 
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

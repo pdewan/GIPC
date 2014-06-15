@@ -21,7 +21,7 @@ public class DemoerOfGroupLatecomerRelayedGroupSessionPort {
 				BobServerLatecomerGroupSessionPort.class,
 				CathyClientRelayedGroupSessionPort.class, // cathy does no receive buffered messages as a client only
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

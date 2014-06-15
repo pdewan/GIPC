@@ -16,7 +16,7 @@ public class DemoerOfDelayedJitteryP2P {
 				BobJitteryGroupSessionPort.class,
 				CathyJitteryGroupSessionPort.class};
 		
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 		
 	}
 

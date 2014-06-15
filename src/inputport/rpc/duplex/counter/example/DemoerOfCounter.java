@@ -11,6 +11,6 @@ public class DemoerOfCounter {
 				ADuplexCounterServerLauncher.class,
 				ADuplexCounterClientLauncher.class	
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 }

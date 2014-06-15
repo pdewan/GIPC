@@ -18,7 +18,7 @@ public class DemoerOfAsymmetricP2PWithSessionServer {
 
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

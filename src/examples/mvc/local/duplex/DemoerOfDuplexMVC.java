@@ -16,7 +16,7 @@ public class DemoerOfDuplexMVC {
 //				ADistributedRMIUpperCaseServerLauncher.class,
 //				ADistributedRMIUpperCaseClientLauncher.class				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

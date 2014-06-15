@@ -12,7 +12,7 @@ public class DemoerOfRelayingCollaborativeGroupRPCInputPort {
 				AliceRelayingCollaborativeDuplexRPCClientMVCLauncher.class,
 				BobRelayingCollaborativeDuplexRPCClientMVCLauncher.class
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

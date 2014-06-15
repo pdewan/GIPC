@@ -26,7 +26,7 @@ public class DemoerOfRPCGroupMultiServerPort {
 
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

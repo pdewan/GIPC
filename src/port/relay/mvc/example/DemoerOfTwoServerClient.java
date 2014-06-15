@@ -13,7 +13,7 @@ public class DemoerOfTwoServerClient {
 				AliceTwoServerClientLauncher.class,
 				BobTwoServerClientLauncher.class
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

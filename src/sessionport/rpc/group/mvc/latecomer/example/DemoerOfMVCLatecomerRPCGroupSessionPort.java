@@ -18,7 +18,7 @@ public class DemoerOfMVCLatecomerRPCGroupSessionPort {
 
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

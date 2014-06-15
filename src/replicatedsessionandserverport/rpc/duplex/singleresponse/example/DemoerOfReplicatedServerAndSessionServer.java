@@ -43,7 +43,7 @@ public class DemoerOfReplicatedServerAndSessionServer {
 				ABobSingleResponseReplicatedSessionServerClientPortLauncher.class,
 				ACathySingleResponseReplicatedSessionServerClientPortLauncher.class
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 
 	}
 	

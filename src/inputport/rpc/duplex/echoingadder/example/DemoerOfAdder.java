@@ -11,6 +11,6 @@ public class DemoerOfAdder {
 				ADuplexAdderServerLauncher.class,
 				ADuplexAdderClientLauncher.class	
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 }

@@ -19,7 +19,7 @@ public class DemoerOfAsymmetricRelayerWithSessionServer {
 				CathyClientSessionAndRelayClient.class
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

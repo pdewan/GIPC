@@ -18,7 +18,7 @@ public class DemoerOfFlexibleGroupObjectSessionPort {
 				ABobGroupSessionPort.class,
 				ACathyGroupSessionPort.class 
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

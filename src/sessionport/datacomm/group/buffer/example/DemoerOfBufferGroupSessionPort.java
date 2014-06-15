@@ -21,7 +21,7 @@ public class DemoerOfBufferGroupSessionPort {
 				BobBufferGroupSessionPort.class,
 				CathyBufferGroupSessionPort.class 
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

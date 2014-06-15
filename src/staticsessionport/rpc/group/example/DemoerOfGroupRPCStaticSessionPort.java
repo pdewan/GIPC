@@ -26,7 +26,7 @@ public class DemoerOfGroupRPCStaticSessionPort {
 
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

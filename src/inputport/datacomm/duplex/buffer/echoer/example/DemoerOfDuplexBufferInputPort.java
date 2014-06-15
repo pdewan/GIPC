@@ -16,7 +16,7 @@ public class DemoerOfDuplexBufferInputPort {
 				BobDuplexBufferInputPortLauncher.class
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

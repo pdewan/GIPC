@@ -15,7 +15,7 @@ public class DemoerOfMVCSimplexBufferInputPort {
 				ASimplexBufferClientMVCLauncher.class,
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

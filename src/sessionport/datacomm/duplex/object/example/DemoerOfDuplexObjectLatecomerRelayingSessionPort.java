@@ -17,7 +17,7 @@ public class DemoerOfDuplexObjectLatecomerRelayingSessionPort {
 				BobObjectDuplexSessionPort.class,
 				CathyObjectDuplexSessionPort.class
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

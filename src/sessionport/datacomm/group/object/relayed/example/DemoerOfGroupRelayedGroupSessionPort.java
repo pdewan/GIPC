@@ -21,7 +21,7 @@ public class DemoerOfGroupRelayedGroupSessionPort {
 				CathyClientRelayedGroupSessionPort.class, // cathy can receive changes even though she is a client only, with session ports the behcior is different from session server
 
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

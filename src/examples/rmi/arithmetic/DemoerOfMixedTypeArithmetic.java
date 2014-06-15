@@ -38,7 +38,7 @@ public class DemoerOfMixedTypeArithmetic {
 
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

@@ -11,7 +11,7 @@ public class DemoerOfSimplexRPCInputPort {
 				ASimplexRPCServerMVCLauncher.class,
 				ASimplexRPCClientMVCLauncher.class				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

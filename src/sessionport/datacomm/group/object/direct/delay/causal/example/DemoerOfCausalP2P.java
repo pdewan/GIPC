@@ -18,7 +18,7 @@ public class DemoerOfCausalP2P {
 				BobCausalGroupSessionPort.class,
 				CathyCausalGroupSessionPort.class};
 		
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 		
 	}
 

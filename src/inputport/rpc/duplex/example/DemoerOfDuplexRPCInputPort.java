@@ -16,7 +16,7 @@ public class DemoerOfDuplexRPCInputPort {
 				BobDuplexRPCInputPortLauncher.class
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

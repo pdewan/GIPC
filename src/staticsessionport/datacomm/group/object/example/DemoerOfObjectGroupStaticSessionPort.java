@@ -22,7 +22,7 @@ public class DemoerOfObjectGroupStaticSessionPort {
 
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

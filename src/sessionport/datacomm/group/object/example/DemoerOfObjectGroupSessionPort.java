@@ -21,7 +21,7 @@ public class DemoerOfObjectGroupSessionPort {
 				BobObjectGroupSessionPort.class,
 				CathyObjectGroupSessionPort.class 
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

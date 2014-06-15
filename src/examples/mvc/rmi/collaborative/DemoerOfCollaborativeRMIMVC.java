@@ -19,7 +19,7 @@ public class DemoerOfCollaborativeRMIMVC {
 
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

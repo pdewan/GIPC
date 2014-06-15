@@ -16,7 +16,7 @@ public class DemoerOfDuplexObjectInputPort {
 				BobDuplexObjectInputPortLauncher.class
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

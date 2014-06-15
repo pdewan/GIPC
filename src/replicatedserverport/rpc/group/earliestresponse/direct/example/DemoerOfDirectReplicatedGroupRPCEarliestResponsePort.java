@@ -29,7 +29,7 @@ public class DemoerOfDirectReplicatedGroupRPCEarliestResponsePort {
 				CathyEarliestResponseP2PReplicatedPortLauncher.class
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

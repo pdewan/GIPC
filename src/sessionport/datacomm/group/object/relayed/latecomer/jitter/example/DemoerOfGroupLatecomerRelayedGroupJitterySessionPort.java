@@ -23,7 +23,7 @@ public class DemoerOfGroupLatecomerRelayedGroupJitterySessionPort {
 				BobJitteryLatecomerGroupSessionPortLauncher.class,
 				CathyJitteryLateGroupSessionPortLauncher.class, 
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

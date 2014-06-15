@@ -13,7 +13,7 @@ public class DemoerOfDynamicServerPortLatecomerClient {
 				AliceDynamicServerLatecomerClientLauncher.class,
 				BobDynamicServerLatecomerClientLauncher.class
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

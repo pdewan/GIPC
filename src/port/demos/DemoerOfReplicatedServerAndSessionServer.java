@@ -33,7 +33,7 @@ public class DemoerOfReplicatedServerAndSessionServer {
 				ABobSingleResponseReplicatedSessionServerClientPortLauncher.class,
 				ACathySingleResponseReplicatedSessionServerClientPortLauncher.class
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 //		ListenableVector<Class> classList = new AMainClassList();		
 //		classList.add(AReplicatedSingleResponseReplicatedLatecomerSessionServer1Launcher.class);
 //		classList.add(AReplicatedSingleResponseReplicatedLatecomerSessionServer2Launcher.class);

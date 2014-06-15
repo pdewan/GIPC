@@ -14,7 +14,7 @@ public class DemoerOfThreeIndepPortClient {
 				AliceThreeIndepPortClientLauncher.class,
 				BobThreeIndepPortClientLauncher.class
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }

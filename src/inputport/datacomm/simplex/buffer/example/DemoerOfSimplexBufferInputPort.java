@@ -16,7 +16,7 @@ public class DemoerOfSimplexBufferInputPort {
 				ABobSimplexBufferInputPortLauncher.class
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

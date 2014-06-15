@@ -17,7 +17,7 @@ public class DemoerOfGroupRPCInputPort {
 				CathyGroupRPCInputPortLauncher.class,
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

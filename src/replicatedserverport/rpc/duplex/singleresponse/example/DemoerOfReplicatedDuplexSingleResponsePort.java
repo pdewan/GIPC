@@ -29,7 +29,7 @@ public class DemoerOfReplicatedDuplexSingleResponsePort {
 				CathySingleResponseGroupRPCClientPortLauncher.class
 				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 	
 	

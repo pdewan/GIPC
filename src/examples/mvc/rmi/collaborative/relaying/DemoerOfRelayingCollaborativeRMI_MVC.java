@@ -12,6 +12,6 @@ public class DemoerOfRelayingCollaborativeRMI_MVC {
 				BobRelayingCollaborativeRMIUpperCaseLauncher.class,
 				CathyRelayingCollaborativeRMIUpperCaseLauncher.class				
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}
 }

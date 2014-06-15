@@ -16,7 +16,7 @@ public class DemoerOfDelayedP2P {
 				BobDelayingGroupSessionPort.class,
 				CathyDelayingGroupSessionPort.class};
 		
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 		
 	}
 

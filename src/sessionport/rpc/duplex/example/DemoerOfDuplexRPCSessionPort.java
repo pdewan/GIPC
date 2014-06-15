@@ -25,7 +25,7 @@ public class DemoerOfDuplexRPCSessionPort {
 				ABobDuplexRPCSessionPort.class,
 				AModularCathyDuplexRPCSessionPort.class,
 		};
-		MainClassLaunchingUtility.interactiveLaunch(classes);
+		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	
 
 }
