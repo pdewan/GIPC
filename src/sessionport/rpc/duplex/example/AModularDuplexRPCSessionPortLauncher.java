@@ -14,7 +14,7 @@ import port.SessionChoice;
 import port.old.Adder;
 import port.old.AnAdder;
 import replicatedserverport.rpc.group.ReplicatedServerSessionPortSelector;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AnEarliestReponseReplicatedSessionServerLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.AnEarliestReponseReplicatedSessionServerLauncher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 import sessionport.rpc.duplex.DuplexRPCSessionPort;
 import sessionport.rpc.duplex.DuplexRPCSessionPortSelector;

@@ -7,7 +7,7 @@ import inputport.rpc.group.example.AGroupCounterAndSenderAwareSumPrinter;
 import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
 import replicatedsessionport.rpc.duplex.ReplicatedSessionDuplexRPCPortSelector;
 
 public class AReplicatedSingleResponseReplicatedGroupSessionServerPortServerLauncher 

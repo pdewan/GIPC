@@ -7,9 +7,9 @@ import inputport.datacomm.simplex.object.example.CathyClientLauncher;
 import java.util.HashMap;
 import java.util.Map;
 
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server1Launcher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server2Launcher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server3Launcher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.Server1Launcher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.Server2Launcher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.Server3Launcher;
 
 public class ClientServerMapping {
 	 static final Map<String,String> clientToServer = new HashMap();

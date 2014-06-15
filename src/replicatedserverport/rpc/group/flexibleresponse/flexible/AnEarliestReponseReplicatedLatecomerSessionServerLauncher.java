@@ -1,4 +1,4 @@
-package replicatedserverport.rpc.group.flexibleresponse.flexible.example;
+package replicatedserverport.rpc.group.flexibleresponse.flexible;
 
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.relay.late.ALatecomerSessionServerLauncher;

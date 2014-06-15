@@ -3,7 +3,7 @@ package replicatedserverport.rpc.group.flexibleresponse.flexibejitter;
 import port.PortLauncherSupport;
 import port.jitter.AJitterControllingPortLauncherSupport;
 import port.sessionserver.ServerPortDescription;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ASingleReponseReplicatedLatecomerSessionServerLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.ASingleReponseReplicatedLatecomerSessionServerLauncher;
 
 public  class AJitterySingleReponseReplicatedLatecomerSessionServerLauncher extends ASingleReponseReplicatedLatecomerSessionServerLauncher{
 //	public static String SESSION_SERVER_NAME = "Sessions Server";

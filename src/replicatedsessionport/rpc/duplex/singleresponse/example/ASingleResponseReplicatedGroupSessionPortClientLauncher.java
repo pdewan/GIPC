@@ -17,7 +17,7 @@ import java.util.Scanner;
 import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
 
 public class ASingleResponseReplicatedGroupSessionPortClientLauncher 
 	extends AJitteryFlexibleReplicatedGroupSessionPortClientLauncher{

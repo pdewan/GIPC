@@ -5,10 +5,10 @@ import inputport.datacomm.simplex.object.example.CathyClientLauncher;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
 import replicatedserverport.rpc.duplex.fixedresponse.ClientServerMapping;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server2Launcher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server3Launcher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleResponseReplicatedSessionPortLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.Server2Launcher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.Server3Launcher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
 public class CathyFixedResponseP2PReplicatedPortLauncher {

@@ -4,8 +4,8 @@ import port.ParticipantChoice;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexibejitter.AJitteryFlexibleResponseReplicatedSessionPortLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleResponseReplicatedSessionPortLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
 public class ACathyJitterySingleResponseLatecomerReplicatedPortLauncher {

@@ -1,4 +1,4 @@
-package replicatedserverport.rpc.group.flexibleresponse.flexible.example;
+package replicatedserverport.rpc.group.flexibleresponse.flexible;
 
 import inputport.InputPort;
 import port.ParticipantChoice;

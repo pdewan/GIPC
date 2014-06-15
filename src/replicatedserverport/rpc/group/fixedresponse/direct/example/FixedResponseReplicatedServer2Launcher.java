@@ -2,7 +2,7 @@ package replicatedserverport.rpc.group.fixedresponse.direct.example;
 
 import inputport.datacomm.simplex.object.example.BobClientLauncher;
 import replicatedserverport.rpc.duplex.fixedresponse.ClientServerMapping;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server2Launcher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.Server2Launcher;
 
 public class FixedResponseReplicatedServer2Launcher implements Server2Launcher{
 	

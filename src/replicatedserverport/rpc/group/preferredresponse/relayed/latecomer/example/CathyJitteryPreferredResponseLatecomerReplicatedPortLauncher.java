@@ -3,12 +3,12 @@ package replicatedserverport.rpc.group.preferredresponse.relayed.latecomer.examp
 import port.ParticipantChoice;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
-import replicatedserverport.rpc.group.moreflexibleresponse.flexibe.jitter.example.AJitteryMoreFlexibleResponseReplicatedSessionPortLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleResponseReplicatedSessionPortLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
+import replicatedserverport.rpc.group.moreflexibleresponse.flexibe.jitter.AJitteryMoreFlexibleResponseReplicatedSessionPortLauncher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
-public class ACathyJitteryPreferredResponseLatecomerReplicatedPortLauncher {
+public class CathyJitteryPreferredResponseLatecomerReplicatedPortLauncher {
 	public static void main(String[] args) {
 //		DelayManager delayManager = GlobalState.getDelayManager();
 //		delayManager.setMinimumDelay("Bob", 100);

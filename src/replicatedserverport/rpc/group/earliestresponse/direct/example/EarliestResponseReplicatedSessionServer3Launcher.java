@@ -1,7 +1,7 @@
 package replicatedserverport.rpc.group.earliestresponse.direct.example;
 
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AnEarliestReponseReplicatedSessionServerLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server3Launcher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.AnEarliestReponseReplicatedSessionServerLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.Server3Launcher;
 
 public class EarliestResponseReplicatedSessionServer3Launcher implements Server3Launcher {
 	public static void main (String args[]) {

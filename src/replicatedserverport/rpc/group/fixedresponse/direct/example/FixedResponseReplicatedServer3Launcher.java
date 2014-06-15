@@ -2,7 +2,7 @@ package replicatedserverport.rpc.group.fixedresponse.direct.example;
 
 import inputport.datacomm.simplex.object.example.CathyClientLauncher;
 import replicatedserverport.rpc.duplex.fixedresponse.ClientServerMapping;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server3Launcher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.Server3Launcher;
 
 public class FixedResponseReplicatedServer3Launcher implements Server3Launcher{
 	

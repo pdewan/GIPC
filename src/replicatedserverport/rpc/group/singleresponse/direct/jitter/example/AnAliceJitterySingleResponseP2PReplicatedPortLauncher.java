@@ -5,8 +5,8 @@ import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
 import port.trace.ConnectionEventManagerFactory;
 import replicatedserverport.rpc.group.flexibleresponse.flexibejitter.AJitteryFlexibleResponseReplicatedSessionPortLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleResponseReplicatedSessionPortLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 import bus.uigen.ObjectEditor;
 

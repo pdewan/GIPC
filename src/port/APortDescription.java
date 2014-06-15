@@ -1,6 +1,6 @@
 package port;
 
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
 
 public class APortDescription implements PortDescription {
 	

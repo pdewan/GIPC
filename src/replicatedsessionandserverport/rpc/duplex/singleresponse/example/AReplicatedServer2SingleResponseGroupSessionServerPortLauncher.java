@@ -2,7 +2,7 @@ package replicatedsessionandserverport.rpc.duplex.singleresponse.example;
 
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleResponseReplicatedSessionPortLauncher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 import bus.uigen.OEFrame;
 import bus.uigen.ObjectEditor;

@@ -1,7 +1,7 @@
 package replicatedsessionandserverport.rpc.duplex.singleresponse.example;
 
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ASingleReponseReplicatedLatecomerSessionServerLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server1Launcher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.ASingleReponseReplicatedLatecomerSessionServerLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.Server1Launcher;
 import bus.uigen.OEFrame;
 import bus.uigen.ObjectEditor;
 import bus.uigen.trace.TraceableDisplayAndWaitManagerFactory;

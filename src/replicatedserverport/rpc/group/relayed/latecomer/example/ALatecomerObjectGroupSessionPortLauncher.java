@@ -17,6 +17,7 @@ import replicatedserverport.rpc.duplex.singleresponse.ASingleResponseReplicatedP
 import replicatedserverport.rpc.group.ReplicatedServerSessionPortSelector;
 import sessionport.datacomm.group.GroupSessionPort;
 import sessionport.datacomm.group.object.flexible.example.AFrostySessionConnectionListener;
+import sessionport.datacomm.group.object.relayed.latecomer.AnObjectGroupSessionPortLatecomerLauncherSupport;
 
 public class ALatecomerObjectGroupSessionPortLauncher extends ASimplexBufferClientInputPortLauncher{
 //	final static int SESSION_SERVER_PORT = 9090;
@@ -63,6 +64,11 @@ public class ALatecomerObjectGroupSessionPortLauncher extends ASimplexBufferClie
 //		return sessionPort;
 //		
 //	}
+	
+	// ReplicatedServerSesssionPortSelector may well be a vestigal
+	// piece of code. It does not bind a proper bbport to object port
+	// the support is simgle response so why not use single response
+	// port creator?
 	protected  InputPort getPort() {
 		return ReplicatedServerSessionPortSelector.
 		createObjectGroupSessionPort(serversDescription, id, name, 
@@ -87,6 +93,11 @@ public class ALatecomerObjectGroupSessionPortLauncher extends ASimplexBufferClie
 		DelayUtlity.setDelayClientBufferSends(true);
 	}
 	protected PortLauncherSupport getPortLauncherSupport() {
+		return  new AnObjectGroupSessionPortLatecomerLauncherSupport();
+
+	}
+	@Override
+	protected PortLauncherSupport getReplicatedPortLauncherSupport() {
 //		return new ALatecomerRelayerAndSessionServerLauncherSupport();
 		return new ASingleResponseReplicatedPortLauncherSupport();
 

@@ -1,4 +1,4 @@
-package replicatedserverport.rpc.group.moreflexibleresponse.flexibe.jitter.example;
+package replicatedserverport.rpc.group.moreflexibleresponse.flexibe.jitter;
 
 import inputport.ConnectionListener;
 import inputport.InputPort;
@@ -9,7 +9,7 @@ import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
 import replicatedserverport.rpc.duplex.preferredresponse.APreferredResponseReplicatedPortLauncherSupport;
 import replicatedserverport.rpc.group.flexibleresponse.flexibejitter.AJitteryFlexibleResponseReplicatedSessionPortLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
 
 public class AJitteryMoreFlexibleResponseReplicatedSessionPortLauncher  extends 
                   AJitteryFlexibleResponseReplicatedSessionPortLauncher{
@@ -21,7 +21,7 @@ public class AJitteryMoreFlexibleResponseReplicatedSessionPortLauncher  extends
 			ParticipantChoice aParticipantChoice, SessionParticipantDescription[] aServersDescription, boolean aDoJitter) {
 		super(aSessionServerHost, aServerId, aServerName, aMyId, aMyName,
 				aSessionChoice, aShouldDelay, aDelaysSupport, aDoCausal,
-				aReplicationChoice, null, aServersDescription, aDoJitter);
+				aReplicationChoice, aParticipantChoice, aServersDescription, aDoJitter);
 	}
 	protected PortLauncherSupport getReplicatedPortLauncherSupport() {
 		if (replicationChoice == ReplicationChoice.PREFERRED_RESPONSE)

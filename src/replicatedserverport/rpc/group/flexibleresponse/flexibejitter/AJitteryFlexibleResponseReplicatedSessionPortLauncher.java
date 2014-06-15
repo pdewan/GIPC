@@ -5,8 +5,8 @@ import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.jitter.AJitterControllingPortLauncherSupport;
 import port.sessionserver.SessionParticipantDescription;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleResponseReplicatedSessionPortLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
 
 public class AJitteryFlexibleResponseReplicatedSessionPortLauncher  extends 
                  AFlexibleResponseReplicatedSessionPortLauncher{

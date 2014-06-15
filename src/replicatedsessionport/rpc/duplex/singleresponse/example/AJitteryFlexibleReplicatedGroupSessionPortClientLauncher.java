@@ -7,8 +7,8 @@ import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
 import replicatedserverport.rpc.duplex.singleresponse.ARelayedSingleResponseReplicatedPortLauncherSupport;
 import replicatedserverport.rpc.duplex.singleresponse.ASingleResponseReplicatedPortLauncherSupport;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
-import replicatedserverport.rpc.group.moreflexibleresponse.flexibe.jitter.example.AJitteryMoreFlexibleResponseReplicatedSessionPortLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
+import replicatedserverport.rpc.group.moreflexibleresponse.flexibe.jitter.AJitteryMoreFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedsessionport.rpc.duplex.ReplicatedSessionDuplexRPCPortSelector;
 
 public class AJitteryFlexibleReplicatedGroupSessionPortClientLauncher 

@@ -1,7 +1,7 @@
 package replicatedserverport.rpc.group.singleresponse.direct.example;
 
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ASingleReponseReplicatedSessionServerLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server1Launcher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.ASingleReponseReplicatedSessionServerLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.Server1Launcher;
 
 public class ASingleResponseReplicatedSessionServer1Launcher implements Server1Launcher{
 	

@@ -1,7 +1,7 @@
 package replicatedserverport.rpc.group.earliestresponse.relayed.latecomer.example;
 
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AnEarliestReponseReplicatedLatecomerSessionServerLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server3Launcher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.AnEarliestReponseReplicatedLatecomerSessionServerLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.Server3Launcher;
 
 public class AnEarliestResponseReplicatedLatecomerSessionServer3Launcher implements Server3Launcher {
 	public static void main (String args[]) {

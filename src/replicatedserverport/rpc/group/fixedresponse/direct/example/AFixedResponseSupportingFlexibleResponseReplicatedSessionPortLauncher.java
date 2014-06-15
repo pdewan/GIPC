@@ -5,8 +5,8 @@ import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
 import replicatedserverport.rpc.duplex.fixedresponse.AFixedResponseReplicatedPortLauncherSupport;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleResponseReplicatedSessionPortLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
 // combine with flexible response, no?
 public class AFixedResponseSupportingFlexibleResponseReplicatedSessionPortLauncher 
 	extends AFlexibleResponseReplicatedSessionPortLauncher{

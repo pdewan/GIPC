@@ -35,7 +35,7 @@ public class APreferredResponseClientMessagesManager
 		if (servers.contains(myPreferredServer))
 			currentServer = myPreferredServer;
 		else {
-			int randomIndex = DistMisc.random(0, servers.size());
+			int randomIndex = DistMisc.random(0, servers.size() - 1);
 			currentServer = servers.get(randomIndex);
 		}
 		return !currentServer.equals(oldServer);
