@@ -1,4 +1,4 @@
-package replicatedserverport.rpc.group.flexibleresponse.flexibejitter.example;
+package replicatedserverport.rpc.group.flexibleresponse.flexibejitter;
 
 import port.ParticipantChoice;
 import port.PortLauncherSupport;

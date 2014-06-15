@@ -1,19 +1,20 @@
 package replicatedserverport.rpc.group.fixedresponse.direct.example;
 
+import inputport.datacomm.simplex.object.example.BobClientLauncher;
 import inputport.datacomm.simplex.object.example.CathyClientLauncher;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
+import replicatedserverport.rpc.duplex.fixedresponse.ClientServerMapping;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server2Launcher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server3Launcher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
-public class ACathyFixedResponseP2PReplicatedPortLauncher {
+public class CathyFixedResponseP2PReplicatedPortLauncher {
 	public static void main(String[] args) {
-//		DelayManager delayManager = GlobalState.getDelayManager();
-//		delayManager.setMinimumDelay("Bob", 100);
-//		delayManager.setMinimumDelay("Cathy", 5000);
-//		AnOldLatecomerObjectGroupSessionPortLauncher.launchSessionPartipant( "9100", "Alice", false, false, false);		
-		(new AMoreFlexibleResponseReplicatedSessionPortLauncher(AFlexibleResponseReplicatedSessionPortLauncher.SESSION_SERVER_HOST,
+
+		(new AFixedResponseSupportingFlexibleResponseReplicatedSessionPortLauncher(AFlexibleResponseReplicatedSessionPortLauncher.SESSION_SERVER_HOST,
 				"" + ASessionServerLauncher.SESSION_SERVER_PORT, 
 				ASessionServerLauncher.SESSION_SERVER_NAME, 
 				CathyClientLauncher.CATHY_PORT, 
@@ -23,7 +24,7 @@ public class ACathyFixedResponseP2PReplicatedPortLauncher {
 				new port.delay.example.ACathyDelaysSupport(),
 				AFlexibleSessionPortClientLauncher.DO_CAUSAL,
 				ReplicationChoice.LOCAL_RESPONSE,
-				AMoreFlexibleResponseReplicatedSessionPortLauncher.SERVERS_DESCRIPTION
+				AFixedResponseSupportingFlexibleResponseReplicatedSessionPortLauncher.SERVERS_DESCRIPTION
 
 				)).launch();
 		

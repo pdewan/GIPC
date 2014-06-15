@@ -1,6 +1,6 @@
 package replicatedserverport.rpc.group.singleresponse.direct.jitter.example;
 
-import replicatedserverport.rpc.group.flexibleresponse.flexibejitter.example.AJitterySingleReponseReplicatedSessionServerLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexibejitter.AJitterySingleReponseReplicatedSessionServerLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server2Launcher;
 
 public class AJitterySingleResponseReplicatedSessionServer2Launcher implements Server2Launcher{

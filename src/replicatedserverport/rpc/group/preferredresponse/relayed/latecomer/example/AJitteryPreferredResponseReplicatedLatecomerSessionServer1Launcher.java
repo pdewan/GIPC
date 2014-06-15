@@ -1,6 +1,6 @@
 package replicatedserverport.rpc.group.preferredresponse.relayed.latecomer.example;
 
-import replicatedserverport.rpc.group.flexibleresponse.flexibejitter.example.AJitterySingleReponseReplicatedLatecomerSessionServerLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexibejitter.AJitterySingleReponseReplicatedLatecomerSessionServerLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server1Launcher;
 
 public class AJitteryPreferredResponseReplicatedLatecomerSessionServer1Launcher implements Server1Launcher{

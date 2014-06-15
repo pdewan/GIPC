@@ -1,29 +1,30 @@
 package replicatedserverport.rpc.group.fixedresponse.direct.example;
 
 import inputport.datacomm.simplex.object.example.AliceClientLauncher;
+import inputport.datacomm.simplex.object.example.BobClientLauncher;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
+import replicatedserverport.rpc.duplex.fixedresponse.ClientServerMapping;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server1Launcher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server2Launcher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
-public class AnAliceFixedResponseP2PReplicatedPortLauncher {
+public class BobFixedResponseP2PReplicatedPortLauncher {
 	public static void main(String[] args) {
-//		DelayManager delayManager = GlobalState.getDelayManager();
-//		delayManager.setMinimumDelay("Bob", 100);
-//		delayManager.setMinimumDelay("Cathy", 5000);
-//		AnOldLatecomerObjectGroupSessionPortLauncher.launchSessionPartipant( "9100", "Alice", false, false, false);		
-		(new AMoreFlexibleResponseReplicatedSessionPortLauncher(AFlexibleResponseReplicatedSessionPortLauncher.SESSION_SERVER_HOST,
+
+		(new AFixedResponseSupportingFlexibleResponseReplicatedSessionPortLauncher(AFlexibleResponseReplicatedSessionPortLauncher.SESSION_SERVER_HOST,
 				"" + ASessionServerLauncher.SESSION_SERVER_PORT, 
 				ASessionServerLauncher.SESSION_SERVER_NAME, 
-				AliceClientLauncher.ALICE_PORT, 
-				AliceClientLauncher.ALICE,
+				BobClientLauncher.BOB_PORT, 
+				BobClientLauncher.BOB,
 				SessionChoice.P2P,
 				AFlexibleSessionPortClientLauncher.DO_DELAY,
-				new port.delay.example.AnAliceDelaysSupport(),
+				new port.delay.example.ABobDelaysSupport(),
 				AFlexibleSessionPortClientLauncher.DO_CAUSAL,
 				ReplicationChoice.LOCAL_RESPONSE,
-				AMoreFlexibleResponseReplicatedSessionPortLauncher.SERVERS_DESCRIPTION
+				AFixedResponseSupportingFlexibleResponseReplicatedSessionPortLauncher.SERVERS_DESCRIPTION
 
 				)).launch();
 		

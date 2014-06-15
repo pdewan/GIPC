@@ -12,7 +12,7 @@ import bus.uigen.models.MainClassLaunchingUtility;
  * so one should incrementally bring up the clients in that case to demo this facility
  * very cool
  */
-public class DemoerOfDirectReplicatedGroupRPCEarliestResponsePort {
+public class DemoerOfEarliestResponseDirectReplicatedGroupRPCPort {
 	public static void main(String args[]) {
 		demo();
 	}
@@ -21,9 +21,9 @@ public class DemoerOfDirectReplicatedGroupRPCEarliestResponsePort {
 
 		
 		Class[] classes = {
-				AnEarliestResponseReplicatedSessionServer1Launcher.class,
-				AnEarliestResponseReplicatedSessionServer2Launcher.class,
-				AnEarliestResponseReplicatedLatecomerSessionServer3Launcher.class,
+				EarliestResponseReplicatedSessionServer1Launcher.class,
+				EarliestResponseReplicatedSessionServer2Launcher.class,
+				EarliestResponseReplicatedSessionServer3Launcher.class,
 				AliceEarliestResponseP2PReplicatedPortLauncher.class,
 				BobEarliestResponseP2PReplicatedPortLauncher.class,
 				CathyEarliestResponseP2PReplicatedPortLauncher.class

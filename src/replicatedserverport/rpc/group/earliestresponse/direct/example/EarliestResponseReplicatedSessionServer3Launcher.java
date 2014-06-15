@@ -1,12 +1,11 @@
 package replicatedserverport.rpc.group.earliestresponse.direct.example;
 
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AnEarliestReponseReplicatedSessionServerLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server2Launcher;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.example.Server3Launcher;
 
-public class AnEarliestResponseReplicatedSessionServer2Launcher implements Server2Launcher{
+public class EarliestResponseReplicatedSessionServer3Launcher implements Server3Launcher {
 	public static void main (String args[]) {
-//		Tracer.showInfo(true);
-		(new AnEarliestReponseReplicatedSessionServerLauncher(SERVER_2_DESCRIPTION)).launch();
+		(new AnEarliestReponseReplicatedSessionServerLauncher(SERVER_3_DESCRIPTION)).launch();
 //		PortMisc.displayConnections();
 //		ALatecomerRelayerAndSessionsServerCreator.createServerWithTracingAndDelays(
 //				ALatecomerObjectGroupSessionPortLauncher.server1Description.getName(), 
@@ -14,11 +13,9 @@ public class AnEarliestResponseReplicatedSessionServer2Launcher implements Serve
 	}
 	
 //	public static void oldMain (String args[]) {
-//		PortMisc.displayConnections();
-//
 //		ALatecomerRelayerAndSessionsServerCreator.createServerWithTracingAndDelays(
-//				AnOldLatecomerObjectGroupSessionPortLauncher.server2Description.getName(), 
-//				AnOldLatecomerObjectGroupSessionPortLauncher.server2Description.getID());
+//				AnOldLatecomerObjectGroupSessionPortLauncher.server3Description.getName(), 
+//				AnOldLatecomerObjectGroupSessionPortLauncher.server3Description.getID());
 //	}
 	
 

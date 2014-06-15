@@ -19,8 +19,12 @@ public class ClientServerMapping {
 	 public static String getServer(String client) {
 		 return clientToServer.get(client);
 	 }
+	 public static String setServer(String client, String server) {
+		 return clientToServer.put(client, server);
+	 }
 	 
 	 static {
+		 // these are the settings for local mapping, can for a particular application
 		 clientToServer.put(AliceClientLauncher.ALICE, Server1Launcher.SERVER1);
 		 clientToServer.put(BobClientLauncher.BOB, Server2Launcher.SERVER2);
 		 clientToServer.put(CathyClientLauncher.CATHY, Server3Launcher.SERVER3);

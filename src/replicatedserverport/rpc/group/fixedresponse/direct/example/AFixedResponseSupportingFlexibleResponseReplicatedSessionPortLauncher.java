@@ -7,24 +7,20 @@ import port.sessionserver.SessionParticipantDescription;
 import replicatedserverport.rpc.duplex.fixedresponse.AFixedResponseReplicatedPortLauncherSupport;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
-
-public class AMoreFlexibleResponseReplicatedSessionPortLauncher 
+// combine with flexible response, no?
+public class AFixedResponseSupportingFlexibleResponseReplicatedSessionPortLauncher 
 	extends AFlexibleResponseReplicatedSessionPortLauncher{
 
 	
     
 
-//	public static final SessionParticipantDescription[] SERVERS_DESCRIPTION = {
-//		AliceServerLauncher.SERVER_1_DESCRIPTION,
-//		BobServerLauncher.SERVER_2_DESCRIPTION,
-//		CathyServerLauncher.SERVER_3_DESCRIPTION};
+
 	protected static SessionParticipantDescription[] serversDescription;
 	
 	
 
-//	String id, name;
-//	boolean addConnectListener, addReplyingReceiveListener, greetOnReadingInput;
-	public AMoreFlexibleResponseReplicatedSessionPortLauncher(String aSessionServerHost, 
+
+	public AFixedResponseSupportingFlexibleResponseReplicatedSessionPortLauncher(String aSessionServerHost, 
 			String aServerId, String aServerName, String aMyId, String aMyName, 
 			SessionChoice aSessionChoice, 
 			boolean aShouldDelay,

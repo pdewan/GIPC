@@ -8,7 +8,7 @@ import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
 import replicatedserverport.rpc.duplex.preferredresponse.APreferredResponseReplicatedPortLauncherSupport;
-import replicatedserverport.rpc.group.flexibleresponse.flexibejitter.example.AJitteryFlexibleResponseReplicatedSessionPortLauncher;
+import replicatedserverport.rpc.group.flexibleresponse.flexibejitter.AJitteryFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
 
 public class AJitteryMoreFlexibleResponseReplicatedSessionPortLauncher  extends 
