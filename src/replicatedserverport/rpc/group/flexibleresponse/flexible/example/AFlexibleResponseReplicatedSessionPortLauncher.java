@@ -7,6 +7,7 @@ import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
 import replicatedserverport.datacomm.duplex.ADuplexMultiToReplicatedPortLauncherSupport;
 import replicatedserverport.datacomm.duplex.earliest.AnEarliestAcceptingReplicatedPortLauncherSupport;
+import replicatedserverport.rpc.duplex.earliestresponse.AnEarliestAcceptingReplicatedDuplexRPCLauncherSupport;
 import replicatedserverport.rpc.duplex.singleresponse.ASingleResponseReplicatedPortLauncherSupport;
 import replicatedserverport.rpc.group.ReplicatedServerSessionPortSelector;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
@@ -48,7 +49,8 @@ ParticipantChoice aJoinChoice, //			ParticipantChoice aChoice,
 
 	
 	protected  InputPort getPort() {
-
+		// the port is non rpc but the support is rpc, maybe that is why it is not working
+		// not really as the session port is data from client point of view but inside it used a client rpc port
 		return ReplicatedServerSessionPortSelector.
 				createObjectGroupSessionPort(serversDescription, myId, myName, 
 						AnEarliestReponseReplicatedSessionServerLauncher.SESSION_SERVER_NAME, SESSION_NAME, participantChoice);
@@ -59,8 +61,11 @@ ParticipantChoice aJoinChoice, //			ParticipantChoice aChoice,
 		switch (replicationChoice) {
 		case ALL_ACCEPTING: 
 			return new ADuplexMultiToReplicatedPortLauncherSupport();
-		case EARLIEST_ACCEPTING:
-			return new AnEarliestAcceptingReplicatedPortLauncherSupport();
+		case EARLIEST_ACCEPTING: // this is a data group port, hence the problem I think
+//			return new AnEarliestAcceptingReplicatedPortLauncherSupport();
+			// changing the support to set call trappers
+			return new AnEarliestAcceptingReplicatedDuplexRPCLauncherSupport();
+
 		
 		case SINGLE_RESPONSE:
 			return getSingleResponseReplicatedPortLauncherSupport();
@@ -70,7 +75,7 @@ ParticipantChoice aJoinChoice, //			ParticipantChoice aChoice,
 		return null;
 		
 	}
-	
+	// this is an rpc support in rpc duplex package
 	protected PortLauncherSupport getSingleResponseReplicatedPortLauncherSupport() {
 		return new ASingleResponseReplicatedPortLauncherSupport();
 	}

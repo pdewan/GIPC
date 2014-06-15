@@ -107,6 +107,7 @@ public class SingleResponseReplicatedClientServerUtlity {
 				ClientMessagesManagerSelector.setFactory(new ASingleResponseClientMessagesManagerFactory());			
 
 			}
+			// need something similar for earlies response
 			public static void setSingleResponseClientTrapperFactories() {	
 				TrapperFactory<Object, Object> trapperFactory = new ADuplexCallTrapperFactory();
 //

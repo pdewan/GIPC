@@ -9,6 +9,8 @@ import bus.uigen.models.MainClassLaunchingUtility;
  * This is duplex because each server sends results back to only its caller, I suppose the
  * communication goes directly.Will have to check. Perhaps because there is no group call
  * if results are sent back, they are done individually not ina  group call
+ * how is single response different from earliest response?
+ * maybe it means it is always a particular server or the earliest server
  */
 public class DemoerOfReplicatedDuplexSingleResponsePort {
 	public static void main(String args[]) {

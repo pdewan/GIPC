@@ -7,7 +7,7 @@ import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibl
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
-public class ACathyEarliestResponseP2PReplicatedPortLauncher {
+public class CathyEarliestResponseP2PReplicatedPortLauncher {
 	public static void main(String[] args) {
 //		DelayManager delayManager = GlobalState.getDelayManager();
 //		delayManager.setMinimumDelay("Bob", 100);
