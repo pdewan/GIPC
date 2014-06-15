@@ -1,4 +1,4 @@
-package replicatedserverport.rpc.group.earliestresponse.direct.example;
+package replicatedserverport.rpc.group.earliestresponse.relayed.latecomer.example;
 
 import replicatedserverport.rpc.group.earliestresponse.relayed.latecomer.example.AnEarliestResponseReplicatedLatecomerSessionServer3Launcher;
 import bus.uigen.models.MainClassLaunchingUtility;
@@ -7,12 +7,11 @@ import bus.uigen.models.MainClassLaunchingUtility;
  * the RPC calls and return results, but only one of the results is accepted.
  * however, there is fault tolerance, as long as there is a server the
  * dialogue goes on. The server failure is communicated to clients as exeptions 
- * since this is P2P, the interaction does not stop when all severs go away
- * just that more people cannot join the session
- * so one should incrementally bring up the clients in that case to demo this facility
- * very cool
+ * since this is not P2P, the interaction does  stop when all severs go away
+ * however, there is latecomer support so as long as there is one serer around
+ * a client can join
  */
-public class DemoerOfDirectReplicatedGroupRPCEarliestResponsePort {
+public class DemoerOfLatecomertReplicatedGroupRPCEarliestResponsePort {
 	public static void main(String args[]) {
 		demo();
 	}
@@ -21,12 +20,12 @@ public class DemoerOfDirectReplicatedGroupRPCEarliestResponsePort {
 
 		
 		Class[] classes = {
-				AnEarliestResponseReplicatedSessionServer1Launcher.class,
-				AnEarliestResponseReplicatedSessionServer2Launcher.class,
+				AnEarliestResponseReplicatedLatecomerSessionServer1Launcher.class,
+				AnEarliestResponseReplicatedLatecomerSessionServer2Launcher.class,
 				AnEarliestResponseReplicatedLatecomerSessionServer3Launcher.class,
-				AliceEarliestResponseP2PReplicatedPortLauncher.class,
-				BobEarliestResponseP2PReplicatedPortLauncher.class,
-				CathyEarliestResponseP2PReplicatedPortLauncher.class
+				AliceEarliestResponseLatecomerReplicatedPortLauncher.class,
+				BobEarliestResponseLatecomerReplicatedPortLauncher.class,
+				CathyEarliestResponseLatecomerReplicatedPortLauncher.class
 				
 		};
 		MainClassLaunchingUtility.createInteractiveLauncher(classes);

@@ -7,7 +7,7 @@ import replicatedserverport.rpc.group.flexibleresponse.flexible.example.AFlexibl
 import replicatedserverport.rpc.group.flexibleresponse.flexible.example.ReplicationChoice;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
-public class ACathyEarliestResponseLatecomerReplicatedPortLauncher {
+public class BobEarliestResponseLatecomerReplicatedPortLauncher {
 	public static void main(String[] args) {
 //		DelayManager delayManager = GlobalState.getDelayManager();
 //		delayManager.setMinimumDelay("Bob", 100);
@@ -15,11 +15,11 @@ public class ACathyEarliestResponseLatecomerReplicatedPortLauncher {
 //		AnOldLatecomerObjectGroupSessionPortLauncher.launchSessionPartipant( "9100", "Alice", false, false, false);		
 		(new AFlexibleResponseReplicatedSessionPortLauncher(AFlexibleResponseReplicatedSessionPortLauncher.SESSION_SERVER_HOST,
 				"" + ASessionServerLauncher.SESSION_SERVER_PORT, 
-				ASessionServerLauncher.SESSION_SERVER_NAME, "9102", 
-				"Cathy",
+				ASessionServerLauncher.SESSION_SERVER_NAME, "9101", 
+				"Bob",
 				SessionChoice.LATECOMER_RELAYED,
 				AFlexibleSessionPortClientLauncher.DO_DELAY,
-				new port.delay.example.ACathyDelaysSupport(),
+				new port.delay.example.ABobDelaysSupport(),
 				AFlexibleSessionPortClientLauncher.DO_CAUSAL,
 				ReplicationChoice.EARLIEST_ACCEPTING,
 				ParticipantChoice.MEMBER, AFlexibleResponseReplicatedSessionPortLauncher.SERVERS_DESCRIPTION
