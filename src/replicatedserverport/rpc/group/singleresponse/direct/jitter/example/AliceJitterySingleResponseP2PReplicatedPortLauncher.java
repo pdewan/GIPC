@@ -1,33 +1,35 @@
-package replicatedserverport.rpc.group.singleresponse.relayed.latecomer.example;
+package replicatedserverport.rpc.group.singleresponse.direct.jitter.example;
 
 import port.ParticipantChoice;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
 import port.trace.ConnectionEventManagerFactory;
+import replicatedserverport.rpc.group.flexibleresponse.flexibejitter.AJitteryFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 import bus.uigen.ObjectEditor;
 
-public class AnAliceSingleResponseLatecomerReplicatedPortLauncher {
+public class AliceJitterySingleResponseP2PReplicatedPortLauncher {
 	public static void main(String[] args) {
+		ObjectEditor.edit (ConnectionEventManagerFactory.getConnectionManager());
 //		DelayManager delayManager = GlobalState.getDelayManager();
 //		delayManager.setMinimumDelay("Bob", 100);
 //		delayManager.setMinimumDelay("Cathy", 5000);
 //		AnOldLatecomerObjectGroupSessionPortLauncher.launchSessionPartipant( "9100", "Alice", false, false, false);		
-		ObjectEditor.edit(ConnectionEventManagerFactory.getConnectionManager());
-
-		(new AFlexibleResponseReplicatedSessionPortLauncher(AFlexibleResponseReplicatedSessionPortLauncher.SESSION_SERVER_HOST,
+		(new AJitteryFlexibleResponseReplicatedSessionPortLauncher(AFlexibleResponseReplicatedSessionPortLauncher.SESSION_SERVER_HOST,
 				"" + ASessionServerLauncher.SESSION_SERVER_PORT, 
 				ASessionServerLauncher.SESSION_SERVER_NAME, "9100", 
 				"Alice",
-				SessionChoice.LATECOMER_RELAYED,
+				SessionChoice.P2P,
 				AFlexibleSessionPortClientLauncher.DO_DELAY,
 				new port.delay.example.AnAliceDelaysSupport(),
 				AFlexibleSessionPortClientLauncher.DO_CAUSAL,
 				ReplicationChoice.SINGLE_RESPONSE,
-				ParticipantChoice.MEMBER, 
-				AFlexibleResponseReplicatedSessionPortLauncher.SERVERS_DESCRIPTION
+				ParticipantChoice.MEMBER,
+
+				AFlexibleResponseReplicatedSessionPortLauncher.SERVERS_DESCRIPTION,
+				true
 
 				)).launch();
 		
