@@ -26,6 +26,7 @@ import replicatedserverport.rpc.group.relayed.latecomer.example.LatecomerSession
 import sessionport.datacomm.group.GroupSessionPort;
 import sessionport.datacomm.group.object.ObjectGroupSessionPortSelector;
 import sessionport.datacomm.group.object.example.AnObjectGroupSendingConnectListener;
+import sessionport.datacomm.group.object.relayed.latecomer.AnObjectGroupSessionPortLatecomerLauncherSupport;
 
 public class ALatecomerAssymetricObjectGroupSessionPortLauncher extends ASimplexBufferClientInputPortLauncher{
 	final static int SESSION_SERVER_PORT = 9090;
@@ -80,7 +81,15 @@ public class ALatecomerAssymetricObjectGroupSessionPortLauncher extends ASimplex
 		ALatecomerRelayerAndSessionServerLauncherSupport.setLatecomerRelayedCommunicaton(true);
 		DelayUtlity.setDelayClientBufferSends(true);
 	}
+//	protected PortLauncherSupport getPortLauncherSupport() {
+//		
+//	}
 	protected PortLauncherSupport getPortLauncherSupport() {
+		return  new AnObjectGroupSessionPortLatecomerLauncherSupport();
+
+	}
+
+	protected PortLauncherSupport getReplicatedPortLauncherSupport() {
 //		return new ALatecomerRelayerAndSessionServerLauncherSupport();
 		return new ASingleResponseReplicatedPortLauncherSupport();
 

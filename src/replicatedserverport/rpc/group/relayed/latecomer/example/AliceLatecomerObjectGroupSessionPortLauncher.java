@@ -1,12 +1,12 @@
-package replicatedserverport.rpc.group.relayed.latecomer.asymmetric.example;
+package replicatedserverport.rpc.group.relayed.latecomer.example;
 
-public class ALatecomerAssymetricAliceObjectGroupSessionPort {
+public class AliceLatecomerObjectGroupSessionPortLauncher {
 	public static void main(String[] args) {
 //		DelayManager delayManager = GlobalState.getDelayManager();
 //		delayManager.setMinimumDelay("Bob", 100);
 //		delayManager.setMinimumDelay("Cathy", 5000);
 //		AnOldLatecomerObjectGroupSessionPortLauncher.launchSessionPartipant( "9100", "Alice", false, false, false);		
-		(new ALatecomerAssymetricObjectGroupSessionPortLauncher("9100", "Alice", false, false, false)).launch();		
+		(new ALatecomerObjectGroupSessionPortLauncher("9100", "Alice")).launch();		
 
 	}
 

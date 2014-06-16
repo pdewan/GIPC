@@ -3,8 +3,8 @@ package replicatedserverport.rpc.group.fixedresponse.direct.example;
 import replicatedserverport.rpc.group.earliestresponse.direct.example.AliceEarliestResponseP2PReplicatedPortLauncher;
 import replicatedserverport.rpc.group.earliestresponse.direct.example.BobEarliestResponseP2PReplicatedPortLauncher;
 import replicatedserverport.rpc.group.earliestresponse.direct.example.CathyEarliestResponseP2PReplicatedPortLauncher;
-import replicatedserverport.rpc.group.earliestresponse.direct.example.EarliestResponseReplicatedSessionServer1Launcher;
-import replicatedserverport.rpc.group.earliestresponse.direct.example.EarliestResponseReplicatedSessionServer2Launcher;
+import replicatedserverport.rpc.group.earliestresponse.direct.example.AnEarliestResponseReplicatedSessionServer1Launcher;
+import replicatedserverport.rpc.group.earliestresponse.direct.example.AnEarliestResponseReplicatedSessionServer2Launcher;
 import replicatedserverport.rpc.group.earliestresponse.relayed.latecomer.example.AnEarliestResponseReplicatedLatecomerSessionServer3Launcher;
 import bus.uigen.models.MainClassLaunchingUtility;
 /* the number of servers can vary from 1 to 3 but they

@@ -25,9 +25,9 @@ public class DemoerOfPreferredResponseLatecomerReplicatedGroupRPCPort {
 
 		
 		Class[] classes = {
-				PreferredResponseReplicatedLatecomerSessionServer1Launcher.class,
-				PreferredResponseReplicatedLatecomerSessionServer2Launcher.class,
-				PreferredResponseReplicatedLatecomerSessionServer3Launcher.class,
+				APreferredResponseReplicatedLatecomerSessionServer1Launcher.class,
+				APreferredResponseReplicatedLatecomerSessionServer2Launcher.class,
+				APreferredResponseReplicatedLatecomerSessionServer3Launcher.class,
 				AliceJitteryPreferredResponseLatecomerReplicatedPortLauncher.class,
 				BobJitteryPreferredResponseLatecomerReplicatedPortLauncher.class,
 				CathyJitteryPreferredResponseLatecomerReplicatedPortLauncher.class

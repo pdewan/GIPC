@@ -21,9 +21,9 @@ public class DemoerOfEarliestResponseDirectReplicatedGroupRPCPort {
 
 		
 		Class[] classes = {
-				EarliestResponseReplicatedSessionServer1Launcher.class,
-				EarliestResponseReplicatedSessionServer2Launcher.class,
-				EarliestResponseReplicatedSessionServer3Launcher.class,
+				AnEarliestResponseReplicatedSessionServer1Launcher.class,
+				AnEarliestResponseReplicatedSessionServer2Launcher.class,
+				AnEarliestResponseReplicatedSessionServer3Launcher.class,
 				AliceEarliestResponseP2PReplicatedPortLauncher.class,
 				BobEarliestResponseP2PReplicatedPortLauncher.class,
 				CathyEarliestResponseP2PReplicatedPortLauncher.class

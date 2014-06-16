@@ -69,6 +69,8 @@ public class ALatecomerObjectGroupSessionPortLauncher extends ASimplexBufferClie
 	// piece of code. It does not bind a proper bbport to object port
 	// the support is simgle response so why not use single response
 	// port creator?
+	// actually it is ok, the launcher support was an issue
+	// it was assigned to portLauncher support and not replicated port launcher support
 	protected  InputPort getPort() {
 		return ReplicatedServerSessionPortSelector.
 		createObjectGroupSessionPort(serversDescription, id, name, 

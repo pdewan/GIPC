@@ -1,6 +1,6 @@
 package replicatedserverport.rpc.group.relayed.latecomer.example;
 
-public class ALatecomerCathyObjectGroupSessionPort {
+public class CathyLatecomerObjectGroupSessionPortLauncher {
 	public static void main(String[] args) {
 //		DelayManager delayManager = GlobalState.getDelayManager();
 //		delayManager.setMinimumDelay("Alice", 5000);

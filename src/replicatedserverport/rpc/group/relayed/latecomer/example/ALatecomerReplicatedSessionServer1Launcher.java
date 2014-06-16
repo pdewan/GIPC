@@ -3,7 +3,7 @@ package replicatedserverport.rpc.group.relayed.latecomer.example;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.ASingleReponseReplicatedLatecomerSessionServerLauncher;
 
 
-public class ALatecomerSessionServer1Launcher implements LatecomerSessionServer1Launcher{
+public class ALatecomerReplicatedSessionServer1Launcher implements LatecomerSessionServer1Launcher{
 	
 	// This is the old version, some factories do nto seem right
 //	public static void main (String args[]) {
