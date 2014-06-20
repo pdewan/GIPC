@@ -10,7 +10,7 @@ import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoic
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 import bus.uigen.ObjectEditor;
 
-public class ABobJitterySingleResponseLatecomerReplicatedPortLauncher {
+public class BobJitterySingleResponseLatecomerReplicatedPortLauncher {
 	public static void main(String[] args) {
 		ObjectEditor.edit(ConnectionEventManagerFactory.getConnectionManager());
 

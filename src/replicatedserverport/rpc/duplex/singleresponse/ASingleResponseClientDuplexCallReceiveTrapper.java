@@ -7,8 +7,18 @@ import inputport.datacomm.AnAbstractReceiveTrapper;
 import inputport.datacomm.ReceiveNotifier;
 import inputport.datacomm.simplex.SimplexClientInputPort;
 import util.trace.Tracer;
-
-//does not just forwards also generates
+/*
+does not just forwards also generates
+ usually this trapper is upstream from ABufferDuplexMultiServerClientPort and gets only
+ connections to statis servers. However when we are dealling with both replciated session port and server
+ then the connect method is also called with replicated servers and other session participants registered
+ with a (possibly replicated) session manager. In that case it is upstream of the session manager connection manager.
+ I thought I had a different downstream and upstream receive trapper but classes with these names excist but it does not seem 
+ they are references. So this traper is used for both replicated servers. It does not currenty distinguish between
+ serer participants and others, so it makes for instance alice a server for bob,
+ though bob is not ready to get control messages from alice.
+ So I am putting in code to distinguish between them in the connected method
+ */
 public class ASingleResponseClientDuplexCallReceiveTrapper 
                extends AnAbstractReceiveTrapper<Object, Object> implements ConnectionListener  {
 		SimplexClientInputPort clientInputPort;
@@ -23,7 +33,7 @@ public class ASingleResponseClientDuplexCallReceiveTrapper
 		clientInputPort.addConnectionListener(this);
 		clientMessagesManager = aClientMessagesManager;
 	}
-	
+
 	@Override
 	public synchronized void notConnected(String remoteEnd, String message, ConnectionType aConnectionType) {
 //		clientMessagesManager.removeServer(remoteEnd);
@@ -56,11 +66,16 @@ public class ASingleResponseClientDuplexCallReceiveTrapper
 		clientMessagesManager.getSendTrapper().send(remoteEnd, controlMessage);		
 	}
 	boolean controlMessageSent;  // this takes care of
+	
 	@Override
 	public synchronized void connected(String remoteEnd, ConnectionType aConnectionType) {
 		if (remoteEnd.equals(clientInputPort.getLocalName())) 
 			return; // this is a false connect
-			
+		// this check has been added because connect calls are made to clients also
+		if (aConnectionType == ConnectionType.CLIENT_TO_SESSION )
+//				|| 
+//				aConnectionType == ConnectionType.MEMBER_TO_SESSION )	// strictly speaking a member is a server but I should not consider one so
+			return; // when this is used for replciated servers registered with sessiom manager
 		if (controlMessageSent) { // incremental
 			clientMessagesManager.addServer(remoteEnd);
 			String currentServer = clientMessagesManager.getCurrentServer();

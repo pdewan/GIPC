@@ -10,11 +10,20 @@
 package replicatedserverport.rpc.group.singleresponse.relayed.latecomer.example;
 
 import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.trace.ClassAdapterReceivedPropertyChangeEvent;
+import util.trace.ImplicitKeywordKind;
 import util.trace.Tracer;
+import util.trace.console.ConsoleInput;
+import util.trace.console.ConsoleOutput;
 
 public class DemoerOfSingleResponseReplicatedLatecomerGroupRPCPort {
 	public static void main(String args[]) {
-		
+		Tracer.showInfo(true);
+		Tracer.setImplicitPrintKeywordKind(ImplicitKeywordKind.OBJECT_CLASS_NAME);
+		Tracer.setKeywordPrintStatus(ConsoleInput.class, true);
+		Tracer.setKeywordPrintStatus(ConsoleOutput.class, true);
+		Tracer.setKeywordPrintStatus(ClassAdapterReceivedPropertyChangeEvent.class, true);
+
 		demo();
 	}
 	
@@ -27,7 +36,7 @@ public class DemoerOfSingleResponseReplicatedLatecomerGroupRPCPort {
 				ASingleResponseReplicatedLatecomerSessionServer3Launcher.class,
 				AliceSingleResponseLatecomerReplicatedPortLauncher.class,
 				BobSingleResponseLatecomerReplicatedPortLauncher.class,
-				ACathySingleResponseLatecomerReplicatedPortLauncher.class
+				CathySingleResponseLatecomerReplicatedPortLauncher.class
 				
 		};
 		MainClassLaunchingUtility.createInteractiveLauncher(classes);

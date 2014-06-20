@@ -121,6 +121,8 @@ public class ALatecomerRelayingGroupConnectionsManager
 //			Tracer.setKeywordDisplayStatus(Tracer.ALL_KEYWORDS, true);
 			break;
 		}
+		// this is members and servers in old distTeaching. This is what causes the connected call to have to
+		// check if the joined process is  a server
 		currentMembers = AJoinInfo.getMembersClientsAndServers(lateJoinInfo);
 		pastMessages = lateJoinInfo.getMessages();
 		servers = lateJoinInfo.getServers();

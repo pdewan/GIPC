@@ -2,6 +2,7 @@ package replicatedsessionport.rpc.duplex.singleresponse.example;
 
 import port.sessionserver.ASessionServerLauncher;
 import port.trace.ConnectionEventManagerFactory;
+import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleResponseReplicatedSessionPortLauncher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 import bus.uigen.ObjectEditor;
 
@@ -21,6 +22,9 @@ public class AnAliceSingleResponseReplicatedSessionClientPortLauncher {
 				AFlexibleSessionPortClientLauncher.DO_DELAY,
 				new port.delay.example.AnAliceDelaysSupport(),
 				AFlexibleSessionPortClientLauncher.DO_CAUSAL,
+				// for some reason this was null
+//				AFlexibleResponseReplicatedSessionPortLauncher.SERVERS_DESCRIPTION, 
+
 				null, 
 				ASingleResponseReplicatedGroupSessionPortServerLauncher.DO_JITTER
 				)).launch();

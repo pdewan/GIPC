@@ -31,6 +31,10 @@ import util.trace.Tracer;
 public class ARelayingDuplexConnectionsManager implements
 		RelayingDuplexConnectionsManager {
 	protected Set<String> sessionParticipantNames = new HashSet();
+	// replacing session participant names with message receiver namesto take
+	// into account that clients cannot send messages to other clients
+	// keeping the former around
+	protected Set<String> messageReceiverNames = new HashSet();
 	protected Set<String> notifiedParticipantNames = new HashSet(); // messageReceived adds to sessionparticipant but not notified
 
 	protected Set<String> sessionClientNames = new HashSet();
@@ -106,6 +110,13 @@ public class ARelayingDuplexConnectionsManager implements
 		}
 //		if (!sessionParticipantNames.contains(joinerName)) // notify people
 //			return;
+		
+		// session participant names includes now even clients. Thee are the names of remote end points.
+		// if the join choice is client only, then the process should not be able to talk to another client.
+		// so in that case participants or at least remote end points should not have other clients
+		if (joinChoice != ParticipantChoice.CLIENT_ONLY || 
+				sessionClientDescription.getParticipantChoice() != ParticipantChoice.CLIENT_ONLY)
+			messageReceiverNames.add(joinerName);
 		sessionParticipantNames.add(joinerName); // set, we do not have to worry about duplicates
 		switch (sessionClientDescription.getParticipantChoice()) {
 		case SERVER_ONLY:		

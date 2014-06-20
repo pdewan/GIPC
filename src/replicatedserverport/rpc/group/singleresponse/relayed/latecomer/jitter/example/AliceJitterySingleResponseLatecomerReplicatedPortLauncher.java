@@ -8,7 +8,7 @@ import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleRespons
 import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
-public class AnAliceJitterySingleResponseLatecomerReplicatedPortLauncher {
+public class AliceJitterySingleResponseLatecomerReplicatedPortLauncher {
 	public static void main(String[] args) {
 //		DelayManager delayManager = GlobalState.getDelayManager();
 //		delayManager.setMinimumDelay("Bob", 100);
