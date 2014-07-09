@@ -42,7 +42,7 @@ public class AnOTServerMessageQueuer implements ServerMessageFilter{
 	 */
 		
 	@Override
-	public synchronized void put(SentMessage message) {		
+	public synchronized void filterMessage(SentMessage message) {		
 		if (!message.isUserMessage() || message.getSentMessageType() != SentMessageType.Others) {
 			sentMessageQueue.processMessage(message);
 			return;

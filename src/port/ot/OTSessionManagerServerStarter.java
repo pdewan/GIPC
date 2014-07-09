@@ -1,5 +1,5 @@
 package port.ot;
-import util.session.AServerSentMessageQueuerSelector;
+import util.session.ServerSentMessageFilterSelector;
 import util.session.ASessionManager;
 import util.session.ServerMessageFilterCreator;
 public class OTSessionManagerServerStarter {
@@ -7,7 +7,7 @@ public class OTSessionManagerServerStarter {
 	public static void main (String[] args) {
 //		Tracer.showInfo(true);
 		ServerMessageFilterCreator serverMessageQueueCreator = new AnOTServerMessageQueuerCreator();
-		AServerSentMessageQueuerSelector.setMessageQueuerFactory(serverMessageQueueCreator);
+		ServerSentMessageFilterSelector.setMessageFilterFactory(serverMessageQueueCreator);
 		server = new ASessionManager();	
 		server.register();
 	}

@@ -114,8 +114,14 @@ public class ARelayingDuplexConnectionsManager implements
 		// session participant names includes now even clients. Thee are the names of remote end points.
 		// if the join choice is client only, then the process should not be able to talk to another client.
 		// so in that case participants or at least remote end points should not have other clients
-		if (joinChoice != ParticipantChoice.CLIENT_ONLY || 
-				sessionClientDescription.getParticipantChoice() != ParticipantChoice.CLIENT_ONLY)
+		// actually we need servers to not talk to other servers for replicated semantics, they should make calls only on members and clients
+		// or only clients
+		//let us make the semantics more flexible and allow them to make calls on non servers only
+		ParticipantChoice aRemoteChoice = sessionClientDescription.getParticipantChoice();
+		
+		if (!((joinChoice == aRemoteChoice) && 
+				(joinChoice == ParticipantChoice.CLIENT_ONLY ||  // clients do not talk to other clients
+				joinChoice == ParticipantChoice.SERVER_ONLY) ))// servers do no talk to other servers  			
 			messageReceiverNames.add(joinerName);
 		sessionParticipantNames.add(joinerName); // set, we do not have to worry about duplicates
 		switch (sessionClientDescription.getParticipantChoice()) {
@@ -188,6 +194,7 @@ public class ARelayingDuplexConnectionsManager implements
 		ConnectionType connectType = toPeerConnectionType(joinChoice);
 
 		sessionParticipantNames.remove(sessionClientDescription.getName());
+		messageReceiverNames.remove(sessionClientDescription.getName());
 		duplexObjectSessionPort.notifyDisconnect(
 				sessionClientDescription.getName(), true, "", connectType);
 	}
@@ -224,9 +231,12 @@ public class ARelayingDuplexConnectionsManager implements
 //			return getRemoteMembers(); // this means cannot be member for fault tolerance?			
 //		}
 //	}
+	
+	// should we have a separate method to return all session particpant names
 	@Override
 	public Set<String> getRemoteEndPoints() {
-		return getAllButMe(sessionParticipantNames);
+//		return getAllButMe(sessionParticipantNames);
+		return getAllButMe(messageReceiverNames);
 	}
 
 //	@Override
@@ -310,6 +320,12 @@ public class ARelayingDuplexConnectionsManager implements
 			Tracer.info(this, " Received relayed message: " + message); 
 			MessageWithSource messageWithSource = (MessageWithSource) message;
 			String clientName = messageWithSource.getSource();
+			// should message receiver names be updated at this point? assuming not as we do not know
+			// but if join choive is not client then I suppose this is safe
+			// looks like this code is for sever only so this seems right
+			if (joinChoice != ParticipantChoice.CLIENT_ONLY)
+				messageReceiverNames.add(clientName);
+			// if it is a client-client situation
 			sessionParticipantNames.add(clientName); // if server_only then has no
 											// notification of others, maybe
 											// this is bad, server should get

@@ -11,7 +11,7 @@ public class AnOTReceivedMessageQueuer implements MessageFilter<ReceivedMessage>
 		otManager = theOTManager;
 	}
 	@Override
-	public void put(ReceivedMessage message) {
+	public void filterMessage(ReceivedMessage message) {
 		if (!message.isUserMessage() ) {
 			receivedMessageQueue.processMessage(message);
 			return;
