@@ -106,17 +106,17 @@ public class ALatecomerRelayingGroupConnectionsManager
 			lateJoinInfo = logicalLatecomerSessionsServerProxy.lateJoin(sessionName, sessionClientDescription, this);
 			Tracer.info (this, "Received back late join info :" + lateJoinInfo);
 //			currentMembers = AJoinInfo.getMembersClientsAndServers(lateJoinInfo);
-//			pastMessages = lateJoinInfo.getMessages();
+//			pastMessages = lateJoinInfo.getMessages(); //this was commented out before
 			break;
 		case SERVER_ONLY:
 			lateJoinInfo = logicalLatecomerSessionsServerProxy.lateJoinAsServer(sessionName, sessionClientDescription, this);
 //			currentMembers = AJoinInfo.getMembersAndClients(lateJoinInfo); // can add everyone if needed, connect type allows that
-//			pastMessages = lateJoinInfo.getClientMessages();
+			pastMessages = lateJoinInfo.getClientMessages(); // commentd out before
 			break;
 		case CLIENT_ONLY:
 			lateJoinInfo = logicalLatecomerSessionsServerProxy.lateJoinAsClient(sessionName, sessionClientDescription, this);
 //			currentMembers =AJoinInfo.getMembersAndServers(lateJoinInfo); // can add everyone if necessary
-//			pastMessages = lateJoinInfo.getServerMessages();
+			pastMessages = lateJoinInfo.getServerMessages(); //c commented out befoere
 //			System.out.println("Latec join finished in client");
 //			Tracer.setKeywordDisplayStatus(Tracer.ALL_KEYWORDS, true);
 			break;
@@ -124,7 +124,8 @@ public class ALatecomerRelayingGroupConnectionsManager
 		// this is members and servers in old distTeaching. This is what causes the connected call to have to
 		// check if the joined process is  a server
 		currentMembers = AJoinInfo.getMembersClientsAndServers(lateJoinInfo);
-		pastMessages = lateJoinInfo.getMessages();
+		// commenting this out as we want specialized semantics
+//		pastMessages = lateJoinInfo.getMessages();
 		servers = lateJoinInfo.getServers();
 		clients = lateJoinInfo.getClients();
 		members = lateJoinInfo.getMembers();
