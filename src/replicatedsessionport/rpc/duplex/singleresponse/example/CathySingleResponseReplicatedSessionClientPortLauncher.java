@@ -3,7 +3,7 @@ package replicatedsessionport.rpc.duplex.singleresponse.example;
 import port.sessionserver.ASessionServerLauncher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
-public class ACathySingleResponseReplicatedSessionClientPortLauncher {
+public class CathySingleResponseReplicatedSessionClientPortLauncher {
 
 	public static void main (String[] args) {
 		

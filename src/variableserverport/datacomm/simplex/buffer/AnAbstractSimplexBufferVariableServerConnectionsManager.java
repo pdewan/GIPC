@@ -95,6 +95,16 @@ public abstract class AnAbstractSimplexBufferVariableServerConnectionsManager im
 		break;
 	}
 	}
+	/*
+	 * This is a heavily overloaded method, called bi
+	 *called by both session manager and multiserver port
+	 *session manager when it joins the session
+	 * a multiserver port when it does a group connect,
+	 * which calls individual connects through joined
+	 * very confusing as a result
+	 * The other party may be a late comer server, which would not be  a CLIENT
+	 * so that is how we get round to pverloading ParticipantChoice SERVER_ONLy
+	 */
 	@Override
 	public void joined(SessionParticipantDescription sessionClientDescription) {
 		// in static port this would be done twice
@@ -123,7 +133,11 @@ public abstract class AnAbstractSimplexBufferVariableServerConnectionsManager im
 			break;
 		}
 		sessionParticipantNames.add(sessionClientDescription.getName());
-		if (joinChoice == ParticipantChoice.SERVER_ONLY) // do not open connection if server
+		// this creates problem with
+//		if (joinChoice == ParticipantChoice.SERVER_ONLY) // do not open connection if server
+//			return;
+		// do not open connection if you are server and the other party is client
+		if (joinChoice == ParticipantChoice.SERVER_ONLY && sessionClientDescription.getParticipantChoice() == ParticipantChoice.CLIENT_ONLY) 
 			return;
 		Tracer.info(this, "Creating client input port for:" + sessionClientDescription);
 		if (!sessionClientDescription.getName().equals(variableServerClientPort.getLocalName()) &&

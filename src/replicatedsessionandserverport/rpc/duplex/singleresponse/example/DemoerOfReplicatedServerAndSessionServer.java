@@ -11,6 +11,23 @@ import bus.uigen.models.MainClassLaunchingUtility;
   * perhaps this code broke when P2P support was added.
   * maybe a session particppant descriptions hould have an extra flag
   * to disambiguate peerparticipants from session server participants.
+  * have changed the code so  if the other party is not a client, they do join now
+  * participant choice now is heavily overloaded
+  * 
+  * it seems tp work
+  * Start two latecomer servers
+  * start an application server 1
+  * start alice
+  * say someting
+  * starr bob, he has what alice said
+  * kill app server 1
+  * let alice say something, nothing is echoed
+  * start appliation server 2
+  * the current latecomer server 1 relays messages to app server 2, and alice's input is processed by the new server 2, which sends it to alice and bob
+  * now kill latecomer server 1
+  * conversation still continues, as latecomer server 2 has taken over
+  * start cathy, latecomer server 2 will send all buffered message to her
+  * so this very much is teh finale of fault tolerance
  */
 public class DemoerOfReplicatedServerAndSessionServer {
 	public static void main(String args[]) {
@@ -49,9 +66,9 @@ public class DemoerOfReplicatedServerAndSessionServer {
 				AReplicatedServer1SingleResponseGroupSessionServerPortLauncher.class,
 				AReplicatedServer2SingleResponseGroupSessionServerPortLauncher.class,
 				AReplicatedServer3SingleResponseGroupSessionServerPortLauncher.class,
-				AnAliceSingleResponseReplicatedSessionServerClientPortLauncher.class,
-				ABobSingleResponseReplicatedSessionServerClientPortLauncher.class,
-				ACathySingleResponseReplicatedSessionServerClientPortLauncher.class
+				AliceSingleResponseReplicatedSessionServerClientPortLauncher.class,
+				BobSingleResponseReplicatedSessionServerClientPortLauncher.class,
+				CathySingleResponseReplicatedSessionServerClientPortLauncher.class
 		};
 		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 

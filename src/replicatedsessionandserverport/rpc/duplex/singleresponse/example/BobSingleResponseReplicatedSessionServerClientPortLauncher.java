@@ -6,7 +6,7 @@ import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleRespons
 import replicatedsessionport.rpc.duplex.singleresponse.example.ASingleResponseReplicatedGroupSessionPortClientLauncher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
-public class ABobSingleResponseReplicatedSessionServerClientPortLauncher {
+public class BobSingleResponseReplicatedSessionServerClientPortLauncher {
 	public static String USER_NAME  = "Bob";
 
 	public static void main (String[] args) {

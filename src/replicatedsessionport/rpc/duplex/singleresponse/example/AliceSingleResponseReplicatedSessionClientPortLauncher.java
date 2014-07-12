@@ -6,7 +6,7 @@ import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleRespons
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 import bus.uigen.ObjectEditor;
 
-public class AnAliceSingleResponseReplicatedSessionClientPortLauncher {
+public class AliceSingleResponseReplicatedSessionClientPortLauncher {
 
 	public static void main (String[] args) {
 		ObjectEditor.edit (ConnectionEventManagerFactory.getConnectionManager());
