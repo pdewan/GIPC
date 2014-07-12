@@ -28,6 +28,8 @@ import bus.uigen.models.MainClassLaunchingUtility;
   * conversation still continues, as latecomer server 2 has taken over
   * start cathy, latecomer server 2 will send all buffered message to her
   * so this very much is teh finale of fault tolerance
+  * sigh but there are some race conditions here - maybe having to do wth
+  * the OE frames displayed, but sometimes the server 2 does not replay messages
  */
 public class DemoerOfReplicatedServerAndSessionServer {
 	public static void main(String args[]) {

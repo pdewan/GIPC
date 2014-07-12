@@ -10,8 +10,8 @@ public class AReplicatedSingleResponseReplicatedLatecomerSessionServer1Launcher 
 	
 	
 	public static void main (String args[]) {
-		OEFrame frame = ObjectEditor.edit(TraceableDisplayAndWaitManagerFactory.getTraceableDisplayAndPrintManager());
-		frame.setTitle(SERVER_1_DESCRIPTION.getName());
+//		OEFrame frame = ObjectEditor.edit(TraceableDisplayAndWaitManagerFactory.getTraceableDisplayAndPrintManager());
+//		frame.setTitle(SERVER_1_DESCRIPTION.getName());
 		(new ASingleReponseReplicatedLatecomerSessionServerLauncher(SERVER_1_DESCRIPTION)).launch();
 
 	}

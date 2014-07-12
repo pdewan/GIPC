@@ -138,6 +138,7 @@ public class ALatecomerRelayingGroupConnectionsManager
 		ASessionBasedFP2PBufferConnectionsManager.toMyConnectionType(joinChoice)); 
 
 		processCurrentMembers(currentMembers);
+		Tracer.info(this, "Past messages:" + pastMessages);
 		processPastMessages(pastMessages); // bring this here so that control message (because of upstream connect) can be sent after messages processed
 										  // this may cause connection failure
 		

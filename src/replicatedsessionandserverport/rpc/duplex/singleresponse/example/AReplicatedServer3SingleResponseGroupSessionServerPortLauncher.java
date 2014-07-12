@@ -12,9 +12,9 @@ public class AReplicatedServer3SingleResponseGroupSessionServerPortLauncher  {
 	public static String SERVER = "Server 3";
 	public static void main (String[] args) {
 //		ObjectEditor.edit(ConnectionEventManagerFactory.getConnectionManager());
-		OEFrame frame = ObjectEditor.edit(TraceableDisplayAndWaitManagerFactory.getTraceableDisplayAndPrintManager());
+//		OEFrame frame = ObjectEditor.edit(TraceableDisplayAndWaitManagerFactory.getTraceableDisplayAndPrintManager());
 
-		frame.setTitle( SERVER);
+//		frame.setTitle( SERVER);
 		(new AReplicatedSingleResponseReplicatedGroupSessionServerPortServerLauncher(
 				AFlexibleSessionPortClientLauncher.SESSION_SERVER_HOST,
 				ASessionServerLauncher.SESSION_SERVER_NAME, 

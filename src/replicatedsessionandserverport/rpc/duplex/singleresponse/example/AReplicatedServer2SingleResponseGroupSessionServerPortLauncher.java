@@ -4,6 +4,9 @@ import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleResponseReplicatedSessionPortLauncher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
+import sessionport.datacomm.group.object.relayed.latecomer.ALatecomerRelayingGroupConnectionsManager;
+import util.trace.ImplicitKeywordKind;
+import util.trace.Tracer;
 import bus.uigen.OEFrame;
 import bus.uigen.ObjectEditor;
 import bus.uigen.trace.TraceableDisplayAndWaitManagerFactory;
@@ -12,10 +15,17 @@ public class AReplicatedServer2SingleResponseGroupSessionServerPortLauncher  {
 	public static String SERVER = "Server 2";
 
 	public static void main (String[] args) {
+		
+		// for some reason this server was not catching up and playing messages
+		// hence the tracing
+//		Tracer.showInfo(true);
+		Tracer.setImplicitPrintKeywordKind(ImplicitKeywordKind.OBJECT_CLASS_NAME);
+		Tracer.setKeywordPrintStatus(ALatecomerRelayingGroupConnectionsManager.class, true);
+		// the displaying of the frame may have something to do with things hanging
 //		OEFrame frame = ObjectEditor.edit(ConnectionEventManagerFactory.getConnectionManager());
-		OEFrame frame = ObjectEditor.edit(TraceableDisplayAndWaitManagerFactory.getTraceableDisplayAndPrintManager());
+//		OEFrame frame = ObjectEditor.edit(TraceableDisplayAndWaitManagerFactory.getTraceableDisplayAndPrintManager());
 
-		frame.setTitle( SERVER);
+//		frame.setTitle( SERVER);
 		
 		(new AReplicatedSingleResponseReplicatedGroupSessionServerPortServerLauncher(
 				AFlexibleSessionPortClientLauncher.SESSION_SERVER_HOST,

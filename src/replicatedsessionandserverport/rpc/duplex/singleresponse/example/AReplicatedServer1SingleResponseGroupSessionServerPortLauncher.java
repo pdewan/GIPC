@@ -14,8 +14,8 @@ public class AReplicatedServer1SingleResponseGroupSessionServerPortLauncher  {
 
 	public static void main (String[] args) {
 //		ObjectEditor.edit (ConnectionEventManagerFactory.getConnectionManager());
-		OEFrame frame = ObjectEditor.edit(TraceableDisplayAndWaitManagerFactory.getTraceableDisplayAndPrintManager());
-		frame.setTitle(SERVER);
+//		OEFrame frame = ObjectEditor.edit(TraceableDisplayAndWaitManagerFactory.getTraceableDisplayAndPrintManager());
+//		frame.setTitle(SERVER);
 		
 		(new AReplicatedSingleResponseReplicatedGroupSessionServerPortServerLauncher(
 				AFlexibleSessionPortClientLauncher.SESSION_SERVER_HOST,
