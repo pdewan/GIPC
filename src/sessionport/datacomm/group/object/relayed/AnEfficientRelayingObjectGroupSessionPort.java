@@ -82,7 +82,7 @@ public class AnEfficientRelayingObjectGroupSessionPort
 	public void send(Set<String> clientNames, Object message) {
 		groupSendTrapper.send(clientNames, message);
 	}
-	
+	// not sendimg to self!
 	@Override
 	public void sendAll(Object message) {
 		Set<String> peerNames = getConnections();
@@ -115,7 +115,7 @@ public class AnEfficientRelayingObjectGroupSessionPort
 		
 		groupSendTrapper.send(remoteName, message);
 	}
-	
+	// this not even passed the sender
 	protected Set<String> getAllButSender(Set<String> aSet) {
 		if (getSender() == null) throw new NoMessageReceivedByResponderException();
 		aSet.remove(getSender());
@@ -127,7 +127,9 @@ public class AnEfficientRelayingObjectGroupSessionPort
 //		if (getSender() == null) throw new NoMessageReceivedByResponderException();
 //		Set<String> peerNames = getConnections();
 //		peerNames.remove(getSender());
-		send(getAllButSender(getConnections()), message);
+		// getAllutSender is redundant, getConnections gives peer names,not sender
+//		send(getAllButSender(getConnections()), message);
+		send(getConnections(), message);
 	}
 //	@Override
 	public void sendOtherClients(Object message) {
