@@ -106,7 +106,7 @@ public class ALatecomerRelayingGroupConnectionsManager
 			lateJoinInfo = logicalLatecomerSessionsServerProxy.lateJoin(sessionName, sessionClientDescription, this);
 			Tracer.info (this, "Received back late join info :" + lateJoinInfo);
 //			currentMembers = AJoinInfo.getMembersClientsAndServers(lateJoinInfo);
-//			pastMessages = lateJoinInfo.getMessages(); //this was commented out before
+			pastMessages = lateJoinInfo.getMessages(); //this was commented out before
 			break;
 		case SERVER_ONLY:
 			lateJoinInfo = logicalLatecomerSessionsServerProxy.lateJoinAsServer(sessionName, sessionClientDescription, this);
