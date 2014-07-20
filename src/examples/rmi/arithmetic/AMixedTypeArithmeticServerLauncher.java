@@ -6,7 +6,8 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 import util.annotations.Tags;
-@Tags({"RMIServer", "Server"})
+import util.tags.DistributedTags;
+@Tags({"RMIServer", DistributedTags.SERVER})
 public class AMixedTypeArithmeticServerLauncher implements MixedTypeAirthmeticServer {	
 	public static void main (String[] args) {
 		try {
