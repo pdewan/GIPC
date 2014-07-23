@@ -4,8 +4,9 @@ import java.util.Scanner;
 import java.util.concurrent.Semaphore;
 
 import util.annotations.Tags;
+import util.tags.DistributedTags;
 
-@Tags({"RMIRegistry", "Registry"})
+@Tags({"RMIRegistry", DistributedTags.REGISTRY})
 public class DistributedRMIRegistryStarter {
 	public static void main (String[] args) {
 		try {
