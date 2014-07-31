@@ -4,11 +4,11 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface RemoteStatefulMixedTypeProcessor extends Remote  {
-	void setInt(int num1) throws RemoteException;
-	void setDouble(double num2) throws RemoteException;	
-	int intAdd() throws RemoteException;
-	double doubleAdd () throws RemoteException;
-	int intMultiply () throws RemoteException;
-	double doubleMultiply () throws RemoteException;
+	void setInt(Integer num1) throws RemoteException;
+	void setDouble(Double num2) throws RemoteException;	
+	Integer intAdd() throws RemoteException;
+	Double doubleAdd () throws RemoteException;
+	Integer intMultiply () throws RemoteException;
+	Double doubleMultiply () throws RemoteException;
 
 }

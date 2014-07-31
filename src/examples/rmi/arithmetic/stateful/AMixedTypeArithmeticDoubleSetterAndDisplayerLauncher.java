@@ -16,10 +16,19 @@ public class AMixedTypeArithmeticDoubleSetterAndDisplayerLauncher {
 			System.out.println("Please input a decimal");
 			double num2 = scan.nextDouble();
 			mixedTypeProcessor.setDouble(num2);
-			System.out.println("The int addition:"+ mixedTypeProcessor.intAdd());
-			System.out.println("The double addition:"+ mixedTypeProcessor.doubleAdd());
-			System.out.println("The int multiplication:"+ mixedTypeProcessor.intMultiply());
-			System.out.println("The double multiplication:"+ mixedTypeProcessor.doubleMultiply());
+			Integer intAddition = mixedTypeProcessor.intAdd();
+			Double doubleAddition = mixedTypeProcessor.doubleAdd();
+			Integer intMultiply = mixedTypeProcessor.intMultiply();
+			Double doubleMultiply = mixedTypeProcessor.doubleMultiply();
+			// need to print out only initialized values otherwise the grading goes wrong
+			if (intAddition != null)
+			System.out.println("The int addition:"+ intAddition);
+			if (doubleAddition != null)
+			System.out.println("The double addition:"+ doubleAddition);
+			if (intMultiply != null)
+			System.out.println("The int multiplication:"+ intMultiply);
+			if (doubleMultiply != null)
+			System.out.println("The double multiplication:"+ doubleMultiply);
 
 		} catch (Exception e) {
 			e.printStackTrace();
