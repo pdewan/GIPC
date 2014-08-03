@@ -8,7 +8,7 @@ import sessionport.datacomm.group.object.relayed.example.CathyClientRelayedGroup
 import sessionport.datacomm.group.object.relayed.latecomer.ASessionPortLatecomerSupportingSessionServerLauncher;
 import sessionport.datacomm.group.object.relayed.latecomer.example.AliceMemberLatecomerGroupSessionPort;
 import sessionport.datacomm.group.object.relayed.latecomer.example.BobServerLatecomerGroupSessionPort;
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfDuplexRPCSessionPort {
 	public static void main(String args[]) {

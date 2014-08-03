@@ -1,6 +1,6 @@
 package inputport.rpc.simplex.example;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfSimplexRPCInputPort {
 	public static void main(String args[]) {

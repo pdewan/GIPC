@@ -1,6 +1,6 @@
 package inputport.rpc.duplex.counter.example;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfCounter {
 	public static void main(String args[]) {

@@ -5,7 +5,7 @@ import port.sessionserver.relay.ARelayerSupportingSessionServerLauncher;
 import port.sessionserver.relay.SessionServerRelayerLauncher;
 import port.sessionserver.relay.late.ALatecomerSessionServerLauncher;
 import sessionport.rpc.duplex.example.AnAliceDuplexRPCSessionPort;
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 // the words of robert forst are misleading, this program does not accept any input
 // acting only at connection time
 public class DemoerOfObjectGroupSessionPort {

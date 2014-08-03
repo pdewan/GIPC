@@ -1,6 +1,6 @@
 package replicatedserverport.rpc.duplex.singleresponse.example;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 /* the number of servers can vary from 1 to 3 but they
  * all have to be started before interaction. All of them compute
  * the RPC calls, but only one of them returns results

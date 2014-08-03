@@ -1,6 +1,6 @@
 package port.sessionserverAndRelay.mvc.example;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfThreeIndepPortClient {
 	public static void main(String args[]) {

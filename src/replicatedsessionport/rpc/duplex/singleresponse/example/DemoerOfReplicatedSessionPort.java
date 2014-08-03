@@ -1,7 +1,7 @@
 package replicatedsessionport.rpc.duplex.singleresponse.example;
 
 import port.ParticipantChoice;
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 /*
  * This allows the servervs to be replicatd of course but to also dynamically come and go
  * using the latecomer server. They must join the session as servers and their clients as clients (only)

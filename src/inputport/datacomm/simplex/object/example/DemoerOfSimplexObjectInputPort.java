@@ -1,6 +1,6 @@
 package inputport.datacomm.simplex.object.example;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfSimplexObjectInputPort {
 	public static void main(String args[]) {

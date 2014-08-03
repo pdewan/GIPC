@@ -1,6 +1,6 @@
 package examples.mvc.local.simplex;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfSimplexMVC {
 	public static void main(String args[]) {

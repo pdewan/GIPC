@@ -1,6 +1,6 @@
 package inputport.rpc.group.example;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfGroupRPCInputPort {
 	public static void main(String args[]) {

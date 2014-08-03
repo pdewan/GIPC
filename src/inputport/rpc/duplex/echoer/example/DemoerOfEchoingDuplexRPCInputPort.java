@@ -1,5 +1,5 @@
 package inputport.rpc.duplex.echoer.example;
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 public class DemoerOfEchoingDuplexRPCInputPort {
 	public static void main(String args[]) {
 		demo();

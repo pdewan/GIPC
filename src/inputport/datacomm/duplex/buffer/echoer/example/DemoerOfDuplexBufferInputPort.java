@@ -1,6 +1,6 @@
 package inputport.datacomm.duplex.buffer.echoer.example;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfDuplexBufferInputPort {
 	public static void main(String args[]) {

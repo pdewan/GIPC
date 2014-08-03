@@ -1,6 +1,6 @@
 package inputport.datacomm.simplex.buffer.mvc.example;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfMVCSimplexBufferInputPort {
 	public static void main(String args[]) {

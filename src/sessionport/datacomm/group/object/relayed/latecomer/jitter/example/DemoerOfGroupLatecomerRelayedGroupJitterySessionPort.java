@@ -8,7 +8,7 @@ import sessionport.datacomm.group.object.relayed.example.CathyClientRelayedGroup
 import sessionport.datacomm.group.object.relayed.latecomer.ASessionPortLatecomerSupportingSessionServerLauncher;
 import sessionport.datacomm.group.object.relayed.latecomer.jitter.AJitterySessionPortLatecomerSupportingSessionServerLauncher;
 import sessionport.rpc.duplex.example.AnAliceDuplexRPCSessionPort;
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 // Object editor ofren hangs when interacting with Alice, maybe ecause of new layout of console or setting of cursor
 // Have put tracing on in Alice launcher but could not reproduce problem with it
 public class DemoerOfGroupLatecomerRelayedGroupJitterySessionPort {

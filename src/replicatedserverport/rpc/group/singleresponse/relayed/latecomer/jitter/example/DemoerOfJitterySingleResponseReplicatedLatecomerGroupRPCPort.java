@@ -16,7 +16,7 @@ import replicatedserverport.rpc.group.singleresponse.relayed.latecomer.example.A
 import replicatedserverport.rpc.group.singleresponse.relayed.latecomer.example.AliceSingleResponseLatecomerReplicatedPortLauncher;
 import replicatedserverport.rpc.group.singleresponse.relayed.latecomer.example.BobSingleResponseLatecomerReplicatedPortLauncher;
 import replicatedserverport.rpc.group.singleresponse.relayed.latecomer.example.CathySingleResponseLatecomerReplicatedPortLauncher;
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 import bus.uigen.trace.ClassAdapterReceivedPropertyChangeEvent;
 import util.trace.ImplicitKeywordKind;
 import util.trace.Tracer;

@@ -1,6 +1,6 @@
 package examples.rmi.counter;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfRMICounter {
 	public static void main(String args[]) {

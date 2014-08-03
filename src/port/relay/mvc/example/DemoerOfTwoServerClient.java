@@ -1,6 +1,6 @@
 package port.relay.mvc.example;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfTwoServerClient {
 	public static void main(String args[]) {

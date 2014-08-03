@@ -1,6 +1,6 @@
 package examples.rmi.arithmetic;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 // this is a distrbuted implementation of a CS 1 (UNC Comp 110) first assignment submission described below
 /******************************************************************
  * Program or Assignment #: Assignment1

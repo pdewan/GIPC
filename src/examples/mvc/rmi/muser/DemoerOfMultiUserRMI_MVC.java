@@ -1,6 +1,6 @@
 package examples.mvc.rmi.muser;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfMultiUserRMI_MVC {
 	public static void main(String args[]) {

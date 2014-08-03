@@ -2,7 +2,7 @@ package sessionport.datacomm.group.object.direct.delay.jitter.example;
 
 
 import port.sessionserver.ASessionServerLauncher;
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfDelayedJitteryP2P {
 	public static void main(String args[]) {		

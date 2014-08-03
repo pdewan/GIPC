@@ -3,7 +3,7 @@ package replicatedserverport.rpc.group.relayed.latecomer.asymmetric.example;
 import replicatedserverport.rpc.group.relayed.latecomer.example.ALatecomerReplicatedSessionServer1Launcher;
 import replicatedserverport.rpc.group.relayed.latecomer.example.ALatecomerReplicatedSessionServer2Launcher;
 import replicatedserverport.rpc.group.relayed.latecomer.example.ALatecomerReplicatedSessionServer3Launcher;
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 /*
  * Single response is implicit. 
  * The asymmetry seems to be in the fact that only Cathy inputs

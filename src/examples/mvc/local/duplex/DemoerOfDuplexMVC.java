@@ -1,6 +1,6 @@
 package examples.mvc.local.duplex;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfDuplexMVC {
 	public static void main(String args[]) {

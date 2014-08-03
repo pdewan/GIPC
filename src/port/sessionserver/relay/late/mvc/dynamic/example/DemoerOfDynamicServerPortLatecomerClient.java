@@ -1,6 +1,6 @@
 package port.sessionserver.relay.late.mvc.dynamic.example;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfDynamicServerPortLatecomerClient {
 	public static void main(String args[]) {

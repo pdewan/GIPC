@@ -1,6 +1,6 @@
 package port.sessionserver.relay.mvc.example;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfThreeDepPortClient {
 	public static void main(String args[]) {

@@ -1,6 +1,6 @@
 package inputport.datacomm.simplex.buffer.example;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfSimplexBufferInputPort {
 	public static void main(String args[]) {

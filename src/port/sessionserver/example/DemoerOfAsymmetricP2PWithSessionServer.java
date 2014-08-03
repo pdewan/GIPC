@@ -1,6 +1,6 @@
 package port.sessionserver.example;
 
-import bus.uigen.pipes.MainClassLaunchingUtility;
+import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfAsymmetricP2PWithSessionServer {
 	public static void main(String args[]) {
