@@ -4,7 +4,7 @@ import port.sessionserver.ASessionServerLauncher;
 import port.sessionserver.relay.ARelayerSupportingSessionServerLauncher;
 import port.sessionserver.relay.SessionServerRelayerLauncher;
 import sessionport.rpc.duplex.example.AnAliceDuplexRPCSessionPort;
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 
 public class DemoerOfGroupObjectP2PSessionPort {
 	public static void main(String args[]) {

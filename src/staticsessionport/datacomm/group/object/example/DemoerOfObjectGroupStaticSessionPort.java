@@ -1,7 +1,7 @@
 package staticsessionport.datacomm.group.object.example;
 
 import port.sessionserver.relay.late.ALatecomerSessionServerLauncher;
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 // must click on each dialogue box after all processes have connected
 // can probably automate that for testing purposes
 // the semantic are weird and depend on what order the ok buttons are executed

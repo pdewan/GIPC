@@ -1,6 +1,6 @@
 package inputport.rpc.duplex.echoingadder.example;
 
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 
 public class DemoerOfAdder {
 	public static void main(String args[]) {

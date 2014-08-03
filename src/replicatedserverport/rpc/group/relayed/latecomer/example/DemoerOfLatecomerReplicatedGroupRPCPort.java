@@ -1,6 +1,6 @@
 package replicatedserverport.rpc.group.relayed.latecomer.example;
 
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 /*
  * This seems to be the same as single response, the rsponse is not qualified
  * Itis an older piece of code that had to be fixed

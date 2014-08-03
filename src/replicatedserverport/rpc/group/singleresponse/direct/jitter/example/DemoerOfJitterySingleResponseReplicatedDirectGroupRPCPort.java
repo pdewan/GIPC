@@ -12,7 +12,7 @@
  */
 package replicatedserverport.rpc.group.singleresponse.direct.jitter.example;
 
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 
 public class DemoerOfJitterySingleResponseReplicatedDirectGroupRPCPort {
 	public static void main(String args[]) {

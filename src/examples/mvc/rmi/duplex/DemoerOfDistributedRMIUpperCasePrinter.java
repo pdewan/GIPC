@@ -1,6 +1,6 @@
 package examples.mvc.rmi.duplex;
 
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 
 public class DemoerOfDistributedRMIUpperCasePrinter {
 	public static void main(String args[]) {

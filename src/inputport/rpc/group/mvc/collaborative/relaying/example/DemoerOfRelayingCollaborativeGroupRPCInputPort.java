@@ -1,6 +1,6 @@
 package inputport.rpc.group.mvc.collaborative.relaying.example;
 
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 
 public class DemoerOfRelayingCollaborativeGroupRPCInputPort {
 	public static void main(String args[]) {

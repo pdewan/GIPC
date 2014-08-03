@@ -2,7 +2,7 @@ package sessionport.datacomm.group.object.direct.delay.example;
 
 
 import port.sessionserver.ASessionServerLauncher;
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 
 public class DemoerOfDelayedP2P {
 	public static void main(String args[]) {		

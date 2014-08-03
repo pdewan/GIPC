@@ -5,7 +5,7 @@ import port.sessionserver.relay.ASessionServerRelayerLauncher;
 import port.sessionserver.relay.ARelayerSupportingSessionServerLauncher;
 import port.sessionserver.relay.SessionServerRelayerLauncher;
 import sessionport.rpc.duplex.example.AnAliceDuplexRPCSessionPort;
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 /*
  * semantics are the same for the p2p version as the server does not create an input loop
  */

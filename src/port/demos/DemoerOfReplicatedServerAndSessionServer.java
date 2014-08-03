@@ -8,7 +8,7 @@ import replicatedsessionandserverport.rpc.duplex.singleresponse.example.AReplica
 import replicatedsessionandserverport.rpc.duplex.singleresponse.example.AReplicatedSingleResponseReplicatedLatecomerSessionServer1Launcher;
 import replicatedsessionandserverport.rpc.duplex.singleresponse.example.AReplicatedSingleResponseReplicatedLatecomerSessionServer2Launcher;
 import replicatedsessionandserverport.rpc.duplex.singleresponse.example.AliceSingleResponseReplicatedSessionServerClientPortLauncher;
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 
 public class DemoerOfReplicatedServerAndSessionServer {
 	public static void main(String args[]) {

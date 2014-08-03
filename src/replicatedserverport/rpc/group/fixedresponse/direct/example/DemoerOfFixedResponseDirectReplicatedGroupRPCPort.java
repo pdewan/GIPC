@@ -6,7 +6,7 @@ import replicatedserverport.rpc.group.earliestresponse.direct.example.CathyEarli
 import replicatedserverport.rpc.group.earliestresponse.direct.example.AnEarliestResponseReplicatedSessionServer1Launcher;
 import replicatedserverport.rpc.group.earliestresponse.direct.example.AnEarliestResponseReplicatedSessionServer2Launcher;
 import replicatedserverport.rpc.group.earliestresponse.relayed.latecomer.example.AnEarliestResponseReplicatedLatecomerSessionServer3Launcher;
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 /* the number of servers can vary from 1 to 3 but they
  * all have to be started before interaction. All of them compute
  * the RPC calls and return results, but a server computes the results of onlt

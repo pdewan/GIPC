@@ -1,6 +1,6 @@
 package inputport.rpc.duplex.mvc.multiuser.example;
 
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 
 public class DemoerOfMultiiUserDuplexRPCInputPort {
 	public static void main(String args[]) {

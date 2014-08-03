@@ -1,6 +1,6 @@
 package examples.mvc.rmi.collaborative;
 
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 
 public class DemoerOfCollaborativeRMIMVC {
 	public static void main(String args[]) {

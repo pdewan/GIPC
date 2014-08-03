@@ -1,6 +1,6 @@
 package port.sessionserver.relay.late.mvc.example;
 
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 
 public class DemoerOfTwoDepPortLatecomerClient {
 	public static void main(String args[]) {

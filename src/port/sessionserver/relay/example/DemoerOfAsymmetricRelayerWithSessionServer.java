@@ -1,7 +1,7 @@
 package port.sessionserver.relay.example;
 
 import port.sessionserver.relay.ASessionServerRelayerLauncher;
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 
 public class DemoerOfAsymmetricRelayerWithSessionServer {
 	public static void main(String args[]) {

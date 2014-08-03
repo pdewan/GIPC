@@ -1,6 +1,6 @@
 package inputport.rpc.simplex.mvc.example;
 
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 
 public class DemoerOfSimplexRPCInputPort {
 	public static void main(String args[]) {

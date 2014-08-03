@@ -1,5 +1,5 @@
 package examples.mvc.rmi.collaborative.relaying;
-import bus.uigen.models.MainClassLaunchingUtility;
+import bus.uigen.pipes.MainClassLaunchingUtility;
 public class DemoerOfRelayingCollaborativeRMI_MVC {
 	public static void main(String args[]) {
 		demo();
