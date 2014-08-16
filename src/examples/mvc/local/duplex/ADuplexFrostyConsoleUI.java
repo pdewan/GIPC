@@ -2,7 +2,7 @@ package examples.mvc.local.duplex;
 
 import java.beans.PropertyChangeEvent;
 
-import util.models.PropertyListenerRegisterer;
+import util.models.PropertyListenerRegistrar;
 import util.trace.Tracer;
 import examples.mvc.local.simplex.ASimplexFrostyConsoleUI;
 import examples.mvc.local.simplex.SimplexFrostyModel;
@@ -13,7 +13,7 @@ public class ADuplexFrostyConsoleUI extends ASimplexFrostyConsoleUI implements D
 //		((PropertyListenerRegisterer) clientModel).addPropertyChangeListener(this);
 //	}
 	public void interact (SimplexFrostyModel aModel) {
-		((PropertyListenerRegisterer) aModel).addPropertyChangeListener(this);
+		((PropertyListenerRegistrar) aModel).addPropertyChangeListener(this);
 		super.interact(aModel);
 	}
 	@Override

@@ -4,7 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import util.models.PropertyListenerRegisterer;
+import util.models.PropertyListenerRegistrar;
 import examples.mvc.local.simplex.ASimplexFrostyModel;
 import examples.mvc.rmi.collaborative.relaying.Echoer;
 
@@ -23,7 +23,7 @@ public class AnAnotherDuplexFrostyModel extends ASimplexFrostyModel implements A
 		echoer = anEchoer;
 		counter = aCounter;
 //		upperCaser = anUpperCaser;
-		((PropertyListenerRegisterer) echoer).addPropertyChangeListener(this);
+		((PropertyListenerRegistrar) echoer).addPropertyChangeListener(this);
 	}
 //	public AnAnotherDuplexFrostyModel() {
 //		((PropertyListenerRegisterer) echoer).addPropertyChangeListener(this);
