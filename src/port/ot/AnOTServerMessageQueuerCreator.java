@@ -6,7 +6,7 @@ import util.session.ServerMessageFilterCreator;
 public class AnOTServerMessageQueuerCreator  implements ServerMessageFilterCreator{
 	ServerMessageFilter  serverMessageQueuer = new AnOTServerMessageQueuer();
 	@Override
-	public ServerMessageFilter getMessageQueuer() {
+	public ServerMessageFilter getServerMessageFilter() {
 		//return serverMessageQueuer;
 		return new AnOTServerMessageQueuer();
 	}
