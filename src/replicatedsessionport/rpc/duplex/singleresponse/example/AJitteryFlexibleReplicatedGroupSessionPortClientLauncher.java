@@ -42,7 +42,9 @@ public class AJitteryFlexibleReplicatedGroupSessionPortClientLauncher
 	}
 	@Override
 	protected PortLauncherSupport getSingleResponseReplicatedPortLauncherSupport() {
-		if (sessionChoice == SessionChoice.P2P)
+		if (getSessionChoice() == SessionChoice.P2P)
+
+//		if (sessionChoice == SessionChoice.P2P)
 			return new ASingleResponseReplicatedPortLauncherSupport();
 		else
 			return new ARelayedSingleResponseReplicatedPortLauncherSupport();

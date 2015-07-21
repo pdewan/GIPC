@@ -56,6 +56,11 @@ import staticsessionport.rpc.group.GroupRPCStaticSessionPortSelector;
 
 public abstract class AnAbstractPortLauncher implements PortLauncher, ConnectionListener, Runnable {
 ;
+	public static final SessionChoice DEFAULT_SESSION_CHOICE = SessionChoice.P2P; 
+	public static final ParticipantChoice DEFAULT_PARTICIPANT_CHOICE = ParticipantChoice.MEMBER; 
+	public static final String DEFAULT_SESSION_NAME = "Session"; 
+
+
 	protected List<PortLauncherSupport> portLauncherSupports;
 	protected InputPort mainPort;
 	protected InputPort auxilliaryPort;
@@ -77,10 +82,11 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	protected boolean shouldDelay;
 	protected boolean doCausal;
 	protected PortLauncherSupport delaysSupport;
-	protected String sessionName;
+	private String sessionName;
+	
 
 	
-	protected SessionChoice sessionChoice;
+	private SessionChoice sessionChoice;
 
 	protected PortDescription portDescription;
 
@@ -89,7 +95,7 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	protected String clientId;
 	protected String clientHost;
 	protected ServerPortDescription clientPortDescription;
-	protected ParticipantChoice participantChoice;
+	private ParticipantChoice participantChoice;
 
 
 	public AnAbstractPortLauncher(String aServerName, String aServerId) {
@@ -228,10 +234,49 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	protected PortDescription getPortDescription() {
 		return getDefaultPortDescription();
 	}
+	protected SessionChoice getDefaultSessionChoice() {
+		return DEFAULT_SESSION_CHOICE;
+	}
+	protected ParticipantChoice getDefaultParticipantChoice() {
+		return DEFAULT_PARTICIPANT_CHOICE;
+	}
+	protected SessionChoice getSessionChoice() {
+		if (sessionChoice == null)
+			sessionChoice =  getDefaultSessionChoice();
+		return sessionChoice;
+		
+	}
+	protected ParticipantChoice getParticipantChoice() {
+		if (participantChoice == null)
+			participantChoice =  getDefaultParticipantChoice();
+		return participantChoice;
+		
+	}
+	protected void initSessionChoice(SessionChoice aSessionChoice) {
+		sessionChoice = aSessionChoice;
+		
+	}
+	protected void initParticipantChoice(ParticipantChoice aChoice) {
+		participantChoice = aChoice;
+		
+	}
+	
+	protected String getSessionName() {
+		if (sessionName == null)
+			sessionName =  DEFAULT_SESSION_NAME;
+		return sessionName;
+	}
+	
+	protected void initSessionName (String aChoice) {
+		sessionName = aChoice;
+		
+	}
 
 	protected PortDescription getDefaultPortDescription() {
 		
-		 return new APortDescription(getPortKind(), getPortAccessKind(), getPortMessageKind(), sessionChoice);
+		 return new APortDescription(getPortKind(), getPortAccessKind(), getPortMessageKind(), getSessionChoice());
+//		 return new APortDescription(getPortKind(), getPortAccessKind(), getPortMessageKind(), sessionChoice);
+
 		
 	}
 	
@@ -444,10 +489,10 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 			return null;
 		case DUPLEX:
 			return BufferDuplexSessionPortSelector.createBufferDuplexSessionPort(serverHost, 
-					serverId, serverName, sessionName, clientId, clientName, participantChoice);
+					serverId, serverName, getSessionName(), clientId, clientName, getParticipantChoice());
 		case GROUP:
 			return BufferGroupSessionPortSelector.createBufferGroupSessionPort(serverHost, 
-					serverId, serverName, sessionName, clientId, clientName, participantChoice);
+					serverId, serverName, getSessionName(), clientId, clientName, getParticipantChoice());
 		
 		default: return null;	
 		}	
@@ -458,10 +503,10 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 			return null;
 		case DUPLEX:
 			return BufferDuplexStaticSessionPortSelector.createBufferDuplexStaticSessionPort(serverList, 
-					  clientId, clientName, sessionName,participantChoice);
+					  clientId, clientName, getSessionName(),getParticipantChoice());
 		case GROUP:
 			return BufferGroupStaticSessionPortSelector.createBufferGroupStaticSessionPort(serverList, 
-					clientId, clientName, sessionName, participantChoice);
+					clientId, clientName, getSessionName(), getParticipantChoice());
 		
 		default: return null;	
 		}	
@@ -484,10 +529,10 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 			return null;
 		case DUPLEX:
 			return ObjectDuplexSessionPortSelector.createObjectDuplexSessionPort(serverHost, 
-					serverId, serverName, sessionName, clientId, clientName, participantChoice);
+					serverId, serverName, getSessionName(), clientId, clientName, getParticipantChoice());
 		case GROUP:
 			return ObjectGroupSessionPortSelector.createObjectGroupSessionPort(serverHost, 
-					serverId, serverName, sessionName, clientId, clientName, participantChoice);
+					serverId, serverName, getSessionName(), clientId, clientName, getParticipantChoice());
 		
 		default: return null;	
 		}	
@@ -497,10 +542,10 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 		case SIMPLEX:
 			return null;
 		case DUPLEX:
-			return ObjectDuplexStaticSessionPortSelector.createObjectDuplexStaticSessionPort(serverList,  clientId, clientName, participantChoice);
+			return ObjectDuplexStaticSessionPortSelector.createObjectDuplexStaticSessionPort(serverList,  clientId, clientName, getParticipantChoice());
 		case GROUP:
 			return GroupObjectStaticSessionPortSelector.createObjectGroupStaticSessionPort(
-					serverList, clientId, clientName, sessionName, participantChoice);
+					serverList, clientId, clientName, getSessionName(), getParticipantChoice());
 		
 		default: return null;	
 		}	
@@ -511,10 +556,10 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 			return null;
 		case DUPLEX:
 			return DuplexRPCSessionPortSelector.createDuplexRPCSessionPort(serverHost, 
-					serverId, serverName, sessionName, clientId, clientName, participantChoice);
+					serverId, serverName, getSessionName(), clientId, clientName, getParticipantChoice());
 		case GROUP:
 			return GroupRPCSessionPortSelector.createGroupRPCSessionPort(serverHost, 
-					serverId, serverName, sessionName, clientId, clientName,   participantChoice);
+					serverId, serverName, getSessionName(), clientId, clientName,   getParticipantChoice());
 		
 		default: return null;	
 		}	
@@ -525,10 +570,10 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 			return null;
 		case DUPLEX:
 			return DuplexRPCStaticSessionPortSelector.createDuplexRPCStaticSessionPort(
-					serverList, clientId, clientName, participantChoice
+					serverList, clientId, clientName, getParticipantChoice()
 					);	
 		case GROUP:
-			return GroupRPCStaticSessionPortSelector.createGroupRPCStaticSessionPort(serverList, clientId, clientName, sessionName, participantChoice
+			return GroupRPCStaticSessionPortSelector.createGroupRPCStaticSessionPort(serverList, clientId, clientName, getSessionName(), getParticipantChoice()
 					);	
 			
 		
@@ -667,7 +712,8 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	}
 
 	protected PortLauncherSupport getCausalPortLauncherSupport() {
-		if (sessionChoice == SessionChoice.P2P && doCausal)
+//		if (sessionChoice == SessionChoice.P2P && doCausal)
+		if (getSessionChoice() == SessionChoice.P2P && doCausal)
 		return new ACausalGroupSessionPortLauncherSupport();
 		else
 			return null;
@@ -682,7 +728,9 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	}
 	
 	protected PortLauncherSupport getPortLauncherDelaysSupport() {
-		if (shouldDelay && sessionChoice == SessionChoice.P2P)
+//		if (shouldDelay && sessionChoice == SessionChoice.P2P)
+		if (shouldDelay && getSessionChoice() == SessionChoice.P2P)
+
 		return delaysSupport;
 		else
 			return null;

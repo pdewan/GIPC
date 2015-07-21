@@ -11,7 +11,7 @@ import port.old.AnAdder;
 import port.sessionserver.relay.RelayerClientAndServerSupport;
 import sessionport.rpc.duplex.DuplexRPCSessionPort;
 import sessionport.rpc.duplex.DuplexRPCSessionPortSelector;
-import sessionport.rpc.duplex.example.ACallingConnectListener;
+import sessionport.rpc.duplex.relayed.example.ACallingConnectListener;
 import util.trace.Tracer;
 
 

@@ -39,7 +39,9 @@ public class AJitteryFlexibleReplicatedGroupSessionPortServerLauncher
 	// session server.
 	// forrtunately, session server does not invoke methods in it that return values
 	protected PortLauncherSupport getReplicatedPortLauncherSupport() {
-		if (sessionChoice != SessionChoice.P2P)
+		if (getSessionChoice() != SessionChoice.P2P)
+
+//		if (sessionChoice != SessionChoice.P2P)
 			return new ASingleResponseReplicatedRelayedGroupServerLauncherSupport(); // has a duplex port to the session server
 		else
 		return new ASingleResponseReplicatedGroupServerLauncherSupport();

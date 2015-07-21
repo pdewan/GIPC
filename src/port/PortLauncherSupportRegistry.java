@@ -12,6 +12,8 @@ import java.util.Map;
 import sessionport.datacomm.group.object.direct.AnObjectGroupSessionPortDirectLauncherSupport;
 import sessionport.datacomm.group.object.relayed.AnObjectGroupSessionPortRelayedLauncherSupport;
 import sessionport.datacomm.group.object.relayed.latecomer.AnObjectGroupSessionPortLatecomerLauncherSupport;
+import sessionport.rpc.duplex.direct.ADuplexRPCSessionPortDirectLauncherSupport;
+import sessionport.rpc.duplex.relayed.ADuplexRPCSessionPortRelayedLauncherSupport;
 import staticsessionport.rpc.group.AStaticSessionGroupRPCPortLauncherSupport;
 
 public class PortLauncherSupportRegistry {
@@ -78,7 +80,18 @@ public class PortLauncherSupportRegistry {
 		put(new APortDescription(PortKind.SERVER_INPUT_PORT,
 				PortAccessKind.DUPLEX, PortMessageKind.RPC),
 				new ADuplexRPCInputPortLauncherSupport());
-		
+		put(new APortDescription(PortKind.SESSION_PORT,
+				PortAccessKind.DUPLEX, PortMessageKind.RPC,
+				SessionChoice.P2P),
+				new ADuplexRPCSessionPortDirectLauncherSupport());
+		put(new APortDescription(PortKind.SESSION_PORT,
+				PortAccessKind.DUPLEX, PortMessageKind.RPC,
+				SessionChoice.RELAYED),
+				new ADuplexRPCSessionPortRelayedLauncherSupport());
+		put(new APortDescription(PortKind.SESSION_PORT,
+				PortAccessKind.DUPLEX, PortMessageKind.RPC,
+				SessionChoice.LATECOMER_RELAYED),
+				new ADuplexRPCSessionPortRelayedLauncherSupport());
 		
 		
 		put(new APortDescription(PortKind.SESSION_PORT,
@@ -93,7 +106,8 @@ public class PortLauncherSupportRegistry {
 				PortAccessKind.GROUP, PortMessageKind.OBJECT,
 				SessionChoice.LATECOMER_RELAYED),
 				new AnObjectGroupSessionPortRelayedLauncherSupport());
-		
+		// no distinction being made between rpc and object, I suppose
+		// one needs rpc to session server
 		put(new APortDescription(PortKind.SESSION_PORT,
 				PortAccessKind.GROUP, PortMessageKind.RPC,
 				SessionChoice.P2P),

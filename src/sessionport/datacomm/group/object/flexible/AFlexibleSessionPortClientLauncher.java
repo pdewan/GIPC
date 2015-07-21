@@ -43,7 +43,9 @@ public class AFlexibleSessionPortClientLauncher extends ASessionServerClientLaun
 			PortLauncherSupport aDelaysSupport,
 			boolean aDoCausal, ParticipantChoice aChoice) {
 		super(aSessionServerHost, aServerId, aServerName, aMyId, aMyName, aChoice);
-		sessionChoice = aSessionChoice;
+//		sessionChoice = aSessionChoice;
+		initSessionChoice(aSessionChoice);
+
 		shouldDelay = aShouldDelay;
 		delaysSupport = aDelaysSupport;
 		doCausal = aDoCausal;
@@ -61,7 +63,9 @@ public class AFlexibleSessionPortClientLauncher extends ASessionServerClientLaun
 	protected  ConnectionListener getConnectionListener (InputPort anInputPort) {
 //		return new ATracingConnectionListener(anInputPort);
 //		return new ATracingSessionConnectionListener(SESSION_NAME);
-		if (!(sessionChoice == SessionChoice.P2P) || !doCausal)
+//		if (!(sessionChoice == SessionChoice.P2P) || !doCausal)
+		if (!(getSessionChoice() == SessionChoice.P2P) || !doCausal)
+
 		return new AFrostySessionConnectionListener(SESSION_NAME, (DuplexInputPort) anInputPort);
 
 		else
@@ -97,7 +101,8 @@ public class AFlexibleSessionPortClientLauncher extends ASessionServerClientLaun
 //		return null;
 //	}
 	protected PortLauncherSupport getPortLauncherSupport() {
-		switch (sessionChoice) {
+//		switch (sessionChoice) {
+		switch (getSessionChoice()) {
 		case P2P: 
 			return getP2PPortLauncherSupport();
 		case RELAYED:
@@ -125,14 +130,18 @@ public class AFlexibleSessionPortClientLauncher extends ASessionServerClientLaun
 	}
 	@Override
 	protected PortLauncherSupport getPortLauncherDelaysSupport() {
-		if (shouldDelay && sessionChoice == SessionChoice.P2P)
+//		if (shouldDelay && sessionChoice == SessionChoice.P2P)
+		if (shouldDelay && getSessionChoice() == SessionChoice.P2P)
+
 		return delaysSupport;
 		else
 			return null;
 	}
 	@Override
 	protected PortLauncherSupport getCausalPortLauncherSupport() {
-		if (sessionChoice == SessionChoice.P2P && doCausal)
+//		if (sessionChoice == SessionChoice.P2P && doCausal)
+		if (getSessionChoice() == SessionChoice.P2P && doCausal)
+
 		return new ACausalGroupSessionPortLauncherSupport();
 		else
 			return null;

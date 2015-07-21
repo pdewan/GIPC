@@ -2,6 +2,7 @@ package inputport.rpc;
 
 
 
+import inputport.QueryablePort;
 import inputport.rpc.duplex.example.AnAnotherCounter;
 import inputport.rpc.duplex.example.AnotherCounter;
 import inputport.rpc.simplex.SimplexRPC;
@@ -14,6 +15,15 @@ import util.misc.RemoteReflectionUtility;
 
 public class DirectedRPCProxyGenerator {
 	public static Object generateRPCProxy(SimplexRPC aPort, String aDestination, Class aClass, String anObjectName) {		
+		if (aPort instanceof QueryablePort) {
+			if (((QueryablePort) aPort).getLocalName().equals(aDestination)) {
+				if (aPort instanceof RPCRegistry) {
+					return ((RPCRegistry) aPort).getServerObject(anObjectName);
+				} else {
+					return null;
+				}
+			} 
+		}
 		Class[] remoteInterfaces = RemoteReflectionUtility.getProxyInterfaces(aClass);
 
 		InvocationHandler invocationHandler = new AnRPCProxyInvocationHandler(aPort, aDestination, aClass, anObjectName);

@@ -1,4 +1,4 @@
-package sessionport.rpc.duplex.example;
+package sessionport.rpc.duplex.relayed.example;
 
 import examples.mvc.local.simplex.SimplexUpperCaser;
 import inputport.ConnectionListener;
@@ -20,7 +20,7 @@ import sessionport.rpc.duplex.DuplexRPCSessionPort;
 import sessionport.rpc.duplex.DuplexRPCSessionPortSelector;
 
 
-public class AModularDuplexRPCSessionPortLauncher extends AnAbstractPortLauncher{
+public class AModularDuplexRPCRelayedSessionPortLauncher extends AnAbstractPortLauncher{
 //	public CopyOfADuplexRPCSessionPortLauncher(String aSessionServerHost,
 //			String aServerId, String aServerName, String aMyId, String aMyName,
 //			SessionChoice aSessionChoice, boolean aShouldDelay,
@@ -29,7 +29,7 @@ public class AModularDuplexRPCSessionPortLauncher extends AnAbstractPortLauncher
 //		super(aSessionServerHost, aServerId, aServerName, aMyId, aMyName,
 //				aSessionChoice, aShouldDelay, aDelaysSupport, aDoCausal, aChoice);
 //	}
-	public AModularDuplexRPCSessionPortLauncher (String aSessionServerHost, 
+	public AModularDuplexRPCRelayedSessionPortLauncher (String aSessionServerHost, 
 			String aServerId, 
 			String aServerName, 
 			String aMyId, 
@@ -52,21 +52,24 @@ public class AModularDuplexRPCSessionPortLauncher extends AnAbstractPortLauncher
 	}
 	
 	// cannot use parameterized version as no launcher support exists for duplex session port in registry right now
-	protected  InputPort getPort() {
-
-		return DuplexRPCSessionPortSelector.createDuplexRPCSessionPort("localhost", 
-				"" + serverId, serverName, sessionName, clientId, clientName,
-				participantChoice
-				);	
-		
-	}
-
-//	protected PortKind getPortKind() {
-//		return PortKind.SESSION_PORT;
+//	protected  InputPort getPort() {
+//
+//		return DuplexRPCSessionPortSelector.createDuplexRPCSessionPort("localhost", 
+//				"" + serverId, serverName, getSessionName(), clientId, clientName,
+//				getParticipantChoice()
+//				);	
+//		
 //	}
-//	protected PortAccessKind getPortAccessKind() {
-//		return PortAccessKind.DUPLEX;
-//	}	
+
+	protected PortKind getPortKind() {
+		return PortKind.SESSION_PORT;
+	}
+	protected PortAccessKind getPortAccessKind() {
+		return PortAccessKind.DUPLEX;
+	}	
+	protected SessionChoice getSessionChoice() {
+		return SessionChoice.LATECOMER_RELAYED;
+	}
 	protected  ConnectionListener getConnectionListener (InputPort anInputPort) {
 		return new ACallingConnectListener((DuplexRPCSessionPort) mainPort);
 	}
@@ -87,5 +90,5 @@ public class AModularDuplexRPCSessionPortLauncher extends AnAbstractPortLauncher
 //		sessionPort.connect();		
 //	}
 	
-
+	
 }

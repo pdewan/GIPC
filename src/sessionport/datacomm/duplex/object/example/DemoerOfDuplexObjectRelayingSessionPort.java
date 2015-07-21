@@ -2,7 +2,7 @@ package sessionport.datacomm.duplex.object.example;
 
 import port.sessionserver.relay.ARelayerSupportingSessionServerLauncher;
 import port.sessionserver.relay.SessionServerRelayerLauncher;
-import sessionport.rpc.duplex.example.AnAliceDuplexRPCSessionPort;
+import sessionport.rpc.duplex.relayed.example.AnAliceDuplexRPCRelayedSessionPort;
 import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfDuplexObjectRelayingSessionPort {

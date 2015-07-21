@@ -1,4 +1,4 @@
-package sessionport.rpc.duplex.example;
+package sessionport.rpc.duplex.relayed.example;
 
 import port.sessionserver.ASessionServerLauncher;
 import port.sessionserver.relay.ASessionServerRelayerLauncher;
@@ -10,7 +10,7 @@ import sessionport.datacomm.group.object.relayed.latecomer.example.AliceMemberLa
 import sessionport.datacomm.group.object.relayed.latecomer.example.BobServerLatecomerGroupSessionPort;
 import bus.uigen.pipe.MainClassLaunchingUtility;
 
-public class DemoerOfDuplexRPCSessionPort {
+public class DemoerOfDuplexRPCRelayedSessionPort {
 	public static void main(String args[]) {
 		demo();
 	}	
@@ -18,9 +18,9 @@ public class DemoerOfDuplexRPCSessionPort {
 		Class[] classes = {
 //				SessionPortSessionServerLauncher.class,
 				ASessionPortLatecomerSupportingSessionServerLauncher.class,
-				AnAliceDuplexRPCSessionPort.class,
-				ABobDuplexRPCSessionPort.class,
-				AModularCathyDuplexRPCSessionPort.class,
+				AnAliceDuplexRPCRelayedSessionPort.class,
+				ABobDuplexRPCRelayedSessionPort.class,
+				AModularCathyDuplexRPCRelayedSessionPort.class,
 		};
 		MainClassLaunchingUtility.createInteractiveLauncher(classes);
 	}	

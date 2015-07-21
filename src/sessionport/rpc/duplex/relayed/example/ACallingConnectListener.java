@@ -1,4 +1,4 @@
-package sessionport.rpc.duplex.example;
+package sessionport.rpc.duplex.relayed.example;
 
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
