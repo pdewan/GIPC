@@ -167,7 +167,7 @@ public class ARelayingDuplexConnectionsManager implements
 					ConnectionType.TO_LOGICAL_SERVER);
 		}
 	}
-
+// should be called session connection type
 	public static ConnectionType toPeerConnectionType(
 			ParticipantChoice aParticipantChoice) {
 		switch (aParticipantChoice) {
@@ -577,7 +577,9 @@ public class ARelayingDuplexConnectionsManager implements
 		members = joinInfo.getMembers();
 		Tracer.info(this, "Current members:" + members);
 				duplexObjectSessionPort.notifyConnect(
-				duplexObjectSessionPort.getLocalName(), null);
+				duplexObjectSessionPort.getLocalName(), 
+				// null));
+				ARelayingDuplexConnectionsManager.toPeerConnectionType(duplexObjectSessionPort.getParticipantChoice()));
 
 		// if (joinChoice == ParticipantChoice.JOIN_AND_OBSERVE)
 		// currentMembers = logicalSessionsServerProxy.join(sessionName,

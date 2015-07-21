@@ -13,10 +13,10 @@ public class ACallingConnectListener implements ConnectionListener{
 
 	@Override
 	public void connected(String remoteEnd, ConnectionType aConnectionType) {
-		if (aConnectionType == ConnectionType.MEMBER_TO_SESSION || 
-				aConnectionType == null) { // connected to self
+		if (aConnectionType == ConnectionType.MEMBER_TO_SESSION ) { // connected to self
 		System.out.println("Connected as client to: " + remoteEnd);
 		Adder adderProxy = (Adder) DirectedRPCProxyGenerator.generateRPCProxy(sessionPort, remoteEnd, Adder.class, null);
+
 		adderProxy.printSum(5, 6);		
 		}
 	}

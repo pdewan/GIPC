@@ -53,14 +53,14 @@ public class AModularDuplexRPCDirectSessionPortLauncher extends AnAbstractPortLa
 	}
 	
 	// cannot use parameterized version as no launcher support exists for duplex session port in registry right now
-	protected  InputPort getPort() {
-
-		return DuplexRPCSessionPortSelector.createDuplexRPCSessionPort("localhost", 
-				"" + serverId, serverName, getSessionName(), clientId, clientName,
-				getParticipantChoice()
-				);	
-		
-	}
+//	protected  InputPort getPort() {
+//
+//		return DuplexRPCSessionPortSelector.createDuplexRPCSessionPort("localhost", 
+//				"" + serverId, serverName, getSessionName(), clientId, clientName,
+//				getParticipantChoice()
+//				);	
+//		
+//	}
 
 //	protected PortKind getPortKind() {
 //		return PortKind.SESSION_PORT;
@@ -88,8 +88,14 @@ public class AModularDuplexRPCDirectSessionPortLauncher extends AnAbstractPortLa
 //		sessionPort.connect();		
 //	}
 	
+	protected PortKind getPortKind() {
+		return PortKind.SESSION_PORT;
+	}
+	protected PortAccessKind getPortAccessKind() {
+		return PortAccessKind.DUPLEX;
+	}	
 	protected SessionChoice getSessionChoice() {
 		return SessionChoice.P2P;
-		
 	}
+	
 }
