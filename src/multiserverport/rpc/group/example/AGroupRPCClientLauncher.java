@@ -6,11 +6,11 @@ import inputport.rpc.group.GroupRPCServerInputPort;
 import java.util.Scanner;
 
 import port.ParticipantChoice;
-import port.old.Adder;
-import port.old.AnAdder;
 import port.sessionserver.ASessionParticipantDescription;
 import port.sessionserver.SessionParticipantDescription;
 import port.sessionserver.relay.RelayerClientAndServerSupport;
+import sessionport.rpc.duplex.relayed.example.Adder;
+import sessionport.rpc.duplex.relayed.example.AnAdder;
 import sessionport.rpc.group.AGroupCallingConnectListener;
 import staticsessionport.rpc.group.GroupRPCStaticSessionPortSelector;
 import util.trace.Tracer;

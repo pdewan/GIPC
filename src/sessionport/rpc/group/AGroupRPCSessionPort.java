@@ -5,6 +5,7 @@ import inputport.rpc.group.AGroupRPCServerInputPort;
 import java.util.List;
 import java.util.Set;
 
+import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
 import sessionport.datacomm.group.GroupSessionPort;
 
@@ -86,5 +87,10 @@ public class AGroupRPCSessionPort extends AGroupRPCServerInputPort implements Gr
 	@Override
 	public void sendAllMembers(Object message) {
 		groupSessionPort.sendAllMembers(message);
+	}
+	@Override
+	public ParticipantChoice getParticipantChoice() {
+		// TODO Auto-generated method stub
+		return groupSessionPort.getParticipantChoice();
 	}
 }

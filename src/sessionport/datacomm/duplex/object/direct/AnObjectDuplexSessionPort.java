@@ -6,6 +6,7 @@ import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Set;
 
+import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
 import sessionport.datacomm.duplex.DuplexSessionPort;
 
@@ -85,6 +86,12 @@ public class AnObjectDuplexSessionPort extends ADuplexObjectServerInputPort impl
 	@Override
 	public SessionParticipantDescription getMember(String aName) {
 		return bufferSessionPort.getMember(aName);
+	}
+
+	@Override
+	public ParticipantChoice getParticipantChoice() {
+		// TODO Auto-generated method stub
+		return bufferSessionPort.getParticipantChoice();
 	}
 	
 }

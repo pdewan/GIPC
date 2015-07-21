@@ -11,8 +11,6 @@ import port.PortAccessKind;
 import port.PortKind;
 import port.PortLauncherSupport;
 import port.SessionChoice;
-import port.old.Adder;
-import port.old.AnAdder;
 import replicatedserverport.rpc.group.ReplicatedServerSessionPortSelector;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.AnEarliestReponseReplicatedSessionServerLauncher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;

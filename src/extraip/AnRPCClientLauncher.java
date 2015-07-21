@@ -4,9 +4,9 @@ import inputport.rpc.DirectedRPCProxyGenerator;
 import inputport.rpc.duplex.ADuplexRPCInputPortFactory;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCInputPortSelector;
-import port.old.Adder;
-import port.old.AnAdder;
 import port.old.PrintingTypedReceiveListener;
+import sessionport.rpc.duplex.relayed.example.Adder;
+import sessionport.rpc.duplex.relayed.example.AnAdder;
 
 
 

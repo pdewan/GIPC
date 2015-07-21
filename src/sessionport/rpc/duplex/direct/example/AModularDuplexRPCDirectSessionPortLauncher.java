@@ -11,14 +11,14 @@ import port.PortAccessKind;
 import port.PortKind;
 import port.PortLauncherSupport;
 import port.SessionChoice;
-import port.old.Adder;
-import port.old.AnAdder;
 import replicatedserverport.rpc.group.ReplicatedServerSessionPortSelector;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.AnEarliestReponseReplicatedSessionServerLauncher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 import sessionport.rpc.duplex.DuplexRPCSessionPort;
 import sessionport.rpc.duplex.DuplexRPCSessionPortSelector;
 import sessionport.rpc.duplex.relayed.example.ACallingConnectListener;
+import sessionport.rpc.duplex.relayed.example.Adder;
+import sessionport.rpc.duplex.relayed.example.AnAdder;
 
 
 public class AModularDuplexRPCDirectSessionPortLauncher extends AnAbstractPortLauncher{

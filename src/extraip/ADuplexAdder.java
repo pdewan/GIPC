@@ -7,7 +7,7 @@ import inputport.rpc.duplex.ReplyRPCProxyGenerator;
 
 import java.lang.reflect.Method;
 
-import port.old.Adder;
+import sessionport.rpc.duplex.relayed.example.Adder;
 
 
 

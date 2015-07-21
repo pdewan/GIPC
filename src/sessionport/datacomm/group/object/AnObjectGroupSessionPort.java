@@ -1,5 +1,6 @@
 package sessionport.datacomm.group.object;
 
+import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.ReceiveTrapper;
 import inputport.datacomm.group.GroupSendTrapper;
 import inputport.datacomm.group.GroupServerInputPort;
@@ -9,6 +10,7 @@ import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Set;
 
+import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
 import sessionport.datacomm.duplex.DuplexSessionPort;
 import sessionport.datacomm.group.GroupSessionPort;
@@ -124,6 +126,12 @@ public class AnObjectGroupSessionPort extends AGroupObjectServerInputPort implem
 	}
 	public void sendAllMembers(Object message) {
 		send(getMemberConnections(), message);
+	}
+	
+	@Override
+	public ParticipantChoice getParticipantChoice() {
+		// TODO Auto-generated method stub
+		return duplexSessionPort.getParticipantChoice();
 	}
 
 	

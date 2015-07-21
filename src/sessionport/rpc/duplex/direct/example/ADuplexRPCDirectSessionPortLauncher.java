@@ -2,8 +2,6 @@ package sessionport.rpc.duplex.direct.example;
 
 import inputport.ConnectionListener;
 import port.ParticipantChoice;
-import port.old.Adder;
-import port.old.AnAdder;
 import port.sessionserver.SessionServerLauncher;
 import sessionport.datacomm.duplex.object.ObjectDuplexSessionPortSelector;
 import sessionport.datacomm.duplex.object.direct.ADirectObjectDuplexSessionPortFactory;
@@ -11,6 +9,8 @@ import sessionport.datacomm.duplex.object.relayed.ARelayingObjectDuplexSessionPo
 import sessionport.rpc.duplex.DuplexRPCSessionPort;
 import sessionport.rpc.duplex.DuplexRPCSessionPortSelector;
 import sessionport.rpc.duplex.relayed.example.ACallingConnectListener;
+import sessionport.rpc.duplex.relayed.example.Adder;
+import sessionport.rpc.duplex.relayed.example.AnAdder;
 
 
 public class ADuplexRPCDirectSessionPortLauncher {

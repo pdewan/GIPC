@@ -59,6 +59,10 @@ public  abstract class AnAbstractSimplexBufferMultiServerPort
 
 
 	}
+	@Override
+	public ParticipantChoice getParticipantChoice() {
+		return participantChoice;
+	}
 	
 	protected SendTrapper<ByteBuffer, ByteBuffer> createSendTrapper() {
 		return BufferDuplexSPFP2PTrapperSelector.getTrapperSelector().createSendTrapper(this, connectionsManager);

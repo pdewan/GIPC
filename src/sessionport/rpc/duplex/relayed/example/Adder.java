@@ -1,4 +1,4 @@
-package port.old;
+package sessionport.rpc.duplex.relayed.example;
 
 public interface Adder {
 	Integer sum(Integer p1, Integer p2);

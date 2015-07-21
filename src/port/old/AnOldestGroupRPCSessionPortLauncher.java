@@ -4,6 +4,8 @@ package port.old;
 import inputport.ConnectionListener;
 import port.ParticipantChoice;
 import port.sessionserver.relay.RelayerClientAndServerSupport;
+import sessionport.rpc.duplex.relayed.example.Adder;
+import sessionport.rpc.duplex.relayed.example.AnAdder;
 import sessionport.rpc.group.AGroupCallingConnectListener;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import sessionport.rpc.group.GroupRPCSessionPortSelector;

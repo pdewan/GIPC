@@ -3,7 +3,6 @@ package sessionport.rpc.duplex.relayed.example;
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.rpc.DirectedRPCProxyGenerator;
-import port.old.Adder;
 import sessionport.rpc.duplex.DuplexRPCSessionPort;
 
 public class ACallingConnectListener implements ConnectionListener{
@@ -14,8 +13,9 @@ public class ACallingConnectListener implements ConnectionListener{
 
 	@Override
 	public void connected(String remoteEnd, ConnectionType aConnectionType) {
-		if (aConnectionType == ConnectionType.MEMBER_TO_SESSION ) {
-		System.out.print("Connected as client to: " + remoteEnd);
+		if (aConnectionType == ConnectionType.MEMBER_TO_SESSION || 
+				aConnectionType == null) { // connected to self
+		System.out.println("Connected as client to: " + remoteEnd);
 		Adder adderProxy = (Adder) DirectedRPCProxyGenerator.generateRPCProxy(sessionPort, remoteEnd, Adder.class, null);
 		adderProxy.printSum(5, 6);		
 		}

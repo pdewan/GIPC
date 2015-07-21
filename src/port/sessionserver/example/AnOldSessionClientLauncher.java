@@ -5,12 +5,12 @@ import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCInputPortSelector;
 import inputport.rpc.group.GroupRPCInputPortSelector;
 import inputport.rpc.group.GroupRPCServerInputPort;
-import port.old.Adder;
-import port.old.AnAdder;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionObserver;
 import port.sessionserver.SessionServer;
+import sessionport.rpc.duplex.relayed.example.Adder;
+import sessionport.rpc.duplex.relayed.example.AnAdder;
 import util.trace.Tracer;
 
 

@@ -4,7 +4,7 @@ import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.rpc.group.GroupRPCProxyGenerator;
 import inputport.rpc.group.GroupRPCServerInputPort;
-import port.old.Adder;
+import sessionport.rpc.duplex.relayed.example.Adder;
 
 public class AGroupCallingConnectListener implements ConnectionListener{
 	GroupRPCServerInputPort sessionPort;

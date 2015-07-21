@@ -5,8 +5,8 @@ import inputport.rpc.DirectedRPCProxyGenerator;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCInputPortSelector;
 import oldtypedip.PrintingTypedReceiveListener;
-import port.old.Adder;
-import port.old.AnAdder;
+import sessionport.rpc.duplex.relayed.example.Adder;
+import sessionport.rpc.duplex.relayed.example.AnAdder;
 import util.trace.Tracer;
 
 

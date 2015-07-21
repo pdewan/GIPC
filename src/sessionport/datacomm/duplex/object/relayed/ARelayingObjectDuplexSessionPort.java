@@ -351,5 +351,10 @@ public class ARelayingObjectDuplexSessionPort implements DuplexSessionPort<Objec
 	public SessionParticipantDescription getMember(String aName) {
 		return connectionsManager.getMember(aName);
 	}
+	@Override
+	public ParticipantChoice getParticipantChoice() {
+		// TODO Auto-generated method stub
+		return participantChoice;
+	}
 
 }

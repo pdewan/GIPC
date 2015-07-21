@@ -1,5 +1,6 @@
 package variableserverport;
 
+import port.ParticipantChoice;
 import inputport.datacomm.simplex.SimplexClientInputPort;
 // variable server and multiserver packages should be merged except that it is the abstraction of session and
 // and multisever port
@@ -9,5 +10,7 @@ public interface SimplexVariableServerClientPort<MessageType> extends SimplexCli
 //	Sender<MessageType>
 
 {
+	public ParticipantChoice getParticipantChoice();
+
 
 }

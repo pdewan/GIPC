@@ -14,11 +14,13 @@ import util.misc.RemoteReflectionUtility;
 
 
 public class DirectedRPCProxyGenerator {
-	public static Object generateRPCProxy(SimplexRPC aPort, String aDestination, Class aClass, String anObjectName) {		
+	public static Object generateRPCProxy(SimplexRPC aPort, String aDestination, Class aClass, String anObjectName) {	
+		String actualObjectName = anObjectName == null? aClass.getName(): anObjectName;
 		if (aPort instanceof QueryablePort) {
 			if (((QueryablePort) aPort).getLocalName().equals(aDestination)) {
 				if (aPort instanceof RPCRegistry) {
-					return ((RPCRegistry) aPort).getServerObject(anObjectName);
+					return ((RPCRegistry) aPort).getServerObject(actualObjectName);
+					
 				} else {
 					return null;
 				}

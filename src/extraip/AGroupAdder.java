@@ -6,7 +6,7 @@ import inputport.rpc.group.GroupRPCServerInputPort;
 
 import java.lang.reflect.Method;
 
-import port.old.Adder;
+import sessionport.rpc.duplex.relayed.example.Adder;
 
 
 
