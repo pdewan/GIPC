@@ -12,10 +12,15 @@ public class AnRPCReturnValue implements RPCReturnValue {
 	}
 	@Override
 	public String toString() {
-		return super.toString() + " " + returnValue;
+		return getClass().getSimpleName() + "(" + returnValue + ")";
 	}	
 	public void setReturnValue(Object newVal) {
 		returnValue = newVal;
 	}
+	// no transients to initialize
+	public void initSerializedObject() {
+		
+	}
+	
 	
 }

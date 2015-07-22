@@ -70,7 +70,7 @@ public class ASerializableCall extends ARemoteCall implements SerializableCall{
 		return retVal;
 	}
 	public String toString() {
-		return    targetObject + "." + serializedMethod + toStringArray(args);
+		return  getClass().getSimpleName() + "(" +   targetObject + "." + serializedMethod + toStringArray(args) + ")";
 	}
 	
 	
