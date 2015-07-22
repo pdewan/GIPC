@@ -4,7 +4,7 @@ import java.awt.Component;
 import java.beans.PropertyChangeEvent;
 
 import util.awt.TextComponentInterface;
-import util.models.PropertyListenerRegistrar;
+import util.models.PropertyListenerRegisterer;
 import examples.mvc.local.simplex.ASimplexFrostyGUI;
 import examples.mvc.local.simplex.SimplexFrostyModel;
 
@@ -13,7 +13,7 @@ public abstract class ADuplexFrostyGUI extends ASimplexFrostyGUI  implements Dup
 	protected TextComponentInterface outputField;
 	public void interact (SimplexFrostyModel aModel) {
 		super.interact(aModel);
-		((PropertyListenerRegistrar) clientModel).addPropertyChangeListener(this);
+		((PropertyListenerRegisterer) clientModel).addPropertyChangeListener(this);
 	}
 	protected void createAndAddFrameComponents(){
 		super.createAndAddFrameComponents();

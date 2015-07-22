@@ -6,10 +6,10 @@ import java.beans.PropertyChangeSupport;
 
 import util.annotations.StructurePattern;
 import util.annotations.StructurePatternNames;
-import util.models.PropertyListenerRegistrar;
+import util.models.PropertyListenerRegisterer;
 
 @StructurePattern(StructurePatternNames.OVAL_PATTERN)
-public class AnOval implements Oval, PropertyListenerRegistrar {
+public class AnOval implements Oval, PropertyListenerRegisterer {
 	int x, y, width, height;
 	boolean filled;
 	Color color;

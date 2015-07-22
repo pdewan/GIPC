@@ -3,7 +3,7 @@ package examples.mvc.rmi.collaborative.relaying;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import util.models.PropertyListenerRegistrar;
+import util.models.PropertyListenerRegisterer;
 import examples.mvc.rmi.collaborative.ACollaborativeRMIFrostyModel;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 
@@ -21,7 +21,7 @@ public class ARelayingCollaborativeRMIFrostyModel extends
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		((PropertyListenerRegistrar) echoer).addPropertyChangeListener(this);
+		((PropertyListenerRegisterer) echoer).addPropertyChangeListener(this);
 	}
 	protected void processUpperCase(String aString) {
 		super.processUpperCase(aString);
