@@ -14,6 +14,7 @@ public class ASerializableMethod implements SerializableMethod {
 	String methodName;
 	String[] parameterTypeNames;
 	transient Method method;
+	static final String PARAMETER_SEPARATOR = ",";
 	public ASerializableMethod(Method method) {
 		className = method.getDeclaringClass().getName();
 		methodName = method.getName();
@@ -47,6 +48,7 @@ public class ASerializableMethod implements SerializableMethod {
 	@Override
 	public String toString() {
 		return methodName;
+//		return toStringMethod();
 	}
 	// for property based custom serialization
 	@Override
@@ -73,5 +75,26 @@ public class ASerializableMethod implements SerializableMethod {
 	public void setParameterTypeNames(String[] parameterTypeNames) {
 		this.parameterTypeNames = parameterTypeNames;
 	}
+	 String toStringyParameterTypes() {
+		 if (getParameterTypeNames() == null) return "";
+		 StringBuilder result = new StringBuilder();
+		 for (int i = 0; i < getParameterTypeNames().length; i++) {
+			 if (i > 0) {
+				 result.append(PARAMETER_SEPARATOR);
+			 }
+			 result.append(getParameterTypeNames()[i]);
+		 }
+		 return result.toString();
+	 }
+	 @Override
+	public String toHeader() {
+		 StringBuilder result = new StringBuilder();
+		 result.append(methodName);
+		 result.append("(");
+		 result.append(toStringyParameterTypes());		
+		 result.append(")");
+		 return result.toString();
+
+	 }
 
 }

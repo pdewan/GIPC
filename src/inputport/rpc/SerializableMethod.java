@@ -11,4 +11,5 @@ public interface SerializableMethod extends Serializable {
 	String getMethodName();
 	void setClassName(String className);
 	String getClassName();
+	String toHeader();
 }
