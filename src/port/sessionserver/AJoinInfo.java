@@ -20,6 +20,9 @@ public class AJoinInfo  implements JoinInfo {
 		applicationDefinedState = theState;
 		
 	}
+	public AJoinInfo() {
+		
+	}
 	
 	public List<SessionParticipantDescription> getMembers() {
 		return members;

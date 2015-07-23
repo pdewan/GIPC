@@ -5,42 +5,37 @@ import java.io.Serializable;
 import port.ParticipantChoice;
 
 public class ASessionParticipantDescription extends AServerPortDescription implements SessionParticipantDescription{
-	protected ParticipantChoice paricipantChoice;
+	protected ParticipantChoice participantChoice;
+	
+	
+	
 	protected Serializable participantDescription;
 	public ASessionParticipantDescription (String aHost, String anID, String aName, ParticipantChoice aChoice, Serializable aParticipantDescription) {
 		super(aHost, anID, aName);
-		paricipantChoice= aChoice;
+		participantChoice= aChoice;
 		participantDescription = aParticipantDescription;
 	}
 	public ASessionParticipantDescription (String aHost, String anID, String aName, ParticipantChoice aChoice) {
 		super(aHost, anID, aName);
-		paricipantChoice= aChoice;
+		participantChoice= aChoice;
 	}
 	public ASessionParticipantDescription (String aHost, String anID, String aName, Serializable aParticipantDescription) {
 		super(aHost, anID, aName);
-		paricipantChoice= ParticipantChoice.SERVER_ONLY;
+		participantChoice= ParticipantChoice.SERVER_ONLY;
 	}
 	public ASessionParticipantDescription (ServerPortDescription aServerPortDescription, ParticipantChoice aChoice, Serializable aParticipantDescription) {
 		super(aServerPortDescription.getHost(), aServerPortDescription.getID(), aServerPortDescription.getName());
-		paricipantChoice= aChoice;
+		participantChoice= aChoice;
 		participantDescription = aParticipantDescription;
 	}
 	public ASessionParticipantDescription (ParticipantChoice aChoice) {
-		paricipantChoice= aChoice;
+		participantChoice= aChoice;
 	}
 	public ASessionParticipantDescription () {
 	}
 
-	@Override
-	public ParticipantChoice getParticipantChoice() {
-		return paricipantChoice;
-	}
-
-	@Override
-	public void getParticipantChoice(ParticipantChoice aChoice) {
-		paricipantChoice  = aChoice;
-		
-	}
+	
+	
 	@Override
 	public Serializable getApplicationDefinedDescription() {
 		return participantDescription;
@@ -48,6 +43,26 @@ public class ASessionParticipantDescription extends AServerPortDescription imple
 	@Override
 	public void setApplicationDefinedDescription(Serializable aParticipantDescription) {		
 		participantDescription = aParticipantDescription;
+	}
+	@Override
+	public ParticipantChoice getParticipantChoice() {
+		return participantChoice;
+	}
+
+	public void setParticipantChoice(ParticipantChoice participantChoice) {
+		this.participantChoice = participantChoice;
+	}
+	
+	@Override
+	public Serializable getParticipantDescription() {
+		return participantDescription;
+	}
+	@Override
+	public void setParticipantDescription(Serializable participantDescription) {
+		this.participantDescription = participantDescription;
+	}
+	public void initSerializedObject() {
+		
 	}
 
 }

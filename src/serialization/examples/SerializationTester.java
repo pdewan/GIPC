@@ -17,14 +17,24 @@ public class SerializationTester {
 
 		testSerialization();
 	}
+	
+	enum Color {RED,GREEN, BLUE}
 
 	public static void testSerialization() {
 		// part 1
+		
 		Serializer serializer = SerializerSelector.createSerializer();
-		String[] strings = { "Hello World", "Goodbye World" };
+		translate(serializer, 5);
+		translate(serializer, 5.5);
+		translate (serializer, "hello world");
+		translate(serializer, true);
+		translate(serializer, Color.RED);
+		Object[] values = { "Hello World", "Goodbye World", Color.GREEN };
+		translate(serializer, values);
 		List list = new ArrayList();
 		list.add("Hello world");
 		list.add(3);
+		list.add(Color.BLUE);
 		list.add(null);
 		translate(serializer, list);
 		Map map = new HashMap();
@@ -41,7 +51,7 @@ public class SerializationTester {
 		// part 2
 		List recursive = new ArrayList();
 		recursive.add(null);
-		recursive.add(strings);
+		recursive.add(values);
 		recursive.add(recursive);
 		recursive.add(list);
 		translate(serializer, recursive);
