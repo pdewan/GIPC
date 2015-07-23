@@ -30,10 +30,14 @@ public class ASerializingForwarder extends AnAbstractSendTrapper<Object, ByteBuf
 		} else {
 			try {
 				ByteBuffer bbMessage = serializer.outputBufferFromObject(message);		
-				destination.send(remoteName, bbMessage);
+//				destination.send(remoteName, bbMessage);
+				sendBuffer(remoteName, bbMessage);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+	}
+	protected void sendBuffer(String remoteName, ByteBuffer bbMessage) {
+		destination.send(remoteName, bbMessage);
 	}
 }

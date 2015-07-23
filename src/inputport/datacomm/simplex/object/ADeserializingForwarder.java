@@ -24,11 +24,15 @@ public class ADeserializingForwarder extends AnAbstractReceiveTrapper<ByteBuffer
 		Tracer.info(this, " Deserializing received buffer:" + message + " from:" + remoteEnd);
 		try {
 			Object serializable = serializer.objectFromInputBuffer(message);
-			destination.notifyPortReceive(remoteEnd, serializable);	
+//			destination.notifyPortReceive(remoteEnd, serializable);	
+			notifySerializable(remoteEnd, serializable);
 		} catch (Exception e) {
 			e.printStackTrace();
 			// the receiver may be able to do something with the ByteBuffer
 			destination.notifyPortReceive(remoteEnd, message);
 		}
+	}
+	protected void notifySerializable(String remoteEnd, Object serializable) {
+		destination.notifyPortReceive(remoteEnd, serializable);	
 	}
 }
