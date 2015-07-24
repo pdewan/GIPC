@@ -16,11 +16,11 @@ import util.trace.Tracer;
 
 
 
-public class AGroupRPCServerInputPort extends AnInheritingTypedGroupServerInputPort implements GroupRPCServerInputPort {
+public class OldAGroupRPCServerInputPort extends AnInheritingTypedGroupServerInputPort implements GroupRPCServerInputPort {
 	Map<String, RPCReturnValueReceiver> nameToRPCReturnValueReceiver = new HashMap();
 	SerializableCallReceiver serializableCallReceiver;
 	RPCRegistry rpcManager = new AnRPCRegistery();
-	public AGroupRPCServerInputPort(String theServerId, String theServerName) {
+	public OldAGroupRPCServerInputPort(String theServerId, String theServerName) {
 		super(theServerId, theServerName);
 		serializableCallReceiver = new ASerializableCallReceiver(rpcManager, this);
 		//delegateTypedListenablePort.addReceiveListener(this);
@@ -196,7 +196,7 @@ public class AGroupRPCServerInputPort extends AnInheritingTypedGroupServerInputP
 	
 	public static void main (String[] args) {
 		Tracer.showInfo(true);
-		GroupRPCServerInputPort serverInputPort = new AGroupRPCServerInputPort("9090", "test server");
+		GroupRPCServerInputPort serverInputPort = new OldAGroupRPCServerInputPort("9090", "test server");
 		serverInputPort.connect();
 		PrintingReplyingTypedReceiver messageReceiver = new PrintingReplyingTypedReceiver(serverInputPort);
 		RPCReceiver rpcServer = new RPCReceiver(serverInputPort);
@@ -205,9 +205,9 @@ public class AGroupRPCServerInputPort extends AnInheritingTypedGroupServerInputP
 
 		serverInputPort.register(TypedReceiveListener.class, messageReceiver);
 		serverInputPort.register(RPCReceiver.class, rpcServer);
-		Adder adder = new AnAdder();
-		serverInputPort.register(Adder.class, adder);
-		AGroupAdder groupAdder = new AGroupAdder(serverInputPort);
+		OldAdder adder = new OldAnAdder();
+		serverInputPort.register(OldAdder.class, adder);
+		OldAGroupAdder groupAdder = new OldAGroupAdder(serverInputPort);
 		serverInputPort.register(GroupAdder.class, groupAdder);
 		//serverInputPort.addReceiveListener(echoingReceiveListener);	
 		serverInputPort.addSendListener(messageReceiver);

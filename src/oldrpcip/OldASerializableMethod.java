@@ -3,12 +3,12 @@ package oldrpcip;
 import java.lang.reflect.Method;
 
 
-public class ASerializableMethod implements SerializableMethod {
+public class OldASerializableMethod implements SerializableMethod {
 	String className;
 	String methodName;
 	String[] parameterTypeNames;
 	transient Method method;
-	public ASerializableMethod(Method method) {
+	public OldASerializableMethod(Method method) {
 		className = method.getDeclaringClass().getName();
 		methodName = method.getName();
 		Class[] parameterClasses = method.getParameterTypes();

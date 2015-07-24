@@ -69,23 +69,31 @@ public class AGenericSimplexBufferServerInputPort<RequestChannelType, MessageCha
 	@Override
 	public void messageReceived(MessageChannelType aChannelType,
 			ByteBuffer aMessage) {
-		Tracer.info(this, "Received message:" + aMessage + " on channel:" + aChannelType);
-		String clientName = channelToClientName.get(aChannelType);
-		if (clientName == null) {
+		Tracer.info(this, "ServerInputPort Received message:" + aMessage + " on channel:" + aChannelType);
+		String aClientName = channelToClientName.get(aChannelType);
+		if (aClientName == null) {
 			int deducedLength = aMessage.limit() - aMessage.position();
 			byte[] stringBytes = new byte[deducedLength];			
 			aMessage.get(stringBytes);
-			clientName = new String(stringBytes);
-			associate(aChannelType, clientName);
+			aClientName = new String(stringBytes);
+			associate(aChannelType, aClientName);
 			Tracer.info(this, "ServerInputPort connected to:" + aChannelType);
-			notifyConnect(clientName, ConnectionType.TO_CLIENT);
+			notifyConnect(aClientName, ConnectionType.TO_CLIENT);
 		} else {
-			Tracer.info(this, "ServerInputPort received message " + aMessage + " from:" + aChannelType );
-			totalBytesReceived += aMessage.limit() - aMessage.position(); 
-			Tracer.info("Total bytes received by server port: " + getLocalName() + " " + totalBytesReceived);
-
-			notifyPortReceive(clientName, aMessage);			
+//			Tracer.info(this, "ServerInputPort received message " + aMessage + " from:" + aChannelType );
+//			totalBytesReceived += aMessage.limit() - aMessage.position(); 
+//			Tracer.info("Total bytes received by server port: " + getLocalName() + " " + totalBytesReceived);
+//
+//			notifyPortReceive(clientName, aMessage);	
+			messageReceived(aClientName, aMessage);
 		}		
+	}
+	protected void messageReceived(String aClientName, ByteBuffer aMessage) {
+		Tracer.info(this, "ServerInputPort received message " + aMessage + " from:" + aClientName );
+		totalBytesReceived += aMessage.limit() - aMessage.position(); 
+		Tracer.info("Total bytes received by server port: " + getLocalName() + " " + totalBytesReceived);
+
+		notifyPortReceive(aClientName, aMessage);	
 	}
 	@Override
 	public void disconnect() {

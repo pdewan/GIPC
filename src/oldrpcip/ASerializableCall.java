@@ -8,7 +8,7 @@ public class ASerializableCall implements SerializableCall{
 	Object[] args;
 	public ASerializableCall(String theName, Method theMethod, Object[] theArgs) {
 		name = theName;
-		method = new ASerializableMethod(theMethod);
+		method = new OldASerializableMethod(theMethod);
 		args = theArgs;
 	}
 	public SerializableMethod getSerializableMethod() {

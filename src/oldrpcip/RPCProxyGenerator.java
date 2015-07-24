@@ -15,7 +15,7 @@ public class RPCProxyGenerator {
 				
 	}
 	public static Object generateOthersRPCProxy(FullServerRPC port, Class localInterface, String name) {
-		InvocationHandler invocationHandler = new AnOthersCallRPCProxyInvocationHandler(port, localInterface, name);
+		InvocationHandler invocationHandler = new OldAnOthersCallRPCProxyInvocationHandler(port, localInterface, name);
 		return Proxy.newProxyInstance(localInterface.getClassLoader(),
                 new Class[] { localInterface },
                 invocationHandler);
@@ -23,7 +23,7 @@ public class RPCProxyGenerator {
 	}
 	
 	public static void main(String[] args) {
-		Adder adderProxy = (Adder) generateUniRPCProxy(null, Adder.class, "adder");
+		OldAdder adderProxy = (OldAdder) generateUniRPCProxy(null, OldAdder.class, "adder");
 		int result = adderProxy.add(new Integer(5), new Integer(6));
 	}
 

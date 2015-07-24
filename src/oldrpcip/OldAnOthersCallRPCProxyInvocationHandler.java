@@ -3,10 +3,10 @@ package oldrpcip;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 
-public  class AnOthersCallRPCProxyInvocationHandler extends AnAbstractRPCProxyInvocationHandler {
+public  class OldAnOthersCallRPCProxyInvocationHandler extends OldAnAbstractRPCProxyInvocationHandler {
 	FullServerRPC fullServerRPC;
 	
-	public AnOthersCallRPCProxyInvocationHandler (FullServerRPC theRPCPort, Class theRemoteInterface, String theName ) {
+	public OldAnOthersCallRPCProxyInvocationHandler (FullServerRPC theRPCPort, Class theRemoteInterface, String theName ) {
 		super(theRPCPort, theRemoteInterface, theName);
 		fullServerRPC = theRPCPort;
 	}

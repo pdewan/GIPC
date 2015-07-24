@@ -61,7 +61,12 @@ public class AGenericDuplexBufferServerInputPort<RequestChannelType, MessageChan
 
 	@Override
 	public void send(String aRemoteName, ByteBuffer aMessage) {
+		if (aRemoteName.equals(getLocalName())) {
+			messageReceived(aRemoteName, aMessage);
+			return;
+		}
 		if (!isConnected(aRemoteName)) {
+			
 			String message = "Ignoring attempt to send " + aMessage + " to " + aRemoteName + " before connection completely established or after other end disconnected";
 //			Tracer.error(message);
 			throw new SendToUnconnectedPortException(message);

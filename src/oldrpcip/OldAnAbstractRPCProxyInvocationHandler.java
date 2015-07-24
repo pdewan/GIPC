@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
-public abstract class AnAbstractRPCProxyInvocationHandler implements InvocationHandler {
+public abstract class OldAnAbstractRPCProxyInvocationHandler implements InvocationHandler {
 	FullClientRPC rpcClientInputPort;
 	Class remoteInterface;
 	String name;
-	public AnAbstractRPCProxyInvocationHandler (FullClientRPC theRPCPort, Class theRemoteInterface, String theName ) {
+	public OldAnAbstractRPCProxyInvocationHandler (FullClientRPC theRPCPort, Class theRemoteInterface, String theName ) {
 		rpcClientInputPort = theRPCPort;
 		remoteInterface = theRemoteInterface;
 		name = theName;

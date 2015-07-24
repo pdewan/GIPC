@@ -26,8 +26,8 @@ public class AnRPCClientLauncher {
 		clientInputPort.addTypedReceiveListener(messageReceiver);		
 		clientInputPort.addSendListener(messageReceiver);
 		clientInputPort.register(TypedReceiveListener.class, messageReceiver);
-		Adder adder = new AnAdder();
-		clientInputPort.register(Adder.class, adder);
+		OldAdder adder = new OldAnAdder();
+		clientInputPort.register(OldAdder.class, adder);
 
 		clientInputPort.connect();
 //		ByteBuffer message =  ByteBuffer.wrap("hello server".getBytes());
@@ -54,7 +54,7 @@ public class AnRPCClientLauncher {
 //		System.out.println(retVal2);
 		GroupAdder groupAdderProxy = (GroupAdder) RPCProxyGenerator.generateUniRPCProxy(clientInputPort, GroupAdder.class, null);
 		groupAdderProxy.groupAdd(5, 6);
-		Adder adderProxy = (Adder) RPCProxyGenerator.generateUniRPCProxy(clientInputPort, Adder.class, null);
+		OldAdder adderProxy = (OldAdder) RPCProxyGenerator.generateUniRPCProxy(clientInputPort, OldAdder.class, null);
 		Object result = adderProxy.add(5, 6);
 		System.out.println("Result of adding:" + result);
 

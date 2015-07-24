@@ -4,19 +4,19 @@ import java.lang.reflect.Method;
 
 
 
-public class AGroupAdder implements Runnable, GroupAdder {
+public class OldAGroupAdder implements Runnable, GroupAdder {
 	protected GroupRPCServerInputPort port;
 	Method method;
-	Adder adderProxy;
+	OldAdder adderProxy;
 	int p1;
 	int p2;
 	
-	public AGroupAdder(GroupRPCServerInputPort thePort)  {
+	public OldAGroupAdder(GroupRPCServerInputPort thePort)  {
 		port = thePort;
 		try {
 			Class[] parameterTypes = {Integer.class, Integer.class};
-			method = Adder.class.getMethod("add", parameterTypes);
-			adderProxy = (Adder) RPCProxyGenerator.generateOthersRPCProxy(port, Adder.class, null);
+			method = OldAdder.class.getMethod("add", parameterTypes);
+			adderProxy = (OldAdder) RPCProxyGenerator.generateOthersRPCProxy(port, OldAdder.class, null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

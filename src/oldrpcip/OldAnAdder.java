@@ -1,6 +1,6 @@
 package oldrpcip;
 
-public class AnAdder implements Adder{
+public class OldAnAdder implements OldAdder{
 
 	@Override
 	public Integer add(Integer p1, Integer p2) {
