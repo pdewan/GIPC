@@ -39,7 +39,7 @@ public class ADuplexCallSendTrapper extends ASimplexCallSendTrapper {
 		Tracer.info(this, "Sending message :" + remoteName + " Message:" + message);
 		if (message instanceof RemoteCall) {
 		RemoteCall call = (RemoteCall) message;
-		sharedSenderReceiverState().localRemoteReferenceTranslator
+		sharedSenderReceiverState().localRemoteReferenceTranslator // pass reemote name also?
 				.transformSentRemoteReferences(call.getArgs());
 		}
 		super.send(remoteName, message);

@@ -12,8 +12,16 @@ import java.lang.reflect.Proxy;
 
 import util.misc.RemoteReflectionUtility;
 
-
 public class DirectedRPCProxyGenerator {
+	static boolean shortCircuitLocalCallsToRemotes = true;
+
+	public static boolean isShortCircuitLocalCallsToRemotes() {
+		return shortCircuitLocalCallsToRemotes;
+	}
+	public static void setDoShortCircuitLocalCallsToRemotes(
+			boolean newVal) {
+		DirectedRPCProxyGenerator.shortCircuitLocalCallsToRemotes = newVal;
+	}
 	public static Object getLocalRegisteredObject (SimplexRPC aPort, String aDestination, Class aClass, String anObjectName) {
 		String actualObjectName = anObjectName == null? aClass.getName(): anObjectName;
 		if (aPort instanceof QueryablePort) {
@@ -40,9 +48,9 @@ public class DirectedRPCProxyGenerator {
 				}
 			} 
 		}
-		return generateRPCProxy(aPort, aClass, anObjectName);		
+		return generateRPCProxyAndDoNotGetLocalRegisteredObject(aPort, aDestination, aClass, anObjectName);		
 	}
-	public static Object generateRPCProxy(SimplexRPC aPort, String aDestination, Class aClass, String anObjectName) {	
+	public static Object generateRPCProxyAndDoNotGetLocalRegisteredObject(SimplexRPC aPort, String aDestination, Class aClass, String anObjectName) {	
 //		String actualObjectName = anObjectName == null? aClass.getName(): anObjectName;
 //		if (aPort instanceof QueryablePort) {
 //			if (((QueryablePort) aPort).getLocalName().equals(aDestination)) {
@@ -61,6 +69,15 @@ public class DirectedRPCProxyGenerator {
                 remoteInterfaces,
                 invocationHandler);				
 	}
+	public static Object generateRPCProxy(SimplexRPC aPort, String aDestination, Class aClass, String anObjectName) {	
+		if (isShortCircuitLocalCallsToRemotes())
+			return generateRPCProxyOrGetLocalRegisteredObject(aPort, aDestination, aClass, anObjectName);
+
+		else
+			return generateRPCProxyAndDoNotGetLocalRegisteredObject(aPort, aDestination, aClass, anObjectName);
+
+	}
+
 	
 	public static Object generateRPCProxy(SimplexRPC aPort, Class aClass) {		
 		return generateRPCProxy(aPort, null, aClass, null);	

@@ -98,10 +98,11 @@ public class ALocalRemoteReferenceTranslator implements LocalRemoteReferenceTran
 			// RPC registry should be able to go from object to name I suppose
 			String objectName = duplexRPCInputPort.getLocalName() + GENERATED_SUFFIX + objectId ; 
 			objectId++;
-			duplexRPCInputPort.register(objectName, possiblyRemote);			
+			duplexRPCInputPort.register(objectName, possiblyRemote);	// if we get a call back on this, fetch this object as both target of all and parameter of call, maybe they should be different, parameter can be proxy		
 			remoteSerializable = new ARemoteSerializable(duplexRPCInputPort.getLocalName(), 
 					possiblyRemote.getClass().getName(), objectName);
-			remoteToRemoteSerializable.put(possiblyRemote, remoteSerializable); // should we do this? 
+			if (DirectedRPCProxyGenerator.isShortCircuitLocalCallsToRemotes())
+			remoteToRemoteSerializable.put(possiblyRemote, remoteSerializable); // should we do this, an addition serializable gets registered? 
 		}
 		if (remoteSerializable.getObjectName() == null) {
 			Tracer.error("Cannot send proxy:" + possiblyRemote + " as it does not have a name");
@@ -230,13 +231,18 @@ public class ALocalRemoteReferenceTranslator implements LocalRemoteReferenceTran
 //			return possiblyRemoteSerializable;
 		}
 		RemoteSerializable remoteSerializable = (RemoteSerializable) possiblyRemoteSerializable;
+		if (DirectedRPCProxyGenerator.isShortCircuitLocalCallsToRemotes()) {
+
 		Object localObject = duplexRPCInputPort.getServerObject(remoteSerializable
 				.getObjectName()); // in case it is a proxy to a local object
 		if (localObject != null)
 			return localObject;
+		}
 		
 		Object proxy = getRemote(remoteSerializable);
-		if (proxy != null)
+		if (proxy != null && 
+				((proxy instanceof Proxy) ||
+				DirectedRPCProxyGenerator.isShortCircuitLocalCallsToRemotes() ))
 			return proxy;
 		// so this is a reference given by the sending site to its object.
 		// generate a proxy so we can access this reference
