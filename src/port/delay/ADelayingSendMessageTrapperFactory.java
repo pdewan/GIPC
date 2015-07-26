@@ -6,6 +6,7 @@ import inputport.datacomm.SendTrapper;
 import inputport.datacomm.SendTrapperFactory;
 
 public class ADelayingSendMessageTrapperFactory<MessageType> implements SendTrapperFactory<MessageType, MessageType>{
+	 SendTrapper<MessageType, MessageType>  lastSendTrapper;
 	public ADelayingSendMessageTrapperFactory() {
 		
 	}
@@ -13,7 +14,14 @@ public class ADelayingSendMessageTrapperFactory<MessageType> implements SendTrap
 	public SendTrapper<MessageType, MessageType> createSendTrapper(
 			InputPort anInputPort, NamingSender<MessageType> aDestination) {
 		// TODO Auto-generated method stub
-		return new ADelayingSendMessageTrapper(anInputPort, aDestination);
+		lastSendTrapper = new ADelayingSendMessageTrapper(anInputPort, aDestination);
+//		return new ADelayingSendMessageTrapper(anInputPort, aDestination);
+		return lastSendTrapper;
+	}
+	
+	public SendTrapper<MessageType, MessageType> getLastSendTrapper() {
+		// TODO Auto-generated method stub
+		return lastSendTrapper;
 	}
 
 //	@Override

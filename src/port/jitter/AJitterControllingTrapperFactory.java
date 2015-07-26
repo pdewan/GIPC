@@ -8,6 +8,7 @@ import inputport.datacomm.SendTrapper;
 import inputport.datacomm.TrapperFactory;
 
 public class AJitterControllingTrapperFactory implements TrapperFactory{
+	SendTrapper lastSendTrapper;
 	public AJitterControllingTrapperFactory() {
 		
 	}
@@ -21,7 +22,15 @@ public class AJitterControllingTrapperFactory implements TrapperFactory{
 	@Override
 	public SendTrapper createSendTrapper(InputPort anInputPort,
 			NamingSender aDestination) {
-		return new ATimeStampingSendTrapper(aDestination);
+		lastSendTrapper = new ATimeStampingSendTrapper(aDestination);
+//		return new ATimeStampingSendTrapper(aDestination);
+		return lastSendTrapper;
+	}
+
+	
+	public SendTrapper getLastSendTrapper() {
+		// TODO Auto-generated method stub
+		return lastSendTrapper;
 	}
 	
 

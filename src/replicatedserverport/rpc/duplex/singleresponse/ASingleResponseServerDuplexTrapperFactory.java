@@ -8,6 +8,7 @@ import inputport.datacomm.SendTrapper;
 import inputport.datacomm.TrapperFactory;
 
 public class ASingleResponseServerDuplexTrapperFactory implements TrapperFactory<Object, Object>{
+	protected SendTrapper<Object, Object> lastSendTrapper;
 	protected ServerMessagesManager serverMessagesManager;
 	public ASingleResponseServerDuplexTrapperFactory() {
 		serverMessagesManager = createServerMessageManager();
@@ -21,6 +22,7 @@ public class ASingleResponseServerDuplexTrapperFactory implements TrapperFactory
 		ASingleResponseServerDuplexSendTrapper retVal = new ASingleResponseServerDuplexSendTrapper(anInputPort, destination,  serverMessagesManager);
 		serverMessagesManager.setBufferedMessageSender(retVal);
 		anInputPort.addConnectionListener(serverMessagesManager);
+		lastSendTrapper = retVal;
 		return retVal;
 	}
 
@@ -28,5 +30,10 @@ public class ASingleResponseServerDuplexTrapperFactory implements TrapperFactory
 	public ReceiveTrapper<Object, Object> createReceiveTrapper(
 			InputPort anInputPort, ReceiveNotifier<Object> receiveNotifier) {
 		return new ASingleResponseServerDuplexReceiveTrapper(anInputPort, receiveNotifier, serverMessagesManager);
+	}
+	
+	public SendTrapper<Object, Object> getLastSendTrapper() {
+		// TODO Auto-generated method stub
+		return lastSendTrapper;
 	}
 }

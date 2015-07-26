@@ -10,11 +10,14 @@ import inputport.datacomm.TrapperFactory;
 
 public class AFixedResponseServerDuplexTrapperFactory 
 	implements TrapperFactory<Object, Object>{
+	SendTrapper<Object, Object> lastSendTrapper;
 	
 	@Override
 	public SendTrapper<Object, Object> createSendTrapper(InputPort anInputPort,
 			NamingSender<Object> destination) {
-		return new AFixedResponseServerDuplexSendTrapper(anInputPort, destination);
+		lastSendTrapper = new AFixedResponseServerDuplexSendTrapper(anInputPort, destination);
+//		return new AFixedResponseServerDuplexSendTrapper(anInputPort, destination);
+		return lastSendTrapper;
 		
 	}
 
@@ -22,5 +25,10 @@ public class AFixedResponseServerDuplexTrapperFactory
 	public ReceiveTrapper<Object, Object> createReceiveTrapper(
 			InputPort anInputPort, ReceiveNotifier<Object> receiveNotifier) {
 		return new AReceiveMessageForwarder(anInputPort, receiveNotifier );
+	}
+
+	public SendTrapper<Object, Object> getLastSendTrapper() {
+		// TODO Auto-generated method stub
+		return lastSendTrapper;
 	}
 }
