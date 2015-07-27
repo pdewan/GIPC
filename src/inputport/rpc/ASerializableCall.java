@@ -73,5 +73,8 @@ public class ASerializableCall extends ARemoteCall implements SerializableCall{
 		return  getClass().getSimpleName() + "(" +   targetObject + "." + serializedMethod + toStringArray(args) + ")";
 	}
 	
+	public void initSerializedObject() {
+		
+	}
 	
 }
