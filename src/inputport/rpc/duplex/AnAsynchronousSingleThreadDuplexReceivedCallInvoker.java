@@ -25,7 +25,7 @@ public class AnAsynchronousSingleThreadDuplexReceivedCallInvoker
 	// otherwise the relayer will not serialize matters
 	// so let us create a staic thread
 	static BlockingQueue<MessageWithSourceAndReceiver> callQueue = 
-			new LinkedBlockingQueue(AScatterGatherSelectionManager.getMAX_OUTSTANDING_WRITES());
+			new LinkedBlockingQueue(AScatterGatherSelectionManager.getMaxOutstandingWrites());
 	static Thread callQueueConsumer;
 	DuplexReceivedCallInvoker synchronousReceivedCallInvoker;
 	
@@ -41,8 +41,8 @@ public class AnAsynchronousSingleThreadDuplexReceivedCallInvoker
 	}
 	@Override
 	public void messageReceived(String aSender, Object aMessage) {
-		if (callQueue.size() == AScatterGatherSelectionManager.getMAX_OUTSTANDING_WRITES() ) {
-			Tracer.error("max outstanding method calls exceed limit of" + AScatterGatherSelectionManager.getMAX_OUTSTANDING_WRITES());
+		if (callQueue.size() == AScatterGatherSelectionManager.getMaxOutstandingWrites() ) {
+			Tracer.error("max outstanding method calls exceed limit of" + AScatterGatherSelectionManager.getMaxOutstandingWrites());
 		} else {
 //			System.out.println ("Call Queue added:" + aMessage);
 			callQueue.add(new AMessageWithSourceAndReceiver(aSender, aMessage, synchronousReceivedCallInvoker));

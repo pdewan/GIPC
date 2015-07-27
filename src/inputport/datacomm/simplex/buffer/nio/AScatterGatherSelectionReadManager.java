@@ -8,7 +8,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class AScatterGatherSelectionReadManager extends ASelectionReadManager   {
 //	public static final int BYTES_IN_INT =  Integer.SIZE/Byte.SIZE;
-	BlockingQueue<HeaderWriteCommand> headerBufferPool = new ArrayBlockingQueue<HeaderWriteCommand>(AScatterGatherSelectionManager.getMAX_OUTSTANDING_WRITES());
+	BlockingQueue<HeaderWriteCommand> headerBufferPool = new ArrayBlockingQueue<HeaderWriteCommand>(AScatterGatherSelectionManager.getMaxOutstandingWrites());
 
 
 	int messageLength;

@@ -12,7 +12,7 @@ import util.trace.Tracer;
 
 
 
-public class ADeserializingForwarder extends AnAbstractReceiveTrapper<ByteBuffer, Object> {
+public class ADeserializingForwarder extends AnAbstractReceiveTrapper<ByteBuffer, Object> implements DeserializingForwarder {
 	protected Serializer serializer;
 	public ADeserializingForwarder(ReceiveNotifier aReceiveNotifier) {
 		super (null, aReceiveNotifier);

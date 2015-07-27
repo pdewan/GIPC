@@ -11,7 +11,7 @@ public class AScatterGatherSelectionManager extends ASelectionManager implements
 //	int messageLength;
 //	public static final int MAX_OUTSTANDING_WRITES = 256*4*4; // 4K buffers should be enough for even mouse movements, but with custom serializers get heap space issues
 	
-	private static  int MAX_OUTSTANDING_WRITES = 10; // with custom seralizers 
+	private static  int maxOutstandingWrites = 10; // with custom seralizers 
 
 
 	protected SelectionReadManager createSelectionReadManager() {
@@ -24,11 +24,11 @@ public class AScatterGatherSelectionManager extends ASelectionManager implements
 	public void add(HeaderWriteCommand theBufferedHeaderWrite) {
 		((ScatterGatherSelectionWriteManager) writeManager).add(theBufferedHeaderWrite);
 	}
-	public static int getMAX_OUTSTANDING_WRITES() {
-		return MAX_OUTSTANDING_WRITES;
+	public static int getMaxOutstandingWrites() {
+		return maxOutstandingWrites;
 	}
-	public static void setMAX_OUTSTANDING_WRITES(int mAX_OUTSTANDING_WRITES) {
-		MAX_OUTSTANDING_WRITES = mAX_OUTSTANDING_WRITES;
+	public static void setMaxOutstandingWrites(int mAX_OUTSTANDING_WRITES) {
+		maxOutstandingWrites = mAX_OUTSTANDING_WRITES;
 	}
 	
 //	@Override

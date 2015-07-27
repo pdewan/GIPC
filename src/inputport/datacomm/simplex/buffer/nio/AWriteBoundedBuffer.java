@@ -13,7 +13,7 @@ import util.trace.Tracer;
 public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 //	public static final int MAX_BUFFERS = 256*4; // 1 K buffers should be enough
 	ArrayBlockingQueue<WriteCommand> contents = 
-		new ArrayBlockingQueue(AScatterGatherSelectionManager.getMAX_OUTSTANDING_WRITES());
+		new ArrayBlockingQueue(AScatterGatherSelectionManager.getMaxOutstandingWrites());
 	SocketChannel channel;
 	SelectionManager selectionManager;
 	public AWriteBoundedBuffer(SelectionManager theSelectionManager, SocketChannel theSocketChannel) {
@@ -32,8 +32,8 @@ public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 		// cannot make the caller thread block because 
 		// the method it is called by a synchronized method in selection manager
 		// so blocking will lock the monitor and thus block the selection thread
-		if (contents.size() == AScatterGatherSelectionManager.getMAX_OUTSTANDING_WRITES()) {
-			Tracer.error("Overflow of header buffer queue of size:" + AScatterGatherSelectionManager.getMAX_OUTSTANDING_WRITES());
+		if (contents.size() == AScatterGatherSelectionManager.getMaxOutstandingWrites()) {
+			Tracer.error("Overflow of header buffer queue of size:" + AScatterGatherSelectionManager.getMaxOutstandingWrites());
 			return;
 		}
 		contents.add(anElement);

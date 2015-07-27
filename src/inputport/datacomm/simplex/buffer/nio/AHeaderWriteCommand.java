@@ -38,6 +38,6 @@ public class AHeaderWriteCommand extends AWriteCommand implements HeaderWriteCom
 		return successful;
 	}
 	static {
-		nextWriteId = - AScatterGatherSelectionManager.getMAX_OUTSTANDING_WRITES();
+		nextWriteId = - AScatterGatherSelectionManager.getMaxOutstandingWrites();
 	}
 }

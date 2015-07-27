@@ -7,10 +7,17 @@ import inputport.datacomm.ReceiveTrapperFactory;
 
 import java.nio.ByteBuffer;
 
-public class ADeserializingForwarderFactory implements ReceiveTrapperFactory<ByteBuffer, Object> {
+public class ADeserializingForwarderFactory implements 
+	//ReceiveTrapperFactory<ByteBuffer, Object> {
+	DeserializingForwarderFactory {
 	
-	@Override
-	public ReceiveTrapper<ByteBuffer, Object> createReceiveTrapper(InputPort anInputPort,
+//	@Override
+//	public ReceiveTrapper<ByteBuffer, Object> createReceiveTrapper(InputPort anInputPort,
+//			ReceiveNotifier<Object> receiveRegistrarAndNotifier) {
+//		return new ADeserializingForwarder (receiveRegistrarAndNotifier);
+//	}
+	
+	public DeserializingForwarder createReceiveTrapper(InputPort anInputPort,
 			ReceiveNotifier<Object> receiveRegistrarAndNotifier) {
 		return new ADeserializingForwarder (receiveRegistrarAndNotifier);
 	}

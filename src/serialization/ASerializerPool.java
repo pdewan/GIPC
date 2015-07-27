@@ -23,12 +23,12 @@ public class ASerializerPool implements SerializerPool {
 	public ASerializerPool(SendRegistrar theSendNotifier) {
 		if (theSendNotifier != null)
 			theSendNotifier.addSendListener(this);
-		outputSupportBoundedBuffer =  new ArrayBlockingQueue(AScatterGatherSelectionManager.getMAX_OUTSTANDING_WRITES());
+		outputSupportBoundedBuffer =  new ArrayBlockingQueue(AScatterGatherSelectionManager.getMaxOutstandingWrites());
 
 		inputSupport = SerializerSelector.createSerializer();
 		Tracer.info(this, "Initializing serializer pool");
 
-		for (int i=0; i< AScatterGatherSelectionManager.getMAX_OUTSTANDING_WRITES(); i++) {
+		for (int i=0; i< AScatterGatherSelectionManager.getMaxOutstandingWrites(); i++) {
 			Serializer bufferSerializationSupport = SerializerSelector.createSerializer();
 			putOutputBufferSerializationSupport(bufferSerializationSupport);
 

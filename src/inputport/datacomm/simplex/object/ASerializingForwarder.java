@@ -12,7 +12,7 @@ import serialization.SerializerPoolSelector;
 import util.trace.Tracer;
 
 
-public class ASerializingForwarder extends AnAbstractSendTrapper<Object, ByteBuffer> {
+public class ASerializingForwarder extends AnAbstractSendTrapper<Object, ByteBuffer> implements SerializingForwarder{
 	protected Serializer serializer;
 	InputPort inputPort;
 	public ASerializingForwarder(InputPort anInputPort, NamingSender<ByteBuffer>  aDestination) {
