@@ -19,6 +19,8 @@ public class AGenericDuplexBufferServerInputPort<RequestChannelType, MessageChan
 	SendTrapper<ByteBuffer, ByteBuffer> sendTrapper;
 //	protected String lastSender = null;
 	SendRegistrarAndNotifier sendRegistrarAndNotifier = new ASendRegistrarAndNotifier();
+	EchoingBufferSender echoingBufferSender;
+	
 	
 	DuplexServerInputPortDriver<RequestChannelType, MessageChannelType> duplexDriver;
 
@@ -58,12 +60,25 @@ public class AGenericDuplexBufferServerInputPort<RequestChannelType, MessageChan
 //		Tracer.info(this, "Setting reply receiver:" + lastSender);
 //		lastSender = newVal;
 //	}
+	
+//	public void messageReceived(String aClientName, ByteBuffer aMessage) {
+//		super.messageReceived(aClientName, aMessage);
+//	}
+
+	protected EchoingBufferSender getOrCreateEchoingBufferSender() {
+		if (echoingBufferSender == null)
+			echoingBufferSender = new AnEchoingBufferSender(this);
+		return  echoingBufferSender;
+	}
 
 	@Override
 	public void send(String aRemoteName, ByteBuffer aMessage) {
 		if (aRemoteName.equals(getLocalName())) {
-			messageReceived(aRemoteName, aMessage);
-			notifyPortSend(aRemoteName, aMessage, -1); // no channel wrie was actually done, this is to inform the serializer pool
+//			messageReceived(aRemoteName, aMessage);
+//			notifyPortSend(aRemoteName, aMessage, -1); // no channel wrie was actually done, this is to inform the serializer pool
+//			getOrCreateEchoingBufferSender().localSend(aMessage);
+			getOrCreateEchoingBufferSender().enqueLocalSend(aMessage);
+
 			return;
 		}
 		if (!isConnected(aRemoteName)) {
@@ -86,6 +101,7 @@ public class AGenericDuplexBufferServerInputPort<RequestChannelType, MessageChan
 	public void addSendListener(ByteBufferSendListener portSendListener) {
 		sendRegistrarAndNotifier.addSendListener(portSendListener);
 	}
+	@Override
 	public void notifyPortSend(String aRemoteEnd, ByteBuffer message, int sendId) {
 		sendRegistrarAndNotifier.notifyPortSend(aRemoteEnd, message, sendId);
 	}

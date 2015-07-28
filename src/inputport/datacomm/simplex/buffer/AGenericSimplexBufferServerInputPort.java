@@ -88,7 +88,11 @@ public class AGenericSimplexBufferServerInputPort<RequestChannelType, MessageCha
 			messageReceived(aClientName, aMessage);
 		}		
 	}
-	protected void messageReceived(String aClientName, ByteBuffer aMessage) {
+	/*
+	 * Needs to be public as otherwise the other messageReceived will be called
+	 * by buffer sender
+	 */
+	public void messageReceived(String aClientName, ByteBuffer aMessage) {
 		Tracer.info(this, "ServerInputPort received message " + aMessage + " from:" + aClientName );
 		totalBytesReceived += aMessage.limit() - aMessage.position(); 
 		Tracer.info("Total bytes received by server port: " + getLocalName() + " " + totalBytesReceived);
