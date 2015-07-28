@@ -187,6 +187,7 @@ public class ABufferStaticSessionPortConnectionsManagerFullP2P
 		serverInputPort.addReceiveListener(this);
 //		DistEventsBus.newEvent(new AConnectionEvent(serverInputPort, this, false));
 		serverInputPort.addConnectionListener(this);
+		serverInputPort.addSendListener(this); // for non short circuit, messages to myself
 //		DistEventsBus.newEvent(new AConnectionEvent(serverInputPort, this, false));
 		Tracer.info(this, "Added server input port " + serverInputPort + " as my listener");
 

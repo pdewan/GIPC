@@ -63,6 +63,7 @@ public class AGenericDuplexBufferServerInputPort<RequestChannelType, MessageChan
 	public void send(String aRemoteName, ByteBuffer aMessage) {
 		if (aRemoteName.equals(getLocalName())) {
 			messageReceived(aRemoteName, aMessage);
+			notifyPortSend(aRemoteName, aMessage, -1); // no channel wrie was actually done, this is to inform the serializer pool
 			return;
 		}
 		if (!isConnected(aRemoteName)) {

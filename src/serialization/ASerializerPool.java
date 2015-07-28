@@ -20,20 +20,26 @@ public class ASerializerPool implements SerializerPool {
 	BlockingQueue<Serializer> outputSupportBoundedBuffer;
 	Serializer inputSupport;
 	IdentityMap<byte[], Serializer> bytesToSerializer;
+	boolean initializingBufferPool;
+	SendRegistrar sendNotifier;
 	public ASerializerPool(SendRegistrar theSendNotifier) {
-		if (theSendNotifier != null)
+		if (theSendNotifier != null) {
 			theSendNotifier.addSendListener(this);
+			sendNotifier = theSendNotifier;
+		}
 		outputSupportBoundedBuffer =  new ArrayBlockingQueue(AScatterGatherSelectionManager.getMaxOutstandingWrites());
 
 		inputSupport = SerializerSelector.createSerializer();
 		Tracer.info(this, "Initializing serializer pool");
-
+		initializingBufferPool = true;
 		for (int i=0; i< AScatterGatherSelectionManager.getMaxOutstandingWrites(); i++) {
 			Serializer bufferSerializationSupport = SerializerSelector.createSerializer();
 			putOutputBufferSerializationSupport(bufferSerializationSupport);
 
 		}
 		bytesToSerializer = new HashIdentityMap();
+		initializingBufferPool = false;
+
 	}
 
 	@Override
@@ -51,6 +57,7 @@ public class ASerializerPool implements SerializerPool {
 			if (outputSupportBoundedBuffer.isEmpty()) {
 				Tracer.error("Blocking serialing thread, will cause deadlock if this is selection manager thread");
 			}
+			Tracer.info(this, "consuming output buffer ");
 			return outputSupportBoundedBuffer.take();
 		} catch (InterruptedException e) {
 			// need to think about this
@@ -70,8 +77,10 @@ public class ASerializerPool implements SerializerPool {
 
 //			if (outputSupportBoundedBuffer.size() ==  AScatterGatherSelectionManager.MAX_HEADER_BUFFERS)
 //				Tracer.error("Overflow of output buffers and if sending thread is selection thread, deadlock will occur");
+			
 			outputSupportBoundedBuffer.put(bufferSerializationSupport); // guaranteed to not block
-//			Tracer.info(this, "Put serializer:" + bufferSerializationSupport);
+			if (!initializingBufferPool)
+			Tracer.info(this, "Producing output buffer");
 
 		} catch (Exception e) {
 			e.printStackTrace();

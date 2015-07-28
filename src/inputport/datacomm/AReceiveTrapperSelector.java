@@ -22,7 +22,7 @@ public abstract class AReceiveTrapperSelector<SendInMessageType, SendOutMessageT
 			InputPort anInputPort,
 			ReceiveNotifier<SendInMessageType> aDestination) {
 		
-		ReceiveTrapper<SendOutMessageType, SendInMessageType> retVal = null;
+		ReceiveTrapper<SendOutMessageType, SendInMessageType> retVal = null; // always null!
 		for (int i = receiveFactories.size()-1; i >=0; i--) {
 			ReceiveTrapperFactory<SendOutMessageType, SendInMessageType> aFactory = receiveFactories.get(i);
 			if (retVal == null) {

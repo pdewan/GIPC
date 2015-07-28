@@ -16,7 +16,7 @@ public class ADeserializingForwarder extends AnAbstractReceiveTrapper<ByteBuffer
 	protected Serializer serializer;
 	public ADeserializingForwarder(ReceiveNotifier aReceiveNotifier) {
 		super (null, aReceiveNotifier);
-		// does not need to register as listener of port, so null argument
+		// does not need to register as listener of port, so null argument, why not as listener, need to return buffer?
 		serializer = SerializerPoolSelector.createSerializerPool(null);
 	}
 	@Override

@@ -2,6 +2,7 @@ package variableserverport.datacomm.simplex.buffer;
 
 import inputport.ConnectionType;
 import inputport.datacomm.duplex.DuplexClientInputPort;
+import inputport.datacomm.duplex.DuplexInputPort;
 import inputport.datacomm.simplex.SimplexClientInputPort;
 
 import java.nio.ByteBuffer;

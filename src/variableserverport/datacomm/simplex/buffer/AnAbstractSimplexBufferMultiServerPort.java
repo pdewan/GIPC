@@ -35,7 +35,7 @@ public  abstract class AnAbstractSimplexBufferMultiServerPort
 	protected ConnectionRegistrarAndNotifier connectRegistrarAndNotifier = new AConnectRegistrarAndNotifier();
 	protected ReceiveRegistrarAndNotifier<ByteBuffer> receiveRegistrarAndNotifier = new AReceiveRegistrarAndNotifier();
 	protected SendRegistrarAndNotifier sendRegistrarAndNotifier = new ASendRegistrarAndNotifier();
-	protected SimplexBufferVariableServerConnectionsManager connectionsManager; 
+	protected SimplexBufferVariableServerConnectionsManager connectionsManager; // this has a reference to the server input port
 
 	protected SendTrapper<ByteBuffer, ByteBuffer> sendTrapper;
 
