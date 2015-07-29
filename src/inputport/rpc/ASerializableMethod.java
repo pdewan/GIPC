@@ -96,5 +96,8 @@ public class ASerializableMethod implements SerializableMethod {
 		 return result.toString();
 
 	 }
+	 public void initSerializedObject() {
+			
+		}
 
 }

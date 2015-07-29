@@ -54,6 +54,9 @@ public class ARemoteSerializable implements RemoteSerializable {
 	public String toString() {
 		return remoteEndName + ":" + type + ":" + objectName;
 	}
+	public void initSerializedObject() {
+		
+	}
 	
 
 }

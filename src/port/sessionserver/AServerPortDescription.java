@@ -59,5 +59,7 @@ public class AServerPortDescription implements ServerPortDescription {
 	public void setName(String clientName) {
 		this.name = clientName;
 	}
-
+    public void initSerializedObject() {
+		
+	}
 }
