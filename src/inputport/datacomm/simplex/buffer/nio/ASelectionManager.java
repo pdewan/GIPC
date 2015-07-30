@@ -211,7 +211,9 @@ public class ASelectionManager implements SelectionManager {
 				Tracer.info(this, "Selector select unblocks");
 				processSelectedOperation();			
 			} catch (Exception e) {
+				// Disconnect does not seem to come here
 				e.printStackTrace();
+//				System.err.println("Process select operation exception:" + e.getMessage());
 			}	
 		}
 	}
