@@ -10,13 +10,13 @@ public class ADuplexCounterClientLauncher extends  AnAbstractDuplexRPCClientPort
 	public ADuplexCounterClientLauncher(String aClientName, String aServerHost, String aServerId, String aServerName) {
 		super(aClientName, aServerHost, aServerId, aServerName);		
 	}
-
+	@Override
 	protected  void createProxies() {		
     	counter11Proxy = (Counter) createProxy( DuplexCounterServerLauncher.REGISTERED_COUNTER_CLASS, DuplexCounterServerLauncher.COUNTER1);
     	counter12Proxy = (Counter) createProxy(DuplexCounterServerLauncher.REGISTERED_COUNTER_CLASS, DuplexCounterServerLauncher.COUNTER1);
     	counter2Proxy = (Counter)  createProxy( DuplexCounterServerLauncher.REGISTERED_COUNTER_CLASS, DuplexCounterServerLauncher.COUNTER2);
 	}
-	
+	@Override
 	protected void doPostConnectsAsyncOperations() {
 		System.out.println(counter11Proxy == counter12Proxy);
 		System.out.println(counter11Proxy.equals(counter12Proxy));
