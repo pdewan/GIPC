@@ -235,8 +235,8 @@ ANonCachingAbstractRPCProxyInvocationHandler implements
 //	}
 	
 	protected Object invokeEquals(Object arg0, Method method, Object[] args) {
-		if (!equalsMethodOverridden) 
-			return arg0 == args[0];
+//		if (!equalsMethodOverridden) 
+//			return arg0 == args[0];
 		if (arg0 == args[0])
 			return true;
 		else if (!equalsMethodOverridden) 
