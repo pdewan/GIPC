@@ -13,8 +13,7 @@ import inputport.datacomm.simplex.object.ASerializingForwarder;
 import inputport.datacomm.simplex.object.ASerializingForwarderFactory;
 import inputport.datacomm.simplex.object.DeserializingForwarder;
 
-public class ACustomDeserializingForwarderFactory extends ADeserializingForwarderFactory {
-	
+public class ACustomDeserializingForwarderFactory extends ADeserializingForwarderFactory {	
 	@Override
 	public DeserializingForwarder createReceiveTrapper(InputPort anInputPort,
 			ReceiveNotifier<Object> receiveRegistrarAndNotifier) {

@@ -14,15 +14,7 @@ public class ACustomSerializingForwarderFactory extends ASerializingForwarderFac
 	@Override
 	public SerializingForwarder createSendTrapper(InputPort anInputPort,
 			NamingSender<ByteBuffer> aDestination) {
-//		lastSendTrapper = new  AFaultTolerantSerializingForwarder(anInputPort, aDestination);
 		return new ACustomSerializingForwarder(anInputPort, aDestination);
-//		return lastSendTrapper;
 
 	}
-//	@Override
-//	public SendTrapper<Object, ByteBuffer> getLastSendTrapper() {
-//		return lastSendTrapper;
-//	}
-
-
 }
