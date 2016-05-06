@@ -40,7 +40,7 @@ public class ADuplexCallSendTrapper extends ASimplexCallSendTrapper {
 		if (message instanceof RemoteCall) {
 		RemoteCall call = (RemoteCall) message;
 		sharedSenderReceiverState().localRemoteReferenceTranslator // pass reemote name also?
-				.transformSentRemoteReferences(call.getArgs());
+				.transformSentRemoteReferences(call.getArgs(), call.getMethod().getParameterTypes());
 		}
 		super.send(remoteName, message);
 	}

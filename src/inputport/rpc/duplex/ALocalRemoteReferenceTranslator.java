@@ -73,7 +73,7 @@ public class ALocalRemoteReferenceTranslator implements LocalRemoteReferenceTran
 	
 	@Override
 	public Object transformSentReference(
-			Object possiblyRemote) {
+			Object possiblyRemote, Class aRemoteType) {
 		// decides if we serialize the object or send a reference
 		// if it is not serialiable maybe it is a proxy to a remote object that is not an instance of Reemote
 		// can handle such an object
@@ -100,7 +100,9 @@ public class ALocalRemoteReferenceTranslator implements LocalRemoteReferenceTran
 			objectId++;
 			duplexRPCInputPort.register(objectName, possiblyRemote);	// if we get a call back on this, fetch this object as both target of all and parameter of call, maybe they should be different, parameter can be proxy		
 			remoteSerializable = new ARemoteSerializable(duplexRPCInputPort.getLocalName(), 
-					possiblyRemote.getClass().getName(), objectName);
+//					possiblyRemote.getClass().getName(), 
+					aRemoteType.getName(),
+					objectName);
 			if (DirectedRPCProxyGenerator.isShortCircuitLocalCallsToRemotes())
 			remoteToRemoteSerializable.put(possiblyRemote, remoteSerializable); // should we do this, an addition serializable gets registered? 
 		}
@@ -111,11 +113,11 @@ public class ALocalRemoteReferenceTranslator implements LocalRemoteReferenceTran
 		return remoteSerializable;
 	}
 	@Override
-	public void transformSentRemoteReferences(Object[] args) {
+	public void transformSentRemoteReferences(Object[] args, Class[] aTypes) {
 		if (args == null) return;
 		for (int i = 0; i < args.length; i++) {
 			Object oldVal = args[i];
-			args[i] = transformSentReference(args[i]);
+			args[i] = transformSentReference(args[i], aTypes[i]);
 			Tracer.info(this, "Transformed send reference: " + oldVal + "to: " + args[i]);
 
 		}
@@ -160,7 +162,7 @@ public class ALocalRemoteReferenceTranslator implements LocalRemoteReferenceTran
     		Object originalFieldValue = aField.get(original);
     		if (originalFieldValue == null) 
     			continue;
-    		Object transformedValue = transformSentReference(originalFieldValue);
+    		Object transformedValue = transformSentReference(originalFieldValue, aField.getType());
     	
     		if (originalFieldValue != transformedValue) {
     			changed = true;

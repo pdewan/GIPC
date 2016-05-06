@@ -42,7 +42,8 @@ public class AGroupSerializableCallSendTrapper
 		SerializableCall serializableCall = (SerializableCall) message;		
 //		lastSerializableCall = serializableCall;
 //		lastClientNames = clientNames;
-		sharedSenderReceiverState.localRemoteReferenceTranslator.transformSentRemoteReferences(serializableCall.getArgs());
+		sharedSenderReceiverState.localRemoteReferenceTranslator.transformSentRemoteReferences(
+				serializableCall.getArgs(), serializableCall.getMethod().getParameterTypes());
 		destination.send(clientNames, message);	
 	}
 	

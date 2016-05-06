@@ -23,7 +23,7 @@ public abstract class AnAbstractReceivedCallInvoker implements ReceivedCallInvok
 			ConnectiontEventBus.newEvent(new AConnectionEvent(this, method, false));
 		}
 	}
-	abstract protected void handleFunctionReturn(String aSender, Object aRetVal);	
+	abstract protected void handleFunctionReturn(String aSender, Object aRetVal, Class aRetType);	
 	abstract protected void handleProcedureReturn(String aSender);	
 	public static boolean isProcedure(RemoteCall aSerializableCall) {
 		return aSerializableCall.getMethod().getReturnType() == Void.TYPE;
@@ -49,7 +49,7 @@ public abstract class AnAbstractReceivedCallInvoker implements ReceivedCallInvok
 			if (isProcedure(aCall))
 				handleProcedureReturn(aSender);
 			else
-				handleFunctionReturn(aSender, newVal);
+				handleFunctionReturn(aSender, newVal, aCall.getMethod().getReturnType());
 
 		} catch (Exception e) {
 			e.printStackTrace();

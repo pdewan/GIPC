@@ -30,8 +30,8 @@ public class ADuplexReceivedCallInvoker extends ASimplexReceivedCallInvoker impl
 
 	}	
 	@Override
-	protected void handleFunctionReturn(String aSource, Object retVal) {
-			Object possiblyTransformedRetVal = localRemoteReferenceTranslator.transformSentReference(retVal);
+	protected void handleFunctionReturn(String aSource, Object retVal, Class aRetType) {
+			Object possiblyTransformedRetVal = localRemoteReferenceTranslator.transformSentReference(retVal, aRetType); // need to get the method and its return type
 			replier.reply (aSource, createRPCReturnValue((Serializable) possiblyTransformedRetVal));	 // need a special reply call for the case when we have a replicated port
 	}	
 	protected RPCReturnValue createRPCReturnValue(Object retVal) {
