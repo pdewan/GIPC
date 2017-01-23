@@ -12,16 +12,17 @@ import util.trace.TraceableInfo;
 
 public class SocketChannelConnectInitiated extends SocketChannelInfo {	
 	public SocketChannelConnectInitiated(String aMessage, Object aFinder,
-			SocketChannel aSocketChannel) {
+			SocketChannel aSocketChannel, SocketAddress aSocketAddress) {
 		super(aMessage, aFinder, aSocketChannel);
 	}
 	public static SocketChannelConnectInitiated newCase(Object aSource, 			
-			SocketChannel aSocketChannel) {    	
+			SocketChannel aSocketChannel, SocketAddress aSocketAddress) {    	
 		String aMessage = 
 				aSocketChannel.toString();
 		SocketChannelConnectInitiated retVal = new SocketChannelConnectInitiated(aMessage, 
 				aSource, 
-				aSocketChannel);
+				aSocketChannel,
+				aSocketAddress);
     	retVal.announce();
     	return retVal;
 	}
