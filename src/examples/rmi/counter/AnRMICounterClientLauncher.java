@@ -11,7 +11,7 @@ public class AnRMICounterClientLauncher extends CounterServerLauncher{
 	public static void main (String[] args) {	
 		try {
 			Registry rmiRegistry = LocateRegistry.getRegistry();
-			DistributedRMICounter transmittedCounter =  new ADistributedInheritingRMICounter();		
+//			DistributedRMICounter transmittedCounter =  new ADistributedInheritingRMICounter();		
 //			CounterRepository counterRepository = (CounterRepository) rmiRegistry.lookup(COUNTER_REPOSITORY);
 			DistributedRMICounter counter11 = (DistributedRMICounter) rmiRegistry.lookup(COUNTER1);
 			DistributedRMICounter counter12 = (DistributedRMICounter) rmiRegistry.lookup(COUNTER1);
@@ -20,13 +20,15 @@ public class AnRMICounterClientLauncher extends CounterServerLauncher{
 //			UnicastRemoteObject.exportObject(exportedCounter, 0);
 //			rmiRegistry.bind("foo", exportedCounter);						
 //			counterRepository.deposit(transmittedCounter);
-			transmittedCounter.increment(1);			
+//			transmittedCounter.increment(1);			
 			System.out.println(counter12 == counter11);
 			System.out.println(counter12.equals(counter11));
 			System.out.println(counter11.hashCode() == counter12.hashCode());
 			System.out.println(counter11.equals(counter2));
 			System.out.println(counter11.hashCode() == counter2.hashCode());
 			System.out.println(counter12);
+			counter11.increment(1);
+			System.out.println (counter11.getValue());
 //			List<DistributedRMICounter> counters = counterRepository.getCounters();
 //			for (DistributedRMICounter counter:counters) {
 //				System.out.println(counter.getValue());
