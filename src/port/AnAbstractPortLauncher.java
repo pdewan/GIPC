@@ -25,6 +25,7 @@ import inputport.rpc.duplex.ADuplexRPCInputPortLauncherSupport;
 import inputport.rpc.duplex.DuplexRPCInputPortSelector;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.duplex.ReplyRPCProxyGenerator;
+import inputport.rpc.duplex.counter.example.DuplexCounterServerLauncher;
 import inputport.rpc.group.AGroupRPCInputPortLauncherSupport;
 import inputport.rpc.group.GroupRPCInputPortSelector;
 import inputport.rpc.group.GroupRPCProxyGenerator;
@@ -66,6 +67,7 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	public static final String DEFAULT_SESSION_NAME = "Default Session"; 
 	public static final String DEFAULT_SERVER_NAME = "Default Server";
 	public static final String DEFAULT_SERVER_HOST = "localhost";
+	long connectionTimeOut = 5000;
 
 
 
@@ -77,7 +79,7 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	protected SessionParticipantDescription[] serverList;
 	protected ParticipantBindTime participantBindTime = ParticipantBindTime.DYNAMIC;
 
-	boolean asyncOperationsDone;
+	protected boolean asyncOperationsDone;
 	int numPendingConnects;
 	Integer numPendingServerConnects;
 	
@@ -1064,11 +1066,31 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 
 	}
 	boolean connectedToAllPorts;
-	protected void connectedToAllPorts() {
+	protected synchronized void connectedToAllPorts() {
 		connectedToAllPorts = true;
+		notify();
 		Thread thread = new Thread(this);
 		thread.setName("Post Connect Async Operations");
 		thread.start();
+	}
+	public synchronized void waitForConnections() {
+		if (connectedToAllPorts) return;
+		try {
+			wait(connectionTimeOut);
+			if (!connectedToAllPorts) {
+				System.err.println("Could not connnect to server within ms:" + connectionTimeOut);
+			} 
+//			else {
+//				System.out.println("Connected to server");
+//			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+				
+	}
+	public Object lookup(Class anInterface, String aName) {
+		return createProxy( anInterface, aName);
 	}
 	public void notConnected(String aRemoteEndName, String anExplanation, ConnectionType aConnectionType) {
 		
