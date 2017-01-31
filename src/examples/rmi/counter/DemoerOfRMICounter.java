@@ -12,7 +12,7 @@ public class DemoerOfRMICounter {
 //        System.out.println("Current dir using System:" +currentDir);
 		
 		Class[] classes = {
-				examples.mvc.rmi.duplex.DistributedRMIRegistryStarter.class,
+				DistributedRMIRegistryStarter.class,
 				AnRMICounterServerLauncher.class,
 				AnRMICounterClientLauncher.class
 
