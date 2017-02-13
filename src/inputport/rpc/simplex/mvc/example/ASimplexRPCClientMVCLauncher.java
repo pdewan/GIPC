@@ -64,7 +64,7 @@ public class ASimplexRPCClientMVCLauncher extends AnAbstractPortLauncher  implem
 	protected  ConnectionListener getConnectionListener (InputPort anInputPort) {
 		return new ATracingConnectionListener(anInputPort);
 	}
-	protected PortAccessKind getPortAccessKind() {
+	public PortAccessKind getPortAccessKind() {
 		return PortAccessKind.SIMPLEX;
 	}
 //	protected PortKind getPortKind() {

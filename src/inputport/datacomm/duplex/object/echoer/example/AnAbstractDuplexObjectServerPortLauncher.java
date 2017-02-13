@@ -14,17 +14,17 @@ public abstract class AnAbstractDuplexObjectServerPortLauncher extends AnAbstrac
 		super (aServerName, aServerPort);
 	}	
 	@Override
-	protected PortAccessKind getPortAccessKind() {
+	public PortAccessKind getPortAccessKind() {
 		return PortAccessKind.DUPLEX;
 	}	
 	public AnAbstractDuplexObjectServerPortLauncher() {
 	}	
 	@Override
-	protected PortKind getPortKind() {
+	public PortKind getPortKind() {
 		return PortKind.SERVER_INPUT_PORT;
 	}
 	@Override
-	protected PortMessageKind getPortMessageKind() {
+	public PortMessageKind getPortMessageKind() {
 		return PortMessageKind.OBJECT;
 	}
 	

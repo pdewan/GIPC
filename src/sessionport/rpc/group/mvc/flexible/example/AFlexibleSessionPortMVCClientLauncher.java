@@ -40,10 +40,10 @@ public class AFlexibleSessionPortMVCClientLauncher extends ADuplexRPCClientMVCLa
 		super(aServerList, aMyId, aMyName, aSessionName, aSessionChoice, aShouldDelay, aDelaysSupport, aDoJitter, aDoCausal, aChoice);
 	}	
 	SessionSendingCollaborativeFrostyModel frostyModel;
-	protected PortKind getPortKind() {
+	public PortKind getPortKind() {
 		return PortKind.SESSION_PORT;
 	}
-	protected PortAccessKind getPortAccessKind() {
+	public PortAccessKind getPortAccessKind() {
 		return PortAccessKind.GROUP;
 	}	
     protected void setStateBeforeAddingListeners() {

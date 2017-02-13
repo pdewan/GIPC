@@ -195,6 +195,9 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	protected void initClientHost() {
 		clientHost = getClientHost();
 	}
+	public InputPort getMainPort() {
+		return mainPort;
+	}
 	
 	protected String getClientHost() {
 		try {
@@ -353,10 +356,10 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 		
 	}
 	
-	protected PortKind getPortKind() {
+	public PortKind getPortKind() {
 		return PortKind.CLIENT_INPUT_PORT;
 	}
-	protected PortAccessKind getPortAccessKind() {
+	public PortAccessKind getPortAccessKind() {
 		PortKind portKind = getPortKind();
 		switch (portKind) {
 		case CLIENT_INPUT_PORT:
@@ -367,7 +370,8 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 			default: return null;
 		}
 	}
-	protected PortMessageKind getPortMessageKind() {
+	@Override
+	public PortMessageKind getPortMessageKind() {
 		return PortMessageKind.RPC;
 	}
 	

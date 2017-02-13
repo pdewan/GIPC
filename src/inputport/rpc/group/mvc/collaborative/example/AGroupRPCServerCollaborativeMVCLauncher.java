@@ -47,7 +47,7 @@ public class AGroupRPCServerCollaborativeMVCLauncher extends AMultiUserDuplexRPC
 		super(aServerList, aMyId, aMyName, aSessionName, aSessionChoice, aShouldDelay, aDelaysSupport, aDoJitter, aDoCausal, aChoice);
 	}
 	@Override
-	protected PortAccessKind getPortAccessKind() {
+	public PortAccessKind getPortAccessKind() {
 		return PortAccessKind.GROUP;
 	}
 //	protected InputPort getPort() {

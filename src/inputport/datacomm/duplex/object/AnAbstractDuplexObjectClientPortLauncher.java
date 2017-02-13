@@ -21,13 +21,13 @@ public class AnAbstractDuplexObjectClientPortLauncher extends AnAbstractPortLaun
 		super(aClientName, aServerHost, aServerId, aServerName);		
 	}
 
-	protected PortAccessKind getPortAccessKind() {
+	public PortAccessKind getPortAccessKind() {
 		return PortAccessKind.DUPLEX;
 	}
-	protected PortKind getPortKind() {
+	public PortKind getPortKind() {
 		return PortKind.CLIENT_INPUT_PORT;
 	}
-	protected PortMessageKind getPortMessageKind() {
+	public PortMessageKind getPortMessageKind() {
 		return PortMessageKind.OBJECT;
 	}
 	

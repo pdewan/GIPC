@@ -26,7 +26,11 @@ public class AnAbstractDuplexRPCServerPortLauncher extends AnAbstractDuplexRPCPo
 	public AnAbstractDuplexRPCServerPortLauncher() {
 	}	
 	@Override
-	protected PortKind getPortKind() {
+	public DuplexRPCServerInputPort getRPCServerPort() {
+		return (DuplexRPCServerInputPort) getMainPort();
+	}
+	@Override
+	public PortKind getPortKind() {
 		return PortKind.SERVER_INPUT_PORT;
 	}
 //	@Override

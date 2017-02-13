@@ -13,14 +13,14 @@ import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;
 
 public class ASimpleGIPCRegistryAndCounterServer  implements SimpleRegistryAndCounterServer{	
-	public static void main (String[] args) {
-		try {
-			GIPCRegistry gipcRegistry = GIPCLocateRegistry.createRegistry(REGISTRY_PORT_NAME);
-			DistributedRMICounter counter = new ADistributedInheritingRMICounter();			
-			UnicastRemoteObject.exportObject(counter, 0);
-			gipcRegistry.rebind(COUNTER_NAME, counter);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}		
+	static DistributedRMICounter counter;
+	static GIPCRegistry gipcRegistry;
+	static void init() {
+		gipcRegistry = GIPCLocateRegistry.createRegistry(REGISTRY_PORT_NAME);
+		counter = new ADistributedInheritingRMICounter();			
+		gipcRegistry.rebind(COUNTER_NAME, counter);	
+	}
+	public static void main (String[] args) {		
+		init();	
 	}
 }

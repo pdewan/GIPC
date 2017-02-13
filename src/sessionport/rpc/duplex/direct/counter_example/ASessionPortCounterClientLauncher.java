@@ -44,11 +44,11 @@ public class ASessionPortCounterClientLauncher extends
 		return myConnectionListener;
 	}
 	@Override
-	protected PortKind getPortKind() {
+	public PortKind getPortKind() {
 		return PortKind.SESSION_PORT;
 	}
 	@Override
-	protected PortAccessKind getPortAccessKind() {
+	public PortAccessKind getPortAccessKind() {
 		return PortAccessKind.DUPLEX;
 	}
 	@Override

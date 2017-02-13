@@ -37,13 +37,13 @@ public class ASimplexBufferClientInputPortLauncher extends AnAbstractPortLaunche
 ////		createUI(mainPort);
 //
 //	}
-	protected PortAccessKind getPortAccessKind() {
+	public PortAccessKind getPortAccessKind() {
 		return PortAccessKind.SIMPLEX;
 	}
-	protected PortKind getPortKind() {
+	public PortKind getPortKind() {
 		return PortKind.CLIENT_INPUT_PORT;
 	}
-	protected PortMessageKind getPortMessageKind() {
+	public PortMessageKind getPortMessageKind() {
 		return PortMessageKind.BUFFER;
 	}
 

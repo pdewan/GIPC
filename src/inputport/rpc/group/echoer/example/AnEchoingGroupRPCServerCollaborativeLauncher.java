@@ -22,7 +22,7 @@ public class AnEchoingGroupRPCServerCollaborativeLauncher extends AnEchoingDuple
 //	}
 	
 	@Override
-	protected PortAccessKind getPortAccessKind() {
+	public PortAccessKind getPortAccessKind() {
 		return PortAccessKind.GROUP;
 	}
 //	protected InputPort getPort() {

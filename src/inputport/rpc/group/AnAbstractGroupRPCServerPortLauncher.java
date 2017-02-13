@@ -16,7 +16,7 @@ public abstract class AnAbstractGroupRPCServerPortLauncher extends AnAbstractDup
 	}
 	
 	@Override
-	protected PortAccessKind getPortAccessKind() {
+	public PortAccessKind getPortAccessKind() {
 		return PortAccessKind.GROUP;
 	}
 	

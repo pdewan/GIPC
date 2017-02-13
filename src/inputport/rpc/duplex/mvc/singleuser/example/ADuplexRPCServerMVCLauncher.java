@@ -41,7 +41,7 @@ public class ADuplexRPCServerMVCLauncher extends ASimplexRPCServerMVCLauncher  i
 	public ADuplexRPCServerMVCLauncher() {
 	}
 	@Override
-	protected PortAccessKind getPortAccessKind() {
+	public PortAccessKind getPortAccessKind() {
 		return PortAccessKind.DUPLEX;
 	}
 //	protected PortLauncherSupport getPortLauncherSupport() {

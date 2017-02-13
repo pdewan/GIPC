@@ -48,11 +48,11 @@ public class ASimplexRPCServerMVCLauncher extends AnAbstractPortLauncher impleme
 	}
 	
 	@Override
-	protected PortKind getPortKind() {
+	public PortKind getPortKind() {
 		return PortKind.SERVER_INPUT_PORT;
 	}
 	@Override
-	protected PortAccessKind getPortAccessKind() {
+	public PortAccessKind getPortAccessKind() {
 		return PortAccessKind.SIMPLEX;
 	}
 //	protected PortLauncherSupport getPortLauncherSupport() {

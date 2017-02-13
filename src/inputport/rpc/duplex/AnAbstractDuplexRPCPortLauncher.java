@@ -5,6 +5,7 @@ import java.util.Map;
 
 import examples.mvc.local.duplex.ACounter;
 import inputport.rpc.GIPCRegistry;
+import inputport.rpc.RPCInputPort;
 import port.AnAbstractPortLauncher;
 import port.PortAccessKind;
 import port.PortKind;
@@ -22,14 +23,14 @@ public class AnAbstractDuplexRPCPortLauncher extends AnAbstractPortLauncher impl
 		super(aClientName, aServerHost, aServerId, aServerName);		
 	}
 	@Override
-	protected PortAccessKind getPortAccessKind() {
+	public PortAccessKind getPortAccessKind() {
 		return PortAccessKind.DUPLEX;
 	}	
 	public AnAbstractDuplexRPCPortLauncher() {
 	}	
 	
 	@Override
-	protected PortMessageKind getPortMessageKind() {
+	public PortMessageKind getPortMessageKind() {
 		return PortMessageKind.RPC;
 	}
 	@Override
@@ -38,6 +39,7 @@ public class AnAbstractDuplexRPCPortLauncher extends AnAbstractPortLauncher impl
 			register(aKey, registry.get(aKey));
 		}
 	}
+	
 //	@Override
 //	public void rebindAndListen(String aName, Object anObject) {
 //		rebind(aName, anObject);
@@ -47,6 +49,16 @@ public class AnAbstractDuplexRPCPortLauncher extends AnAbstractPortLauncher impl
 	public void rebind(String aName, Object anObject) {
 //		registry.put(aName, anObject);
 		register(aName, anObject);
+	}
+	
+	public DuplexRPCClientInputPort getRPCClientPort() {
+		return null;
+	}
+	public DuplexRPCServerInputPort getRPCServerPort() {
+		return null;
+	}
+	public RPCInputPort getRPCInputPort() {
+		return (RPCInputPort) getMainPort();
 	}
 
 //	public void listen() {

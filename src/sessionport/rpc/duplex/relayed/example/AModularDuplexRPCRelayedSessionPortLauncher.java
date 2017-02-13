@@ -59,10 +59,10 @@ public class AModularDuplexRPCRelayedSessionPortLauncher extends AnAbstractPortL
 //		
 //	}
 
-	protected PortKind getPortKind() {
+	public PortKind getPortKind() {
 		return PortKind.SESSION_PORT;
 	}
-	protected PortAccessKind getPortAccessKind() {
+	public PortAccessKind getPortAccessKind() {
 		return PortAccessKind.DUPLEX;
 	}	
 	protected SessionChoice getSessionChoice() {

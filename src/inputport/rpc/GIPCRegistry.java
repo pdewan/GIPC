@@ -1,5 +1,8 @@
 package inputport.rpc;
 
+import inputport.InputPort;
+import inputport.rpc.duplex.DuplexRPCClientInputPort;
+import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import port.PortLauncher;
 
 public interface GIPCRegistry extends PortLauncher{
@@ -29,4 +32,9 @@ public interface GIPCRegistry extends PortLauncher{
 	 * should be passed as an extra first parameter.
 	 */
 	public Object lookup(Class anInterface, String aName);
+
+	DuplexRPCClientInputPort getRPCClientPort();
+	DuplexRPCServerInputPort getRPCServerPort();
+//	InputPort getMainPort();
+//	public RPCInputPort getRPCInputPort() ;
 }

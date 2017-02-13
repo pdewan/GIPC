@@ -14,4 +14,6 @@ public interface PortLauncher  {
 	public void launch ();
 //	public void registerMethods() ;	
 //	public  void createProxies() ;
+
+	PortMessageKind getPortMessageKind();
 }

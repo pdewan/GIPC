@@ -64,7 +64,7 @@ public class ADuplexRPCClientMVCLauncher extends ASimplexRPCClientMVCLauncher  {
 //		return DuplexRPCInputPortSelector.createDuplexRPCClientInputPort(
 //				serverHost, serverId, serverName, 	clientName);
 //	}
-	protected PortAccessKind getPortAccessKind() {
+	public PortAccessKind getPortAccessKind() {
 		return PortAccessKind.DUPLEX;
 	}
 	protected Class registeredUpperCaserClass() {

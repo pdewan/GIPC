@@ -33,7 +33,7 @@ public class AFlexibleSessionPortMVCServerLauncher extends AGroupRPCServerCollab
 		super(aServerList, aMyId, aMyName, aSessionName, aSessionChoice, aShouldDelay, aDelaysSupport, aDoJitter, aDoCausal, aChoice);
 	}
 	@Override
-	protected PortKind getPortKind() {
+	public PortKind getPortKind() {
 		return PortKind.SESSION_PORT;
 	}
 }
