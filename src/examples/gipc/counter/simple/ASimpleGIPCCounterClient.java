@@ -8,8 +8,11 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import port.trace.ObjectReceiveInfo;
-import port.trace.ObjectSendInfo;
+import port.trace.ByteBufferReceived;
+import port.trace.ByteBufferSent;
+import port.trace.ClientNameSent;
+import port.trace.ObjectReceived;
+import port.trace.ObjectSent;
 import util.trace.ImplicitKeywordKind;
 import util.trace.TraceableInfo;
 import util.trace.Tracer;
@@ -34,10 +37,15 @@ public class ASimpleGIPCCounterClient implements SimpleCounterClient{
 	}
 	public static void setTracing() {
 		Tracer.showInfo(true);
+		Tracer.setDisplayThreadName(true); 
 		TraceableInfo.setPrintTraceable(true);
 		Tracer.setImplicitPrintKeywordKind(ImplicitKeywordKind.OBJECT_CLASS_NAME);
-		Tracer.setKeywordPrintStatus(ObjectReceiveInfo.class, true);
-		Tracer.setKeywordPrintStatus(ObjectSendInfo.class, true);
+		Tracer.setKeywordPrintStatus(ObjectReceived.class, true);
+		Tracer.setKeywordPrintStatus(ObjectSent.class, true);
+		Tracer.setKeywordPrintStatus(ClientNameSent.class, true);
+		Tracer.setKeywordPrintStatus(ByteBufferSent.class, true);
+		Tracer.setKeywordPrintStatus(ByteBufferReceived.class, true);
+
 	}
 	
 	public static void main (String[] args) {	

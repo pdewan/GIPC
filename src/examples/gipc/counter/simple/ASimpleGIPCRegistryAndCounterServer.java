@@ -21,6 +21,7 @@ public class ASimpleGIPCRegistryAndCounterServer  implements SimpleRegistryAndCo
 		gipcRegistry.rebind(COUNTER_NAME, counter);	
 	}
 	public static void main (String[] args) {		
-		init();	
+		init();
+		ASimpleGIPCCounterClient.setTracing();
 	}
 }

@@ -4,8 +4,8 @@ import inputport.InputPort;
 
 import java.nio.ByteBuffer;
 
-import port.trace.ByteBufferReceiveInfo;
-import port.trace.ObjectReceiveInfo;
+import port.trace.ByteBufferReceived;
+import port.trace.ObjectReceived;
 
 
 
@@ -19,9 +19,9 @@ public class AReceiveMessageForwarder<InAndOutMessageType> extends AnAbstractRec
 //		Tracer.info(this, "Forwarding received message " + message +  " from: " + remoteEnd);
 		destination.notifyPortReceive(aRemoteEnd, aMessage);	
 		if (aMessage instanceof ByteBuffer)
-			ByteBufferReceiveInfo.newCase(this, destination, aRemoteEnd, (ByteBuffer) aMessage);
+			ByteBufferReceived.newCase(this, destination, aRemoteEnd, (ByteBuffer) aMessage);
 		else
-			ObjectReceiveInfo.newCase(this, destination, aRemoteEnd,  aMessage);
+			ObjectReceived.newCase(this, destination, aRemoteEnd,  aMessage);
 	}	
 	
 }
