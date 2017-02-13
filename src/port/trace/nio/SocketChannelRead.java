@@ -6,7 +6,7 @@ import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 
 import inputport.rpc.RemoteCall;
-import port.trace.ReceivedCallEnded;
+import port.trace.rpc.ReceivedCallEndedOld;
 import util.trace.TraceableInfo;
 
 public class SocketChannelRead extends SocketChannelDataInfo {	

@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import port.trace.AConnectionEvent;
-import port.trace.ClientNameSent;
+import port.trace.ClientNameSendInitiated;
 import port.trace.ConnectiontEventBus;
 import util.trace.Tracer;
 
@@ -78,7 +78,7 @@ public class AGenericSimplexBufferClientInputPort<ChannelType>  implements Gener
 	void sendClientName() {
 		ByteBuffer message =  ByteBuffer.wrap (myName.getBytes());
 		Tracer.info(this, "Sending to server my name: " +  myName);
-		ClientNameSent.newCase(this, serverName, myName);
+		ClientNameSendInitiated.newCase(this, serverName, myName);
 		doSend(serverName, message);
 	}	
 	@Override

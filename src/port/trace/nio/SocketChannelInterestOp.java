@@ -3,7 +3,7 @@ package port.trace.nio;
 import java.nio.channels.SelectionKey;
 
 import inputport.rpc.RemoteCall;
-import port.trace.ReceivedCallEnded;
+import port.trace.rpc.ReceivedCallEndedOld;
 import util.trace.TraceableInfo;
 
 public class SocketChannelInterestOp extends TraceableInfo {	

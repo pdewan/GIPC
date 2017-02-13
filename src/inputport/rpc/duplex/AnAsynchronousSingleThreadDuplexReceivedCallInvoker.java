@@ -9,7 +9,10 @@ import inputport.rpc.RemoteCall;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import port.trace.ReceivedCallEnded;
+import port.trace.rpc.ReceivedCallDequeued;
+import port.trace.rpc.CallInitiated;
+import port.trace.rpc.ReceivedCallQueued;
+import port.trace.rpc.ReceivedCallEndedOld;
 import util.trace.Tracer;
 
 
@@ -45,7 +48,12 @@ public class AnAsynchronousSingleThreadDuplexReceivedCallInvoker
 			Tracer.error("max outstanding method calls exceed limit of" + AScatterGatherSelectionManager.getMaxOutstandingWrites());
 		} else {
 //			System.out.println ("Call Queue added:" + aMessage);
-			callQueue.add(new AMessageWithSourceAndReceiver(aSender, aMessage, synchronousReceivedCallInvoker));
+			MessageWithSourceAndReceiver aMessageWithSourceAndReceiver = new AMessageWithSourceAndReceiver(aSender, aMessage, synchronousReceivedCallInvoker);
+			callQueue.add(aMessageWithSourceAndReceiver);
+			ReceivedCallQueued.newCase(this, callQueue, aMessageWithSourceAndReceiver);
+
+
+//			callQueue.add(new AMessageWithSourceAndReceiver(aSender, aMessage, synchronousReceivedCallInvoker));
 		}
 	}
 
@@ -54,12 +62,15 @@ public class AnAsynchronousSingleThreadDuplexReceivedCallInvoker
 		try {
 			while (true) {
 			MessageWithSourceAndReceiver message = callQueue.take();
+			ReceivedCallDequeued.newCase(this, callQueue, message);
+
+
 //			System.out.println ("Call Queue removed:" + message);
 			synchronousReceivedCallInvoker.getReplier().setSender(message.getSource());
 //			Tracer.setKeywordPrintStatus(this, true);
 			message.getReceiveListener().messageReceived(message.getSource(), message.getMessage());
 			
-			ReceivedCallEnded.newCase(this, message.getReceiveListener(), message.getSource(), (RemoteCall) message.getMessage());
+			ReceivedCallEndedOld.newCase(this, message.getReceiveListener(), message.getSource(), (RemoteCall) message.getMessage());
 			}
 		} catch (SendToUnconnectedPortException connecte) {
 			throw connecte;

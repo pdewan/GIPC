@@ -15,11 +15,11 @@ import port.sessionserver.relay.late.LatecomerJoinInfo;
 import port.sessionserver.relay.late.LatecomerRelayer;
 import port.sessionserver.relay.late.LatecomerSessionServer;
 import port.trace.AsyncReplayEndInfo;
-import port.trace.BlockedForReturnValue;
-import port.trace.CallInitiated;
-import port.trace.ReceivedCallEnded;
 import port.trace.ReplayStartInfo;
 import port.trace.SyncReplayEndInfo;
+import port.trace.rpc.RemoteCallBlockedForReturnValue;
+import port.trace.rpc.CallInitiated;
+import port.trace.rpc.ReceivedCallEndedOld;
 import sessionport.datacomm.duplex.buffer.fullp2p.ASessionBasedFP2PBufferConnectionsManager;
 import sessionport.datacomm.duplex.object.relayed.AMessageWithSource;
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
@@ -375,9 +375,9 @@ public class ALatecomerRelayingGroupConnectionsManager
 
 				}
 
-			} else if (aTraceable instanceof ReceivedCallEnded ||
+			} else if (aTraceable instanceof ReceivedCallEndedOld ||
 					// only last call will block as return values processed first
-					(aTraceable instanceof BlockedForReturnValue )) // last call  replay has ended, need to get out of replay mode to receive new messages
+					(aTraceable instanceof RemoteCallBlockedForReturnValue )) // last call  replay has ended, need to get out of replay mode to receive new messages
 				{ 
 				if (replayMode) {
 					if (outstandingCallsInReplayMode > 0)

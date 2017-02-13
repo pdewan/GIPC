@@ -6,6 +6,8 @@ import inputport.rpc.simplex.SimplexRPC;
 
 import java.lang.reflect.Method;
 
+import port.trace.rpc.RemoteCallFinished;
+import port.trace.rpc.RemoteCallInitiated;
 import util.trace.Tracer;
 
 public  class AnRPCProxyInvocationHandler extends ACachingAbstractRPCProxyInvocationHandler {	
@@ -14,7 +16,9 @@ public  class AnRPCProxyInvocationHandler extends ACachingAbstractRPCProxyInvoca
 	}	
 	@Override
 	protected Object call(String aDestination, String aName, Method aMethod, Object[] args) {
+		RemoteCallInitiated.newCase(this, aDestination, aName, aMethod, args);
 		Object retVal = rpcInputPort.call(aDestination, aName, aMethod, args);
+		RemoteCallFinished.newCase(this, aDestination, aName, aMethod, args, retVal);
 		return retVal;
 	}
 	@Override

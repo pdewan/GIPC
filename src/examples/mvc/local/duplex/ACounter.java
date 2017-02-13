@@ -24,7 +24,7 @@ public class ACounter implements Counter{
 			return getValue() == ((Counter) otherObject).getValue();		
 	}
 	public String toString() {
-		return "Counter:" + value;
+		return getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) + ":" + value;
 	}
 	public static void main (String[] args) {
 		ObjectEditor.edit(new ACounter());

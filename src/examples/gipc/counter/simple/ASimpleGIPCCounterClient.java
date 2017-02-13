@@ -9,14 +9,30 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import port.trace.ByteBufferReceived;
-import port.trace.ByteBufferSent;
-import port.trace.CallGenerated;
-import port.trace.CallInitiated;
-import port.trace.CallReceived;
-import port.trace.ClientNameSent;
+import port.trace.ByteBufferSendInitiated;
+import port.trace.ClientNameSendInitiated;
 import port.trace.ObjectReceived;
-import port.trace.ObjectSent;
-import port.trace.ReceivedCallEnded;
+import port.trace.ObjectSendInitiated;
+import port.trace.nio.SocketChannelConnectFinished;
+import port.trace.nio.SocketChannelRead;
+import port.trace.nio.SocketChannelWritten;
+import port.trace.rpc.ReceivedCallDequeued;
+import port.trace.rpc.CallGenerated;
+import port.trace.rpc.CallInitiated;
+import port.trace.rpc.ReceivedCallQueued;
+import port.trace.rpc.CallReceived;
+import port.trace.rpc.ReceivedCallEndedOld;
+import port.trace.rpc.ReceivedObjectTransformed;
+import port.trace.rpc.ReceivedReturnValueDequeued;
+import port.trace.rpc.ReceivedReturnValueQueued;
+import port.trace.rpc.RegisteredObjectLookedUp;
+import port.trace.rpc.RemoteCallBlockedForReturnValue;
+import port.trace.rpc.RemoteCallFinished;
+import port.trace.rpc.RemoteCallInitiated;
+import port.trace.rpc.RemoteCallReturnValueDetermined;
+import port.trace.rpc.ReturnValueDequeuedOld;
+import port.trace.rpc.ReturnValueQueuedOld;
+import port.trace.rpc.SentObjectTransformed;
 import util.trace.ImplicitKeywordKind;
 import util.trace.TraceableInfo;
 import util.trace.Tracer;
@@ -44,19 +60,42 @@ public class ASimpleGIPCCounterClient implements SimpleCounterClient{
 		Tracer.showInfo(true);
 		Tracer.setDisplayThreadName(true); 
 		TraceableInfo.setPrintTraceable(true);
+		TraceableInfo.setPrintSource(true);
 		Tracer.setImplicitPrintKeywordKind(ImplicitKeywordKind.OBJECT_CLASS_NAME);
-		Tracer.setKeywordPrintStatus(CallGenerated.class, true);
-		Tracer.setKeywordPrintStatus(CallInitiated.class, true);
+		
+	
+//		Tracer.setKeywordPrintStatus(CallInitiated.class, true);
 		Tracer.setKeywordPrintStatus(CallReceived.class, true);
-		Tracer.setKeywordPrintStatus(ReceivedCallEnded.class, true);
+		Tracer.setKeywordPrintStatus(ReceivedCallDequeued.class, true);
+		Tracer.setKeywordPrintStatus(ReceivedCallEndedOld.class, true);
+		Tracer.setKeywordPrintStatus(ReceivedCallQueued.class, true);
+		Tracer.setKeywordPrintStatus(ReceivedObjectTransformed.class, true);
+		Tracer.setKeywordPrintStatus(ReceivedReturnValueDequeued.class, true);
+		Tracer.setKeywordPrintStatus(ReceivedReturnValueQueued.class, true);	
+		Tracer.setKeywordPrintStatus(RegisteredObjectLookedUp.class, true);	
+		Tracer.setKeywordPrintStatus(RemoteCallBlockedForReturnValue.class, true);
+		Tracer.setKeywordPrintStatus(RemoteCallFinished.class, true);
+		Tracer.setKeywordPrintStatus(RemoteCallInitiated.class, true);
+		Tracer.setKeywordPrintStatus(RemoteCallReturnValueDetermined.class, true);
+			
+		Tracer.setKeywordPrintStatus(SentObjectTransformed.class, true);
+
+
+
 		
 
 
+
 		Tracer.setKeywordPrintStatus(ObjectReceived.class, true);
-		Tracer.setKeywordPrintStatus(ObjectSent.class, true);
-		Tracer.setKeywordPrintStatus(ClientNameSent.class, true);
-		Tracer.setKeywordPrintStatus(ByteBufferSent.class, true);
+		Tracer.setKeywordPrintStatus(ObjectSendInitiated.class, true);
+		Tracer.setKeywordPrintStatus(ClientNameSendInitiated.class, true);
+		Tracer.setKeywordPrintStatus(ByteBufferSendInitiated.class, true);
 		Tracer.setKeywordPrintStatus(ByteBufferReceived.class, true);
+		
+		Tracer.setKeywordPrintStatus(SocketChannelConnectFinished.class, true);
+		Tracer.setKeywordPrintStatus(SocketChannelWritten.class, true);
+		Tracer.setKeywordPrintStatus(SocketChannelRead.class, true);
+
 
 	}
 

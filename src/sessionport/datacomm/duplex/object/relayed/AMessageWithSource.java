@@ -27,7 +27,9 @@ public class AMessageWithSource implements MessageWithSource {
 	}
 	
 	public String toString() {
-		return super.toString() + "(" + source + ":" + message + ")";
+		return 
+				getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) +
+				"(" + source + ":" + message + ")";
 	}
 
 }

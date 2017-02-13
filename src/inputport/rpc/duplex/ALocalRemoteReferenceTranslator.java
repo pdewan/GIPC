@@ -9,6 +9,7 @@ import java.lang.reflect.Proxy;
 import java.rmi.Remote;
 import java.util.Set;
 
+import port.trace.rpc.SentObjectTransformed;
 import util.misc.Common;
 import util.misc.HashIdentityMap;
 import util.misc.IdentityMap;
@@ -117,7 +118,10 @@ public class ALocalRemoteReferenceTranslator implements LocalRemoteReferenceTran
 		if (args == null) return;
 		for (int i = 0; i < args.length; i++) {
 			Object oldVal = args[i];
+			
 			args[i] = transformSentReference(args[i], aTypes[i]);
+			SentObjectTransformed.newCase(this, oldVal, args[i], aTypes[i]);
+
 			Tracer.info(this, "Transformed send reference: " + oldVal + "to: " + args[i]);
 
 		}

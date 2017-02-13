@@ -11,9 +11,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import port.trace.CallReceived;
 import port.trace.ReplayStartInfo;
 import port.trace.SyncReplayEndInfo;
+import port.trace.rpc.CallReceived;
 import util.introspect.JavaIntrospectUtility;
 import util.misc.HashIdentityMap;
 import util.misc.IdentityMap;

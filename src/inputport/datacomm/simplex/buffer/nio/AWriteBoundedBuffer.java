@@ -7,6 +7,7 @@ import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.concurrent.ArrayBlockingQueue;
 
+import port.trace.nio.SocketChannelInterestOp;
 import util.trace.Tracer;
 
 
@@ -63,6 +64,7 @@ public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 			Tracer.info(this, "Registering write op for:" + channel );
 			key.interestOps(SelectionKey.OP_WRITE);
 			Tracer.info(this, "New interestops op for:" + channel + " are:" +key.interestOps());
+			SocketChannelInterestOp.newCase(this, key, SelectionKey.OP_WRITE);
 
 			return true;
 		} catch (CancelledKeyException cke) { // we get this on socket close for some reason

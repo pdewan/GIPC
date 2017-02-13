@@ -3,7 +3,11 @@ package inputport.rpc.duplex;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import port.trace.BlockedForReturnValue;
+import port.trace.rpc.ReceivedObjectTransformed;
+import port.trace.rpc.ReceivedReturnValueDequeued;
+import port.trace.rpc.ReceivedReturnValueQueued;
+import port.trace.rpc.RemoteCallBlockedForReturnValue;
+import port.trace.rpc.RemoteCallReturnValueDetermined;
 import util.trace.Tracer;
 
 public class AnRPCReturnValueQueue implements RPCReturnValueQueue {
@@ -22,6 +26,7 @@ public class AnRPCReturnValueQueue implements RPCReturnValueQueue {
 //			Tracer.setKeywordPrintStatus(this, true);
 			Tracer.info (this, "putting return value " + message.getReturnValue() + " in " + this);
 			returnValueQueue.put(message);
+			ReceivedReturnValueQueued.newCase(this, returnValueQueue, message);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -32,15 +37,18 @@ public class AnRPCReturnValueQueue implements RPCReturnValueQueue {
 			Tracer.info (this, "waiting for return value of " + this);
 			boolean willBlock = returnValueQueue.isEmpty();
 			if (willBlock) {
-				BlockedForReturnValue.newCase(this);
+				RemoteCallBlockedForReturnValue.newCase(this, this);
 			}
 
 			RPCReturnValue message = returnValueQueue.take();
 			Tracer.info (this, "got return value " + message + "from " + this);
+			
+			ReceivedReturnValueDequeued.newCase(this, returnValueQueue, message);
 
 			Object possiblyRemoteRetVal = message.getReturnValue();
 			Object returnValue = localRemoteReferenceTranslator
 					.transformReceivedReference(possiblyRemoteRetVal);
+			ReceivedObjectTransformed.newCase(this, possiblyRemoteRetVal, returnValue);
 			return returnValue;
 		} catch (Exception e) {
 			e.printStackTrace();

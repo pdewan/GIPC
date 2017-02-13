@@ -1,5 +1,6 @@
 package inputport.rpc.duplex;
 
+import port.trace.rpc.RemoteCallReturnValueDetermined;
 import inputport.InputPort;
 import inputport.datacomm.NamingSender;
 import inputport.rpc.RemoteCall;
@@ -54,6 +55,8 @@ public class ADuplexCallSendTrapper extends ASimplexCallSendTrapper {
 //						duplexRPCInputPort.getPhysicalRemoteEndPoint(), 
 						aDestination,						
 						call);
+		RemoteCallReturnValueDetermined.newCase(this, aMessage, retVal);
+
 		return retVal;
 
 //		return sharedSenderReceiverState().duplexSentCallCompleter

@@ -1,8 +1,8 @@
 package inputport.datacomm;
 import java.nio.ByteBuffer;
 
-import port.trace.ByteBufferSent;
-import port.trace.ObjectSent;
+import port.trace.ByteBufferSendInitiated;
+import port.trace.ObjectSendInitiated;
 
 public class ASendMessageForwarder<InAndOutMessageType> extends AnAbstractSendTrapper<InAndOutMessageType, InAndOutMessageType>{
 	public ASendMessageForwarder(NamingSender<InAndOutMessageType>  aDestination) {
@@ -13,9 +13,9 @@ public class ASendMessageForwarder<InAndOutMessageType> extends AnAbstractSendTr
 //		Tracer.info(this, "Forwarding sent message " + message);
 //		destination.send(aRemoteEndPoint,  aMessage);
 		if (aMessage instanceof ByteBuffer)
-			ByteBufferSent.newCase(this, destination, aRemoteEndPoint, (ByteBuffer) aMessage);
+			ByteBufferSendInitiated.newCase(this, destination, aRemoteEndPoint, (ByteBuffer) aMessage);
 		else
-			ObjectSent.newCase(this, destination, aRemoteEndPoint,  aMessage);
+			ObjectSendInitiated.newCase(this, destination, aRemoteEndPoint,  aMessage);
 		destination.send(aRemoteEndPoint,  aMessage);
 
 

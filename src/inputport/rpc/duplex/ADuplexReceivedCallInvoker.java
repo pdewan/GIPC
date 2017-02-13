@@ -8,6 +8,8 @@ import inputport.rpc.simplex.ASimplexReceivedCallInvoker;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 
+import port.trace.rpc.ReturnMessageCreated;
+import port.trace.rpc.SentObjectTransformed;
 import util.trace.Tracer;
 
 
@@ -32,10 +34,12 @@ public class ADuplexReceivedCallInvoker extends ASimplexReceivedCallInvoker impl
 	@Override
 	protected void handleFunctionReturn(String aSource, Object retVal, Class aRetType) {
 			Object possiblyTransformedRetVal = localRemoteReferenceTranslator.transformSentReference(retVal, aRetType); // need to get the method and its return type
+			SentObjectTransformed.newCase(this, retVal, possiblyTransformedRetVal, aRetType);
 			replier.reply (aSource, createRPCReturnValue((Serializable) possiblyTransformedRetVal));	 // need a special reply call for the case when we have a replicated port
 	}	
 	protected RPCReturnValue createRPCReturnValue(Object retVal) {
 		RPCReturnValue rpcReturnValue = new AnRPCReturnValue(retVal);
+		ReturnMessageCreated.newCase(this, retVal, rpcReturnValue);
 		Tracer.info(this, "Composed return value:" + retVal);
 		return rpcReturnValue;
 	}

@@ -9,6 +9,10 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
+import port.trace.nio.SocketChannelConnectFinished;
+import port.trace.nio.SocketChannelConnectInitiated;
+import port.trace.nio.SocketChannelInterestOp;
+import port.trace.nio.SocketChannelRegistered;
 import util.trace.Tracer;
 
 
@@ -47,7 +51,12 @@ public class AConnectCommand implements ConnectCommand {
 //			socketChannel.configureBlocking(true); // asynchrony is causing problems
 			socketChannel.configureBlocking(false);
 			Tracer.info(this, "Making connect request for host " + serverHost + " port " + port);
-			connected = socketChannel.connect(new InetSocketAddress(serverHost, port));
+			InetSocketAddress anAddress = new InetSocketAddress(serverHost, port);
+			
+//			connected = socketChannel.connect(new InetSocketAddress(serverHost, port));
+			connected = socketChannel.connect(anAddress);
+
+			SocketChannelConnectInitiated.newCase(this, socketChannel, anAddress);
 			Tracer.info(this, "Connection status for  " + socketChannel + " is " + connected);
 			if (connected) {
 				doGiveReponse();
@@ -56,6 +65,7 @@ public class AConnectCommand implements ConnectCommand {
 
 			Tracer.info(this, "Registering connect op for:" + socketChannel );
 			socketChannel.register(selectionManager.getSelector(), SelectionKey.OP_CONNECT);
+			SocketChannelRegistered.newCase(this, socketChannel, selectionManager.getSelector(), SelectionKey.OP_CONNECT);
 			}
 //			connected = socketChannel.connect(new InetSocketAddress(serverHost, port));
 			return connected;
@@ -73,6 +83,7 @@ public class AConnectCommand implements ConnectCommand {
 		for (SocketChannelConnectListener listener:listeners)
 			listener.connected(socketChannel);
 		selectionKey.interestOps(SelectionKey.OP_READ);
+		SocketChannelInterestOp.newCase(this, selectionKey, SelectionKey.OP_READ);
 
 	}
 	@Override
@@ -81,6 +92,7 @@ public class AConnectCommand implements ConnectCommand {
 			if (connected) return true;
 //			Tracer.info(this, "Giving response for socket channel: " + socketChannel);
 			connected = socketChannel.finishConnect();
+			SocketChannelConnectFinished.newCase(this, socketChannel);
 //			Message.info("Finish connections status  for channel "  + socketChannel + " "  + connected);
 			if (!connected) {
 				Tracer.error("Could not finish connection for channel " + socketChannel);

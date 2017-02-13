@@ -6,6 +6,8 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
+import port.trace.nio.SocketChannelInterestOp;
+import port.trace.nio.SocketChannelWritten;
 import util.trace.Tracer;
 
 
@@ -68,11 +70,14 @@ public class AWriteCommand implements WriteCommand  {
 //			String writeBufferToString = writeBuffer.toString();
 //			Message.info("writing to channel " + socketChannel + " buffer:" + getId() + " with contents" + writeBuffer);
 			socketChannel.write(writeBuffer);
+			SocketChannelWritten.newCase(this, socketChannel, writeBuffer);
 			if (writeBuffer.remaining() > 0) {
 				SelectionKey selectionKey = socketChannel.keyFor(selectingRunnable.getSelector());
 				selectionKey.interestOps(SelectionKey.OP_WRITE);
 				Tracer.info(this, "Putting buffer back as not all of it written. Socket channel: " + socketChannel + " interst ops: " + selectionKey.interestOps());
-//				theSelectingRunnable.putBufferedWrite(this);
+				SocketChannelInterestOp.newCase(this, selectionKey, SelectionKey.OP_WRITE);
+
+				//				theSelectingRunnable.putBufferedWrite(this);
 				return false;
 			}
 			writeBuffer.flip();

@@ -9,6 +9,8 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
+import port.trace.nio.SocketChannelInterestOp;
+import port.trace.nio.SocketChannelRead;
 import util.trace.Tracer;
 
 
@@ -35,6 +37,8 @@ public class AReadCommand implements ReadCommand {
 		SelectionKey selectionKey = socketChannel.keyFor(selectionManager.getSelector());
 		selectionKey.interestOps(SelectionKey.OP_READ);
 		Tracer.info(this, "New selection ops for channel: " + selectionKey.channel() + " are " + selectionKey.interestOps());
+		SocketChannelInterestOp.newCase(this, selectionKey, SelectionKey.OP_READ);
+
 		return false;
 	}
 	@Override
@@ -64,6 +68,7 @@ public class AReadCommand implements ReadCommand {
 	protected int  readIntoBuffer() throws IOException {
 		
 		int bytesRead = socketChannel.read(readBuffer);
+		SocketChannelRead.newCase(this, socketChannel, readBuffer);
 		if (readBuffer.position() == readBuffer.capacity()) {
 			Tracer.error("Read Buffer Overflow. Bytes read : " + bytesRead);
 		}

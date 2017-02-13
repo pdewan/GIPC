@@ -9,10 +9,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import port.trace.ByteBufferReceived;
-import port.trace.ByteBufferSent;
-import port.trace.ClientNameSent;
+import port.trace.ByteBufferSendInitiated;
+import port.trace.ClientNameSendInitiated;
 import port.trace.ObjectReceived;
-import port.trace.ObjectSent;
+import port.trace.ObjectSendInitiated;
 import util.trace.ImplicitKeywordKind;
 import util.trace.TraceableInfo;
 import util.trace.Tracer;

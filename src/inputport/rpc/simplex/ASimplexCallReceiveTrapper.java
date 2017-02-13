@@ -8,9 +8,9 @@ import inputport.rpc.ReceivedCallInvoker;
 import inputport.rpc.RemoteCall;
 import port.trace.AConnectionEvent;
 import port.trace.AReplaceConnectionEvent;
-import port.trace.CallInitiated;
-import port.trace.CallReceived;
 import port.trace.ConnectiontEventBus;
+import port.trace.rpc.CallInitiated;
+import port.trace.rpc.CallReceived;
 import util.trace.Tracer;
 
 

@@ -5,6 +5,9 @@ import java.lang.reflect.Method;
 
 import port.trace.AConnectionEvent;
 import port.trace.ConnectiontEventBus;
+import port.trace.rpc.ReceivedCallEnded;
+import port.trace.rpc.ReceivedCallInitiated;
+import port.trace.rpc.RegisteredObjectLookedUp;
 
 
 
@@ -45,7 +48,11 @@ public abstract class AnAbstractReceivedCallInvoker implements ReceivedCallInvok
 			if (targetObject == null) {
 				throw new RPCOnUnregisteredObjectException(aCall.getTargetObject());
 			}
+			RegisteredObjectLookedUp.newCase(this, aCall.getTargetObject(), targetObject);
+			ReceivedCallInitiated.newCase(this, targetObject, aCall.getMethod(), aCall.getArgs());
 			Object newVal = invokeMethod(aCall.getMethod(), targetObject, aCall.getArgs());
+			ReceivedCallEnded.newCase(this, targetObject, aCall.getMethod(), aCall.getArgs(), newVal);
+
 			if (isProcedure(aCall))
 				handleProcedureReturn(aSender);
 			else

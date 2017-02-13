@@ -9,7 +9,7 @@ import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
 import inputport.rpc.duplex.RPCReturnValue;
 import inputport.rpc.duplex.RPCReturnValueQueue;
-import port.trace.ReturnValueQueued;
+import port.trace.rpc.ReturnValueQueuedOld;
 
 
 
@@ -43,7 +43,7 @@ public class AnInheritingDuplexRPCClientInputPort extends ADuplexRPCClientInputP
 	@Override
 	public void messageReceived(String remoteClientName, Object message) {
 		if (message instanceof RPCReturnValue) {
-			ReturnValueQueued.newCase(this, rpcReturnValueReceiver, remoteClientName, message);
+			ReturnValueQueuedOld.newCase(this, rpcReturnValueReceiver, remoteClientName, message);
 			rpcReturnValueReceiver.putReturnValue((RPCReturnValue) message);
 		} else  {
 			super.messageReceived(remoteClientName, message);

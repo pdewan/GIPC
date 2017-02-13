@@ -4,7 +4,7 @@ import inputport.InputPort;
 import inputport.datacomm.AnAbstractSendTrapper;
 import inputport.datacomm.NamingSender;
 import inputport.rpc.RemoteCall;
-import port.trace.CallGenerated;
+import port.trace.rpc.CallGenerated;
 import util.trace.Tracer;
 
 

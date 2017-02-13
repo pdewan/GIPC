@@ -1,6 +1,7 @@
 package extraip;
 
 
+import port.trace.rpc.ReceivedObjectTransformed;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
 import inputport.rpc.duplex.RPCReturnValue;
 
@@ -17,6 +18,7 @@ public class AnRPCReturnValueReceiverBuggy implements BuggyRPCReturnValueReceive
 		Object possiblyRemoteRetVal = (message).getReturnValue();
 //		returnValue = ((RPCReturnValue) message).getReturnValue();
 		returnValue = remoteHandler.transformReceivedReference(possiblyRemoteRetVal);
+		ReceivedObjectTransformed.newCase(this, possiblyRemoteRetVal, returnValue);
 		shouldWait = false;
 		this.notify();		
 	}
