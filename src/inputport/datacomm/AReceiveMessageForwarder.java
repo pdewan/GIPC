@@ -17,11 +17,13 @@ public class AReceiveMessageForwarder<InAndOutMessageType> extends AnAbstractRec
 	public void notifyPortReceive(String aRemoteEnd, InAndOutMessageType aMessage) {
 	
 //		Tracer.info(this, "Forwarding received message " + message +  " from: " + remoteEnd);
-		destination.notifyPortReceive(aRemoteEnd, aMessage);	
+//		destination.notifyPortReceive(aRemoteEnd, aMessage);	
 		if (aMessage instanceof ByteBuffer)
 			ByteBufferReceived.newCase(this, destination, aRemoteEnd, (ByteBuffer) aMessage);
 		else
 			ObjectReceived.newCase(this, destination, aRemoteEnd,  aMessage);
+		destination.notifyPortReceive(aRemoteEnd, aMessage);	
+
 	}	
 	
 }

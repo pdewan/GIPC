@@ -18,12 +18,12 @@ public class GIPCLocateRegistry {
 		result.launch();
 		return result;
 	}
-	public static GIPCRegistry getRegistry(String aHostName, int aPortNumber) {
-		lastClientName = clientNamePrefix + lastClientId;
-		lastClientId++;
+	public static GIPCRegistry getRegistry(String aHostName, int aPortNumber, String aClientName) {
+//		lastClientName = clientNamePrefix + lastClientId;
+//		lastClientId++;
 		String aServerId = "" + aPortNumber;
 		AnAbstractDuplexRPCClientPortLauncher result = new AnAbstractDuplexRPCClientPortLauncher(
-				lastClientName, 
+				aClientName, 
 				aHostName,
 				aServerId,
 				lastServerName);	
