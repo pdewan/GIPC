@@ -1,6 +1,7 @@
 package examples.gipc.counter.simple;
 
 
+import inputport.rpc.ACachingAbstractRPCProxyInvocationHandler;
 import inputport.rpc.GIPCLocateRegistry;
 import inputport.rpc.GIPCRegistry;
 
@@ -45,6 +46,7 @@ public class ASimpleGIPCCounterClient implements SimpleCounterClient{
 	protected static GIPCRegistry gipcRegistry;
 	
 	public static void init(String aClientName) {
+		ACachingAbstractRPCProxyInvocationHandler.setInvokeObjectMethodsRemotely(false);
 		gipcRegistry = GIPCLocateRegistry.getRegistry(REGISTRY_HOST_NAME, REGISTRY_PORT_NAME, aClientName);
 		counter = (DistributedRMICounter) gipcRegistry.lookup(DistributedRMICounter.class, COUNTER_NAME);			
 	}
@@ -52,51 +54,15 @@ public class ASimpleGIPCCounterClient implements SimpleCounterClient{
 		try {
 		counter.increment(1);
 		System.out.println (counter.getValue());
+		System.out.println(counter);
+		ACachingAbstractRPCProxyInvocationHandler.setInvokeObjectMethodsRemotely(true);
+		System.out.println(counter);
+		System.out.println(counter.hashCode());
+		System.out.println (counter.equals(counter));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
-	public static void setTracing() {
-		Tracer.showInfo(true);
-		Tracer.setDisplayThreadName(true); 
-		TraceableInfo.setPrintTraceable(true);
-		TraceableInfo.setPrintSource(true);
-		Tracer.setImplicitPrintKeywordKind(ImplicitKeywordKind.OBJECT_CLASS_NAME);
-		
 	
-//		Tracer.setKeywordPrintStatus(CallInitiated.class, true);
-		Tracer.setKeywordPrintStatus(CallReceived.class, true);
-		Tracer.setKeywordPrintStatus(ReceivedCallDequeued.class, true);
-		Tracer.setKeywordPrintStatus(ReceivedCallEndedOld.class, true);
-		Tracer.setKeywordPrintStatus(ReceivedCallQueued.class, true);
-		Tracer.setKeywordPrintStatus(ReceivedObjectTransformed.class, true);
-		Tracer.setKeywordPrintStatus(ReceivedReturnValueDequeued.class, true);
-		Tracer.setKeywordPrintStatus(ReceivedReturnValueQueued.class, true);	
-		Tracer.setKeywordPrintStatus(RegisteredObjectLookedUp.class, true);	
-		Tracer.setKeywordPrintStatus(RemoteCallBlockedForReturnValue.class, true);
-		Tracer.setKeywordPrintStatus(RemoteCallFinished.class, true);
-		Tracer.setKeywordPrintStatus(RemoteCallInitiated.class, true);
-		Tracer.setKeywordPrintStatus(RemoteCallReturnValueDetermined.class, true);
-			
-		Tracer.setKeywordPrintStatus(SentObjectTransformed.class, true);
-
-
-
-		
-
-
-
-		Tracer.setKeywordPrintStatus(ObjectReceived.class, true);
-		Tracer.setKeywordPrintStatus(ObjectSendInitiated.class, true);
-		Tracer.setKeywordPrintStatus(ClientNameSendInitiated.class, true);
-		Tracer.setKeywordPrintStatus(ByteBufferSendInitiated.class, true);
-		Tracer.setKeywordPrintStatus(ByteBufferReceived.class, true);
-		
-		Tracer.setKeywordPrintStatus(SocketChannelConnectFinished.class, true);
-		Tracer.setKeywordPrintStatus(SocketChannelWritten.class, true);
-		Tracer.setKeywordPrintStatus(SocketChannelRead.class, true);
-
-
-	}
 
 }

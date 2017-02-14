@@ -5,7 +5,9 @@ import inputport.rpc.duplex.DuplexRPCInputPort;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
 import inputport.rpc.simplex.SimplexRPC;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.rmi.server.RemoteObject;
 import java.util.Collection;
 import java.util.HashSet;
@@ -49,13 +51,15 @@ ANonCachingAbstractRPCProxyInvocationHandler implements
 	boolean toStringMethodOverridden;
 	static Set<Method> localMethods = new HashSet();
 	LocalRemoteReferenceTranslator translator;
+	protected static boolean invokeObjectMethodsRemotely = false;
+
 	
 	// distinguish between efficient and not efficient handler
 	public ACachingAbstractRPCProxyInvocationHandler(SimplexRPC anRPCPort,
 			String aDestination, Class aType, String aName) {
 		super(anRPCPort, aDestination, aType, aName);
 		if (aType.isInterface()) {
-			Tracer.warning("Creating proxy out of interface: " + remoteType + " call to equals() and toString() may be executed more inefficiently if these Object methods have not been overriden");
+			Tracer.warning("Creating proxy out of interface: " + remoteType + " call to equals() and toString() will not be executed remotely even if these Object methods have been overriden");
 		}
 		if (anRPCPort instanceof DuplexRPCInputPort) {
 			translator = ((DuplexRPCInputPort) anRPCPort).getLocalRemoteReferenceTranslator();
@@ -237,6 +241,16 @@ ANonCachingAbstractRPCProxyInvocationHandler implements
 	protected Object invokeEquals(Object arg0, Method method, Object[] args) {
 //		if (!equalsMethodOverridden) 
 //			return arg0 == args[0];
+		if (!invokeObjectMethodsRemotely) {			
+			Object maybeProxy = args[0];
+			if (arg0 == maybeProxy) return true;
+			if (!(maybeProxy instanceof Proxy)) {
+				return false;				
+			}
+			Proxy otherProxy = (Proxy) maybeProxy;
+			Proxy aProxy = (Proxy) arg0;
+			return Proxy.getInvocationHandler(aProxy).equals(Proxy.getInvocationHandler(otherProxy));
+		}
 		if (arg0 == args[0])
 			return true;
 		else if (!equalsMethodOverridden) 
@@ -246,6 +260,9 @@ ANonCachingAbstractRPCProxyInvocationHandler implements
 	}
 	
 	protected Object invokeHashCode(Object arg0, Method method, Object[] args) {
+		if (!invokeObjectMethodsRemotely) {
+			return System.identityHashCode(arg0);
+		}
 		Object retVal = objectToHashCode.get(arg0);
 		if (retVal == null) {
 			retVal = super.invoke(arg0, method, args);
@@ -253,7 +270,12 @@ ANonCachingAbstractRPCProxyInvocationHandler implements
 		}
 		return retVal;
 	}
-	protected Object invokeToString(Object arg0, Method method, Object[] args) {	
+	protected Object invokeToString(Object arg0, Method method, Object[] args) {
+		if (!invokeObjectMethodsRemotely || !toStringMethodOverridden) {
+			
+				return arg0.getClass().getName() + "@" + Integer.toHexString(System.identityHashCode(arg0));
+			
+		}
 		
 		// can return local toString based on surrogate if not overridden, but let us see if this causes any deadlock
 		Object retVal = objectToString.get(arg0);
@@ -284,7 +306,14 @@ ANonCachingAbstractRPCProxyInvocationHandler implements
 		}
 		return retVal;
 	}
-	
+	public static boolean isInvokeObjectMethodsRemotely() {
+		return invokeObjectMethodsRemotely;
+	}
+
+	public static void setInvokeObjectMethodsRemotely(
+			boolean invokeObjectMethodsRemotely) {
+		ACachingAbstractRPCProxyInvocationHandler.invokeObjectMethodsRemotely = invokeObjectMethodsRemotely;
+	}
 	// the non replay stuff should be in superclass as it has nothing to do with caching
 //	public  void newEvent(Exception aTraceable) {
 //		// actually should see if the message was really sent or not, and not just delayed or buffered - or should one?

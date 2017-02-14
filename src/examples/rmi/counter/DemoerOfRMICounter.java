@@ -13,8 +13,8 @@ public class DemoerOfRMICounter {
 		
 		Class[] classes = {
 				DistributedRMIRegistryStarter.class,
-				AnRMICounterServerLauncher.class,
-				AnRMICounterClientLauncher.class
+				AnRMICounterServer.class,
+				AnRMICounterClient.class
 
 				
 		};

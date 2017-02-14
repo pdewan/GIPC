@@ -10,6 +10,7 @@ import inputport.rpc.simplex.SimplexRPC;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
+import port.trace.rpc.ProxyCreated;
 import util.misc.RemoteReflectionUtility;
 
 public class DirectedRPCProxyGenerator {
@@ -65,9 +66,12 @@ public class DirectedRPCProxyGenerator {
 		Class[] remoteInterfaces = RemoteReflectionUtility.getProxyInterfaces(aClass);
 
 		InvocationHandler invocationHandler = new AnRPCProxyInvocationHandler(aPort, aDestination, aClass, anObjectName);
-		return Proxy.newProxyInstance(aClass.getClassLoader(),
+		Object retVal = Proxy.newProxyInstance(aClass.getClassLoader(),
                 remoteInterfaces,
-                invocationHandler);				
+                invocationHandler);	
+		ProxyCreated.newCase(DirectedRPCProxyGenerator.class, retVal, remoteInterfaces, invocationHandler);
+		
+		return retVal;
 	}
 	public static Object generateRPCProxy(SimplexRPC aPort, String aDestination, Class aClass, String anObjectName) {	
 		if (isShortCircuitLocalCallsToRemotes())

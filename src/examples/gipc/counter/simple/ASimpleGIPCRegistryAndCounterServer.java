@@ -22,6 +22,6 @@ public class ASimpleGIPCRegistryAndCounterServer  implements SimpleRegistryAndCo
 	}
 	public static void main (String[] args) {		
 		init();
-		ASimpleGIPCCounterClient.setTracing();
+		RPCTraceUtility.setTracing();
 	}
 }

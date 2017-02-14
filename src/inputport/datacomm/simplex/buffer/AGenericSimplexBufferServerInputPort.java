@@ -17,6 +17,8 @@ import java.util.Set;
 
 import port.trace.AConnectionEvent;
 import port.trace.AReplaceConnectionEvent;
+import port.trace.ClientNameAssociatedWithPort;
+import port.trace.ClientNameLookedUp;
 import port.trace.ConnectiontEventBus;
 import util.trace.Tracer;
 
@@ -61,6 +63,7 @@ public class AGenericSimplexBufferServerInputPort<RequestChannelType, MessageCha
 	protected void associate (MessageChannelType aChannelType, String aClientName) {
 		Tracer.info(this, "Associating " + aClientName  + " with " + aChannelType);
 		channelToClientName.put(aChannelType, aClientName);
+		ClientNameAssociatedWithPort.newCase(this, aClientName, aChannelType);
 		MessageChannelType oldChannel = clientNameToChannel.put(aClientName, aChannelType);
 		if (oldChannel != null) {
 			Tracer.error("A second concurrent connection from client: " + aClientName + " to the same server port. All messages from the old connection will be sent back on the new one");
@@ -85,6 +88,7 @@ public class AGenericSimplexBufferServerInputPort<RequestChannelType, MessageCha
 //			Tracer.info("Total bytes received by server port: " + getLocalName() + " " + totalBytesReceived);
 //
 //			notifyPortReceive(clientName, aMessage);	
+			ClientNameLookedUp.newCase(this, aClientName, aChannelType);
 			messageReceived(aClientName, aMessage);
 		}		
 	}

@@ -8,6 +8,9 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
+import port.trace.nio.SocketChannelAccepted;
+import port.trace.nio.SocketChannelInterestOp;
+import port.trace.nio.SocketChannelRegistered;
 import util.trace.Tracer;
 
 
@@ -41,6 +44,7 @@ public class AnAcceptCommand implements AcceptCommand {
 			serverSocketChannel.configureBlocking(false);
 
 			serverSocketChannel.register(selectingRunnable.getSelector(), SelectionKey.OP_ACCEPT);
+			SocketChannelRegistered.newCase(this, serverSocketChannel, selectingRunnable.getSelector(), SelectionKey.OP_ACCEPT);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,13 +55,15 @@ public class AnAcceptCommand implements AcceptCommand {
 	public boolean execute() {
 		try {
 			SocketChannel newSocketChannel = serverSocketChannel.accept();
+			SocketChannelAccepted.newCase(this, newSocketChannel, serverSocketChannel);
 //			newSocketChannel.configureBlocking(false);	
 			Tracer.info(this, "New socket channel with read ops enabled:" + newSocketChannel);
 //			newSocketChannel.register(selectingRunnable.getSelector(), SelectionKey.OP_READ);			
 			for (SocketChannelAcceptListener listener:listeners)
 				listener.socketChannelAccepted(serverSocketChannel, newSocketChannel);
 			newSocketChannel.configureBlocking(false);
-			newSocketChannel.register(selectingRunnable.getSelector(), SelectionKey.OP_READ);			
+			newSocketChannel.register(selectingRunnable.getSelector(), SelectionKey.OP_READ);	
+			SocketChannelRegistered.newCase(this, newSocketChannel, selectingRunnable.getSelector(), SelectionKey.OP_READ);
 
 			return true;
 		} catch (Exception e) {

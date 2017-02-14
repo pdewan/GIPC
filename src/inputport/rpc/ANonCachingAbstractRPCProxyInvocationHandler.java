@@ -31,6 +31,24 @@ public abstract class ANonCachingAbstractRPCProxyInvocationHandler implements
 		
 	}
 	
+	public String toString() {
+		return getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) +
+				"(" +
+				name + 
+//				":" + remoteType.getSimpleName() + 
+				"->" + destination +
+				")";
+	}
+	public boolean equals(Object theOther) {
+		if (super.equals(theOther)) {
+			return true;
+		}
+		if (!(theOther instanceof ANonCachingAbstractRPCProxyInvocationHandler))
+			return false;
+		ANonCachingAbstractRPCProxyInvocationHandler otherProxyInvocationHandler = 
+				(ANonCachingAbstractRPCProxyInvocationHandler) theOther;
+		return name.equals(otherProxyInvocationHandler.name) && destination.equals(otherProxyInvocationHandler.destination);
+	}
 	
 	public Class getProxyTargetClass() {
 		return remoteType;
@@ -68,6 +86,8 @@ public abstract class ANonCachingAbstractRPCProxyInvocationHandler implements
 
 	protected abstract Object call(String remoteEndPoint, Class type,
 			Method method, Object[] args);
+
+	
 
 	
 	public Object invoke(Object arg0, Method method, Object[] args) {

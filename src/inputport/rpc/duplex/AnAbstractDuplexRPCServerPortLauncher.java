@@ -5,6 +5,7 @@ import java.util.Map;
 
 import examples.mvc.local.duplex.ACounter;
 import inputport.rpc.GIPCRegistry;
+import inputport.rpc.RPCRegistry;
 import port.AnAbstractPortLauncher;
 import port.PortAccessKind;
 import port.PortKind;
@@ -32,6 +33,9 @@ public class AnAbstractDuplexRPCServerPortLauncher extends AnAbstractDuplexRPCPo
 	@Override
 	public PortKind getPortKind() {
 		return PortKind.SERVER_INPUT_PORT;
+	}
+	public Object lookup(Class anInterface, String aName) {
+		return ((RPCRegistry) getMainPort()).getServerObject(aName);
 	}
 //	@Override
 //	protected PortMessageKind getPortMessageKind() {
