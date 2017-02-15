@@ -53,12 +53,7 @@ public class ASimpleGIPCCounterClient implements SimpleCounterClient{
 	public static void doOperations() {
 		try {
 		counter.increment(1);
-		System.out.println (counter.getValue());
-		System.out.println(counter);
-		ACachingAbstractRPCProxyInvocationHandler.setInvokeObjectMethodsRemotely(true);
-		System.out.println(counter);
-		System.out.println(counter.hashCode());
-		System.out.println (counter.equals(counter));
+		System.out.println (counter.getValue());		
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
