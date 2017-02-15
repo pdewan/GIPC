@@ -25,7 +25,7 @@ public class ASimpleGIPCCounterClient0 extends ASimpleGIPCCounterClient implemen
 	
 	public static void main (String[] args) {	
 		Tracer.showInfo(true);
-		RPCTraceUtility.setTracing();
+//		RPCTraceUtility.setTracing();
 		init("Client 1");
 		doOperations();		
 	}
