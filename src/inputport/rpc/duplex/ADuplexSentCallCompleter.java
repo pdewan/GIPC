@@ -23,7 +23,7 @@ public class ADuplexSentCallCompleter extends AnAbstractDuplexSentCallCompleter 
 //		localRemoteReferenceTranslator = aDuplexRPCInputPort.getLocalRemoteReferenceTranslator();
 //	}
 	protected RPCReturnValueQueue createRPCReturnValueReceiver(LocalRemoteReferenceTranslator aRemoteHandler, String aRemoteEnd) {
-		return  new AnRPCReturnValueQueue(aRemoteHandler, aRemoteEnd);
+		return  new AnRPCReturnValueQueue(aRemoteHandler, aRemoteEnd, inputPort);
 	}
 
 	protected void createRPCReturnValueReceiver(String aRemoteEnd) {

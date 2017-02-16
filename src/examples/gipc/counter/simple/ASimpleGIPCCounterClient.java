@@ -54,7 +54,7 @@ public class ASimpleGIPCCounterClient implements SimpleCounterClient{
 		try {
 		counter.increment(1);
 		System.out.println (counter.getValue());		
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

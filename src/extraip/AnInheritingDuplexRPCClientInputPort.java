@@ -23,7 +23,7 @@ public class AnInheritingDuplexRPCClientInputPort extends ADuplexRPCClientInputP
 	}
 	
 	protected RPCReturnValueQueue createRPCReturnValueReceiver(LocalRemoteReferenceTranslator aRemoteHandler) {
-		return  new AnRPCReturnValueQueue(aRemoteHandler, null);
+		return  new AnRPCReturnValueQueue(aRemoteHandler, null, null);
 	}
 	
 

@@ -1,5 +1,9 @@
 package inputport.rpc.duplex;
 
+import inputport.ConnectionListener;
+import inputport.ConnectionType;
+import inputport.InputPort;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -10,15 +14,19 @@ import port.trace.rpc.RemoteCallBlockedForReturnValue;
 import port.trace.rpc.RemoteCallReturnValueDetermined;
 import util.trace.Tracer;
 
-public class AnRPCReturnValueQueue implements RPCReturnValueQueue {
+public class AnRPCReturnValueQueue implements RPCReturnValueQueue, ConnectionListener {
 	LocalRemoteReferenceTranslator localRemoteReferenceTranslator;
 	public static int MAX_OUTSTANDING_CALLS = 10;
-	BlockingQueue<RPCReturnValue> returnValueQueue = new ArrayBlockingQueue(10);
+	BlockingQueue<RPCReturnValue> returnValueQueue = new ArrayBlockingQueue(MAX_OUTSTANDING_CALLS);
 	protected String remoteEnd; // mainly for debugging purposes
+	int numOutStandingCalls;
+	boolean isConnected;
+	protected InputPort inputPort;
 
-	public AnRPCReturnValueQueue(LocalRemoteReferenceTranslator aRemoteHandler, String aRemoteEnd) {
+	public AnRPCReturnValueQueue(LocalRemoteReferenceTranslator aRemoteHandler, String aRemoteEnd, InputPort anInputPort) {
 		localRemoteReferenceTranslator = aRemoteHandler;
 		remoteEnd = aRemoteEnd;
+		inputPort = anInputPort;
 	}
 
 	public void putReturnValue(RPCReturnValue message) {
@@ -37,11 +45,18 @@ public class AnRPCReturnValueQueue implements RPCReturnValueQueue {
 			Tracer.info (this, "waiting for return value of " + this);
 			boolean willBlock = returnValueQueue.isEmpty();
 			if (willBlock) {
+				if (!isConnected) {
+					inputPort.addConnectionListener(this);
+				}
 				RemoteCallBlockedForReturnValue.newCase(this, this);
 			}
-
+			numOutStandingCalls++;
 			RPCReturnValue message = returnValueQueue.take();
+			numOutStandingCalls--;
 			Tracer.info (this, "got return value " + message + "from " + this);
+			if (message instanceof ARemoteEndDisconnected) {
+				throw new RemoteEndDisconnectedException();
+			}
 			
 			ReceivedReturnValueDequeued.newCase(this, returnValueQueue, message);
 
@@ -50,7 +65,10 @@ public class AnRPCReturnValueQueue implements RPCReturnValueQueue {
 					.transformReceivedReference(possiblyRemoteRetVal);
 			ReceivedObjectTransformed.newCase(this, possiblyRemoteRetVal, returnValue);
 			return returnValue;
-		} catch (Exception e) {
+		} catch (GIPCRemoteException e) {
+			throw e;
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -62,5 +80,33 @@ public class AnRPCReturnValueQueue implements RPCReturnValueQueue {
 	}
 	public BlockingQueue<RPCReturnValue> returnValueQueue() {
 		return returnValueQueue;
+	}
+
+	@Override
+	public void connected(String aRemoteEndName, ConnectionType aConnectionType) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notConnected(String aRemoteEndName, String anExplanation,
+			ConnectionType aConnectionType) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disconnected(String aRemoteEndName,
+			boolean anExplicitDsconnection, String anExplanation,
+			ConnectionType aConnectionType) {
+		for (int i=0; i<numOutStandingCalls; i++) {
+			try {
+				returnValueQueue.put(new ARemoteEndDisconnected());
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 	}
 }

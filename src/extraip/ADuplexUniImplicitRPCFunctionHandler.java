@@ -16,7 +16,7 @@ public class ADuplexUniImplicitRPCFunctionHandler
 		rpcReturnValueReceiver =  createRPCReturnValueReceiver(aRemotehandler); 
 	}
 	protected RPCReturnValueQueue createRPCReturnValueReceiver(LocalRemoteReferenceTranslator aRemoteHandler) {
-		return  new AnRPCReturnValueQueue(aRemoteHandler, null);
+		return  new AnRPCReturnValueQueue(aRemoteHandler, null, null);
 	}
 	
 	@Override
