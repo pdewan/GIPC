@@ -26,19 +26,19 @@ public abstract class AnAbstractReceivedCallInvoker implements ReceivedCallInvok
 			ConnectiontEventBus.newEvent(new AConnectionEvent(this, method, false));
 		}
 	}
-	abstract protected void handleFunctionReturn(String aSender, Object aRetVal, Class aRetType);	
-	abstract protected void handleProcedureReturn(String aSender);	
+	abstract protected void handleFunctionReturn(String aSender, Object aRetVal, Class aRetType, Exception e);	
+	abstract protected void handleProcedureReturn(String aSender, Exception e);	
 	public static boolean isProcedure(RemoteCall aSerializableCall) {
 		return aSerializableCall.getMethod().getReturnType() == Void.TYPE;
 	}		
-	protected Object invokeMethod (Method method, Object targetObject, Object[] args) {
-		try {
+	protected Object invokeMethod (Method method, Object targetObject, Object[] args) throws Exception {
+//		try {
 			return method.invoke(targetObject, args);
-		} catch (Exception e) {
-			// ideally we should put these exceptions in a bounded buffer to somehow propagate to the caller 
-			e.printStackTrace();
-			return null;
-		}
+//		} catch (Exception e) {
+//			// ideally we should put these exceptions in a bounded buffer to somehow propagate to the caller 
+//			e.printStackTrace();
+//			return e;
+//		}
 	}
 	@Override
 	public void messageReceived(String aSender, Object aMessage) {
@@ -54,12 +54,18 @@ public abstract class AnAbstractReceivedCallInvoker implements ReceivedCallInvok
 			ReceivedCallEnded.newCase(this, targetObject, aCall.getMethod(), aCall.getArgs(), newVal);
 
 			if (isProcedure(aCall))
-				handleProcedureReturn(aSender);
+				handleProcedureReturn(aSender, null);
 			else
-				handleFunctionReturn(aSender, newVal, aCall.getMethod().getReturnType());
+				handleFunctionReturn(aSender, newVal, aCall.getMethod().getReturnType(), null);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			e.printStackTrace(); // print the message in the server
+			// tell the client about it
+			if (isProcedure(aCall))
+				handleProcedureReturn(aSender,  e);
+			else
+				handleFunctionReturn(aSender, null, null, e);
+			
 		}		
 	}
 //	@Override

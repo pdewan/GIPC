@@ -28,4 +28,8 @@ public class ASequencedRPCReturnValue implements RPCReturnValue {
 	public void setCallID(int newVal) {
 		callId = newVal;
 	}
+	@Override
+	public boolean isException() {
+		return false;
+	}
 }

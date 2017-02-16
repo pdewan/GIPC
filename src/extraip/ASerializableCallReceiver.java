@@ -23,10 +23,13 @@ public class ASerializableCallReceiver implements ReceivedCallInvoker  {
 	protected RPCReturnValue createRPCReturnValue(Serializable retVal) {
 		return new AnRPCReturnValue(retVal);
 	}
-	void handleReturnValue(Object retVal) {
+	protected RPCReturnValue createRPCReturnValue(Serializable retVal, Boolean isAnException) {
+		return new AnRPCReturnValue(retVal, isAnException);
+	}
+	void handleReturnValue(Object retVal, Boolean anIsException) {
 		if (retVal != null) {
 //			portSender.send (new AnRPCReturnValue((Serializable) retVal));		
-			portSender.send (createRPCReturnValue((Serializable) retVal));
+			portSender.send (createRPCReturnValue((Serializable) retVal, anIsException));
 		}
 	}
 	
@@ -39,7 +42,7 @@ public class ASerializableCallReceiver implements ReceivedCallInvoker  {
 				throw new RPCOnUnregisteredObjectException(message.getTargetObject());
 			}
 			Object newVal = message.getSerializableMethod().getMethod().invoke(targetObject, message.getArgs());
-			handleReturnValue(newVal);
+			handleReturnValue(newVal, null);
 //			if (newVal != null) {
 //				portSender.send (new AnRPCReturnValue((Serializable) newVal));				
 //			}

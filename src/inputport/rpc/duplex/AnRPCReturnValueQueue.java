@@ -59,8 +59,12 @@ public class AnRPCReturnValueQueue implements RPCReturnValueQueue, ConnectionLis
 			}
 			
 			ReceivedReturnValueDequeued.newCase(this, returnValueQueue, message);
+			if (message.isException()) {
+				throw new RemoteInvocationException((Throwable) message.getReturnValue());
+			}
 
 			Object possiblyRemoteRetVal = message.getReturnValue();
+			
 			Object returnValue = localRemoteReferenceTranslator
 					.transformReceivedReference(possiblyRemoteRetVal);
 			ReceivedObjectTransformed.newCase(this, possiblyRemoteRetVal, returnValue);

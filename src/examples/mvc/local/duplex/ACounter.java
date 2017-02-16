@@ -10,7 +10,7 @@ public class ACounter implements Counter{
 	}
 	Integer value = 0;	
 	public Object getValue() {
-
+		if (value < 0) throw new IllegalStateException();
 		return value;
 	}	
 	public void increment(int val) {

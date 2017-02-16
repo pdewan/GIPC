@@ -10,11 +10,11 @@ public class ASimplexReceivedCallInvoker extends AnAbstractReceivedCallInvoker i
 	public ASimplexReceivedCallInvoker(RPCRegistry theRPCRegistry) {
 		super (theRPCRegistry);
 	}
-	protected void handleFunctionReturn(String sender, Object retVal, Class aRetType) {
+	protected void handleFunctionReturn(String sender, Object retVal, Class aRetType, Exception e) {
 		Tracer.error("Ignoring ret val of called method:" + retVal);
 	}
 	
-	protected void handleProcedureReturn(String sender) {
+	protected void handleProcedureReturn(String sender, Exception e) {
 		return;
 	}
 	

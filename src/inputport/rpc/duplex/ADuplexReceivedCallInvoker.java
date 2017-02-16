@@ -23,7 +23,7 @@ public class ADuplexReceivedCallInvoker extends ASimplexReceivedCallInvoker impl
 		localRemoteReferenceTranslator = aLocalRemoteReferenceTranslator;
 	}
 	@Override
-	protected Object invokeMethod (Method method, Object targetObject, Object[] args) {
+	protected Object invokeMethod (Method method, Object targetObject, Object[] args) throws Exception {
 //		System.out.println("about to call remote translator");
 		localRemoteReferenceTranslator.transformReceivedReferences(args);
 //		System.out.println("about to invoke methodr");
@@ -32,13 +32,17 @@ public class ADuplexReceivedCallInvoker extends ASimplexReceivedCallInvoker impl
 
 	}	
 	@Override
-	protected void handleFunctionReturn(String aSource, Object retVal, Class aRetType) {
+	protected void handleFunctionReturn(String aSource, Object retVal, Class aRetType, Exception e) {
+			if ( e != null) {
+				replier.reply (aSource, createRPCReturnValue(e, true));
+				return;
+			}
 			Object possiblyTransformedRetVal = localRemoteReferenceTranslator.transformSentReference(retVal, aRetType); // need to get the method and its return type
 			SentObjectTransformed.newCase(this, retVal, possiblyTransformedRetVal, aRetType);
-			replier.reply (aSource, createRPCReturnValue((Serializable) possiblyTransformedRetVal));	 // need a special reply call for the case when we have a replicated port
+			replier.reply (aSource, createRPCReturnValue((Serializable) possiblyTransformedRetVal, false));	 // need a special reply call for the case when we have a replicated port
 	}	
-	protected RPCReturnValue createRPCReturnValue(Object retVal) {
-		RPCReturnValue rpcReturnValue = new AnRPCReturnValue(retVal);
+	protected RPCReturnValue createRPCReturnValue(Object retVal, Boolean anIsException) {
+		RPCReturnValue rpcReturnValue = new AnRPCReturnValue(retVal, anIsException);
 		ReturnMessageCreated.newCase(this, retVal, rpcReturnValue);
 		Tracer.info(this, "Composed return value:" + retVal);
 		return rpcReturnValue;

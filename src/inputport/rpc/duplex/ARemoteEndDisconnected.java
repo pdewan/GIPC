@@ -8,4 +8,9 @@ public class ARemoteEndDisconnected implements RPCReturnValue {
 		return null;
 	}
 
+	@Override
+	public boolean isException() {
+		return true;
+	}
+
 }
