@@ -12,6 +12,7 @@ import examples.mvc.local.duplex.DuplexUpperCaser;
 public class AnMVCServerSessionConnectionListener extends ATracingConnectionListener implements ConnectionListenerWithPort{
 	protected GenericRelayingCollaborativeFrostyModel model;	
 	public AnMVCServerSessionConnectionListener (GenericRelayingCollaborativeFrostyModel aModel) {
+		super(null);
 		model = aModel;
 	}	
 	@Override

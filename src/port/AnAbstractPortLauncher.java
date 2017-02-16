@@ -195,7 +195,7 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	protected void initClientHost() {
 		clientHost = getClientHost();
 	}
-	public InputPort getMainPort() {
+	public InputPort getInputPort() {
 		return mainPort;
 	}
 	

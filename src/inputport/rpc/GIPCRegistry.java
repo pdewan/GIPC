@@ -35,6 +35,6 @@ public interface GIPCRegistry extends PortLauncher{
 
 	DuplexRPCClientInputPort getRPCClientPort();
 	DuplexRPCServerInputPort getRPCServerPort();
-//	InputPort getMainPort();
+	InputPort getInputPort();
 //	public RPCInputPort getRPCInputPort() ;
 }

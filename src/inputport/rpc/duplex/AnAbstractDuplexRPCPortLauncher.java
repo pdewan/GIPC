@@ -58,7 +58,7 @@ public class AnAbstractDuplexRPCPortLauncher extends AnAbstractPortLauncher impl
 		return null;
 	}
 	public RPCInputPort getRPCInputPort() {
-		return (RPCInputPort) getMainPort();
+		return (RPCInputPort) getInputPort();
 	}
 
 //	public void listen() {

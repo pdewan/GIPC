@@ -28,14 +28,14 @@ public class AnAbstractDuplexRPCServerPortLauncher extends AnAbstractDuplexRPCPo
 	}	
 	@Override
 	public DuplexRPCServerInputPort getRPCServerPort() {
-		return (DuplexRPCServerInputPort) getMainPort();
+		return (DuplexRPCServerInputPort) getInputPort();
 	}
 	@Override
 	public PortKind getPortKind() {
 		return PortKind.SERVER_INPUT_PORT;
 	}
 	public Object lookup(Class anInterface, String aName) {
-		return ((RPCRegistry) getMainPort()).getServerObject(aName);
+		return ((RPCRegistry) getInputPort()).getServerObject(aName);
 	}
 //	@Override
 //	protected PortMessageKind getPortMessageKind() {

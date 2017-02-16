@@ -25,7 +25,10 @@ public class ATracingConnectionListener implements  ConnectionListener {
 //		}
 	}
 	protected void traceDisconnected(String aRemoteEnd, boolean anExplicitClose, String aSystemMessage, ConnectionType aConnectionType) {
+		if (inputPort != null)
 		System.out.println(inputPort.getLocalName() + "<-->" + aRemoteEnd + " (Closed)");
+		else
+			System.out.println(aRemoteEnd + " (Closed)");
 		if (anExplicitClose) {
 			System.out.println("Explanation: Explicit disconnect");
 		} else {
@@ -38,7 +41,10 @@ public class ATracingConnectionListener implements  ConnectionListener {
 //		System.out.println(inputPort.getLocalName() + "<-->" + aRemoteEnd + " (Opened)");		
 	}
 	protected void traceConnected(String aRemoteEnd, ConnectionType aConnectionType) {
-		System.out.println(inputPort.getLocalName() + "<-->" + aRemoteEnd + " (Opened)");		
+		if (inputPort != null)
+		System.out.println(inputPort.getLocalName() + "<-->" + aRemoteEnd + " (Opened)");
+		else
+			System.out.println( aRemoteEnd + " (Opened)");	
 	}
 	
 	@Override
@@ -46,7 +52,11 @@ public class ATracingConnectionListener implements  ConnectionListener {
 		traceNotConnected(aRemoteEnd, aMessage, aConnectionType);
 	}
 	public void traceNotConnected(String aRemoteEnd, String aMessage, ConnectionType aConnectionType) {
-		System.out.println(inputPort.getLocalName() + "<-->" + aRemoteEnd + " (Could not connect because: " + aMessage + " )");	
+		if (inputPort != null)
+		System.out.println(inputPort.getLocalName() + "<-->" + aRemoteEnd + " (Could not connect because: " + aMessage + " )");
+		else
+			System.out.println( aRemoteEnd + " (Could not connect because: " + aMessage + " )");
+
 		
 	}
 }

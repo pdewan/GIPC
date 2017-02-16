@@ -16,7 +16,7 @@ public class AnAbstractDuplexRPCClientPortLauncher extends AnAbstractDuplexRPCPo
 //	}
 	@Override
 	public DuplexRPCClientInputPort getRPCClientPort() {
-		return (DuplexRPCClientInputPort) getMainPort();
+		return (DuplexRPCClientInputPort) getInputPort();
 	}
 	public PortKind getPortKind() {
 		return PortKind.CLIENT_INPUT_PORT;

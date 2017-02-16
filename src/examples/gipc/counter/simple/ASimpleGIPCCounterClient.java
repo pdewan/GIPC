@@ -9,6 +9,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import port.ATracingConnectionListener;
 import port.trace.ByteBufferReceived;
 import port.trace.ByteBufferSendInitiated;
 import port.trace.ClientNameSendInitiated;
@@ -48,7 +49,8 @@ public class ASimpleGIPCCounterClient implements SimpleCounterClient{
 	public static void init(String aClientName) {
 		ACachingAbstractRPCProxyInvocationHandler.setInvokeObjectMethodsRemotely(false);
 		gipcRegistry = GIPCLocateRegistry.getRegistry(REGISTRY_HOST_NAME, REGISTRY_PORT_NAME, aClientName);
-		counter = (DistributedRMICounter) gipcRegistry.lookup(DistributedRMICounter.class, COUNTER_NAME);			
+		counter = (DistributedRMICounter) gipcRegistry.lookup(DistributedRMICounter.class, COUNTER_NAME);	
+		gipcRegistry.getInputPort().addConnectionListener(new ATracingConnectionListener(gipcRegistry.getInputPort()));
 	}
 	public static void doOperations() {
 		try {
