@@ -52,8 +52,11 @@ ANonCachingAbstractRPCProxyInvocationHandler implements
 	static Set<Method> localMethods = new HashSet();
 	LocalRemoteReferenceTranslator translator;
 	protected static boolean invokeObjectMethodsRemotely = false;
+	protected static boolean cacheFunctionCalls = false;
 
 	
+	
+
 	// distinguish between efficient and not efficient handler
 	public ACachingAbstractRPCProxyInvocationHandler(SimplexRPC anRPCPort,
 			String aDestination, Class aType, String aName) {
@@ -165,7 +168,7 @@ ANonCachingAbstractRPCProxyInvocationHandler implements
 		LocalCall call = null;
 		if (method.getReturnType() != Void.TYPE) {
 			call = new ALocalCall(arg0, method, args);
-			if (!activityHappendedSinceLastCall && 
+			if (isCacheFunctionCalls() && !activityHappendedSinceLastCall && 
 					!replayMode) { // pending replay calls are essentially new calls from caching point of view
 
 //					outstandingCallsInReplayMode == 0) { // pending replay calls are essentially new calls from caching point of view
@@ -280,7 +283,7 @@ ANonCachingAbstractRPCProxyInvocationHandler implements
 		// can return local toString based on surrogate if not overridden, but let us see if this causes any deadlock
 		Object retVal = objectToString.get(arg0);
 		
-		if (retVal == null || (activityHappendedSinceLastCall && toStringMethodOverridden) ) {
+		if (retVal == null || (isCacheFunctionCalls() && activityHappendedSinceLastCall && toStringMethodOverridden) ) {
 			retVal = super.invoke(arg0, method, args);
 			objectToString.put(arg0, (String) retVal);
 			activityHappendedSinceLastCall = false; // must occur after rather than before call
@@ -313,6 +316,13 @@ ANonCachingAbstractRPCProxyInvocationHandler implements
 	public static void setInvokeObjectMethodsRemotely(
 			boolean invokeObjectMethodsRemotely) {
 		ACachingAbstractRPCProxyInvocationHandler.invokeObjectMethodsRemotely = invokeObjectMethodsRemotely;
+	}
+	public static boolean isCacheFunctionCalls() {
+		return cacheFunctionCalls;
+	}
+
+	public static void setCacheFunctionCalls(boolean cacheFunctionCalls) {
+		ACachingAbstractRPCProxyInvocationHandler.cacheFunctionCalls = cacheFunctionCalls;
 	}
 	// the non replay stuff should be in superclass as it has nothing to do with caching
 //	public  void newEvent(Exception aTraceable) {
