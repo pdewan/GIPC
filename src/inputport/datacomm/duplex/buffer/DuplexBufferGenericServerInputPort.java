@@ -6,6 +6,7 @@ import java.nio.ByteBuffer;
 
 
 // omitting <ChannelTyoe> in DuplexServerInputPort can cause probems
-public interface DuplexBufferGenericServerInputPort<RequestChannelType, ChannelType>  extends DuplexServerInputPortSkeleton<RequestChannelType, ChannelType> , DuplexServerInputPort<ByteBuffer> {
+public interface DuplexBufferGenericServerInputPort<RequestChannelType, ChannelType>  extends
+DuplexServerInputPortSkeleton<RequestChannelType, ChannelType> , DuplexServerInputPort<ByteBuffer>, DuplexBufferInputPort {
 
 }

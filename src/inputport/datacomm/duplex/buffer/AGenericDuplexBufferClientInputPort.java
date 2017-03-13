@@ -22,6 +22,10 @@ public class AGenericDuplexBufferClientInputPort<ChannelType> extends AGenericSi
 	ReceiveRegistrarAndNotifier aNotifier = new AReceiveRegistrarAndNotifier();
 	ReceiveTrapper<ByteBuffer, ByteBuffer> receiveTrapper;
 	String lastSender;
+	EchoingBufferSender echoingBufferSender;
+
+	// why no local sender?
+	// should override the simplex send and send to local port
 	public AGenericDuplexBufferClientInputPort( String aRemoteHostName, String aRemotePort, String aRemoteName, String aMyName) {
 		super(aRemoteHostName, aRemotePort, aRemoteName, aMyName);
 //		receiveTrapper = DuplexBufferClientIPTrapperSelector.getTrapperSelector().createReceiveTrapper(this, aNotifier);
@@ -71,7 +75,28 @@ public class AGenericDuplexBufferClientInputPort<ChannelType> extends AGenericSi
 		return getLogicalRemoteEndPoint();
 	}
 	
+	// actually this does not make much sense, a client port should not be sending
+	// a message to itself, but let us keep it for testing purposes
+	
+	@Override
+	public void connect() {
+		if (serverName.equals(getLocalName())) {
+			return;
+		}
+		super.connect();
+	}
+	@Override
+	public void send(String aRemoteName, ByteBuffer aMessage) {
+		if (aRemoteName.equals(getLocalName())) {
+//			messageReceived(aRemoteName, aMessage);
+//			notifyPortSend(aRemoteName, aMessage, -1); // no channel wrie was actually done, this is to inform the serializer pool
+//			getOrCreateEchoingBufferSender().localSend(aMessage);
+			getOrCreateEchoingBufferSender().enqueLocalSend(aMessage);
 
+			return;
+		}
+		super.send(aRemoteName, aMessage);
+	}
 
 	@Override
 	public void setSender(String newVal) {
@@ -84,6 +109,11 @@ public class AGenericDuplexBufferClientInputPort<ChannelType> extends AGenericSi
 		return aNotifier.getReceiveListeners();
 	}
 	
+	protected EchoingBufferSender getOrCreateEchoingBufferSender() {
+		if (echoingBufferSender == null)
+			echoingBufferSender = new AnEchoingBufferSender(this);
+		return  echoingBufferSender;
+	}
 	
 
 }

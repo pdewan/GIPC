@@ -35,6 +35,10 @@ public class AnNIODuplexBufferInputPortFactory extends ASelectionManagerManager 
 			String theServerId, String aServerName, String theClientName) {
 		Tracer.info(this, "Creating and linking NIO duplex client skeleton and driver and selecting thread");
 		DuplexBufferGenericClientInputPort skeleton = new AGenericDuplexBufferClientInputPort(theServerHost, theServerId, aServerName, theClientName);
+		if (theClientName.equals(aServerName)) {
+			return skeleton;
+		}
+		
 		getSelectionManager();
 		DuplexClientInputPortDriver<SocketChannel> implementation = new AnNIODuplexBufferClientInputPortDriver(selectionManager, theServerHost, theServerId, aServerName);
 		skeleton.setDriver(implementation);

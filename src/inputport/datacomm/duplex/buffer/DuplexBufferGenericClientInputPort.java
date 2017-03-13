@@ -7,7 +7,9 @@ import java.nio.ByteBuffer;
 
 
 
-public interface DuplexBufferGenericClientInputPort<ChannelType> extends DuplexClientInputPortSkeleton<ChannelType>, DuplexClientInputPort<ByteBuffer>  {
+public interface DuplexBufferGenericClientInputPort<ChannelType> extends DuplexClientInputPortSkeleton<ChannelType>, 
+DuplexClientInputPort<ByteBuffer>,
+DuplexBufferInputPort{
 
 
 }
