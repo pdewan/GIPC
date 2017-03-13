@@ -12,6 +12,10 @@ import java.nio.ByteBuffer;
 
 import port.trace.AConnectionEvent;
 import port.trace.ConnectiontEventBus;
+import port.trace.buffer.BufferReplyInitiated;
+import port.trace.buffer.BufferSendFinished;
+import port.trace.buffer.BufferSendInitiated;
+import port.trace.buffer.BufferSendToUnconnectedChannelIgnored;
 import util.trace.Tracer;
 
 public class AGenericDuplexBufferServerInputPort<RequestChannelType, MessageChannelType> extends AGenericSimplexBufferServerInputPort<RequestChannelType, MessageChannelType> 
@@ -46,8 +50,12 @@ public class AGenericDuplexBufferServerInputPort<RequestChannelType, MessageChan
 
 	@Override
 	public void reply(ByteBuffer message) {
-		if (getSender() == null) throw new NoMessageReceivedByResponderException();
+		if (getSender() == null) {
+			throw new NoMessageReceivedByResponderException();
+			
+		}
 		Tracer.info(this, "Replying:" + message);
+		BufferReplyInitiated.newCase(this, myName, message);
 		send(getSender(), message);
 	}
 //	@Override
@@ -84,11 +92,13 @@ public class AGenericDuplexBufferServerInputPort<RequestChannelType, MessageChan
 		if (!isConnected(aRemoteName)) {
 			
 			String message = "Ignoring attempt to send " + aMessage + " to " + aRemoteName + " before connection completely established or after other end disconnected";
+			BufferSendToUnconnectedChannelIgnored.newCase(this, myName, aRemoteName, aMessage);
 //			Tracer.error(message);
 			throw new SendToUnconnectedPortException(message);
 //			return;
 		}
 		Tracer.info(this, "Asking driver to send  message:" + aMessage + " to " + aRemoteName);
+		BufferSendInitiated.newCase(this, myName, aRemoteName, aMessage, sendTrapper);
 		sendTrapper.send(aRemoteName, aMessage);
 
 	}
@@ -108,6 +118,7 @@ public class AGenericDuplexBufferServerInputPort<RequestChannelType, MessageChan
 	@Override
 	public void messageSent(String aRemoteEnd, ByteBuffer aMessage, int aSendId) {
 		Tracer.info(this, "Received sent message notification from driver");
+		BufferSendFinished.newCase(this, myName, aRemoteEnd, aMessage, driver);
 		notifyPortSend(aRemoteEnd, aMessage, aSendId);
 	}
 	public void removeSendListener(ByteBufferSendListener portSendListener) {

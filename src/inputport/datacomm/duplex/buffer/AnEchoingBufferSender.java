@@ -4,6 +4,8 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
+import port.trace.buffer.BufferLocalSendFinished;
+import port.trace.buffer.BufferLocalSendInitiated;
 import util.trace.Tracer;
 
 public class AnEchoingBufferSender implements  EchoingBufferSender{
@@ -38,12 +40,15 @@ public class AnEchoingBufferSender implements  EchoingBufferSender{
 	}
 	@Override
 	public void localSend(ByteBuffer aMessage) {
+		BufferLocalSendFinished.newCase(this, LOCAL_SENDER, LOCAL_SENDER, aMessage, sentBuffers);
+
 		serverPort.messageReceived(portName, aMessage);
 		serverPort.notifyPortSend(portName, aMessage, -1); // no channel wrie was actually done, this is to inform the serializer 
 	}
 	@Override
 	public void enqueLocalSend(ByteBuffer aMessage) {
 		Tracer.info(this, "Enqueing byte buffer for local send:" + aMessage);
+		BufferLocalSendInitiated.newCase(this, LOCAL_SENDER, LOCAL_SENDER, aMessage, sentBuffers);
 		sentBuffers.offer(aMessage);
 		
 	}

@@ -11,6 +11,8 @@ import java.util.List;
 
 import port.trace.AConnectionEvent;
 import port.trace.ConnectiontEventBus;
+import port.trace.buffer.BufferReceived;
+import port.trace.buffer.ReplyDestinationAssociatedWithPort;
 import util.trace.Tracer;
 
 
@@ -39,6 +41,7 @@ public class AGenericDuplexBufferClientInputPort<ChannelType> extends AGenericSi
 	@Override
 	public void messageReceived(String aSourceName, ByteBuffer aMessage) {
 		Tracer.info(this, "Received message from driver");
+		BufferReceived.newCase(this, aSourceName, serverName, aMessage, driver);
 		notifyPortReceive(aSourceName, aMessage);
 	}
 	
@@ -72,8 +75,9 @@ public class AGenericDuplexBufferClientInputPort<ChannelType> extends AGenericSi
 
 	@Override
 	public void setSender(String newVal) {
-		Tracer.info(this, "Surprinsingly, setting client last sender to:" + newVal);
+		Tracer.info(this, "Surprisingly, setting client last sender to:" + newVal);
 			lastSender = newVal;
+			ReplyDestinationAssociatedWithPort.newCase(this, serverName, this);
 	}
 	@Override
 	public List<ReceiveListener<ByteBuffer>> getReceiveListeners() {

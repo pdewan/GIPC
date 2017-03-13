@@ -23,6 +23,7 @@ import port.trace.buffer.BufferChannelConnectFinished;
 import port.trace.buffer.BufferChannelDisconnectInitiated;
 import port.trace.buffer.BufferChannelDisconnected;
 import port.trace.buffer.BufferReceived;
+import port.trace.buffer.ReplyDestinationAssociatedWithPort;
 import port.trace.buffer.TrapperBufferReceived;
 import port.trace.buffer.ClientNameAssociatedWithPort;
 import port.trace.buffer.ClientNameLookedUp;
@@ -41,9 +42,9 @@ public class AGenericSimplexBufferServerInputPort<RequestChannelType, MessageCha
 	
 	ConnectionRegistrarAndNotifier connectNotifier = new AConnectRegistrarAndNotifier();
 	ReceiveRegistrarAndNotifier receiptNotfier = new AReceiveRegistrarAndNotifier();
-	SimplexBufferServerInputPortDriver<RequestChannelType, MessageChannelType> driver;
+	protected SimplexBufferServerInputPortDriver<RequestChannelType, MessageChannelType> driver;
 
-	String myName;
+	protected String myName;
 	String myId;
 	protected Map<MessageChannelType, String> channelToClientName = new HashMap();
 	protected Map<String, MessageChannelType> clientNameToChannel = new HashMap();
@@ -177,8 +178,9 @@ public class AGenericSimplexBufferServerInputPort<RequestChannelType, MessageCha
 	public void setSender(String newVal) {
 	
 		if (newVal.equals(lastSender)) return;
-		Tracer.info(this, "Setting reply receiver:" + newVal);
+		Tracer.info(this, "Setting reply receiver:" + newVal);		
 		lastSender = newVal;
+		ReplyDestinationAssociatedWithPort.newCase(this, newVal, this);
 	}
 	@Override
 	public void notifyPortReceive(String remoteEnd, ByteBuffer message) {

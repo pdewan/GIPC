@@ -10,15 +10,15 @@ import inputport.rpc.RemoteCall;
 import port.trace.rpc.ReceivedCallEndedOld;
 import util.trace.TraceableInfo;
 
-public class BufferSendInitiated extends TraceableInfo {	
-	public BufferSendInitiated(String aMessage, Object aFinder,
+public class BufferLocalSendFinished extends TraceableInfo {	
+	public BufferLocalSendFinished(String aMessage, Object aFinder,
 			String aSource,
 			String aDestination,
 			ByteBuffer aByteBuffer,
 			Object aBufferChannel) {
 		super(aMessage, aFinder);
 	}
-	public static BufferSendInitiated newCase(Object aFinder, 
+	public static BufferLocalSendFinished newCase(Object aFinder, 
 			String aSource,
 			String aDestination,
 			ByteBuffer aByteBuffer,
@@ -29,7 +29,7 @@ public class BufferSendInitiated extends TraceableInfo {
 				aByteBuffer +
 				"(" +
 				 aBufferChannel + ")";
-		BufferSendInitiated retVal = new BufferSendInitiated(aMessage, 
+		BufferLocalSendFinished retVal = new BufferLocalSendFinished(aMessage, 
 				aFinder,
 				aSource, aDestination, aByteBuffer, aBufferChannel);
     	retVal.announce();

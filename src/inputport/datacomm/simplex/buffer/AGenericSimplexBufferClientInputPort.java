@@ -20,8 +20,8 @@ import port.trace.buffer.BufferChannelDisconnectInitiated;
 import port.trace.buffer.BufferChannelDisconnected;
 import port.trace.buffer.BufferSendFinished;
 import port.trace.buffer.BufferSendInitiated;
+import port.trace.buffer.BufferSendToUnconnectedChannelIgnored;
 import port.trace.buffer.InternalBufferSendFinished;
-import port.trace.buffer.SendToUnconnectedChannelIgnored;
 import port.trace.buffer.ClientNameSendInitiated;
 import port.trace.buffer.DuplicateBufferChannelConnectIgnored;
 import util.trace.Tracer;
@@ -40,7 +40,7 @@ public class AGenericSimplexBufferClientInputPort<ChannelType>  implements Gener
 
 	boolean connected = false;
 	String[] remoteNames;
-	SimplexBufferClientInputPortDriver<ChannelType> driver;
+	protected SimplexBufferClientInputPortDriver<ChannelType> driver;
 
 	public AGenericSimplexBufferClientInputPort( String theRemoteHostName, String theRemotePort, String aRemoteName, String theMyName) {
 
@@ -103,12 +103,12 @@ public class AGenericSimplexBufferClientInputPort<ChannelType>  implements Gener
 	@Override
 	public void send(String remoteName, ByteBuffer message) {
 		if (!isConnected(remoteName)) {
-			SendToUnconnectedChannelIgnored.newCase(this, message);
+			BufferSendToUnconnectedChannelIgnored.newCase(this, myName,  this.getPhysicalRemoteEndPoint(), message);
+
 			Tracer.error("Ignoring attempt to send " + message + " to " + remoteName + " before connection completely established");
 			return;
 		}
 		totalBytesSent += message.limit() - message.position();
-		BufferSendInitiated.newCase(this, myName,  this.getPhysicalRemoteEndPoint(), message, driver);
 		doSend(remoteName, message);
 		Tracer.info("Total bytes sent to " + this.getPhysicalRemoteEndPoint() + " " + totalBytesSent);
 		
@@ -119,6 +119,7 @@ public class AGenericSimplexBufferClientInputPort<ChannelType>  implements Gener
 	 void doSend(String remoteName, ByteBuffer message) {
 		if (!connected) throw new SendToUnconnectedPortException(remoteName + " is unconnected");
 		Tracer.info(this, "Forwarding message to send trapper:" + sendTrapper);
+		BufferSendInitiated.newCase(this, myName,  this.getPhysicalRemoteEndPoint(), message, sendTrapper);
 		sendTrapper.send(remoteName, message);		
 	}
 	

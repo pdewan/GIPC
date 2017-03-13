@@ -5,24 +5,27 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 
-import inputport.datacomm.simplex.buffer.SimplexBufferClientInputPortDriver;
+import inputport.ConnectionManager;
 import inputport.rpc.RemoteCall;
 import port.trace.rpc.ReceivedCallEndedOld;
 import util.trace.TraceableInfo;
 
-public class SendToUnconnectedChannelIgnored extends TraceableInfo {	
-	public SendToUnconnectedChannelIgnored(String aMessage, Object aFinder,
-			
+public class BufferReplyInitiated extends TraceableInfo {	
+	public BufferReplyInitiated(String aMessage, Object aFinder,
+			String aSource,
 			ByteBuffer aByteBuffer) {
 		super(aMessage, aFinder);
 	}
-	public static SendToUnconnectedChannelIgnored newCase(Object aSource, 			
+	public static BufferReplyInitiated newCase(Object aFinder, 
+			String aSource,
 			ByteBuffer aByteBuffer) {    	
 		String aMessage =
-				"" +
-				aByteBuffer ;
-		SendToUnconnectedChannelIgnored retVal = new SendToUnconnectedChannelIgnored(aMessage, 
-				aSource, aByteBuffer);
+				aSource + "-> last sender" +
+				
+				aByteBuffer ;;
+		BufferReplyInitiated retVal = new BufferReplyInitiated(aMessage, 
+				aFinder,
+				aSource,  aByteBuffer);
     	retVal.announce();
     	return retVal;
 	}
