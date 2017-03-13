@@ -17,9 +17,16 @@ import java.util.Set;
 
 import port.trace.AConnectionEvent;
 import port.trace.AReplaceConnectionEvent;
-import port.trace.ClientNameAssociatedWithPort;
-import port.trace.ClientNameLookedUp;
 import port.trace.ConnectiontEventBus;
+import port.trace.buffer.BufferChannelConnectInitiated;
+import port.trace.buffer.BufferChannelConnectFinished;
+import port.trace.buffer.BufferChannelDisconnectInitiated;
+import port.trace.buffer.BufferChannelDisconnected;
+import port.trace.buffer.BufferReceived;
+import port.trace.buffer.TrapperBufferReceived;
+import port.trace.buffer.ClientNameAssociatedWithPort;
+import port.trace.buffer.ClientNameLookedUp;
+import port.trace.buffer.DuplicateBufferChannelConnectIgnored;
 import util.trace.Tracer;
 
 
@@ -54,10 +61,12 @@ public class AGenericSimplexBufferServerInputPort<RequestChannelType, MessageCha
 	public void connect() {
 		if (phsyicallyConnected) {
 			Tracer.info(this, "Ignoring duplicate call to connect");
+			DuplicateBufferChannelConnectIgnored.newCase(this, driver);
 			return;
 		}
 		Tracer.info(this, "Changing connection status and asking driver to connect");
 		phsyicallyConnected = true;
+		BufferChannelConnectInitiated.newCase(this, driver);
 		driver.connect();
 	}
 	protected void associate (MessageChannelType aChannelType, String aClientName) {
@@ -100,18 +109,20 @@ public class AGenericSimplexBufferServerInputPort<RequestChannelType, MessageCha
 		Tracer.info(this, "ServerInputPort received message " + aMessage + " from:" + aClientName );
 		totalBytesReceived += aMessage.limit() - aMessage.position(); 
 		Tracer.info("Total bytes received by server port: " + getLocalName() + " " + totalBytesReceived);
-
+		BufferReceived.newCase(this, aClientName, myName, aMessage, driver);
 		notifyPortReceive(aClientName, aMessage);	
 	}
 	@Override
 	public void disconnect() {
 		Tracer.info(this, "Disconnecting all message channels");
+
 		for (MessageChannelType socketChannel: channelToClientName.keySet()) {
 			String clientName = channelToClientName.get(socketChannel);
 			driver.disconnect(socketChannel);
+			BufferChannelDisconnectInitiated.newCase(this, driver, clientName);
+
 			notifyDisconnect(clientName, true, "Local process closed connection to destination", null);
 		}
-
 		channelToClientName.clear();
 		clientNameToChannel.clear();
 
@@ -124,6 +135,8 @@ public class AGenericSimplexBufferServerInputPort<RequestChannelType, MessageCha
 	}
 	
 	public void notifyConnect(String remoteEnd, ConnectionType aConnectionType) {
+		BufferChannelConnectFinished.newCase(this, driver, aConnectionType);
+
 		connectNotifier.notifyConnect(remoteEnd, aConnectionType);
 	}
 
@@ -138,6 +151,7 @@ public class AGenericSimplexBufferServerInputPort<RequestChannelType, MessageCha
 	public void disconnected(String aRemoteEndName,
 			boolean anExplicitDisconnection, String anExplanation, ConnectionType aConnectionType) {
 		Tracer.info(this, "Received from channel disconnected message");
+		BufferChannelDisconnected.newCase(this, myName, aRemoteEndName, anExplicitDisconnection, anExplanation, aConnectionType);
 		notifyDisconnect(aRemoteEndName, anExplicitDisconnection, anExplanation, null);
 		MessageChannelType channel = clientNameToChannel.get(aRemoteEndName);
 		channelToClientName.remove(channel);

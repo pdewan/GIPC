@@ -1,5 +1,6 @@
-package port.trace;
+package port.trace.objects;
 
+import port.trace.MessageReceiveInfo;
 import inputport.datacomm.ReceiveNotifier;
 
 public class ObjectReceived extends MessageReceiveInfo {

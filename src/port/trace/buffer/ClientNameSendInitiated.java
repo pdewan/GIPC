@@ -1,4 +1,4 @@
-package port.trace;
+package port.trace.buffer;
 
 import util.trace.TraceableInfo;
 import inputport.datacomm.NamingSender;

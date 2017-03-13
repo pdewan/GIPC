@@ -1,5 +1,6 @@
-package port.trace;
+package port.trace.objects;
 
+import port.trace.MessageSendInfo;
 import inputport.datacomm.NamingSender;
 
 public class ObjectSendInitiated extends MessageSendInfo {

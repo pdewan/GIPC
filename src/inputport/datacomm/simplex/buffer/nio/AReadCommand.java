@@ -9,8 +9,8 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-import port.trace.nio.SocketChannelInterestOp;
-import port.trace.nio.SocketChannelRead;
+import port.trace.buffer.nio.SocketChannelInterestOp;
+import port.trace.buffer.nio.SocketChannelRead;
 import util.trace.Tracer;
 
 

@@ -1,4 +1,4 @@
-package port.trace;
+package port.trace.buffer;
 
 import inputport.rpc.RemoteCall;
 import util.annotations.ComponentWidth;

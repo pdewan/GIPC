@@ -40,7 +40,11 @@ public class ADuplexReceivedCallInvoker extends ASimplexReceivedCallInvoker impl
 			Object possiblyTransformedRetVal = localRemoteReferenceTranslator.transformSentReference(retVal, aRetType); // need to get the method and its return type
 			SentObjectTransformed.newCase(this, retVal, possiblyTransformedRetVal, aRetType);
 			replier.reply (aSource, createRPCReturnValue((Serializable) possiblyTransformedRetVal, false));	 // need a special reply call for the case when we have a replicated port
-	}	
+	}
+	protected RPCReturnValue createRPCReturnValue(Object retVal) {
+		return createRPCReturnValue(retVal, false);
+	}
+
 	protected RPCReturnValue createRPCReturnValue(Object retVal, Boolean anIsException) {
 		RPCReturnValue rpcReturnValue = new AnRPCReturnValue(retVal, anIsException);
 		ReturnMessageCreated.newCase(this, retVal, rpcReturnValue);

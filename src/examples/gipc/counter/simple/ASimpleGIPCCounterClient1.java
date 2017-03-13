@@ -8,11 +8,11 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import port.trace.ByteBufferReceived;
-import port.trace.ByteBufferSendInitiated;
-import port.trace.ClientNameSendInitiated;
-import port.trace.ObjectReceived;
-import port.trace.ObjectSendInitiated;
+import port.trace.buffer.TrapperBufferReceived;
+import port.trace.buffer.TrapperBufferSendInitiated;
+import port.trace.buffer.ClientNameSendInitiated;
+import port.trace.objects.ObjectReceived;
+import port.trace.objects.ObjectSendInitiated;
 import util.trace.ImplicitKeywordKind;
 import util.trace.TraceableInfo;
 import util.trace.Tracer;

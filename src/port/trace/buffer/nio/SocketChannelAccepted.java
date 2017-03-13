@@ -1,4 +1,4 @@
-package port.trace.nio;
+package port.trace.buffer.nio;
 
 import java.net.SocketAddress;
 import java.nio.ByteBuffer;

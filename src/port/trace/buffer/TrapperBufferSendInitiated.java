@@ -1,18 +1,20 @@
-package port.trace;
+package port.trace.buffer;
 
 import inputport.datacomm.NamingSender;
 
 import java.nio.ByteBuffer;
 
-public class ByteBufferSendInitiated extends MessageSendInfo {
+import port.trace.MessageSendInfo;
+
+public class TrapperBufferSendInitiated extends MessageSendInfo {
 	ByteBuffer byteBufferMessage;
 	
-	public ByteBufferSendInitiated(NamingSender aSource, NamingSender aDestination, String aRemoteEndPoint, ByteBuffer aSendMessage) {
+	public TrapperBufferSendInitiated(NamingSender aSource, NamingSender aDestination, String aRemoteEndPoint, ByteBuffer aSendMessage) {
 		super("ByteBuffer: " + aSendMessage + " with remote end point: " + aRemoteEndPoint + 
     			" forwarded by " +  aSource + " to " + aDestination, aSource, aDestination, aRemoteEndPoint);
 		byteBufferMessage = aSendMessage;
 	}
-	public ByteBufferSendInitiated(String aMessage, NamingSender aSource, NamingSender aDestination, String aRemoteEndPoint, ByteBuffer aSendMessage) {
+	public TrapperBufferSendInitiated(String aMessage, NamingSender aSource, NamingSender aDestination, String aRemoteEndPoint, ByteBuffer aSendMessage) {
 		super (aMessage, aSource, aDestination, aRemoteEndPoint );
 		byteBufferMessage = aSendMessage;
 	}
@@ -21,11 +23,11 @@ public class ByteBufferSendInitiated extends MessageSendInfo {
 		return byteBufferMessage;
 	}
 	
-	public static ByteBufferSendInitiated newCase(NamingSender aSource, NamingSender aDestination, String aRemoteEndPoint, ByteBuffer aSendMessage) {
+	public static TrapperBufferSendInitiated newCase(NamingSender aSource, NamingSender aDestination, String aRemoteEndPoint, ByteBuffer aSendMessage) {
 //    	String aMessage = "ByteBuffer: " + aSendMessage + " with remote end point: " + aRemoteEndPoint + 
 //    			" forwarded by " +  aSource + " to " + aDestination ;
 		String aMessage = aRemoteEndPoint + "->" + aSendMessage;
-		ByteBufferSendInitiated retVal = new ByteBufferSendInitiated(aMessage, aSource, aDestination, aRemoteEndPoint, aSendMessage);
+		TrapperBufferSendInitiated retVal = new TrapperBufferSendInitiated(aMessage, aSource, aDestination, aRemoteEndPoint, aSendMessage);
 		retVal.announce();
 		return retVal;
 	}

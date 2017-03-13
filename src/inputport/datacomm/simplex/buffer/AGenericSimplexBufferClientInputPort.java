@@ -12,8 +12,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 import port.trace.AConnectionEvent;
-import port.trace.ClientNameSendInitiated;
 import port.trace.ConnectiontEventBus;
+import port.trace.buffer.BufferChannelConnectFailure;
+import port.trace.buffer.BufferChannelConnectFinished;
+import port.trace.buffer.BufferChannelConnectInitiated;
+import port.trace.buffer.BufferChannelDisconnectInitiated;
+import port.trace.buffer.BufferChannelDisconnected;
+import port.trace.buffer.BufferSendFinished;
+import port.trace.buffer.BufferSendInitiated;
+import port.trace.buffer.InternalBufferSendFinished;
+import port.trace.buffer.SendToUnconnectedChannelIgnored;
+import port.trace.buffer.ClientNameSendInitiated;
+import port.trace.buffer.DuplicateBufferChannelConnectIgnored;
 import util.trace.Tracer;
 
 
@@ -68,9 +78,11 @@ public class AGenericSimplexBufferClientInputPort<ChannelType>  implements Gener
 	@Override
 	public void connect() {
 		if (connected) {
+			DuplicateBufferChannelConnectIgnored.newCase(this, driver);
 			Tracer.info(this, "Ignoring connect call as already connected");
 			return;
 		}
+		BufferChannelConnectInitiated.newCase(this, driver);
 		Tracer.info(this, "Asking driver to connect and changing status");
 		connected = true;
 		driver.connect();
@@ -79,6 +91,7 @@ public class AGenericSimplexBufferClientInputPort<ChannelType>  implements Gener
 		ByteBuffer message =  ByteBuffer.wrap (myName.getBytes());
 		Tracer.info(this, "Sending to server my name: " +  myName);
 		ClientNameSendInitiated.newCase(this, serverName, myName);
+//		BufferChannelSendInitiated.newCase(this, aBufferChannel, aByteBuffer)
 		doSend(serverName, message);
 	}	
 	@Override
@@ -90,10 +103,12 @@ public class AGenericSimplexBufferClientInputPort<ChannelType>  implements Gener
 	@Override
 	public void send(String remoteName, ByteBuffer message) {
 		if (!isConnected(remoteName)) {
+			SendToUnconnectedChannelIgnored.newCase(this, message);
 			Tracer.error("Ignoring attempt to send " + message + " to " + remoteName + " before connection completely established");
 			return;
 		}
 		totalBytesSent += message.limit() - message.position();
+		BufferSendInitiated.newCase(this, myName,  this.getPhysicalRemoteEndPoint(), message, driver);
 		doSend(remoteName, message);
 		Tracer.info("Total bytes sent to " + this.getPhysicalRemoteEndPoint() + " " + totalBytesSent);
 		
@@ -110,6 +125,7 @@ public class AGenericSimplexBufferClientInputPort<ChannelType>  implements Gener
 	@Override
 	public void disconnect() {
 		Tracer.info(this, "Disconnecting driver and notifying listeners");
+		BufferChannelDisconnectInitiated.newCase(this, driver, serverName);
 		driver.disconnect();
 		connected = false;	
 		notifyDisconnect(serverName, true, "Local process closed connection to remote end", null);
@@ -164,6 +180,7 @@ public class AGenericSimplexBufferClientInputPort<ChannelType>  implements Gener
 		Tracer.info(this, "Received connected notificaton from driver");
 		sendClientName();
 		logicallyConnected = true;
+		BufferChannelConnectFinished.newCase(this, driver, aConnectionType);
 		notifyConnect(aRemoteEnd, aConnectionType);
 		
 	}
@@ -171,20 +188,23 @@ public class AGenericSimplexBufferClientInputPort<ChannelType>  implements Gener
 	public void notConnected(String aRemoteEnd, String anExplanation, ConnectionType aConnectionType) {
 		Tracer.info(this, "Received not connected notification from driver");
 		connected = false;
+		BufferChannelConnectFailure.newCase(this, driver);
 		notifyConnectFailure(aRemoteEnd, anExplanation, null);
 	}
 	@Override
 	public void messageSent(String aRemoteEnd, ByteBuffer message,
 			int sendId) {
 		Tracer.info(this, "Received sent notification from driver");
+		BufferSendFinished.newCase(this, myName, aRemoteEnd, message, driver);
 		notifyPortSend(aRemoteEnd, message, sendId);
 		
 	}
 	@Override
-	public void  disconnected(String aRemoteEnd, boolean anExplicitDsconnection, String anExplanation, ConnectionType aConnectionType) {
+	public void  disconnected(String aRemoteEnd, boolean anExplicitDisconnection, String anExplanation, ConnectionType aConnectionType) {
 		Tracer.info(this, "Received disconnect notification from driver");
+		BufferChannelDisconnected.newCase(this, myName, aRemoteEnd, anExplicitDisconnection, anExplanation, aConnectionType);
 		connected = false;
-		notifyDisconnect(aRemoteEnd, anExplicitDsconnection, anExplanation, null);
+		notifyDisconnect(aRemoteEnd, anExplicitDisconnection, anExplanation, null);
 	}
 	@Override
 	public void setPhysicalRemoteEndPoint(String newVal) {

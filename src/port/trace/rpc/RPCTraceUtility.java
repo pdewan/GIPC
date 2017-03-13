@@ -1,4 +1,4 @@
-package examples.gipc.counter.simple;
+package port.trace.rpc;
 
 
 import inputport.rpc.ACachingAbstractRPCProxyInvocationHandler;
@@ -9,35 +9,17 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import port.trace.ByteBufferReceived;
-import port.trace.ByteBufferSendInitiated;
-import port.trace.ClientNameAssociatedWithPort;
-import port.trace.ClientNameLookedUp;
-import port.trace.ClientNameSendInitiated;
-import port.trace.ObjectReceived;
-import port.trace.ObjectSendInitiated;
-import port.trace.nio.SocketChannelAccepted;
-import port.trace.nio.SocketChannelConnectFinished;
-import port.trace.nio.SocketChannelRead;
-import port.trace.nio.SocketChannelWritten;
-import port.trace.rpc.ProxyCreated;
-import port.trace.rpc.ReceivedCallDequeued;
-import port.trace.rpc.CallGenerated;
-import port.trace.rpc.CallInitiated;
-import port.trace.rpc.ReceivedCallQueued;
-import port.trace.rpc.CallReceived;
-import port.trace.rpc.ReceivedCallEndedOld;
-import port.trace.rpc.ReceivedObjectTransformed;
-import port.trace.rpc.ReceivedReturnValueDequeued;
-import port.trace.rpc.ReceivedReturnValueQueued;
-import port.trace.rpc.RegisteredObjectLookedUp;
-import port.trace.rpc.RemoteCallBlockedForReturnValue;
-import port.trace.rpc.RemoteCallFinished;
-import port.trace.rpc.RemoteCallInitiated;
-import port.trace.rpc.RemoteCallReturnValueDetermined;
-import port.trace.rpc.ReturnValueDequeuedOld;
-import port.trace.rpc.ReturnValueQueuedOld;
-import port.trace.rpc.SentObjectTransformed;
+import port.trace.buffer.TrapperBufferReceived;
+import port.trace.buffer.TrapperBufferSendInitiated;
+import port.trace.buffer.ClientNameAssociatedWithPort;
+import port.trace.buffer.ClientNameLookedUp;
+import port.trace.buffer.ClientNameSendInitiated;
+import port.trace.buffer.nio.SocketChannelAccepted;
+import port.trace.buffer.nio.SocketChannelConnectFinished;
+import port.trace.buffer.nio.SocketChannelRead;
+import port.trace.buffer.nio.SocketChannelWritten;
+import port.trace.objects.ObjectReceived;
+import port.trace.objects.ObjectSendInitiated;
 import util.trace.ImplicitKeywordKind;
 import util.trace.TraceableInfo;
 import util.trace.Tracer;
@@ -86,8 +68,8 @@ public class RPCTraceUtility implements SimpleCounterClient{
 		Tracer.setKeywordPrintStatus(ClientNameLookedUp.class, true);
 
 
-		Tracer.setKeywordPrintStatus(ByteBufferSendInitiated.class, true);
-		Tracer.setKeywordPrintStatus(ByteBufferReceived.class, true);
+		Tracer.setKeywordPrintStatus(TrapperBufferSendInitiated.class, true);
+		Tracer.setKeywordPrintStatus(TrapperBufferReceived.class, true);
 		
 		Tracer.setKeywordPrintStatus(SocketChannelAccepted.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelConnectFinished.class, true);
