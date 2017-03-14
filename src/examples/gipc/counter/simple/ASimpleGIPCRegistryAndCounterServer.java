@@ -9,6 +9,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 import port.ATracingConnectionListener;
+import port.trace.buffer.BufferTraceUtility;
 import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;
@@ -25,6 +26,7 @@ public class ASimpleGIPCRegistryAndCounterServer  implements SimpleRegistryAndCo
 	}
 	public static void main (String[] args) {		
 		init();
+		BufferTraceUtility.setTracing();
 //		RPCTraceUtility.setTracing();
 	}
 }

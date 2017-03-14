@@ -21,7 +21,7 @@ import port.trace.buffer.BufferChannelDisconnected;
 import port.trace.buffer.BufferSendFinished;
 import port.trace.buffer.BufferSendInitiated;
 import port.trace.buffer.BufferSendToUnconnectedChannelIgnored;
-import port.trace.buffer.InternalBufferSendFinished;
+import port.trace.buffer.TrapperBufferSendFinished;
 import port.trace.buffer.ClientNameSendInitiated;
 import port.trace.buffer.DuplicateBufferChannelConnectIgnored;
 import util.trace.Tracer;
@@ -82,7 +82,7 @@ public class AGenericSimplexBufferClientInputPort<ChannelType>  implements Gener
 			Tracer.info(this, "Ignoring connect call as already connected");
 			return;
 		}
-		BufferChannelConnectInitiated.newCase(this, driver);
+		BufferChannelConnectInitiated.newCase(this, driver, myName, serverName);
 		Tracer.info(this, "Asking driver to connect and changing status");
 		connected = true;
 		driver.connect();
@@ -181,7 +181,7 @@ public class AGenericSimplexBufferClientInputPort<ChannelType>  implements Gener
 		Tracer.info(this, "Received connected notificaton from driver");
 		sendClientName();
 		logicallyConnected = true;
-		BufferChannelConnectFinished.newCase(this, driver, aConnectionType);
+		BufferChannelConnectFinished.newCase(this, driver, aConnectionType, myName, serverName);
 		notifyConnect(aRemoteEnd, aConnectionType);
 		
 	}

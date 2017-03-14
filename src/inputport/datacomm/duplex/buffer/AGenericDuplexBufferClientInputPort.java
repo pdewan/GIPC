@@ -11,6 +11,7 @@ import java.util.List;
 
 import port.trace.AConnectionEvent;
 import port.trace.ConnectiontEventBus;
+import port.trace.buffer.BufferClientChannelLocallyConnected;
 import port.trace.buffer.BufferReceived;
 import port.trace.buffer.ReplyDestinationAssociatedWithPort;
 import util.trace.Tracer;
@@ -81,6 +82,7 @@ public class AGenericDuplexBufferClientInputPort<ChannelType> extends AGenericSi
 	@Override
 	public void connect() {
 		if (serverName.equals(getLocalName())) {
+			BufferClientChannelLocallyConnected.newCase(this, serverName, serverName);
 			return;
 		}
 		super.connect();

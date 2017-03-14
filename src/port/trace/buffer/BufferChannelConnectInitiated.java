@@ -12,16 +12,15 @@ import util.trace.TraceableInfo;
 
 public class BufferChannelConnectInitiated extends TraceableInfo {	
 	public BufferChannelConnectInitiated(String aMessage, Object aFinder,
-			ConnectionManager aBufferChannel) {
+			ConnectionManager aBufferChannel, String aLocalEnd, String aRemoteEnd) {
 		super(aMessage, aFinder);
 	}
 	public static BufferChannelConnectInitiated newCase(Object aSource, 			
-			ConnectionManager aBufferChannel) {    	
+			ConnectionManager aBufferChannel, String aLocalEnd, String aRemoteEnd) {    	
 		String aMessage =
-				" " +
-				 aBufferChannel;
+				aLocalEnd + "<-->" + aRemoteEnd ;
 		BufferChannelConnectInitiated retVal = new BufferChannelConnectInitiated(aMessage, 
-				aSource, aBufferChannel);
+				aSource, aBufferChannel, aLocalEnd, aRemoteEnd);
     	retVal.announce();
     	return retVal;
 	}

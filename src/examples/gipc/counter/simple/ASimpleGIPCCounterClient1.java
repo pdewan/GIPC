@@ -8,6 +8,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import port.trace.buffer.BufferTraceUtility;
 import port.trace.buffer.TrapperBufferReceived;
 import port.trace.buffer.TrapperBufferSendInitiated;
 import port.trace.buffer.ClientNameSendInitiated;
@@ -25,6 +26,7 @@ public class ASimpleGIPCCounterClient1 extends ASimpleGIPCCounterClient implemen
 	
 	public static void main (String[] args) {	
 //		RPCTraceUtility.setTracing();
+		BufferTraceUtility.setTracing();
 		init("Client 1");
 		doOperations();		
 	}

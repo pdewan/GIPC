@@ -67,7 +67,7 @@ public class AGenericSimplexBufferServerInputPort<RequestChannelType, MessageCha
 		}
 		Tracer.info(this, "Changing connection status and asking driver to connect");
 		phsyicallyConnected = true;
-		BufferChannelConnectInitiated.newCase(this, driver);
+		BufferChannelConnectInitiated.newCase(this, driver, myName, "*");
 		driver.connect();
 	}
 	protected void associate (MessageChannelType aChannelType, String aClientName) {
@@ -136,8 +136,7 @@ public class AGenericSimplexBufferServerInputPort<RequestChannelType, MessageCha
 	}
 	
 	public void notifyConnect(String remoteEnd, ConnectionType aConnectionType) {
-		BufferChannelConnectFinished.newCase(this, driver, aConnectionType);
-
+		BufferChannelConnectFinished.newCase(this, driver, aConnectionType, myName, remoteEnd);
 		connectNotifier.notifyConnect(remoteEnd, aConnectionType);
 	}
 
