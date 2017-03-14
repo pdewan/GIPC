@@ -5,7 +5,7 @@ import inputport.InputPort;
 import java.nio.ByteBuffer;
 
 import port.trace.buffer.TrapperBufferReceived;
-import port.trace.objects.ObjectReceived;
+import port.trace.objects.TrapperObjectReceived;
 
 
 
@@ -21,7 +21,7 @@ public class AReceiveMessageForwarder<InAndOutMessageType> extends AnAbstractRec
 		if (aMessage instanceof ByteBuffer)
 			TrapperBufferReceived.newCase(this, destination, aRemoteEnd, (ByteBuffer) aMessage);
 		else
-			ObjectReceived.newCase(this, destination, aRemoteEnd,  aMessage);
+			TrapperObjectReceived.newCase(this, destination, aRemoteEnd,  aMessage);
 		destination.notifyPortReceive(aRemoteEnd, aMessage);	
 
 	}	

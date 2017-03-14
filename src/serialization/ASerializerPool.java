@@ -9,6 +9,11 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+import port.trace.objects.BufferDeserializationInitiated;
+import port.trace.objects.ObjectSerializationInitiated;
+import port.trace.objects.SerializerPoolCreated;
+import port.trace.objects.SerializerReturnedToPool;
+import port.trace.objects.SerializerTakenFromPool;
 import util.misc.HashIdentityMap;
 import util.misc.IdentityMap;
 import util.trace.Tracer;
@@ -28,7 +33,7 @@ public class ASerializerPool implements SerializerPool {
 			sendNotifier = theSendNotifier;
 		}
 		outputSupportBoundedBuffer =  new ArrayBlockingQueue(AScatterGatherSelectionManager.getMaxOutstandingWrites());
-
+		SerializerPoolCreated.newCase(this, outputSupportBoundedBuffer, outputSupportBoundedBuffer.size());
 		inputSupport = SerializerSelector.createSerializer();
 		Tracer.info(this, "Initializing serializer pool");
 		initializingBufferPool = true;
@@ -46,6 +51,7 @@ public class ASerializerPool implements SerializerPool {
 	public Object objectFromInputBuffer(
 			ByteBuffer inputBuffer) throws StreamCorruptedException  {
 		Tracer.info(this, "InputBuffer with Serialized Object:" + inputBuffer);
+		BufferDeserializationInitiated.newCase(this, "?", inputBuffer, inputSupport);
 		Object retVal = inputSupport.objectFromInputBuffer(inputBuffer);
 		Tracer.info(this, "Deserialized Object:" + retVal);
 
@@ -79,6 +85,7 @@ public class ASerializerPool implements SerializerPool {
 //				Tracer.error("Overflow of output buffers and if sending thread is selection thread, deadlock will occur");
 			
 			outputSupportBoundedBuffer.put(bufferSerializationSupport); // guaranteed to not block
+			SerializerReturnedToPool.newCase(this, outputSupportBoundedBuffer, bufferSerializationSupport);
 			if (!initializingBufferPool)
 			Tracer.info(this, "Producing output buffer");
 
@@ -91,7 +98,9 @@ public class ASerializerPool implements SerializerPool {
 	@Override
 	public ByteBuffer outputBufferFromObject(Object object) throws NotSerializableException {
 		Tracer.info(this, "Object to be serialized:" + object);
-		Serializer bufferSerializationSupport = takeOutputBufferSerializationSupport();
+		Serializer bufferSerializationSupport = takeOutputBufferSerializationSupport();	
+		SerializerTakenFromPool.newCase(this, outputSupportBoundedBuffer, bufferSerializationSupport);
+		ObjectSerializationInitiated.newCase(this, "?", object, bufferSerializationSupport);
 		ByteBuffer retVal = bufferSerializationSupport.outputBufferFromObject(object);
 		bytesToSerializer.put(retVal.array(), bufferSerializationSupport);
 		Tracer.info(this, "OutBuffer:" + object);

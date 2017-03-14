@@ -5,6 +5,8 @@ import inputport.datacomm.ReceiveNotifier;
 
 import java.nio.ByteBuffer;
 
+import port.trace.objects.BufferDeserializationFinished;
+import port.trace.objects.BufferDeserializationInitiated;
 import serialization.Serializer;
 import serialization.SerializerPoolSelector;
 import util.trace.Tracer;
@@ -23,7 +25,9 @@ public class ADeserializingForwarder extends AnAbstractReceiveTrapper<ByteBuffer
 	public void notifyPortReceive(String remoteEnd, ByteBuffer message) {
 		Tracer.info(this, " Deserializing received buffer:" + message + " from:" + remoteEnd);
 		try {
+			BufferDeserializationInitiated.newCase(this, remoteEnd, message, serializer);
 			Object serializable = serializer.objectFromInputBuffer(message);
+			BufferDeserializationFinished.newCase(this, remoteEnd, message, serializable);
 //			destination.notifyPortReceive(remoteEnd, serializable);	
 			notifySerializable(remoteEnd, serializable);
 		} catch (Exception e) {

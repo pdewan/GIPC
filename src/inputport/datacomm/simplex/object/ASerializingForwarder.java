@@ -7,6 +7,8 @@ import inputport.datacomm.simplex.buffer.SendRegistrar;
 
 import java.nio.ByteBuffer;
 
+import port.trace.objects.ObjectSerializationFinished;
+import port.trace.objects.ObjectSerializationInitiated;
 import serialization.Serializer;
 import serialization.SerializerPoolSelector;
 import util.trace.Tracer;
@@ -29,7 +31,10 @@ public class ASerializingForwarder extends AnAbstractSendTrapper<Object, ByteBuf
 			destination.send(remoteName, (ByteBuffer) message);
 		} else {
 			try {
-				ByteBuffer bbMessage = serializer.outputBufferFromObject(message);		
+				ObjectSerializationInitiated.newCase(this, remoteName, message, serializer);
+				ByteBuffer bbMessage = serializer.outputBufferFromObject(message);	
+				ObjectSerializationFinished.newCase(this, remoteName,  bbMessage, message);
+
 //				destination.send(remoteName, bbMessage);
 				sendBuffer(remoteName, bbMessage);
 			} catch (Exception e) {
