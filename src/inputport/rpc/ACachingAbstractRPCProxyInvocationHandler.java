@@ -16,6 +16,9 @@ import java.util.Set;
 import port.trace.ReplayStartInfo;
 import port.trace.SyncReplayEndInfo;
 import port.trace.rpc.CallReceived;
+import port.trace.rpc.ProxyCacheInvalidated;
+import port.trace.rpc.ProxyMethodCalled;
+import port.trace.rpc.ProxyPureFunctionCalled;
 import util.introspect.JavaIntrospectUtility;
 import util.misc.HashIdentityMap;
 import util.misc.IdentityMap;
@@ -140,6 +143,7 @@ ANonCachingAbstractRPCProxyInvocationHandler implements
 	@Override
 	public Object invoke(Object arg0, Method method, Object[] args) {
 		Tracer.info(this, " Calling Method: " + method +  "Args:" + args);
+		ProxyMethodCalled.newCase(this, destination, name, method, args);
 		if (localMethods.contains(method)) {
 			return invokeOnSurrogate(getLocalSurrogate(arg0), method, args);
 		}
@@ -178,7 +182,8 @@ ANonCachingAbstractRPCProxyInvocationHandler implements
 			if (existingCall != null) {
 				Tracer.info (this, "No activity since last call and not in replay mode, returning cached value:");
 
-				return callToReturnValue.get(existingCall);
+				Object retVal = callToReturnValue.get(existingCall);
+				return retVal;
 			}
 			}
 		}
@@ -192,7 +197,9 @@ ANonCachingAbstractRPCProxyInvocationHandler implements
 				
 		) {
 			Tracer.info(this, "Invoked a call and activity happened sice last call = false");
+			ProxyPureFunctionCalled.newCase(this, destination, name, method, args);
 			activityHappendedSinceLastCall = false;
+			ProxyCacheInvalidated.newCase(this);
 		} else {
 			activityHappendedSinceLastCall = true;
 

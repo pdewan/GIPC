@@ -7,6 +7,7 @@ import inputport.InputPort;
 import java.util.HashMap;
 import java.util.Map;
 
+import port.trace.rpc.ReturnValueQueueCreated;
 import util.trace.Tracer;
 
 
@@ -31,6 +32,7 @@ public class ADuplexSentCallCompleter extends AnAbstractDuplexSentCallCompleter 
 //			nameToRPCReturnValueReceiver.put(aRemoteEnd, returnValueReceiver);
 		nameToRPCReturnValueReceiver.put(aRemoteEnd, returnValueReceiver);
 		Tracer.info(this, "Created return value for:" + aRemoteEnd );
+		ReturnValueQueueCreated.newCase(this, returnValueReceiver, "Remote calle: " + aRemoteEnd);
 
 	}
 	protected RPCReturnValueQueue getRPCReturnValueReceiver(String aRemoteEnd) {

@@ -35,9 +35,8 @@ public class ASimplexCallReceiveTrapper extends AnAbstractReceiveTrapper<Object,
 
 			RemoteCall aCall = (RemoteCall) message;
 			CallReceived.newCase(this, destination, inputPort.getLocalName(), aCall); 
-
-			receivedCallInvoker().messageReceived(remoteEnd,  aCall);
 			CallInitiated.newCase(this, destination, inputPort.getLocalName(), aCall); 
+			receivedCallInvoker().messageReceived(remoteEnd,  aCall);
 
 		} 
 		else

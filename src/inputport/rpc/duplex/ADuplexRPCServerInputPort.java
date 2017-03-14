@@ -182,7 +182,7 @@ public SendTrapper<Object, Object> getSendTrapper() {
 public void setSendTrapper(SendTrapper<Object, Object> newVal) {
 	if (newVal.getDestination() == null) {
 		newVal.setDestination(callSendTrapper.getDestination());
-		Tracer.warning("send trapper == mull!");
+		Tracer.warning("send trapper == null!");
 	} else if (newVal.getDestination() == callSendTrapper) { // adding a new one in front of old one
 		ConnectiontEventBus.newEvent( new AReplaceConnectionEvent(this, callSendTrapper, newVal, true, false));
 

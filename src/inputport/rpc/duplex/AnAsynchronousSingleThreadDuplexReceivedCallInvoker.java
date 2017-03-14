@@ -49,8 +49,8 @@ public class AnAsynchronousSingleThreadDuplexReceivedCallInvoker
 		} else {
 //			System.out.println ("Call Queue added:" + aMessage);
 			MessageWithSourceAndReceiver aMessageWithSourceAndReceiver = new AMessageWithSourceAndReceiver(aSender, aMessage, synchronousReceivedCallInvoker);
-			callQueue.add(aMessageWithSourceAndReceiver);
 			ReceivedCallQueued.newCase(this, callQueue, aMessageWithSourceAndReceiver);
+			callQueue.add(aMessageWithSourceAndReceiver);
 
 
 //			callQueue.add(new AMessageWithSourceAndReceiver(aSender, aMessage, synchronousReceivedCallInvoker));

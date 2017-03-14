@@ -2,6 +2,8 @@ package inputport.rpc;
 
 import java.lang.reflect.Method;
 
+import port.trace.rpc.ProxyMethodConvertedToCallObject;
+
 public class AMarshaller implements Marshaller<String>{
 
 //	@Override
@@ -17,7 +19,9 @@ public class AMarshaller implements Marshaller<String>{
 	@Override
 	public RemoteCall<String> marshallCall(String targetObject, Method method,
 			Object[] anArgsList) {
-		return new ASerializableCall(targetObject, method, anArgsList);
+		RemoteCall<String>  aRetVal = new ASerializableCall(targetObject, method, anArgsList);
+		ProxyMethodConvertedToCallObject.newCase(this,  method, anArgsList, aRetVal);
+		return aRetVal;
 	}
 
 }

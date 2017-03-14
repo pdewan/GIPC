@@ -6,6 +6,7 @@ import inputport.rpc.simplex.SimplexRPC;
 
 import java.lang.reflect.Method;
 
+import port.trace.rpc.ProxyMethodForwardedToPort;
 import port.trace.rpc.RemoteCallFinished;
 import port.trace.rpc.RemoteCallInitiated;
 import util.trace.Tracer;
@@ -30,6 +31,7 @@ public  class AnRPCProxyInvocationHandler extends ACachingAbstractRPCProxyInvoca
 	protected Object call(String aDestination, Class aClass, Method method, Object[] args) {
 //		Object retVal = rpcInputPort.call(destination, remoteType, method,  args);
 		Tracer.info(this, "Invoking call method with destination:" + destination + " method:" + method + " args:" + args);
+		ProxyMethodForwardedToPort.newCase(this, aDestination, name, method, args);
 		Object retVal = rpcInputPort.call(aDestination, aClass, method,  args);
 		return retVal;
 	}

@@ -19,7 +19,7 @@ import port.trace.buffer.nio.SocketChannelWritten;
 import port.trace.objects.TrapperObjectReceived;
 import port.trace.objects.TrapperObjectSendInitiated;
 import port.trace.rpc.ReceivedCallDequeued;
-import port.trace.rpc.CallGenerated;
+import port.trace.rpc.RemoteCallGenerated;
 import port.trace.rpc.CallInitiated;
 import port.trace.rpc.ReceivedCallQueued;
 import port.trace.rpc.CallReceived;

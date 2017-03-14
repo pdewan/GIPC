@@ -4,7 +4,7 @@ import inputport.InputPort;
 import inputport.datacomm.AnAbstractSendTrapper;
 import inputport.datacomm.NamingSender;
 import inputport.rpc.RemoteCall;
-import port.trace.rpc.CallGenerated;
+import port.trace.rpc.RemoteCallGenerated;
 import util.trace.Tracer;
 
 
@@ -30,7 +30,7 @@ public class ASimplexCallSendTrapper extends AnAbstractSendTrapper<Object, Objec
 	@Override
 	public void send(String aDestination, Object aMessage) {
 		if (aMessage instanceof RemoteCall) {
-			CallGenerated.newCase(this, aDestination, "", 
+			RemoteCallGenerated.newCase(this, aDestination, "", 
 					(RemoteCall) aMessage);
 		}
 		Tracer.info(this, "Sending call " + aMessage + " to " + aDestination);

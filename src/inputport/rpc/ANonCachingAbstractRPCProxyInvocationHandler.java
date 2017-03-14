@@ -10,7 +10,7 @@ public abstract class ANonCachingAbstractRPCProxyInvocationHandler implements
 		InvocationHandlerWithProperties{
 	protected SimplexRPC rpcInputPort;
 	protected Class remoteType;
-	String name;
+	protected String name;
 	protected String destination;
 	boolean replayMode = false; 
 

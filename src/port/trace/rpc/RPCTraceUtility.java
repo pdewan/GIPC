@@ -22,9 +22,18 @@ public class RPCTraceUtility {
 	
 //		Tracer.setKeywordPrintStatus(CallInitiated.class, true);
 		Tracer.setKeywordPrintStatus(CallReceived.class, true);
+		Tracer.setKeywordPrintStatus(ProxyCacheInvalidated.class, true);
 		Tracer.setKeywordPrintStatus(ProxyCreated.class, true);
+		
+		Tracer.setKeywordPrintStatus(ProxyMethodCalled.class, true);
+		Tracer.setKeywordPrintStatus(ProxyMethodConvertedToCallObject.class, true);
+		Tracer.setKeywordPrintStatus(ProxyMethodForwardedToPort.class, true);
+		Tracer.setKeywordPrintStatus(ProxyMethodReturnsCachedValue.class, true);
+		Tracer.setKeywordPrintStatus(ProxyPureFunctionCalled.class, true);
+
 		Tracer.setKeywordPrintStatus(ReceivedCallDequeued.class, true);
-		Tracer.setKeywordPrintStatus(ReceivedCallEndedOld.class, true);
+		Tracer.setKeywordPrintStatus(ReceivedCallEnded.class, true);
+		Tracer.setKeywordPrintStatus(ReceivedCallInitiated.class, true);
 		Tracer.setKeywordPrintStatus(ReceivedCallQueued.class, true);
 		Tracer.setKeywordPrintStatus(ReceivedObjectTransformed.class, true);
 		Tracer.setKeywordPrintStatus(ReceivedReturnValueDequeued.class, true);
@@ -32,11 +41,13 @@ public class RPCTraceUtility {
 		Tracer.setKeywordPrintStatus(RegisteredObjectLookedUp.class, true);	
 		Tracer.setKeywordPrintStatus(RemoteCallBlockedForReturnValue.class, true);
 		Tracer.setKeywordPrintStatus(RemoteCallFinished.class, true);
+		Tracer.setKeywordPrintStatus(RemoteCallGenerated.class, true);
 		Tracer.setKeywordPrintStatus(RemoteCallInitiated.class, true);
-		Tracer.setKeywordPrintStatus(RemoteCallReturnValueDetermined.class, true);			
+		Tracer.setKeywordPrintStatus(RemoteCallReturnValueDetermined.class, true);
+		Tracer.setKeywordPrintStatus(ReturnMessageCreated.class, true);			
+		Tracer.setKeywordPrintStatus(ReturnValueQueueCreated.class, true);	
+		Tracer.setKeywordPrintStatus(ReturnValueQueueCreated.class, true);	
 		Tracer.setKeywordPrintStatus(SentObjectTransformed.class, true);
-
-
 		
 
 

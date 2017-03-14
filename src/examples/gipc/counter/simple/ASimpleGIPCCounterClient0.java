@@ -14,6 +14,7 @@ import port.trace.buffer.TrapperBufferSendInitiated;
 import port.trace.buffer.ClientNameSendInitiated;
 import port.trace.objects.TrapperObjectReceived;
 import port.trace.objects.TrapperObjectSendInitiated;
+import port.trace.rpc.RPCTraceUtility;
 import util.trace.ImplicitKeywordKind;
 import util.trace.TraceableInfo;
 import util.trace.Tracer;
@@ -25,8 +26,8 @@ public class ASimpleGIPCCounterClient0 extends ASimpleGIPCCounterClient implemen
 	
 	
 	public static void main (String[] args) {	
-//		RPCTraceUtility.setTracing();
-		BufferTraceUtility.setTracing();
+		RPCTraceUtility.setTracing();
+//		BufferTraceUtility.setTracing();
 		init("Client 1");
 		doOperations();		
 	}
