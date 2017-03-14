@@ -79,16 +79,23 @@ public class AGenericSimplexBufferServerInputPort<RequestChannelType, MessageCha
 			Tracer.error("A second concurrent connection from client: " + aClientName + " to the same server port. All messages from the old connection will be sent back on the new one");
 		}
 	}
+	public static String extractString(ByteBuffer aMessage) {
+		int deducedLength = aMessage.limit() - aMessage.position();
+		byte[] stringBytes = new byte[deducedLength];			
+		aMessage.get(stringBytes);
+		return new String(stringBytes);
+	}
 	@Override
 	public void messageReceived(MessageChannelType aChannelType,
 			ByteBuffer aMessage) {
 		Tracer.info(this, "ServerInputPort Received message:" + aMessage + " on channel:" + aChannelType);
 		String aClientName = channelToClientName.get(aChannelType);
 		if (aClientName == null) {
-			int deducedLength = aMessage.limit() - aMessage.position();
-			byte[] stringBytes = new byte[deducedLength];			
-			aMessage.get(stringBytes);
-			aClientName = new String(stringBytes);
+//			int deducedLength = aMessage.limit() - aMessage.position();
+//			byte[] stringBytes = new byte[deducedLength];			
+//			aMessage.get(stringBytes);
+//			aClientName = new String(stringBytes);
+			aClientName = extractString(aMessage);
 			associate(aChannelType, aClientName);
 			Tracer.info(this, "ServerInputPort connected to:" + aChannelType);
 			notifyConnect(aClientName, ConnectionType.TO_CLIENT);

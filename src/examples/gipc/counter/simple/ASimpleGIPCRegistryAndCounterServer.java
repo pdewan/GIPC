@@ -16,9 +16,9 @@ import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;
 
 public class ASimpleGIPCRegistryAndCounterServer  implements SimpleRegistryAndCounterServer{	
-	static DistributedRMICounter counter;
-	static GIPCRegistry gipcRegistry;
-	static void init() {
+	protected static DistributedRMICounter counter;
+	protected static GIPCRegistry gipcRegistry;
+	protected static void init() {
 		gipcRegistry = GIPCLocateRegistry.createRegistry(REGISTRY_PORT_NAME);
 		counter = new ADistributedInheritingRMICounter();			
 		gipcRegistry.rebind(COUNTER_NAME, counter);	
@@ -26,8 +26,8 @@ public class ASimpleGIPCRegistryAndCounterServer  implements SimpleRegistryAndCo
 
 	}
 	public static void main (String[] args) {		
-		init();
 //		BufferTraceUtility.setTracing();
-		RPCTraceUtility.setTracing();
+//		RPCTraceUtility.setTracing();
+		init();
 	}
 }
