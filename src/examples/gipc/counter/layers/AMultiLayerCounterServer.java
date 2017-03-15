@@ -4,7 +4,7 @@ import inputport.datacomm.duplex.DuplexInputPort;
 import inputport.rpc.GIPCRegistry;
 import examples.gipc.counter.simple.ASimpleGIPCRegistryAndCounterServer;
 
-public class AMultiLayerGIPCServer extends ASimpleGIPCRegistryAndCounterServer {
+public class AMultiLayerCounterServer extends ASimpleGIPCRegistryAndCounterServer {
 	public static void addListeners() {
 		gipcRegistry.getRPCServerPort().addReceiveListener(new AMultiLayeServerReceiveListener(counter));
 		

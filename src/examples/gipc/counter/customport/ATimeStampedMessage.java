@@ -21,6 +21,9 @@ public class ATimeStampedMessage {
 	public void setTimestamp(long newVal) {
 		this.timestamp = newVal;
 	}
+	public String toString() {
+		return message + "@" + timestamp;
+	}
 	
 	
 

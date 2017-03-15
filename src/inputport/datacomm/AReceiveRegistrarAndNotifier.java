@@ -7,7 +7,7 @@ import util.trace.Tracer;
 
 public class AReceiveRegistrarAndNotifier<MessageType> implements ReceiveRegistrarAndNotifier<MessageType> {
 
-	List<ReceiveListener<MessageType>> portReceiveListeners = new ArrayList();
+	protected List<ReceiveListener<MessageType>> portReceiveListeners = new ArrayList();
 
 	@Override
 	public void addReceiveListener(ReceiveListener<MessageType> portReceiveListener) {		

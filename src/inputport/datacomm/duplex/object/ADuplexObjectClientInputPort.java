@@ -23,7 +23,9 @@ import port.trace.ConnectiontEventBus;
 
 public class ADuplexObjectClientInputPort extends ASimplexObjectClientInputPort implements DuplexClientInputPort<Object>, ReceiveListener<ByteBuffer>{
 
-	ReceiveRegistrarAndNotifier receveRegistrarAndNotifier = new AReceiveRegistrarAndNotifier();
+//	ReceiveRegistrarAndNotifier receveRegistrarAndNotifier = new AReceiveRegistrarAndNotifier();
+	ReceiveRegistrarAndNotifier receveRegistrarAndNotifier = createReceiveRegistrarAndNotifier();
+
 	DuplexClientInputPort<ByteBuffer> bbDuplexClientInputPort;
 	ReceiveNotifier<ByteBuffer> deserializer;
 	ReceiveTrapper<Object, Object> receiveObjectForwarder;
@@ -38,6 +40,9 @@ public class ADuplexObjectClientInputPort extends ASimplexObjectClientInputPort 
 		
 		//		deserializer = GlobalState.getObjectTranslatingIPTrapperSelector().createReceiveTrapper(this, receiveObjectForwarder);
 
+	}
+	protected ReceiveRegistrarAndNotifier<Object> createReceiveRegistrarAndNotifier() {
+		return new AReceiveRegistrarAndNotifier<Object>();
 	}
 
 	@Override
