@@ -27,11 +27,17 @@ public class ADeserializingForwarder extends AnAbstractReceiveTrapper<ByteBuffer
 		try {
 			BufferDeserializationInitiated.newCase(this, remoteEnd, message, serializer);
 			Object serializable = serializer.objectFromInputBuffer(message);
+			if (serializable == null) {
+				System.err.println("Forwarding to receive listener unserializable byte buffer:" + message);
+				destination.notifyPortReceive(remoteEnd, message);
+				return;
+			}
 			BufferDeserializationFinished.newCase(this, remoteEnd, message, serializable);
 //			destination.notifyPortReceive(remoteEnd, serializable);	
 			notifySerializable(remoteEnd, serializable);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Throwable e) {
+//			e.printStackTrace();
+			System.err.println("Forwarding unserializable byte buffer to receive listener");
 			// the receiver may be able to do something with the ByteBuffer
 			destination.notifyPortReceive(remoteEnd, message);
 		}

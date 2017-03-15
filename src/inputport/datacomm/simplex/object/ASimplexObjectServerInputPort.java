@@ -19,7 +19,9 @@ import util.trace.Tracer;
 
 public class ASimplexObjectServerInputPort implements SimplexServerInputPort<Object>, ReceiveListener<ByteBuffer>{
 	SimplexServerInputPort<ByteBuffer> bbServerInputPort;
-	ReceiveRegistrarAndNotifier<Object> receiveRegistrarAndNotifier = new AReceiveRegistrarAndNotifier<Object>();
+//	ReceiveRegistrarAndNotifier<Object> receiveRegistrarAndNotifier = new AReceiveRegistrarAndNotifier<Object>();
+	ReceiveRegistrarAndNotifier<Object> receiveRegistrarAndNotifier = createReceiveRegistrarAndNotifier();
+
 	ReceiveTrapper<ByteBuffer, Object> deserializer;
 	ReceiveTrapper<Object, Object> deserializedObjectForwarder;
 
@@ -33,6 +35,9 @@ public class ASimplexObjectServerInputPort implements SimplexServerInputPort<Obj
 //		// deserialized object goes to object forwarder
 //		deserializer = GlobalState.getObjectTranslatingIPTrapperSelector().createReceiveTrapper(this, deserializedObjectForwarder);
 //		
+	}
+	protected ReceiveRegistrarAndNotifier<Object> createReceiveRegistrarAndNotifier() {
+		return new AReceiveRegistrarAndNotifier<Object>();
 	}
 	void setupReceiveTrapperChain() {
 		bbServerInputPort.addReceiveListener(this);

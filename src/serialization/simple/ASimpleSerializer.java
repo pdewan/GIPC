@@ -17,6 +17,9 @@ public class ASimpleSerializer implements ListSerializer {
 
 	public synchronized Object objectFromInputBuffer(ByteBuffer inputBuffer) {
 		List<Object> objects = objectsFromInputBuffer(inputBuffer);
+		if (objects == null) {
+			return null;
+		}
 		return objects.get(0);
 	}
 
@@ -49,7 +52,7 @@ public class ASimpleSerializer implements ListSerializer {
 
 			return retVal;
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			return null;
 		}
 	}
