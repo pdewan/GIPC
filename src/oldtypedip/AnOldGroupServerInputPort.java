@@ -7,6 +7,7 @@ import inputport.datacomm.ReceiveTrapper;
 import inputport.datacomm.SendTrapper;
 import inputport.datacomm.duplex.DuplexServerInputPort;
 import inputport.datacomm.duplex.NoMessageReceivedByResponderException;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.group.GroupNamingSender;
 import inputport.datacomm.group.GroupSendTrapper;
 import inputport.datacomm.group.GroupServerInputPort;
@@ -288,6 +289,16 @@ public void setPhysicalRemoteEndPoint(String newVal) {
 public void reply(String aSource, MessageType aMessage) {
 	// TODO Auto-generated method stub
 	
+}
+@Override
+public ReceiveReturnMessage<MessageType> receive() {
+	// TODO Auto-generated method stub
+	return null;
+}
+@Override
+public ReceiveReturnMessage<MessageType> receive(String aSource) {
+	// TODO Auto-generated method stub
+	return null;
 }
 
 

@@ -7,6 +7,7 @@ import inputport.datacomm.ReceiveTrapper;
 import inputport.datacomm.SendTrapper;
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.DuplexInputPort;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.rpc.RPCRegistry;
 import inputport.rpc.RPCRegistrySelector;
 import inputport.rpc.ReceivedCallInvoker;
@@ -257,7 +258,14 @@ public class ADuplexRPCClientInputPort extends ASimplexRPCClientInputPort implem
 	public Set<String> registeredMethodNames() {
 		return rpcRegistry.registeredMethodNames();
 	}
+	public ReceiveReturnMessage<Object> receive() {
+		return objectDuplexClientInputPort().receive();		
 
+	}
+	@Override
+	public ReceiveReturnMessage<Object> receive(String aSource) {
+		return objectDuplexClientInputPort().receive(aSource);
+	}
 
 
 }

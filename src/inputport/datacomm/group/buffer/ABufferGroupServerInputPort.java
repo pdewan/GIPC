@@ -1,6 +1,7 @@
 package inputport.datacomm.group.buffer;
 
 import inputport.datacomm.duplex.DuplexServerInputPort;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.group.AnAbstractGroupServerInputPort;
 
 import java.nio.ByteBuffer;
@@ -31,5 +32,13 @@ public class ABufferGroupServerInputPort extends AnAbstractGroupServerInputPort<
 		groupSendTrapper.send(clientNames, message);
 
 	}
+	public ReceiveReturnMessage<ByteBuffer> receive() {
+		return receive(getSender());		
 
+	}
+	@Override
+	public ReceiveReturnMessage<ByteBuffer> receive(String aSource) {
+		System.err.println("Receive not implemented");
+		return null;
+	}
 }

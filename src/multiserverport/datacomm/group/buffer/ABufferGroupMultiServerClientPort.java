@@ -2,6 +2,7 @@ package multiserverport.datacomm.group.buffer;
 
 
 import inputport.datacomm.ReceiveTrapper;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.group.GroupSendTrapper;
 import inputport.datacomm.group.buffer.ServerBufferGroupIPTrapperSelector;
 import inputport.datacomm.group.buffer.ServerGroupToUniSendSendBufferTrapperSelector;
@@ -59,7 +60,16 @@ public class ABufferGroupMultiServerClientPort
 		groupSendTrapper.send(clientNames, message);
 
 	}
-	
+	@Override
+	public ReceiveReturnMessage<ByteBuffer> receive() {
+		return receive(getSender());
+	}
+
+	@Override
+	public ReceiveReturnMessage<ByteBuffer> receive(String aSource) {
+		System.err.println("Receive not implemented");
+		return null;
+	}
 //	@Override
 //	public String getRemoteEndPoint() {
 //		return duplexMultiServerClientPort.getRemoteEndPoint();

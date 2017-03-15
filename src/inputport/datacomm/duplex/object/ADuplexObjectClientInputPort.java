@@ -6,6 +6,7 @@ import inputport.datacomm.ReceiveNotifier;
 import inputport.datacomm.ReceiveRegistrarAndNotifier;
 import inputport.datacomm.ReceiveTrapper;
 import inputport.datacomm.duplex.DuplexClientInputPort;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.simplex.object.ASimplexObjectClientInputPort;
 import inputport.datacomm.simplex.object.ClientObjectTrapperSelector;
 import inputport.datacomm.simplex.object.ObjectTranslatingIPTrapperSelector;
@@ -121,7 +122,14 @@ public class ADuplexObjectClientInputPort extends ASimplexObjectClientInputPort 
 	@Override
 	public void reply(String aRemoteEnd, Object aMessage) {
 		send(aRemoteEnd, aMessage);
-	}
-	
+	}	
+	public ReceiveReturnMessage<Object> receive() {
+		return receive(getSender());		
 
+	}
+	@Override
+	public ReceiveReturnMessage<Object> receive(String aSource) {
+		System.err.println("Receive not implemented");
+		return null;
+	}
 }

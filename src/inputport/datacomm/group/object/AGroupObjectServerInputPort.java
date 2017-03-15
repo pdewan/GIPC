@@ -2,6 +2,7 @@ package inputport.datacomm.group.object;
 
 import inputport.datacomm.ReceiveTrapper;
 import inputport.datacomm.duplex.DuplexServerInputPort;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.group.AnAbstractGroupServerInputPort;
 import inputport.datacomm.group.GroupNamingSender;
 import inputport.datacomm.group.GroupSendTrapper;
@@ -172,5 +173,13 @@ public  class AGroupObjectServerInputPort extends
 //	
 //	}
 	
+	public ReceiveReturnMessage<Object> receive() {
+		return receive(getSender());		
 
+	}
+	@Override
+	public ReceiveReturnMessage<Object> receive(String aSource) {
+		System.err.println("Receive not implemented");
+		return null;
+	}
 }

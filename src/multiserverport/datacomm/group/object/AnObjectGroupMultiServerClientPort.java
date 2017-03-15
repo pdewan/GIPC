@@ -1,6 +1,7 @@
 package multiserverport.datacomm.group.object;
 
 import inputport.datacomm.ReceiveTrapper;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.group.GroupNamingSender;
 import inputport.datacomm.group.GroupSendTrapper;
 
@@ -153,7 +154,16 @@ public  class AnObjectGroupMultiServerClientPort extends
 		bbGroupMultiServerClientPort.setSender(newVal);
 		
 	}
-	
+	@Override
+	public ReceiveReturnMessage<Object> receive() {
+		return receive(getSender());
+	}
+
+	@Override
+	public ReceiveReturnMessage<Object> receive(String aSource) {
+		System.err.println("Receive not implemented");
+		return null;
+	}
 //	
 //	@Override
 //	public ReceiveNotifier<Object> getReceiveTrapper() {

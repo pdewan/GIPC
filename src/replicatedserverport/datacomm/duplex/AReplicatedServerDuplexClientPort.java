@@ -6,6 +6,7 @@ import inputport.datacomm.ReceiveRegistrarAndNotifier;
 import inputport.datacomm.ReceiveTrapper;
 import inputport.datacomm.TrapperSelector;
 import inputport.datacomm.duplex.DuplexClientInputPort;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 
 import java.util.List;
@@ -159,6 +160,18 @@ public class AReplicatedServerDuplexClientPort<MessageType>
 	@Override
 	public List<ReceiveListener<MessageType>> getReceiveListeners() {
 		return receiveRegistrarAndNotifier.getReceiveListeners();
+	}
+
+	@Override
+	public ReceiveReturnMessage<MessageType> receive() {
+		// TODO Auto-generated method stub
+		return groupMultiServerClientPort.receive();
+	}
+
+	@Override
+	public ReceiveReturnMessage<MessageType> receive(String aSource) {
+		// TODO Auto-generated method stub
+		return groupMultiServerClientPort.receive(aSource);
 	}
 	
 	

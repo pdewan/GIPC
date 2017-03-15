@@ -2,6 +2,7 @@ package sessionport.datacomm.duplex.buffer.fullp2p;
 
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 
 import java.net.InetAddress;
@@ -124,6 +125,16 @@ public class ABufferDuplexSessionPortFullP2P
 //	public void setLogicalRemoteEndPoint(String newVal) {
 //		sessionName = newVal;
 //	}
+	@Override
+	public ReceiveReturnMessage<ByteBuffer> receive() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ReceiveReturnMessage<ByteBuffer> receive(String aSource) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

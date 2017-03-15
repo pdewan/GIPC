@@ -3,6 +3,7 @@ package inputport.datacomm.duplex.buffer;
 import inputport.datacomm.SendToUnconnectedPortException;
 import inputport.datacomm.SendTrapper;
 import inputport.datacomm.duplex.NoMessageReceivedByResponderException;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.simplex.buffer.AGenericSimplexBufferServerInputPort;
 import inputport.datacomm.simplex.buffer.ASendRegistrarAndNotifier;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
@@ -135,7 +136,15 @@ public class AGenericDuplexBufferServerInputPort<RequestChannelType, MessageChan
 	}
 	
 		
+	public ReceiveReturnMessage<ByteBuffer> receive() {
+		return receive(getSender());		
 
+	}
+	@Override
+	public ReceiveReturnMessage<ByteBuffer> receive(String aSource) {
+		System.err.println("Receive not implemented");
+		return null;
+	}
 	
 
 	

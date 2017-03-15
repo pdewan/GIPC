@@ -1,6 +1,7 @@
 package multiserverport.datacomm.duplex.buffer;
 
 import inputport.ConnectionType;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 
 import java.nio.ByteBuffer;
 
@@ -110,6 +111,17 @@ public  class ABufferDuplexMultiServerClientPort extends AnAbstractDuplexDirectB
 	
 	public static void main(String[] args) {
 		ABufferDuplexSessionPortLauncher.launchSessionPartipant("9091", "Test Client", ParticipantChoice.MEMBER);		
+	}
+
+	@Override
+	public ReceiveReturnMessage<ByteBuffer> receive() {
+		return receive(getSender());
+	}
+
+	@Override
+	public ReceiveReturnMessage<ByteBuffer> receive(String aSource) {
+		System.err.println("Receive not implemented");
+		return null;
 	}
 
 

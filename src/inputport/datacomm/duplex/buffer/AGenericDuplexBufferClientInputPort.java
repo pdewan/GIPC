@@ -4,6 +4,7 @@ import inputport.datacomm.AReceiveRegistrarAndNotifier;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.ReceiveRegistrarAndNotifier;
 import inputport.datacomm.ReceiveTrapper;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.simplex.buffer.AGenericSimplexBufferClientInputPort;
 
 import java.nio.ByteBuffer;
@@ -115,6 +116,15 @@ public class AGenericDuplexBufferClientInputPort<ChannelType> extends AGenericSi
 		if (echoingBufferSender == null)
 			echoingBufferSender = new AnEchoingBufferSender(this);
 		return  echoingBufferSender;
+	}
+	public ReceiveReturnMessage<ByteBuffer> receive() {
+		return receive(getSender());		
+
+	}
+	@Override
+	public ReceiveReturnMessage<ByteBuffer> receive(String aSource) {
+		System.err.println("Receive not implemented");
+		return null;
 	}
 	
 

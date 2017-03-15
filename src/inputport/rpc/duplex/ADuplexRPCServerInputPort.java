@@ -3,6 +3,7 @@ package inputport.rpc.duplex;
 import inputport.datacomm.SendTrapper;
 import inputport.datacomm.duplex.DuplexInputPort;
 import inputport.datacomm.duplex.DuplexServerInputPort;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 import inputport.rpc.RPCProxyGenerator;
 import inputport.rpc.simplex.ASimplexRPCServerInputPort;
@@ -218,6 +219,15 @@ public RPCProxyGenerator getRPCProxyGenerator() {
 @Override
 public void setRPCProxyGenerator(RPCProxyGenerator newVal) {
 	rpcProxyGenerator = newVal;
+}
+
+public ReceiveReturnMessage<Object> receive() {
+	return objectDuplexServerInputPort.receive();		
+
+}
+@Override
+public ReceiveReturnMessage<Object> receive(String aSource) {
+	return objectDuplexServerInputPort.receive(aSource);
 }
 
 //@Override

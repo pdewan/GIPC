@@ -9,6 +9,7 @@ import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.ReceiveRegistrarAndNotifier;
 import inputport.datacomm.ReceiveTrapper;
 import inputport.datacomm.SendTrapper;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.simplex.buffer.ASendRegistrarAndNotifier;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 import inputport.datacomm.simplex.buffer.SendRegistrarAndNotifier;
@@ -355,6 +356,16 @@ public class ARelayingObjectDuplexSessionPort implements DuplexSessionPort<Objec
 	public ParticipantChoice getParticipantChoice() {
 		// TODO Auto-generated method stub
 		return participantChoice;
+	}
+	@Override
+	public ReceiveReturnMessage<Object> receive() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ReceiveReturnMessage<Object> receive(String aSource) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

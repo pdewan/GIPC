@@ -2,6 +2,7 @@ package inputport.datacomm.duplex.object;
 
 import inputport.datacomm.SendTrapper;
 import inputport.datacomm.duplex.DuplexServerInputPort;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.simplex.SimplexServerInputPort;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 import inputport.datacomm.simplex.object.ASimplexObjectServerInputPort;
@@ -121,7 +122,15 @@ public class ADuplexObjectServerInputPort extends ASimplexObjectServerInputPort 
 	public void reply(String aRemoteEnd, Object aMessage) {
 		send(aRemoteEnd, aMessage);
 	}
-	
+	public ReceiveReturnMessage<Object> receive() {
+		return receive(getSender());		
+
+	}
+	@Override
+	public ReceiveReturnMessage<Object> receive(String aSource) {
+		System.err.println("Receive not implemented");
+		return null;
+	}
 	
 //	public static void main (String[] args) {
 //		Tracer.showInfo(true);
