@@ -1,4 +1,4 @@
-package examples.gipc.counter.customport;
+package examples.gipc.counter.customization;
 
 import java.io.Serializable;
 

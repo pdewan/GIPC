@@ -13,6 +13,12 @@ public class DuplexReceivedCallInvokerSelector {
 	public static DuplexReceivedCallInvokerFactory getReceivedCallInvokerFactory() {
 		return receivedCallInvokerFactory;
 	}
+	public static void setUninitalizedReceivedCallInvokerFactory(
+			DuplexReceivedCallInvokerFactory newVal) {
+		if (receivedCallInvokerFactory == null)
+		
+		DuplexReceivedCallInvokerSelector.receivedCallInvokerFactory = newVal;
+	}
 	public static void setReceivedCallInvokerFactory(
 			DuplexReceivedCallInvokerFactory receivedCallInvokerFactory) {
 		DuplexReceivedCallInvokerSelector.receivedCallInvokerFactory = receivedCallInvokerFactory;

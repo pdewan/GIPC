@@ -37,15 +37,18 @@ public class ADuplexRPCInputPortLauncherSupport extends ASimplexRPCInputPortLaun
 			setSendTrapperFactory(trapperFactory);
 		
 	}
-	public static  void  setDuplexCallInvokerCompleterFactories() {
-		DuplexSentCallCompleterSelector.setDuplexSentCallCompleterFactory(new ADuplexSentCallCompleterFactory());
+	public  void  setDuplexCallInvokerCompleterFactories() {
+//		DuplexSentCallCompleterSelector.setDuplexSentCallCompleterFactory(new ADuplexSentCallCompleterFactory());
+		DuplexSentCallCompleterSelector.setUninitializedDuplexSentCallCompleterFactory(new ADuplexSentCallCompleterFactory());
+
 		LocalRemoteReferenceTranslatorSelector.setTranslatorFactory(new ALocalRemoteReferenceTranslatorFactory());
 		SynchronousDuplexReceivedCallInvokerSelector.setReceivedCallInvokerFactory(new ADuplexReceivedCallInvokerFactory());
-		DuplexReceivedCallInvokerSelector.setReceivedCallInvokerFactory(new AnAsynchronousDuplexReceivedCallInvokerFactory());
-		
+//		DuplexReceivedCallInvokerSelector.setReceivedCallInvokerFactory(new AnAsynchronousDuplexReceivedCallInvokerFactory());
+		DuplexReceivedCallInvokerSelector.setUninitalizedReceivedCallInvokerFactory(new AnAsynchronousDuplexReceivedCallInvokerFactory());
+
 
 	}
-	public static void setDuplexRPCRegistryFactory() {
+	public  void setDuplexRPCRegistryFactory() {
 		RPCRegistrySelector.setRPCRegistryFactory(new ADuplexRPCRegistryFactory());
 	}
 	

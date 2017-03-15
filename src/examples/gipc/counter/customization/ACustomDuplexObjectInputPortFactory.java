@@ -1,4 +1,4 @@
-package examples.gipc.counter.customport;
+package examples.gipc.counter.customization;
 
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.DuplexServerInputPort;
