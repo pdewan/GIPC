@@ -1,5 +1,7 @@
 package examples.gipc.counter.customport;
 
+import java.util.Date;
+
 public class ATimeStampedMessage {
 	protected Object message;
 	protected long timestamp;
@@ -22,7 +24,7 @@ public class ATimeStampedMessage {
 		this.timestamp = newVal;
 	}
 	public String toString() {
-		return message + "@" + timestamp;
+		return message + "@" + timestamp + "(" + new Date(timestamp) + ")";
 	}
 	
 	
