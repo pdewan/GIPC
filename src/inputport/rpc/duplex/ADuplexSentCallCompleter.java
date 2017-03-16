@@ -7,6 +7,7 @@ import inputport.InputPort;
 import java.util.HashMap;
 import java.util.Map;
 
+import port.trace.rpc.ReceivedObjectTransformed;
 import port.trace.rpc.ReturnValueQueueCreated;
 import util.trace.Tracer;
 
@@ -43,24 +44,38 @@ public class ADuplexSentCallCompleter extends AnAbstractDuplexSentCallCompleter 
 		 createRPCReturnValueReceiver(aRemoteEnd);
 		return nameToRPCReturnValueReceiver.get(aRemoteEnd);		
 	}
-	//called by sending thread
-	@Override
-	 public Object returnValueOfRemoteFunctionCall (String aRemoteEndPoint, Object aMessage) {		
+	protected Object waitForReturnValue(String aRemoteEndPoint) {
 		RPCReturnValueQueue rpcReturnValueReceiver = getRPCReturnValueReceiver(aRemoteEndPoint);
 		if (rpcReturnValueReceiver == null) {
 			Tracer.error("Could not find rpc return value receiver for:" + aRemoteEndPoint  + ". Is the client rpc port connected?");
 			return null;
 		}
-		Object returnValue = rpcReturnValueReceiver.takeReturnValue();
-		Tracer.info(this, "took return value:" + returnValue);
-		return  returnValue;
-		
+		return rpcReturnValueReceiver.takeReturnValue();
+	}
+	//called by sending thread
+//	@Override
+//	 public Object returnValueOfRemoteFunctionCall (String aRemoteEndPoint, Object aMessage) {		
+//		RPCReturnValueQueue rpcReturnValueReceiver = getRPCReturnValueReceiver(aRemoteEndPoint);
+//		if (rpcReturnValueReceiver == null) {
+//			Tracer.error("Could not find rpc return value receiver for:" + aRemoteEndPoint  + ". Is the client rpc port connected?");
+//			return null;
+//		}
+//		Object returnValue = rpcReturnValueReceiver.takeReturnValue();
+//		
+//		Tracer.info(this, "took return value:" + returnValue);
+//		return  returnValue;
+//		
+//	}
+	@Override
+	 protected Object returnValueOfRemoteFunctionCall (String aRemoteEndPoint, Object aMessage) {		
+		Object possiblyRemoteRetVal = waitForReturnValue(aRemoteEndPoint);
+		Object returnValue = localRemoteReferenceTranslator.transformReceivedReference(possiblyRemoteRetVal);
+		ReceivedObjectTransformed.newCase(this, possiblyRemoteRetVal, returnValue);
+		return  returnValue;		
 	}
     // called by receiving thread
 	protected void processReturnValue(String source, Object message) {
-		RPCReturnValueQueue rpcReturnValueReceiver = getRPCReturnValueReceiver(source);		
-//		System.out.println("Putting return value " + rpcReturnValueReceiver);
-
+		RPCReturnValueQueue rpcReturnValueReceiver = getRPCReturnValueReceiver(source);	
 		rpcReturnValueReceiver.putReturnValue((RPCReturnValue) message);		
 	}
 

@@ -10,13 +10,16 @@ public abstract class AnAbstractDuplexSentCallCompleter extends ASimplexSentCall
 		return message instanceof RPCReturnValue;
 	}	
 	protected abstract void processReturnValue(String source, Object message);	
+	protected boolean notifyReturnValue() {
+		return false;
+	}
 	@Override
 	public boolean maybeProcessReturnValue(String source, Object message) {		
 		if (isReturnValue(message)) {
 			processReturnValue(source, (RPCReturnValue) message);
 			return true;
 		} else
-			return false;
+			return notifyReturnValue();
 	}	
 
 }

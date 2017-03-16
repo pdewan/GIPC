@@ -1,6 +1,7 @@
 package examples.gipc.counter.customization;
 
 import inputport.datacomm.duplex.object.DuplexObjectInputPortSelector;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.rpc.duplex.DuplexReceivedCallInvokerSelector;
 import inputport.rpc.duplex.DuplexSentCallCompleterSelector;
 import inputport.rpc.duplex.SynchronousDuplexReceivedCallInvokerSelector;
@@ -24,7 +25,14 @@ public class ACustomCounterClient extends AMultiLayerCounterClient{
 		init("Client 1");
 		sendByteBuffers();
 		sendObjects();
-		doOperations();		
+		doOperations();	
+		while (true) {
+			ReceiveReturnMessage aReceivedMessage = gipcRegistry.getRPCClientPort().receive();
+			if (aReceivedMessage == null) {
+				break;
+			}
+			System.out.println("Received message:" + aReceivedMessage );
+		}
 	}
 	
 

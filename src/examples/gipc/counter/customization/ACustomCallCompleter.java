@@ -17,19 +17,35 @@ public class ACustomCallCompleter
 		super(aPort, aRemoteHandler);
 		
 	}	
+	protected boolean notifyReturnValue() {
+		boolean retVal = super.notifyReturnValue();
+		System.out.println ("Return value should be sent to notifier:" + retVal);
+		return retVal;
+	}
 	@Override
 	protected void processReturnValue(String source, Object message) {
 		System.out.println ("Processing return value of call:" + source + "." + message);
-		super.processReturnValue(source, message);
-		
+		super.processReturnValue(source, message);		
+	}
+	protected Object returnValueOfRemoteFunctionCall(String aRemoteEndPoint, Object aMessage) {
+		System.out.println ("Started return value of remote function call");
+		Object retVal = super.returnValueOfRemoteFunctionCall(aRemoteEndPoint, aMessage);
+		System.out.println ("Returning:" + retVal);
+
+		return retVal;
+	}
+	protected Object returnValueOfRemoteProcedureCall(String aRemoteEndPoint, Object aMessage) {
+		System.out.println ("Started return value of remote procedure call");
+		Object retVal = super.returnValueOfRemoteProcedureCall(aRemoteEndPoint, aMessage);
+		System.out.println ("Returning:" + retVal);
+
+		return retVal;
 	}
 	@Override
-	public Object returnValueOfRemoteFunctionCall(String aRemoteEndPoint, Object aMessage) {
-		Object retVal = super.returnValueOfRemoteFunctionCall(aRemoteEndPoint, aMessage);
-		
-		System.out.println (aRemoteEndPoint + "." + aMessage + "-->" + retVal);
+	public Object waitForReturnValue(String aRemoteEndPoint) {
+		Object retVal = super.waitForReturnValue(aRemoteEndPoint);		
+		System.out.println (aRemoteEndPoint +  "-->" + retVal);
 		return retVal;
-
 	}
 
 }

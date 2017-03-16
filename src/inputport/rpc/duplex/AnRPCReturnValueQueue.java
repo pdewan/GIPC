@@ -65,9 +65,10 @@ public class AnRPCReturnValueQueue implements RPCReturnValueQueue, ConnectionLis
 
 			Object possiblyRemoteRetVal = message.getReturnValue();
 			
-			Object returnValue = localRemoteReferenceTranslator
-					.transformReceivedReference(possiblyRemoteRetVal);
-			ReceivedObjectTransformed.newCase(this, possiblyRemoteRetVal, returnValue);
+//			Object returnValue = localRemoteReferenceTranslator
+//					.transformReceivedReference(possiblyRemoteRetVal);
+			Object returnValue = possiblyRemoteRetVal;
+//			ReceivedObjectTransformed.newCase(this, possiblyRemoteRetVal, returnValue);
 			return returnValue;
 		} catch (GIPCRemoteException e) {
 			throw e;
