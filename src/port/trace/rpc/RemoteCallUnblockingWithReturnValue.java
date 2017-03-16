@@ -6,17 +6,17 @@ import util.annotations.DisplayToString;
 import util.trace.TraceableInfo;
 @DisplayToString(true)
 @ComponentWidth(1000)
-public class ReceivedReturnValueDequeued extends TraceableInfo {
+public class RemoteCallUnblockingWithReturnValue extends TraceableInfo {
 	
 
-	public ReceivedReturnValueDequeued(String aMessage, Object aSource, Object aQueue, Object aReturnValue) {
+	public RemoteCallUnblockingWithReturnValue(String aMessage, Object aSource, Object aQueue, Object aReturnValue) {
 		super(aMessage, aSource );
 	}
 	
 	
-	public static ReceivedReturnValueDequeued newCase(Object aSource, Object aQueue,  Object aReturnValue) {
+	public static RemoteCallUnblockingWithReturnValue newCase(Object aSource, Object aQueue,  Object aReturnValue) {
     	String aMessage =  aReturnValue + "<-" + aQueue;
-    	ReceivedReturnValueDequeued retVal = new ReceivedReturnValueDequeued(aMessage, aSource, aQueue, aReturnValue);
+    	RemoteCallUnblockingWithReturnValue retVal = new RemoteCallUnblockingWithReturnValue(aMessage, aSource, aQueue, aReturnValue);
    	    retVal.announce();
     	return retVal;
 

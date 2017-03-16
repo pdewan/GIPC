@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import port.trace.rpc.ReceivedObjectTransformed;
+import port.trace.rpc.RemoteCallBlockedForReturnValue;
+import port.trace.rpc.RemoteCallReceivedReturnValue;
+import port.trace.rpc.RemoteCallWaitingForReturnValue;
 import port.trace.rpc.ReturnValueQueueCreated;
 import util.trace.Tracer;
 
@@ -50,7 +53,8 @@ public class ADuplexSentCallCompleter extends AnAbstractDuplexSentCallCompleter 
 			Tracer.error("Could not find rpc return value receiver for:" + aRemoteEndPoint  + ". Is the client rpc port connected?");
 			return null;
 		}
-		return rpcReturnValueReceiver.takeReturnValue();
+		Object retVal = rpcReturnValueReceiver.takeReturnValue();
+		return retVal;
 	}
 	//called by sending thread
 //	@Override
@@ -68,8 +72,10 @@ public class ADuplexSentCallCompleter extends AnAbstractDuplexSentCallCompleter 
 //	}
 	@Override
 	 protected Object returnValueOfRemoteFunctionCall (String aRemoteEndPoint, Object aMessage) {		
+		RemoteCallWaitingForReturnValue.newCase(this);
 		Object possiblyRemoteRetVal = waitForReturnValue(aRemoteEndPoint);
 		Object returnValue = localRemoteReferenceTranslator.transformReceivedReference(possiblyRemoteRetVal);
+		RemoteCallReceivedReturnValue.newCase(this, returnValue);
 		ReceivedObjectTransformed.newCase(this, possiblyRemoteRetVal, returnValue);
 		return  returnValue;		
 	}

@@ -6,6 +6,7 @@ import inputport.rpc.duplex.DuplexReceivedCallInvokerSelector;
 import inputport.rpc.duplex.DuplexSentCallCompleterSelector;
 import inputport.rpc.duplex.SynchronousDuplexReceivedCallInvokerSelector;
 import port.trace.rpc.RPCTraceUtility;
+import serialization.SerializerSelector;
 import examples.gipc.counter.layers.AMultiLayerCounterClient;
 
 public class ACustomCounterClient extends AMultiLayerCounterClient{
@@ -16,6 +17,7 @@ public class ACustomCounterClient extends AMultiLayerCounterClient{
 				new ACustomSentCallCompleterFactory());
 		DuplexObjectInputPortSelector.setDuplexInputPortFactory(
 				new ACustomDuplexObjectInputPortFactory());
+		SerializerSelector.setSerializerFactory(new ACustomSerializerFactory());
 	;
 	}
 	public static void main (String[] args) {	

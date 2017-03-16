@@ -26,6 +26,7 @@ public class ADuplexUniImplicitRPCFunctionHandler
 			return null;
 		}
 		try {
+			// value not being translated
 			return rpcReturnValueReceiver.takeReturnValue();
 			} catch (Exception e) {
 				e.printStackTrace();

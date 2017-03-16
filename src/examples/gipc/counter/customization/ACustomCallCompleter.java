@@ -17,11 +17,7 @@ public class ACustomCallCompleter
 		super(aPort, aRemoteHandler);
 		
 	}	
-	protected boolean notifyReturnValue() {
-		boolean retVal = super.notifyReturnValue();
-		System.out.println ("Return value should be sent to notifier:" + retVal);
-		return retVal;
-	}
+	
 	@Override
 	protected void processReturnValue(String source, Object message) {
 		System.out.println ("Processing return value of call:" + source + "." + message);

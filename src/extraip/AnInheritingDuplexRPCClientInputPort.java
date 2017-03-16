@@ -31,6 +31,7 @@ public class AnInheritingDuplexRPCClientInputPort extends ADuplexRPCClientInputP
 	
 	protected Object handleFunction(SerializableCall aCall) {
 		try {
+			// value not being translated
 		return rpcReturnValueReceiver.takeReturnValue();
 		} catch (Exception e) {
 			e.printStackTrace();

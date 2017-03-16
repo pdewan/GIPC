@@ -8,7 +8,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 import port.trace.rpc.ReceivedObjectTransformed;
-import port.trace.rpc.ReceivedReturnValueDequeued;
+import port.trace.rpc.RemoteCallUnblockingWithReturnValue;
 import port.trace.rpc.ReceivedReturnValueQueued;
 import port.trace.rpc.RemoteCallBlockedForReturnValue;
 import port.trace.rpc.RemoteCallReturnValueDetermined;
@@ -58,7 +58,7 @@ public class AnRPCReturnValueQueue implements RPCReturnValueQueue, ConnectionLis
 				throw new RemoteEndDisconnectedException();
 			}
 			
-			ReceivedReturnValueDequeued.newCase(this, returnValueQueue, message);
+			RemoteCallUnblockingWithReturnValue.newCase(this, returnValueQueue, message);
 			if (message.isException()) {
 				throw new RemoteInvocationException((Throwable) message.getReturnValue());
 			}

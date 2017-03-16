@@ -36,7 +36,9 @@ public class RPCTraceUtility {
 		Tracer.setKeywordPrintStatus(ReceivedCallInitiated.class, true);
 		Tracer.setKeywordPrintStatus(ReceivedCallQueued.class, true);
 		Tracer.setKeywordPrintStatus(ReceivedObjectTransformed.class, true);
-		Tracer.setKeywordPrintStatus(ReceivedReturnValueDequeued.class, true);
+		Tracer.setKeywordPrintStatus(RemoteCallReceivedReturnValue.class, true);
+		Tracer.setKeywordPrintStatus(RemoteCallUnblockingWithReturnValue.class, true);
+		Tracer.setKeywordPrintStatus(RemoteCallWaitingForReturnValue.class, true);
 		Tracer.setKeywordPrintStatus(ReceivedReturnValueQueued.class, true);	
 		Tracer.setKeywordPrintStatus(RegisteredObjectLookedUp.class, true);	
 		Tracer.setKeywordPrintStatus(RemoteCallBlockedForReturnValue.class, true);

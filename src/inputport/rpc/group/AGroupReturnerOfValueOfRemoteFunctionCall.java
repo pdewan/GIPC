@@ -33,7 +33,8 @@ public class AGroupReturnerOfValueOfRemoteFunctionCall
 			try {
 //				System.out.println("Taking return value from " + rpcReturnValueReceivers[i]);
 
-				retVal[i] = rpcReturnValueReceivers[i].takeReturnValue();
+//				retVal[i] = rpcReturnValueReceivers[i].takeReturnValue();
+				retVal[i] =localRemoteReferenceTranslator.transformReceivedReference(rpcReturnValueReceivers[i].takeReturnValue());
 //				System.out.println("Took return value");
 
 			} catch (Exception e) {

@@ -25,7 +25,7 @@ import port.trace.rpc.ReceivedCallQueued;
 import port.trace.rpc.CallReceived;
 import port.trace.rpc.ReceivedCallEndedOld;
 import port.trace.rpc.ReceivedObjectTransformed;
-import port.trace.rpc.ReceivedReturnValueDequeued;
+import port.trace.rpc.RemoteCallUnblockingWithReturnValue;
 import port.trace.rpc.ReceivedReturnValueQueued;
 import port.trace.rpc.RegisteredObjectLookedUp;
 import port.trace.rpc.RemoteCallBlockedForReturnValue;

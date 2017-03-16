@@ -42,6 +42,9 @@ public class ObjectTraceUtility implements SimpleCounterClient{
 		Tracer.setKeywordPrintStatus(BufferDeserializationInitiated.class, true);
 		Tracer.setKeywordPrintStatus(ObjectSerializationFinished.class, true);
 		Tracer.setKeywordPrintStatus(ObjectSerializationInitiated.class, true);
+		Tracer.setKeywordPrintStatus(ReceivedMessageDequeued.class, true);
+		Tracer.setKeywordPrintStatus(ReceivedMessageQueueCreated.class, true);
+		Tracer.setKeywordPrintStatus(ReceivedMessageQueued.class, true);
 		Tracer.setKeywordPrintStatus(SerializerPoolCreated.class, true);
 		Tracer.setKeywordPrintStatus(SerializerReturnedToPool.class, true);
 		Tracer.setKeywordPrintStatus(SerializerTakenFromPool.class, true);
