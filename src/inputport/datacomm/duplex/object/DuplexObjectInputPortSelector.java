@@ -11,6 +11,9 @@ public class DuplexObjectInputPortSelector  {
 	public static void setDuplexInputPortFactory(DuplexInputPortFactory<Object> theInputPortFactory) {
 		inputPortFactory = theInputPortFactory;
 	}
+	public static DuplexInputPortFactory<Object> getDuplexInputPortFactory() {
+		return inputPortFactory;
+	}
 	public static DuplexServerInputPort<Object> createDuplexServerInputPort(String theServerId, String theServerName) {
 		return inputPortFactory.createDuplexServerInputPort(theServerId, theServerName);
 	}

@@ -13,18 +13,20 @@ public class ACustomCounterClient extends AMultiLayerCounterClient{
 	public static void setFactories() {
 		DuplexReceivedCallInvokerSelector.setReceivedCallInvokerFactory(
 				new ACustomDuplexReceivedCallInvokerFactory());
+//		DuplexReceivedCallInvokerSelector.setReceivedCallInvokerFactory(
+//				new AnAsynchronousCustomDuplexReceivedCallInvokerFactory());
 		DuplexSentCallCompleterSelector.setDuplexSentCallCompleterFactory(
 				new ACustomSentCallCompleterFactory());
 		DuplexObjectInputPortSelector.setDuplexInputPortFactory(
 				new ACustomDuplexObjectInputPortFactory());
-		SerializerSelector.setSerializerFactory(new ACustomSerializerFactory());
-	;
+		SerializerSelector.setSerializerFactory(new ACustomSerializerFactory());	
 	}
-	public static void main (String[] args) {	
+	public static void main (String[] args) {
+//		BufferTraceUtility.setTracing();
 //		RPCTraceUtility.setTracing();
 		setFactories();
-//		BufferTraceUtility.setTracing();
 		init("Client 1");
+		setPort();
 		sendByteBuffers();
 		sendObjects();
 		doOperations();	

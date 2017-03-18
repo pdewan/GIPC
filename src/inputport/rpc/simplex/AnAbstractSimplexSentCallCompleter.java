@@ -13,13 +13,13 @@ public abstract class AnAbstractSimplexSentCallCompleter {
 		Method method = serializableCall.getMethod();
 		return 	method.getReturnType().equals(Void.TYPE);
 	}
-	protected abstract Object returnValueOfRemoteProcedureCall(String aRemoteEndPoint, Object aMessage);
-	protected abstract Object returnValueOfRemoteFunctionCall(String aRemoteEndPoint, Object aMessage);
+	protected abstract Object getReturnValueOfRemoteProcedureCall(String aRemoteEndPoint, Object aMessage);
+	protected abstract Object getReturnValueOfRemoteFunctionCall(String aRemoteEndPoint, Object aMessage);
 	public Object returnValueOfRemoteMethodCall(String aRemoteEndPoint, RemoteCall aMessage) {
 		if (isProcedure(aMessage))
-			return returnValueOfRemoteProcedureCall(aRemoteEndPoint, aMessage);
+			return getReturnValueOfRemoteProcedureCall(aRemoteEndPoint, aMessage);
 		else
-			return returnValueOfRemoteFunctionCall(aRemoteEndPoint, aMessage);
+			return getReturnValueOfRemoteFunctionCall(aRemoteEndPoint, aMessage);
 
 	}
 

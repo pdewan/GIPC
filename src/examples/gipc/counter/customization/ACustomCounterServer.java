@@ -18,6 +18,7 @@ public class ACustomCounterServer extends AMultiLayerCounterServer{
 //		RPCTraceUtility.setTracing();
 		setFactories();
 		init();
+		setPort();
 		addListeners();
 		while (true) {
 			ReceiveReturnMessage aReceivedMessage = gipcRegistry.getRPCServerPort().receive();

@@ -9,7 +9,7 @@ public abstract class AnAbstractDuplexSentCallCompleter extends ASimplexSentCall
 	protected boolean isReturnValue(Object message) {
 		return message instanceof RPCReturnValue;
 	}	
-	protected abstract void processReturnValue(String source, Object message);	
+	protected abstract void returnValueReceived(String source, Object message);	
 	protected boolean returnValueIsNotified() {
 		return false;
 	}
@@ -20,7 +20,7 @@ public abstract class AnAbstractDuplexSentCallCompleter extends ASimplexSentCall
 	 */
 	public boolean maybeProcessReturnValue(String source, Object message) {		
 		if (isReturnValue(message)) {
-			processReturnValue(source, (RPCReturnValue) message);
+			returnValueReceived(source, (RPCReturnValue) message);
 			return !returnValueIsNotified();
 		} else
 			return false;

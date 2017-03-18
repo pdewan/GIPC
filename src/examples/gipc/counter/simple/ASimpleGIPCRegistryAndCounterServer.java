@@ -23,7 +23,6 @@ public class ASimpleGIPCRegistryAndCounterServer  implements SimpleRegistryAndCo
 		counter = new ADistributedInheritingRMICounter();			
 		gipcRegistry.rebind(COUNTER_NAME, counter);	
 		gipcRegistry.getInputPort().addConnectionListener(new ATracingConnectionListener(gipcRegistry.getInputPort()));
-
 	}
 	public static void main (String[] args) {		
 //		BufferTraceUtility.setTracing();

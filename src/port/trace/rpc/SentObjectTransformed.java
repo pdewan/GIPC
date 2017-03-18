@@ -15,7 +15,7 @@ public class SentObjectTransformed extends TraceableInfo {
 	
 	
 	public static SentObjectTransformed newCase(Object aSource, Object anOriginal, Object aTransformed, Class aReturnType) {
-    	String aMessage =  anOriginal+ "->" + aTransformed +":" + aReturnType;
+		String aMessage =  anOriginal+ "->" + aTransformed +":" + aReturnType;
     	SentObjectTransformed retVal = new SentObjectTransformed(aMessage, aSource, anOriginal, aTransformed, aReturnType);
    	    retVal.announce();
     	return retVal;

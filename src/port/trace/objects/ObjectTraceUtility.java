@@ -9,6 +9,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import port.trace.ReceiveListenerNotified;
+import port.trace.ReceiveListenerRegistered;
 import port.trace.buffer.TrapperBufferReceived;
 import port.trace.buffer.TrapperBufferSendInitiated;
 import port.trace.buffer.ClientNameAssociatedWithPort;
@@ -42,6 +44,9 @@ public class ObjectTraceUtility implements SimpleCounterClient{
 		Tracer.setKeywordPrintStatus(BufferDeserializationInitiated.class, true);
 		Tracer.setKeywordPrintStatus(ObjectSerializationFinished.class, true);
 		Tracer.setKeywordPrintStatus(ObjectSerializationInitiated.class, true);
+		Tracer.setKeywordPrintStatus(ObjectSendInitiated.class, true);
+//		Tracer.setKeywordPrintStatus(ReceiveListenerRegistered.class, true);
+		Tracer.setKeywordPrintStatus(ReceiveListenerNotified.class, true);
 		Tracer.setKeywordPrintStatus(ReceivedMessageDequeued.class, true);
 		Tracer.setKeywordPrintStatus(ReceivedMessageQueueCreated.class, true);
 		Tracer.setKeywordPrintStatus(ReceivedMessageQueued.class, true);

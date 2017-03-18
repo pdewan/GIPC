@@ -8,34 +8,15 @@ import inputport.rpc.duplex.DuplexSentCallCompleter;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
 import inputport.rpc.duplex.RPCReturnValue;
 
-public class ACustomCallCompleter 
-	extends ADuplexSentCallCompleter	{
-	protected ExplicitSourceReceive<Object>  receiver;
-//	protected LocalRemoteReferenceTranslator localRemoteReferenceTranslator;
+public class ACustomCallCompleter extends ADuplexSentCallCompleter	{
 	
 	public ACustomCallCompleter(DuplexRPCInputPort aPort, LocalRemoteReferenceTranslator aRemoteHandler) {
-		super(aPort, aRemoteHandler);
-		
+		super(aPort, aRemoteHandler);		
 	}	
-	
 	@Override
-	protected void processReturnValue(String source, Object message) {
-		System.out.println ("Processing return value of call:" + source + "." + message);
-		super.processReturnValue(source, message);		
-	}
-	protected Object returnValueOfRemoteFunctionCall(String aRemoteEndPoint, Object aMessage) {
-		System.out.println ("Started return value of remote function call");
-		Object retVal = super.returnValueOfRemoteFunctionCall(aRemoteEndPoint, aMessage);
-		System.out.println ("Returning:" + retVal);
-
-		return retVal;
-	}
-	protected Object returnValueOfRemoteProcedureCall(String aRemoteEndPoint, Object aMessage) {
-		System.out.println ("Started return value of remote procedure call");
-		Object retVal = super.returnValueOfRemoteProcedureCall(aRemoteEndPoint, aMessage);
-		System.out.println ("Returning:" + retVal);
-
-		return retVal;
+	protected void returnValueReceived(String aRemoteEndPoint, Object message) {
+		System.out.println ("Processing return value of call:" + aRemoteEndPoint + "." + message);
+		super.returnValueReceived(aRemoteEndPoint, message);		
 	}
 	@Override
 	public Object waitForReturnValue(String aRemoteEndPoint) {
@@ -43,5 +24,16 @@ public class ACustomCallCompleter
 		System.out.println (aRemoteEndPoint +  "-->" + retVal);
 		return retVal;
 	}
-
+	protected Object getReturnValueOfRemoteFunctionCall(String aRemoteEndPoint, Object aMessage) {
+		System.out.println ("getReturnValueOfRemoteFunctionCall called");
+		Object retVal = super.getReturnValueOfRemoteFunctionCall(aRemoteEndPoint, aMessage);
+		System.out.println ("Returning:" + retVal);
+		return retVal;
+	}
+	protected Object getReturnValueOfRemoteProcedureCall(String aRemoteEndPoint, Object aMessage) {
+		System.out.println ("getReturnValueOfRemoteProcedureCall called");
+		Object retVal = super.getReturnValueOfRemoteProcedureCall(aRemoteEndPoint, aMessage);
+		System.out.println ("Returning:" + retVal);
+		return retVal;
+	}
 }

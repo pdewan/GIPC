@@ -15,21 +15,19 @@ import port.trace.rpc.ReturnMessageCreated;
 import util.trace.Tracer;
 
 
-public class ACustomReceivedCallInvoker extends ADuplexReceivedCallInvoker  {
+public class ACustomReceivedCallInvoker extends ADuplexReceivedCallInvoker {
 	
 	public ACustomReceivedCallInvoker(LocalRemoteReferenceTranslator aRemoteHandler, DuplexInputPort<Object> aReplier, RPCRegistry theRPCRegistry) {
 		super(aRemoteHandler, aReplier, theRPCRegistry);
-
 	}
-	protected void handleProcedureReturn(String sender, Exception e) {
-		System.out.println("Procedure call returning from:" + sender + " with exception:" + e);
-		super.handleProcedureReturn(sender, e);
-
+	protected void handleProcedureReturn(String aSender, Exception e) {
+		System.out.println("Procedure call returning from:" + aSender + " with exception:" + e);
+		super.handleProcedureReturn(aSender, e);
 	}
-	protected RPCReturnValue createRPCReturnValue(Object retVal, Boolean anIsException) {
-		RPCReturnValue aResult = super.createRPCReturnValue(retVal, anIsException);
-		System.out.println ("Returning function value:" + aResult);
-		return aResult;
+	@Override
+	protected void handleFunctionReturn(String sender, Object retVal, Class aRetType, Exception e) {
+		System.out.println("Function call returning from:" + sender + " with " + " result " + retVal + "or exception:" + e);
+		super.handleFunctionReturn(sender, retVal, aRetType, e);
 	}
 	
 	

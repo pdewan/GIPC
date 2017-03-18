@@ -71,7 +71,7 @@ public class ADuplexSentCallCompleter extends AnAbstractDuplexSentCallCompleter 
 //		
 //	}
 	@Override
-	 protected Object returnValueOfRemoteFunctionCall (String aRemoteEndPoint, Object aMessage) {		
+	 protected Object getReturnValueOfRemoteFunctionCall (String aRemoteEndPoint, Object aMessage) {		
 		RemoteCallWaitingForReturnValue.newCase(this);
 		Object possiblyRemoteRetVal = waitForReturnValue(aRemoteEndPoint);
 		Object returnValue = localRemoteReferenceTranslator.transformReceivedReference(possiblyRemoteRetVal);
@@ -80,7 +80,7 @@ public class ADuplexSentCallCompleter extends AnAbstractDuplexSentCallCompleter 
 		return  returnValue;		
 	}
     // called by receiving thread
-	protected void processReturnValue(String source, Object message) {
+	protected void returnValueReceived(String source, Object message) {
 		RPCReturnValueQueue rpcReturnValueReceiver = getRPCReturnValueReceiver(source);	
 		rpcReturnValueReceiver.putReturnValue((RPCReturnValue) message);		
 	}

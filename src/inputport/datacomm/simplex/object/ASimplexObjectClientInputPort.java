@@ -12,6 +12,7 @@ import java.util.Set;
 import port.trace.AConnectionEvent;
 import port.trace.AReplaceConnectionEvent;
 import port.trace.ConnectiontEventBus;
+import port.trace.objects.ObjectSendInitiated;
 import util.trace.Tracer;
 
 
@@ -40,7 +41,8 @@ public class ASimplexObjectClientInputPort implements SimplexClientInputPort<Obj
 	}
 	//send application object to forwarder
 	@Override
-	public void send(String remoteName, Object message) {	
+	public void send(String remoteName, Object message) {
+		ObjectSendInitiated.newCase(this, this.getLocalName(), remoteName, message);
 		sendObjectForwarder.send(remoteName, message);		
 	}
 //	@Override

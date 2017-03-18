@@ -3,6 +3,8 @@ package inputport.datacomm;
 import java.util.ArrayList;
 import java.util.List;
 
+import port.trace.ReceiveListenerNotified;
+import port.trace.ReceiveListenerRegistered;
 import util.trace.Tracer;
 
 public class AReceiveRegistrarAndNotifier<MessageType> implements ReceiveRegistrarAndNotifier<MessageType> {
@@ -11,6 +13,7 @@ public class AReceiveRegistrarAndNotifier<MessageType> implements ReceiveRegistr
 
 	@Override
 	public void addReceiveListener(ReceiveListener<MessageType> portReceiveListener) {		
+		ReceiveListenerRegistered.newCase(this, portReceiveListener);
 		Tracer.info(this, "Registering receive listener:" + portReceiveListener);
 		if (portReceiveListeners.contains(portReceiveListener))
 			return;
@@ -25,6 +28,7 @@ public class AReceiveRegistrarAndNotifier<MessageType> implements ReceiveRegistr
 	public void notifyPortReceive (String remoteEnd, MessageType message) {
 		Tracer.info(this, "Notifying receive listeners");
 		for (ReceiveListener<MessageType> portReceiveListener:portReceiveListeners) {
+			ReceiveListenerNotified.newCase(this, portReceiveListener, message);
 			portReceiveListener.messageReceived(remoteEnd, message);
 		}
 	}
