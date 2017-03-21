@@ -1,4 +1,4 @@
-package port.trace.buffer.nio;
+package port.trace.nio;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;

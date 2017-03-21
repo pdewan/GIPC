@@ -1,4 +1,4 @@
-package port.trace.buffer.nio;
+package port.trace.nio;
 
 import java.nio.channels.SelectionKey;
 
@@ -6,16 +6,16 @@ import inputport.rpc.RemoteCall;
 import port.trace.rpc.ReceivedCallEndedOld;
 import util.trace.TraceableInfo;
 
-public class RemoteCommandExecuted extends TraceableInfo {	
+public class LocalCommandObserved extends TraceableInfo {	
 	protected String command;
-	public RemoteCommandExecuted(String aMessage, Object aFinder,
+	public LocalCommandObserved(String aMessage, Object aFinder,
 			String aCommand) {
 		super(aMessage, aFinder);
 		command = aCommand;
 	}
-	public static RemoteCommandExecuted newCase(Object aSource, String aCommand) {    	
+	public static LocalCommandObserved newCase(Object aSource, String aCommand) {    	
 		String aMessage = "Command:" + aCommand;
-		RemoteCommandExecuted retVal = new RemoteCommandExecuted(aMessage, aSource, aCommand);
+		LocalCommandObserved retVal = new LocalCommandObserved(aMessage, aSource, aCommand);
     	retVal.announce();
     	return retVal;
 	}

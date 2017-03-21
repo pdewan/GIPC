@@ -9,10 +9,10 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-import port.trace.buffer.nio.SocketChannelConnectFinished;
-import port.trace.buffer.nio.SocketChannelConnectInitiated;
-import port.trace.buffer.nio.SocketChannelInterestOp;
-import port.trace.buffer.nio.SocketChannelRegistered;
+import port.trace.nio.SocketChannelConnectFinished;
+import port.trace.nio.SocketChannelConnectInitiated;
+import port.trace.nio.SocketChannelInterestOp;
+import port.trace.nio.SocketChannelRegistered;
 import util.trace.Tracer;
 
 
