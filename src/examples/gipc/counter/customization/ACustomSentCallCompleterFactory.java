@@ -13,7 +13,7 @@ public class ACustomSentCallCompleterFactory
 	    createDuplexSentCallCompleter(DuplexRPCInputPort aPort, LocalRemoteReferenceTranslator aTranslator) {
 		
  
-		return new ACustomCallCompleter(aPort, aTranslator);
+		return new ACustomSentCallCompleter(aPort, aTranslator);
 	}
 }
 

@@ -15,6 +15,9 @@ public abstract class AnAbstractSimplexSentCallCompleter {
 	}
 	protected abstract Object getReturnValueOfRemoteProcedureCall(String aRemoteEndPoint, Object aMessage);
 	protected abstract Object getReturnValueOfRemoteFunctionCall(String aRemoteEndPoint, Object aMessage);
+	/*
+	 * Have not changed name of this method
+	 */
 	public Object returnValueOfRemoteMethodCall(String aRemoteEndPoint, RemoteCall aMessage) {
 		if (isProcedure(aMessage))
 			return getReturnValueOfRemoteProcedureCall(aRemoteEndPoint, aMessage);

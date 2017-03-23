@@ -8,9 +8,9 @@ import inputport.rpc.duplex.DuplexSentCallCompleter;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
 import inputport.rpc.duplex.RPCReturnValue;
 
-public class ACustomCallCompleter extends ADuplexSentCallCompleter	{
+public class ACustomSentCallCompleter extends ADuplexSentCallCompleter	{
 	
-	public ACustomCallCompleter(DuplexRPCInputPort aPort, LocalRemoteReferenceTranslator aRemoteHandler) {
+	public ACustomSentCallCompleter(DuplexRPCInputPort aPort, LocalRemoteReferenceTranslator aRemoteHandler) {
 		super(aPort, aRemoteHandler);		
 	}	
 	@Override

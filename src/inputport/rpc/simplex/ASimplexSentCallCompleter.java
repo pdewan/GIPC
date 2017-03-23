@@ -9,6 +9,12 @@ public class ASimplexSentCallCompleter extends AnAbstractSimplexSentCallComplete
 	public ASimplexSentCallCompleter() {
 		
 	}
+	/*
+	 * Old name
+	 */
+	protected Object returnValueOfRemoteProcedureCall(String aRemoteEndPoint, Object aMessage) {
+		return getReturnValueOfRemoteProcedureCall(aRemoteEndPoint, aMessage);
+	}
 	protected Object getReturnValueOfRemoteProcedureCall(String aRemoteEndPoint, Object aMessage) {
 		return null;
 	}

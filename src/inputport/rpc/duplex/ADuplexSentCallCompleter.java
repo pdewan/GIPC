@@ -70,6 +70,12 @@ public class ADuplexSentCallCompleter extends AnAbstractDuplexSentCallCompleter 
 //		return  returnValue;
 //		
 //	}
+	/*
+	 * Old name
+	 */
+	 protected Object returnValueOfRemoteFunctionCall (String aRemoteEndPoint, Object aMessage) {	
+		 return getReturnValueOfRemoteFunctionCall(aRemoteEndPoint, aMessage);
+	 }
 	@Override
 	 protected Object getReturnValueOfRemoteFunctionCall (String aRemoteEndPoint, Object aMessage) {		
 		RemoteCallWaitingForReturnValue.newCase(this);
@@ -84,8 +90,13 @@ public class ADuplexSentCallCompleter extends AnAbstractDuplexSentCallCompleter 
 		RPCReturnValueQueue rpcReturnValueReceiver = getRPCReturnValueReceiver(source);	
 		rpcReturnValueReceiver.putReturnValue((RPCReturnValue) message);		
 	}
+	/*
+	 * Old name;
+	 */
+	protected void processReturnValue(String source, Object message) {
+		returnValueReceived(source, message) ;
+	}
 
-	
 
 	@Override
 	public void connected(String aRemoteEndName, ConnectionType aConnectionType) {
