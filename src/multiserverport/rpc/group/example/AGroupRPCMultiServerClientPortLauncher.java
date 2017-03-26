@@ -21,7 +21,7 @@ import port.sessionserver.SessionParticipantDescription;
 import port.sessionserver.relay.RelayerClientAndServerSupport;
 import sessionport.rpc.duplex.relayed.example.Adder;
 import sessionport.rpc.duplex.relayed.example.AnAdder;
-import sessionport.rpc.group.AGroupCallingConnectListener;
+import sessionport.rpc.group.AnOldGroupCallingConnectListener;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import staticsessionport.datacomm.group.object.example.AGroupObjectStaticSessionPortLauncher;
 import staticsessionport.rpc.group.AStaticSessionGroupRPCPortLauncherSupport;
@@ -59,7 +59,7 @@ public class AGroupRPCMultiServerClientPortLauncher extends AnOldGroupRPCClientI
 	}
 	@Override
 	protected ConnectionListener getConnectionListener(InputPort anInputPort) {
-		return   new AGroupCallingConnectListener(( GroupRPCSessionPort) anInputPort);
+		return   new AnOldGroupCallingConnectListener(( GroupRPCSessionPort) anInputPort);
 	}
 	
 //	public  void waitForUserToOKConnectionThroughDialogBox() {

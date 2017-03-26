@@ -20,7 +20,7 @@ public class AConnectRegistrarAndNotifier implements ConnectionRegistrarAndNotif
 		portConnectListeners.remove(portConnectListener);		
 	}
 	@Override
-	public void notifyConnect (String remoteEnd, ConnectionType aConnectionType) {
+	public synchronized void notifyConnect (String remoteEnd, ConnectionType aConnectionType) {
 		Tracer.info(this, "Notifying connect to:" + remoteEnd);
 		for (ConnectionListener portConnectListener:portConnectListeners)
 			portConnectListener.connected(remoteEnd, aConnectionType);		

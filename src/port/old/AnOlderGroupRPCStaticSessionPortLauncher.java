@@ -9,7 +9,7 @@ import port.sessionserver.ServerPortDescription;
 import port.sessionserver.relay.RelayerClientAndServerSupport;
 import sessionport.rpc.duplex.relayed.example.Adder;
 import sessionport.rpc.duplex.relayed.example.AnAdder;
-import sessionport.rpc.group.AGroupCallingConnectListener;
+import sessionport.rpc.group.AnOldGroupCallingConnectListener;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import util.trace.Tracer;
 
@@ -28,7 +28,7 @@ public class AnOlderGroupRPCStaticSessionPortLauncher {
 		// fix this later if needed
 //				GroupRPCStaticSessionPortSelector.createGroupRPCStaticSessionPort(aServerList, anId, aName, REMOTE_END_POINT, null
 //				);	
-		ConnectionListener connectListener = new AGroupCallingConnectListener(sessionPort);
+		ConnectionListener connectListener = new AnOldGroupCallingConnectListener(sessionPort);
 		sessionPort.addConnectionListener(connectListener);
 		Adder adder = new AnAdder();
 		sessionPort.register(Adder.class, adder);

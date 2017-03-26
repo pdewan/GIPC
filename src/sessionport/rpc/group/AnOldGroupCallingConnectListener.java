@@ -6,9 +6,9 @@ import inputport.rpc.group.GroupRPCProxyGenerator;
 import inputport.rpc.group.GroupRPCServerInputPort;
 import sessionport.rpc.duplex.relayed.example.Adder;
 
-public class AGroupCallingConnectListener implements ConnectionListener{
+public class AnOldGroupCallingConnectListener implements ConnectionListener{
 	GroupRPCServerInputPort sessionPort;
-	public AGroupCallingConnectListener(GroupRPCServerInputPort aSessionPort) {
+	public AnOldGroupCallingConnectListener(GroupRPCServerInputPort aSessionPort) {
 		sessionPort = aSessionPort;
 	}
 
