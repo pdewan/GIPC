@@ -4,12 +4,12 @@ import inputport.rpc.duplex.AnAbstractDuplexRPCClientPortLauncher;
 import inputport.rpc.duplex.AnAbstractDuplexRPCServerPortLauncher;
 
 public class GIPCLocateRegistry {
-	static int lastServerId = 0;
-	static int lastClientId = 0;
-	static String serverNamePrefix = "Server";
-	static String clientNamePrefix = "Client";
-	static String lastServerName;
-	static String lastClientName;
+	static protected int lastServerId = 0;
+	static protected int lastClientId = 0;
+	static protected String serverNamePrefix = "Server";
+	static protected String clientNamePrefix = "Client";
+	static protected String lastServerName;
+	static protected String lastClientName;
 	public static GIPCRegistry createRegistry(int aPortNumber) {
 		lastServerName = serverNamePrefix + lastServerId;
 		lastServerId++;

@@ -23,12 +23,13 @@ import sessionport.rpc.duplex.relayed.example.AnAdder;
 import sessionport.rpc.group.direct.example.AGroupCallingConnectListener;
 
 
-public class AGroupRPCDirectSessionPortLauncher extends
-	AModularDuplexRPCDirectSessionPortLauncher
+public class AGroupRPCSessionPortLauncher extends
+	AModularDuplexRPCDirectSessionPortLauncher implements GroupRPCSessionPortLauncher
 //	extends AnAbstractPortLauncher
 	{
 
-	public AGroupRPCDirectSessionPortLauncher (String aSessionServerHost, 
+
+	public AGroupRPCSessionPortLauncher (String aSessionServerHost, 
 			String aServerId, 
 			String aServerName, 
 			String aMyId, 
@@ -51,8 +52,38 @@ public class AGroupRPCDirectSessionPortLauncher extends
 	public PortAccessKind getPortAccessKind() {
 		return PortAccessKind.GROUP;
 	}	
-	protected SessionChoice getSessionChoice() {
-		return SessionChoice.P2P;
+//	protected SessionChoice getSessionChoice() {
+//		return SessionChoice.P2P;
+//	}
+
+	@Override
+	public void rebind(String aProxyName, Object anObject) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Object lookupAllRemoteButCallerProxy(String aProxyName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object lookupMemberProxy(String aRemoteName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object lookupAllRemoteProxy(String aProxyName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object lookupAllRemoteAndMeProxy(String aProxyName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
