@@ -11,7 +11,7 @@ import port.PortAccessKind;
 import port.PortKind;
 import port.PortMessageKind;
 
-public class AnAbstractDuplexRPCServerPortLauncher extends AnAbstractDuplexRPCPortLauncher {
+public class AnAbstractDuplexRPCServerPortLauncher extends ADuplexRPCPortLauncher {
 
 
 //public class AnAbstractDuplexRPCServerPortLauncher extends AnAbstractPortLauncher implements GIPCRegistry  {

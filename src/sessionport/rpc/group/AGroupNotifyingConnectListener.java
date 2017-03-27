@@ -1,4 +1,4 @@
-package sessionport.rpc.group.direct.example;
+package sessionport.rpc.group;
 
 import java.util.Arrays;
 
@@ -9,25 +9,12 @@ import inputport.rpc.group.GroupRPCProxyGenerator;
 import sessionport.rpc.duplex.DuplexRPCSessionPort;
 import sessionport.rpc.duplex.relayed.example.ACallingConnectListener;
 import sessionport.rpc.duplex.relayed.example.Adder;
-import sessionport.rpc.group.GroupRPCSessionPort;
 
-public class AGroupCallingConnectListener extends ACallingConnectListener implements ConnectionListener{
-	public AGroupCallingConnectListener(GroupRPCSessionPort aSessionPort) {
+public class AGroupNotifyingConnectListener extends ACallingConnectListener implements ConnectionListener{
+	public AGroupNotifyingConnectListener(DuplexRPCSessionPort aSessionPort) {
 		super(aSessionPort);
 	}
-	protected Adder createAdderProxy(String remoteEnd) {
-		if (adderProxy != null) {
-			return adderProxy;
-		}
-		return (Adder) GroupRPCProxyGenerator.generateAllRPCProxy((GroupRPCSessionPort) sessionPort,  Adder.class, null);
-	}
 	
-	protected void processObjectSum(Object aSum) {
-		if (aSum instanceof Object[]) {
-			System.out.println ("Object Sum:" + Arrays.toString((Object[]) aSum) );
-
-		}
-	}
 
 
 //	@Override

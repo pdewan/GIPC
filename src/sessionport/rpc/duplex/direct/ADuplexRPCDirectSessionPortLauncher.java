@@ -1,8 +1,9 @@
-package sessionport.rpc.group.direct.example;
+package sessionport.rpc.duplex.direct;
 
 import examples.mvc.local.simplex.SimplexUpperCaser;
 import inputport.ConnectionListener;
 import inputport.InputPort;
+import inputport.rpc.duplex.ADuplexRPCPortLauncher;
 import inputport.rpc.simplex.SimplexRPCServerInputPort;
 import port.ATracingConnectionListener;
 import port.AnAbstractPortLauncher;
@@ -16,19 +17,16 @@ import replicatedserverport.rpc.group.flexibleresponse.flexible.AnEarliestRepons
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 import sessionport.rpc.duplex.DuplexRPCSessionPort;
 import sessionport.rpc.duplex.DuplexRPCSessionPortSelector;
-import sessionport.rpc.duplex.direct.example.AModularDuplexRPCDirectSessionPortLauncher;
 import sessionport.rpc.duplex.relayed.example.ACallingConnectListener;
 import sessionport.rpc.duplex.relayed.example.Adder;
 import sessionport.rpc.duplex.relayed.example.AnAdder;
-import sessionport.rpc.group.GroupRPCSessionPort;
 
 
-public class AModularGroupRPCDirectSessionPortLauncher extends
-	AModularDuplexRPCDirectSessionPortLauncher
-//	extends AnAbstractPortLauncher
-	{
+public class ADuplexRPCDirectSessionPortLauncher extends 
+ADuplexRPCPortLauncher {
+//AnAbstractPortLauncher{
 
-	public AModularGroupRPCDirectSessionPortLauncher (String aSessionServerHost, 
+	public ADuplexRPCDirectSessionPortLauncher (String aSessionServerHost, 
 			String aServerId, 
 			String aServerName, 
 			String aMyId, 
@@ -67,31 +65,16 @@ public class AModularGroupRPCDirectSessionPortLauncher extends
 //		return PortAccessKind.DUPLEX;
 //	}	
 	protected  ConnectionListener getConnectionListener (InputPort anInputPort) {
-		return new AGroupCallingConnectListener((GroupRPCSessionPort) mainPort);
+		return new ACallingConnectListener((DuplexRPCSessionPort) mainPort);
 	}
-//
-//	static final int SESSION_SERVER_PORT = 9090;
-//	static final String SESSION_SERVER_NAME = "SESSION SERVER";
-//
-//	public static void launchSessionPartipant( String anId, String aName, ParticipantChoice aChoice) {
-////		Tracer.showInfo(true);
-//		DuplexRPCSessionPort sessionPort =CopyOfDuplexRPCSessionPortSelector.createDuplexRPCSessionPort("localhost", 
-//				"" + SESSION_SERVER_PORT, SESSION_SERVER_NAME, "Test Session", anId, aName,
-//				aChoice
-//				);	
-//		ConnectionListener connectListener = new ACallingConnectListener(sessionPort);
-//		sessionPort.addConnectionListener(connectListener);
-//		Adder adder = new AnAdder();
-//		sessionPort.register(Adder.class, adder);
-//		sessionPort.connect();		
-//	}
+
 	
-//	public PortKind getPortKind() {
-//		return PortKind.SESSION_PORT;
-//	}
-	public PortAccessKind getPortAccessKind() {
-		return PortAccessKind.GROUP;
-	}	
+	public PortKind getPortKind() {
+		return PortKind.SESSION_PORT;
+	}
+//	public PortAccessKind getPortAccessKind() {
+//		return PortAccessKind.DUPLEX;
+//	}	
 	protected SessionChoice getSessionChoice() {
 		return SessionChoice.P2P;
 	}

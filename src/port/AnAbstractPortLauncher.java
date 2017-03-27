@@ -1070,9 +1070,15 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 
 	}
 	boolean connectedToAllPorts;
+	protected boolean startAsyncThread() {
+		return true;
+	}
 	protected synchronized void connectedToAllPorts() {
 		connectedToAllPorts = true;
 		notify();
+		if (!startAsyncThread()) {
+			return;
+		}
 		Thread thread = new Thread(this);
 		thread.setName("Post Connect Async Operations");
 		thread.start();
