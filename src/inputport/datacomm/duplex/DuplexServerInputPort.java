@@ -5,8 +5,8 @@ import inputport.datacomm.duplex.object.explicitreceive.ExplicitSourceReceive;
 import inputport.datacomm.simplex.SimplexServerInputPort;
 
 public interface DuplexServerInputPort<MessageType> extends 
-	SimplexServerInputPort<MessageType>, DuplexInputPort<MessageType>,
-	ExplicitReceive<MessageType>, ExplicitSourceReceive<MessageType> 
+	SimplexServerInputPort<MessageType>, DuplexInputPort<MessageType>
+//	ExplicitReceive<MessageType>, ExplicitSourceReceive<MessageType> 
 //	DuplexSender<MessageType>, 
 //	ConnectionsQueryable
 //	DuplexServerQueryable
