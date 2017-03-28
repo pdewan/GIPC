@@ -10,7 +10,7 @@ import inputport.rpc.GIPCLocateRegistry;
 import inputport.rpc.GIPCRegistry;
 import inputport.rpc.duplex.AnAbstractDuplexRPCServerPortLauncher;
 
-public class GIPCLocateSessionRegistry extends GIPCLocateRegistry {
+public class GIPCLocateSessionRegistry  {
 	static final String DEFAULT_SESSION_NAME = "GIPC Session";
 	
 	public static GIPCSessionRegistry createSessionRegistry(
@@ -18,10 +18,9 @@ public class GIPCLocateSessionRegistry extends GIPCLocateRegistry {
 			String aSessionServerHost, 
 			int aMemberPortNumber, 
 			String aMemberName, 
-			SessionChoice aSessionChoice) {
-//		lastServerName = serverNamePrefix + lastServerId;
-//		lastServerId++;
-//		String aServerId = "" + aPortNumber;
+			SessionChoice aSessionChoice,
+			Integer aNumMembersToWaitFor) {
+
 		GroupRPCSessionPortLauncher result =
 				new AGroupRPCSessionPortLauncher(
 						"localhost",
@@ -35,8 +34,10 @@ public class GIPCLocateSessionRegistry extends GIPCLocateRegistry {
 						null, 
 						false, 
 						AFlexibleSessionPortClientLauncher.DO_CAUSAL, 
-						ParticipantChoice.MEMBER);
+						ParticipantChoice.MEMBER,
+						aNumMembersToWaitFor);
 		result.launch();
+		result.waitForConnections();
 		return result;
 	}
 

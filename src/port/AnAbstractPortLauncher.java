@@ -80,7 +80,8 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	protected ParticipantBindTime participantBindTime = ParticipantBindTime.DYNAMIC;
 
 	protected boolean asyncOperationsDone;
-	int numPendingConnects;
+	protected int numPendingConnects;
+	protected Integer numPendingMemberConnects;
 	Integer numPendingServerConnects;
 	
 	public final static String SERVER_NAME = "Generic Server";
@@ -1029,6 +1030,9 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	protected Integer getNumberOfServerParticipantConnects() {
 		return null;
 	}
+	protected Integer getNumberOfMemberConnects() {
+		return null;
+	}
 	protected int getNumberOfConnects() {
 		if (serverList != null)
 			return serverList.length;
@@ -1044,6 +1048,7 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	protected void setNumberOfConnects() {
 		numPendingConnects = getNumberOfConnects();
 		numPendingServerConnects = getNumberOfServerParticipantConnects();
+		numPendingMemberConnects = getNumberOfMemberConnects();
 	}
 
 
@@ -1056,8 +1061,18 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	}
 	
 	public void connected(String aRemoteEndName, ConnectionType aConnectionType) {
-		if (connectedToAllPorts)
+		if (connectedToAllPorts) {
+			if (numPendingMemberConnects != null) {
+				if (numPendingMemberConnects == 0) {
+					return;
+				}
+				numPendingMemberConnects--;
+				if (numPendingMemberConnects == 0) {
+					connectedToAllMembers();
+				}
+			}
 			return;
+		}
 		numPendingConnects--;
 		if (aConnectionType == ConnectionType.SERVER_TO_SESSION && numPendingServerConnects != null) {
 			numPendingServerConnects --;
@@ -1083,21 +1098,34 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 		thread.setName("Post Connect Async Operations");
 		thread.start();
 	}
+	protected synchronized void connectedToAllMembers() {
+		notify();
+	}
+	
 	public synchronized void waitForConnections() {
-		if (connectedToAllPorts) return;
+		// if (connectedToAllPorts) return;
 		try {
-			wait(connectionTimeOut);
 			if (!connectedToAllPorts) {
-				System.err.println("Could not connnect to server within ms:" + connectionTimeOut);
-			} 
-//			else {
-//				System.out.println("Connected to server");
-//			}
+
+				wait(connectionTimeOut);
+				if (!connectedToAllPorts) {
+					System.err
+							.println("Could not connnect to server within ms:"
+									+ connectionTimeOut);
+				}
+			}
+			if (numPendingMemberConnects != null
+					&& numPendingMemberConnects != 0) {
+				wait();
+			}
+			// else {
+			// System.out.println("Connected to server");
+			// }
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
-				
+
 	}
 	public Object lookup(Class anInterface, String aName) {
 		return createProxy( anInterface, aName);

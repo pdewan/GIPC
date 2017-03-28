@@ -12,6 +12,9 @@ import util.misc.RemoteReflectionUtility;
 public class GroupRPCProxyGenerator extends DirectedRPCProxyGenerator {
 
 	public static Object generateOthersRPCProxy(GroupRPC port, Class aClass, String name) {
+		if (aClass == null) {
+			return null;
+		}
 		InvocationHandler invocationHandler = new AnOthersCallRPCProxyInvocationHandler(port, aClass, name);
 		Class[] remoteInterfaces = RemoteReflectionUtility.getProxyInterfaces(aClass);
 
@@ -31,6 +34,9 @@ public class GroupRPCProxyGenerator extends DirectedRPCProxyGenerator {
 				
 	}
 	public static Object generateAllRPCProxy(GroupRPC port, Class aClass, String name) {
+		if (aClass == null) {
+			return null;
+		}
 		InvocationHandler invocationHandler = new AnAllCallRPCProxyInvocationHandler(port, aClass, name);
 		Class[] remoteInterfaces = RemoteReflectionUtility.getProxyInterfaces(aClass);
 		Object retVal = Proxy.newProxyInstance(aClass.getClassLoader(),

@@ -68,9 +68,9 @@ public class AModularDuplexRPCDirectSessionPortLauncher extends AnAbstractPortLa
 //	protected PortAccessKind getPortAccessKind() {
 //		return PortAccessKind.DUPLEX;
 //	}	
-	protected  ConnectionListener getConnectionListener (InputPort anInputPort) {
-		return new ACallingConnectListener((DuplexRPCSessionPort) mainPort);
-	}
+//	protected  ConnectionListener getConnectionListener (InputPort anInputPort) {
+//		return new ACallingConnectListener((DuplexRPCSessionPort) mainPort);
+//	}
 //
 //	static final int SESSION_SERVER_PORT = 9090;
 //	static final String SESSION_SERVER_NAME = "SESSION SERVER";
