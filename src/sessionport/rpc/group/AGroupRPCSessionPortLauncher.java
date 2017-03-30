@@ -1,12 +1,17 @@
 package sessionport.rpc.group;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Set;
 
 import examples.mvc.local.simplex.SimplexUpperCaser;
 import inputport.ConnectionListener;
 import inputport.InputPort;
+import inputport.rpc.DirectedRPCProxyGenerator;
+import inputport.rpc.duplex.DuplexRPCClientInputPort;
+import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.group.GroupRPCProxyGenerator;
 import inputport.rpc.simplex.SimplexRPCServerInputPort;
 import port.ATracingConnectionListener;
@@ -109,39 +114,79 @@ public class AGroupRPCSessionPortLauncher extends
 //			return retVal;
 //		}
 	@Override
-	public Object lookupAllRemoteButCallerProxy(String aProxyName) {
+	public Object lookupAllRemoteButCallerProxy(String aProxyName, Class aProxyClass) {
 		Object retVal = allRemoteButCallerProxy.get(aProxyName);
 		if (retVal == null) {
-//			Object aMyObject = myObject.get(aProxyName);
-//			if (aMyObject == null) {
-//				System.err.println (aProxyName + " not registered in rebind");
-//				return null;
-//			}
-//			Class aMyClass = aMyObject.getClass();
-			retVal = GroupRPCProxyGenerator.generateOthersRPCProxy((GroupRPCSessionPort) getSessionPort(),  getMyClass(aProxyName), aProxyName);
+
+			retVal = GroupRPCProxyGenerator.generateOthersRPCProxy((GroupRPCSessionPort) getSessionPort(),  aProxyClass, aProxyName);
 			allRemoteButCallerProxy.put(aProxyName, retVal);
+		}
+		return retVal;
+	}
+	@Override
+	public Object lookupAllRemoteButCallerProxy(String aProxyName) {
+		return lookupAllRemoteButCallerProxy(aProxyName, getMyClass(aProxyName));		
+	}
+	@Override
+	public Object lookupMemberProxy(String aRemoteName, String aProxyName, Class aProxyClass) {
+		Map<String, Object> aMembersProxy = allMembersProxy.get(aRemoteName);
+		if (aMembersProxy == null) {
+			aMembersProxy = new HashMap<String, Object>();
+			allMembersProxy.put(aRemoteName, aMembersProxy );
+		}
+		Object retVal = aMembersProxy.get(aProxyName);
+		if (retVal == null) {
+			if (aRemoteName.equals(getInputPort().getLocalName())) {
+				retVal = myObject.get(aProxyName);
+			} else {
+			retVal = DirectedRPCProxyGenerator.generateRPCProxy((GroupRPCSessionPort) getSessionPort(), 
+					aRemoteName, aProxyClass, aProxyName);
+			}
+			aMembersProxy.put(aProxyName, retVal);
 		}
 		return retVal;
 	}
 
 	@Override
-	public Object lookupMemberProxy(String aRemoteName) {
-		return null;
+	public Object lookupMemberProxy(String aRemoteName, String aProxyName) {
+		return lookupMemberProxy(aRemoteName, aProxyName, getMyClass(aProxyName));
 	}
-
+	
 	@Override
-	public Object lookupAllRemoteProxy(String aProxyName) {
+	public Object lookupAllRemoteProxy(String aProxyName, Class aProxyClass) {
 		Object retVal = allRemoteProxy.get(aProxyName);
 		if (retVal == null) {
-			retVal = GroupRPCProxyGenerator.generateAllRPCProxy((GroupRPCSessionPort) getSessionPort(),  getMyClass(aProxyName), aProxyName);
+			retVal = GroupRPCProxyGenerator.generateAllRPCProxy((GroupRPCSessionPort) getSessionPort(),  aProxyClass, aProxyName);
 			allRemoteProxy.put(aProxyName, retVal);
 		}
 		return retVal;
 	}
 
 	@Override
+	public Object lookupAllRemoteProxy(String aProxyName) {
+		return lookupAllRemoteProxy(aProxyName, getMyClass(aProxyName));
+
+	}
+	@Override
+	public Set<String> getAllRemoteMembers() {
+		Set<String> retVal = new HashSet( getSessionPort().getMemberConnections());
+		return retVal;
+	}
+	@Override
+	public Set<String> getAllRemoteMembersAndMe() {
+		Set<String> retVal = getAllRemoteMembers();
+		retVal.add(getSessionPort().getLocalName());
+		return retVal;
+	}
+
+	@Override
 	public Object lookupAllRemoteAndMeProxy(String aProxyName) {
-		// TODO Auto-generated method stub
+		
+		return lookupAllRemoteAndMeProxy(aProxyName, getMyClass(aProxyName));
+	}
+	
+	@Override
+	public Object lookupAllRemoteAndMeProxy(String aProxyName, Class aProxyClass) {
 		return null;
 	}
 
@@ -149,5 +194,7 @@ public class AGroupRPCSessionPortLauncher extends
 	public GroupRPCSessionPort getSessionPort() {
 		return (GroupRPCSessionPort) getInputPort();
 	}
+
+	
 	
 }

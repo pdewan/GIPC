@@ -34,8 +34,12 @@ public abstract  class AnAbstractGroupSendTrapper<InMessageType, OutMessageType>
 		ConnectiontEventBus.newEvent(
 			new AConnectionEvent(this, newVal, true));
 	}
+//	@Override
+//	public Object[] getSendReturnValue(Set<String> aClientNamesSet, Object aMessage) {
+//		return null;
+//	}
 	@Override
-	public Object[] getSendReturnValue(Set<String> aClientNamesSet, Object aMessage) {
+	public Object getSendReturnValue(Set<String> aClientNamesSet, Object aMessage) {
 		return null;
 	}
 	@Override

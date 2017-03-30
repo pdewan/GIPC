@@ -7,6 +7,6 @@ import java.util.Set;
 
 
 public interface GroupReturnerOfValueOfRemoteFunctionCall  extends DuplexSentCallCompleter{
-	 Object[] returnValueOfRemoteFunctionCall (Set<String> clientNames, RemoteCall aSerializableCall);
+	 Object returnValueOfRemoteFunctionCall (Set<String> clientNames, RemoteCall aSerializableCall);
 
 }

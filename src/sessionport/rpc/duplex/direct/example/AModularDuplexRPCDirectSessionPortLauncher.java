@@ -3,6 +3,7 @@ package sessionport.rpc.duplex.direct.example;
 import examples.mvc.local.simplex.SimplexUpperCaser;
 import inputport.ConnectionListener;
 import inputport.InputPort;
+import inputport.rpc.duplex.ADuplexRPCPortLauncher;
 import inputport.rpc.simplex.SimplexRPCServerInputPort;
 import port.ATracingConnectionListener;
 import port.AnAbstractPortLauncher;
@@ -21,7 +22,7 @@ import sessionport.rpc.duplex.relayed.example.Adder;
 import sessionport.rpc.duplex.relayed.example.AnAdder;
 
 
-public class AModularDuplexRPCDirectSessionPortLauncher extends AnAbstractPortLauncher{
+public class AModularDuplexRPCDirectSessionPortLauncher extends ADuplexRPCPortLauncher{
 //	public CopyOfADuplexRPCSessionPortLauncher(String aSessionServerHost,
 //			String aServerId, String aServerName, String aMyId, String aMyName,
 //			SessionChoice aSessionChoice, boolean aShouldDelay,

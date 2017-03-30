@@ -3,8 +3,10 @@ package inputport.rpc.group;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
 
 public class GroupReturnerOfValueOfRemoteFunctionCallSelector {
+//static GroupReturnerOfValueOfRemoteFunctionCallFactory 
+//	groupReturnerOfValueOfFunctionCallFactory = new AGroupArrayReturnerOfValueOfRemoteFunctionCallFactory();
 static GroupReturnerOfValueOfRemoteFunctionCallFactory 
-	groupReturnerOfValueOfFunctionCallFactory = new AGroupReturnerOfValueOfRemoteFunctionCallFactory();
+groupReturnerOfValueOfFunctionCallFactory = new AGroupMapReturnerOfValueOfRemoteFunctionCallFactory();
 
 public static GroupReturnerOfValueOfRemoteFunctionCallFactory getGroupReturnerOfValueOfFunctionCallFactory() {
 	return groupReturnerOfValueOfFunctionCallFactory;
@@ -14,7 +16,7 @@ public static void setGroupReturnerOfValueOfFunctionCallFactory(
 		GroupReturnerOfValueOfRemoteFunctionCallFactory groupReturnerOfValueOfFunctionCallFactory) {
 	GroupReturnerOfValueOfRemoteFunctionCallSelector.groupReturnerOfValueOfFunctionCallFactory = groupReturnerOfValueOfFunctionCallFactory;
 }
-public GroupReturnerOfValueOfRemoteFunctionCall
+public static GroupReturnerOfValueOfRemoteFunctionCall
      createGroupReturnerOfValueOfRemoteFunctionCall(
     		 GroupRPCServerInputPort anInputPort,
     		 LocalRemoteReferenceTranslator aLocatRemoteReferenceTranslator) {

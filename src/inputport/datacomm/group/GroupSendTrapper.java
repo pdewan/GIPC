@@ -9,6 +9,8 @@ public interface GroupSendTrapper<InMessageType, OutMessageType> extends
 	void setDestination (GroupNamingSender<OutMessageType> newVal);
 //	GroupSender<OutMessageType> getDestination();
 //	void setDestination (GroupSender<OutMessageType> newVal);
-	Object[] getSendReturnValue(Set<String> aClientNamesSet, Object aMessage);	
+//	Object[] getSendReturnValue(Set<String> aClientNamesSet, Object aMessage);	
+	Object getSendReturnValue(Set<String> aClientNamesSet, Object aMessage);	
+
 
 }

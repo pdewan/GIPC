@@ -60,7 +60,7 @@ public class AGroupRPCMultiServerClientPort extends ADuplexRPCMultiServerClientP
 //		return retVal;
 //	}
 	@Override
-	public Object[] call(Set<String> clientNames, String objectName, Method method,
+	public Object call(Set<String> clientNames, String objectName, Method method,
 			Object[] args) {
 		Object[] retVal = new Serializable[clientNames.size()];
 		Object serializableCall = marshallCall(objectName, method, args);
@@ -75,7 +75,7 @@ public class AGroupRPCMultiServerClientPort extends ADuplexRPCMultiServerClientP
 
 
 	@Override
-	public Object[] callAll(Method method, Object[] args) {
+	public Object callAll(Method method, Object[] args) {
 		return call(getConnections(), method, args);
 	}
 
@@ -91,12 +91,12 @@ public class AGroupRPCMultiServerClientPort extends ADuplexRPCMultiServerClientP
 
 
 	@Override
-	public Object[] callAll(String objectName, Method method,
+	public Object callAll(String objectName, Method method,
 			Object[] args) {
 		return call(getConnections(), objectName, method, args);
 	}
 	@Override
-	public Object[] callOthers(String objectName, Method method,
+	public Object callOthers(String objectName, Method method,
 			Object[] args) {
 		if (getSender() == null) return null;
 		Set<String> clientNames = getConnections();
@@ -104,22 +104,22 @@ public class AGroupRPCMultiServerClientPort extends ADuplexRPCMultiServerClientP
 		return call(clientNames, objectName, method, args);
 	}
 	@Override
-	public Object[] call(Set<String> clientNames, Method method,
+	public Object call(Set<String> clientNames, Method method,
 			Object[] args) {
 		return call(clientNames, method.getDeclaringClass().getName(), method, args);
 	}
 	@Override
-	public Object[] callAll(Class type, Method method, Object[] args) {
+	public Object callAll(Class type, Method method, Object[] args) {
 		// TODO Auto-generated method stub
 		return callAll(type.getName(), method, args);
 	}
 	@Override
-	public Object[] callOthers(Class type, Method method,
+	public Object callOthers(Class type, Method method,
 			Object[] args) {
 		return callOthers(type.getName(), method, args);
 	}
 	@Override
-	public Object[] call(Class type, Set<String> clientNames,
+	public Object call(Class type, Set<String> clientNames,
 			Method method, Object[] args) {
 		return call(clientNames, type.getName(), method, args);
 	}

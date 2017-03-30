@@ -58,10 +58,24 @@ public class AGroupSerializableCallSendTrapper
 	
 
 	protected GroupReturnerOfValueOfRemoteFunctionCall createGroupReturnerOfRemoteFunctionCall(LocalRemoteReferenceTranslator aRemoteHandler) {
-		return new AGroupReturnerOfValueOfRemoteFunctionCall(groupRPCInputPort, aRemoteHandler);
+//		return new AGroupReturnerOfValueOfRemoteFunctionCall(groupRPCInputPort, aRemoteHandler);
+		return GroupReturnerOfValueOfRemoteFunctionCallSelector.createGroupReturnerOfValueOfRemoteFunctionCall(groupRPCInputPort, aRemoteHandler);
 	}
+//	@Override
+//	public Object[] getSendReturnValue(Set<String> aClientNamesSet, Object aMessage) {
+//		SerializableCall serializableCall = (SerializableCall) aMessage;
+//		Method method = serializableCall.getSerializableMethod().getMethod();
+////		if (!method.getReturnType().equals(Void.TYPE)) {
+////			return waitingUniImplicitRPCFunctionHandler.handleFunction(lastSerializableCall);
+////		}
+//		if (!method.getReturnType().equals(Void.TYPE)) {
+//			return groupReturnerOfValueOfRemoteFunctionCall.returnValueOfRemoteFunctionCall(aClientNamesSet,  serializableCall);
+//		}		
+//		return new Object[aClientNamesSet.size()];
+//		
+//	}
 	@Override
-	public Object[] getSendReturnValue(Set<String> aClientNamesSet, Object aMessage) {
+	public Object getSendReturnValue(Set<String> aClientNamesSet, Object aMessage) {
 		SerializableCall serializableCall = (SerializableCall) aMessage;
 		Method method = serializableCall.getSerializableMethod().getMethod();
 //		if (!method.getReturnType().equals(Void.TYPE)) {
@@ -70,7 +84,8 @@ public class AGroupSerializableCallSendTrapper
 		if (!method.getReturnType().equals(Void.TYPE)) {
 			return groupReturnerOfValueOfRemoteFunctionCall.returnValueOfRemoteFunctionCall(aClientNamesSet,  serializableCall);
 		}		
-		return new Object[aClientNamesSet.size()];		
+		return null;
+		
 	}
 	
 	
