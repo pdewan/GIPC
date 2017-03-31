@@ -23,7 +23,7 @@ public class ASessionSendingCollaborativeFrostyModel extends ADuplexFrostyModel
 	}
 	protected void processUpperCase(String aString) {
 		super.processUpperCase(aString);
-		sessionPort.sendAllMembers(userName + " said:" + aString);
+		sessionPort.sendAllRemoteMembers(userName + " said:" + aString);
 
 	}
 	public void messageReceived(String aSourceName, Object aMessage) {

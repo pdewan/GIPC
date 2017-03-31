@@ -88,10 +88,12 @@ public  class AGroupObjectServerInputPort extends
 //			Message.info(this, "Cannot send byte buffer on object port");
 //			return;
 //		}
-		if (!(message instanceof Serializable)) {
-			Tracer.info(this, "Can only send seralizable on object group port");
-			return;
-		}
+		
+		// commenting this out as am not sure why this constraint holds
+//		if (!(message instanceof Serializable)) {
+//			Tracer.info(this, "Can only send seralizable on object group port");
+//			return;
+//		}
 		Tracer.info(this, "Sending group message:" + message + " to:" + clientNames);
 //		unOptimizedObjectForwarder.send(remoteName, message);
 //		if (bbGroupServerInputPort != null)

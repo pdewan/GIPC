@@ -29,8 +29,12 @@ public class ASerializingGroupForwarder extends AnAbstractGroupSendTrapper<Objec
 	public void send(Set<String> clientNames, Object message) {
 		Tracer.info(this, this + " group serializing message " + message + " to " + clientNames);
 		try {
+			if (message instanceof ByteBuffer) {
+				destination.send(clientNames, (ByteBuffer) message);
+			} else {
 			ByteBuffer bbMessage = bufferSerializationSupport.outputBufferFromObject(message);		
 			destination.send(clientNames, bbMessage);
+			}
 		} catch (RuntimeException e) {
 			throw e;
 		} catch (Exception e) {

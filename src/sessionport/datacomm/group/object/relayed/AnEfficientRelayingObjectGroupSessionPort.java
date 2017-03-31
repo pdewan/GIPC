@@ -102,10 +102,19 @@ public class AnEfficientRelayingObjectGroupSessionPort
 		
 	}
 //	@Override
-	public void sendAllMembers(Object message) {
+	public void sendAllRemoteMembers(Object message) {
 		Set<String> peerNames = getMemberConnections();
 		send(peerNames, message);
 		
+	}
+	protected Set<String> getConnectionsAndMe() {
+		Set<String> retVal = getMemberConnections();
+		retVal.add(getLocalName());
+		return retVal;
+	}
+	@Override
+	public void sendAllMembers(Object message) {
+		send(getConnectionsAndMe(), message);		
 	}
 	@Override
 	public void send(String remoteName, Object message) {
@@ -182,5 +191,6 @@ public class AnEfficientRelayingObjectGroupSessionPort
 			GroupToUniSendTrapper<Object, Object> groupToUniSendTrapper) {
 		
 	}
+	
 
 }

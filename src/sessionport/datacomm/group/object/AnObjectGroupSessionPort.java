@@ -105,6 +105,11 @@ public class AnObjectGroupSessionPort extends AGroupObjectServerInputPort implem
 	public Set<String> getServerConnections() {
 		return duplexSessionPort.getServerConnections();
 	}
+	protected Set<String> getConnectionsAndMe() {
+		Set<String> retVal = getMemberConnections();
+		retVal.add(getLocalName());
+		return retVal;
+	}
 	@Override
 	public Set<String> getMemberConnections() {
 		return  duplexSessionPort.getMemberConnections();
@@ -124,8 +129,11 @@ public class AnObjectGroupSessionPort extends AGroupObjectServerInputPort implem
 	public void sendOtherMembers(Object message) {
 		send(toOthers(getMemberConnections()), message);
 	}
-	public void sendAllMembers(Object message) {
+	public void sendAllRemoteMembers(Object message) {
 		send(getMemberConnections(), message);
+	}
+	public void sendAllMembers(Object message) {
+		send(getConnectionsAndMe(), message);
 	}
 	
 	@Override

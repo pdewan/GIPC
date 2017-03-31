@@ -7,6 +7,8 @@ public interface GroupSessionSender<MessageType> {
 	
 	public void sendAllClients(MessageType message);
 	public void sendAllServers(MessageType message);
+	public void sendAllRemoteMembers(MessageType message);
 	public void sendAllMembers(MessageType message);
+
 
 }

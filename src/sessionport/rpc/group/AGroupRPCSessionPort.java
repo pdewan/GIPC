@@ -85,6 +85,10 @@ public class AGroupRPCSessionPort extends AGroupRPCServerInputPort implements Gr
 		groupSessionPort.sendAllServers(message);
 	}
 	@Override
+	public void sendAllRemoteMembers(Object message) {
+		groupSessionPort.sendAllRemoteMembers(message);
+	}
+	@Override
 	public void sendAllMembers(Object message) {
 		groupSessionPort.sendAllMembers(message);
 	}

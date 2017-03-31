@@ -82,6 +82,11 @@ public class ABufferGroupSessionPort extends ABufferGroupServerInputPort impleme
 	public Set<String> getMemberConnections() {
 		return  duplexSessionPort.getMemberConnections();
 	}
+	protected Set<String> getConnectionsAndMe() {
+		Set<String> retVal = getMemberConnections();
+		retVal.add(getLocalName());
+		return retVal;
+	}
 //	Set<String> toOthers (Set<String> all) {
 //		if (getSender() == null) throw new NoMessageReceivedByResponderException();
 //		all.remove(getSender());
@@ -102,7 +107,7 @@ public class ABufferGroupSessionPort extends ABufferGroupServerInputPort impleme
 	public void sendOtherMembers(ByteBuffer message) {
 		send(toOthers(getMemberConnections()), message);
 	}
-	public void sendAllMembers(ByteBuffer message) {
+	public void sendAllRemoteMembers(ByteBuffer message) {
 		send(getMemberConnections(), message);
 	}
 
@@ -110,6 +115,11 @@ public class ABufferGroupSessionPort extends ABufferGroupServerInputPort impleme
 	public ParticipantChoice getParticipantChoice() {
 		// TODO Auto-generated method stub
 		return duplexSessionPort.getParticipantChoice();
+	}
+	@Override
+	public void sendAllMembers(ByteBuffer message) {
+		send(getConnectionsAndMe(), message);
+		
 	}
 
 

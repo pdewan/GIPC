@@ -11,13 +11,13 @@ public interface GIPCSessionRegistry extends GIPCRegistry{
 	void rebind(String aProxyName, Object anObject);
 	Object lookupAllRemoteButCallerProxy(String aProxyName) ;
 	Object lookupMemberProxy(String aRemoteName, String aProxyName);
-	Object lookupAllRemoteProxy(String aProxyName);
-	Object lookupAllRemoteAndMeProxy(String aProxyName);	
+	Object lookupAllRemoteMembersProxy(String aProxyName);
+	Object lookupAllMembersProxy(String aProxyName);	
 	Object lookupAllRemoteButCallerProxy(String aProxyName, Class aProxyClass) ;
 	Object lookupMemberProxy(String aRemoteName, String aProxyName, Class aProxyClass);
 	Object lookupAllRemoteProxy(String aProxyName, Class aProxyClass);
 	Object lookupAllRemoteAndMeProxy(String aProxyName, Class aProxyClass);
 	Set<String> getAllRemoteMembers();
-	Set<String> getAllRemoteMembersAndMe();
+	Set<String> getAllMembers();
 
 }

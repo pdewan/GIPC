@@ -1,4 +1,4 @@
-package examples.gipc.counter.group;
+package examples.gipc.counter.sessionport;
 
 
 
