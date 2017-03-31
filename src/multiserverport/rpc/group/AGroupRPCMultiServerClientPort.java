@@ -164,5 +164,29 @@ public class AGroupRPCMultiServerClientPort extends ADuplexRPCMultiServerClientP
 		GlobalState.getGroupSerializableCallTrapper().
 			setGroupSendTrapperFactory(factory);	
 	}
+	protected Set<String> getConnectionsAndMe() {
+		Set<String> retVal = getConnections();
+		retVal.add(getLocalName());
+		return retVal;
+	}
+	@Override
+	public Object callAllAndMe(Method method, Object[] args) {
+		// TODO Auto-generated method stub
+		return call(getConnectionsAndMe(), method, args);
+	}
+	@Override
+	public Object callAllAndMe(String objectName, Method method,
+			Object[] args) {
+		Set<String> aConnections = getConnectionsAndMe();
+		return call (aConnections, objectName, method, args);
+//		return call(getConnections(), objectName, method, args);
+	
+	}
+
+	@Override
+	public Object callAllAndMe(Class type, Method method, Object[] args) {
+		// TODO Auto-generated method stub
+		return callAllAndMe(type.getName(), method, args);
+	}
 	
 }

@@ -86,8 +86,28 @@ public class AGroupRPCServerInputPort extends ADuplexRPCServerInputPort implemen
 		return groupSerializableCallSendTrapper.getSendReturnValue(clientNames, serializableCall);
 //		return retVal;
 	}
-
-
+	protected Set<String> getConnectionsAndMe() {
+		Set<String> retVal = getConnections();
+		retVal.add(getLocalName());
+		return retVal;
+	}
+	@Override
+	public Object callAllAndMe(Method method, Object[] args) {
+		// TODO Auto-generated method stub
+		return call(getConnectionsAndMe(), method, args);
+	}
+	@Override
+	public Object callAllAndMe(String objectName, Method method,
+			Object[] args) {
+		Set<String> aConnections = getConnectionsAndMe();
+		return call (aConnections, objectName, method, args);
+//		return call(getConnections(), objectName, method, args);
+	}
+	@Override
+	public Object callAllAndMe(Class type, Method method, Object[] args) {
+		// TODO Auto-generated method stub
+		return callAllAndMe(type.getName(), method, args);
+	}
 	@Override
 	public Object callAll(Method method, Object[] args) {
 		return call(getConnections(), method, args);
@@ -106,7 +126,10 @@ public class AGroupRPCServerInputPort extends ADuplexRPCServerInputPort implemen
 	@Override
 	public Object callAll(String objectName, Method method,
 			Object[] args) {
-		return call(getConnections(), objectName, method, args);
+		Set<String> aConnections = getConnections();
+//		aConnections.add(getLocalName());
+		return call (aConnections, objectName, method, args);
+//		return call(getConnections(), objectName, method, args);
 	}
 	// behavior depends on whether it is a buffer or object port, can this be object?
 //	String chooseLastSender() {
@@ -140,6 +163,7 @@ public class AGroupRPCServerInputPort extends ADuplexRPCServerInputPort implemen
 		// TODO Auto-generated method stub
 		return callAll(type.getName(), method, args);
 	}
+	
 	@Override
 	public Object callOthers(Class type, Method method,
 			Object[] args) {
@@ -222,5 +246,8 @@ public class AGroupRPCServerInputPort extends ADuplexRPCServerInputPort implemen
 //		serverInputPort.register(GroupAdder.class, groupAdder);
 //		serverInputPort.addSendListener(messageReceiver);
 //	}
+
+	
+
 	
 }
