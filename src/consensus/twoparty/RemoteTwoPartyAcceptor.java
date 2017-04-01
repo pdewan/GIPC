@@ -1,5 +1,5 @@
 package consensus.twoparty;
 
 public interface RemoteTwoPartyAcceptor<StateType> {
-	void accepted(int aProposalNumber, StateType aProposal, boolean accepted);
+	void accept(int aProposalNumber, StateType aProposal);
 }

@@ -6,8 +6,8 @@ public class AConsensusState<StateType> implements ConsensusState<StateType> {
 	public StateType getConsensusState() {
 		return state;
 	}
-	@Override
-	public void setConsensusState(StateType newVal) {
-		state = newVal;		
-	}
+//	@Override
+//	public void setConsensusState(StateType newVal) {
+//		state = newVal;		
+//	}
 }

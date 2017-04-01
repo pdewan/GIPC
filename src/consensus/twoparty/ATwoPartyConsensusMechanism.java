@@ -6,80 +6,74 @@ import java.util.List;
 import java.util.Map;
 
 import inputport.ConnectionType;
+import consensus.AnAbstractConsensusMechanism;
 import consensus.ConsensusListener;
-import consensus.ConsensusResult;
+import consensus.ProposalState;
 import consensus.ConsensusState;
 
-public class ATwoPartyConsensusMechanism<StateType> implements TwoPartyConsensusMechanism<StateType> {
-	protected ConsensusState<StateType> consensusState;
-	protected List<ConsensusListener<StateType>> consensusListeners = new ArrayList();
-	protected Map<Integer, ConsensusResult> proposalState = new HashMap();
-	public ATwoPartyConsensusMechanism(ConsensusState<StateType> aConsensusState) {
-		
-	}
-	@Override
-	public void propose(int aProposalNumber, StateType aProposal) {
-		
+public class ATwoPartyConsensusMechanism<StateType> extends AnAbstractConsensusMechanism<StateType>
+	implements TwoPartyConsensusMechanism<StateType> {
+	RemoteTwoPartyPeer<StateType> peerProxy;
+
+	public ATwoPartyConsensusMechanism(int aMyId, RemoteTwoPartyPeer<StateType> aPeerProxy ) {
+		super(aMyId);
+		peerProxy = aPeerProxy;
 	}
 
 	@Override
-	public void addConsensusListener(
-			ConsensusListener<StateType> aConsensusListener) {
-		
+	public synchronized void accepted(int aProposalNumber, StateType aProposal,
+			boolean accepted) {
+		if (accepted) {
+			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_ACCEPTED);
+		} else {
+			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_REJECTED);
+		}
+//		notifyAll();
 	}
-
-	@Override
-	public StateType getConsensusState() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setConsensusState(StateType newVal) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void accepted(int aProposalNumber, StateType aProposal, boolean newVal) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
+	@Override
+	protected void propose(int aProposalNumber, StateType aProposal) {
+		peerProxy.accept(aProposalNumber, aProposal);
+	}
 
 	@Override
-	public void accept(int aProposalNumber, StateType aProposal) {
-		
+	public synchronized void accept(int aProposalNumber, StateType aProposal) {
+		boolean retValue = false;
+		if (!myLastProposalIsPending()) {
+			retValue = true;
+			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_ACCEPTED);
+
+		} else if (aProposalNumber > myLastProposalNumber) {
+			retValue = true;
+			newProposalState(myLastProposalNumber, myLastState, ProposalState.PROPOSAL_REJECTED);
+			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_ACCEPTED);
+			notifyAll();			
+		} else {
+			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_REJECTED);
+			retValue = false;
+		}		
+		peerProxy.accepted(aProposalNumber, aProposal, retValue);		
 	}
+
 	@Override
 	public void connected(String aRemoteEndName, ConnectionType aConnectionType) {
 		// TODO Auto-generated method stub
 		
 	}
+
 	@Override
 	public void notConnected(String aRemoteEndName, String anExplanation,
 			ConnectionType aConnectionType) {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
-	public void disconnected(String aRemoteEndName,
-			boolean anExplicitDsconnection, String anExplanation,
-			ConnectionType aConnectionType) {
-		
-		
-	}
-	@Override
-	public void removeConsensusListener(
-			ConsensusListener<StateType> aConsensusListener) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public ConsensusResult waitForConsensus(int aProposalNumber) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+	@Override
+	public synchronized void disconnected(String aRemoteEndName,
+			boolean anExplicitDsconnection, String anExplanation,
+			ConnectionType aConnectionType) {		
+		if (myLastProposalIsPending()) {
+			newProposalState(myLastProposalNumber, myLastState, ProposalState.COMMUNICATION_FAILURE);			
+		}		
+	}	
 }

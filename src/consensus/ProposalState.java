@@ -1,8 +1,10 @@
 package consensus;
 
-public enum ConsensusResult {
+public enum ProposalState {
+	
 	PROPOSAL_ACCEPTED,
 	PROPOSAL_REJECTED,
+	PROPOSAL_PENDING,
 	COMMUNICATION_FAILURE
 
 }
