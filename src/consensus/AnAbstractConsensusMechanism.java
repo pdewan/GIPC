@@ -2,8 +2,10 @@ package consensus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import inputport.ConnectionType;
 import consensus.ConsensusListener;
@@ -23,10 +25,19 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 
 	protected List<ConsensusListener<StateType>> consensusListeners = new ArrayList();
 	protected Map<Integer, ProposalState> proposalState = new HashMap();
-//	protected Map<Integer, StateType> proposalValue = new HashMap();
-	public AnAbstractConsensusMechanism(int aMyId) {
+	protected Map<Integer, StateType> proposalValue = new HashMap();
+	protected String objectName;
+	public AnAbstractConsensusMechanism(String anObjectName, int aMyId) {
 		myId = aMyId;
 		myPrefix = MAX_PROPOSALS*10*myId;
+		objectName = anObjectName;
+	}
+//	public String toString() {		
+//		return getClass().getSimpleName() + "." + objectName;
+//	}
+	
+	protected String getObjectName() {
+		return objectName;
 	}
 	
 	protected ProposalState getLastProposalState() {
@@ -135,19 +146,53 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected Long getWaitTimeOut() {
 		return null;
 	}
+	protected boolean isMyProposal(int aProposalNumber) {
+		int aRemainder = aProposalNumber%myPrefix;
+		int aDiv = aProposalNumber/myPrefix;
+		return aDiv == 0 && aRemainder < MAX_PROPOSALS;
+	}
+	protected void newProposalState(Set<Integer> aProposalNumbers,  ProposalState aProposalState ) {
+		for (Integer aProposalNumber:aProposalNumbers) {
+			newProposalState(aProposalNumber, proposalValue.get(aProposalNumber), aProposalState);
+		}		
+	}
 	protected void newProposalState(int aProposalNumber, StateType aState, ProposalState aProposalState ) {
-		proposalState.put(aProposalNumber, aProposalState);		
+		boolean isLocal = isMyProposal(aProposalNumber);
 		for (ConsensusListener<StateType> aConsensusListener:consensusListeners){
-			aConsensusListener.newProposalState(aProposalNumber, aState, aProposalState);
+			
 			if (aProposalState == ProposalState.PROPOSAL_ACCEPTED) {
 				aConsensusListener.newConsensusState(aState);
 			}
-			if (aProposalNumber == myLastProposalNumber) {
-				aConsensusListener.myLastProposalState(aState, aProposalState);
+			if (isLocal) {
+				proposalState.put(aProposalNumber, aProposalState);	
+				aConsensusListener.newLocalProposalState(aProposalNumber, aState, aProposalState);	
+			} else {
+				aConsensusListener.newRemoteProposalState(aProposalNumber, aState, aProposalState);
 			}
 		}
 		notifyAll();
 	}
+//	protected void newLocalProposalState(int aProposalNumber, StateType aState, ProposalState aProposalState ) {
+//		proposalState.put(aProposalNumber, aProposalState);		
+//		for (ConsensusListener<StateType> aConsensusListener:consensusListeners){
+//			if (aProposalState == ProposalState.PROPOSAL_ACCEPTED) {
+//				aConsensusListener.newConsensusState(aState);
+//			}
+//			aConsensusListener.newLocalProposalState(aProposalNumber, aState, aProposalState);			
+//		}
+//		notifyAll();
+//	}
+//	protected void newRemoteProposalState(int aProposalNumber, StateType aState, ProposalState aProposalState ) {
+////		proposalState.put(aProposalNumber, aProposalState);		
+//		for (ConsensusListener<StateType> aConsensusListener:consensusListeners){
+//			aConsensusListener.newRemoteProposalState(aProposalNumber, aState, aProposalState);
+//			if (aProposalState == ProposalState.PROPOSAL_ACCEPTED) {
+//				aConsensusListener.newConsensusState(aState);
+//			}
+//			
+//		}
+//		notifyAll();
+//	}
 	@Override
 	public synchronized ProposalState waitForConsensus(int aProposalNumber) {
 		while (proposalState.get(aProposalNumber) != ProposalState.PROPOSAL_PENDING) {
@@ -163,7 +208,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	@Override
 	public ProposalState getProposalState(int aProposalNumber) {
 		// TODO Auto-generated method stub
-		return null;
+		return proposalState.get(aProposalNumber);
 	}
 	@Override
 	public Integer getMyLastProposalNumber() {
@@ -174,5 +219,41 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		return lastProposalNumber;
 	}
 	
+	protected void removeProposalsLessThanOrEqualTo(int aProposalNumber) {
+		for (Integer anExistingProposalNumber:getMyProposals()) {
+			if (anExistingProposalNumber <= aProposalNumber) {
+				proposalState.remove(anExistingProposalNumber);
+				proposalValue.remove(anExistingProposalNumber);
+			}
+		}
+	}
+	
+
+	protected Set<Integer> getMyProposals() {
+		return new HashSet(proposalState.keySet());
+	}
+	
+	@Override
+	public Set<Integer> getMyPendingProposals() {
+		Set<Integer> retVal = new HashSet();
+		for (Integer aProposal:getMyProposals()) {
+			if (proposalState.get(aProposal) == ProposalState.PROPOSAL_PENDING) {
+				retVal.add(aProposal);
+			}
+		}		
+		return retVal;
+	}
+	
+	
+	protected Set<Integer> getMyPendingProposalsBefore(int aProposalNumber) {
+		Set<Integer> retVal = new HashSet();
+		for (Integer anExistingProposalNumber:getMyProposals()) {
+			if (proposalState.get(anExistingProposalNumber) == ProposalState.PROPOSAL_PENDING 
+					&& anExistingProposalNumber < aProposalNumber) {
+				retVal.add(anExistingProposalNumber);
+			}
+		}		
+		return retVal;
+	}
 	
 }

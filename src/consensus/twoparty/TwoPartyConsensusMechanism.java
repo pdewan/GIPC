@@ -8,6 +8,7 @@ public interface TwoPartyConsensusMechanism<StateType> extends
 		RemoteTwoPartyAcceptor<StateType>,
 		RemoteTwoPartyProposer<StateType>,
 		ConnectionListener{
+//	 void setPeerProxy(RemoteTwoPartyPeer<StateType> aPeerProxy);
 		
 		
 }

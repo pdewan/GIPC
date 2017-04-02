@@ -1,5 +1,7 @@
 package consensus;
 
+import java.util.Set;
+
 import inputport.ConnectionListener;
 
 
@@ -12,5 +14,6 @@ public interface ConsensusMechanism<StateType> extends ConsensusState<StateType>
 	void addConsensusListener(ConsensusListener<StateType> aConsensusListener);
 	void removeConsensusListener(ConsensusListener<StateType> aConsensusListener);
 	boolean myLastProposalIsPending();
+	Set<Integer> getMyPendingProposals();
 
 }

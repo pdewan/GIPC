@@ -23,6 +23,7 @@ import port.trace.buffer.BufferChannelConnectFinished;
 import port.trace.buffer.BufferChannelDisconnectInitiated;
 import port.trace.buffer.BufferChannelDisconnected;
 import port.trace.buffer.BufferReceived;
+import port.trace.buffer.NumberBytesReceived;
 import port.trace.buffer.ReplyDestinationAssociatedWithPort;
 import port.trace.buffer.TrapperBufferReceived;
 import port.trace.buffer.ClientNameAssociatedWithPort;
@@ -116,7 +117,8 @@ public class AGenericSimplexBufferServerInputPort<RequestChannelType, MessageCha
 	public void messageReceived(String aClientName, ByteBuffer aMessage) {
 		Tracer.info(this, "ServerInputPort received message " + aMessage + " from:" + aClientName );
 		totalBytesReceived += aMessage.limit() - aMessage.position(); 
-		Tracer.info("Total bytes received by server port: " + getLocalName() + " " + totalBytesReceived);
+//		Tracer.info("Total bytes received by server port: " + getLocalName() + " " + totalBytesReceived);
+		NumberBytesReceived.newCase(this, aClientName, getLocalName(), totalBytesReceived);
 		BufferReceived.newCase(this, aClientName, myName, aMessage, driver);
 		notifyPortReceive(aClientName, aMessage);	
 	}

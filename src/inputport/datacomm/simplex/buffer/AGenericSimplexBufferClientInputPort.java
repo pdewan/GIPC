@@ -21,6 +21,7 @@ import port.trace.buffer.BufferChannelDisconnected;
 import port.trace.buffer.BufferSendFinished;
 import port.trace.buffer.BufferSendInitiated;
 import port.trace.buffer.BufferSendToUnconnectedChannelIgnored;
+import port.trace.buffer.NumberBytesSent;
 import port.trace.buffer.TrapperBufferSendFinished;
 import port.trace.buffer.ClientNameSendInitiated;
 import port.trace.buffer.DuplicateBufferChannelConnectIgnored;
@@ -110,7 +111,8 @@ public class AGenericSimplexBufferClientInputPort<ChannelType>  implements Gener
 		}
 		totalBytesSent += message.limit() - message.position();
 		doSend(remoteName, message);
-		Tracer.info("Total bytes sent to " + this.getPhysicalRemoteEndPoint() + " " + totalBytesSent);
+//		Tracer.info("Total bytes sent to " + this.getPhysicalRemoteEndPoint() + " " + totalBytesSent);
+		NumberBytesSent.newCase(this, getLocalName(), this.getPhysicalRemoteEndPoint(), totalBytesSent);
 		
 //		if (!connected) throw new SendToUnconnectedPortException();
 //		Tracer.info(this, "Forwarding message to send trapper:" + sendTrapper);
