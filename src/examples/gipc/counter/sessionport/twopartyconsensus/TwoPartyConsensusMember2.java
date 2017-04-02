@@ -13,7 +13,7 @@ public class TwoPartyConsensusMember2 extends ATwoPartyConsensusSessionMember{
 	
 	public static void doOperations() {
 		int aGreetingProposal1 = greetingMechanism.propose(GREETING_1);
-		greetingMechanism.waitForStateChange(aGreetingProposal1);
+//		greetingMechanism.waitForStateChange(aGreetingProposal1);
 
 		int aGreetingProposal2 = greetingMechanism.propose(GREETING_2);
 

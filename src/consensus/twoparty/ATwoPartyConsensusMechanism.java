@@ -8,7 +8,7 @@ import java.util.Map;
 import port.trace.consensus.ProposalAcceptRequestReceived;
 import port.trace.consensus.ProposalAcceptRequestSent;
 import port.trace.consensus.ProposalAcceptedSent;
-
+import inputport.ConnectionRegistrar;
 import inputport.ConnectionType;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.ConsensusListener;
@@ -20,9 +20,9 @@ public class ATwoPartyConsensusMechanism<StateType> extends
 		TwoPartyConsensusMechanism<StateType> {
 	RemoteTwoPartyPeer<StateType> peerProxy;
 
-	public ATwoPartyConsensusMechanism(String aName, int aMyId,
+	public ATwoPartyConsensusMechanism(ConnectionRegistrar anInputPort, String aName, int aMyId,
 			RemoteTwoPartyPeer<StateType> aPeerProxy) {
-		super(aName, aMyId);
+		super(anInputPort, aName, aMyId);
 		peerProxy = aPeerProxy;
 	}
 
@@ -80,24 +80,5 @@ public class ATwoPartyConsensusMechanism<StateType> extends
 		}
 	}
 
-	@Override
-	public void connected(String aRemoteEndName, ConnectionType aConnectionType) {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void notConnected(String aRemoteEndName, String anExplanation,
-			ConnectionType aConnectionType) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public synchronized void disconnected(String aRemoteEndName,
-			boolean anExplicitDsconnection, String anExplanation,
-			ConnectionType aConnectionType) {
-		newProposalState(getMyPendingProposals(),
-				ProposalState.PROPOSAL_NOT_COMMUNICATED);
-	}
 }

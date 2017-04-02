@@ -3,7 +3,9 @@ package staticsessionport.datacomm.duplex.buffer.fullp2p;
 import inputport.ConnectionType;
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.DuplexServerInputPort;
+import inputport.datacomm.duplex.buffer.AGenericDuplexBufferServerInputPort;
 import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
+import inputport.datacomm.simplex.SimplexClientInputPort;
 
 import java.nio.ByteBuffer;
 import java.util.HashMap;
@@ -23,7 +25,7 @@ public class ABufferStaticSessionPortConnectionsManagerFullP2P
 
 	implements BufferStaticSessionPortConnectionManagerFullP2P{
 	protected ServerPortDescription serverPortDescription;
-	DuplexServerInputPort<ByteBuffer> serverInputPort;
+	protected DuplexServerInputPort<ByteBuffer> serverInputPort;
 	Map<String, Integer> remoteEndToNumConnects = new HashMap();
 //	ParticipantChoice joinChoice;
 
@@ -59,6 +61,16 @@ public class ABufferStaticSessionPortConnectionsManagerFullP2P
 		} 	else
 			return serverInputPort.getConnections();
 	}
+//	@Override
+//	public void disconnected(String remoteEnd,
+//			boolean explicitDisconnection, String systemMessage, ConnectionType aConnectionType) {
+//		super.disconnected(remoteEnd, explicitDisconnection, systemMessage, aConnectionType);
+//		// do not quite understand why this is needed and whether this
+//		if (serverInputPort != null && serverInputPort instanceof AGenericDuplexBufferServerInputPort) {
+//			((AGenericDuplexBufferServerInputPort) serverInputPort).disconnectedNoNotify(remoteEnd, explicitDisconnection,  systemMessage, aConnectionType);
+//			
+//		}
+//	}
 //		
 	@Override
 	public void createServerInputPort (ServerPortDescription aServerPortDescription) {

@@ -90,7 +90,8 @@ public class AWriteCommand implements WriteCommand  {
 			return true;
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.err.println("WriteCommand:" + e.getMessage());
 			SelectionKey key = socketChannel.keyFor(selectingRunnable.getSelector());
 			selectingRunnable.close(key, e);
 			selectingRunnable.getReadHandler(socketChannel).notifyCloseListeners(socketChannel, e);

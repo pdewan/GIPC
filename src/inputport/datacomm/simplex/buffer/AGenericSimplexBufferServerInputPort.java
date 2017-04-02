@@ -155,16 +155,27 @@ public class AGenericSimplexBufferServerInputPort<RequestChannelType, MessageCha
 
 		
 	}
+	
+	public void disconnectedNoNotify(String aRemoteEndName,
+	boolean anExplicitDisconnection, String anExplanation, ConnectionType aConnectionType) {
+		MessageChannelType channel = clientNameToChannel.get(aRemoteEndName);
+		channelToClientName.remove(channel);
+		clientNameToChannel.remove(aRemoteEndName);
+	}
 
 	@Override
 	public void disconnected(String aRemoteEndName,
 			boolean anExplicitDisconnection, String anExplanation, ConnectionType aConnectionType) {
 		Tracer.info(this, "Received from channel disconnected message");
 		BufferChannelDisconnected.newCase(this, myName, aRemoteEndName, anExplicitDisconnection, anExplanation, aConnectionType);
+		//interchanged these
+		disconnectedNoNotify(aRemoteEndName, anExplicitDisconnection, anExplanation, aConnectionType);
 		notifyDisconnect(aRemoteEndName, anExplicitDisconnection, anExplanation, null);
-		MessageChannelType channel = clientNameToChannel.get(aRemoteEndName);
-		channelToClientName.remove(channel);
-		clientNameToChannel.remove(aRemoteEndName);
+//		MessageChannelType channel = clientNameToChannel.get(aRemoteEndName);
+//		channelToClientName.remove(channel);
+//		clientNameToChannel.remove(aRemoteEndName);
+		
+		
 		// how did this pass Java's type checking, because MessageType is object?
 //		channelToClientName.remove(aRemoteEndName);
 	}

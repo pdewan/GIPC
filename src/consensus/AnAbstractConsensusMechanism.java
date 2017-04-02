@@ -10,7 +10,9 @@ import java.util.Set;
 import port.trace.consensus.ProposalStateChanged;
 import port.trace.consensus.ProposalWaitEnded;
 import port.trace.consensus.ProposalWaitStarted;
+import inputport.ConnectionRegistrar;
 import inputport.ConnectionType;
+import inputport.InputPort;
 import consensus.ConsensusListener;
 import consensus.ProposalState;
 import consensus.ConsensusState;
@@ -30,10 +32,11 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected Map<Integer, ProposalState> proposalState = new HashMap();
 	protected Map<Integer, StateType> proposalValue = new HashMap();
 	protected String objectName;
-	public AnAbstractConsensusMechanism(String anObjectName, int aMyId) {
+	public AnAbstractConsensusMechanism(ConnectionRegistrar anInputPort, String anObjectName, int aMyId) {
 		myId = aMyId;
 		myPrefix = MAX_PROPOSALS*10*myId;
 		objectName = anObjectName;
+		anInputPort.addConnectionListener(this);
 	}
 //	public String toString() {		
 //		return getClass().getSimpleName() + "." + objectName;
@@ -271,5 +274,24 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		}		
 		return retVal;
 	}
-	
+	@Override
+	public void connected(String aRemoteEndName, ConnectionType aConnectionType) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void notConnected(String aRemoteEndName, String anExplanation,
+			ConnectionType aConnectionType) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public synchronized void disconnected(String aRemoteEndName,
+			boolean anExplicitDsconnection, String anExplanation,
+			ConnectionType aConnectionType) {
+		newProposalState(getMyPendingProposals(),
+				ProposalState.PROPOSAL_NOT_COMMUNICATED);
+	}
 }

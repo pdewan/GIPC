@@ -5,7 +5,7 @@ import java.util.Set;
 import inputport.ConnectionListener;
 
 
-public interface ConsensusMechanism<StateType> extends ConsensusState<StateType>  {
+public interface ConsensusMechanism<StateType> extends ConsensusState<StateType>, ConnectionListener  {
 	int propose(StateType aProposal);	
 	ProposalState waitForStateChange(int aProposalNumber);
 	ProposalState getProposalState(int aProposalNumber);
