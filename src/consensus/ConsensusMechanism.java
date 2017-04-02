@@ -7,7 +7,7 @@ import inputport.ConnectionListener;
 
 public interface ConsensusMechanism<StateType> extends ConsensusState<StateType>  {
 	int propose(StateType aProposal);	
-	ProposalState waitForConsensus(int aProposalNumber);
+	ProposalState waitForStateChange(int aProposalNumber);
 	ProposalState getProposalState(int aProposalNumber);
 	Integer getMyLastProposalNumber();
 	Integer getLastProposalNumber();
