@@ -9,13 +9,13 @@ import util.trace.TraceableInfo;
 public class ProposalConsensusOccurred extends TraceableInfo {
 	
 
-	public ProposalConsensusOccurred(String aMessage, Object aSource, String anObjectName, double aProposalNumber, Object aProposal) {
+	public ProposalConsensusOccurred(String aMessage, Object aSource, String anObjectName, float aProposalNumber, Object aProposal) {
 		super(aMessage, aSource );
 	}
 	
 	
-	public static ProposalConsensusOccurred newCase(Object aSource, String anObjectName, double aProposalNumber, Object aProposal) {
-    	String aMessage =  anObjectName + "." + aProposalNumber + "=" + aProposal;
+	public static ProposalConsensusOccurred newCase(Object aSource, String anObjectName, float aProposalNumber, Object aProposal) {
+    	String aMessage =  anObjectName + "," + aProposalNumber + "=" + aProposal;
     	ProposalConsensusOccurred retVal = new ProposalConsensusOccurred(aMessage, aSource, anObjectName, aProposalNumber, aProposal);
    	    retVal.announce();
     	return retVal;

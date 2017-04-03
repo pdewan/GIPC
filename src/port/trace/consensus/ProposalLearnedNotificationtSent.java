@@ -9,13 +9,13 @@ import util.trace.TraceableInfo;
 public class ProposalLearnedNotificationtSent extends TraceableInfo {
 	
 
-	public ProposalLearnedNotificationtSent(String aMessage, Object aSource, String anObjectName, double aProposalNumber, Object aProposal) {
+	public ProposalLearnedNotificationtSent(String aMessage, Object aSource, String anObjectName, float aProposalNumber, Object aProposal) {
 		super(aMessage, aSource );
 	}
 	
 	
-	public static ProposalLearnedNotificationtSent newCase(Object aSource, String anObjectName, double aProposalNumber, Object aProposal) {
-    	String aMessage =  anObjectName + "." + aProposalNumber + "=" + aProposal;
+	public static ProposalLearnedNotificationtSent newCase(Object aSource, String anObjectName, float aProposalNumber, Object aProposal) {
+    	String aMessage =  anObjectName + "," + aProposalNumber + "=" + aProposal;
     	ProposalLearnedNotificationtSent retVal = new ProposalLearnedNotificationtSent(aMessage, aSource, anObjectName, aProposalNumber, aProposal);
    	    retVal.announce();
     	return retVal;

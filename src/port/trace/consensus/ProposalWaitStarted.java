@@ -9,13 +9,13 @@ import util.trace.TraceableInfo;
 public class ProposalWaitStarted extends TraceableInfo {
 	
 
-	public ProposalWaitStarted(String aMessage, Object aSource, String anObjectName, double aProposalNumber, Object aProposal) {
+	public ProposalWaitStarted(String aMessage, Object aSource, String anObjectName, float aProposalNumber, Object aProposal) {
 		super(aMessage, aSource );
 	}
 	
 	
-	public static ProposalWaitStarted newCase(Object aSource, String anObjectName, double aProposalNumber, Object aProposal) {
-    	String aMessage =  anObjectName + "." + aProposalNumber + "=" + aProposal;
+	public static ProposalWaitStarted newCase(Object aSource, String anObjectName, float aProposalNumber, Object aProposal) {
+    	String aMessage =  anObjectName + "," + aProposalNumber + "=" + aProposal;
     	ProposalWaitStarted retVal = new ProposalWaitStarted(aMessage, aSource, anObjectName, aProposalNumber, aProposal);
    	    retVal.announce();
     	return retVal;
