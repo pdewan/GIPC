@@ -5,4 +5,4 @@
  * @author dewan
  *
  */
-package consensus.twoparty;
+package consensus.twoparty.symmetric;

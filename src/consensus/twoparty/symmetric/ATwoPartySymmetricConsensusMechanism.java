@@ -1,4 +1,4 @@
-package consensus.twoparty;
+package consensus.twoparty.symmetric;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,7 +7,7 @@ import java.util.Map;
 
 import port.trace.consensus.ProposalAcceptRequestReceived;
 import port.trace.consensus.ProposalAcceptRequestSent;
-import port.trace.consensus.ProposalAcceptedSent;
+import port.trace.consensus.ProposalConsensusSent;
 import inputport.ConnectionRegistrar;
 import inputport.ConnectionType;
 import consensus.AnAbstractConsensusMechanism;
@@ -15,12 +15,12 @@ import consensus.ConsensusListener;
 import consensus.ProposalState;
 import consensus.ConsensusState;
 
-public class ATwoPartyConsensusMechanism<StateType> extends
+public class ATwoPartySymmetricConsensusMechanism<StateType> extends
 		AnAbstractConsensusMechanism<StateType> implements
-		TwoPartyConsensusMechanism<StateType> {
+		TwoPartySymmetricConsensusMechanism<StateType> {
 	RemoteTwoPartyPeer<StateType> peerProxy;
 
-	public ATwoPartyConsensusMechanism(ConnectionRegistrar anInputPort, String aName, int aMyId,
+	public ATwoPartySymmetricConsensusMechanism(ConnectionRegistrar anInputPort, String aName, int aMyId,
 			RemoteTwoPartyPeer<StateType> aPeerProxy) {
 		super(anInputPort, aName, aMyId);
 		peerProxy = aPeerProxy;
@@ -42,7 +42,7 @@ public class ATwoPartyConsensusMechanism<StateType> extends
 	// }
 	// // notifyAll();
 	// }
-	public synchronized void accepted(int aProposalNumber, StateType aProposal) {
+	public synchronized void learn(int aProposalNumber, StateType aProposal) {
 		newProposalState(aProposalNumber, aProposal,
 				ProposalState.PROPOSAL_CONSENSUS);
 	}
@@ -67,7 +67,7 @@ public class ATwoPartyConsensusMechanism<StateType> extends
 				aProposalNumber, aProposal);
 		if (!myLastProposalIsPending()
 				|| aProposalNumber > myLastProposalNumber) {
-			peerProxy.accepted(aProposalNumber, aProposal);
+			peerProxy.learn(aProposalNumber, aProposal);
 			newProposalState(aProposalNumber, aProposal,
 					ProposalState.PROPOSAL_CONSENSUS);
 			newProposalState(getMyPendingProposalsBefore(aProposalNumber),
