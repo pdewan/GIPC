@@ -124,7 +124,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		addProposal(myProposalNumber, aProposal);
 		proposalState.put(myProposalNumber, ProposalState.PROPOSAL_PENDING);
 //		proposalValue.put(myProposalNumber, aProposal);
-//		propose(myProposalNumber, aProposal);	
+		propose(myProposalNumber, aProposal);	
 		return myProposalNumber;
 	}
 	@Override
@@ -193,6 +193,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			
 			if (aProposalState == ProposalState.PROPOSAL_CONSENSUS) {
 				aConsensusListener.newConsensusState(aState);
+				consensusState = aState;
 			}
 			proposalState.put(aProposalNumber, aProposalState);	
 
@@ -260,7 +261,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	
 	protected void removeProposalsLessThanOrEqualTo(float aProposalNumber) {
-		for (Float anExistingProposalNumber:getMyProposals()) {
+		for (Float anExistingProposalNumber:getProposals()) {
 			if (anExistingProposalNumber <= aProposalNumber) {
 				proposalState.remove(anExistingProposalNumber);
 				proposalValue.remove(anExistingProposalNumber);
@@ -268,26 +269,32 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		}
 	}
 	
+	
+	
 
-	protected Set<Float> getMyProposals() {
+	protected Set<Float> getProposals() {
 		return new HashSet(proposalState.keySet());
 	}
 	
 	@Override
 	public Set<Float> getPendingProposals() {
 		Set<Float> retVal = new HashSet();
-		for (Float aProposal:getMyProposals()) {
+		for (Float aProposal:getProposals()) {
 			if (proposalState.get(aProposal) == ProposalState.PROPOSAL_PENDING) {
 				retVal.add(aProposal);
 			}
 		}		
 		return retVal;
 	}
+	protected void supersedePendingProposalsBefore(float aProposalNumber) {
+		newProposalState(getPendingProposalsBefore(aProposalNumber),
+				ProposalState.PROPOSAL_SUPERSEDED);
+	}
 	
 	
-	protected Set<Float> getMyPendingProposalsBefore(float aProposalNumber) {
+	protected Set<Float> getPendingProposalsBefore(float aProposalNumber) {
 		Set<Float> retVal = new HashSet();
-		for (Float anExistingProposalNumber:getMyProposals()) {
+		for (Float anExistingProposalNumber:getProposals()) {
 			if (proposalState.get(anExistingProposalNumber) == ProposalState.PROPOSAL_PENDING 
 					&& anExistingProposalNumber < aProposalNumber) {
 				retVal.add(anExistingProposalNumber);

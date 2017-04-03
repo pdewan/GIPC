@@ -61,8 +61,10 @@ public class ATwoPartySymmetricConsensusMechanism<StateType> extends
 			peerProxy.learn(aProposalNumber, aProposal);
 			newProposalState(aProposalNumber, aProposal,
 					ProposalState.PROPOSAL_CONSENSUS);
-			newProposalState(getMyPendingProposalsBefore(aProposalNumber),
-					ProposalState.PROPOSAL_SUPERSEDED);
+			supersedePendingProposalsBefore(aProposalNumber);
+			removeProposalsLessThanOrEqualTo(aProposalNumber);
+//			newProposalState(getPendingProposalsBefore(aProposalNumber),
+//					ProposalState.PROPOSAL_SUPERSEDED);
 //			removeProposalsLessThanOrEqualTo(aProposalNumber);
 
 		} else {
