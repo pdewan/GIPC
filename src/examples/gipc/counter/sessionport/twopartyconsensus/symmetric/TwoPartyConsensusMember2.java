@@ -2,7 +2,7 @@ package examples.gipc.counter.sessionport.twopartyconsensus.symmetric;
 
 import port.trace.consensus.ConsensusTraceUtility;
 
-public class TwoPartyConsensusMember2 extends ATwoPartyConsensusSessionMember{
+public class TwoPartyConsensusMember2 extends ATwoPartySymmetricConsensusSessionMember{
 	static final int MY_PORT_NUMBER = 7002;
 	static final String MY_NAME = "2";
 	public static final String GREETING_1 = "Ca Va";
@@ -12,12 +12,12 @@ public class TwoPartyConsensusMember2 extends ATwoPartyConsensusSessionMember{
 
 	
 	public static void doOperations() {
-		int aGreetingProposal1 = greetingMechanism.propose(GREETING_1);
+		float aGreetingProposal1 = greetingMechanism.propose(GREETING_1);
 //		greetingMechanism.waitForStateChange(aGreetingProposal1);
 
-		int aGreetingProposal2 = greetingMechanism.propose(GREETING_2);
+		float aGreetingProposal2 = greetingMechanism.propose(GREETING_2);
 
-		int aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING);
+		float aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING);
 		greetingMechanism.waitForStateChange(aGreetingProposal2);
 		meaningOfLifeMechanism.waitForStateChange(aMeaningOfLifeProposal);		
 		

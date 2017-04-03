@@ -1,26 +1,17 @@
 package consensus.twoparty.symmetric;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import inputport.ConnectionRegistrar;
 import port.trace.consensus.ProposalAcceptRequestReceived;
 import port.trace.consensus.ProposalAcceptRequestSent;
-import port.trace.consensus.ProposalConsensusSent;
-import inputport.ConnectionRegistrar;
-import inputport.ConnectionType;
 import consensus.AnAbstractConsensusMechanism;
-import consensus.ConsensusListener;
 import consensus.ProposalState;
-import consensus.ConsensusState;
 
 public class ATwoPartySymmetricConsensusMechanism<StateType> extends
 		AnAbstractConsensusMechanism<StateType> implements
 		TwoPartySymmetricConsensusMechanism<StateType> {
 	RemoteTwoPartyPeer<StateType> peerProxy;
 
-	public ATwoPartySymmetricConsensusMechanism(ConnectionRegistrar anInputPort, String aName, int aMyId,
+	public ATwoPartySymmetricConsensusMechanism(ConnectionRegistrar anInputPort, String aName, short aMyId,
 			RemoteTwoPartyPeer<StateType> aPeerProxy) {
 		super(anInputPort, aName, aMyId);
 		peerProxy = aPeerProxy;
@@ -42,7 +33,7 @@ public class ATwoPartySymmetricConsensusMechanism<StateType> extends
 	// }
 	// // notifyAll();
 	// }
-	public synchronized void learn(int aProposalNumber, StateType aProposal) {
+	public synchronized void learn(float aProposalNumber, StateType aProposal) {
 		newProposalState(aProposalNumber, aProposal,
 				ProposalState.PROPOSAL_CONSENSUS);
 	}
@@ -54,14 +45,14 @@ public class ATwoPartySymmetricConsensusMechanism<StateType> extends
 	// }
 
 	@Override
-	protected void propose(int aProposalNumber, StateType aProposal) {
+	protected void propose(float aProposalNumber, StateType aProposal) {
 		ProposalAcceptRequestSent.newCase(this, getObjectName(),
 				aProposalNumber, aProposal);
 		peerProxy.accept(aProposalNumber, aProposal);
 	}
 
 	@Override
-	public synchronized void accept(int aProposalNumber, StateType aProposal) {
+	public synchronized void accept(float aProposalNumber, StateType aProposal) {
 
 		ProposalAcceptRequestReceived.newCase(this, getObjectName(),
 				aProposalNumber, aProposal);

@@ -9,12 +9,12 @@ import util.trace.TraceableInfo;
 public class ProposalLearnNotificationtReceived extends TraceableInfo {
 	
 
-	public ProposalLearnNotificationtReceived(String aMessage, Object aSource, String anObjectName, int aProposalNumber, Object aProposal) {
+	public ProposalLearnNotificationtReceived(String aMessage, Object aSource, String anObjectName, double aProposalNumber, Object aProposal) {
 		super(aMessage, aSource );
 	}
 	
 	
-	public static ProposalLearnNotificationtReceived newCase(Object aSource, String anObjectName, int aProposalNumber, Object aProposal) {
+	public static ProposalLearnNotificationtReceived newCase(Object aSource, String anObjectName, double aProposalNumber, Object aProposal) {
     	String aMessage =  anObjectName + "." + aProposalNumber + "=" + aProposal;
     	ProposalLearnNotificationtReceived retVal = new ProposalLearnNotificationtReceived(aMessage, aSource, anObjectName, aProposalNumber, aProposal);
    	    retVal.announce();

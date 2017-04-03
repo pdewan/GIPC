@@ -10,12 +10,12 @@ import util.trace.TraceableInfo;
 public class ProposalWaitEnded extends TraceableInfo {
 	
 
-	public ProposalWaitEnded(String aMessage, Object aSource, String anObjectName, int aProposalNumber, Object aProposal, ProposalState aProposalState) {
+	public ProposalWaitEnded(String aMessage, Object aSource, String anObjectName, double aProposalNumber, Object aProposal, ProposalState aProposalState) {
 		super(aMessage, aSource );
 	}
 	
 	
-	public static ProposalWaitEnded newCase(Object aSource, String anObjectName, int aProposalNumber, Object aProposal, ProposalState aProposalState) {
+	public static ProposalWaitEnded newCase(Object aSource, String anObjectName, double aProposalNumber, Object aProposal, ProposalState aProposalState) {
     	String aMessage =  anObjectName + "." + aProposalNumber + "=" + aProposal + "-->" + aProposalState;
     	ProposalWaitEnded retVal = new ProposalWaitEnded(aMessage, aSource, anObjectName, aProposalNumber, aProposal, aProposalState);
    	    retVal.announce();

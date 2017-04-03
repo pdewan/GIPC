@@ -24,7 +24,7 @@ import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;
 
-public class ATwoPartyConsensusSessionMember implements TwoPartyConsensusSessionMember {
+public class ATwoPartySymmetricConsensusSessionMember implements TwoPartyConsensusSessionMember {
 	protected static TwoPartySymmetricConsensusMechanism<String> greetingMechanism;
 	protected static TwoPartySymmetricConsensusMechanism<Integer> meaningOfLifeMechanism;
 	protected static RemoteTwoPartyPeer<String> remoteGreetingMechanism;
@@ -34,13 +34,13 @@ public class ATwoPartyConsensusSessionMember implements TwoPartyConsensusSession
 	protected static Integer numMembersToWaitFor = 2;
 	protected static SessionChoice sessionChoice = SessionChoice.P2P;
 	
-	protected static void initGreetingConsensusMechanism(int anId) {
+	protected static void initGreetingConsensusMechanism(short anId) {
 		remoteGreetingMechanism = (RemoteTwoPartyPeer) gipcRegistry.lookupAllRemoteProxy(GREETING_CONSENSUS_MECHANISM_NAME, RemoteTwoPartyPeer.class);
 		greetingMechanism = new ATwoPartySymmetricConsensusMechanism<>(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, remoteGreetingMechanism);
 		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());	
 		gipcRegistry.rebind(GREETING_CONSENSUS_MECHANISM_NAME, greetingMechanism);
 	}	
-	protected static void initMeaningOfLifeConsensusMechanism(int anId) {
+	protected static void initMeaningOfLifeConsensusMechanism(short anId) {
 		remoteMeaningOfLifeMechanism = (RemoteTwoPartyPeer) gipcRegistry.lookupAllRemoteProxy(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, RemoteTwoPartyPeer.class);
 		meaningOfLifeMechanism = new ATwoPartySymmetricConsensusMechanism<>(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, remoteMeaningOfLifeMechanism);
 		meaningOfLifeMechanism.addConsensusListener(new AMeaningOfLifeConsensusListener());
@@ -53,7 +53,7 @@ public class ATwoPartyConsensusSessionMember implements TwoPartyConsensusSession
 				sessionChoice, 
 				numMembersToWaitFor);
 		groupRPCSessionPort = gipcRegistry.getSessionPort();
-		int anId = Integer.parseInt(aLocalName);
+		short anId = Short.parseShort(aLocalName);
 		initGreetingConsensusMechanism(anId);
 		initMeaningOfLifeConsensusMechanism(anId);		
 	}

@@ -6,14 +6,14 @@ import consensus.ProposalState;
 public class AMeaningOfLifeConsensusListener implements ConsensusListener<Integer>{
 
 	@Override
-	public void newLocalProposalState(int aProposalNumber, Integer aProposal,
+	public void newLocalProposalState(float aProposalNumber, Integer aProposal,
 			ProposalState aProposalState) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void newRemoteProposalState(int aProposalNumber, Integer aProposal,
+	public void newRemoteProposalState(float aProposalNumber, Integer aProposal,
 			ProposalState aProposalState) {
 		// TODO Auto-generated method stub
 		

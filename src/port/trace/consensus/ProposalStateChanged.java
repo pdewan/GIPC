@@ -10,12 +10,12 @@ import util.trace.TraceableInfo;
 public class ProposalStateChanged extends TraceableInfo {
 	
 
-	public ProposalStateChanged(String aMessage, Object aSource, String anObjectName, int aProposalNumber, Object aProposal, ProposalState aProposalState) {
+	public ProposalStateChanged(String aMessage, Object aSource, String anObjectName, double aProposalNumber, Object aProposal, ProposalState aProposalState) {
 		super(aMessage, aSource );
 	}
 	
 	
-	public static ProposalStateChanged newCase(Object aSource, String anObjectName, int aProposalNumber, Object aProposal, ProposalState aProposalState) {
+	public static ProposalStateChanged newCase(Object aSource, String anObjectName, double aProposalNumber, Object aProposal, ProposalState aProposalState) {
     	String aMessage =  anObjectName + "." + aProposalNumber + "=" + aProposal + "-->" + aProposalState;
     	ProposalStateChanged retVal = new ProposalStateChanged(aMessage, aSource, anObjectName, aProposalNumber, aProposal, aProposalState);
    	    retVal.announce();

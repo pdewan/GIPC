@@ -16,10 +16,16 @@ public class ConsensusTraceUtility {
 		TraceableInfo.setPrintTraceable(true);
 //		TraceableInfo.setPrintSource(true);
 		Tracer.setImplicitPrintKeywordKind(ImplicitKeywordKind.OBJECT_CLASS_NAME);
-		Tracer.setKeywordPrintStatus(ProposalConsensusReceived.class, true);
-		Tracer.setKeywordPrintStatus(ProposalConsensusSent.class, true);
+
 		Tracer.setKeywordPrintStatus(ProposalAcceptRequestReceived.class, true);
 		Tracer.setKeywordPrintStatus(ProposalAcceptRequestSent.class, true);
+		Tracer.setKeywordPrintStatus(ProposalConsensusOccurred.class, true);
+		
+		Tracer.setKeywordPrintStatus(ProposalLearnedNotificationtReceived.class, true);
+		Tracer.setKeywordPrintStatus(ProposalLearnedNotificationtSent.class, true);
+		Tracer.setKeywordPrintStatus(ProposalLearnNotificationtReceived.class, true);
+		Tracer.setKeywordPrintStatus(ProposalLearnNotificationtSent.class, true);
+		
 		Tracer.setKeywordPrintStatus(ProposalStateChanged.class, true);
 		Tracer.setKeywordPrintStatus(ProposalWaitEnded.class, true);
 		Tracer.setKeywordPrintStatus(ProposalWaitStarted.class, true);

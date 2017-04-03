@@ -5,8 +5,10 @@ import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.Set;
 
+import consensus.Learned;
+import consensus.Learner;
 import consensus.twoparty.asymmetric.ATwoPartyAsymmetricLearnerConsensusMechanism;
-import consensus.twoparty.asymmetric.TwoPartyListenerConsensusMechanism;
+import consensus.twoparty.asymmetric.TwoPartyAsymmetricListenerConsensusMechanism;
 import consensus.twoparty.symmetric.ATwoPartySymmetricConsensusMechanism;
 import consensus.twoparty.symmetric.RemoteTwoPartyPeer;
 import consensus.twoparty.symmetric.TwoPartySymmetricConsensusMechanism;
@@ -25,10 +27,11 @@ import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;
 
-public class ATwoPartyConsensusSessionListener implements TwoPartyConsensusSessionMember {
-	protected static TwoPartyListenerConsensusMechanism<String> greetingMechanism;
-	protected static TwoPartyListenerConsensusMechanism<Integer> meaningOfLifeMechanism;
-
+public class ATwoPartyAsymmetricConsensusSessionListener implements TwoPartyConsensusSessionMember {
+	protected static TwoPartyAsymmetricListenerConsensusMechanism<String> greetingMechanism;
+	protected static TwoPartyAsymmetricListenerConsensusMechanism<Integer> meaningOfLifeMechanism;
+	protected static Learned<String> remoteGreetingMechanism;
+	protected static Learned<Integer> remoteMeaningOfLifeMechanism;
 	protected static GIPCSessionRegistry gipcRegistry;
 	protected static GroupRPCSessionPort groupRPCSessionPort;
 	protected static Integer numMembersToWaitFor = 2;
@@ -38,13 +41,17 @@ public class ATwoPartyConsensusSessionListener implements TwoPartyConsensusSessi
 	static final String MY_NAME = "2";
 	
 	
-	protected static void initGreetingConsensusMechanism(int anId) {
-		greetingMechanism = new ATwoPartyAsymmetricLearnerConsensusMechanism<>(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId);
+	protected static void initGreetingConsensusMechanism(short anId) {
+		remoteGreetingMechanism = (Learned) gipcRegistry.lookupAllRemoteProxy(GREETING_CONSENSUS_MECHANISM_NAME, Learned.class);
+
+		greetingMechanism = new ATwoPartyAsymmetricLearnerConsensusMechanism<>(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, remoteGreetingMechanism);
 		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());	
 		gipcRegistry.rebind(GREETING_CONSENSUS_MECHANISM_NAME, greetingMechanism);
 	}	
-	protected static void initMeaningOfLifeConsensusMechanism(int anId) {
-		meaningOfLifeMechanism = new ATwoPartyAsymmetricLearnerConsensusMechanism<>(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId);
+	protected static void initMeaningOfLifeConsensusMechanism(short anId) {
+		remoteMeaningOfLifeMechanism = (Learned) gipcRegistry.lookupAllRemoteProxy(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, Learned.class);
+
+		meaningOfLifeMechanism = new ATwoPartyAsymmetricLearnerConsensusMechanism<>(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, remoteMeaningOfLifeMechanism);
 		meaningOfLifeMechanism.addConsensusListener(new AMeaningOfLifeConsensusListener());
 		gipcRegistry.rebind(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, meaningOfLifeMechanism);		
 	}
@@ -55,7 +62,7 @@ public class ATwoPartyConsensusSessionListener implements TwoPartyConsensusSessi
 				sessionChoice, 
 				numMembersToWaitFor);
 		groupRPCSessionPort = gipcRegistry.getSessionPort();
-		int anId = Integer.parseInt(aLocalName);
+		short anId = Short.parseShort(aLocalName);
 		initGreetingConsensusMechanism(anId);
 		initMeaningOfLifeConsensusMechanism(anId);		
 	}

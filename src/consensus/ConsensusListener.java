@@ -1,10 +1,10 @@
 package consensus;
 
 public interface ConsensusListener<StateType> {
-//	void localProposalAccepted(int aProposalNumber, StateType aProposal, boolean accepted);
-//	void remoteProposalAccepted(int aProposalNumber, StateType aProposal, boolean accepted);
-//	void proposalCommunicationError(int aProposalNumber, StateType aProposal);
-	void newLocalProposalState(int aProposalNumber, StateType aProposal, ProposalState aProposalState);
-	void newRemoteProposalState(int aProposalNumber, StateType aProposal, ProposalState aProposalState);
+//	void localProposalAccepted(float aProposalNumber, StateType aProposal, boolean accepted);
+//	void remoteProposalAccepted(float aProposalNumber, StateType aProposal, boolean accepted);
+//	void proposalCommunicationError(float aProposalNumber, StateType aProposal);
+	void newLocalProposalState(float aProposalNumber, StateType aProposal, ProposalState aProposalState);
+	void newRemoteProposalState(float aProposalNumber, StateType aProposal, ProposalState aProposalState);
 	void newConsensusState(StateType aState);
 }
