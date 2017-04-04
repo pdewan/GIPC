@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.Set;
 
-import consensus.twoparty.symmetric.ATwoPartySymmetricConsensusMechanism;
+import consensus.twoparty.symmetric.ASymmetricTwoPartyConsensusMechanism;
 import consensus.twoparty.symmetric.RemoteTwoPartyPeer;
 import consensus.twoparty.symmetric.TwoPartySymmetricConsensusMechanism;
 import bus.uigen.visitors.AddListenersAdapterVisitor;
@@ -36,13 +36,13 @@ public class ATwoPartySymmetricConsensusSessionMember implements TwoPartyConsens
 	
 	protected static void initGreetingConsensusMechanism(short anId) {
 		remoteGreetingMechanism = (RemoteTwoPartyPeer) gipcRegistry.lookupAllRemoteProxy(GREETING_CONSENSUS_MECHANISM_NAME, RemoteTwoPartyPeer.class);
-		greetingMechanism = new ATwoPartySymmetricConsensusMechanism<>(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, remoteGreetingMechanism);
+		greetingMechanism = new ASymmetricTwoPartyConsensusMechanism<>(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, remoteGreetingMechanism);
 		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());	
 		gipcRegistry.rebind(GREETING_CONSENSUS_MECHANISM_NAME, greetingMechanism);
 	}	
 	protected static void initMeaningOfLifeConsensusMechanism(short anId) {
 		remoteMeaningOfLifeMechanism = (RemoteTwoPartyPeer) gipcRegistry.lookupAllRemoteProxy(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, RemoteTwoPartyPeer.class);
-		meaningOfLifeMechanism = new ATwoPartySymmetricConsensusMechanism<>(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, remoteMeaningOfLifeMechanism);
+		meaningOfLifeMechanism = new ASymmetricTwoPartyConsensusMechanism<>(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, remoteMeaningOfLifeMechanism);
 		meaningOfLifeMechanism.addConsensusListener(new AMeaningOfLifeConsensusListener());
 		gipcRegistry.rebind(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, meaningOfLifeMechanism);		
 	}

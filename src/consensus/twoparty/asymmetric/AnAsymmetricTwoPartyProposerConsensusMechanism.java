@@ -9,7 +9,7 @@ import port.trace.consensus.ProposalAcceptRequestReceived;
 import port.trace.consensus.ProposalAcceptRequestSent;
 import port.trace.consensus.ProposalConsensusOccurred;
 import port.trace.consensus.ProposalLearnNotificationtSent;
-import port.trace.consensus.ProposalLearnedNotificationtReceived;
+import port.trace.consensus.ProposalLearnedNotificationReceived;
 import inputport.ConnectionRegistrar;
 import inputport.ConnectionType;
 import consensus.AnAbstractConsensusMechanism;
@@ -18,11 +18,11 @@ import consensus.Learner;
 import consensus.ProposalState;
 import consensus.ConsensusState;
 
-public class ATwoPartyAsymmetricProposerConsensusMechanism<StateType> extends
+public class AnAsymmetricTwoPartyProposerConsensusMechanism<StateType> extends
 		AnAbstractConsensusMechanism<StateType> implements TwoPartyAsymmetricProposerConsensusMechanism<StateType> {
 	Learner<StateType> peerProxy;
 
-	public ATwoPartyAsymmetricProposerConsensusMechanism(ConnectionRegistrar anInputPort, String aName, short aMyId,
+	public AnAsymmetricTwoPartyProposerConsensusMechanism(ConnectionRegistrar anInputPort, String aName, short aMyId,
 			Learner<StateType> aPeerProxy) {
 		super(anInputPort, aName, aMyId);
 		peerProxy = aPeerProxy;
@@ -41,7 +41,7 @@ public class ATwoPartyAsymmetricProposerConsensusMechanism<StateType> extends
 	@Override
 	public void learned(float aProposalNumber, StateType aProposal) {
 		newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
-		ProposalLearnedNotificationtReceived.newCase(this, getObjectName(),
+		ProposalLearnedNotificationReceived.newCase(this, getObjectName(),
 				aProposalNumber, aProposal);
 		ProposalConsensusOccurred.newCase(this, getObjectName(),
 				aProposalNumber, aProposal);		

@@ -7,9 +7,9 @@ import java.util.Set;
 
 import consensus.ConsensusMechanism;
 import consensus.Learner;
-import consensus.twoparty.asymmetric.ATwoPartyAsymmetricProposerConsensusMechanism;
+import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyProposerConsensusMechanism;
 import consensus.twoparty.asymmetric.TwoPartyAsymmetricListenerConsensusMechanism;
-import consensus.twoparty.symmetric.ATwoPartySymmetricConsensusMechanism;
+import consensus.twoparty.symmetric.ASymmetricTwoPartyConsensusMechanism;
 import consensus.twoparty.symmetric.RemoteTwoPartyPeer;
 import consensus.twoparty.symmetric.TwoPartySymmetricConsensusMechanism;
 import bus.uigen.visitors.AddListenersAdapterVisitor;
@@ -45,14 +45,14 @@ public class ATwoPartyAsymmeticConsensusSessionProposer implements TwoPartyConse
 	
 	protected static void initGreetingConsensusMechanism(short anId) {
 		remoteGreetingMechanism = (Learner) gipcRegistry.lookupAllRemoteProxy(GREETING_CONSENSUS_MECHANISM_NAME, Learner.class);
-		greetingMechanism = new ATwoPartyAsymmetricProposerConsensusMechanism<>(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, remoteGreetingMechanism);
+		greetingMechanism = new AnAsymmetricTwoPartyProposerConsensusMechanism<>(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, remoteGreetingMechanism);
 		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());
 		gipcRegistry.rebind(GREETING_CONSENSUS_MECHANISM_NAME, greetingMechanism);
 
 	}	
 	protected static void initMeaningOfLifeConsensusMechanism(short anId) {
 		remoteMeaningOfLifeMechanism = (Learner) gipcRegistry.lookupAllRemoteProxy(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, Learner.class);
-		meaningOfLifeMechanism = new ATwoPartyAsymmetricProposerConsensusMechanism<>(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, remoteMeaningOfLifeMechanism);
+		meaningOfLifeMechanism = new AnAsymmetricTwoPartyProposerConsensusMechanism<>(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, remoteMeaningOfLifeMechanism);
 		meaningOfLifeMechanism.addConsensusListener(new AMeaningOfLifeConsensusListener());
 		gipcRegistry.rebind(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, meaningOfLifeMechanism);		
 

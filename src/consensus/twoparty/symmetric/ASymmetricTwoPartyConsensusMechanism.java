@@ -6,12 +6,12 @@ import port.trace.consensus.ProposalAcceptRequestSent;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.ProposalState;
 
-public class ATwoPartySymmetricConsensusMechanism<StateType> extends
+public class ASymmetricTwoPartyConsensusMechanism<StateType> extends
 		AnAbstractConsensusMechanism<StateType> implements
 		TwoPartySymmetricConsensusMechanism<StateType> {
 	RemoteTwoPartyPeer<StateType> peerProxy;
 
-	public ATwoPartySymmetricConsensusMechanism(ConnectionRegistrar anInputPort, String aName, short aMyId,
+	public ASymmetricTwoPartyConsensusMechanism(ConnectionRegistrar anInputPort, String aName, short aMyId,
 			RemoteTwoPartyPeer<StateType> aPeerProxy) {
 		super(anInputPort, aName, aMyId);
 		peerProxy = aPeerProxy;

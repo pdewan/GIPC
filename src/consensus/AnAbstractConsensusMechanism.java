@@ -139,6 +139,10 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	@Override
 	public StateType getConsensusState() {
+		return consensusState;
+	}
+	@Override
+	public StateType getStrongConsensusState() {
 		if (someProposalIsPending())
 			return null;
 		return consensusState;

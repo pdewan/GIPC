@@ -21,10 +21,17 @@ public class ConsensusTraceUtility {
 		Tracer.setKeywordPrintStatus(ProposalAcceptRequestSent.class, true);
 		Tracer.setKeywordPrintStatus(ProposalConsensusOccurred.class, true);
 		
-		Tracer.setKeywordPrintStatus(ProposalLearnedNotificationtReceived.class, true);
-		Tracer.setKeywordPrintStatus(ProposalLearnedNotificationtSent.class, true);
-		Tracer.setKeywordPrintStatus(ProposalLearnNotificationtReceived.class, true);
+		Tracer.setKeywordPrintStatus(ProposalLearnedNotificationReceived.class, true);
+		Tracer.setKeywordPrintStatus(ProposalLearnedNotificationSent.class, true);
+		
+		Tracer.setKeywordPrintStatus(ProposalLearnNotificationReceived.class, true);
 		Tracer.setKeywordPrintStatus(ProposalLearnNotificationtSent.class, true);
+		
+		Tracer.setKeywordPrintStatus(ProposalPreparedNotificationReceived.class, true);
+		Tracer.setKeywordPrintStatus(ProposalPreparedNotificationSent.class, true);
+		
+		Tracer.setKeywordPrintStatus(ProposalPrepareNotificationReceived.class, true);
+		Tracer.setKeywordPrintStatus(ProposalPrepareNotificationSent.class, true);
 		
 		Tracer.setKeywordPrintStatus(ProposalStateChanged.class, true);
 		Tracer.setKeywordPrintStatus(ProposalWaitEnded.class, true);
