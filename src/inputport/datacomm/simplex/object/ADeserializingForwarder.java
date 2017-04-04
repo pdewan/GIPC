@@ -36,10 +36,9 @@ public class ADeserializingForwarder extends AnAbstractReceiveTrapper<ByteBuffer
 //			destination.notifyPortReceive(remoteEnd, serializable);	
 			notifySerializable(remoteEnd, serializable);
 		} catch (Throwable e) {
-//			e.printStackTrace();
-			System.err.println("Forwarding unserializable byte buffer to receive listener");
+			e.printStackTrace();
 			// the receiver may be able to do something with the ByteBuffer
-			destination.notifyPortReceive(remoteEnd, message);
+//			destination.notifyPortReceive(remoteEnd, message);
 		}
 	}
 	protected void notifySerializable(String remoteEnd, Object serializable) {

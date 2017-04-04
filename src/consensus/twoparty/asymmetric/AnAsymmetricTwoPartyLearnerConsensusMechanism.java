@@ -26,7 +26,7 @@ public class AnAsymmetricTwoPartyLearnerConsensusMechanism<StateType> extends
 	public void learn(float aProposalNumber, StateType aProposal) {
 		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
 		newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
-		proposer.learned(aProposalNumber, aProposal);
+		proposer().learned(aProposalNumber, aProposal);
 		ProposalLearnedNotificationSent.newCase(this, getObjectName(), aProposalNumber, aProposal);
 		ProposalConsensusOccurred.newCase(this, getObjectName(), aProposalNumber, aProposal);
 	}

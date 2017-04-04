@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import port.trace.consensus.ProposalConsensusOccurred;
 import port.trace.consensus.ProposalStateChanged;
 import port.trace.consensus.ProposalWaitEnded;
 import port.trace.consensus.ProposalWaitStarted;
@@ -29,6 +30,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected Float lastProposalNumber;
 	protected Float myLastProposalNumber;
 	protected StateType myLastState;
+	protected Map<String, Integer> proposalCounts = new HashMap<String, Integer>();
 
 	protected List<ConsensusListener<StateType>> consensusListeners = new ArrayList();
 	protected Map<Float, ProposalState> proposalState = new HashMap();
@@ -187,6 +189,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			newProposalState(aProposalNumber, proposalValue.get(aProposalNumber), aProposalState);
 		}		
 	}
+	
 	protected synchronized void newProposalState(float aProposalNumber, StateType aState, ProposalState aProposalState ) {
 		if (aState == null) {
 			System.out.println (" Null state");
@@ -207,6 +210,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 				aConsensusListener.newRemoteProposalState(aProposalNumber, aState, aProposalState);
 			}
 		}
+		
 		notifyAll();
 //		System.out.println("notify all");
 
@@ -294,7 +298,23 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		newProposalState(getPendingProposalsBefore(aProposalNumber),
 				ProposalState.PROPOSAL_SUPERSEDED);
 	}
-	
+	protected String makeKey(Float aProposalNumber, String anAttribute) {
+		return aProposalNumber +"." + anAttribute;
+	}
+	protected boolean isKeyOf(String aKey, Float aProposalNumber) {
+		return aKey.startsWith(""+ aProposalNumber);
+	}
+	protected Integer getCount(Float aProposalNumber, String anAttribute) {
+		return proposalCounts.get(makeKey(aProposalNumber, anAttribute));
+		
+	}
+	protected void setCount(Float aProposalNumber, String anAttribute, int anIncrement) {
+		proposalCounts.put(makeKey(aProposalNumber, anAttribute), anIncrement);
+		
+	}
+	protected void incrementCount(Float aProposalNumber, String anAttribute, int anIncrement) {
+		setCount(aProposalNumber, anAttribute, anIncrement + getCount(aProposalNumber, anAttribute));		
+	}
 	
 	protected Set<Float> getPendingProposalsBefore(float aProposalNumber) {
 		Set<Float> retVal = new HashSet();

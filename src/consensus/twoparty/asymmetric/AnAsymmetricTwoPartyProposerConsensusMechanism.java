@@ -20,31 +20,34 @@ import consensus.ConsensusState;
 
 public class AnAsymmetricTwoPartyProposerConsensusMechanism<StateType> extends
 		AnAbstractConsensusMechanism<StateType> implements TwoPartyAsymmetricProposerConsensusMechanism<StateType> {
-	Learner<StateType> peerProxy;
+	protected Learner<StateType> learner;
 
 	public AnAsymmetricTwoPartyProposerConsensusMechanism(ConnectionRegistrar anInputPort, String aName, short aMyId,
 			Learner<StateType> aPeerProxy) {
 		super(anInputPort, aName, aMyId);
-		peerProxy = aPeerProxy;
+		learner = aPeerProxy;
 	}
-	@Override
-	protected boolean allowConcurrentProposals() {
-		return false;
+	protected Learner<StateType> learner() {
+		return learner;
+	}
+//	@Override
+//	protected boolean allowConcurrentProposals() {
+//		return false;
+//	}
+	protected void sendLearnNotification(float aProposalNumber, StateType aProposal) {
+		ProposalLearnNotificationtSent.newCase(this, getObjectName(),
+				aProposalNumber, aProposal);
+		learner.learn(aProposalNumber, aProposal);		
 	}
 	@Override
 	protected void propose(float aProposalNumber, StateType aProposal) {
-		ProposalLearnNotificationtSent.newCase(this, getObjectName(),
-				aProposalNumber, aProposal);
-		peerProxy.learn(aProposalNumber, aProposal);
-		
+		sendLearnNotification(aProposalNumber, aProposal);		
 	}
 	@Override
 	public void learned(float aProposalNumber, StateType aProposal) {
-		newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
 		ProposalLearnedNotificationReceived.newCase(this, getObjectName(),
 				aProposalNumber, aProposal);
-		ProposalConsensusOccurred.newCase(this, getObjectName(),
-				aProposalNumber, aProposal);		
+		newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);			
 	}
 
 }
