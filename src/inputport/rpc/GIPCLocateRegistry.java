@@ -11,20 +11,21 @@ public class GIPCLocateRegistry {
 	static protected String lastServerName;
 	static protected String lastClientName;
 	public static GIPCRegistry createRegistry(int aPortNumber) {
-//		lastServerName = serverNamePrefix + lastServerId;
-//		lastServerId++;
-//		String aServerId = "" + aPortNumber;
-//		GIPCRegistry result = new AnAbstractDuplexRPCServerPortLauncher(lastServerName, aServerId);	
-//		result.launch();
-		GIPCRegistry result = createRegistryWithoutConnecting(aPortNumber);
+		lastServerName = serverNamePrefix + lastServerId;
+		lastServerId++;
+		String aServerId = "" + aPortNumber;
+		GIPCRegistry result = new AnAbstractDuplexRPCServerPortLauncher(lastServerName, aServerId);	
 		result.launch();
+//		GIPCRegistry result = createRegistryWithoutConnecting(aPortNumber);
+//		result.launch();
 		return result;
 	}
 	public static GIPCRegistry createRegistryWithoutConnecting(int aPortNumber) {
 		lastServerName = serverNamePrefix + lastServerId;
 		lastServerId++;
 		String aServerId = "" + aPortNumber;
-		GIPCRegistry result = new AnAbstractDuplexRPCServerPortLauncher(lastServerName, aServerId);	
+		AnAbstractDuplexRPCServerPortLauncher result = new AnAbstractDuplexRPCServerPortLauncher(lastServerName, aServerId);	
+		result.launchWithoutConnecting();
 //		result.launch();
 		return result;
 	}

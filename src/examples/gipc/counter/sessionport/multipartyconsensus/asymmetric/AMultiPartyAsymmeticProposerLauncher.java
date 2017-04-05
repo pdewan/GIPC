@@ -65,7 +65,7 @@ public class AMultiPartyAsymmeticProposerLauncher extends ATwoPartyAsymmeticProp
 	}
 
 	protected static void init(String aLocalName, int aPortNumber) {
-		gipcRegistry = GIPCLocateSessionRegistry.createSessionRegistryWithoutConnecting(
+		gipcRegistry = GIPCLocateSessionRegistry.createSessionRegistry(
 				"mysession", "localhost", aPortNumber, aLocalName,
 				sessionChoice, 
 				numMembersToWaitFor);
@@ -73,7 +73,7 @@ public class AMultiPartyAsymmeticProposerLauncher extends ATwoPartyAsymmeticProp
 		short anId = Short.parseShort(aLocalName);
 		initGreetingConsensusMechanism(anId);
 		initMeaningOfLifeConsensusMechanism(anId);	
-		gipcRegistry.connect();
+//		gipcRegistry.connect();
 	}
 
 

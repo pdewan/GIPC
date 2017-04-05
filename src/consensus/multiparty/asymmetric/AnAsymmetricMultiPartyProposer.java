@@ -40,6 +40,8 @@ public class AnAsymmetricMultiPartyProposer<StateType>
 			incrementCount(aProposalNumber, ACCEPT_AGREEMENT, 1);
 		} else {
 			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_REJECTED);
+		      sendLearnNotification(aProposalNumber, aProposal, false);
+
 		}
 		if (!isPending(aProposalNumber)) {
 			return;

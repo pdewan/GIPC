@@ -26,6 +26,7 @@ import sessionport.rpc.group.GroupRPCSessionPort;
 import examples.gipc.counter.layers.AMultiLayeServerReceiveListener;
 import examples.gipc.counter.layers.AMultiLayerCounterServer;
 import examples.gipc.counter.sessionport.CounterSessionMember;
+import examples.gipc.counter.sessionport.twopartyconsensus.asymmetric.AConsensusVetoer;
 import examples.gipc.counter.sessionport.twopartyconsensus.asymmetric.ATwoPartyAsymmetricAcceptorLauncher;
 import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
@@ -42,6 +43,7 @@ public class MultiPartyAsymmetricAcceptor2Launcher extends AMultiPartyAsymmetric
 	public static void beListener() {
 		ConsensusTraceUtility.setTracing();
 		init(MY_NAME, MY_PORT_NUMBER);
+		greetingMechanism.addConsensusVetoer(new AConsensusVetoer<String>());
 	}
 
 	public static void main (String[] args) {

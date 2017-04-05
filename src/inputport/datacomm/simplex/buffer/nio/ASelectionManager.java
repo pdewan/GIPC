@@ -212,7 +212,7 @@ public class ASelectionManager implements SelectionManager {
 				processSelectedOperation();			
 			} catch (Exception e) {
 				// Disconnect does not seem to come here
-//				e.printStackTrace();
+				e.printStackTrace();
 				System.err.println("Process select operation exception:" + e.getMessage());
 			}	
 		}

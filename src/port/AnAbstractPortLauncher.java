@@ -1064,11 +1064,12 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 		createTracers();
 		createAndBindConnectablePorts();
 		setStateAfterPortButBeforeConnection();
-		connectPorts();
+//		connectPorts();
 	}
 	public void connect() {
 		connectPorts();
-		waitForConnections();
+//		waitForConnections();
+		waitForConnections();// for member connections, this is kludgy
 	}
 	
 	public void connected(String aRemoteEndName, ConnectionType aConnectionType) {
@@ -1101,6 +1102,7 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	}
 	protected synchronized void connectedToAllPorts() {
 		connectedToAllPorts = true;
+//		if (numPendingMemberConnects != null  <= 0)
 		notify();
 		if (!startAsyncThread()) {
 			return;

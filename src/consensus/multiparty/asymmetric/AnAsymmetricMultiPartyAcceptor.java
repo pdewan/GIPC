@@ -35,8 +35,9 @@ public class AnAsymmetricMultiPartyAcceptor<StateType>
 	public void accept(float aProposalNumber, StateType aProposal) {
 		ProposalAcceptRequestReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
 		addProposal(aProposalNumber, aProposal);
-		proposer().accepted(aProposalNumber, aProposal, true);
-		ProposalAcceptedNotificationSent.newCase(this, getObjectName(), aProposalNumber, aProposal, true);
+		boolean anAgreement = checkWithVetoers(aProposalNumber, aProposal);
+		proposer().accepted(aProposalNumber, aProposal, anAgreement );
+		ProposalAcceptedNotificationSent.newCase(this, getObjectName(), aProposalNumber, aProposal, anAgreement);
 	}
 	@Override
 	public void learn(float aProposalNumber, StateType aState, boolean anAgreement) {
