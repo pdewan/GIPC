@@ -5,7 +5,7 @@ import consensus.Acceptor;
 import consensus.ConsensusMechanism;
 import consensus.Learner;
 
-public interface TwoPartyAsymmetricAcceptorConsensusMechanism<StateType> extends 
+public interface TwoPartyAsymmetricAcceptor<StateType> extends 
 		ConsensusMechanism<StateType>,
 		Acceptor<StateType> {
 		

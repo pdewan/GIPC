@@ -33,6 +33,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected Map<String, Integer> proposalCounts = new HashMap<String, Integer>();
 
 	protected List<ConsensusListener<StateType>> consensusListeners = new ArrayList();
+	protected List<ConsensusVetoer<StateType>> consensusVetoers = new ArrayList();
+
 	protected Map<Float, ProposalState> proposalState = new HashMap();
 	protected Map<Float, StateType> proposalValue = new HashMap();
 	protected String objectName;
@@ -143,6 +145,16 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		consensusListeners.remove(aConsensusListener);		
 	}
 	@Override
+	public void addConsensusVetoer(
+			ConsensusVetoer<StateType> aConsensusVetoer) {
+		consensusVetoers.add(aConsensusVetoer);
+	}
+	@Override
+	public void removeConsensusVetoer(
+			ConsensusVetoer<StateType> aConsensusVetoer) {
+		consensusVetoers.remove(aConsensusVetoer);		
+	}
+	@Override
 	public StateType getConsensusState() {
 		return consensusState;
 	}
@@ -192,20 +204,23 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			newProposalState(aProposalNumber, proposalValue.get(aProposalNumber), aProposalState);
 		}		
 	}
-	
-	protected synchronized void newProposalState(float aProposalNumber, StateType aState, ProposalState aProposalState ) {
-		if (aState == null) {
-			System.out.println (" Null state");
-		}
-		ProposalStateChanged.newCase(this, getObjectName(), aProposalNumber, aState, aProposalState);
+   protected synchronized boolean checkWithVetoers(float aProposalNumber, StateType aState ) {		
+		for (ConsensusVetoer<StateType> aConsensusVetoer:consensusVetoers){
+			if (!aConsensusVetoer.acceptProposal(aProposalNumber, aState)) {
+				return false;
+			}			
+		}		
+		return true;
+	}
+	protected synchronized void notify(float aProposalNumber, StateType aState, ProposalState aProposalState ) {
+		
 		boolean isLocal = isMyProposal(aProposalNumber);
 		for (ConsensusListener<StateType> aConsensusListener:consensusListeners){
-			
+			aConsensusListener.newProposalState(aProposalNumber, aState, aProposalState);
 			if (aProposalState == ProposalState.PROPOSAL_CONSENSUS) {
 				aConsensusListener.newConsensusState(aState);
 				consensusState = aState;
 			}
-			proposalState.put(aProposalNumber, aProposalState);	
 
 			if (isLocal) {
 				aConsensusListener.newLocalProposalState(aProposalNumber, aState, aProposalState);	
@@ -216,6 +231,16 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		
 		notifyAll();
 //		System.out.println("notify all");
+
+	}
+	
+	protected synchronized void newProposalState(float aProposalNumber, StateType aState, ProposalState aProposalState ) {
+		if (aState == null) {
+			System.out.println (" Null state");
+		}
+		proposalState.put(aProposalNumber, aProposalState);	
+		ProposalStateChanged.newCase(this, getObjectName(), aProposalNumber, aState, aProposalState);
+		notify(aProposalNumber, aState, aProposalState);
 
 	}
 //	protected void newLocalProposalState(double aProposalNumber, StateType aState, ProposalState aProposalState ) {
@@ -316,7 +341,11 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		
 	}
 	protected void incrementCount(Float aProposalNumber, String anAttribute, int anIncrement) {
-		setCount(aProposalNumber, anAttribute, anIncrement + getCount(aProposalNumber, anAttribute));		
+		Integer aCount = getCount(aProposalNumber, anAttribute);
+		if (aCount == null) {
+			aCount = 0;
+		}
+		setCount(aProposalNumber, anAttribute, anIncrement + aCount);		
 	}
 	
 	protected Set<Float> getPendingProposalsBefore(float aProposalNumber) {
@@ -352,6 +381,6 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 
 	@Override
 	public boolean isPending(float aProposalNumber) {
-		return proposalState.get(aProposalNumber) == ProposalState.PROPOSAL_NOT_COMMUNICATED;
+		return proposalState.get(aProposalNumber) == ProposalState.PROPOSAL_PENDING;
 	}
 }

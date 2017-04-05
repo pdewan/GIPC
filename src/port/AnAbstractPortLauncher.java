@@ -1053,11 +1053,22 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 
 
 	public void launch () {
+		launchWithoutConnecting();
+//		createTracers();
+//		createAndBindConnectablePorts();
+//		setStateAfterPortButBeforeConnection();
+;
+		connectPorts();
+	}
+	public void launchWithoutConnecting () {
 		createTracers();
 		createAndBindConnectablePorts();
 		setStateAfterPortButBeforeConnection();
-;
 		connectPorts();
+	}
+	public void connect() {
+		connectPorts();
+		waitForConnections();
 	}
 	
 	public void connected(String aRemoteEndName, ConnectionType aConnectionType) {
@@ -1129,6 +1140,15 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	}
 	public Object lookup(Class anInterface, String aName) {
 		return createProxy( anInterface, aName);
+	}
+	public Object lookupCaller(Class anInterface, String aName) {
+		if (getInputPort() instanceof DuplexRPCServerInputPort) {
+			return ReplyRPCProxyGenerator.generateReplyRPCProxy((DuplexRPCServerInputPort) getInputPort(), anInterface, aName);
+
+		} else {
+			System.err.println ("Can generate reply proxy only for server rpc port");
+			return null;
+		}
 	}
 	public void notConnected(String aRemoteEndName, String anExplanation, ConnectionType aConnectionType) {
 		

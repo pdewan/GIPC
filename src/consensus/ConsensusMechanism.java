@@ -13,6 +13,8 @@ public interface ConsensusMechanism<StateType> extends ConsensusState<StateType>
 	Float getLastProposalNumber();
 	void addConsensusListener(ConsensusListener<StateType> aConsensusListener);
 	void removeConsensusListener(ConsensusListener<StateType> aConsensusListener);
+	void addConsensusVetoer(ConsensusVetoer<StateType> aConsensusVetoer);
+	void removeConsensusVetoer(ConsensusVetoer<StateType> aConsensusVetoer);
 	boolean myLastProposalIsPending();
 	boolean someProposalIsPending();
 	boolean isPending(float aProposalNumber);

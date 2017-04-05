@@ -32,6 +32,9 @@ public interface GIPCRegistry extends PortLauncher{
 	 * should be passed as an extra first parameter.
 	 */
 	public Object lookup(Class anInterface, String aName);
+	public Object lookupCaller(Class anInterface, String aName);
+	public void connect();
+
 
 	DuplexRPCClientInputPort getRPCClientPort();
 	DuplexRPCServerInputPort getRPCServerPort();

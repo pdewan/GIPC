@@ -24,4 +24,10 @@ public class AMeaningOfLifeConsensusListener implements ConsensusListener<Intege
 		System.out.println("Meaning of Life:" + aState);		
 	}
 
+	@Override
+	public void newProposalState(float aProposalNumber, Integer aProposal,
+			ProposalState aProposalState) {
+	
+	}
+
 }

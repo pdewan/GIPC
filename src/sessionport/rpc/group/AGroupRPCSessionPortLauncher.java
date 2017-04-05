@@ -114,7 +114,7 @@ public class AGroupRPCSessionPortLauncher extends
 //			return retVal;
 //		}
 	@Override
-	public Object lookupAllRemoteButCallerProxy(String aProxyName, Class aProxyClass) {
+	public Object lookupAllRemoteButCaller(Class aProxyClass, String aProxyName) {
 		Object retVal = allRemoteButCallerProxy.get(aProxyName);
 		if (retVal == null) {
 
@@ -124,11 +124,11 @@ public class AGroupRPCSessionPortLauncher extends
 		return retVal;
 	}
 	@Override
-	public Object lookupAllRemoteButCallerProxy(String aProxyName) {
-		return lookupAllRemoteButCallerProxy(aProxyName, getMyClass(aProxyName));		
+	public Object lookupAllRemoteButCaller(String aProxyName) {
+		return lookupAllRemoteButCaller(getMyClass(aProxyName), aProxyName);		
 	}
 	@Override
-	public Object lookupMemberProxy(String aRemoteName, String aProxyName, Class aProxyClass) {
+	public Object lookupMember(String aRemoteName, Class aProxyClass, String aProxyName) {
 		Map<String, Object> aMembersProxy = allMembersProxy.get(aRemoteName);
 		if (aMembersProxy == null) {
 			aMembersProxy = new HashMap<String, Object>();
@@ -148,12 +148,12 @@ public class AGroupRPCSessionPortLauncher extends
 	}
 
 	@Override
-	public Object lookupMemberProxy(String aRemoteName, String aProxyName) {
-		return lookupMemberProxy(aRemoteName, aProxyName, getMyClass(aProxyName));
+	public Object lookupMember(String aRemoteName, String aProxyName) {
+		return lookupMember(aRemoteName, getMyClass(aProxyName), aProxyName);
 	}
 	
 	@Override
-	public Object lookupAllRemoteProxy(String aProxyName, Class aProxyClass) {
+	public Object lookupAllRemote(Class aProxyClass, String aProxyName) {
 		Object retVal = allRemoteProxy.get(aProxyName);
 		if (retVal == null) {
 			retVal = GroupRPCProxyGenerator.generateAllRPCProxy((GroupRPCSessionPort) getSessionPort(),  aProxyClass, aProxyName);
@@ -163,8 +163,8 @@ public class AGroupRPCSessionPortLauncher extends
 	}
 
 	@Override
-	public Object lookupAllRemoteMembersProxy(String aProxyName) {
-		return lookupAllRemoteProxy(aProxyName, getMyClass(aProxyName));
+	public Object lookupAllRemoteMembers(String aProxyName) {
+		return lookupAllRemote(getMyClass(aProxyName), aProxyName);
 
 	}
 	@Override
@@ -180,13 +180,13 @@ public class AGroupRPCSessionPortLauncher extends
 	}
 
 	@Override
-	public Object lookupAllMembersProxy(String aProxyName) {
+	public Object lookupAllMembers(String aProxyName) {
 		
-		return lookupAllRemoteAndMeProxy(aProxyName, getMyClass(aProxyName));
+		return lookupAllRemoteAndMe(aProxyName, getMyClass(aProxyName));
 	}
 	
-	@Override
-	public Object lookupAllRemoteAndMeProxy(String aProxyName, Class aProxyClass) {
+	
+	public Object lookupAllRemoteAndMe(String aProxyName, Class aProxyClass) {
 		Object retVal = allRemoteAndMeProxy.get(aProxyName);
 		if (retVal == null) {
 			retVal = GroupRPCProxyGenerator.generateAllAndMeRPCProxy((GroupRPCSessionPort) getSessionPort(),  aProxyClass, aProxyName);

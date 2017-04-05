@@ -2,30 +2,31 @@ package consensus.multiparty.asymmetric;
 
 import inputport.ConnectionRegistrar;
 import port.trace.consensus.ProposalAcceptRequestSent;
+import port.trace.consensus.ProposalAcceptedNotificationReceived;
 import port.trace.consensus.ProposalLearnNotificationSent;
 import port.trace.consensus.ProposalPrepareNotificationSent;
 import port.trace.consensus.ProposalPreparedNotificationReceived;
+import consensus.Accepted;
 import consensus.ProposalState;
 import consensus.multiparty.listener.asymmetric.eventual.AnAsymmetricMultiPartyProposerEventualConsensusMechanism;
 
-public class AnAsymmetricProposerMultiPartyConsensusMechanism<StateType> 
+public class AnAsymmetricMultiPartyProposer<StateType> 
 	extends AnAsymmetricMultiPartyProposerEventualConsensusMechanism<StateType> 
-	implements ProposerOfMultiPartyAcceptor<StateType>{
+	implements Accepted<StateType>{
 	protected int numLearners;
 //	protected MultiPartyAcceptor<StateType> acceptors;
-	public AnAsymmetricProposerMultiPartyConsensusMechanism(
+	public AnAsymmetricMultiPartyProposer(
 			ConnectionRegistrar anInputPort, String aName, short aMyId,
-			MultiPartyAcceptor<StateType> anAcceptors, short aNumLearners) {
+			AsymmetricMultiPartyAcceptor<StateType> anAcceptors, short aNumLearners) {
 		super(anInputPort, aName, aMyId, anAcceptors);
 		numLearners = aNumLearners;
 	}
-	protected MultiPartyAcceptor<StateType> acceptors() {
-		return  (MultiPartyAcceptor<StateType>) learners;
+	protected AsymmetricMultiPartyAcceptor<StateType> acceptors() {
+		return  (AsymmetricMultiPartyAcceptor<StateType>) learners;
 	}
 	protected void propose(float aProposalNumber, StateType aProposal) {
-		ProposalPrepareNotificationSent.newCase(this, getObjectName(),
-				aProposalNumber, aProposal);
-			
+		
+			sendAcceptRequest(aProposalNumber, aProposal);
 	}
 	protected void sendAcceptRequest(float aProposalNumber, StateType aProposal) {
 		ProposalAcceptRequestSent.newCase(this, getObjectName(),
@@ -34,18 +35,19 @@ public class AnAsymmetricProposerMultiPartyConsensusMechanism<StateType>
 	}
 	@Override
 	public void accepted(float aProposalNumber, StateType aProposal, boolean anAgreement) {
-		ProposalPreparedNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
+		ProposalAcceptedNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, anAgreement);
 		if (anAgreement) {
 			incrementCount(aProposalNumber, ACCEPT_AGREEMENT, 1);
 		} else {
 			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_REJECTED);
 		}
-		if (isPending(aProposalNumber)) {
+		if (!isPending(aProposalNumber)) {
 			return;
+		}	
+		if (getCount(aProposalNumber, ACCEPT_AGREEMENT) == numLearners) {
+	      sendLearnNotification(aProposalNumber, aProposal, true);
+		  newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
 		}
-		
-	    sendLearnNotification(aProposalNumber, aProposal, true);
-		newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);	
 
 		}		
 	}

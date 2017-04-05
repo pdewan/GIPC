@@ -11,14 +11,37 @@ public class GIPCLocateRegistry {
 	static protected String lastServerName;
 	static protected String lastClientName;
 	public static GIPCRegistry createRegistry(int aPortNumber) {
+//		lastServerName = serverNamePrefix + lastServerId;
+//		lastServerId++;
+//		String aServerId = "" + aPortNumber;
+//		GIPCRegistry result = new AnAbstractDuplexRPCServerPortLauncher(lastServerName, aServerId);	
+//		result.launch();
+		GIPCRegistry result = createRegistryWithoutConnecting(aPortNumber);
+		result.launch();
+		return result;
+	}
+	public static GIPCRegistry createRegistryWithoutConnecting(int aPortNumber) {
 		lastServerName = serverNamePrefix + lastServerId;
 		lastServerId++;
 		String aServerId = "" + aPortNumber;
 		GIPCRegistry result = new AnAbstractDuplexRPCServerPortLauncher(lastServerName, aServerId);	
-		result.launch();
+//		result.launch();
 		return result;
 	}
 	public static GIPCRegistry getRegistry(String aHostName, int aPortNumber, String aClientName) {
+//		lastClientName = clientNamePrefix + lastClientId;
+//		lastClientId++;
+//		String aServerId = "" + aPortNumber;
+//		AnAbstractDuplexRPCClientPortLauncher result = new AnAbstractDuplexRPCClientPortLauncher(
+//				aClientName, 
+//				aHostName,
+//				aServerId,
+//				lastServerName);
+		GIPCRegistry result = getRegistryWithoutConnecting(aHostName, aPortNumber, aClientName);
+		result.connect();
+		return result;
+	}
+	public static GIPCRegistry getRegistryWithoutConnecting(String aHostName, int aPortNumber, String aClientName) {
 //		lastClientName = clientNamePrefix + lastClientId;
 //		lastClientId++;
 		String aServerId = "" + aPortNumber;
@@ -27,8 +50,8 @@ public class GIPCLocateRegistry {
 				aHostName,
 				aServerId,
 				lastServerName);	
-		result.launch();
-		result.waitForConnections();
+		result.launchWithoutConnecting();
+//		result.waitForConnections();
 		return result;
 	}
 	

@@ -2,21 +2,19 @@ package examples.gipc.counter.sessionport.twopartyconsensus.symmetric;
 
 import port.trace.consensus.ConsensusTraceUtility;
 
-public class TwoPartySymmetricConsensusMember2 extends ATwoPartySymmetricConsensusSessionMember{
-	static final int MY_PORT_NUMBER = 7002;
-	static final String MY_NAME = "2";
-	public static final String GREETING_1 = "Ca Va";
-	public static final String GREETING_2 = "Bonjour";
-	public static int MEANING = 42;
+public class TwoPartySymmetricPeer1Launcher extends ATwoPartySymmetricPeerLauncher{
+	static final int MY_PORT_NUMBER = 7001;
+	static final String MY_NAME = "1";
+	public static final String GREETING_1 = "Hello";
+	public static final String GREETING_2 = "Howdy";
+	public static int MEANING = 29;
 
 
 	
 	public static void doOperations() {
 		float aGreetingProposal1 = greetingMechanism.propose(GREETING_1);
-//		greetingMechanism.waitForStateChange(aGreetingProposal1);
-
+		greetingMechanism.waitForStateChange(aGreetingProposal1);
 		float aGreetingProposal2 = greetingMechanism.propose(GREETING_2);
-
 		float aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING);
 		greetingMechanism.waitForStateChange(aGreetingProposal2);
 		meaningOfLifeMechanism.waitForStateChange(aMeaningOfLifeProposal);		
@@ -31,5 +29,6 @@ public class TwoPartySymmetricConsensusMember2 extends ATwoPartySymmetricConsens
 	public static void main (String[] args) {
 		
 		beSessionMember();
+//		doOperations();
 	}
 }

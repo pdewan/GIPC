@@ -10,10 +10,10 @@ import consensus.Learned;
 import consensus.Learner;
 import consensus.multiparty.listener.asymmetric.eventual.AnAsymmetricMultiPartyLearnerConsensusMechanism;
 import consensus.multiparty.listener.asymmetric.eventual.MultiPartyAsymmetricListenerConsensusMechanism;
-import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyAcceptorConsensusMechanism;
-import consensus.twoparty.asymmetric.TwoPartyAsymmetricAcceptorConsensusMechanism;
-import consensus.twoparty.symmetric.ASymmetricTwoPartyConsensusMechanism;
-import consensus.twoparty.symmetric.RemoteTwoPartyPeer;
+import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyAcceptor;
+import consensus.twoparty.asymmetric.TwoPartyAsymmetricAcceptor;
+import consensus.twoparty.symmetric.ASymmetricTwoPartyPeer;
+import consensus.twoparty.symmetric.SymmetricTwoPartyPeer;
 import consensus.twoparty.symmetric.TwoPartySymmetricConsensusMechanism;
 import bus.uigen.visitors.AddListenersAdapterVisitor;
 import inputport.rpc.GIPCRegistry;
@@ -30,9 +30,9 @@ import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;
 
-public class ATwoPartyAsymmetricConsensusSessionAcceptor implements TwoPartyConsensusSessionMember {
-	protected static TwoPartyAsymmetricAcceptorConsensusMechanism<String> greetingMechanism;
-	protected static TwoPartyAsymmetricAcceptorConsensusMechanism<Integer> meaningOfLifeMechanism;
+public class ATwoPartyAsymmetricAcceptorLauncher implements TwoPartyMember {
+	protected static TwoPartyAsymmetricAcceptor<String> greetingMechanism;
+	protected static TwoPartyAsymmetricAcceptor<Integer> meaningOfLifeMechanism;
 	protected static Accepted<String> remoteGreetingMechanism;
 	protected static Accepted<Integer> remoteMeaningOfLifeMechanism;
 	protected static GIPCSessionRegistry gipcRegistry;
@@ -45,17 +45,19 @@ public class ATwoPartyAsymmetricConsensusSessionAcceptor implements TwoPartyCons
 	
 	
 	protected static void initGreetingConsensusMechanism(short anId) {
-		remoteGreetingMechanism = (Accepted) gipcRegistry.lookupAllRemoteProxy(GREETING_CONSENSUS_MECHANISM_NAME, Accepted.class);
+		remoteGreetingMechanism = (Accepted) gipcRegistry.lookupAllRemote(Accepted.class, GREETING_CONSENSUS_MECHANISM_NAME);
 
-		greetingMechanism = new AnAsymmetricTwoPartyAcceptorConsensusMechanism(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, remoteGreetingMechanism);
+		greetingMechanism = new AnAsymmetricTwoPartyAcceptor(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, remoteGreetingMechanism);
 		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());	
+		greetingMechanism.addConsensusVetoer(new AConsensusVetoer<String>());
 		gipcRegistry.rebind(GREETING_CONSENSUS_MECHANISM_NAME, greetingMechanism);
 	}	
 	protected static void initMeaningOfLifeConsensusMechanism(short anId) {
-		remoteMeaningOfLifeMechanism = (Accepted) gipcRegistry.lookupAllRemoteProxy(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, Learned.class);
-
-		meaningOfLifeMechanism = new AnAsymmetricTwoPartyAcceptorConsensusMechanism<>(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, remoteMeaningOfLifeMechanism);
+		remoteMeaningOfLifeMechanism = (Accepted) gipcRegistry.lookupAllRemote(Accepted.class, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME);
+		meaningOfLifeMechanism = new AnAsymmetricTwoPartyAcceptor<>(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, remoteMeaningOfLifeMechanism);
 		meaningOfLifeMechanism.addConsensusListener(new AMeaningOfLifeConsensusListener());
+		meaningOfLifeMechanism.addConsensusVetoer(new AConsensusVetoer<Integer>());
+
 		gipcRegistry.rebind(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, meaningOfLifeMechanism);		
 	}
 

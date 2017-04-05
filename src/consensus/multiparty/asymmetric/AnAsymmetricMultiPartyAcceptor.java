@@ -1,5 +1,6 @@
 package consensus.multiparty.asymmetric;
 
+import port.trace.consensus.ProposalAcceptRequestReceived;
 import port.trace.consensus.ProposalAcceptedNotificationSent;
 import port.trace.consensus.ProposalConsensusOccurred;
 import port.trace.consensus.ProposalLearnNotificationReceived;
@@ -8,30 +9,31 @@ import port.trace.consensus.ProposalPrepareNotificationReceived;
 import port.trace.consensus.ProposalPreparedNotificationReceived;
 import port.trace.consensus.ProposalPreparedNotificationSent;
 import inputport.ConnectionRegistrar;
+import consensus.Accepted;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.Learned;
 import consensus.ProposalState;
 import consensus.multiparty.listener.asymmetric.eventual.AnAsymmetricMultiPartyLearnerConsensusMechanism;
 
-public class AnAsymmetricAcceptorMultiPartyConsensusMechanism<StateType> 
+public class AnAsymmetricMultiPartyAcceptor<StateType> 
 	extends AnAbstractConsensusMechanism<StateType> 
-	implements MultiPartyAcceptor<StateType>{
-	ProposerOfMultiPartyAcceptor<StateType> proposer;
+	implements AsymmetricMultiPartyAcceptor<StateType>{
+	Accepted<StateType> proposer;
 
-	public AnAsymmetricAcceptorMultiPartyConsensusMechanism(
+	public AnAsymmetricMultiPartyAcceptor(
 			ConnectionRegistrar anInputPort, String aName, short aMyId,
-			ProposerOfMultiPartyAcceptor<StateType> aProposer) {
+			Accepted<StateType> aProposer) {
 		super(anInputPort, aName, aMyId);
 		proposer = aProposer;
 	}
-	protected ProposerOfMultiPartyAcceptor proposer() {
+	protected Accepted proposer() {
 		return proposer;
 	}
 	
 
 	@Override
 	public void accept(float aProposalNumber, StateType aProposal) {
-		ProposalPrepareNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
+		ProposalAcceptRequestReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
 		addProposal(aProposalNumber, aProposal);
 		proposer().accepted(aProposalNumber, aProposal, true);
 		ProposalAcceptedNotificationSent.newCase(this, getObjectName(), aProposalNumber, aProposal, true);

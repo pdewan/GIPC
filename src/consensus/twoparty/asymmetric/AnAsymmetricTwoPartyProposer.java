@@ -2,6 +2,7 @@ package consensus.twoparty.asymmetric;
 
 import inputport.ConnectionRegistrar;
 import port.trace.consensus.ProposalAcceptRequestSent;
+import port.trace.consensus.ProposalAcceptedNotificationReceived;
 import port.trace.consensus.ProposalAcceptedNotificationSent;
 import port.trace.consensus.ProposalLearnedNotificationReceived;
 import consensus.Acceptor;
@@ -9,11 +10,11 @@ import consensus.AnAbstractConsensusMechanism;
 import consensus.Acceptor;
 import consensus.ProposalState;
 
-public class AnAsymmetricTwoPartyProposerConsensusMechanism<StateType> extends
-		AnAbstractConsensusMechanism<StateType> implements TwoPartyAssymetricProposerConsensusMechanism<StateType> {
+public class AnAsymmetricTwoPartyProposer<StateType> extends
+		AnAbstractConsensusMechanism<StateType> implements TwoPartyAssymetricProposer<StateType> {
 	protected Acceptor<StateType> acceptor;
 
-	public AnAsymmetricTwoPartyProposerConsensusMechanism(ConnectionRegistrar anInputPort, String aName, short aMyId,
+	public AnAsymmetricTwoPartyProposer(ConnectionRegistrar anInputPort, String aName, short aMyId,
 			Acceptor<StateType> aPeerProxy) {
 		super(anInputPort, aName, aMyId);
 		acceptor = aPeerProxy;
@@ -36,8 +37,8 @@ public class AnAsymmetricTwoPartyProposerConsensusMechanism<StateType> extends
 	}
 	@Override
 	public void accepted(float aProposalNumber, StateType aProposal, boolean anAgreement) {
-		ProposalLearnedNotificationReceived.newCase(this, getObjectName(),
-				aProposalNumber, aProposal);
+		ProposalAcceptedNotificationReceived.newCase(this, getObjectName(),
+				aProposalNumber, aProposal, anAgreement);
 		if (anAgreement)
 			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);	
 		else
