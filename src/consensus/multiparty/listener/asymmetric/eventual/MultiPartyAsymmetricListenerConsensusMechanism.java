@@ -1,13 +1,11 @@
-package consensus.twoparty.symmetric;
+package consensus.multiparty.listener.asymmetric.eventual;
 
 import inputport.ConnectionListener;
-import consensus.Acceptor;
 import consensus.ConsensusMechanism;
 import consensus.Learner;
 
-public interface TwoPartySymmetricConsensusMechanism<StateType> extends 
+public interface MultiPartyAsymmetricListenerConsensusMechanism<StateType> extends 
 		ConsensusMechanism<StateType>,
-		Acceptor<StateType>,
 		Learner<StateType> {
 		
 //	 void setPeerProxy(RemoteTwoPartyPeer<StateType> aPeerProxy);

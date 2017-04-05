@@ -1,53 +1,48 @@
 package consensus.twoparty.asymmetric;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import port.trace.consensus.ProposalAcceptRequestReceived;
-import port.trace.consensus.ProposalAcceptRequestSent;
-import port.trace.consensus.ProposalConsensusOccurred;
-import port.trace.consensus.ProposalLearnNotificationtSent;
-import port.trace.consensus.ProposalLearnedNotificationReceived;
 import inputport.ConnectionRegistrar;
-import inputport.ConnectionType;
+import port.trace.consensus.ProposalAcceptRequestSent;
+import port.trace.consensus.ProposalAcceptedNotificationSent;
+import port.trace.consensus.ProposalLearnedNotificationReceived;
+import consensus.Acceptor;
 import consensus.AnAbstractConsensusMechanism;
-import consensus.ConsensusListener;
-import consensus.Learner;
+import consensus.Acceptor;
 import consensus.ProposalState;
-import consensus.ConsensusState;
 
 public class AnAsymmetricTwoPartyProposerConsensusMechanism<StateType> extends
-		AnAbstractConsensusMechanism<StateType> implements TwoPartyAsymmetricProposerConsensusMechanism<StateType> {
-	protected Learner<StateType> learner;
+		AnAbstractConsensusMechanism<StateType> implements TwoPartyAssymetricProposerConsensusMechanism<StateType> {
+	protected Acceptor<StateType> acceptor;
 
 	public AnAsymmetricTwoPartyProposerConsensusMechanism(ConnectionRegistrar anInputPort, String aName, short aMyId,
-			Learner<StateType> aPeerProxy) {
+			Acceptor<StateType> aPeerProxy) {
 		super(anInputPort, aName, aMyId);
-		learner = aPeerProxy;
+		acceptor = aPeerProxy;
 	}
-	protected Learner<StateType> learner() {
-		return learner;
+	protected Acceptor<StateType> acceptor() {
+		return acceptor;
 	}
 //	@Override
 //	protected boolean allowConcurrentProposals() {
 //		return false;
 //	}
-	protected void sendLearnNotification(float aProposalNumber, StateType aProposal) {
-		ProposalLearnNotificationtSent.newCase(this, getObjectName(),
+	protected void sendAcceptRequest(float aProposalNumber, StateType aProposal) {
+		ProposalAcceptRequestSent.newCase(this, getObjectName(),
 				aProposalNumber, aProposal);
-		learner.learn(aProposalNumber, aProposal);		
+		acceptor.accept(aProposalNumber, aProposal);		
 	}
 	@Override
 	protected void propose(float aProposalNumber, StateType aProposal) {
-		sendLearnNotification(aProposalNumber, aProposal);		
+		sendAcceptRequest(aProposalNumber, aProposal);		
 	}
 	@Override
-	public void learned(float aProposalNumber, StateType aProposal) {
+	public void accepted(float aProposalNumber, StateType aProposal, boolean anAgreement) {
 		ProposalLearnedNotificationReceived.newCase(this, getObjectName(),
 				aProposalNumber, aProposal);
-		newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);			
+		if (anAgreement)
+			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);	
+		else
+			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_REJECTED);	
+
 	}
 
 }

@@ -1,12 +1,11 @@
 package consensus.twoparty.asymmetric;
 
-import inputport.ConnectionListener;
+import consensus.Accepted;
 import consensus.ConsensusMechanism;
-import consensus.Learner;
 
-public interface TwoPartyAsymmetricListenerConsensusMechanism<StateType> extends 
+public interface TwoPartyAssymetricProposerConsensusMechanism<StateType> extends 
 		ConsensusMechanism<StateType>,
-		Learner<StateType> {
+		Accepted<StateType>{
 		
 //	 void setPeerProxy(RemoteTwoPartyPeer<StateType> aPeerProxy);
 		

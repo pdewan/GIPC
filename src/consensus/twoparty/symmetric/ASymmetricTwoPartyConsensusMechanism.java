@@ -3,52 +3,35 @@ package consensus.twoparty.symmetric;
 import inputport.ConnectionRegistrar;
 import port.trace.consensus.ProposalAcceptRequestReceived;
 import port.trace.consensus.ProposalAcceptRequestSent;
+import port.trace.consensus.ProposalLearnNotificationSent;
+import consensus.Acceptor;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.ProposalState;
+import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyProposerConsensusMechanism;
 
 public class ASymmetricTwoPartyConsensusMechanism<StateType> extends
 		AnAbstractConsensusMechanism<StateType> implements
 		TwoPartySymmetricConsensusMechanism<StateType> {
-	RemoteTwoPartyPeer<StateType> peerProxy;
+	Acceptor<StateType> peer;
 
 	public ASymmetricTwoPartyConsensusMechanism(ConnectionRegistrar anInputPort, String aName, short aMyId,
-			RemoteTwoPartyPeer<StateType> aPeerProxy) {
+			RemoteTwoPartyPeer<StateType> aPeer) {
 		super(anInputPort, aName, aMyId);
-		peerProxy = aPeerProxy;
+		peer = aPeer;
 	}
 
-	// public void setPeerProxy(RemoteTwoPartyPeer<StateType> aPeerProxy) {
-	// peerProxy = aPeerProxy;
-	// }
-
-	// protected synchronized void accepted(int aProposalNumber, StateType
-	// aProposal,
-	// boolean accepted) {
-	// if (accepted) {
-	// newProposalState(aProposalNumber, aProposal,
-	// ProposalState.PROPOSAL_ACCEPTED);
-	// } else {
-	// newProposalState(aProposalNumber, aProposal,
-	// ProposalState.PROPOSAL_REJECTED);
-	// }
-	// // notifyAll();
-	// }
 	public synchronized void learn(float aProposalNumber, StateType aProposal) {
 		newProposalState(aProposalNumber, aProposal,
 				ProposalState.PROPOSAL_CONSENSUS);
 	}
-
-	// public synchronized void rejected(int aProposalNumber, StateType
-	// aProposal) {
-	// newProposalState(aProposalNumber, aProposal,
-	// ProposalState.PROPOSAL_SUPERSEDED);
-	// }
-
-	@Override
-	protected void propose(float aProposalNumber, StateType aProposal) {
+	protected void sendAcceptRequest(float aProposalNumber, StateType aProposal) {
 		ProposalAcceptRequestSent.newCase(this, getObjectName(),
 				aProposalNumber, aProposal);
-		peerProxy.accept(aProposalNumber, aProposal);
+		peer.accept(aProposalNumber, aProposal);		
+	}
+	@Override
+	protected void propose(float aProposalNumber, StateType aProposal) {
+		sendAcceptRequest(aProposalNumber, aProposal);
 	}
 
 	@Override
@@ -58,7 +41,7 @@ public class ASymmetricTwoPartyConsensusMechanism<StateType> extends
 				aProposalNumber, aProposal);
 		if (!myLastProposalIsPending()
 				|| aProposalNumber > myLastProposalNumber) {
-			peerProxy.learn(aProposalNumber, aProposal);
+			peer.accept(aProposalNumber, aProposal);
 			newProposalState(aProposalNumber, aProposal,
 					ProposalState.PROPOSAL_CONSENSUS);
 			supersedePendingProposalsBefore(aProposalNumber);
@@ -71,6 +54,13 @@ public class ASymmetricTwoPartyConsensusMechanism<StateType> extends
 			newProposalState(aProposalNumber, aProposal,
 					ProposalState.PROPOSAL_SUPERSEDED);
 		}
+	}
+
+	@Override
+	public void learn(float aProposalNumber, StateType aProposal,
+			boolean anAgreement) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

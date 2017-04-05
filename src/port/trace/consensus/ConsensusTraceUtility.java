@@ -25,7 +25,7 @@ public class ConsensusTraceUtility {
 		Tracer.setKeywordPrintStatus(ProposalLearnedNotificationSent.class, true);
 		
 		Tracer.setKeywordPrintStatus(ProposalLearnNotificationReceived.class, true);
-		Tracer.setKeywordPrintStatus(ProposalLearnNotificationtSent.class, true);
+		Tracer.setKeywordPrintStatus(ProposalLearnNotificationSent.class, true);
 		
 		Tracer.setKeywordPrintStatus(ProposalPreparedNotificationReceived.class, true);
 		Tracer.setKeywordPrintStatus(ProposalPreparedNotificationSent.class, true);

@@ -9,14 +9,14 @@ import util.trace.TraceableInfo;
 public class ProposalLearnNotificationReceived extends TraceableInfo {
 	
 
-	public ProposalLearnNotificationReceived(String aMessage, Object aSource, String anObjectName, float aProposalNumber, Object aProposal) {
+	public ProposalLearnNotificationReceived(String aMessage, Object aSource, String anObjectName, float aProposalNumber, Object aProposal, boolean anAgreement) {
 		super(aMessage, aSource );
 	}
 	
 	
-	public static ProposalLearnNotificationReceived newCase(Object aSource, String anObjectName, float aProposalNumber, Object aProposal) {
-    	String aMessage =  anObjectName + "," + aProposalNumber + "=" + aProposal;
-    	ProposalLearnNotificationReceived retVal = new ProposalLearnNotificationReceived(aMessage, aSource, anObjectName, aProposalNumber, aProposal);
+	public static ProposalLearnNotificationReceived newCase(Object aSource, String anObjectName, float aProposalNumber, Object aProposal, boolean anAgreement) {
+    	String aMessage =  anObjectName + "," + aProposalNumber + "=" + aProposal + "-->" + anAgreement;
+    	ProposalLearnNotificationReceived retVal = new ProposalLearnNotificationReceived(aMessage, aSource, anObjectName, aProposalNumber, aProposal, anAgreement);
    	    retVal.announce();
     	return retVal;
 
