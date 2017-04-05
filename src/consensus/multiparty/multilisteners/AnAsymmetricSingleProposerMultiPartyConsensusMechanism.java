@@ -36,11 +36,16 @@ public class AnAsymmetricSingleProposerMultiPartyConsensusMechanism<StateType>
 		ProposalPreparedNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
 		if (anAgreement) {
 			incrementCount(aProposalNumber, PREPARED_AGREEMENT, 1);
+		} else {
+			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_REJECTED);
+		}
+		if (isPending(aProposalNumber)) {
+			return;
 		}
 		int aNumAgreements = getCount(aProposalNumber, PREPARED_AGREEMENT);
 		if (aNumAgreements == numLearners) {
 			sendLearnNotification(aProposalNumber, aProposal);
-			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);			
+			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);	
 
 		}		
 	}

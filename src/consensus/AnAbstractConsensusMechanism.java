@@ -80,6 +80,9 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public boolean someProposalIsPending() {
 		return getPendingProposals().size() > 0;
 	}
+	public boolean sPending(float aProposalNumber) {
+		return proposalState.get(aProposalNumber) == ProposalState.PROPOSAL_PENDING;
+	}
 	protected boolean allowConcurrentProposals() {
 		return true;
 	}
@@ -345,5 +348,10 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			ConnectionType aConnectionType) {
 		newProposalState(getPendingProposals(),
 				ProposalState.PROPOSAL_NOT_COMMUNICATED);
+	}
+
+	@Override
+	public boolean isPending(float aProposalNumber) {
+		return proposalState.get(aProposalNumber) == ProposalState.PROPOSAL_NOT_COMMUNICATED;
 	}
 }

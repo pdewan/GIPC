@@ -15,6 +15,7 @@ public interface ConsensusMechanism<StateType> extends ConsensusState<StateType>
 	void removeConsensusListener(ConsensusListener<StateType> aConsensusListener);
 	boolean myLastProposalIsPending();
 	boolean someProposalIsPending();
+	boolean isPending(float aProposalNumber);
 	Set<Float> getPendingProposals();
 
 }
