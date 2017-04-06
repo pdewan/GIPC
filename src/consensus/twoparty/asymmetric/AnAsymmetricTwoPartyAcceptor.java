@@ -28,14 +28,15 @@ public class AnAsymmetricTwoPartyAcceptor<StateType> extends
 	@Override
 	public void accept(float aProposalNumber, StateType aState) {
 		ProposalAcceptRequestReceived.newCase(this, getObjectName(), aProposalNumber, aState);
-		boolean anAcceptResult = checkWithVetoers(aProposalNumber, aState);
-		proposer().accepted(aProposalNumber, aState, anAcceptResult);
-		ProposalAcceptedNotificationSent.newCase(this, getObjectName(), aProposalNumber, aState, anAcceptResult);
-		if (anAcceptResult) {
-			newProposalState(aProposalNumber, aState, ProposalState.PROPOSAL_CONSENSUS);
-		} else {
-			newProposalState(aProposalNumber, aState, ProposalState.PROPOSAL_REJECTED);
-		}
+		boolean anAgreement = checkWithVetoers(aProposalNumber, aState);
+		proposer().accepted(aProposalNumber, aState, anAgreement);
+		ProposalAcceptedNotificationSent.newCase(this, getObjectName(), aProposalNumber, aState, anAgreement);
+		learn(aProposalNumber, aState, anAgreement);
+//		if (anAcceptResult) {
+//			newProposalState(aProposalNumber, aState, ProposalState.PROPOSAL_CONSENSUS);
+//		} else {
+//			newProposalState(aProposalNumber, aState, ProposalState.PROPOSAL_REJECTED);
+//		}
 	}
 
 	

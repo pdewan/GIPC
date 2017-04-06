@@ -127,8 +127,12 @@ public class AGroupRPCSessionPortLauncher extends
 	public Object lookupAllRemoteButCaller(String aProxyName) {
 		return lookupAllRemoteButCaller(getMyClass(aProxyName), aProxyName);		
 	}
+//	@Override
+//	public Object lookupAllRemoteButCaller(Class anInterface, String aProxyName) {
+//		return lookupAllRemoteButCaller(anInterface, aProxyName);		
+//	}
 	@Override
-	public Object lookupMember(String aRemoteName, Class aProxyClass, String aProxyName) {
+	public Object lookup(String aRemoteName, Class aProxyClass, String aProxyName) {
 		Map<String, Object> aMembersProxy = allMembersProxy.get(aRemoteName);
 		if (aMembersProxy == null) {
 			aMembersProxy = new HashMap<String, Object>();
@@ -148,8 +152,8 @@ public class AGroupRPCSessionPortLauncher extends
 	}
 
 	@Override
-	public Object lookupMember(String aRemoteName, String aProxyName) {
-		return lookupMember(aRemoteName, getMyClass(aProxyName), aProxyName);
+	public Object lookup(String aRemoteName, String aProxyName) {
+		return lookup(aRemoteName, getMyClass(aProxyName), aProxyName);
 	}
 	
 	@Override
@@ -163,7 +167,7 @@ public class AGroupRPCSessionPortLauncher extends
 	}
 
 	@Override
-	public Object lookupAllRemoteMembers(String aProxyName) {
+	public Object lookupAllRemote(String aProxyName) {
 		return lookupAllRemote(getMyClass(aProxyName), aProxyName);
 
 	}
@@ -180,13 +184,13 @@ public class AGroupRPCSessionPortLauncher extends
 	}
 
 	@Override
-	public Object lookupAllMembers(String aProxyName) {
+	public Object lookupAll(String aProxyName) {
 		
-		return lookupAllRemoteAndMe(aProxyName, getMyClass(aProxyName));
+		return lookupAll(getMyClass(aProxyName), aProxyName);
 	}
 	
 	
-	public Object lookupAllRemoteAndMe(String aProxyName, Class aProxyClass) {
+	public Object lookupAll(Class aProxyClass, String aProxyName) {
 		Object retVal = allRemoteAndMeProxy.get(aProxyName);
 		if (retVal == null) {
 			retVal = GroupRPCProxyGenerator.generateAllAndMeRPCProxy((GroupRPCSessionPort) getSessionPort(),  aProxyClass, aProxyName);

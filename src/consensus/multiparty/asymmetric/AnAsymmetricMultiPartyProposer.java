@@ -39,7 +39,7 @@ public class AnAsymmetricMultiPartyProposer<StateType>
 		if (anAgreement) {
 			incrementCount(aProposalNumber, ACCEPT_AGREEMENT, 1);
 		} else {
-			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_REJECTED);
+//			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_REJECTED);
 		      sendLearnNotification(aProposalNumber, aProposal, false);
 
 		}
@@ -48,7 +48,7 @@ public class AnAsymmetricMultiPartyProposer<StateType>
 		}	
 		if (getCount(aProposalNumber, ACCEPT_AGREEMENT) == numLearners) {
 	      sendLearnNotification(aProposalNumber, aProposal, true);
-		  newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
+//		  newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
 		}
 
 		}		

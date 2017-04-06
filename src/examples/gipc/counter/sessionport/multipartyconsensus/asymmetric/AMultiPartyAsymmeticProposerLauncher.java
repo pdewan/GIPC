@@ -49,14 +49,14 @@ public class AMultiPartyAsymmeticProposerLauncher extends ATwoPartyAsymmeticProp
 	public static int MEANING = 42;
 	
 	protected static void initGreetingConsensusMechanism(short anId) {
-		remoteGreetingMechanism = (AsymmetricMultiPartyAcceptor) gipcRegistry.lookupAllRemote(AsymmetricMultiPartyAcceptor.class, GREETING_CONSENSUS_MECHANISM_NAME);
+		remoteGreetingMechanism = (AsymmetricMultiPartyAcceptor) gipcRegistry.lookupAll(AsymmetricMultiPartyAcceptor.class, GREETING_CONSENSUS_MECHANISM_NAME);
 		greetingMechanism = new AnAsymmetricMultiPartyProposer(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, remoteGreetingMechanism, (short) (numMembersToWaitFor -1));
 		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());
 		gipcRegistry.rebind(GREETING_CONSENSUS_MECHANISM_NAME, greetingMechanism);
 
 	}	
 	protected static void initMeaningOfLifeConsensusMechanism(short anId) {
-		remoteMeaningOfLifeMechanism = (AsymmetricMultiPartyAcceptor) gipcRegistry.lookupAllRemote(AsymmetricMultiPartyAcceptor.class, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME);
+		remoteMeaningOfLifeMechanism = (AsymmetricMultiPartyAcceptor) gipcRegistry.lookupAll(AsymmetricMultiPartyAcceptor.class, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME);
 		meaningOfLifeMechanism = new AnAsymmetricMultiPartyProposer<>(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, remoteMeaningOfLifeMechanism, (short) (numMembersToWaitFor -1));
 		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());
 		meaningOfLifeMechanism.addConsensusListener(new AMeaningOfLifeConsensusListener());

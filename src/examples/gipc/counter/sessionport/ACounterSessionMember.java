@@ -57,15 +57,15 @@ public class ACounterSessionMember implements CounterSessionMember {
 			Set<String> aMembers = gipcRegistry.getAllMembers();
 			for (String aMember : aMembers) {
 				DistributedRMICounter aMemberCounter = (DistributedRMICounter) gipcRegistry
-						.lookupMember(aMember, COUNTER_NAME);
+						.lookup(aMember, COUNTER_NAME);
 				aMemberCounter.increment(Integer.parseInt(aMember));
 			}
 			DistributedRMICounter anAllRemoteCounter = (DistributedRMICounter) gipcRegistry
-						.lookupAllRemoteMembers(COUNTER_NAME);
+						.lookupAllRemote(COUNTER_NAME);
 //			anAllRemoteCounter.increment(2);
 			System.out.println("All remote counter values:" + anAllRemoteCounter.getValue());
 			DistributedRMICounter anAllRemoteAndMeCounter = (DistributedRMICounter) gipcRegistry
-					.lookupAllMembers(COUNTER_NAME);
+					.lookupAll(COUNTER_NAME);
 //		anAllRemoteCounter.increment(2);
 		System.out.println("All remote and me counter values:" + anAllRemoteAndMeCounter.getValue());
 		} catch (RemoteException e) {

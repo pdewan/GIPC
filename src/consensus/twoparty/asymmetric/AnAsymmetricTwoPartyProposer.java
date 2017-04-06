@@ -39,10 +39,11 @@ public class AnAsymmetricTwoPartyProposer<StateType> extends
 	public void accepted(float aProposalNumber, StateType aProposal, boolean anAgreement) {
 		ProposalAcceptedNotificationReceived.newCase(this, getObjectName(),
 				aProposalNumber, aProposal, anAgreement);
-		if (anAgreement)
-			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);	
-		else
-			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_REJECTED);	
+		learn(aProposalNumber, aProposal, anAgreement);
+//		if (anAgreement)
+//			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);	
+//		else
+//			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_REJECTED);	
 
 	}
 

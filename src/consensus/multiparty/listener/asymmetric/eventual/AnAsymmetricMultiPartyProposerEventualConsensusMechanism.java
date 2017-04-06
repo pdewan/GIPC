@@ -30,7 +30,7 @@ public class AnAsymmetricMultiPartyProposerEventualConsensusMechanism<StateType>
 	@Override
 	protected void propose(float aProposalNumber, StateType aProposal) {
 		sendLearnNotification(aProposalNumber, aProposal, true);	
-		newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);			
+//		newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);			
 
 	}
 	

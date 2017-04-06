@@ -1,5 +1,8 @@
 package consensus;
 
+import inputport.ConnectionRegistrar;
+import inputport.ConnectionType;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,15 +11,10 @@ import java.util.Map;
 import java.util.Set;
 
 import port.trace.consensus.ProposalConsensusOccurred;
+import port.trace.consensus.ProposalLearnNotificationReceived;
 import port.trace.consensus.ProposalStateChanged;
 import port.trace.consensus.ProposalWaitEnded;
 import port.trace.consensus.ProposalWaitStarted;
-import inputport.ConnectionRegistrar;
-import inputport.ConnectionType;
-import inputport.InputPort;
-import consensus.ConsensusListener;
-import consensus.ProposalState;
-import consensus.ConsensusState;
 
 public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechanism<StateType> {
 //	protected ConsensusState<StateType> consensusState;
@@ -383,4 +381,15 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public boolean isPending(float aProposalNumber) {
 		return proposalState.get(aProposalNumber) == ProposalState.PROPOSAL_PENDING;
 	}
+	@Override
+	public void learn(float aProposalNumber, StateType aProposal, boolean anAgreement) {
+		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, anAgreement);
+		if (anAgreement)
+			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
+		else
+			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_REJECTED);
+		
+	}
+	
+
 }

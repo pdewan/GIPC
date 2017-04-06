@@ -10,13 +10,14 @@ public interface GIPCSessionRegistry extends GIPCRegistry{
 	InputPort getInputPort();
 	void rebind(String aProxyName, Object anObject);
 	Object lookupAllRemoteButCaller(String aProxyName) ;
-	Object lookupMember(String aRemoteName, String aProxyName);
-	Object lookupAllRemoteMembers(String aProxyName);
-	Object lookupAllMembers(String aProxyName);	
-	Object lookupAllRemoteButCaller(Class aProxyClass, String aProxyName) ;
-	Object lookupMember(String aRemoteName, Class aProxyClass, String aProxyName);
+	Object lookup(String aMemberName, String aProxyName);
+	Object lookupAllRemote(String aProxyName);
+	Object lookupAllRemoteButCaller(Class anInterface, String aProxyName);
+
+	Object lookupAll(String aProxyName);	
+	Object lookup(String aMemberName, Class aProxyClass, String aProxyName);
 	Object lookupAllRemote(Class aProxyClass, String aProxyName);
-//	Object lookupAllRemoteAndMe(String aProxyName, Class aProxyClass);
+	Object lookupAll(Class aProxyClass, String aProxyName);
 	Set<String> getAllRemoteMembers();
 	Set<String> getAllMembers();
 
