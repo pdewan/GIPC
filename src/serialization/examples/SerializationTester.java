@@ -25,7 +25,10 @@ public class SerializationTester {
 		
 		Serializer serializer = SerializerSelector.createSerializer();
 		translate(serializer, 5);
+		translate(serializer, (short)5);
+		translate(serializer, (long)5);
 		translate(serializer, 5.5);
+		translate(serializer, (float) 5.5);
 		translate (serializer, "hello world");
 		translate(serializer, true);
 		translate(serializer, Color.RED);
