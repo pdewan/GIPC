@@ -1,4 +1,4 @@
-package serialization.examples;
+package examples.serialization;
 
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;

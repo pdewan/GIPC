@@ -1,4 +1,4 @@
-package serialization.examples;
+package examples.serialization;
 public class ABMISpreadsheet implements BMISpreadsheet {
 	double height = 1.77;
 	double weight = 75;	

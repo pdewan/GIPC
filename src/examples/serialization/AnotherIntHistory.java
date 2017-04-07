@@ -1,4 +1,4 @@
-package serialization.examples;
+package examples.serialization;
 
 import java.util.ArrayList;
 import java.util.List;

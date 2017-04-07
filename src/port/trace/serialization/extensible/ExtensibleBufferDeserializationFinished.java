@@ -12,14 +12,14 @@ import util.trace.TraceableInfo;
 
 public class ExtensibleBufferDeserializationFinished extends TraceableInfo {
 	public ExtensibleBufferDeserializationFinished(String aMessage,
-			Object aValueSerializer, ByteBuffer anInputBuffer,
+			Object aValueSerializer, Object anInputBuffer,
 			Object anOutputObject,
 			Object aRetrievedObjects) {
 		super(aMessage, aValueSerializer);
 	}
 
 	public static ExtensibleBufferDeserializationFinished newCase(
-			Object aValueSerializer, String aSource, ByteBuffer anInputBuffer,
+			Object aValueSerializer, String aSource, Object anInputBuffer,
 			Object anOutputObject,
 			Object aRetrievedObjects) {
 		String aMessage = anInputBuffer + "->" + anOutputObject + "(" + aRetrievedObjects + ")";

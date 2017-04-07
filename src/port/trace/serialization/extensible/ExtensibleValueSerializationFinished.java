@@ -1,6 +1,5 @@
 package port.trace.serialization.extensible;
 
-import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
@@ -12,12 +11,12 @@ import util.trace.TraceableInfo;
 
 public class ExtensibleValueSerializationFinished extends TraceableInfo {
 	public ExtensibleValueSerializationFinished(String aMessage,
-			Object aValueSerializer, Object anObject, ByteBuffer anOutputBuffer, Object aVisitedObjects) {
+			Object aValueSerializer, Object anObject, Object anOutputBuffer, Object aVisitedObjects) {
 		super(aMessage, aValueSerializer);
 	}
 
 	public static ExtensibleValueSerializationFinished newCase(Object aValueSerializer,
-			Object anObject, ByteBuffer anOutputBuffer, Object aVisitedObjects) {
+			Object anObject, Object anOutputBuffer, Object aVisitedObjects) {
 		String aMessage = anOutputBuffer + "<--" + anObject + "(" + aVisitedObjects + ")";;
 		ExtensibleValueSerializationFinished retVal = new ExtensibleValueSerializationFinished(
 				aMessage, aValueSerializer, anObject, anOutputBuffer, aVisitedObjects);

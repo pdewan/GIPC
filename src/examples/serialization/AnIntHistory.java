@@ -1,4 +1,4 @@
-package serialization.examples;
+package examples.serialization;
 
 public class AnIntHistory implements IntHistory {
 	public final int MAX_SIZE = 50;
