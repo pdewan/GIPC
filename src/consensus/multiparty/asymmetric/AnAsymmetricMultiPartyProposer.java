@@ -8,17 +8,17 @@ import port.trace.consensus.ProposalPrepareNotificationSent;
 import port.trace.consensus.ProposalPreparedNotificationReceived;
 import consensus.Accepted;
 import consensus.ProposalState;
-import consensus.multiparty.listener.asymmetric.eventual.AnAsymmetricMultiPartyProposerEventualConsensusMechanism;
+import consensus.multiparty.asymmetric.listener.AnAsymmetricMultiPartyProposerConsensusMechanism;
 
 public class AnAsymmetricMultiPartyProposer<StateType> 
-	extends AnAsymmetricMultiPartyProposerEventualConsensusMechanism<StateType> 
+	extends AnAsymmetricMultiPartyProposerConsensusMechanism<StateType> 
 	implements Accepted<StateType>{
 	protected int numLearners;
 //	protected MultiPartyAcceptor<StateType> acceptors;
 	public AnAsymmetricMultiPartyProposer(
 			ConnectionRegistrar anInputPort, String aName, short aMyId,
-			AsymmetricMultiPartyAcceptor<StateType> anAcceptors, short aNumLearners) {
-		super(anInputPort, aName, aMyId, anAcceptors);
+			AsymmetricMultiPartyAcceptor<StateType> anAcceptors, short aNumLearners, boolean anEventualConsistency) {
+		super(anInputPort, aName, aMyId, anAcceptors, anEventualConsistency);
 		numLearners = aNumLearners;
 	}
 	protected AsymmetricMultiPartyAcceptor<StateType> acceptors() {

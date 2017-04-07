@@ -1,4 +1,4 @@
-package consensus.multiparty.listener.asymmetric.eventual;
+package consensus.multiparty.asymmetric.listener;
 
 import inputport.ConnectionListener;
 import consensus.ConsensusMechanism;

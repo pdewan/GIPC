@@ -20,6 +20,10 @@ import port.trace.nio.SocketChannelAccepted;
 import port.trace.nio.SocketChannelConnectFinished;
 import port.trace.nio.SocketChannelRead;
 import port.trace.nio.SocketChannelWritten;
+import port.trace.objects.BufferDeserializationFinished;
+import port.trace.objects.BufferDeserializationInitiated;
+import port.trace.objects.ObjectSerializationFinished;
+import port.trace.objects.ObjectSerializationInitiated;
 import port.trace.objects.TrapperObjectReceived;
 import port.trace.objects.TrapperObjectSendInitiated;
 import util.trace.ImplicitKeywordKind;
@@ -41,11 +45,14 @@ public class ExtensibleSerializationTraceUtility implements SimpleCounterClient{
 		TraceableInfo.setPrintSource(true);
 		Tracer.setImplicitPrintKeywordKind(ImplicitKeywordKind.OBJECT_CLASS_NAME);	
 		
+		Tracer.setKeywordPrintStatus(BufferDeserializationFinished.class, true);
+		Tracer.setKeywordPrintStatus(BufferDeserializationInitiated.class, true);
 		Tracer.setKeywordPrintStatus(ExtensibleBufferDeserializationFinished.class, true);
 		Tracer.setKeywordPrintStatus(ExtensibleBufferDeserializationInitiated.class, true);
+		Tracer.setKeywordPrintStatus(ObjectSerializationFinished.class, true);
+		Tracer.setKeywordPrintStatus(ObjectSerializationInitiated.class, true);
 		Tracer.setKeywordPrintStatus(ExtensibleValueSerializationFinished.class, true);
-		Tracer.setKeywordPrintStatus(ExtensibleValueSerializationInitiated.class, true);
-			
+		Tracer.setKeywordPrintStatus(ExtensibleValueSerializationInitiated.class, true);			
 
 	}
 

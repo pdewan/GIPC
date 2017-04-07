@@ -1,4 +1,4 @@
-package examples.gipc.counter.sessionport.twopartyconsensus.symmetric;
+package examples.gipc.counter.sessionport.twoparty.symmetric;
 
 import java.nio.ByteBuffer;
 import java.rmi.RemoteException;
@@ -19,9 +19,9 @@ import sessionport.rpc.group.GroupRPCSessionPort;
 import examples.gipc.counter.layers.AMultiLayeServerReceiveListener;
 import examples.gipc.counter.layers.AMultiLayerCounterServer;
 import examples.gipc.counter.sessionport.CounterSessionMember;
-import examples.gipc.counter.sessionport.twopartyconsensus.asymmetric.AGreetingConsensusListener;
-import examples.gipc.counter.sessionport.twopartyconsensus.asymmetric.AMeaningOfLifeConsensusListener;
-import examples.gipc.counter.sessionport.twopartyconsensus.asymmetric.TwoPartyMember;
+import examples.gipc.counter.sessionport.twoparty.asymmetric.AGreetingConsensusListener;
+import examples.gipc.counter.sessionport.twoparty.asymmetric.AMeaningOfLifeConsensusListener;
+import examples.gipc.counter.sessionport.twoparty.asymmetric.TwoPartyMember;
 import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;

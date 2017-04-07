@@ -1,4 +1,4 @@
-package examples.gipc.counter.sessionport.twopartyconsensus.asymmetric;
+package examples.gipc.counter.sessionport.twoparty.asymmetric;
 
 import consensus.ConsensusVetoer;
 

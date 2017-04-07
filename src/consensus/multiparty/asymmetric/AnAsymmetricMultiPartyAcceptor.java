@@ -13,7 +13,7 @@ import consensus.Accepted;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.Learned;
 import consensus.ProposalState;
-import consensus.multiparty.listener.asymmetric.eventual.AnAsymmetricMultiPartyLearnerConsensusMechanism;
+import consensus.multiparty.asymmetric.listener.AnAsymmetricMultiPartyLearnerConsensusMechanism;
 
 public class AnAsymmetricMultiPartyAcceptor<StateType> 
 	extends AnAbstractConsensusMechanism<StateType> 

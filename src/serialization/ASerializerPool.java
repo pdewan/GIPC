@@ -100,7 +100,7 @@ public class ASerializerPool implements SerializerPool {
 		Tracer.info(this, "Object to be serialized:" + object);
 		Serializer bufferSerializationSupport = takeOutputBufferSerializationSupport();	
 		SerializerTakenFromPool.newCase(this, outputSupportBoundedBuffer, bufferSerializationSupport);
-		ObjectSerializationInitiated.newCase(this, "?", object, bufferSerializationSupport);
+//		ObjectSerializationInitiated.newCase(this, "?", object, bufferSerializationSupport);
 		ByteBuffer retVal = bufferSerializationSupport.outputBufferFromObject(object);
 		bytesToSerializer.put(retVal.array(), bufferSerializationSupport);
 		Tracer.info(this, "OutBuffer:" + object);

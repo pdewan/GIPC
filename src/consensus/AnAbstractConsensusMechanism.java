@@ -15,6 +15,7 @@ import port.trace.consensus.ProposalLearnNotificationReceived;
 import port.trace.consensus.ProposalStateChanged;
 import port.trace.consensus.ProposalWaitEnded;
 import port.trace.consensus.ProposalWaitStarted;
+import util.misc.ThreadSupport;
 
 public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechanism<StateType> {
 //	protected ConsensusState<StateType> consensusState;
@@ -25,6 +26,9 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected final static short  MAX_IDS = 1000;
 	protected  final static short NUM_DIGITS_IN_ID = (short) ("" + MAX_IDS).length();;
 	protected short numProposalsByMe = 0;
+	protected long disconnectWaitTime = 1000;
+	protected boolean eventualConsistency = false;
+	
 	protected Float lastProposalNumber;
 	protected Float myLastProposalNumber;
 	protected StateType myLastState;
@@ -47,6 +51,13 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 //	public String toString() {		
 //		return getClass().getSimpleName() + "." + objectName;
 //	}
+	protected void waitForDisconnection() {
+		ThreadSupport.sleep(disconnectWaitTime);		
+	}
+	
+	protected long disconnectWaitTime() {
+		return disconnectWaitTime;
+	}
 	
 	protected String getObjectName() {
 		return objectName;
@@ -62,6 +73,10 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			return null;
 		}
 		return proposalState.get(myLastProposalNumber);
+	}
+	
+	protected boolean eventualConsistency() {
+		return eventualConsistency;
 	}
 	
 	@Override

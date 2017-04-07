@@ -1,4 +1,4 @@
-package examples.gipc.counter.sessionport.multipartyconsensus.asymmetric;
+package examples.gipc.counter.sessionport.twoparty.asymmetric;
 
 
 
