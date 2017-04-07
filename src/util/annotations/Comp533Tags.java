@@ -23,7 +23,7 @@ public interface Comp533Tags {
 	
 	public static final String BOOLEAN_SERIALIZER = "Boolean Serializer";
 	
-	public static final String COLLECTION_SERIALIZER = "Boolean Serializer";
+	public static final String COLLECTION_SERIALIZER = "Collection Serializer";
 	
 	public static final String ENUM_SERIALIZER = "Enum Serializer";
 	
