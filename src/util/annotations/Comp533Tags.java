@@ -1,15 +1,15 @@
 package util.annotations;
 
 public interface Comp533Tags {
-	public static final String VALUE_SERIALIZER_REGISTRY= "Value-Serializer Registry";
+	public static final String SERIALIZER_REGISTRY= "Value-Serializer Registry";
 	
-	public static final String TYPE_SERALIZER_REGISTRAR = "Type-Serializer Registrar";
-
 	public static final String VALUE_SERIALIZER = "Value Serializer";
 	
 	public static final String DISPATCHING_SERIALIZER = "Dispatching Serializer";
 	
-	public static final String LOGICAL_SERIALIZER = "Logical Serializer";
+	public static final String LOGICAL_TEXTUAL_SERIALIZER = "Logical Textual Serializer";
+	
+	public static final String LOGICAL_BINARY_SERIALIZER = "Logical BINARY Serializer";
 	
 	public static final String SHORT_SERIALIZER = "Short Serializer";
 	
@@ -29,8 +29,9 @@ public interface Comp533Tags {
 	
 	public static final String BEAN_SERIALIZER = "Bean Serializer";
 	
-	public static final String LIST_PATTERN__SERIALIZER = "List Pattern Serializer";
-
+	public static final String NULL_SERIALIZER = "Null Serializer";
+	
+	public static final String LIST_PATTERN_SERIALIZER = "List Pattern Serializer";
 
 
 	
