@@ -11,6 +11,7 @@ import port.trace.rpc.ReceivedCallEndedOld;
 import util.trace.TraceableInfo;
 
 public class ObjectSerializationFinished extends TraceableInfo {	
+	static int totalBytesSerialized;
 	public ObjectSerializationFinished(String aMessage, Object aFinder,
 			String aDestination,
 			ByteBuffer aByteBuffer,
@@ -19,11 +20,12 @@ public class ObjectSerializationFinished extends TraceableInfo {
 	}
 	public static ObjectSerializationFinished newCase(Object aFinder, 
 			String aDestination,
-			ByteBuffer aByteBuffer, Object anObject) {    	
+			ByteBuffer aByteBuffer, Object anObject) { 
+		totalBytesSerialized += (aByteBuffer.limit() - aByteBuffer.position());
 		String aMessage =
 				aDestination + "->" +
 				anObject + "->" +
-				aByteBuffer ;
+				aByteBuffer + "(Total serialized bytes = " + (totalBytesSerialized) + ")";
 		ObjectSerializationFinished retVal = new ObjectSerializationFinished(aMessage, 
 				aFinder,
 				aDestination,  aByteBuffer, anObject);
