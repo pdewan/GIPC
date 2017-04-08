@@ -35,27 +35,27 @@ import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;
 
 public class AMultiPartyAsymmeticProposerLauncher extends ATwoPartyAsymmeticProposerLauncher {
-	protected static ConsensusMechanism<String> greetingMechanism;
-	protected static ConsensusMechanism<Integer> meaningOfLifeMechanism;
-	protected static AsymmetricMultiPartyAcceptor<String> remoteGreetingMechanism;
-	protected static AsymmetricMultiPartyAcceptor<Integer> remoteMeaningOfLifeMechanism;
+	protected  ConsensusMechanism<String> greetingMechanism;
+	protected  ConsensusMechanism<Integer> meaningOfLifeMechanism;
+	protected  AsymmetricMultiPartyAcceptor<String> remoteGreetingMechanism;
+	protected  AsymmetricMultiPartyAcceptor<Integer> remoteMeaningOfLifeMechanism;
 	
-	protected static Integer numMembersToWaitFor = 3;
+	protected  Integer numMembersToWaitFor = 3;
 	
-	static final int MY_PORT_NUMBER = 7001;
-	static final String MY_NAME = "1";
-	public static final String GREETING_1 = "Hello";
-	public static final String GREETING_2 = "Howdy";
-	public static int MEANING = 42;
+	 final int MY_PORT_NUMBER = 7001;
+	 final String MY_NAME = "1";
+	public  final String GREETING_1 = "Hello";
+	public  final String GREETING_2 = "Howdy";
+	public  int MEANING = 42;
 	
-	protected static void initGreetingConsensusMechanism(short anId) {
+	protected  void initGreetingConsensusMechanism(short anId) {
 		remoteGreetingMechanism = (AsymmetricMultiPartyAcceptor) gipcRegistry.lookupAllRemote(AsymmetricMultiPartyAcceptor.class, GREETING_CONSENSUS_MECHANISM_NAME);
 		greetingMechanism = new AnAsymmetricMultiPartyProposer(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, remoteGreetingMechanism, (short) (numMembersToWaitFor -1), false);
 		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());
 		gipcRegistry.rebind(GREETING_CONSENSUS_MECHANISM_NAME, greetingMechanism);
 
 	}	
-	protected static void initMeaningOfLifeConsensusMechanism(short anId) {
+	protected  void initMeaningOfLifeConsensusMechanism(short anId) {
 		remoteMeaningOfLifeMechanism = (AsymmetricMultiPartyAcceptor) gipcRegistry.lookupAllRemote(AsymmetricMultiPartyAcceptor.class, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME);
 		meaningOfLifeMechanism = new AnAsymmetricMultiPartyProposer<>(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, remoteMeaningOfLifeMechanism, (short) (numMembersToWaitFor -1), false);
 		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());
@@ -64,7 +64,7 @@ public class AMultiPartyAsymmeticProposerLauncher extends ATwoPartyAsymmeticProp
 
 	}
 
-	protected static void init(String aLocalName, int aPortNumber) {
+	protected  void init(String aLocalName, int aPortNumber) {
 		gipcRegistry = GIPCLocateSessionRegistry.createSessionRegistry(
 				"mysession", "localhost", aPortNumber, aLocalName,
 				sessionChoice, 
@@ -78,21 +78,21 @@ public class AMultiPartyAsymmeticProposerLauncher extends ATwoPartyAsymmeticProp
 
 
 
-	public static void doOperations() {
+	public  void doOperations() {
 		double aGreetingProposal1 = greetingMechanism.propose(GREETING_1);
 		double aGreetingProposal2 = greetingMechanism.propose(GREETING_2);
 		double aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING);
 		
 	}
-	public static void beProposer() {
+	public  void beProposer() {
 		ConsensusTraceUtility.setTracing();
 		init(MY_NAME, MY_PORT_NUMBER);
 		doOperations();
 	}
 
-	public static void main (String[] args) {
+	public  static void main (String[] args) {
 		
-		beProposer();
+		(new AMultiPartyAsymmeticProposerLauncher()).beProposer();
 	}
 
 }
