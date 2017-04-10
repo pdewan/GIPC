@@ -39,14 +39,14 @@ public abstract class AnExampleConsensusProposerLauncher extends AnExampleConsen
 	public static final String GREETING_2 = "Hi";
 	public static int MEANING_1 = 42;
 	public static int MEANING_2 = 29;
-	public static long INIT_TIME = 1000;
+	public static long INIT_TIME = 3000;
 	
 	public  void proposeValues1() {
-		double aGreetingProposal1 = greetingMechanism.propose(GREETING_1);
+//		double aGreetingProposal1 = greetingMechanism.propose(GREETING_1);
 		double aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING_1);		
 	}
 	public  void proposeValues2() {
-		double aGreetingProposal1 = greetingMechanism.propose(GREETING_2);
+//		double aGreetingProposal1 = greetingMechanism.propose(GREETING_2);
 		double aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING_2);		
 	}
 

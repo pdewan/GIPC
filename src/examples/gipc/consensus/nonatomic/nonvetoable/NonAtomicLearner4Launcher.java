@@ -3,7 +3,7 @@ package examples.gipc.consensus.nonatomic.nonvetoable;
 import port.trace.consensus.ConsensusTraceUtility;
 import examples.gipc.consensus.sessionport.Member4;
 
-public class AsymmetricMultiPartyLearner4Launcher 
+public class NonAtomicLearner4Launcher 
 //	extends AnAsymmetricMultiPartyLearnerLauncher 
 extends ANonAtomicNonVetoableProposerLauncher
 
@@ -12,7 +12,7 @@ extends ANonAtomicNonVetoableProposerLauncher
 
 	
 	
-public AsymmetricMultiPartyLearner4Launcher(String aLocalName,
+public NonAtomicLearner4Launcher(String aLocalName,
 			int aPortNumber) {
 		super(aLocalName, aPortNumber);
 	}

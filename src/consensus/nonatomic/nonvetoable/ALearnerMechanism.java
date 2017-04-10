@@ -1,6 +1,7 @@
 package consensus.nonatomic.nonvetoable;
 
 import inputport.ConnectionRegistrar;
+import inputport.InputPort;
 import port.trace.consensus.ProposalConsensusOccurred;
 import port.trace.consensus.ProposalLearnNotificationReceived;
 import port.trace.consensus.ProposalLearnNotificationSent;
@@ -14,24 +15,28 @@ import consensus.ProposalVetoKind;
 
 public class ALearnerMechanism<StateType> extends
 		AnAbstractConsensusMechanism<StateType>  {
-	Learned<StateType> proposer;
-	public ALearnerMechanism(ConnectionRegistrar anInputPort, 
-			String aName, short aMyId, Learned<StateType> aProposer
+	public ALearnerMechanism(InputPort anInputPort, 
+			String aName, short aMyId
 			) {
 		super(anInputPort, aName, aMyId);
-		proposer = aProposer;
 	}
-	protected Learned<StateType> proposer() {
-		return proposer;
-	}
-	@Override
-	public void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
-		super.learn(aProposalNumber, aProposal, anAgreement);
-		if (eventualConsistency() && learnedByTimeout()) {
-			return;
+//	protected Learned<StateType> proposer() {
+//		return proposer;
+//	}
+	protected void setLearnedState(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
+		if (!eventualConsistency() && learnedByTimeout()) {
+			waitForReceipt(aProposalNumber, aProposal);			
 		}
-		proposer().learned(aProposalNumber, aProposal);		
+		super.setLearnedState(aProposalNumber, aProposal, anAgreement);
 	}
+//	@Override
+//	public void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
+//		super.learn(aProposalNumber, aProposal, anAgreement);
+//		if (eventualConsistency() && learnedByTimeout()) {
+//			return;
+//		}
+//		proposer().learned(aProposalNumber, aProposal);		
+//	}
 	
 
 

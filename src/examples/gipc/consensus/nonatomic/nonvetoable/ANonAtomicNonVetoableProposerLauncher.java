@@ -46,7 +46,7 @@ public class ANonAtomicNonVetoableProposerLauncher extends AnExampleConsensusPro
 		// TODO Auto-generated constructor stub
 	}
 	protected Object lookupMulticastProxy(Class aClass, String aName) {
-		return gipcRegistry.lookupAllRemote(aClass, aName);
+		return gipcRegistry.lookupAll(aClass, aName);
 	}
 //	protected boolean eventualConsistency() {
 //		return true;

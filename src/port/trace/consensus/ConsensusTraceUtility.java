@@ -2,6 +2,8 @@ package port.trace.consensus;
 
 
 
+import port.trace.RemoteEndConnected;
+import port.trace.RemoteEndDisconnected;
 import port.trace.rpc.CallReceived;
 import port.trace.rpc.ReceivedCallInitiated;
 import port.trace.rpc.RemoteCallInitiated;
@@ -41,9 +43,19 @@ public class ConsensusTraceUtility {
 		Tracer.setKeywordPrintStatus(ProposalStateChanged.class, true);
 		Tracer.setKeywordPrintStatus(ProposalWaitEnded.class, true);
 		Tracer.setKeywordPrintStatus(ProposalWaitStarted.class, true);
+		Tracer.setKeywordPrintStatus(WaitedForSuccessfulProposalMessageReceipt.class, true);
+
+		Tracer.setKeywordPrintStatus(WaitingForSuccessfulProposalMessageReceipt.class, true);
+
+		
 		
 		Tracer.setKeywordPrintStatus(ReceivedCallInitiated.class, true);
 		Tracer.setKeywordPrintStatus(RemoteCallInitiated.class, true);
+		Tracer.setKeywordPrintStatus(RemoteEndConnected.class, true);
+		Tracer.setKeywordPrintStatus(RemoteEndDisconnected.class, true);
+
+
+		
 
 
 

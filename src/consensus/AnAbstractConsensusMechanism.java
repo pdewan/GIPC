@@ -2,6 +2,7 @@ package consensus;
 
 import inputport.ConnectionRegistrar;
 import inputport.ConnectionType;
+import inputport.InputPort;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,12 +11,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import port.trace.RemoteEndConnected;
+import port.trace.RemoteEndDisconnected;
 import port.trace.consensus.ProposalConsensusOccurred;
 import port.trace.consensus.ProposalLearnNotificationReceived;
 import port.trace.consensus.ProposalStateChanged;
 import port.trace.consensus.ProposalWaitEnded;
 import port.trace.consensus.ProposalWaitStarted;
+import port.trace.consensus.WaitedForSuccessfulProposalMessageReceipt;
+import port.trace.consensus.WaitingForSuccessfulProposalMessageReceipt;
 import util.misc.ThreadSupport;
+import util.trace.Tracer;
 
 public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechanism<StateType> {
 //	protected ConsensusState<StateType> consensusState;
@@ -49,22 +55,32 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected ProposalVetoKind proposalVetoKind = ProposalVetoKind.NO_VETO;
 	protected ConsensusSynchrony consensusSynchrony = ConsensusSynchrony.EVENTUAL;
 	protected LearnedKind learnedKind = LearnedKind.MESSAGE_TIMEOUT;
+	InputPort inputPort;
 	
 	protected short numPeers;
 	protected short numCurrentPeers;
-	public AnAbstractConsensusMechanism(ConnectionRegistrar anInputPort, String anObjectName, short aMyId) {
+	public AnAbstractConsensusMechanism(InputPort anInputPort, String anObjectName, short aMyId) {
 		myId = aMyId;
 		
 //		myPrefix = Float.parseFloat("." + myId);
 		myPrefix = ((float) myId)/ (float) Math.pow(10, NUM_DIGITS_IN_ID);
 		objectName = anObjectName;
+		inputPort = anInputPort;
 		anInputPort.addConnectionListener(this);
 	}
 //	public String toString() {		
 //		return getClass().getSimpleName() + "." + objectName;
 //	}
-	protected void waitForReceipt() {
-		ThreadSupport.sleep(receiptWaitTime);		
+	protected void waitForReceipt(float aProposalNumber, StateType aProposal) {
+		long aWaitTime = receiptWaitTime();
+		WaitingForSuccessfulProposalMessageReceipt.newCase(this, getObjectName(), aProposalNumber, aProposal, aWaitTime);
+		ThreadSupport.sleep(aWaitTime);	
+		WaitedForSuccessfulProposalMessageReceipt.newCase(this, getObjectName(), aProposalNumber, aProposal, aWaitTime);
+
+	}
+	
+	protected long receiptWaitTime() {
+		return receiptWaitTime;
 	}
 	
 	protected long receiptTime() {
@@ -268,10 +284,15 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 //		System.out.println("notify all");
 
 	}
+//	protected boolean resolvedProposal(float aProposalNumber) {
+//		return (proposalState.get(aProposalNumber) != ProposalState.PROPOSAL_PENDING &&
+//				lastProposalNumber != null &&
+//				aProposalNumber <= lastProposalNumber); // already resolved or received disconnection
+//				
+//		
+//	}
 	protected boolean resolvedProposal(float aProposalNumber) {
-		return (proposalState.get(aProposalNumber) != ProposalState.PROPOSAL_PENDING &&
-				lastProposalNumber != null &&
-				aProposalNumber <= lastProposalNumber); // already resolved or received disconnection
+		return (proposalState.get(aProposalNumber) != ProposalState.PROPOSAL_PENDING);
 				
 		
 	}
@@ -409,6 +430,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		// TODO Auto-generated method stub
 		numPeers++;
 		numCurrentPeers++;
+		RemoteEndConnected.newCase(this, inputPort.getLocalName(), aRemoteEndName,  aConnectionType);
+
 
 	}
 
@@ -428,8 +451,9 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 
 	@Override
 	public synchronized void disconnected(String aRemoteEndName,
-			boolean anExplicitDsconnection, String anExplanation,
+			boolean anExplicitDisconnection, String anExplanation,
 			ConnectionType aConnectionType) {
+		RemoteEndDisconnected.newCase(this, inputPort.getLocalName(), aRemoteEndName, anExplicitDisconnection, anExplanation, aConnectionType);
 		numCurrentPeers--;
 //		newProposalState(getPendingProposals(),
 //				ProposalState.PROPOSAL_NOT_COMMUNICATED);
@@ -453,13 +477,21 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 
 		}
 	}
-	@Override
-	public void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
-		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, anAgreement);
+	protected void setLearnedState(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
 		if (isAgreement(anAgreement))
 			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
 		else
 			newProposalState(aProposalNumber, aProposal,toProposalState(anAgreement));
+	}
+	@Override
+	public synchronized void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
+		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, anAgreement);
+		setLearnedState(aProposalNumber, aProposal, anAgreement);
+
+//		if (isAgreement(anAgreement))
+//			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
+//		else
+//			newProposalState(aProposalNumber, aProposal,toProposalState(anAgreement));
 		
 	}
 	public Float getLastConsensusProposal() {

@@ -12,12 +12,12 @@ import util.trace.TraceableInfo;
 public class RemoteCallFinished extends TraceableInfo {
 	
 
-	public RemoteCallFinished(String aMessage, Object aSource, String aDestination, String aName, Method aMethod, Object[] args, Object aRetVal) {
+	public RemoteCallFinished(String aMessage, Object aSource, Object aDestination, String aName, Method aMethod, Object[] args, Object aRetVal) {
 		super(aMessage, aSource );
 	}
 	
 	
-	public static RemoteCallFinished newCase(Object aSource, String aDestination, String aName, Method aMethod, Object[] args, Object aRetVal) {
+	public static RemoteCallFinished newCase(Object aSource, Object aDestination, String aName, Method aMethod, Object[] args, Object aRetVal) {
     	String aMessage = "(" + aDestination + "," + aName + ")." +aMethod + "(" + Arrays.toString(args) + ")" + "=" + aRetVal;
 		RemoteCallFinished retVal = new RemoteCallFinished(aMessage, aSource, aDestination, aName, aMethod, args, aRetVal);
    	    retVal.announce();

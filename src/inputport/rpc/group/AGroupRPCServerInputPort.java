@@ -78,14 +78,20 @@ public class AGroupRPCServerInputPort extends ADuplexRPCServerInputPort implemen
 	@Override
 	public Object call(Set<String> clientNames, String objectName, Method method,
 			Object[] args) {
-		Object[] retVal = new Serializable[clientNames.size()];
+//		Object[] retVal = new Serializable[clientNames.size()];
+		RemoteCallInitiated.newCase(this, clientNames, objectName, method, args);
+
 		Object serializableCall = marshallCall(objectName, method, args);
 		groupSerializableCallSendTrapper.send(clientNames, serializableCall);
 //		boolean isFunction = !method.getReturnType().equals(Void.TYPE);
 //		if (isFunction) {
 //			retVal =  groupFunctionHandler.returnValueOfRemoteFunctionCall(clientNames, (SerializableCall) serializableCall);
 //		} 
-		return groupSerializableCallSendTrapper.getSendReturnValue(clientNames, serializableCall);
+		Object retVal = groupSerializableCallSendTrapper.getSendReturnValue(clientNames, serializableCall);
+		RemoteCallFinished.newCase(this, clientNames, objectName, method, args, retVal);
+
+		
+		return retVal;
 //		return retVal;
 	}
 	protected Set<String> getConnectionsAndMe() {
@@ -105,7 +111,7 @@ public class AGroupRPCServerInputPort extends ADuplexRPCServerInputPort implemen
 		RemoteCallInitiated.newCase(this, aConnections.toString(), objectName, method, args);
 
 		Object aResult =  call (aConnections, objectName, method, args);
-		RemoteCallFinished.newCase(this, aConnections.toString(), objectName, method, args, aResult);
+		RemoteCallFinished.newCase(this, aConnections, objectName, method, args, aResult);
 		return aResult;
 
 //		return call(getConnections(), objectName, method, args);
@@ -135,7 +141,11 @@ public class AGroupRPCServerInputPort extends ADuplexRPCServerInputPort implemen
 			Object[] args) {
 		Set<String> aConnections = getConnections();
 //		aConnections.add(getLocalName());
-		return call (aConnections, objectName, method, args);
+		RemoteCallInitiated.newCase(this, aConnections, objectName, method, args);
+		Object retVal = call (aConnections, objectName, method, args);
+		RemoteCallFinished.newCase(this, aConnections, objectName, method, args, retVal);
+
+		return retVal;
 //		return call(getConnections(), objectName, method, args);
 	}
 	// behavior depends on whether it is a buffer or object port, can this be object?

@@ -1,6 +1,7 @@
 package consensus.twoparty.asymmetric;
 
 import inputport.ConnectionRegistrar;
+import inputport.InputPort;
 import port.trace.consensus.ProposalAcceptRequestReceived;
 import port.trace.consensus.ProposalAcceptedNotificationSent;
 import port.trace.consensus.ProposalConsensusOccurred;
@@ -16,7 +17,7 @@ import consensus.ProposalVetoKind;
 public class AnAsymmetricTwoPartyAcceptor<StateType> extends
 		AnAbstractConsensusMechanism<StateType> implements TwoPartyAsymmetricAcceptor<StateType> {
 	protected Accepted<StateType> proposer;
-	public AnAsymmetricTwoPartyAcceptor(ConnectionRegistrar anInputPort, 
+	public AnAsymmetricTwoPartyAcceptor(InputPort anInputPort, 
 			String aName, short aMyId, Accepted<StateType> aProposer
 			) {
 		super(anInputPort, aName, aMyId);

@@ -65,26 +65,25 @@ public class ANonAtomicLearnerLauncher extends
 	@Override
 	protected ConsensusMechanism<String> createLocalGreetingMechanism(short anId) {
 		return new ALearnerMechanism(groupRPCSessionPort,
-				GREETING_CONSENSUS_MECHANISM_NAME, anId, (Learned) callerRemoteGreetingMechanism);
+				GREETING_CONSENSUS_MECHANISM_NAME, anId);
 	}
 
 	@Override
 	protected ConsensusMechanism<Integer> createLocalMeaningOfLifeMechanism(
 			short anId) {
 		return new ALearnerMechanism(groupRPCSessionPort,
-				MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId,
-				(Learned) callerMeaningOfLifeMechanism);
+				MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId);
 	}
 
 	@Override
 	protected Class remoteReceiverConsensusClass() {
-		return Learned.class;
+		return null;
 	}
 	// no reply needed
 	@Override
 	protected Class remoteCallerConsensusClass() {
 		// TODO Auto-generated method stub
-		return Learned.class;
+		return null;
 	}
 
 	// @Override

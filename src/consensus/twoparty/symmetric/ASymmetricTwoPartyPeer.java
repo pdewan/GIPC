@@ -1,6 +1,7 @@
 package consensus.twoparty.symmetric;
 
 import inputport.ConnectionRegistrar;
+import inputport.InputPort;
 import port.trace.consensus.ProposalAcceptRequestReceived;
 import port.trace.consensus.ProposalAcceptRequestSent;
 import port.trace.consensus.ProposalLearnNotificationSent;
@@ -15,7 +16,7 @@ public class ASymmetricTwoPartyPeer<StateType> extends
 		TwoPartySymmetricConsensusMechanism<StateType> {
 	Acceptor<StateType> peer;
 
-	public ASymmetricTwoPartyPeer(ConnectionRegistrar anInputPort, String aName, short aMyId,
+	public ASymmetricTwoPartyPeer(InputPort anInputPort, String aName, short aMyId,
 			SymmetricTwoPartyPeer<StateType> aPeer) {
 		super(anInputPort, aName, aMyId);
 		peer = aPeer;

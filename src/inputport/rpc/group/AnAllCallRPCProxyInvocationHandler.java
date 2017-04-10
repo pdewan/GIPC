@@ -17,10 +17,10 @@ public  class AnAllCallRPCProxyInvocationHandler extends ACachingAbstractRPCProx
 	}
 	@Override
 	protected Object call(String remoteEndPoint, String name, Method method, Object[] args) {
-		RemoteCallInitiated.newCase(this, destination, name, method, args);
+//		RemoteCallInitiated.newCase(this, destination, name, method, args);
 
 		Object aResult = fullServerRPC.callAll(name, method, args);
-		RemoteCallFinished.newCase(this, destination, name, method, args, aResult);
+//		RemoteCallFinished.newCase(this, destination, name, method, args, aResult);
 		return aResult;
 
 	}

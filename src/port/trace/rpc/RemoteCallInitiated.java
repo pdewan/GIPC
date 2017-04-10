@@ -12,13 +12,15 @@ import util.trace.TraceableInfo;
 public class RemoteCallInitiated extends TraceableInfo {
 	
 
-	public RemoteCallInitiated(String aMessage, Object aSource, String aDestination, String aName, Method aMethod, Object[] args) {
+	public RemoteCallInitiated(String aMessage, Object aSource, Object aDestination, String aName, Method aMethod, Object[] args) {
 		super(aMessage, aSource );
 	}
 	
 	
-	public static RemoteCallInitiated newCase(Object aSource, String aDestination, String aName, Method aMethod, Object[] args) {
-    	
+	public static RemoteCallInitiated newCase(Object aSource, Object aDestination, String aName, Method aMethod, Object[] args) {
+    	if (aDestination == null) {
+    		System.out.println ("Null destination");
+    	}
 		String aMessage = "(" + aDestination + "," + aName + ")." +aMethod + "(" + Arrays.toString(args) + ")";
 		RemoteCallInitiated retVal = new RemoteCallInitiated(aMessage, aSource, aDestination, aName, aMethod, args);
    	    retVal.announce();

@@ -1,6 +1,7 @@
 package consensus.nonatomic;
 
 import inputport.ConnectionRegistrar;
+import inputport.InputPort;
 import port.trace.consensus.ProposalAcceptRequestReceived;
 import port.trace.consensus.ProposalAcceptRequestSent;
 import port.trace.consensus.ProposalAcceptedNotificationReceived;
@@ -22,7 +23,7 @@ public class ANonAtomicProposerAndAcceptor<StateType>
 //	Accepted<StateType> proposer;
 //	protected MultiPartyAcceptor<StateType> acceptors;
 	public ANonAtomicProposerAndAcceptor(
-			ConnectionRegistrar anInputPort, String aName, short aMyId,
+			InputPort anInputPort, String aName, short aMyId,
 			Acceptor<StateType> anAcceptors, 
 			Accepted<StateType> aProposer) {
 		super(anInputPort, aName, aMyId, anAcceptors);

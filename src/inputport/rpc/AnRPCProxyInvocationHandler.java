@@ -17,9 +17,9 @@ public  class AnRPCProxyInvocationHandler extends ACachingAbstractRPCProxyInvoca
 	}	
 	@Override
 	protected Object call(String aDestination, String aName, Method aMethod, Object[] args) {
-		RemoteCallInitiated.newCase(this, aDestination, aName, aMethod, args);
+//		RemoteCallInitiated.newCase(this, aDestination, aName, aMethod, args);
 		Object retVal = rpcInputPort.call(aDestination, aName, aMethod, args);
-		RemoteCallFinished.newCase(this, aDestination, aName, aMethod, args, retVal);
+//		RemoteCallFinished.newCase(this, aDestination, aName, aMethod, args, retVal);
 		return retVal;
 	}
 	@Override
