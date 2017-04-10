@@ -43,10 +43,10 @@ public class AGroupRPCSessionPortLauncher extends
 	protected Map<String, Map<String, Object>> allMembersProxy = new HashMap();
 	protected Map<String, Object> myObject = new HashMap();
 
-	protected Integer numMembersToWaitFor;
+	protected short numMembersToWaitFor;
 	
 	
-	protected Integer getNumberOfMemberConnects() {
+	protected short getNumberOfMemberConnects() {
 		return numMembersToWaitFor;
 	}
 
@@ -62,7 +62,7 @@ public class AGroupRPCSessionPortLauncher extends
 			boolean aDoJitter,
 			boolean aDoCausal, 			
 			ParticipantChoice aChoice,
-			Integer aNumMembersToWaitFor) {
+			short aNumMembersToWaitFor) {
 		super(aSessionServerHost, aServerId, aServerName, aMyId, aMyName, aSessionName, aSessionChoice, aShouldDelay, aDelaysSupport, aDoJitter, aDoCausal, aChoice);
 		Map<String, Object> aMembersProxy = new HashMap();
 		numMembersToWaitFor = aNumMembersToWaitFor;

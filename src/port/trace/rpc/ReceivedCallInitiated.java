@@ -12,14 +12,14 @@ import util.trace.TraceableInfo;
 public class ReceivedCallInitiated extends TraceableInfo {
 	
 
-	public ReceivedCallInitiated(String aMessage, Object aSource, Object aTarget,  Method aMethod, Object[] args) {
+	public ReceivedCallInitiated(String aMessage, Object aSource, Object aTarget,  Method aMethod, Object[] args, String aSender) {
 		super(aMessage, aSource );
 	}
 	
 	
-	public static ReceivedCallInitiated newCase(Object aSource, Object aTarget,  Method aMethod, Object[] args) {
-    	String aMessage = "(" + aTarget + ")." +aMethod + "(" + Arrays.toString(args) + ")";
-		ReceivedCallInitiated retVal = new ReceivedCallInitiated(aMessage, aSource, aTarget, aMethod, args);
+	public static ReceivedCallInitiated newCase(Object aSource, Object aTarget,  Method aMethod, Object[] args, String aSender) {
+    	String aMessage = aSender + "-->" +  "(" + aTarget + ")." +aMethod + "(" + Arrays.toString(args) + ")";
+		ReceivedCallInitiated retVal = new ReceivedCallInitiated(aMessage, aSource, aTarget, aMethod, args, aSender);
    	    retVal.announce();
     	return retVal;
 

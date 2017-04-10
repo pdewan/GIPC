@@ -18,7 +18,8 @@ public class RemoteCallInitiated extends TraceableInfo {
 	
 	
 	public static RemoteCallInitiated newCase(Object aSource, String aDestination, String aName, Method aMethod, Object[] args) {
-    	String aMessage = "(" + aDestination + "," + aName + ")." +aMethod + "(" + Arrays.toString(args) + ")";
+    	
+		String aMessage = "(" + aDestination + "," + aName + ")." +aMethod + "(" + Arrays.toString(args) + ")";
 		RemoteCallInitiated retVal = new RemoteCallInitiated(aMessage, aSource, aDestination, aName, aMethod, args);
    	    retVal.announce();
     	return retVal;

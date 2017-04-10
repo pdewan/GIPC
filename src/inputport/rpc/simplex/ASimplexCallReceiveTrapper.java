@@ -6,6 +6,7 @@ import inputport.datacomm.ReceiveNotifier;
 import inputport.rpc.RPCRegistry;
 import inputport.rpc.ReceivedCallInvoker;
 import inputport.rpc.RemoteCall;
+import inputport.rpc.duplex.AnAsynchronousSingleThreadDuplexReceivedCallInvoker;
 import port.trace.AConnectionEvent;
 import port.trace.AReplaceConnectionEvent;
 import port.trace.ConnectiontEventBus;
@@ -26,6 +27,9 @@ public class ASimplexCallReceiveTrapper extends AnAbstractReceiveTrapper<Object,
 //		createReceivedCallInvoker();
 //		DistEventsBus.newEvent(new AConnectionEvent(rpcRegistry, this, false, false));
 
+	}
+	protected boolean setLastSender() {
+		return ! (receivedCallInvoker() instanceof AnAsynchronousSingleThreadDuplexReceivedCallInvoker);
 	}
 	@Override
 	public void notifyPortReceive(String remoteEnd, Object message) {

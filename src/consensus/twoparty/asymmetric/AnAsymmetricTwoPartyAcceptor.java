@@ -11,6 +11,7 @@ import consensus.AnAbstractConsensusMechanism;
 import consensus.Learned;
 import consensus.Learner;
 import consensus.ProposalState;
+import consensus.ProposalVetoKind;
 
 public class AnAsymmetricTwoPartyAcceptor<StateType> extends
 		AnAbstractConsensusMechanism<StateType> implements TwoPartyAsymmetricAcceptor<StateType> {
@@ -28,7 +29,7 @@ public class AnAsymmetricTwoPartyAcceptor<StateType> extends
 	@Override
 	public void accept(float aProposalNumber, StateType aState) {
 		ProposalAcceptRequestReceived.newCase(this, getObjectName(), aProposalNumber, aState);
-		boolean anAgreement = checkWithVetoers(aProposalNumber, aState);
+		ProposalVetoKind anAgreement = checkWithVetoers(aProposalNumber, aState);
 		proposer().accepted(aProposalNumber, aState, anAgreement);
 		ProposalAcceptedNotificationSent.newCase(this, getObjectName(), aProposalNumber, aState, anAgreement);
 		learn(aProposalNumber, aState, anAgreement);

@@ -22,7 +22,7 @@ public class ACounterSessionMember implements CounterSessionMember {
 	protected static DistributedRMICounter counter;
 	protected static GIPCSessionRegistry gipcRegistry;
 	protected static GroupRPCSessionPort groupRPCSessionPort;
-	protected static Integer numMembersToWaitFor = 3;
+	protected static short numMembersToWaitFor = 3;
 	protected static SessionChoice sessionChoice = SessionChoice.P2P;
 
 	protected static void init(String aMyName, int aPortNumber) {

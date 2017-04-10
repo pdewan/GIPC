@@ -49,7 +49,7 @@ public abstract class AnAbstractReceivedCallInvoker implements ReceivedCallInvok
 				throw new RPCOnUnregisteredObjectException(aCall.getTargetObject());
 			}
 			RegisteredObjectLookedUp.newCase(this, aCall.getTargetObject(), targetObject);
-			ReceivedCallInitiated.newCase(this, targetObject, aCall.getMethod(), aCall.getArgs());
+			ReceivedCallInitiated.newCase(this, targetObject, aCall.getMethod(), aCall.getArgs(), aSender);
 			Object newVal = invokeMethod(aCall.getMethod(), targetObject, aCall.getArgs());
 			ReceivedCallEnded.newCase(this, targetObject, aCall.getMethod(), aCall.getArgs(), newVal);
 

@@ -1,7 +1,7 @@
 package consensus;
 
 public interface Learner<StateType> {
-	void learn(float aProposalNumber, StateType aProposal, boolean anAgreement);
+	void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement);
 
 
 }

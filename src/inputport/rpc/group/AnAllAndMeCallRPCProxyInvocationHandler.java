@@ -4,6 +4,9 @@ import inputport.rpc.ACachingAbstractRPCProxyInvocationHandler;
 
 import java.lang.reflect.Method;
 
+import port.trace.rpc.RemoteCallFinished;
+import port.trace.rpc.RemoteCallInitiated;
+
 
 public  class AnAllAndMeCallRPCProxyInvocationHandler extends ACachingAbstractRPCProxyInvocationHandler {
 	GroupRPC fullServerRPC;
@@ -14,7 +17,11 @@ public  class AnAllAndMeCallRPCProxyInvocationHandler extends ACachingAbstractRP
 	}
 	@Override
 	protected Object call(String remoteEndPoint, String name, Method method, Object[] args) {
-		return fullServerRPC.callAllAndMe(name, method, args);
+//		RemoteCallInitiated.newCase(this, destination, name, method, args);
+
+		Object aResult = fullServerRPC.callAllAndMe(name, method, args);
+//		RemoteCallFinished.newCase(this, destination, name, method, args, aResult);
+		return aResult;
 	}
 	@Override
 	protected Object call(String remoteEndPoint, Method method, Object[] args) {

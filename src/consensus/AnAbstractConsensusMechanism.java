@@ -26,20 +26,32 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected final static short  MAX_IDS = 1000;
 	protected  final static short NUM_DIGITS_IN_ID = (short) ("" + MAX_IDS).length();;
 	protected short numProposalsByMe = 0;
-	protected long disconnectWaitTime = 1000;
-	protected boolean eventualConsistency = false;
+	protected long receiptWaitTime = 1000;
+//	protected boolean eventualConsistency = false;
 	
 	protected Float lastProposalNumber;
 	protected Float myLastProposalNumber;
+	protected Float lastConsensusProposal;
+	
 	protected StateType myLastState;
 	protected Map<String, Integer> proposalCounts = new HashMap<String, Integer>();
 
 	protected List<ConsensusListener<StateType>> consensusListeners = new ArrayList();
-	protected List<ConsensusVetoer<StateType>> consensusVetoers = new ArrayList();
+	protected List<ProposalVetoer<StateType>> consensusVetoers = new ArrayList();
+	
+	
 
 	protected Map<Float, ProposalState> proposalState = new HashMap();
 	protected Map<Float, StateType> proposalValue = new HashMap();
 	protected String objectName;
+	
+	protected ConsistencyStrength consistencyStrength = ConsistencyStrength.NON_ATOMIC;	
+	protected ProposalVetoKind proposalVetoKind = ProposalVetoKind.NO_VETO;
+	protected ConsensusSynchrony consensusSynchrony = ConsensusSynchrony.EVENTUAL;
+	protected LearnedKind learnedKind = LearnedKind.MESSAGE_TIMEOUT;
+	
+	protected short numPeers;
+	protected short numCurrentPeers;
 	public AnAbstractConsensusMechanism(ConnectionRegistrar anInputPort, String anObjectName, short aMyId) {
 		myId = aMyId;
 		
@@ -51,12 +63,12 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 //	public String toString() {		
 //		return getClass().getSimpleName() + "." + objectName;
 //	}
-	protected void waitForDisconnection() {
-		ThreadSupport.sleep(disconnectWaitTime);		
+	protected void waitForReceipt() {
+		ThreadSupport.sleep(receiptWaitTime);		
 	}
 	
-	protected long disconnectWaitTime() {
-		return disconnectWaitTime;
+	protected long receiptTime() {
+		return receiptWaitTime;
 	}
 	
 	protected String getObjectName() {
@@ -76,8 +88,13 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	
 	protected boolean eventualConsistency() {
-		return eventualConsistency;
+		return consensusSynchrony == ConsensusSynchrony.EVENTUAL;
 	}
+	
+	protected boolean learnedByTimeout() {
+		return learnedKind == LearnedKind.MESSAGE_TIMEOUT;
+	}
+	
 	
 	@Override
 	public boolean myLastProposalIsPending() {
@@ -159,12 +176,12 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	@Override
 	public void addConsensusVetoer(
-			ConsensusVetoer<StateType> aConsensusVetoer) {
+			ProposalVetoer<StateType> aConsensusVetoer) {
 		consensusVetoers.add(aConsensusVetoer);
 	}
 	@Override
 	public void removeConsensusVetoer(
-			ConsensusVetoer<StateType> aConsensusVetoer) {
+			ProposalVetoer<StateType> aConsensusVetoer) {
 		consensusVetoers.remove(aConsensusVetoer);		
 	}
 	@Override
@@ -217,13 +234,17 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			newProposalState(aProposalNumber, proposalValue.get(aProposalNumber), aProposalState);
 		}		
 	}
-   protected synchronized boolean checkWithVetoers(float aProposalNumber, StateType aState ) {		
-		for (ConsensusVetoer<StateType> aConsensusVetoer:consensusVetoers){
-			if (!aConsensusVetoer.acceptProposal(aProposalNumber, aState)) {
-				return false;
+   protected synchronized ProposalVetoKind checkWithVetoers(float aProposalNumber, StateType aState ) {		
+		for (ProposalVetoer<StateType> aConsensusVetoer:consensusVetoers){
+			ProposalVetoKind aVetoKind = aConsensusVetoer.acceptProposal(aProposalNumber, aState);
+			if (aVetoKind != ProposalVetoKind.NO_VETO) {
+				return aVetoKind;
 			}			
 		}		
-		return true;
+		return ProposalVetoKind.NO_VETO;
+	}
+   protected boolean isAgreement(ProposalVetoKind aVetoKind) {
+		return aVetoKind == ProposalVetoKind.NO_VETO;
 	}
 	protected synchronized void notify(float aProposalNumber, StateType aState, ProposalState aProposalState ) {
 		
@@ -233,6 +254,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			if (aProposalState == ProposalState.PROPOSAL_CONSENSUS) {
 				aConsensusListener.newConsensusState(aState);
 				consensusState = aState;
+				lastConsensusProposal = aProposalNumber;
 			}
 
 			if (isLocal) {
@@ -246,10 +268,19 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 //		System.out.println("notify all");
 
 	}
-	
+	protected boolean resolvedProposal(float aProposalNumber) {
+		return (proposalState.get(aProposalNumber) != ProposalState.PROPOSAL_PENDING &&
+				lastProposalNumber != null &&
+				aProposalNumber <= lastProposalNumber); // already resolved or received disconnection
+				
+		
+	}
 	protected synchronized void newProposalState(float aProposalNumber, StateType aState, ProposalState aProposalState ) {
 		if (aState == null) {
-			System.out.println (" Null state");
+			System.out.println ("Null state");
+		}
+		if (resolvedProposal(aProposalNumber)) {
+			return;		
 		}
 		proposalState.put(aProposalNumber, aProposalState);	
 		ProposalStateChanged.newCase(this, getObjectName(), aProposalNumber, aState, aProposalState);
@@ -353,12 +384,14 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		proposalCounts.put(makeKey(aProposalNumber, anAttribute), anIncrement);
 		
 	}
-	protected void incrementCount(Float aProposalNumber, String anAttribute, int anIncrement) {
+	protected short incrementCount(Float aProposalNumber, String anAttribute, int anIncrement) {
 		Integer aCount = getCount(aProposalNumber, anAttribute);
 		if (aCount == null) {
 			aCount = 0;
 		}
-		setCount(aProposalNumber, anAttribute, anIncrement + aCount);		
+		int aResult = anIncrement + aCount;
+		setCount(aProposalNumber, anAttribute, aCount);	
+		return (short) aResult;
 	}
 	
 	protected Set<Float> getPendingProposalsBefore(float aProposalNumber) {
@@ -374,6 +407,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	@Override
 	public void connected(String aRemoteEndName, ConnectionType aConnectionType) {
 		// TODO Auto-generated method stub
+		numPeers++;
+		numCurrentPeers++;
 
 	}
 
@@ -383,28 +418,73 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		// TODO Auto-generated method stub
 
 	}
+	
+	protected short maxPeers() {
+		return numPeers;
+	}
+	protected short numCurrentPeers() {
+		return numCurrentPeers;
+	}
 
 	@Override
 	public synchronized void disconnected(String aRemoteEndName,
 			boolean anExplicitDsconnection, String anExplanation,
 			ConnectionType aConnectionType) {
-		newProposalState(getPendingProposals(),
-				ProposalState.PROPOSAL_NOT_COMMUNICATED);
+		numCurrentPeers--;
+//		newProposalState(getPendingProposals(),
+//				ProposalState.PROPOSAL_NOT_COMMUNICATED);
 	}
 
 	@Override
 	public boolean isPending(float aProposalNumber) {
 		return proposalState.get(aProposalNumber) == ProposalState.PROPOSAL_PENDING;
 	}
+	protected ProposalState toProposalState(ProposalVetoKind aVetoKind) {
+		switch (aVetoKind) {
+		case CONSISTENCY_FAULT:
+			return ProposalState.PROPOSAL_CONSISTENCY_FAULT;
+		case SERVICE_DENIAL:
+			return ProposalState.PROPOSAL_SERVICE_FAULT;
+		case SERVICE_FAULT:
+			return ProposalState.PROPOSAL_SERVICE_FAULT;
+		default:
+			return null;
+				
+
+		}
+	}
 	@Override
-	public void learn(float aProposalNumber, StateType aProposal, boolean anAgreement) {
+	public void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
 		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, anAgreement);
-		if (anAgreement)
+		if (isAgreement(anAgreement))
 			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
 		else
-			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_REJECTED);
+			newProposalState(aProposalNumber, aProposal,toProposalState(anAgreement));
 		
 	}
-	
+	public Float getLastConsensusProposal() {
+		return lastConsensusProposal;
+	}
+	public void setLastConsensusProposal(Float lastConsensusProposal) {
+		this.lastConsensusProposal = lastConsensusProposal;
+	}
+	public ConsistencyStrength getConsistencyStrength() {
+		return consistencyStrength;
+	}
+	public void setConsistencyStrength(ConsistencyStrength consistencyStrength) {
+		this.consistencyStrength = consistencyStrength;
+	}
+	public ProposalVetoKind getProposalVetoKind() {
+		return proposalVetoKind;
+	}
+	public void setProposalVetoKind(ProposalVetoKind proposalVetoKind) {
+		this.proposalVetoKind = proposalVetoKind;
+	}
+	public ConsensusSynchrony getConsensusSynchrony() {
+		return consensusSynchrony;
+	}
+	public void setConsensusSynchrony(ConsensusSynchrony consensusSynchrony) {
+		this.consensusSynchrony = consensusSynchrony;
+	}
 
 }

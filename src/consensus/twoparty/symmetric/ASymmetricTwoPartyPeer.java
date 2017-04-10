@@ -7,6 +7,7 @@ import port.trace.consensus.ProposalLearnNotificationSent;
 import consensus.Acceptor;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.ProposalState;
+import consensus.ProposalVetoKind;
 import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyProposer;
 
 public class ASymmetricTwoPartyPeer<StateType> extends
@@ -58,7 +59,7 @@ public class ASymmetricTwoPartyPeer<StateType> extends
 
 	@Override
 	public void learn(float aProposalNumber, StateType aProposal,
-			boolean anAgreement) {
+			ProposalVetoKind anAgreement) {
 		// TODO Auto-generated method stub
 		
 	}

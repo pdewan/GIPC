@@ -1,5 +1,6 @@
 package port.trace.consensus;
 
+import consensus.ProposalVetoKind;
 import inputport.rpc.RemoteCall;
 import util.annotations.ComponentWidth;
 import util.annotations.DisplayToString;
@@ -9,12 +10,12 @@ import util.trace.TraceableInfo;
 public class ProposalAcceptedNotificationSent extends TraceableInfo {
 	
 
-	public ProposalAcceptedNotificationSent(String aMessage, Object aSource, String anObjectName, float aProposalNumber, Object aProposal, boolean anAgreement) {
+	public ProposalAcceptedNotificationSent(String aMessage, Object aSource, String anObjectName, float aProposalNumber, Object aProposal, ProposalVetoKind anAgreement) {
 		super(aMessage, aSource );
 	}
 	
 	
-	public static ProposalAcceptedNotificationSent newCase(Object aSource, String anObjectName, float aProposalNumber, Object aProposal, boolean anAgreement) {
+	public static ProposalAcceptedNotificationSent newCase(Object aSource, String anObjectName, float aProposalNumber, Object aProposal, ProposalVetoKind anAgreement) {
     	String aMessage =  anObjectName + "," + aProposalNumber + "=" + aProposal + "-->" + anAgreement;
     	ProposalAcceptedNotificationSent retVal = new ProposalAcceptedNotificationSent(aMessage, aSource, anObjectName, aProposalNumber, aProposal, anAgreement);
    	    retVal.announce();

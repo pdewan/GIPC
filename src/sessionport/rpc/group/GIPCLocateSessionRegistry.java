@@ -20,7 +20,7 @@ public class GIPCLocateSessionRegistry  {
 			int aMemberPortNumber, 
 			String aMemberName, 
 			SessionChoice aSessionChoice,
-			Integer aNumMembersToWaitFor) {
+			short aNumMembersToWaitFor) {
 //		GIPCSessionRegistry result = createSessionRegistryWithoutConnecting(aSessionName, aSessionServerHost, aMemberPortNumber, aMemberName, aSessionChoice, aNumMembersToWaitFor);
 //		result.connect();
 		GroupRPCSessionPortLauncher result =
@@ -48,7 +48,7 @@ public class GIPCLocateSessionRegistry  {
 			int aMemberPortNumber, 
 			String aMemberName, 
 			SessionChoice aSessionChoice,
-			Integer aNumMembersToWaitFor) {
+			short aNumMembersToWaitFor) {
 
 		AGroupRPCSessionPortLauncher result =
 				new AGroupRPCSessionPortLauncher(

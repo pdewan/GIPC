@@ -16,6 +16,8 @@ import java.util.Set;
 import port.trace.AConnectionEvent;
 import port.trace.AReplaceConnectionEvent;
 import port.trace.ConnectiontEventBus;
+import port.trace.rpc.RemoteCallFinished;
+import port.trace.rpc.RemoteCallInitiated;
 import util.trace.Tracer;
 
 
@@ -100,7 +102,12 @@ public class AGroupRPCServerInputPort extends ADuplexRPCServerInputPort implemen
 	public Object callAllAndMe(String objectName, Method method,
 			Object[] args) {
 		Set<String> aConnections = getConnectionsAndMe();
-		return call (aConnections, objectName, method, args);
+		RemoteCallInitiated.newCase(this, aConnections.toString(), objectName, method, args);
+
+		Object aResult =  call (aConnections, objectName, method, args);
+		RemoteCallFinished.newCase(this, aConnections.toString(), objectName, method, args, aResult);
+		return aResult;
+
 //		return call(getConnections(), objectName, method, args);
 	}
 	@Override

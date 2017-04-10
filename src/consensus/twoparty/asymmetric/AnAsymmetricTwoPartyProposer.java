@@ -9,6 +9,7 @@ import consensus.Acceptor;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.Acceptor;
 import consensus.ProposalState;
+import consensus.ProposalVetoKind;
 
 public class AnAsymmetricTwoPartyProposer<StateType> extends
 		AnAbstractConsensusMechanism<StateType> implements TwoPartyAssymetricProposer<StateType> {
@@ -36,15 +37,20 @@ public class AnAsymmetricTwoPartyProposer<StateType> extends
 		sendAcceptRequest(aProposalNumber, aProposal);		
 	}
 	@Override
-	public void accepted(float aProposalNumber, StateType aProposal, boolean anAgreement) {
+	public void accepted(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
 		ProposalAcceptedNotificationReceived.newCase(this, getObjectName(),
-				aProposalNumber, aProposal, anAgreement);
-		learn(aProposalNumber, aProposal, anAgreement);
+				aProposalNumber, aProposal, aVetoKind);
+		learn(aProposalNumber, aProposal, aVetoKind);
 //		if (anAgreement)
 //			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);	
 //		else
 //			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_REJECTED);	
 
+	}
+	@Override
+	public void accept(float aProposalNumber, StateType aProposal) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

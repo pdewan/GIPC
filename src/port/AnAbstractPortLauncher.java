@@ -81,7 +81,7 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 
 	protected boolean asyncOperationsDone;
 	protected int numPendingConnects;
-	protected Integer numPendingMemberConnects;
+	protected int numPendingMemberConnects;
 	Integer numPendingServerConnects;
 	
 	public final static String SERVER_NAME = "Generic Server";
@@ -1030,8 +1030,8 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	protected Integer getNumberOfServerParticipantConnects() {
 		return null;
 	}
-	protected Integer getNumberOfMemberConnects() {
-		return null;
+	protected short getNumberOfMemberConnects() {
+		return 0;
 	}
 	protected int getNumberOfConnects() {
 		if (serverList != null)
@@ -1074,7 +1074,7 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	
 	public void connected(String aRemoteEndName, ConnectionType aConnectionType) {
 		if (connectedToAllPorts) {
-			if (numPendingMemberConnects != null) {
+			if (numPendingMemberConnects != 0) {
 				if (numPendingMemberConnects == 0) {
 					return;
 				}
@@ -1086,7 +1086,7 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 			return;
 		}
 		numPendingConnects--;
-		if (aConnectionType == ConnectionType.SERVER_TO_SESSION && numPendingServerConnects != null) {
+		if (aConnectionType == ConnectionType.SERVER_TO_SESSION && numPendingServerConnects != 0) {
 			numPendingServerConnects --;
 		}
 		if (numPendingConnects > 0) return; // we have a boolean to ensure we do not doubly connect
@@ -1127,8 +1127,8 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 									+ connectionTimeOut);
 				}
 			}
-			if (numPendingMemberConnects != null
-					&& numPendingMemberConnects != 0) {
+			if (//numPendingMemberConnects != 0 &&
+					 numPendingMemberConnects != 0) {
 				wait();
 			}
 			// else {
@@ -1144,6 +1144,8 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 		return createProxy( anInterface, aName);
 	}
 	public Object lookupCaller(Class anInterface, String aName) {
+		if (anInterface == null)
+			return null;
 		if (getInputPort() instanceof DuplexRPCServerInputPort) {
 			return ReplyRPCProxyGenerator.generateReplyRPCProxy((DuplexRPCServerInputPort) getInputPort(), anInterface, aName);
 

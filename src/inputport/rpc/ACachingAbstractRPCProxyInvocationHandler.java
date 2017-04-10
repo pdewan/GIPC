@@ -64,9 +64,9 @@ ANonCachingAbstractRPCProxyInvocationHandler implements
 	public ACachingAbstractRPCProxyInvocationHandler(SimplexRPC anRPCPort,
 			String aDestination, Class aType, String aName) {
 		super(anRPCPort, aDestination, aType, aName);
-		if (aType.isInterface()) {
-			Tracer.warning("Creating proxy out of interface: " + remoteType + " call to equals() and toString() will not be executed remotely even if these Object methods have been overriden");
-		}
+//		if (aType.isInterface()) {
+//			Tracer.warning("Creating proxy out of interface: " + remoteType + " call to equals() and toString() will not be executed remotely even if these Object methods have been overriden");
+//		}
 		if (anRPCPort instanceof DuplexRPCInputPort) {
 			translator = ((DuplexRPCInputPort) anRPCPort).getLocalRemoteReferenceTranslator();
 		}

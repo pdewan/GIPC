@@ -22,7 +22,7 @@ public class AnAsynchronousSingleThreadDuplexReceivedCallInvoker
 		// after creating a single consumer thread
 		// or at least the thread should be in a separate class
 //		extends ADuplexReceivedCallInvoker 
-		implements Runnable, DuplexReceivedCallInvoker {
+		implements AsynchronousDuplexReceivedCallInvoker {
 	// there is a separate instance of it for each  call
 	// each instance should not create a separate thread
 	// otherwise the relayer will not serialize matters
@@ -31,6 +31,16 @@ public class AnAsynchronousSingleThreadDuplexReceivedCallInvoker
 			new LinkedBlockingQueue(AScatterGatherSelectionManager.getMaxOutstandingWrites());
 	static Thread callQueueConsumer;
 	DuplexReceivedCallInvoker synchronousReceivedCallInvoker;
+	protected DuplexRPCInputPort replier;
+	protected static String lastCaller;
+	
+	public void setReplier(DuplexRPCInputPort replier) {
+		this.replier = replier;
+	}
+	@Override
+	public DuplexInputPort<Object> getReplier() {
+		return synchronousReceivedCallInvoker.getReplier();
+	}
 	
 	public AnAsynchronousSingleThreadDuplexReceivedCallInvoker(
 			DuplexReceivedCallInvoker aSynchronousReceivedCallInvoker) {
@@ -64,9 +74,15 @@ public class AnAsynchronousSingleThreadDuplexReceivedCallInvoker
 			MessageWithSourceAndReceiver message = callQueue.take();
 			ReceivedCallDequeued.newCase(this, callQueue, message);
 
-
+			String aSource = message.getSource();
 //			System.out.println ("Call Queue removed:" + message);
-			synchronousReceivedCallInvoker.getReplier().setSender(message.getSource());
+			if (getReplier() == null) {
+			synchronousReceivedCallInvoker.getReplier().setSender(aSource);
+			} else {
+				getReplier().setSender(aSource);
+			}
+			setLastCaller(aSource);
+				
 //			Tracer.setKeywordPrintStatus(this, true);
 			message.getReceiveListener().messageReceived(message.getSource(), message.getMessage());
 			
@@ -80,9 +96,14 @@ public class AnAsynchronousSingleThreadDuplexReceivedCallInvoker
 		}
 		
 	}
-	@Override
-	public DuplexInputPort<Object> getReplier() {
-		return synchronousReceivedCallInvoker.getReplier();
+	public static String getLastCaller() {
+		// TODO Auto-generated method stub
+		return lastCaller;
 	}
+	public static void setLastCaller(String newVal) {
+		lastCaller = newVal;
+		
+	}
+	
 	
 }
