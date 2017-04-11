@@ -1,8 +1,6 @@
 package consensus;
 
 public interface ConsensusState<StateType> {
+	StateType getLastConsensusState();
 	StateType getConsensusState();
-	StateType getStrongConsensusState();
-//	void setConsensusState(StateType newVal);
-
 }

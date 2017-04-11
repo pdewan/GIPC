@@ -201,11 +201,11 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		consensusVetoers.remove(aConsensusVetoer);		
 	}
 	@Override
-	public StateType getConsensusState() {
+	public StateType getLastConsensusState() {
 		return consensusState;
 	}
 	@Override
-	public StateType getStrongConsensusState() {
+	public StateType getConsensusState() {
 		if (someProposalIsPending())
 			return null;
 		return consensusState;
@@ -262,7 +262,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
    protected boolean isAgreement(ProposalVetoKind aVetoKind) {
 		return aVetoKind == ProposalVetoKind.NO_VETO;
 	}
-	protected synchronized void notify(float aProposalNumber, StateType aState, ProposalState aProposalState ) {
+   protected synchronized void notifyListeners(float aProposalNumber, StateType aState, ProposalState aProposalState ) {
 		
 		boolean isLocal = isMyProposal(aProposalNumber);
 		for (ConsensusListener<StateType> aConsensusListener:consensusListeners){
@@ -280,9 +280,29 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			}
 		}
 		
+		
+
+	}
+	protected synchronized void notify(float aProposalNumber, StateType aState, ProposalState aProposalState ) {
+		
+//		boolean isLocal = isMyProposal(aProposalNumber);
+//		for (ConsensusListener<StateType> aConsensusListener:consensusListeners){
+//			aConsensusListener.newProposalState(aProposalNumber, aState, aProposalState);
+//			if (aProposalState == ProposalState.PROPOSAL_CONSENSUS) {
+//				aConsensusListener.newConsensusState(aState);
+//				consensusState = aState;
+//				lastConsensusProposal = aProposalNumber;
+//			}
+//
+//			if (isLocal) {
+//				aConsensusListener.newLocalProposalState(aProposalNumber, aState, aProposalState);	
+//			} else {
+//				aConsensusListener.newRemoteProposalState(aProposalNumber, aState, aProposalState);
+//			}
+//		}
+		notifyListeners(aProposalNumber, aState, aProposalState);
 		notifyAll();
 //		System.out.println("notify all");
-
 	}
 //	protected boolean resolvedProposal(float aProposalNumber) {
 //		return (proposalState.get(aProposalNumber) != ProposalState.PROPOSAL_PENDING &&
@@ -306,7 +326,6 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		proposalState.put(aProposalNumber, aProposalState);	
 		ProposalStateChanged.newCase(this, getObjectName(), aProposalNumber, aState, aProposalState);
 		notify(aProposalNumber, aState, aProposalState);
-
 	}
 //	protected void newLocalProposalState(double aProposalNumber, StateType aState, ProposalState aProposalState ) {
 //		proposalState.put(aProposalNumber, aProposalState);		
@@ -330,19 +349,15 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 //		notifyAll();
 //	}
 	@Override
-	public synchronized ProposalState waitForStateChange(float aProposalNumber) {
-		
+	public synchronized ProposalState waitForConsensus(float aProposalNumber) {		
 		ProposalWaitStarted.newCase(this, getObjectName(), aProposalNumber, proposalValue.get(aProposalNumber));
-		while (proposalState.get(aProposalNumber) == ProposalState.PROPOSAL_PENDING) {
+		while (!resolvedProposal(aProposalNumber)) {
 			try {
 				wait();
-//				System.out.println ("wait ended");
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-
 		ProposalState returnValue = proposalState.get(aProposalNumber);
 		ProposalWaitEnded.newCase(this, getObjectName(), aProposalNumber, proposalValue.get(aProposalNumber), returnValue);
 		return returnValue;
@@ -477,16 +492,16 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 
 		}
 	}
-	protected void setLearnedState(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
-		if (isAgreement(anAgreement))
+	protected void setLearnedState(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
+		if (isAgreement(aVetoKind))
 			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
 		else
-			newProposalState(aProposalNumber, aProposal,toProposalState(anAgreement));
+			newProposalState(aProposalNumber, aProposal,toProposalState(aVetoKind));
 	}
 	@Override
-	public synchronized void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
-		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, anAgreement);
-		setLearnedState(aProposalNumber, aProposal, anAgreement);
+	public synchronized void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
+		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, aVetoKind);
+		setLearnedState(aProposalNumber, aProposal, aVetoKind);
 
 //		if (isAgreement(anAgreement))
 //			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);

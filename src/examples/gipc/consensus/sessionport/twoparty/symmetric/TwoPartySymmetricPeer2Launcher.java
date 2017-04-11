@@ -18,8 +18,8 @@ public class TwoPartySymmetricPeer2Launcher extends ATwoPartySymmetricPeerLaunch
 		float aGreetingProposal2 = greetingMechanism.propose(GREETING_2);
 
 		float aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING);
-		greetingMechanism.waitForStateChange(aGreetingProposal2);
-		meaningOfLifeMechanism.waitForStateChange(aMeaningOfLifeProposal);		
+		greetingMechanism.waitForConsensus(aGreetingProposal2);
+		meaningOfLifeMechanism.waitForConsensus(aMeaningOfLifeProposal);		
 		
 	}
 	public static void beSessionMember() {

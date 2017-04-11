@@ -13,11 +13,11 @@ public class TwoPartySymmetricPeer1Launcher extends ATwoPartySymmetricPeerLaunch
 	
 	public static void doOperations() {
 		float aGreetingProposal1 = greetingMechanism.propose(GREETING_1);
-		greetingMechanism.waitForStateChange(aGreetingProposal1);
+		greetingMechanism.waitForConsensus(aGreetingProposal1);
 		float aGreetingProposal2 = greetingMechanism.propose(GREETING_2);
 		float aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING);
-		greetingMechanism.waitForStateChange(aGreetingProposal2);
-		meaningOfLifeMechanism.waitForStateChange(aMeaningOfLifeProposal);		
+		greetingMechanism.waitForConsensus(aGreetingProposal2);
+		meaningOfLifeMechanism.waitForConsensus(aMeaningOfLifeProposal);		
 		
 	}
 	public static void beSessionMember() {
