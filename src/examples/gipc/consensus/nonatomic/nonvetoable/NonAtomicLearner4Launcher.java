@@ -1,7 +1,7 @@
 package examples.gipc.consensus.nonatomic.nonvetoable;
 
 import port.trace.consensus.ConsensusTraceUtility;
-import examples.gipc.consensus.sessionport.Member4;
+import examples.gipc.consensus.Member4;
 
 public class NonAtomicLearner4Launcher 
 //	extends AnAsymmetricMultiPartyLearnerLauncher 

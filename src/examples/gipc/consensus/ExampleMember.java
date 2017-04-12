@@ -1,4 +1,4 @@
-package examples.gipc.consensus.sessionport;
+package examples.gipc.consensus;
 
 public interface ExampleMember {
 	static int SESSION_MANAGER_PORT_NAME = 4999;

@@ -10,7 +10,7 @@ import com.sun.javafx.event.EventUtil;
 import consensus.Acceptor;
 import consensus.ConsensusMechanism;
 import consensus.Learner;
-import consensus.nonatomic.nonvetoable.ALearnedMechanism;
+import consensus.nonatomic.nonvetoable.ANonAtomicProposerAndLearnerMechanism;
 import consensus.nonatomic.nonvetoable.LearnerMechanism;
 import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyProposer;
 import consensus.twoparty.symmetric.ASymmetricTwoPartyPeer;
@@ -24,9 +24,9 @@ import port.trace.consensus.ConsensusTraceUtility;
 import sessionport.rpc.group.GIPCLocateSessionRegistry;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
-import examples.gipc.consensus.sessionport.AnExampleConsensusProposerLauncher;
-import examples.gipc.consensus.sessionport.AGreetingConsensusListener;
-import examples.gipc.consensus.sessionport.AMeaningOfLifeConsensusListener;
+import examples.gipc.consensus.AGreetingConsensusListener;
+import examples.gipc.consensus.AMeaningOfLifeConsensusListener;
+import examples.gipc.consensus.AnExampleConsensusProposerLauncher;
 import examples.gipc.counter.layers.AMultiLayeServerReceiveListener;
 import examples.gipc.counter.layers.AMultiLayerCounterServer;
 import examples.gipc.counter.sessionport.CounterSessionMember;
@@ -52,10 +52,10 @@ public class ANonAtomicNonVetoableProposerLauncher extends AnExampleConsensusPro
 //		return true;
 //	}
 	protected ConsensusMechanism<String> createLocalGreetingMechanism(short anId) {
-		return new ALearnedMechanism(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, (Learner) receiversRemoteGreetingMechanism );
+		return new ANonAtomicProposerAndLearnerMechanism(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, (Learner) receiversRemoteGreetingMechanism );
 	}
 	protected ConsensusMechanism<Integer> createLocalMeaningOfLifeMechanism(short anId) {
-		return new ALearnedMechanism(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, (Learner) receiversMeaningOfLifeMechanism);
+		return new ANonAtomicProposerAndLearnerMechanism(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, (Learner) receiversMeaningOfLifeMechanism);
 	}
 	@Override
 	protected Class remoteReceiverConsensusClass() {

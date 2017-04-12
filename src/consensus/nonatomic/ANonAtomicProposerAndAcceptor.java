@@ -13,10 +13,10 @@ import consensus.Accepted;
 import consensus.Acceptor;
 import consensus.ProposalState;
 import consensus.ProposalVetoKind;
-import consensus.nonatomic.nonvetoable.ALearnedMechanism;
+import consensus.nonatomic.nonvetoable.ANonAtomicProposerAndLearnerMechanism;
 
 public class ANonAtomicProposerAndAcceptor<StateType> 
-	extends ALearnedMechanism<StateType> 
+	extends ANonAtomicProposerAndLearnerMechanism<StateType> 
 	implements Accepted<StateType>{
 	protected int numAcceptors;
 	protected Accepted proposer;

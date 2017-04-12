@@ -161,8 +161,12 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 //		lastProposalNumber = Math.max(aProposalNumber, lastProposalNumber);		
 //	}
 	
+	protected boolean existsProposal(float aProposalNumber) {
+		return proposalState.get(aProposalNumber) != null;
+	}
+	
 	protected void addProposal(float aProposalNumber, StateType aProposal) {
-		if (proposalState.get(aProposalNumber) != null) {
+		if (existsProposal(aProposalNumber)) {
 			return;
 		}
 		proposalState.put(aProposalNumber, ProposalState.PROPOSAL_PENDING);
@@ -492,23 +496,24 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 
 		}
 	}
-	protected void setLearnedState(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
-		if (isAgreement(aVetoKind))
-			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
-		else
-			newProposalState(aProposalNumber, aProposal,toProposalState(aVetoKind));
-	}
-	@Override
-	public synchronized void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
-		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, aVetoKind);
-		setLearnedState(aProposalNumber, aProposal, aVetoKind);
-
-//		if (isAgreement(anAgreement))
+//	protected void setLearnedState(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
+//		if (isAgreement(aVetoKind))
 //			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
 //		else
-//			newProposalState(aProposalNumber, aProposal,toProposalState(anAgreement));
-		
-	}
+//			newProposalState(aProposalNumber, aProposal,toProposalState(aVetoKind));
+//	}
+//	@Override
+//	public synchronized void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
+//		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, aVetoKind);
+//		addProposal(aProposalNumber, aProposal);
+//		setLearnedState(aProposalNumber, aProposal, aVetoKind);
+//
+////		if (isAgreement(anAgreement))
+////			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
+////		else
+////			newProposalState(aProposalNumber, aProposal,toProposalState(anAgreement));
+//		
+//	}
 	public Float getLastConsensusProposal() {
 		return lastConsensusProposal;
 	}

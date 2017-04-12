@@ -1,4 +1,4 @@
-package examples.gipc.consensus.sessionport;
+package examples.gipc.consensus;
 
 import consensus.ConsensusMechanism;
 import consensus.sessionport.AConsensusMemberLauncher;

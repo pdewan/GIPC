@@ -6,7 +6,7 @@ import inputport.ConnectionListener;
 
 
 public interface ConsensusMechanism<StateType> extends LocalConsensusMechanism<StateType>, 
-		Learner<StateType>, ConsensusMechanismCustomization {
+		 ConsensusMechanismCustomization {
 //	float propose(StateType aProposal);	
 //	ProposalState waitForStateChange(float aProposalNumber);
 //	ProposalState getProposalState(float aProposalNumber);

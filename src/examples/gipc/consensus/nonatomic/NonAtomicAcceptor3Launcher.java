@@ -1,8 +1,8 @@
 package examples.gipc.consensus.nonatomic;
 
 import port.trace.consensus.ConsensusTraceUtility;
-import examples.gipc.consensus.sessionport.AGreetingVetoer;
-import examples.gipc.consensus.sessionport.Member3;
+import examples.gipc.consensus.AGreetingVetoer;
+import examples.gipc.consensus.Member3;
 
 public class NonAtomicAcceptor3Launcher extends
 //		AnAsymmetricMultiPartyLearnerLauncher 

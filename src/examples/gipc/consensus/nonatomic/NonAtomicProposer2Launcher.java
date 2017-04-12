@@ -1,7 +1,7 @@
 package examples.gipc.consensus.nonatomic;
 
-import examples.gipc.consensus.sessionport.Member1;
-import examples.gipc.consensus.sessionport.Member2;
+import examples.gipc.consensus.Member1;
+import examples.gipc.consensus.Member2;
 import port.trace.consensus.ConsensusTraceUtility;
 
 public class NonAtomicProposer2Launcher extends

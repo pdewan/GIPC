@@ -1,20 +1,14 @@
 package consensus.nonatomic.nonvetoable;
 
-import inputport.ConnectionRegistrar;
 import inputport.InputPort;
-import port.trace.consensus.ProposalConsensusOccurred;
 import port.trace.consensus.ProposalLearnNotificationReceived;
-import port.trace.consensus.ProposalLearnNotificationSent;
-import port.trace.consensus.ProposalLearnedNotificationSent;
-import consensus.Accepted;
 import consensus.AnAbstractConsensusMechanism;
-import consensus.Learned;
 import consensus.Learner;
 import consensus.ProposalState;
 import consensus.ProposalVetoKind;
 
 public class ALearnerMechanism<StateType> extends
-		AnAbstractConsensusMechanism<StateType>  {
+		AnAbstractConsensusMechanism<StateType> implements Learner<StateType> {
 	public ALearnerMechanism(InputPort anInputPort, 
 			String aName, short aMyId
 			) {
@@ -23,12 +17,30 @@ public class ALearnerMechanism<StateType> extends
 //	protected Learned<StateType> proposer() {
 //		return proposer;
 //	}
-	protected void setLearnedState(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
-		if (!eventualConsistency() && learnedByTimeout()) {
-			waitForReceipt(aProposalNumber, aProposal);			
-		}
-		super.setLearnedState(aProposalNumber, aProposal, anAgreement);
+	protected void setLearnedState(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
+		if (isAgreement(aVetoKind))
+			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
+		else
+			newProposalState(aProposalNumber, aProposal,toProposalState(aVetoKind));
 	}
+	@Override
+	public synchronized void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
+		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, aVetoKind);
+		addProposal(aProposalNumber, aProposal);
+		setLearnedState(aProposalNumber, aProposal, aVetoKind);
+
+//		if (isAgreement(anAgreement))
+//			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
+//		else
+//			newProposalState(aProposalNumber, aProposal,toProposalState(anAgreement));
+		
+	}
+//	protected void setLearnedState(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
+//		if (!eventualConsistency() && learnedByTimeout()) {
+//			waitForReceipt(aProposalNumber, aProposal);			
+//		}
+//		super.setLearnedState(aProposalNumber, aProposal, anAgreement);
+//	}
 //	@Override
 //	public void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
 //		super.learn(aProposalNumber, aProposal, anAgreement);

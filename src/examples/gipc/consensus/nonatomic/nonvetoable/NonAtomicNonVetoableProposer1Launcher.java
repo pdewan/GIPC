@@ -1,7 +1,7 @@
 package examples.gipc.consensus.nonatomic.nonvetoable;
 
-import examples.gipc.consensus.sessionport.ExampleMemberLauncher;
-import examples.gipc.consensus.sessionport.Member1;
+import examples.gipc.consensus.ExampleMemberLauncher;
+import examples.gipc.consensus.Member1;
 import port.trace.consensus.ConsensusTraceUtility;
 
 public class NonAtomicNonVetoableProposer1Launcher extends

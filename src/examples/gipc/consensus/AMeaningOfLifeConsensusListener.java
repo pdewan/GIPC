@@ -1,4 +1,4 @@
-package examples.gipc.consensus.sessionport;
+package examples.gipc.consensus;
 
 import consensus.ConsensusListener;
 import consensus.ProposalState;
@@ -8,14 +8,13 @@ public class AMeaningOfLifeConsensusListener implements ConsensusListener<Intege
 	@Override
 	public void newLocalProposalState(float aProposalNumber, Integer aProposal,
 			ProposalState aProposalState) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void newRemoteProposalState(float aProposalNumber, Integer aProposal,
 			ProposalState aProposalState) {
-		// TODO Auto-generated method stub
 		
 	}
 

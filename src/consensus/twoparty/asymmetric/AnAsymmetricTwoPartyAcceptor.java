@@ -13,9 +13,10 @@ import consensus.Learned;
 import consensus.Learner;
 import consensus.ProposalState;
 import consensus.ProposalVetoKind;
+import consensus.nonatomic.nonvetoable.ALearnerMechanism;
 
 public class AnAsymmetricTwoPartyAcceptor<StateType> extends
-		AnAbstractConsensusMechanism<StateType> implements TwoPartyAsymmetricAcceptor<StateType> {
+		ALearnerMechanism<StateType> implements TwoPartyAsymmetricAcceptor<StateType> {
 	protected Accepted<StateType> proposer;
 	public AnAsymmetricTwoPartyAcceptor(InputPort anInputPort, 
 			String aName, short aMyId, Accepted<StateType> aProposer

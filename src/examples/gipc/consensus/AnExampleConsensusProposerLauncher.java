@@ -1,4 +1,4 @@
-package examples.gipc.consensus.sessionport;
+package examples.gipc.consensus;
 
 import java.nio.ByteBuffer;
 import java.rmi.RemoteException;
@@ -8,7 +8,7 @@ import java.util.Set;
 import consensus.Acceptor;
 import consensus.ConsensusMechanism;
 import consensus.Learner;
-import consensus.nonatomic.nonvetoable.ALearnedMechanism;
+import consensus.nonatomic.nonvetoable.ANonAtomicProposerAndLearnerMechanism;
 import consensus.nonatomic.nonvetoable.LearnerMechanism;
 import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyProposer;
 import consensus.twoparty.symmetric.ASymmetricTwoPartyPeer;
@@ -43,11 +43,11 @@ public abstract class AnExampleConsensusProposerLauncher extends AnExampleConsen
 	
 	public  void proposeValues1() {
 //		double aGreetingProposal1 = greetingMechanism.propose(GREETING_1);
-		double aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING_1);		
+		float aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING_1);		
 	}
 	public  void proposeValues2() {
 //		double aGreetingProposal1 = greetingMechanism.propose(GREETING_2);
-		double aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING_2);		
+		float aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING_2);		
 	}
 
 	public  void proposeValues() {

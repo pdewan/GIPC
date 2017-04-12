@@ -7,9 +7,9 @@ import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.twoparty.symmetric.ASymmetricTwoPartyPeer;
 import consensus.twoparty.symmetric.SymmetricTwoPartyPeer;
 import consensus.twoparty.symmetric.TwoPartySymmetricConsensusMechanism;
-import examples.gipc.consensus.sessionport.AGreetingConsensusListener;
-import examples.gipc.consensus.sessionport.AMeaningOfLifeConsensusListener;
-import examples.gipc.consensus.sessionport.ExampleMember;
+import examples.gipc.consensus.AGreetingConsensusListener;
+import examples.gipc.consensus.AMeaningOfLifeConsensusListener;
+import examples.gipc.consensus.ExampleMember;
 
 public class ATwoPartySymmetricPeerLauncher implements ExampleMember{
 	protected static TwoPartySymmetricConsensusMechanism<String> greetingMechanism;

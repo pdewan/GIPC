@@ -4,7 +4,7 @@ import consensus.Accepted;
 import consensus.Acceptor;
 import consensus.ConsensusMechanism;
 import consensus.nonatomic.ANonAtomicProposerAndAcceptor;
-import examples.gipc.consensus.sessionport.AnExampleConsensusProposerLauncher;
+import examples.gipc.consensus.AnExampleConsensusProposerLauncher;
 
 public class ANonAtomicProposerAndAcceptorLauncher extends AnExampleConsensusProposerLauncher  {
 

@@ -14,12 +14,12 @@ import consensus.Learner;
 import consensus.ProposalState;
 import consensus.ProposalVetoKind;
 
-public class ALearnedMechanism<StateType> extends
+public class ANonAtomicProposerAndLearnerMechanism<StateType> extends
 		ALearnerMechanism<StateType> {
 	protected Learner<StateType> learners;
 //	protected short numLearners;
 
-	public ALearnedMechanism(
+	public ANonAtomicProposerAndLearnerMechanism(
 			InputPort anInputPort, String aName, short aMyId,
 			Learner<StateType> aPeerProxy) {
 		super(anInputPort, aName, aMyId);
