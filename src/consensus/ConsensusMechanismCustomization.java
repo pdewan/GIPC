@@ -7,4 +7,8 @@ public interface ConsensusMechanismCustomization {
 	public void setProposalVetoKind(ProposalVetoKind proposalVetoKind);
 	public ConsensusSynchrony getConsensusSynchrony();
 	public void setConsensusSynchrony(ConsensusSynchrony consensusSynchrony);
+	public void setSendVetoInformation(boolean newVal);
+	public boolean isSendVetoInformation();
+
+	
 }

@@ -53,9 +53,10 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	
 	protected ConsistencyStrength consistencyStrength = ConsistencyStrength.NON_ATOMIC;	
 	protected ProposalVetoKind proposalVetoKind = ProposalVetoKind.NO_VETO;
-	protected ConsensusSynchrony consensusSynchrony = ConsensusSynchrony.EVENTUAL;
+	protected ConsensusSynchrony consensusSynchrony = ConsensusSynchrony.ASYNCHRONOUS;
 	protected LearnedKind learnedKind = LearnedKind.MESSAGE_TIMEOUT;
 	InputPort inputPort;
+	protected boolean sendVetoInformation;
 	
 	protected short numPeers;
 	protected short numCurrentPeers;
@@ -78,6 +79,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		WaitedForSuccessfulProposalMessageReceipt.newCase(this, getObjectName(), aProposalNumber, aProposal, aWaitTime);
 
 	}
+	
 	
 	protected long receiptWaitTime() {
 		return receiptWaitTime;
@@ -103,8 +105,11 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		return proposalState.get(myLastProposalNumber);
 	}
 	
-	protected boolean eventualConsistency() {
-		return consensusSynchrony == ConsensusSynchrony.EVENTUAL;
+	protected boolean isEventualConsistency() {
+		return consensusSynchrony == ConsensusSynchrony.ASYNCHRONOUS;
+	}
+	protected boolean isAsynchronousConsistency() {
+		return consensusSynchrony == ConsensusSynchrony.ASYNCHRONOUS;
 	}
 	
 	protected boolean learnedByTimeout() {
@@ -165,7 +170,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		return proposalState.get(aProposalNumber) != null;
 	}
 	
-	protected void addProposal(float aProposalNumber, StateType aProposal) {
+	protected void recordProposal(float aProposalNumber, StateType aProposal) {
 		if (existsProposal(aProposalNumber)) {
 			return;
 		}
@@ -178,7 +183,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		if (myProposalNumber == -1) {
 			return myProposalNumber;
 		}
-		addProposal(myProposalNumber, aProposal);
+		recordProposal(myProposalNumber, aProposal);
 		proposalState.put(myProposalNumber, ProposalState.PROPOSAL_PENDING);
 //		proposalValue.put(myProposalNumber, aProposal);
 		propose(myProposalNumber, aProposal);	
@@ -262,7 +267,10 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			}			
 		}		
 		return ProposalVetoKind.NO_VETO;
-	}
+   }
+   protected synchronized ProposalVetoKind checkAcceptRequest(float aProposalNumber, StateType aState ) {		
+		return checkWithVetoers(aProposalNumber, aState);
+  }
    protected boolean isAgreement(ProposalVetoKind aVetoKind) {
 		return aVetoKind == ProposalVetoKind.NO_VETO;
 	}
@@ -316,7 +324,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 //		
 //	}
 	protected boolean resolvedProposal(float aProposalNumber) {
-		return (proposalState.get(aProposalNumber) != ProposalState.PROPOSAL_PENDING);
+		return !isPending(aProposalNumber);
 				
 		
 	}
@@ -324,7 +332,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		if (aState == null) {
 			System.out.println ("Null state");
 		}
-		if (resolvedProposal(aProposalNumber)) {
+		if (!isPending(aProposalNumber)) {
 			return;		
 		}
 		proposalState.put(aProposalNumber, aProposalState);	
@@ -355,7 +363,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	@Override
 	public synchronized ProposalState waitForConsensus(float aProposalNumber) {		
 		ProposalWaitStarted.newCase(this, getObjectName(), aProposalNumber, proposalValue.get(aProposalNumber));
-		while (!resolvedProposal(aProposalNumber)) {
+		while (isPending(aProposalNumber)) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -537,6 +545,12 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	public void setConsensusSynchrony(ConsensusSynchrony consensusSynchrony) {
 		this.consensusSynchrony = consensusSynchrony;
+	}
+	public void setSendVetoInformation(boolean newVal) {
+		sendVetoInformation = newVal;
+	}
+	public boolean isSendVetoInformation() {
+		return sendVetoInformation;
 	}
 
 }

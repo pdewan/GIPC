@@ -3,7 +3,7 @@ package examples.gipc.consensus.nonatomic;
 import consensus.Accepted;
 import consensus.Acceptor;
 import consensus.ConsensusMechanism;
-import consensus.nonatomic.ANonAtomicProposerAndAcceptor;
+import consensus.nonatomic.ASynchronousProposerAndAcceptorMechanism;
 import examples.gipc.consensus.AnExampleConsensusProposerLauncher;
 
 public class ANonAtomicProposerAndAcceptorLauncher extends AnExampleConsensusProposerLauncher  {
@@ -21,14 +21,14 @@ public class ANonAtomicProposerAndAcceptorLauncher extends AnExampleConsensusPro
 //	}
 	
 	protected ConsensusMechanism<String> createLocalGreetingMechanism(short anId) {
-		return new ANonAtomicProposerAndAcceptor<String>(groupRPCSessionPort, 
+		return new ASynchronousProposerAndAcceptorMechanism<String>(groupRPCSessionPort, 
 				GREETING_CONSENSUS_MECHANISM_NAME, anId, 
 				(Acceptor<String>) receiversRemoteGreetingMechanism,  (Accepted<String>) callerRemoteGreetingMechanism);
 //		return new AnAsymmetricMultiPartyProposer<>(anInputPort, aName, aMyId, anAcceptors, aNumLearners)
 	}
 	protected ConsensusMechanism<Integer> createLocalMeaningOfLifeMechanism(short anId) {
 //		return new AnAsymmetricMultiPartyProposerAndAcceptor(groupRPCSessionPort,  MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, (AsymmetricMultiPartyAcceptor) receiversMeaningOfLifeMechanism, (short) (numMembersToWaitFor() - 1));
-		return new ANonAtomicProposerAndAcceptor<Integer>(groupRPCSessionPort, 
+		return new ASynchronousProposerAndAcceptorMechanism<Integer>(groupRPCSessionPort, 
 				MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, 
 				(Acceptor<Integer>) receiversMeaningOfLifeMechanism, 
 				(Accepted<Integer>) callerMeaningOfLifeMechanism);

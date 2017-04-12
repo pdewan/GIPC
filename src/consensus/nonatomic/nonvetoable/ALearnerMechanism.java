@@ -17,7 +17,8 @@ public class ALearnerMechanism<StateType> extends
 //	protected Learned<StateType> proposer() {
 //		return proposer;
 //	}
-	protected void setLearnedState(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
+	protected void recordReceivedLearnNotification(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
+		recordProposal(aProposalNumber, aProposal);
 		if (isAgreement(aVetoKind))
 			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
 		else
@@ -26,8 +27,8 @@ public class ALearnerMechanism<StateType> extends
 	@Override
 	public synchronized void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
 		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, aVetoKind);
-		addProposal(aProposalNumber, aProposal);
-		setLearnedState(aProposalNumber, aProposal, aVetoKind);
+//		recordProposal(aProposalNumber, aProposal);
+		recordReceivedLearnNotification(aProposalNumber, aProposal, aVetoKind);
 
 //		if (isAgreement(anAgreement))
 //			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);

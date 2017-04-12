@@ -14,12 +14,12 @@ import consensus.Learner;
 import consensus.ProposalState;
 import consensus.ProposalVetoKind;
 
-public class ANonAtomicProposerAndLearnerMechanism<StateType> extends
+public class AnAsynchronousProposerAndLearnerMechanism<StateType> extends
 		ALearnerMechanism<StateType> {
 	protected Learner<StateType> learners;
 //	protected short numLearners;
 
-	public ANonAtomicProposerAndLearnerMechanism(
+	public AnAsynchronousProposerAndLearnerMechanism(
 			InputPort anInputPort, String aName, short aMyId,
 			Learner<StateType> aPeerProxy) {
 		super(anInputPort, aName, aMyId);
@@ -39,7 +39,9 @@ public class ANonAtomicProposerAndLearnerMechanism<StateType> extends
 	protected short numCurrentLearners() {
 		return numCurrentPeers();
 	}
-
+	protected void recordSentLearnNotification(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
+		
+	}
 	protected void sendLearnNotification(float aProposalNumber,
 			StateType aProposal, ProposalVetoKind anAgreement) {
 		ProposalLearnNotificationSent.newCase(this, getObjectName(),
@@ -55,12 +57,12 @@ public class ANonAtomicProposerAndLearnerMechanism<StateType> extends
 	protected boolean sufficientLearners(short aMaxLearners, short aCurrentLearners) {
 		return aMaxLearners == aCurrentLearners;
 	}
-	protected void setLearnedState(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
-		if (!eventualConsistency() && learnedByTimeout()) {
-			waitForReceipt(aProposalNumber, aProposal);			
-		}
-		super.setLearnedState(aProposalNumber, aProposal, anAgreement);
-	}
+//	protected void recordReceivedLearnNotification(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
+//		if (!isEventualConsistency() && learnedByTimeout()) {
+//			waitForReceipt(aProposalNumber, aProposal);			
+//		}
+//		super.recordReceivedLearnNotification(aProposalNumber, aProposal, anAgreement);
+//	}
 	protected Boolean sufficientLearners(short aMaxLearners, short aCurrentLearners, short aLearnedNotifications) {
 		if (aLearnedNotifications != aCurrentLearners)
 			return null;
@@ -71,15 +73,9 @@ public class ANonAtomicProposerAndLearnerMechanism<StateType> extends
 	}
 	@Override
 	protected void propose(float aProposalNumber, StateType aProposal) {
-		sendLearnNotification(aProposalNumber, aProposal, ProposalVetoKind.NO_VETO);
-//		if (!eventualConsistency() && learnedByTimeout()) {
-//			waitForReceipt(aProposalNumber, aProposal);			
-//			if (sufficientLearners(maxLearners(), numCurrentLearners())) {
-//				newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
-//			} else {
-//				newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_NOT_COMMUNICATED);
-//			}
-//		}
+		ProposalVetoKind aVetoKind = ProposalVetoKind.NO_VETO;
+		recordSentLearnNotification(aProposalNumber, aProposal, aVetoKind);
+		sendLearnNotification(aProposalNumber, aProposal, aVetoKind);
 	}
 	
 

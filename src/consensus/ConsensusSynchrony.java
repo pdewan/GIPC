@@ -1,7 +1,10 @@
 package consensus;
 
 public enum ConsensusSynchrony {
-	EVENTUAL,
-	IMMEDIATE
+	ASYNCHRONOUS,
+	ONE_SYNCHRONOUS,
+	MAJORITY_SYNCHRONOUS,
+	ALL_SYNCHRONOUS,
+	CUSTOM_SYNCHRONOUS
 
 }
