@@ -1,4 +1,4 @@
-package examples.gipc.consensus.nonatomic.nonvetoable;
+package examples.gipc.consensus.asynchronous;
 
 import java.nio.ByteBuffer;
 import java.rmi.RemoteException;
@@ -10,8 +10,8 @@ import com.sun.javafx.event.EventUtil;
 import consensus.Acceptor;
 import consensus.ConsensusMechanism;
 import consensus.Learner;
-import consensus.nonatomic.nonvetoable.AnAsynchronousProposerAndLearnerMechanism;
-import consensus.nonatomic.nonvetoable.LearnerMechanism;
+import consensus.asynchronous.AnAsynchronousProposerAndLearnerMechanism;
+import consensus.asynchronous.LearnerMechanism;
 import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyProposer;
 import consensus.twoparty.symmetric.ASymmetricTwoPartyPeer;
 import consensus.twoparty.symmetric.SymmetricTwoPartyPeer;
@@ -34,13 +34,13 @@ import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;
 
-public class ANonAtomicNonVetoableProposerLauncher extends AnExampleConsensusProposerLauncher  {
+public class AnAsynchronousProposerLauncher extends AnExampleConsensusProposerLauncher  {
 
 //	protected static final int MY_PORT_NUMBER = 7001;
 //	protected static final String MY_NAME = "1";
 
 	
-	public ANonAtomicNonVetoableProposerLauncher(String aLocalName,
+	public AnAsynchronousProposerLauncher(String aLocalName,
 			int aPortNumber) {
 		super(aLocalName, aPortNumber);
 		// TODO Auto-generated constructor stub
@@ -67,7 +67,7 @@ public class ANonAtomicNonVetoableProposerLauncher extends AnExampleConsensusPro
 //	}
 //	public static void main (String[] args) {
 //		ConsensusTraceUtility.setTracing();		
-//		(new AnAsymmeticMultiPartyNonVetoableProposerLauncher()).beProposer(MY_NAME, MY_PORT_NUMBER);;
+//		(new AnAsymmeticMultiPartyNonRejectionableProposerLauncher()).beProposer(MY_NAME, MY_PORT_NUMBER);;
 //	}
 	
 	// no reply has to be sent back, so do not bother with this method

@@ -30,17 +30,17 @@ public abstract class AnExampleConsensusMemberLauncher extends AConsensusMemberL
 	public AnExampleConsensusMemberLauncher(String aLocalName, int aPortNumber) {
 		init(aLocalName, aPortNumber);
 	}
-	protected void addListenersAndVetoersToLocalGreetingMechanism() {
+	protected void addListenersAndRejectionersToLocalGreetingMechanism() {
 		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());
 	}
-	protected void addListenersAndVetoersToLocalMeaningOfLifeMechanism() {
+	protected void addListenersAndRejectionersToLocalMeaningOfLifeMechanism() {
 		meaningOfLifeMechanism.addConsensusListener(new AMeaningOfLifeConsensusListener());
 	}
 	protected  void initGreetingConsensusMechanism(short anId) {
 		receiversRemoteGreetingMechanism = lookupMulticastProxy(remoteReceiverConsensusClass(), GREETING_CONSENSUS_MECHANISM_NAME);
 		callerRemoteGreetingMechanism = gipcRegistry.lookupCaller(remoteCallerConsensusClass(), GREETING_CONSENSUS_MECHANISM_NAME);
 		greetingMechanism = createLocalGreetingMechanism(anId);
-		addListenersAndVetoersToLocalGreetingMechanism();
+		addListenersAndRejectionersToLocalGreetingMechanism();
 //		greetingMechanism = new AnAsymmetricTwoPartyProposer<>(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, remoteGreetingMechanism);
 //		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());
 		gipcRegistry.rebind(GREETING_CONSENSUS_MECHANISM_NAME, greetingMechanism);
@@ -55,7 +55,7 @@ public abstract class AnExampleConsensusMemberLauncher extends AConsensusMemberL
 		meaningOfLifeMechanism = createLocalMeaningOfLifeMechanism(anId);
 
 //		meaningOfLifeMechanism.addConsensusListener(new AMeaningOfLifeConsensusListener());
-		addListenersAndVetoersToLocalMeaningOfLifeMechanism();
+		addListenersAndRejectionersToLocalMeaningOfLifeMechanism();
 		gipcRegistry.rebind(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, meaningOfLifeMechanism);		
 
 	}

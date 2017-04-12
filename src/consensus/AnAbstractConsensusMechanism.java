@@ -2,7 +2,6 @@ package consensus;
 
 import inputport.ConnectionRegistrar;
 import inputport.ConnectionType;
-import inputport.InputPort;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +19,7 @@ import port.trace.consensus.ProposalWaitEnded;
 import port.trace.consensus.ProposalWaitStarted;
 import port.trace.consensus.WaitedForSuccessfulProposalMessageReceipt;
 import port.trace.consensus.WaitingForSuccessfulProposalMessageReceipt;
+import sessionport.rpc.group.GroupRPCSessionPort;
 import util.misc.ThreadSupport;
 import util.trace.Tracer;
 
@@ -43,7 +43,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected Map<String, Integer> proposalCounts = new HashMap<String, Integer>();
 
 	protected List<ConsensusListener<StateType>> consensusListeners = new ArrayList();
-	protected List<ProposalVetoer<StateType>> consensusVetoers = new ArrayList();
+	protected List<ProposalVetoer<StateType>> consensusRejectioners = new ArrayList();
 	
 	
 
@@ -52,15 +52,15 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected String objectName;
 	
 	protected ConsistencyStrength consistencyStrength = ConsistencyStrength.NON_ATOMIC;	
-	protected ProposalVetoKind proposalVetoKind = ProposalVetoKind.NO_VETO;
-	protected ConsensusSynchrony consensusSynchrony = ConsensusSynchrony.ASYNCHRONOUS;
+	protected ProposalRejectionKind proposalRejectionKind = ProposalRejectionKind.ACCEPTED;
+	protected ConsensusSynchrony consensusSynchrony = ConsensusSynchrony.ALL_SYNCHRONOUS;
 	protected LearnedKind learnedKind = LearnedKind.MESSAGE_TIMEOUT;
-	InputPort inputPort;
-	protected boolean sendVetoInformation;
+	protected GroupRPCSessionPort inputPort;
+	protected boolean sendRejectionInformation = true;
 	
 	protected short numPeers;
 	protected short numCurrentPeers;
-	public AnAbstractConsensusMechanism(InputPort anInputPort, String anObjectName, short aMyId) {
+	public AnAbstractConsensusMechanism(GroupRPCSessionPort anInputPort, String anObjectName, short aMyId) {
 		myId = aMyId;
 		
 //		myPrefix = Float.parseFloat("." + myId);
@@ -68,6 +68,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		objectName = anObjectName;
 		inputPort = anInputPort;
 		anInputPort.addConnectionListener(this);
+		numPeers = (short) (inputPort.getConnections().size() + 1);
+		numCurrentPeers = numPeers;
 	}
 //	public String toString() {		
 //		return getClass().getSimpleName() + "." + objectName;
@@ -200,14 +202,14 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		consensusListeners.remove(aConsensusListener);		
 	}
 	@Override
-	public void addConsensusVetoer(
-			ProposalVetoer<StateType> aConsensusVetoer) {
-		consensusVetoers.add(aConsensusVetoer);
+	public void addConsensusRejectioner(
+			ProposalVetoer<StateType> aConsensusRejectioner) {
+		consensusRejectioners.add(aConsensusRejectioner);
 	}
 	@Override
-	public void removeConsensusVetoer(
-			ProposalVetoer<StateType> aConsensusVetoer) {
-		consensusVetoers.remove(aConsensusVetoer);		
+	public void removeConsensusRejectioner(
+			ProposalVetoer<StateType> aConsensusRejectioner) {
+		consensusRejectioners.remove(aConsensusRejectioner);		
 	}
 	@Override
 	public StateType getLastConsensusState() {
@@ -259,20 +261,20 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			newProposalState(aProposalNumber, proposalValue.get(aProposalNumber), aProposalState);
 		}		
 	}
-   protected synchronized ProposalVetoKind checkWithVetoers(float aProposalNumber, StateType aState ) {		
-		for (ProposalVetoer<StateType> aConsensusVetoer:consensusVetoers){
-			ProposalVetoKind aVetoKind = aConsensusVetoer.acceptProposal(aProposalNumber, aState);
-			if (aVetoKind != ProposalVetoKind.NO_VETO) {
-				return aVetoKind;
+   protected synchronized ProposalRejectionKind checkWithVetoer(float aProposalNumber, StateType aState ) {		
+		for (ProposalVetoer<StateType> aConsensusRejectioner:consensusRejectioners){
+			ProposalRejectionKind aRejectionKind = aConsensusRejectioner.acceptProposal(aProposalNumber, aState);
+			if (aRejectionKind != ProposalRejectionKind.ACCEPTED) {
+				return aRejectionKind;
 			}			
 		}		
-		return ProposalVetoKind.NO_VETO;
+		return ProposalRejectionKind.ACCEPTED;
    }
-   protected synchronized ProposalVetoKind checkAcceptRequest(float aProposalNumber, StateType aState ) {		
-		return checkWithVetoers(aProposalNumber, aState);
+   protected synchronized ProposalRejectionKind checkAcceptRequest(float aProposalNumber, StateType aState ) {		
+		return checkWithVetoer(aProposalNumber, aState);
   }
-   protected boolean isAgreement(ProposalVetoKind aVetoKind) {
-		return aVetoKind == ProposalVetoKind.NO_VETO;
+   protected boolean isAgreement(ProposalRejectionKind aRejectionKind) {
+		return aRejectionKind == ProposalRejectionKind.ACCEPTED;
 	}
    protected synchronized void notifyListeners(float aProposalNumber, StateType aState, ProposalState aProposalState ) {
 		
@@ -425,7 +427,10 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		return aKey.startsWith(""+ aProposalNumber);
 	}
 	protected Integer getCount(Float aProposalNumber, String anAttribute) {
-		return proposalCounts.get(makeKey(aProposalNumber, anAttribute));
+		Integer aRetVal = proposalCounts.get(makeKey(aProposalNumber, anAttribute));
+		if (aRetVal == null)
+			return 0;
+		return aRetVal;
 		
 	}
 	protected void setCount(Float aProposalNumber, String anAttribute, int anIncrement) {
@@ -438,7 +443,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			aCount = 0;
 		}
 		int aResult = anIncrement + aCount;
-		setCount(aProposalNumber, anAttribute, aCount);	
+		setCount(aProposalNumber, anAttribute, aResult);	
 		return (short) aResult;
 	}
 	
@@ -490,8 +495,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public boolean isPending(float aProposalNumber) {
 		return proposalState.get(aProposalNumber) == ProposalState.PROPOSAL_PENDING;
 	}
-	protected ProposalState toProposalState(ProposalVetoKind aVetoKind) {
-		switch (aVetoKind) {
+	protected ProposalState toProposalState(ProposalRejectionKind aRejectionKind) {
+		switch (aRejectionKind) {
 		case CONSISTENCY_FAULT:
 			return ProposalState.PROPOSAL_CONSISTENCY_FAULT;
 		case SERVICE_DENIAL:
@@ -504,17 +509,17 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 
 		}
 	}
-//	protected void setLearnedState(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
-//		if (isAgreement(aVetoKind))
+//	protected void setLearnedState(float aProposalNumber, StateType aProposal, ProposalVetoKind aRejectionKind) {
+//		if (isAgreement(aRejectionKind))
 //			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
 //		else
-//			newProposalState(aProposalNumber, aProposal,toProposalState(aVetoKind));
+//			newProposalState(aProposalNumber, aProposal,toProposalState(aRejectionKind));
 //	}
 //	@Override
-//	public synchronized void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
-//		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, aVetoKind);
+//	public synchronized void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind aRejectionKind) {
+//		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, aRejectionKind);
 //		addProposal(aProposalNumber, aProposal);
-//		setLearnedState(aProposalNumber, aProposal, aVetoKind);
+//		setLearnedState(aProposalNumber, aProposal, aRejectionKind);
 //
 ////		if (isAgreement(anAgreement))
 ////			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
@@ -534,11 +539,11 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public void setConsistencyStrength(ConsistencyStrength consistencyStrength) {
 		this.consistencyStrength = consistencyStrength;
 	}
-	public ProposalVetoKind getProposalVetoKind() {
-		return proposalVetoKind;
+	public ProposalRejectionKind getProposalVetoKind() {
+		return proposalRejectionKind;
 	}
-	public void setProposalVetoKind(ProposalVetoKind proposalVetoKind) {
-		this.proposalVetoKind = proposalVetoKind;
+	public void setProposalVetoKind(ProposalRejectionKind proposalRejectionKind) {
+		this.proposalRejectionKind = proposalRejectionKind;
 	}
 	public ConsensusSynchrony getConsensusSynchrony() {
 		return consensusSynchrony;
@@ -546,11 +551,11 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public void setConsensusSynchrony(ConsensusSynchrony consensusSynchrony) {
 		this.consensusSynchrony = consensusSynchrony;
 	}
-	public void setSendVetoInformation(boolean newVal) {
-		sendVetoInformation = newVal;
+	public void setSendRejectionInformation(boolean newVal) {
+		sendRejectionInformation = newVal;
 	}
-	public boolean isSendVetoInformation() {
-		return sendVetoInformation;
+	public boolean isSendRejectionInformation() {
+		return sendRejectionInformation;
 	}
 
 }

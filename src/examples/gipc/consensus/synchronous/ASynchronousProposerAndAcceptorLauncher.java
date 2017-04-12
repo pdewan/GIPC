@@ -1,14 +1,14 @@
-package examples.gipc.consensus.nonatomic;
+package examples.gipc.consensus.synchronous;
 
 import consensus.Accepted;
 import consensus.Acceptor;
 import consensus.ConsensusMechanism;
-import consensus.nonatomic.ASynchronousProposerAndAcceptorMechanism;
+import consensus.synchronous.ASynchronousProposerAndAcceptorMechanism;
 import examples.gipc.consensus.AnExampleConsensusProposerLauncher;
 
-public class ANonAtomicProposerAndAcceptorLauncher extends AnExampleConsensusProposerLauncher  {
+public class ASynchronousProposerAndAcceptorLauncher extends AnExampleConsensusProposerLauncher  {
 
-	public ANonAtomicProposerAndAcceptorLauncher(String aLocalName,
+	public ASynchronousProposerAndAcceptorLauncher(String aLocalName,
 			int aPortNumber) {
 		super(aLocalName, aPortNumber);
 		// TODO Auto-generated constructor stub

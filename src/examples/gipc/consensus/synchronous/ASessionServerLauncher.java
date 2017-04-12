@@ -1,4 +1,4 @@
-package examples.gipc.consensus.nonatomic;
+package examples.gipc.consensus.synchronous;
 
 
 

@@ -1,13 +1,13 @@
-package examples.gipc.consensus.nonatomic.nonvetoable;
+package examples.gipc.consensus.asynchronous;
 
 import examples.gipc.consensus.ExampleMemberLauncher;
 import examples.gipc.consensus.Member1;
 import port.trace.consensus.ConsensusTraceUtility;
 
-public class NonAtomicNonVetoableProposer1Launcher extends
-		ANonAtomicNonVetoableProposerLauncher implements Member1 {
+public class AsynchronousProposer1Launcher extends
+		AnAsynchronousProposerLauncher implements Member1 {
 
-	public NonAtomicNonVetoableProposer1Launcher(String aLocalName,
+	public AsynchronousProposer1Launcher(String aLocalName,
 			int aPortNumber) {
 		super(aLocalName, aPortNumber);
 		// TODO Auto-generated constructor stub
@@ -19,7 +19,7 @@ public class NonAtomicNonVetoableProposer1Launcher extends
 
 	public static void main(String[] args) {
 		ConsensusTraceUtility.setTracing();
-		new NonAtomicNonVetoableProposer1Launcher(MY_NAME, MY_PORT_NUMBER)
+		new AsynchronousProposer1Launcher(MY_NAME, MY_PORT_NUMBER)
 				.proposeValues();
 	}
 

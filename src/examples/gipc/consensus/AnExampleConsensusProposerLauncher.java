@@ -8,8 +8,8 @@ import java.util.Set;
 import consensus.Acceptor;
 import consensus.ConsensusMechanism;
 import consensus.Learner;
-import consensus.nonatomic.nonvetoable.AnAsynchronousProposerAndLearnerMechanism;
-import consensus.nonatomic.nonvetoable.LearnerMechanism;
+import consensus.asynchronous.AnAsynchronousProposerAndLearnerMechanism;
+import consensus.asynchronous.LearnerMechanism;
 import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyProposer;
 import consensus.twoparty.symmetric.ASymmetricTwoPartyPeer;
 import consensus.twoparty.symmetric.SymmetricTwoPartyPeer;
@@ -39,7 +39,7 @@ public abstract class AnExampleConsensusProposerLauncher extends AnExampleConsen
 	public static final String GREETING_2 = "Hi";
 	public static int MEANING_1 = 42;
 	public static int MEANING_2 = 29;
-	public static long INIT_TIME = 3000;
+	public static long INIT_TIME = 6000;
 	
 	public  void proposeValues1() {
 //		double aGreetingProposal1 = greetingMechanism.propose(GREETING_1);

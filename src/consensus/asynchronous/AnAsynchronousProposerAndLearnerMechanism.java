@@ -1,4 +1,4 @@
-package consensus.nonatomic.nonvetoable;
+package consensus.asynchronous;
 
 import inputport.ConnectionRegistrar;
 import inputport.InputPort;
@@ -7,12 +7,13 @@ import port.trace.consensus.ProposalLearnNotificationSent;
 import port.trace.consensus.ProposalLearnedNotificationReceived;
 import port.trace.consensus.ProposalQuorumAchieved;
 import port.trace.consensus.ProposalQuorumNotAchieved;
+import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.ConsensusSynchrony;
 import consensus.Learned;
 import consensus.Learner;
 import consensus.ProposalState;
-import consensus.ProposalVetoKind;
+import consensus.ProposalRejectionKind;
 
 public class AnAsynchronousProposerAndLearnerMechanism<StateType> extends
 		ALearnerMechanism<StateType> {
@@ -20,7 +21,7 @@ public class AnAsynchronousProposerAndLearnerMechanism<StateType> extends
 //	protected short numLearners;
 
 	public AnAsynchronousProposerAndLearnerMechanism(
-			InputPort anInputPort, String aName, short aMyId,
+			GroupRPCSessionPort anInputPort, String aName, short aMyId,
 			Learner<StateType> aPeerProxy) {
 		super(anInputPort, aName, aMyId);
 		learners = aPeerProxy;
@@ -39,11 +40,11 @@ public class AnAsynchronousProposerAndLearnerMechanism<StateType> extends
 	protected short numCurrentLearners() {
 		return numCurrentPeers();
 	}
-	protected void recordSentLearnNotification(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
+	protected void recordSentLearnNotification(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
 		
 	}
 	protected void sendLearnNotification(float aProposalNumber,
-			StateType aProposal, ProposalVetoKind anAgreement) {
+			StateType aProposal, ProposalRejectionKind anAgreement) {
 		ProposalLearnNotificationSent.newCase(this, getObjectName(),
 				aProposalNumber, aProposal, anAgreement);
 		learners().learn(aProposalNumber, aProposal, anAgreement);
@@ -73,9 +74,9 @@ public class AnAsynchronousProposerAndLearnerMechanism<StateType> extends
 	}
 	@Override
 	protected void propose(float aProposalNumber, StateType aProposal) {
-		ProposalVetoKind aVetoKind = ProposalVetoKind.NO_VETO;
-		recordSentLearnNotification(aProposalNumber, aProposal, aVetoKind);
-		sendLearnNotification(aProposalNumber, aProposal, aVetoKind);
+		ProposalRejectionKind aRejectionKind = ProposalRejectionKind.ACCEPTED;
+		recordSentLearnNotification(aProposalNumber, aProposal, aRejectionKind);
+		sendLearnNotification(aProposalNumber, aProposal, aRejectionKind);
 	}
 	
 

@@ -5,10 +5,11 @@ import inputport.InputPort;
 import port.trace.consensus.ProposalAcceptRequestReceived;
 import port.trace.consensus.ProposalAcceptRequestSent;
 import port.trace.consensus.ProposalLearnNotificationSent;
+import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.Acceptor;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.ProposalState;
-import consensus.ProposalVetoKind;
+import consensus.ProposalRejectionKind;
 import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyProposer;
 
 public class ASymmetricTwoPartyPeer<StateType> extends
@@ -16,7 +17,7 @@ public class ASymmetricTwoPartyPeer<StateType> extends
 		TwoPartySymmetricConsensusMechanism<StateType> {
 	Acceptor<StateType> peer;
 
-	public ASymmetricTwoPartyPeer(InputPort anInputPort, String aName, short aMyId,
+	public ASymmetricTwoPartyPeer(GroupRPCSessionPort anInputPort, String aName, short aMyId,
 			SymmetricTwoPartyPeer<StateType> aPeer) {
 		super(anInputPort, aName, aMyId);
 		peer = aPeer;
@@ -60,7 +61,7 @@ public class ASymmetricTwoPartyPeer<StateType> extends
 
 	@Override
 	public void learn(float aProposalNumber, StateType aProposal,
-			ProposalVetoKind anAgreement) {
+			ProposalRejectionKind anAgreement) {
 		// TODO Auto-generated method stub
 		
 	}

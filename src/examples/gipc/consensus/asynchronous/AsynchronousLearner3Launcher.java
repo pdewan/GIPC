@@ -1,21 +1,21 @@
-package examples.gipc.consensus.nonatomic.nonvetoable;
+package examples.gipc.consensus.asynchronous;
 
 import port.trace.consensus.ConsensusTraceUtility;
 import examples.gipc.consensus.Member3;
 
-public class NonAtomicLearner3Launcher extends
+public class AsynchronousLearner3Launcher extends
 //		AnAsymmetricMultiPartyLearnerLauncher 
-		ANonAtomicNonVetoableProposerLauncher
+		AnAsynchronousProposerLauncher
 		implements Member3 {
 
-	public NonAtomicLearner3Launcher(String aLocalName,
+	public AsynchronousLearner3Launcher(String aLocalName,
 			int aPortNumber) {
 		super(aLocalName, aPortNumber);
 	}
 
 	public static void main(String[] args) {
 		ConsensusTraceUtility.setTracing();
-		new ANonAtomicLearnerLauncher(MY_NAME, MY_PORT_NUMBER);
+		new AnAsynchronousLearnerLauncher(MY_NAME, MY_PORT_NUMBER);
 	}
 
 }

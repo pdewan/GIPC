@@ -1,4 +1,4 @@
-package examples.gipc.consensus.nonatomic.nonvetoable;
+package examples.gipc.consensus.asynchronous;
 
 
 

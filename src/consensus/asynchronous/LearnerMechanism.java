@@ -1,11 +1,11 @@
-package consensus.nonatomic.nonvetoable;
+package consensus.asynchronous;
 
 import inputport.ConnectionListener;
 import consensus.ConsensusMechanism;
 import consensus.Learned;
 import consensus.Learner;
 
-public interface LearnedMechanism<StateType> extends 
+public interface LearnerMechanism<StateType> extends 
 		ConsensusMechanism<StateType>,
 		Learned<StateType> {
 		

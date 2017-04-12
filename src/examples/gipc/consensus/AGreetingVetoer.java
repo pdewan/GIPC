@@ -1,13 +1,13 @@
 package examples.gipc.consensus;
 
-import consensus.ProposalVetoKind;
+import consensus.ProposalRejectionKind;
 import consensus.ProposalVetoer;
 
 public class AGreetingVetoer implements ProposalVetoer<String>{
 
 	@Override
-	public ProposalVetoKind acceptProposal(float aProposalNumber, String aState) {
-		return aState.length() > 2?ProposalVetoKind.SERVICE_DENIAL:ProposalVetoKind.NO_VETO;
+	public ProposalRejectionKind acceptProposal(float aProposalNumber, String aState) {
+		return aState.length() > 2?ProposalRejectionKind.SERVICE_DENIAL:ProposalRejectionKind.ACCEPTED;
 			
 	}
 

@@ -1,13 +1,13 @@
-package examples.gipc.consensus.nonatomic;
+package examples.gipc.consensus.synchronous;
 
 import examples.gipc.consensus.Member1;
 import examples.gipc.consensus.Member2;
 import port.trace.consensus.ConsensusTraceUtility;
 
-public class NonAtomicProposer2Launcher extends
-	ANonAtomicProposerAndAcceptorLauncher implements Member2 {
+public class SynchronousProposer2Launcher extends
+	ASynchronousProposerAndAcceptorLauncher implements Member2 {
 
-	public NonAtomicProposer2Launcher(String aLocalName,
+	public SynchronousProposer2Launcher(String aLocalName,
 			int aPortNumber) {
 		super(aLocalName, aPortNumber);
 	}
@@ -18,7 +18,7 @@ public class NonAtomicProposer2Launcher extends
 
 	public static void main(String[] args) {
 		ConsensusTraceUtility.setTracing();
-		new NonAtomicProposer2Launcher(MY_NAME, MY_PORT_NUMBER)
+		new SynchronousProposer2Launcher(MY_NAME, MY_PORT_NUMBER)
 				.proposeValues();
 	}
 

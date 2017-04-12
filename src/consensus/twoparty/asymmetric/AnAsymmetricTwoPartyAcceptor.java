@@ -7,18 +7,19 @@ import port.trace.consensus.ProposalAcceptedNotificationSent;
 import port.trace.consensus.ProposalConsensusOccurred;
 import port.trace.consensus.ProposalLearnNotificationReceived;
 import port.trace.consensus.ProposalLearnedNotificationSent;
+import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.Accepted;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.Learned;
 import consensus.Learner;
 import consensus.ProposalState;
-import consensus.ProposalVetoKind;
-import consensus.nonatomic.nonvetoable.ALearnerMechanism;
+import consensus.ProposalRejectionKind;
+import consensus.asynchronous.ALearnerMechanism;
 
 public class AnAsymmetricTwoPartyAcceptor<StateType> extends
 		ALearnerMechanism<StateType> implements TwoPartyAsymmetricAcceptor<StateType> {
 	protected Accepted<StateType> proposer;
-	public AnAsymmetricTwoPartyAcceptor(InputPort anInputPort, 
+	public AnAsymmetricTwoPartyAcceptor(GroupRPCSessionPort anInputPort, 
 			String aName, short aMyId, Accepted<StateType> aProposer
 			) {
 		super(anInputPort, aName, aMyId);
@@ -31,7 +32,7 @@ public class AnAsymmetricTwoPartyAcceptor<StateType> extends
 	@Override
 	public void accept(float aProposalNumber, StateType aState) {
 		ProposalAcceptRequestReceived.newCase(this, getObjectName(), aProposalNumber, aState);
-		ProposalVetoKind anAgreement = checkWithVetoers(aProposalNumber, aState);
+		ProposalRejectionKind anAgreement = checkWithVetoer(aProposalNumber, aState);
 		proposer().accepted(aProposalNumber, aState, anAgreement);
 		ProposalAcceptedNotificationSent.newCase(this, getObjectName(), aProposalNumber, aState, anAgreement);
 		learn(aProposalNumber, aState, anAgreement);

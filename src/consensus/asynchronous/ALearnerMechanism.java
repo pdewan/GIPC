@@ -1,15 +1,16 @@
-package consensus.nonatomic.nonvetoable;
+package consensus.asynchronous;
 
 import inputport.InputPort;
 import port.trace.consensus.ProposalLearnNotificationReceived;
+import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.Learner;
 import consensus.ProposalState;
-import consensus.ProposalVetoKind;
+import consensus.ProposalRejectionKind;
 
 public class ALearnerMechanism<StateType> extends
 		AnAbstractConsensusMechanism<StateType> implements Learner<StateType> {
-	public ALearnerMechanism(InputPort anInputPort, 
+	public ALearnerMechanism(GroupRPCSessionPort anInputPort, 
 			String aName, short aMyId
 			) {
 		super(anInputPort, aName, aMyId);
@@ -17,18 +18,18 @@ public class ALearnerMechanism<StateType> extends
 //	protected Learned<StateType> proposer() {
 //		return proposer;
 //	}
-	protected void recordReceivedLearnNotification(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
+	protected void recordReceivedLearnNotification(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
 		recordProposal(aProposalNumber, aProposal);
-		if (isAgreement(aVetoKind))
+		if (isAgreement(aRejectionKind))
 			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
 		else
-			newProposalState(aProposalNumber, aProposal,toProposalState(aVetoKind));
+			newProposalState(aProposalNumber, aProposal,toProposalState(aRejectionKind));
 	}
 	@Override
-	public synchronized void learn(float aProposalNumber, StateType aProposal, ProposalVetoKind aVetoKind) {
-		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, aVetoKind);
+	public synchronized void learn(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
+		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, aRejectionKind);
 //		recordProposal(aProposalNumber, aProposal);
-		recordReceivedLearnNotification(aProposalNumber, aProposal, aVetoKind);
+		recordReceivedLearnNotification(aProposalNumber, aProposal, aRejectionKind);
 
 //		if (isAgreement(anAgreement))
 //			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
