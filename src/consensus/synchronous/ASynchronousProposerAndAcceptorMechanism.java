@@ -180,7 +180,7 @@ public class ASynchronousProposerAndAcceptorMechanism<StateType>
 		  aRejectionKind = ProposalRejectionKind.ACCEPTED;
 		  recordSentLearnNotification(aProposalNumber, aProposal, aRejectionKind);
 	      sendLearnNotification(aProposalNumber, aProposal, aRejectionKind);
-		} else if (heardFromAll()) {
+		} else {
 			processProposalRejection(aProposalNumber, aProposal, ProposalRejectionKind.NOT_ENOUGH_ACCEPTS);
 			
 		}
