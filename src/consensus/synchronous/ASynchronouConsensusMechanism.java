@@ -16,10 +16,10 @@ import consensus.Acceptor;
 import consensus.ConsensusSynchrony;
 import consensus.ProposalState;
 import consensus.ProposalRejectionKind;
-import consensus.asynchronous.AnAsynchronousProposerAndLearnerMechanism;
+import consensus.asynchronous.AnAsynchronousConsensusMechanism;
 
-public class ASynchronousProposerAndAcceptorMechanism<StateType> 
-	extends AnAsynchronousProposerAndLearnerMechanism<StateType> 
+public class ASynchronouConsensusMechanism<StateType> 
+	extends AnAsynchronousConsensusMechanism<StateType> 
 	implements Accepted<StateType>{
 	protected int numAcceptors;
 	protected Accepted proposer;
@@ -32,7 +32,7 @@ public class ASynchronousProposerAndAcceptorMechanism<StateType>
 	protected float lastAcceptedProposalNumber = -1;
 //	Accepted<StateType> proposer;
 //	protected MultiPartyAcceptor<StateType> acceptors;
-	public ASynchronousProposerAndAcceptorMechanism(
+	public ASynchronouConsensusMechanism(
 			GroupRPCSessionPort anInputPort, String aName, short aMyId,
 			Acceptor<StateType> anAcceptors, 
 			Accepted<StateType> aProposer) {
@@ -167,9 +167,8 @@ public class ASynchronousProposerAndAcceptorMechanism<StateType>
 		recordReceivedAcceptedNotification(aProposalNumber, aProposal, aRejectionKind);
 		if (!isPending(aProposalNumber)) {
 			return;
-		}	
-
-		if (isAllowVeto() && !isAgreement(aRejectionKind)) {
+		}
+		if (isSynchronous() && !isAgreement(aRejectionKind)) {
 			processProposalRejection(aProposalNumber, aProposal, aRejectionKind);
 			return;
 		}		

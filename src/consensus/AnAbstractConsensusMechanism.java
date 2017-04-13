@@ -62,6 +62,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected short numCurrentMembers;
 	protected short numInitialMembers;
 	protected boolean allowVeto;
+	protected boolean valueSynchrony;
 	protected ConsensusMemberSetKind consensusMemberSet = ConsensusMemberSetKind.CURRENT_MEMBERS;
 	
 	public AnAbstractConsensusMechanism(GroupRPCSessionPort anInputPort, String anObjectName, short aMyId) {
@@ -85,6 +86,14 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		ThreadSupport.sleep(aWaitTime);	
 		WaitedForSuccessfulProposalMessageReceipt.newCase(this, getObjectName(), aProposalNumber, aProposal, aWaitTime);
 
+	}
+	
+	public boolean isValueSynchrony() {
+		return valueSynchrony;		
+	}
+	
+	public void setValueSynchrony(boolean newVal) {
+		valueSynchrony = newVal;
 	}
 	
 	
@@ -584,7 +593,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public boolean isSendRejectionInformation() {
 		return sendRejectionInformation;
 	}
-	public boolean isAllowVeto() {
+	public boolean isSynchronous() {
 		return allowVeto;
 	}
 	public void setAllowVeto(boolean allowVeto) {

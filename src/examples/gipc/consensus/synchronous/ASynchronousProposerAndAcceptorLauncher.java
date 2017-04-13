@@ -3,7 +3,7 @@ package examples.gipc.consensus.synchronous;
 import consensus.Accepted;
 import consensus.Acceptor;
 import consensus.ConsensusMechanism;
-import consensus.synchronous.ASynchronousProposerAndAcceptorMechanism;
+import consensus.synchronous.ASynchronouConsensusMechanism;
 import examples.gipc.consensus.AnExampleConsensusProposerLauncher;
 
 public class ASynchronousProposerAndAcceptorLauncher extends AnExampleConsensusProposerLauncher  {
@@ -21,14 +21,14 @@ public class ASynchronousProposerAndAcceptorLauncher extends AnExampleConsensusP
 //	}
 	
 	protected ConsensusMechanism<String> createLocalGreetingMechanism(short anId) {
-		return new ASynchronousProposerAndAcceptorMechanism<String>(groupRPCSessionPort, 
+		return new ASynchronouConsensusMechanism<String>(groupRPCSessionPort, 
 				GREETING_CONSENSUS_MECHANISM_NAME, anId, 
 				(Acceptor<String>) receiversRemoteGreetingMechanism,  (Accepted<String>) callerRemoteGreetingMechanism);
 //		return new AnAsymmetricMultiPartyProposer<>(anInputPort, aName, aMyId, anAcceptors, aNumLearners)
 	}
 	protected ConsensusMechanism<Integer> createLocalMeaningOfLifeMechanism(short anId) {
 //		return new AnAsymmetricMultiPartyProposerAndAcceptor(groupRPCSessionPort,  MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, (AsymmetricMultiPartyAcceptor) receiversMeaningOfLifeMechanism, (short) (numMembersToWaitFor() - 1));
-		return new ASynchronousProposerAndAcceptorMechanism<Integer>(groupRPCSessionPort, 
+		return new ASynchronouConsensusMechanism<Integer>(groupRPCSessionPort, 
 				MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, 
 				(Acceptor<Integer>) receiversMeaningOfLifeMechanism, 
 				(Accepted<Integer>) callerMeaningOfLifeMechanism);

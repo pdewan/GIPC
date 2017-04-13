@@ -10,7 +10,7 @@ import com.sun.javafx.event.EventUtil;
 import consensus.Acceptor;
 import consensus.ConsensusMechanism;
 import consensus.Learner;
-import consensus.asynchronous.AnAsynchronousProposerAndLearnerMechanism;
+import consensus.asynchronous.AnAsynchronousConsensusMechanism;
 import consensus.asynchronous.LearnerMechanism;
 import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyProposer;
 import consensus.twoparty.symmetric.ASymmetricTwoPartyPeer;
@@ -52,10 +52,10 @@ public class AnAsynchronousProposerLauncher extends AnExampleConsensusProposerLa
 //		return true;
 //	}
 	protected ConsensusMechanism<String> createLocalGreetingMechanism(short anId) {
-		return new AnAsynchronousProposerAndLearnerMechanism(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, (Learner) receiversRemoteGreetingMechanism );
+		return new AnAsynchronousConsensusMechanism(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, (Learner) receiversRemoteGreetingMechanism );
 	}
 	protected ConsensusMechanism<Integer> createLocalMeaningOfLifeMechanism(short anId) {
-		return new AnAsynchronousProposerAndLearnerMechanism(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, (Learner) receiversMeaningOfLifeMechanism);
+		return new AnAsynchronousConsensusMechanism(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, (Learner) receiversMeaningOfLifeMechanism);
 	}
 	@Override
 	protected Class remoteReceiverConsensusClass() {

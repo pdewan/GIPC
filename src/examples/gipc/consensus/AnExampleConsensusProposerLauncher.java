@@ -8,7 +8,7 @@ import java.util.Set;
 import consensus.Acceptor;
 import consensus.ConsensusMechanism;
 import consensus.Learner;
-import consensus.asynchronous.AnAsynchronousProposerAndLearnerMechanism;
+import consensus.asynchronous.AnAsynchronousConsensusMechanism;
 import consensus.asynchronous.LearnerMechanism;
 import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyProposer;
 import consensus.twoparty.symmetric.ASymmetricTwoPartyPeer;

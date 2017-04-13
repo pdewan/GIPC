@@ -28,14 +28,10 @@ public class ALearnerMechanism<StateType> extends
 	@Override
 	public synchronized void learn(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
 		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, aRejectionKind);
-//		recordProposal(aProposalNumber, aProposal);
+		if (isValueSynchrony()) {
+			waitForReceipt(aProposalNumber, aProposal);
+		}
 		recordReceivedLearnNotification(aProposalNumber, aProposal, aRejectionKind);
-
-//		if (isAgreement(anAgreement))
-//			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
-//		else
-//			newProposalState(aProposalNumber, aProposal,toProposalState(anAgreement));
-		
 	}
 //	protected void setLearnedState(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
 //		if (!eventualConsistency() && learnedByTimeout()) {

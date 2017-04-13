@@ -15,12 +15,12 @@ import consensus.Learner;
 import consensus.ProposalState;
 import consensus.ProposalRejectionKind;
 
-public class AnAsynchronousProposerAndLearnerMechanism<StateType> extends
+public class AnAsynchronousConsensusMechanism<StateType> extends
 		ALearnerMechanism<StateType> {
 	protected Learner<StateType> learners;
 //	protected short numLearners;
 
-	public AnAsynchronousProposerAndLearnerMechanism(
+	public AnAsynchronousConsensusMechanism(
 			GroupRPCSessionPort anInputPort, String aName, short aMyId,
 			Learner<StateType> aPeerProxy) {
 		super(anInputPort, aName, aMyId);
