@@ -53,7 +53,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	
 	protected ConsistencyStrength consistencyStrength = ConsistencyStrength.NON_ATOMIC;	
 	protected ProposalRejectionKind proposalRejectionKind = ProposalRejectionKind.ACCEPTED;
-	protected ConsensusSynchrony consensusSynchrony = ConsensusSynchrony.ALL_SYNCHRONOUS;
+	protected ReplicationSynchrony consensusSynchrony = ReplicationSynchrony.ALL_SYNCHRONOUS;
 	protected LearnedKind learnedKind = LearnedKind.MESSAGE_TIMEOUT;
 	protected GroupRPCSessionPort inputPort;
 	protected boolean sendRejectionInformation = true;
@@ -122,10 +122,10 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	
 	protected boolean isEventualConsistency() {
-		return consensusSynchrony == ConsensusSynchrony.ASYNCHRONOUS;
+		return consensusSynchrony == ReplicationSynchrony.ASYNCHRONOUS;
 	}
 	protected boolean isAsynchronousConsistency() {
-		return consensusSynchrony == ConsensusSynchrony.ASYNCHRONOUS;
+		return consensusSynchrony == ReplicationSynchrony.ASYNCHRONOUS;
 	}
 	
 	protected boolean learnedByTimeout() {
@@ -581,10 +581,10 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public void setProposalVetoKind(ProposalRejectionKind proposalRejectionKind) {
 		this.proposalRejectionKind = proposalRejectionKind;
 	}
-	public ConsensusSynchrony getConsensusSynchrony() {
+	public ReplicationSynchrony getConsensusSynchrony() {
 		return consensusSynchrony;
 	}
-	public void setConsensusSynchrony(ConsensusSynchrony consensusSynchrony) {
+	public void setConsensusSynchrony(ReplicationSynchrony consensusSynchrony) {
 		this.consensusSynchrony = consensusSynchrony;
 	}
 	public void setSendRejectionInformation(boolean newVal) {

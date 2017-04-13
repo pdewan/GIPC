@@ -9,7 +9,7 @@ import port.trace.consensus.ProposalQuorumAchieved;
 import port.trace.consensus.ProposalQuorumNotAchieved;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.AnAbstractConsensusMechanism;
-import consensus.ConsensusSynchrony;
+import consensus.ReplicationSynchrony;
 import consensus.Learned;
 import consensus.Learner;
 import consensus.ProposalState;

@@ -1,6 +1,6 @@
 package consensus;
 
-public enum ConsensusSynchrony {
+public enum ReplicationSynchrony {
 	ASYNCHRONOUS,
 	ONE_SYNCHRONOUS,
 	MAJORITY_SYNCHRONOUS,

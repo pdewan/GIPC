@@ -13,7 +13,7 @@ import port.trace.consensus.ProposalPreparedNotificationReceived;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.Accepted;
 import consensus.Acceptor;
-import consensus.ConsensusSynchrony;
+import consensus.ReplicationSynchrony;
 import consensus.ProposalState;
 import consensus.ProposalRejectionKind;
 import consensus.asynchronous.AnAsynchronousConsensusMechanism;

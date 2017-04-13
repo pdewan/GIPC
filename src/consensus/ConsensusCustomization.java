@@ -5,8 +5,8 @@ public interface ConsensusCustomization {
 	public void setConsistencyStrength(ConsistencyStrength consistencyStrength) ;
 	public ProposalRejectionKind getProposalVetoKind();
 	public void setProposalVetoKind(ProposalRejectionKind proposalRejectionKind);
-	public ConsensusSynchrony getConsensusSynchrony();
-	public void setConsensusSynchrony(ConsensusSynchrony consensusSynchrony);
+	public ReplicationSynchrony getConsensusSynchrony();
+	public void setConsensusSynchrony(ReplicationSynchrony consensusSynchrony);
 	public void setSendRejectionInformation(boolean newVal);
 	public boolean isSendRejectionInformation();
 	public boolean isSynchronous();
