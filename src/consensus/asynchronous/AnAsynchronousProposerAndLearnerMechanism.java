@@ -34,11 +34,11 @@ public class AnAsynchronousProposerAndLearnerMechanism<StateType> extends
 	}
 	
 	protected short maxLearners() {
-		return maxPeers();
+		return numMaximumMembers();
 	}
 	
 	protected short numCurrentLearners() {
-		return numCurrentPeers();
+		return numCurrentMembers();
 	}
 	protected void recordSentLearnNotification(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
 		

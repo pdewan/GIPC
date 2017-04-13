@@ -7,7 +7,7 @@ public class AGreetingVetoer implements ProposalVetoer<String>{
 
 	@Override
 	public ProposalRejectionKind acceptProposal(float aProposalNumber, String aState) {
-		return aState.length() > 2?ProposalRejectionKind.SERVICE_DENIAL:ProposalRejectionKind.ACCEPTED;
+		return aState.length() > 2?ProposalRejectionKind.OTHER_SERVICE_DENIAL:ProposalRejectionKind.ACCEPTED;
 			
 	}
 

@@ -58,8 +58,12 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected GroupRPCSessionPort inputPort;
 	protected boolean sendRejectionInformation = true;
 	
-	protected short numPeers;
-	protected short numCurrentPeers;
+	protected short numMaximumMembers;
+	protected short numCurrentMembers;
+	protected short numInitialMembers;
+	protected boolean allowVeto;
+	protected ConsensusMemberSetKind consensusMemberSet = ConsensusMemberSetKind.CURRENT_MEMBERS;
+	
 	public AnAbstractConsensusMechanism(GroupRPCSessionPort anInputPort, String anObjectName, short aMyId) {
 		myId = aMyId;
 		
@@ -68,8 +72,9 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		objectName = anObjectName;
 		inputPort = anInputPort;
 		anInputPort.addConnectionListener(this);
-		numPeers = (short) (inputPort.getConnections().size() + 1);
-		numCurrentPeers = numPeers;
+		numMaximumMembers = (short) (inputPort.getConnections().size() + 1);
+		numCurrentMembers = numMaximumMembers;
+		numInitialMembers = numMaximumMembers;
 	}
 //	public String toString() {		
 //		return getClass().getSimpleName() + "." + objectName;
@@ -460,8 +465,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	@Override
 	public void connected(String aRemoteEndName, ConnectionType aConnectionType) {
 		// TODO Auto-generated method stub
-		numPeers++;
-		numCurrentPeers++;
+		numMaximumMembers++;
+		numCurrentMembers++;
 		RemoteEndConnected.newCase(this, inputPort.getLocalName(), aRemoteEndName,  aConnectionType);
 
 
@@ -474,19 +479,39 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 
 	}
 	
-	protected short maxPeers() {
-		return numPeers;
+	
+	
+	protected short numMaximumMembers() {
+		return numMaximumMembers;
 	}
-	protected short numCurrentPeers() {
-		return numCurrentPeers;
+	protected short numCurrentMembers() {
+		return numCurrentMembers;
+	}
+	protected short numInitialMembers() {
+		return numInitialMembers;
+	}
+	protected short consensusMemberSetSize() {
+		return numCurrentMembers;
+//		select (getConsensusMemberSet()) {
+//			case 
+//		}
+//		select (getConsensusMemberSet()) {
+//			
+//		}
 	}
 
+	public ConsensusMemberSetKind getConsensusMemberSetKind() {
+		return consensusMemberSet;
+	}
+	public void setConsensusMemberSetKind(ConsensusMemberSetKind consensusMemberSet) {
+		this.consensusMemberSet = consensusMemberSet;
+	}
 	@Override
 	public synchronized void disconnected(String aRemoteEndName,
 			boolean anExplicitDisconnection, String anExplanation,
 			ConnectionType aConnectionType) {
 		RemoteEndDisconnected.newCase(this, inputPort.getLocalName(), aRemoteEndName, anExplicitDisconnection, anExplanation, aConnectionType);
-		numCurrentPeers--;
+		numCurrentMembers--;
 //		newProposalState(getPendingProposals(),
 //				ProposalState.PROPOSAL_NOT_COMMUNICATED);
 	}
@@ -499,7 +524,9 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		switch (aRejectionKind) {
 		case CONSISTENCY_FAULT:
 			return ProposalState.PROPOSAL_CONSISTENCY_FAULT;
-		case SERVICE_DENIAL:
+		case ACCESS_DENIAL:
+			return ProposalState.PROPOSAL_SERVICE_FAULT;
+		case OTHER_SERVICE_DENIAL:
 			return ProposalState.PROPOSAL_SERVICE_FAULT;
 		case SERVICE_FAULT:
 			return ProposalState.PROPOSAL_SERVICE_FAULT;
@@ -557,5 +584,12 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public boolean isSendRejectionInformation() {
 		return sendRejectionInformation;
 	}
+	public boolean isAllowVeto() {
+		return allowVeto;
+	}
+	public void setAllowVeto(boolean allowVeto) {
+		this.allowVeto = allowVeto;
+	}
+	
 
 }

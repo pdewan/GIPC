@@ -137,7 +137,7 @@ public class ASynchronousProposerAndAcceptorMechanism<StateType>
 	}
 
 	protected Boolean sufficientAcceptors(float aProposalNumber) {
-		return sufficientAcceptors(maxPeers(), numCurrentPeers(), getCount(aProposalNumber, ACCEPT_NOTIFICATION), getCount(aProposalNumber, ACCEPT_SUCCESS));
+		return sufficientAcceptors(numMaximumMembers(), numCurrentMembers(), getCount(aProposalNumber, ACCEPT_NOTIFICATION), getCount(aProposalNumber, ACCEPT_SUCCESS));
 	}
 	
 	protected void recordAcceptedInformation(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
@@ -148,6 +148,19 @@ public class ASynchronousProposerAndAcceptorMechanism<StateType>
 	protected void processRejectionedProposal(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
 	      sendLearnNotification(aProposalNumber, aProposal, aRejectionKind);
 	}
+	protected boolean heardFromAll() {
+		return false;
+	}
+	protected void processProposalRejection(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
+		
+			if (isSendRejectionInformation()) {
+				 recordSentLearnNotification(aProposalNumber, aProposal, aRejectionKind);
+				 sendLearnNotification(aProposalNumber, aProposal, aRejectionKind);
+			} else {
+				learn(aProposalNumber, aProposal, aRejectionKind);
+			}
+		
+	}
 	@Override
 	public void accepted(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
 		ProposalAcceptedNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, aRejectionKind);
@@ -155,21 +168,23 @@ public class ASynchronousProposerAndAcceptorMechanism<StateType>
 		if (!isPending(aProposalNumber)) {
 			return;
 		}	
-		if (!isAgreement(aRejectionKind)) {
-			if (isSendRejectionInformation()) {
-				 recordSentLearnNotification(aProposalNumber, aProposal, aRejectionKind);
-				 sendLearnNotification(aProposalNumber, aProposal, aRejectionKind);
-			} else {
-				learn(aProposalNumber, aProposal, aRejectionKind);
-			}
+
+		if (isAllowVeto() && !isAgreement(aRejectionKind)) {
+			processProposalRejection(aProposalNumber, aProposal, aRejectionKind);
 			return;
 		}		
-		Boolean isSufficientAcceptors = sufficientAcceptors(aProposalNumber);		
-		if (isSufficientAcceptors != null && isSufficientAcceptors) {
+		Boolean isSufficientAcceptors = sufficientAcceptors(aProposalNumber);
+		if (isSufficientAcceptors == null)
+			return;
+		if (isSufficientAcceptors) {
 		  aRejectionKind = ProposalRejectionKind.ACCEPTED;
 		  recordSentLearnNotification(aProposalNumber, aProposal, aRejectionKind);
 	      sendLearnNotification(aProposalNumber, aProposal, aRejectionKind);
-		}	
+		} else if (heardFromAll()) {
+			processProposalRejection(aProposalNumber, aProposal, ProposalRejectionKind.NOT_ENOUGH_ACCEPTS);
+			
+		}
+		
 	}
 }
 

@@ -6,7 +6,7 @@ import consensus.ProposalVetoer;
 public class AMeaningOfLifeVetoer implements ProposalVetoer<Integer>{
 	@Override
 	public ProposalRejectionKind acceptProposal(float aProposalNumber, Integer aState) {
-		return aState % 2 != 0?	ProposalRejectionKind.SERVICE_DENIAL:ProposalRejectionKind.ACCEPTED;
+		return aState % 2 != 0?	ProposalRejectionKind.OTHER_SERVICE_DENIAL:ProposalRejectionKind.ACCEPTED;
 
 	}
 }
