@@ -64,6 +64,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected boolean allowVeto;
 	protected boolean valueSynchrony;
 	protected ConsensusMemberSetKind consensusMemberSet = ConsensusMemberSetKind.CURRENT_MEMBERS;
+	protected boolean acceptReplyForResolvedProposal = true;
+	
 	
 	public AnAbstractConsensusMechanism(GroupRPCSessionPort anInputPort, String anObjectName, short aMyId) {
 		myId = aMyId;
@@ -531,11 +533,11 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	protected ProposalState toProposalState(ProposalRejectionKind aRejectionKind) {
 		switch (aRejectionKind) {
-		case CONSISTENCY_FAULT:
-			return ProposalState.PROPOSAL_CONSISTENCY_FAULT;
+		case CONCURRENT_OPERATION:
+			return ProposalState.PROPOSAL_CONCURRENT_OPERATION;
 		case ACCESS_DENIAL:
 			return ProposalState.PROPOSAL_SERVICE_FAULT;
-		case OTHER_SERVICE_DENIAL:
+		case SERVICE_DENIAL:
 			return ProposalState.PROPOSAL_SERVICE_FAULT;
 		case SERVICE_FAULT:
 			return ProposalState.PROPOSAL_SERVICE_FAULT;
@@ -590,7 +592,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public void setSendRejectionInformation(boolean newVal) {
 		sendRejectionInformation = newVal;
 	}
-	public boolean isSendRejectionInformation() {
+	public boolean isSendRejectionNotification() {
 		return sendRejectionInformation;
 	}
 	public boolean isSynchronous() {
@@ -599,6 +601,12 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public void setAllowVeto(boolean allowVeto) {
 		this.allowVeto = allowVeto;
 	}
-	
+	public boolean isSendAcceptReplyForResolvedProposal() {
+		return acceptReplyForResolvedProposal;
+	}
+	public void setSendAcceptReplyForResolvedProposal(
+			boolean acceptReplyForResolvedProposal) {
+		this.acceptReplyForResolvedProposal = acceptReplyForResolvedProposal;
+	}
 
 }

@@ -95,11 +95,14 @@ public class ASynchronouConsensusMechanism<StateType>
 	public void accept(float aProposalNumber, StateType aProposal) {
 		ProposalAcceptRequestReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
 		recordReceivedAcceptRequest(aProposalNumber, aProposal);
-//		recordProposal(aProposalNumber, aProposal);
+		if (!isPending(aProposalNumber)) {
+			if (!isSendAcceptReplyForResolvedProposal()) {
+				return;
+			}
+		}
 		ProposalRejectionKind aRejectionKind = checkAcceptRequest(aProposalNumber, aProposal);
 		recordSentAcceptedNotification(aProposalNumber, aProposal, aRejectionKind);
-		sendAcceptedNotification(aProposalNumber, aProposal, aRejectionKind);
-		
+		sendAcceptedNotification(aProposalNumber, aProposal, aRejectionKind);		
 	}
 	protected void propose(float aProposalNumber, StateType aProposal) {	
 			if (isAsynchronousConsistency()) {
@@ -153,7 +156,7 @@ public class ASynchronouConsensusMechanism<StateType>
 	}
 	protected void processProposalRejection(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
 		
-			if (isSendRejectionInformation()) {
+			if (isSendRejectionNotification()) {
 				 recordSentLearnNotification(aProposalNumber, aProposal, aRejectionKind);
 				 sendLearnNotification(aProposalNumber, aProposal, aRejectionKind);
 			} else {
@@ -182,8 +185,7 @@ public class ASynchronouConsensusMechanism<StateType>
 		} else {
 			processProposalRejection(aProposalNumber, aProposal, ProposalRejectionKind.NOT_ENOUGH_ACCEPTS);
 			
-		}
-		
+		}		
 	}
 }
 

@@ -8,7 +8,7 @@ public interface ConsensusCustomization {
 	public ReplicationSynchrony getConsensusSynchrony();
 	public void setConsensusSynchrony(ReplicationSynchrony consensusSynchrony);
 	public void setSendRejectionInformation(boolean newVal);
-	public boolean isSendRejectionInformation();
+	public boolean isSendRejectionNotification();
 	public boolean isSynchronous();
 	public void setAllowVeto(boolean newVal);
 
@@ -16,5 +16,8 @@ public interface ConsensusCustomization {
 	public void setConsensusMemberSetKind(ConsensusMemberSetKind consensusMemberSet) ;
 	public boolean isValueSynchrony();	
 	public void setValueSynchrony(boolean newVal) ;
+	public boolean isSendAcceptReplyForResolvedProposal();
+	public void setSendAcceptReplyForResolvedProposal(
+			boolean newVal) ;
 	
 }
