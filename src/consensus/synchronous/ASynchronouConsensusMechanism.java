@@ -3,6 +3,7 @@ package consensus.synchronous;
 import inputport.ConnectionRegistrar;
 import inputport.InputPort;
 import inputport.datacomm.simplex.buffer.nio.AnAcceptCommand;
+import port.trace.consensus.SufficientAgreementsChecked;
 import port.trace.consensus.ProposalAcceptRequestReceived;
 import port.trace.consensus.ProposalAcceptRequestSent;
 import port.trace.consensus.ProposalAcceptedNotificationReceived;
@@ -13,6 +14,7 @@ import port.trace.consensus.ProposalPreparedNotificationReceived;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.Accepted;
 import consensus.Acceptor;
+import consensus.ConsensusMemberSetKind;
 import consensus.ReplicationSynchrony;
 import consensus.ProposalState;
 import consensus.ProposalRejectionKind;
@@ -95,10 +97,8 @@ public class ASynchronouConsensusMechanism<StateType>
 	public void accept(float aProposalNumber, StateType aProposal) {
 		ProposalAcceptRequestReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
 		recordReceivedAcceptRequest(aProposalNumber, aProposal);
-		if (!isPending(aProposalNumber)) {
-			if (!isSendAcceptReplyForResolvedProposal()) {
-				return;
-			}
+		if (!isPending(aProposalNumber) && !isSendAcceptReplyForResolvedProposal()) {			
+				return;			
 		}
 		ProposalRejectionKind aRejectionKind = checkAcceptRequest(aProposalNumber, aProposal);
 		recordSentAcceptedNotification(aProposalNumber, aProposal, aRejectionKind);
@@ -116,31 +116,67 @@ public class ASynchronouConsensusMechanism<StateType>
 				aProposalNumber, aProposal);
 		acceptors().accept(aProposalNumber, aProposal);		
 	}
-	protected boolean customSufficientAcceptors(short aMaxAcceptors, int aCurrentAcceptors) {
-		return false;
+	protected boolean customSufficientAgrements(float aProposalNumber, StateType aProposal,short aMaxAcceptors, short aCurrentAcceptors, int anAcceptNotifications, int anAgreements) {
+		return true;
 	}
-	protected Boolean sufficientAcceptors(short aMaxAcceptors, short aCurrentAcceptors, int anAcceptNotifications, int anAgreements) {
-		if (anAcceptNotifications != aCurrentAcceptors) {
-			return null;
-		}
-		switch (getConsensusSynchrony()){
-		case ALL_SYNCHRONOUS:
-			return aMaxAcceptors == anAcceptNotifications;
+	protected Boolean synchronousAgreements(float aProposalNumber, StateType aProposal,short aMaxAcceptors, short aCurrentAcceptors, int anAcceptNotifications, int anAgreements) {
+		   return sufficientAgreements(aProposalNumber, aProposal, aMaxAcceptors, aCurrentAcceptors, aMaxAcceptors, anAcceptNotifications, anAgreements);
+
+	}
+	protected Boolean sufficientAgreements(float aProposalNumber, StateType aProposal, short aMaxAcceptors, short aCurrentAcceptors, float aRequiredAgreements, int anAcceptNotifications, int anAgreements) {
+		   Boolean retVal;
+		   if (anAgreements >= aRequiredAgreements ) {
+			   retVal = true;
+		   } else if (aCurrentAcceptors == anAcceptNotifications) {
+				retVal = false;
+			} else {
+				retVal = null;
+			}
+			SufficientAgreementsChecked.newCase(this, getObjectName(), aProposalNumber, aProposal, aMaxAcceptors, aCurrentAcceptors, aRequiredAgreements, anAcceptNotifications, anAgreements, retVal);
+			return retVal;
+	}
+	
+	protected Boolean majorityAgreements(float aProposalNumber, StateType aProposal,short aMaxAcceptors, short aCurrentAcceptors, int anAcceptNotifications, int anAgreements) {
+		   return sufficientAgreements(aProposalNumber, aProposal, aMaxAcceptors, aCurrentAcceptors, (float) (((float) aMaxAcceptors)/(2.0)), anAcceptNotifications, anAgreements);
+	}
+	protected Boolean oneAgreement(float aProposalNumber, StateType aProposal,short aMaxAcceptors, short aCurrentAcceptors, int anAcceptNotifications, int anAgreements) {
+		   return sufficientAgreements(aProposalNumber, aProposal, aMaxAcceptors, aCurrentAcceptors, 1, anAcceptNotifications, anAgreements);
+	}
+	protected Boolean asynchronousAgreements(float aProposalNumber, StateType aProposal,short aMaxAcceptors, short aCurrentAcceptors, int anAcceptNotifications, int anAgreements) {
+		   return true;
+	}
+
+	protected Boolean sufficientAgreements(float aProposalNumber, StateType aProposal, short aMaxAcceptors, short aCurrentAcceptors, int anAcceptNotifications, int anAgreements) {
+		
+		switch (getReplicationSynchrony()){
+		case SYNCHRONOUS:
+			return synchronousAgreements(aProposalNumber, aProposal,aMaxAcceptors, aCurrentAcceptors, anAcceptNotifications, anAgreements);
 		case MAJORITY_SYNCHRONOUS:
-			return ((float) aMaxAcceptors)/2 > anAcceptNotifications;
+			return majorityAgreements(aProposalNumber, aProposal,aMaxAcceptors, aCurrentAcceptors, anAcceptNotifications, anAgreements);
 		case ONE_SYNCHRONOUS:
-			return aCurrentAcceptors > 0;
+			return oneAgreement(aProposalNumber, aProposal,aMaxAcceptors, aCurrentAcceptors, anAcceptNotifications, anAgreements);
 		case ASYNCHRONOUS:
-			return true;
+			return asynchronousAgreements(aProposalNumber, aProposal,aMaxAcceptors, aCurrentAcceptors, anAcceptNotifications, anAgreements);
 		case CUSTOM_SYNCHRONOUS:
-			return customSufficientAcceptors(aMaxAcceptors, anAcceptNotifications);
+			return customSufficientAgrements(aProposalNumber, aProposal, aMaxAcceptors, aCurrentAcceptors, anAcceptNotifications, anAgreements);
 		
 		}	
 		return false;
 	}
+	private Boolean sufficientAcceptors(float aProposalNumber, StateType aProposal) {
+		return sufficientAgreements(aProposalNumber, aProposal, numConsensusMembers(), numCurrentMembers(), getCount(aProposalNumber, ACCEPT_NOTIFICATION), getCount(aProposalNumber, ACCEPT_SUCCESS));
+	}
 
-	protected Boolean sufficientAcceptors(float aProposalNumber) {
-		return sufficientAcceptors(numMaximumMembers(), numCurrentMembers(), getCount(aProposalNumber, ACCEPT_NOTIFICATION), getCount(aProposalNumber, ACCEPT_SUCCESS));
+
+	protected short numConsensusMembers() {
+		
+		switch (getConsensusMemberSetKind()) {
+		case INITIAL_MEMBERS: return numInitialMembers();
+		case MAXIMUM_MEMBERS: return numMaximumMembers();
+		case CURRENT_MEMBERS: return numCurrentMembers;
+		}
+		
+		return 0;
 	}
 	
 	protected void recordAcceptedInformation(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
@@ -175,7 +211,7 @@ public class ASynchronouConsensusMechanism<StateType>
 			processProposalRejection(aProposalNumber, aProposal, aRejectionKind);
 			return;
 		}		
-		Boolean isSufficientAcceptors = sufficientAcceptors(aProposalNumber);
+		Boolean isSufficientAcceptors = sufficientAcceptors(aProposalNumber, aProposal);
 		if (isSufficientAcceptors == null)
 			return;
 		if (isSufficientAcceptors) {

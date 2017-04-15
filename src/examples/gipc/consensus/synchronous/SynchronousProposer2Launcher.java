@@ -12,9 +12,13 @@ public class SynchronousProposer2Launcher extends
 		super(aLocalName, aPortNumber);
 	}
 
-	public void proposeValues() {
-		proposeValues2();
-	}
+//	public void proposeValues() {
+//		proposeValues2();
+//	}
+	
+	protected void doPropose() {
+	  proposeValues2();
+     }
 
 	public static void main(String[] args) {
 		ConsensusTraceUtility.setTracing();

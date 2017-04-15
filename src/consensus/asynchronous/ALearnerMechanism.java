@@ -20,6 +20,8 @@ public class ALearnerMechanism<StateType> extends
 //	}
 	protected void recordReceivedLearnNotification(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
 		recordProposal(aProposalNumber, aProposal);
+		if (!isPending(aProposalNumber))
+			return;
 		if (isAgreement(aRejectionKind))
 			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
 		else

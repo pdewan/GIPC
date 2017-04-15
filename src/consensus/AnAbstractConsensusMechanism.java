@@ -53,7 +53,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	
 	protected ConsistencyStrength consistencyStrength = ConsistencyStrength.NON_ATOMIC;	
 	protected ProposalRejectionKind proposalRejectionKind = ProposalRejectionKind.ACCEPTED;
-	protected ReplicationSynchrony consensusSynchrony = ReplicationSynchrony.ALL_SYNCHRONOUS;
+	protected ReplicationSynchrony consensusSynchrony = ReplicationSynchrony.SYNCHRONOUS;
 	protected LearnedKind learnedKind = LearnedKind.MESSAGE_TIMEOUT;
 	protected GroupRPCSessionPort inputPort;
 	protected boolean sendRejectionInformation = true;
@@ -65,6 +65,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected boolean valueSynchrony;
 	protected ConsensusMemberSetKind consensusMemberSet = ConsensusMemberSetKind.CURRENT_MEMBERS;
 	protected boolean acceptReplyForResolvedProposal = true;
+	protected boolean allowConcurrentProposals = false;
 	
 	
 	public AnAbstractConsensusMechanism(GroupRPCSessionPort anInputPort, String anObjectName, short aMyId) {
@@ -151,11 +152,14 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public boolean someProposalIsPending() {
 		return getPendingProposals().size() > 0;
 	}
-	public boolean sPending(float aProposalNumber) {
-		return proposalState.get(aProposalNumber) == ProposalState.PROPOSAL_PENDING;
+//	public boolean sPending(float aProposalNumber) {
+//		return proposalState.get(aProposalNumber) == ProposalState.PROPOSAL_PENDING;
+//	}
+	protected boolean getAllowConcurrentProposals() {
+		return allowConcurrentProposals;
 	}
-	protected boolean allowConcurrentProposals() {
-		return true;
+	protected void setAllowConcurrentProposals(boolean newVal) {
+		allowConcurrentProposals = newVal;
 	}
 	protected short wholePart (Float aProposalNumber) {
 		if (aProposalNumber == null)
@@ -163,8 +167,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		return (short) ((float) aProposalNumber);
 	}
 	protected float getAndSetNextProposalNumber(StateType aState) {
-		if (lastProposalisPending() && !allowConcurrentProposals())
-			return -1;
+//		if (lastProposalisPending() && !getAllowConcurrentProposals())
+//			return -1;
 		lastProposalNumber = wholePart(lastProposalNumber) + 1 + myPrefix;
 		myLastProposalNumber = lastProposalNumber;
 		myLastState = aState;		
@@ -197,13 +201,10 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	@Override
 	public float propose(StateType aProposal) {
-		float myProposalNumber = getAndSetNextProposalNumber(aProposal);
-		if (myProposalNumber == -1) {
-			return myProposalNumber;
-		}
+		if (lastProposalisPending() && !getAllowConcurrentProposals())
+			return -1;
+		float myProposalNumber = getAndSetNextProposalNumber(aProposal);		
 		recordProposal(myProposalNumber, aProposal);
-		proposalState.put(myProposalNumber, ProposalState.PROPOSAL_PENDING);
-//		proposalValue.put(myProposalNumber, aProposal);
 		propose(myProposalNumber, aProposal);	
 		return myProposalNumber;
 	}
@@ -583,10 +584,10 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public void setProposalVetoKind(ProposalRejectionKind proposalRejectionKind) {
 		this.proposalRejectionKind = proposalRejectionKind;
 	}
-	public ReplicationSynchrony getConsensusSynchrony() {
+	public ReplicationSynchrony getReplicationSynchrony() {
 		return consensusSynchrony;
 	}
-	public void setConsensusSynchrony(ReplicationSynchrony consensusSynchrony) {
+	public void setReplicationSynchrony(ReplicationSynchrony consensusSynchrony) {
 		this.consensusSynchrony = consensusSynchrony;
 	}
 	public void setSendRejectionInformation(boolean newVal) {
@@ -596,7 +597,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		return sendRejectionInformation;
 	}
 	public boolean isSynchronous() {
-		return allowVeto;
+//		return false;
+		return getReplicationSynchrony() == ReplicationSynchrony.SYNCHRONOUS;
 	}
 	public void setAllowVeto(boolean allowVeto) {
 		this.allowVeto = allowVeto;

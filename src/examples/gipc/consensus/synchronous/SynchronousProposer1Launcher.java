@@ -13,7 +13,7 @@ public class SynchronousProposer1Launcher extends
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void proposeValues() {
+	protected void doPropose() {
 		proposeValues1();
 	}
 

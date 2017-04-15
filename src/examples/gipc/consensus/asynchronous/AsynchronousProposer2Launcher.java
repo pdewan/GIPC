@@ -12,7 +12,7 @@ public class AsynchronousProposer2Launcher extends
 		super(aLocalName, aPortNumber);
 	}
 
-	public void proposeValues() {
+	protected void doPropose() {
 		proposeValues2();
 	}
 

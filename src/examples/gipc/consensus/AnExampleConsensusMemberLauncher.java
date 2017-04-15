@@ -1,6 +1,8 @@
 package examples.gipc.consensus;
 
 import consensus.ConsensusMechanism;
+import consensus.ConsistencyStrength;
+import consensus.ReplicationSynchrony;
 import consensus.sessionport.AConsensusMemberLauncher;
 
 public abstract class AnExampleConsensusMemberLauncher extends AConsensusMemberLauncher 
@@ -56,7 +58,8 @@ public abstract class AnExampleConsensusMemberLauncher extends AConsensusMemberL
 
 //		meaningOfLifeMechanism.addConsensusListener(new AMeaningOfLifeConsensusListener());
 		addListenersAndRejectionersToLocalMeaningOfLifeMechanism();
-		gipcRegistry.rebind(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, meaningOfLifeMechanism);		
+		gipcRegistry.rebind(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, meaningOfLifeMechanism);	
+		meaningOfLifeMechanism.setReplicationSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
 
 	}
 	protected  void initConsensusMechanisms(short anId) {

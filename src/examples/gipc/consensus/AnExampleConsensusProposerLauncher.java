@@ -49,10 +49,14 @@ public abstract class AnExampleConsensusProposerLauncher extends AnExampleConsen
 //		double aGreetingProposal1 = greetingMechanism.propose(GREETING_2);
 		float aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING_2);		
 	}
+	
+	protected void doPropose() {
+		proposeValues1();
+	}
 
 	public  void proposeValues() {
 		ThreadSupport.sleep(INIT_TIME);
-		proposeValues1();
+		doPropose();
 		
 	}
 	

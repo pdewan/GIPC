@@ -46,10 +46,16 @@ public class AnAsynchronousSingleThreadDuplexReceivedCallInvoker
 			DuplexReceivedCallInvoker aSynchronousReceivedCallInvoker) {
 		synchronousReceivedCallInvoker = aSynchronousReceivedCallInvoker;
 //		super(aLocalRemoteReferenceTranslator, aReplier, theRPCRegistry);
+		try {
+		synchronized (callQueue) {
 		if (callQueueConsumer == null) {
 		callQueueConsumer = new Thread(this);
 		callQueueConsumer.setName("Asynchronous Received Call Invoker");
 		callQueueConsumer.start();
+		}
+		}
+		} catch (IllegalStateException e) {
+			System.err.println("Multiple thread starts");
 		}
 	}
 	@Override
