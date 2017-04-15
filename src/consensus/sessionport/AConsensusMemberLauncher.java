@@ -21,8 +21,8 @@ public abstract class AConsensusMemberLauncher  {
 //	public static final String GREETING_2 = "Howdy";
 //	public static int MEANING = 42;
 	
-	protected abstract Class remoteReceiverConsensusClass();
-	protected abstract Class remoteCallerConsensusClass();
+//	protected abstract Class remoteReceiverConsensusClass();
+//	protected abstract Class remoteCallerConsensusClass();
 
 	
 	protected abstract short numMembersToWaitFor() ;
@@ -32,17 +32,22 @@ public abstract class AConsensusMemberLauncher  {
 	protected Object lookupMulticastProxy(Class aClass, String aName) {
 		return gipcRegistry.lookupAll(aClass, aName);
 	}
-
+	protected short memberId;
+	protected int portNumber;
 	public  void init(String aLocalName, int aPortNumber) {
 //		ConsensusTraceUtility.setTracing();
+		memberId = Short.parseShort(aLocalName);		;
+		portNumber = aPortNumber;
 
-		gipcRegistry = GIPCLocateSessionRegistry.createSessionRegistry(
-				"mysession", "localhost", aPortNumber, aLocalName,
-				sessionChoice, 
-				numMembersToWaitFor());
-		groupRPCSessionPort = gipcRegistry.getSessionPort();
-		short anId = Short.parseShort(aLocalName);
-		initConsensusMechanisms(anId);	
+//		gipcRegistry = GIPCLocateSessionRegistry.createSessionRegistryWithoutConnecting(
+//				"mysession", "localhost", aPortNumber, aLocalName,
+//				sessionChoice, 
+//				numMembersToWaitFor());
+//		groupRPCSessionPort = gipcRegistry.getSessionPort();
+//		short anId = Short.parseShort(aLocalName);		
+		initConsensusMechanisms(memberId);
+//		gipcRegistry.connect();
+
 	}
 	
 

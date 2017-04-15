@@ -11,6 +11,7 @@ import port.trace.consensus.ProposalAcceptedNotificationSent;
 import port.trace.consensus.ProposalLearnNotificationSent;
 import port.trace.consensus.ProposalPrepareNotificationSent;
 import port.trace.consensus.ProposalPreparedNotificationReceived;
+import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.Accepted;
 import consensus.Acceptor;
@@ -20,7 +21,7 @@ import consensus.ProposalState;
 import consensus.ProposalRejectionKind;
 import consensus.asynchronous.AnAsynchronousConsensusMechanism;
 
-public class ASynchronouConsensusMechanism<StateType> 
+public class ASynchronousConsensusMechanism<StateType> 
 	extends AnAsynchronousConsensusMechanism<StateType> 
 	implements Accepted<StateType>{
 	protected int numAcceptors;
@@ -34,19 +35,17 @@ public class ASynchronouConsensusMechanism<StateType>
 	protected float lastAcceptedProposalNumber = -1;
 //	Accepted<StateType> proposer;
 //	protected MultiPartyAcceptor<StateType> acceptors;
-	public ASynchronouConsensusMechanism(
-			GroupRPCSessionPort anInputPort, String aName, short aMyId,
-			Acceptor<StateType> anAcceptors, 
-			Accepted<StateType> aProposer) {
-		super(anInputPort, aName, aMyId, anAcceptors);
-		proposer = aProposer;
+	public ASynchronousConsensusMechanism(
+			GIPCSessionRegistry aRegistry, String aName, short aMyId) {
+		super(aRegistry, aName, aMyId);
+//		proposer = aProposer;
 
 	}
 	protected Acceptor<StateType> acceptors() {
-		return  (Acceptor<StateType>) learners;
+		return  (Acceptor<StateType>) learners();
 	}
 	protected Accepted proposer() {
-		return (Accepted) proposer;
+		return (Accepted) caller();
 	}
 	protected void sendAcceptedNotification(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind){
 		proposer().accepted(aProposalNumber, aProposal, aRejectionKind );

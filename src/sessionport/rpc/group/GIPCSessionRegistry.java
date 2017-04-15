@@ -20,5 +20,6 @@ public interface GIPCSessionRegistry extends GIPCRegistry{
 	Object lookupAll(Class aProxyClass, String aProxyName);
 	Set<String> getAllRemoteMembers();
 	Set<String> getAllMembers();
+	Object lookupCaller(String aProxyName);
 
 }

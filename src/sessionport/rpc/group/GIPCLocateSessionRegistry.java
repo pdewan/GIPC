@@ -66,6 +66,7 @@ public class GIPCLocateSessionRegistry  {
 						ParticipantChoice.MEMBER,
 						aNumMembersToWaitFor);
 		result.launchWithoutConnecting();
+//		result.connect();
 //		result.launch();
 //		result.waitForConnections();
 		return result;

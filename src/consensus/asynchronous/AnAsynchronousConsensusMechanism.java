@@ -7,6 +7,7 @@ import port.trace.consensus.ProposalLearnNotificationSent;
 import port.trace.consensus.ProposalLearnedNotificationReceived;
 import port.trace.consensus.ProposalQuorumAchieved;
 import port.trace.consensus.ProposalQuorumNotAchieved;
+import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.ReplicationSynchrony;
@@ -16,21 +17,21 @@ import consensus.ProposalState;
 import consensus.ProposalRejectionKind;
 
 public class AnAsynchronousConsensusMechanism<StateType> extends
-		ALearnerMechanism<StateType> {
+		ALearnerConsensusMechanism<StateType> {
 	protected Learner<StateType> learners;
+	
 //	protected short numLearners;
 
 	public AnAsynchronousConsensusMechanism(
-			GroupRPCSessionPort anInputPort, String aName, short aMyId,
-			Learner<StateType> aPeerProxy) {
-		super(anInputPort, aName, aMyId);
-		learners = aPeerProxy;
+			GIPCSessionRegistry aRegistry , String aName, short aMyId) {
+		super(aRegistry, aName, aMyId);
+//		learners = aPeerProxy;
 //		numLearners = aNumLearners;
 		// eventualConsistency = anEventualConsistency;
 	}
 
 	protected Learner<StateType> learners() {
-		return learners;
+		return (Learner<StateType>) all();
 	}
 	
 	protected short maxLearners() {

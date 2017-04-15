@@ -23,13 +23,13 @@ public class ATwoPartySymmetricPeerLauncher implements ExampleMember{
 	
 	protected static void initGreetingConsensusMechanism(short anId) {
 		remoteGreetingMechanism = (SymmetricTwoPartyPeer) gipcRegistry.lookupAllRemote(SymmetricTwoPartyPeer.class, GREETING_CONSENSUS_MECHANISM_NAME);
-		greetingMechanism = new ASymmetricTwoPartyPeer<>(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, remoteGreetingMechanism);
+		greetingMechanism = new ASymmetricTwoPartyPeer<>(gipcRegistry, GREETING_CONSENSUS_MECHANISM_NAME, anId, remoteGreetingMechanism);
 		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());	
 		gipcRegistry.rebind(GREETING_CONSENSUS_MECHANISM_NAME, greetingMechanism);
 	}	
 	protected static void initMeaningOfLifeConsensusMechanism(short anId) {
 		remoteMeaningOfLifeMechanism = (SymmetricTwoPartyPeer) gipcRegistry.lookupAllRemote(SymmetricTwoPartyPeer.class, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME);
-		meaningOfLifeMechanism = new ASymmetricTwoPartyPeer<>(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, remoteMeaningOfLifeMechanism);
+		meaningOfLifeMechanism = new ASymmetricTwoPartyPeer<>(gipcRegistry, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, remoteMeaningOfLifeMechanism);
 		meaningOfLifeMechanism.addConsensusListener(new AMeaningOfLifeConsensusListener());
 		gipcRegistry.rebind(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, meaningOfLifeMechanism);		
 	}

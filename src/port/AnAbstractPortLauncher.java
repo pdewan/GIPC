@@ -1072,17 +1072,34 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 		waitForConnections();// for member connections, this is kludgy
 	}
 	
+	public void connectedToMember(String aRemoteEndName, ConnectionType aConnectionType) {
+		System.out.println ("Connected to member:" + aRemoteEndName + " " + aConnectionType);
+		if (numPendingMemberConnects != 0) {
+			// why do we need this
+//			if (numPendingMemberConnects == 0) {
+//				return;
+//			}
+			numPendingMemberConnects--;
+			if (numPendingMemberConnects == 0) {
+				connectedToAllMembers();
+			}
+		}
+	}
+
+	
 	public void connected(String aRemoteEndName, ConnectionType aConnectionType) {
 		if (connectedToAllPorts) {
-			if (numPendingMemberConnects != 0) {
-				if (numPendingMemberConnects == 0) {
-					return;
-				}
-				numPendingMemberConnects--;
-				if (numPendingMemberConnects == 0) {
-					connectedToAllMembers();
-				}
-			}
+//			if (numPendingMemberConnects != 0) {
+//				// why do we need this
+//				if (numPendingMemberConnects == 0) {
+//					return;
+//				}
+//				numPendingMemberConnects--;
+//				if (numPendingMemberConnects == 0) {
+//					connectedToAllMembers();
+//				}
+//			}
+			connectedToMember(aRemoteEndName, aConnectionType);
 			return;
 		}
 		numPendingConnects--;
@@ -1112,8 +1129,21 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 		thread.start();
 	}
 	protected synchronized void connectedToAllMembers() {
+		System.out.println("Connected to all members");
 		notify();
 	}
+	public synchronized void waitForMemberConnections() {
+		try {
+		if (//numPendingMemberConnects != 0 &&
+				 numPendingMemberConnects != 0) {
+			wait();
+		}
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+	}
+
 	
 	public synchronized void waitForConnections() {
 		// if (connectedToAllPorts) return;
@@ -1127,13 +1157,12 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 									+ connectionTimeOut);
 				}
 			}
-			if (//numPendingMemberConnects != 0 &&
-					 numPendingMemberConnects != 0) {
-				wait();
-			}
-			// else {
-			// System.out.println("Connected to server");
-			// }
+//			if (//numPendingMemberConnects != 0 &&
+//					 numPendingMemberConnects != 0) {
+//				wait();
+//			}
+			waitForMemberConnections();
+		
 		} catch (Exception e) {
 
 			e.printStackTrace();

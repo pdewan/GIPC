@@ -2,18 +2,19 @@ package consensus.asynchronous;
 
 import inputport.InputPort;
 import port.trace.consensus.ProposalLearnNotificationReceived;
+import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.Learner;
 import consensus.ProposalState;
 import consensus.ProposalRejectionKind;
 
-public class ALearnerMechanism<StateType> extends
+public class ALearnerConsensusMechanism<StateType> extends
 		AnAbstractConsensusMechanism<StateType> implements Learner<StateType> {
-	public ALearnerMechanism(GroupRPCSessionPort anInputPort, 
+	public ALearnerConsensusMechanism(GIPCSessionRegistry aRegistry, 
 			String aName, short aMyId
 			) {
-		super(anInputPort, aName, aMyId);
+		super(aRegistry, aName, aMyId);
 	}
 //	protected Learned<StateType> proposer() {
 //		return proposer;

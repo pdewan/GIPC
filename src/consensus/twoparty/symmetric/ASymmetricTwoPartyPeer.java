@@ -5,6 +5,7 @@ import inputport.InputPort;
 import port.trace.consensus.ProposalAcceptRequestReceived;
 import port.trace.consensus.ProposalAcceptRequestSent;
 import port.trace.consensus.ProposalLearnNotificationSent;
+import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.Acceptor;
 import consensus.AnAbstractConsensusMechanism;
@@ -17,7 +18,7 @@ public class ASymmetricTwoPartyPeer<StateType> extends
 		TwoPartySymmetricConsensusMechanism<StateType> {
 	Acceptor<StateType> peer;
 
-	public ASymmetricTwoPartyPeer(GroupRPCSessionPort anInputPort, String aName, short aMyId,
+	public ASymmetricTwoPartyPeer(GIPCSessionRegistry anInputPort, String aName, short aMyId,
 			SymmetricTwoPartyPeer<StateType> aPeer) {
 		super(anInputPort, aName, aMyId);
 		peer = aPeer;

@@ -7,6 +7,7 @@ import port.trace.consensus.ProposalAcceptedNotificationSent;
 import port.trace.consensus.ProposalConsensusOccurred;
 import port.trace.consensus.ProposalLearnNotificationReceived;
 import port.trace.consensus.ProposalLearnedNotificationSent;
+import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.Accepted;
 import consensus.AnAbstractConsensusMechanism;
@@ -14,12 +15,12 @@ import consensus.Learned;
 import consensus.Learner;
 import consensus.ProposalState;
 import consensus.ProposalRejectionKind;
-import consensus.asynchronous.ALearnerMechanism;
+import consensus.asynchronous.ALearnerConsensusMechanism;
 
 public class AnAsymmetricTwoPartyAcceptor<StateType> extends
-		ALearnerMechanism<StateType> implements TwoPartyAsymmetricAcceptor<StateType> {
+		ALearnerConsensusMechanism<StateType> implements TwoPartyAsymmetricAcceptor<StateType> {
 	protected Accepted<StateType> proposer;
-	public AnAsymmetricTwoPartyAcceptor(GroupRPCSessionPort anInputPort, 
+	public AnAsymmetricTwoPartyAcceptor(GIPCSessionRegistry anInputPort, 
 			String aName, short aMyId, Accepted<StateType> aProposer
 			) {
 		super(anInputPort, aName, aMyId);

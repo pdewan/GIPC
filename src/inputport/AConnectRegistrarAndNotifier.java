@@ -13,6 +13,10 @@ public class AConnectRegistrarAndNotifier implements ConnectionRegistrarAndNotif
 	List<ConnectionListener> portConnectListeners = new ArrayList();
 	@Override
 	public void addConnectionListener(ConnectionListener portConnectListener) {
+		if (portConnectListeners.contains(portConnectListener)) {
+			System.out.println ("Ignoring duplicate connect listnener");
+			return;
+		}
 		portConnectListeners.add(portConnectListener);		
 	}
 	@Override

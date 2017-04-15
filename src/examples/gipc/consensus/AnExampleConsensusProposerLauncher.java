@@ -55,7 +55,7 @@ public abstract class AnExampleConsensusProposerLauncher extends AnExampleConsen
 	}
 
 	public  void proposeValues() {
-		ThreadSupport.sleep(INIT_TIME);
+//		ThreadSupport.sleep(INIT_TIME);
 		doPropose();
 		
 	}

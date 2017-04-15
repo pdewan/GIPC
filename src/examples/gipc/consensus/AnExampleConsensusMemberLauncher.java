@@ -1,6 +1,9 @@
 package examples.gipc.consensus;
 
+import port.sessionserver.SessionServerSelector;
 import consensus.ConsensusMechanism;
+import consensus.ConsensusMechanismFactory;
+import consensus.ConsensusMechanismSelector;
 import consensus.ConsistencyStrength;
 import consensus.ReplicationSynchrony;
 import consensus.sessionport.AConsensusMemberLauncher;
@@ -9,26 +12,28 @@ public abstract class AnExampleConsensusMemberLauncher extends AConsensusMemberL
 	implements ExampleMemberLauncher {
 	protected  ConsensusMechanism<String> greetingMechanism;
 	protected  ConsensusMechanism<Integer> meaningOfLifeMechanism;
-	protected  Object receiversRemoteGreetingMechanism;
-	protected  Object receiversMeaningOfLifeMechanism;
-	protected  Object callerRemoteGreetingMechanism;
-	protected  Object callerMeaningOfLifeMechanism;
-//	protected  GIPCSessionRegistry gipcRegistry;
-//	protected  GroupRPCSessionPort groupRPCSessionPort;
-////	protected  Integer numMembersToWaitFor = 2;
-//	protected  SessionChoice sessionChoice = SessionChoice.P2P;
+//	protected  Object receiversRemoteGreetingMechanism;
+//	protected  Object receiversMeaningOfLifeMechanism;
+//	protected  Object callerRemoteGreetingMechanism;
+//	protected  Object callerMeaningOfLifeMechanism;
 	
-//	protected  final int MY_PORT_NUMBER = 7001;
-//	protected  final String MY_NAME = "1";
-	
-	
-	
-	
-//	protected abstract Class remoteConsensusClass();	
-//	protected abstract Integer numMembersToWaitFor() ;
-//	protected abstract Object lookupSessionProxy(Class aClass, String aName) ;
-	protected abstract ConsensusMechanism<String> createLocalGreetingMechanism(short anId) ;
-	protected abstract ConsensusMechanism<Integer> createLocalMeaningOfLifeMechanism(short anId) ;
+	protected abstract ConsensusMechanismFactory<Integer> meaningConsensusMechanismFactory();
+	protected abstract ConsensusMechanismFactory<String> greetingConsensusMechanismFactory();
+
+
+	protected ConsensusMechanism<String> createLocalGreetingMechanism(short anId) {
+		return greetingConsensusMechanismFactory().createConsensusMechanism(
+				SESSION_MANAGER_HOST,
+				EXAMPLE_SESSION,
+				memberId, portNumber, GREETING_CONSENSUS_MECHANISM_NAME, sessionChoice, numMembersToWaitFor());
+		
+	}
+	protected  ConsensusMechanism<Integer> createLocalMeaningOfLifeMechanism(short anId) {
+		return meaningConsensusMechanismFactory().createConsensusMechanism(
+				SESSION_MANAGER_HOST,
+				EXAMPLE_SESSION,
+				memberId, portNumber, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, sessionChoice, numMembersToWaitFor());
+	}
 	public AnExampleConsensusMemberLauncher(String aLocalName, int aPortNumber) {
 		init(aLocalName, aPortNumber);
 	}
@@ -39,31 +44,27 @@ public abstract class AnExampleConsensusMemberLauncher extends AConsensusMemberL
 		meaningOfLifeMechanism.addConsensusListener(new AMeaningOfLifeConsensusListener());
 	}
 	protected  void initGreetingConsensusMechanism(short anId) {
-		receiversRemoteGreetingMechanism = lookupMulticastProxy(remoteReceiverConsensusClass(), GREETING_CONSENSUS_MECHANISM_NAME);
-		callerRemoteGreetingMechanism = gipcRegistry.lookupCaller(remoteCallerConsensusClass(), GREETING_CONSENSUS_MECHANISM_NAME);
+//		receiversRemoteGreetingMechanism = lookupMulticastProxy(remoteReceiverConsensusClass(), GREETING_CONSENSUS_MECHANISM_NAME);
+//		callerRemoteGreetingMechanism = gipcRegistry.lookupCaller(remoteCallerConsensusClass(), GREETING_CONSENSUS_MECHANISM_NAME);
 		greetingMechanism = createLocalGreetingMechanism(anId);
 		addListenersAndRejectionersToLocalGreetingMechanism();
-//		greetingMechanism = new AnAsymmetricTwoPartyProposer<>(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, remoteGreetingMechanism);
-//		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());
-		gipcRegistry.rebind(GREETING_CONSENSUS_MECHANISM_NAME, greetingMechanism);
+
+//		gipcRegistry.rebind(GREETING_CONSENSUS_MECHANISM_NAME, greetingMechanism);
 	}	
 	protected  void initMeaningOfLifeConsensusMechanism(short anId) {
-//		remoteMeaningOfLifeMechanism = (Acceptor) gipcRegistry.lookupAllRemote(Acceptor.class, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME);
-		receiversMeaningOfLifeMechanism =  lookupMulticastProxy(remoteReceiverConsensusClass(), MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME);
-		callerMeaningOfLifeMechanism
-		= gipcRegistry.lookupCaller(remoteCallerConsensusClass(), MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME);
+//		receiversMeaningOfLifeMechanism =  lookupMulticastProxy(remoteReceiverConsensusClass(), MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME);
+//		callerMeaningOfLifeMechanism
+//		= gipcRegistry.lookupCaller(remoteCallerConsensusClass(), MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME);
 
-//		meaningOfLifeMechanism = new AnAsymmetricTwoPartyProposer<>(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, remoteMeaningOfLifeMechanism);
 		meaningOfLifeMechanism = createLocalMeaningOfLifeMechanism(anId);
 
-//		meaningOfLifeMechanism.addConsensusListener(new AMeaningOfLifeConsensusListener());
 		addListenersAndRejectionersToLocalMeaningOfLifeMechanism();
-		gipcRegistry.rebind(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, meaningOfLifeMechanism);	
-		meaningOfLifeMechanism.setReplicationSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
+//		gipcRegistry.rebind(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, meaningOfLifeMechanism);	
+//		meaningOfLifeMechanism.setReplicationSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
 
 	}
 	protected  void initConsensusMechanisms(short anId) {
-		initGreetingConsensusMechanism(anId);
+//		initGreetingConsensusMechanism(anId);
 		initMeaningOfLifeConsensusMechanism(anId);
 	}
 	@Override

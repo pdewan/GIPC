@@ -19,6 +19,7 @@ import port.trace.consensus.ProposalWaitEnded;
 import port.trace.consensus.ProposalWaitStarted;
 import port.trace.consensus.WaitedForSuccessfulProposalMessageReceipt;
 import port.trace.consensus.WaitingForSuccessfulProposalMessageReceipt;
+import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import util.misc.ThreadSupport;
 import util.trace.Tracer;
@@ -58,6 +59,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected GroupRPCSessionPort inputPort;
 	protected boolean sendRejectionInformation = true;
 	
+	protected GIPCSessionRegistry gipcSessionRegistry;
+	
 	protected short numMaximumMembers;
 	protected short numCurrentMembers;
 	protected short numInitialMembers;
@@ -66,19 +69,34 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected ConsensusMemberSetKind consensusMemberSet = ConsensusMemberSetKind.CURRENT_MEMBERS;
 	protected boolean acceptReplyForResolvedProposal = true;
 	protected boolean allowConcurrentProposals = false;
+
 	
 	
-	public AnAbstractConsensusMechanism(GroupRPCSessionPort anInputPort, String anObjectName, short aMyId) {
+	
+//	public AnAbstractConsensusMechanism(GroupRPCSessionPort anInputPort, String anObjectName, short aMyId) {
+//		myId = aMyId;
+//		
+////		myPrefix = Float.parseFloat("." + myId);
+//		myPrefix = ((float) myId)/ (float) Math.pow(10, NUM_DIGITS_IN_ID);
+//		objectName = anObjectName;
+//		inputPort = anInputPort;
+//		anInputPort.addConnectionListener(this);
+//		numMaximumMembers = (short) (inputPort.getConnections().size() + 1);
+//		numCurrentMembers = numMaximumMembers;
+//		numInitialMembers = numMaximumMembers;
+//	}
+	public AnAbstractConsensusMechanism(GIPCSessionRegistry aRegistry, String anObjectName, short aMyId) {
 		myId = aMyId;
+		gipcSessionRegistry = aRegistry;
 		
 //		myPrefix = Float.parseFloat("." + myId);
 		myPrefix = ((float) myId)/ (float) Math.pow(10, NUM_DIGITS_IN_ID);
 		objectName = anObjectName;
-		inputPort = anInputPort;
-		anInputPort.addConnectionListener(this);
-		numMaximumMembers = (short) (inputPort.getConnections().size() + 1);
-		numCurrentMembers = numMaximumMembers;
-		numInitialMembers = numMaximumMembers;
+		inputPort = aRegistry.getSessionPort();
+		inputPort.addConnectionListener(this);
+//		numMaximumMembers = (short) (inputPort.getConnections().size() + 1);
+//		numCurrentMembers = numMaximumMembers;
+//		numInitialMembers = numMaximumMembers;
 	}
 //	public String toString() {		
 //		return getClass().getSimpleName() + "." + objectName;
@@ -476,10 +494,12 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	@Override
 	public void connected(String aRemoteEndName, ConnectionType aConnectionType) {
+		if (aConnectionType != ConnectionType.MEMBER_TO_SESSION)
+			return;
 		// TODO Auto-generated method stub
 		numMaximumMembers++;
 		numCurrentMembers++;
-		RemoteEndConnected.newCase(this, inputPort.getLocalName(), aRemoteEndName,  aConnectionType);
+//		RemoteEndConnected.newCase(this, inputPort.getLocalName(), aRemoteEndName,  aConnectionType);
 
 
 	}
@@ -609,6 +629,16 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public void setSendAcceptReplyForResolvedProposal(
 			boolean acceptReplyForResolvedProposal) {
 		this.acceptReplyForResolvedProposal = acceptReplyForResolvedProposal;
+	}
+	
+	protected ConsensusMechanism<StateType> all() {
+		return (ConsensusMechanism<StateType>) gipcSessionRegistry.lookupAll(objectName);		
+	}
+	protected ConsensusMechanism<StateType> allRemote() {
+		return (ConsensusMechanism<StateType>) gipcSessionRegistry.lookupAllRemote(objectName);		
+	}
+	protected ConsensusMechanism<StateType> caller() {
+		return (ConsensusMechanism<StateType>) gipcSessionRegistry.lookupCaller(objectName);
 	}
 
 }

@@ -9,8 +9,10 @@ import com.sun.javafx.event.EventUtil;
 
 import consensus.Acceptor;
 import consensus.ConsensusMechanism;
+import consensus.ConsensusMechanismFactory;
 import consensus.Learner;
 import consensus.asynchronous.AnAsynchronousConsensusMechanism;
+import consensus.asynchronous.AnAsynchronousConsensusMechanismFactory;
 import consensus.asynchronous.LearnerMechanism;
 import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyProposer;
 import consensus.twoparty.symmetric.ASymmetricTwoPartyPeer;
@@ -45,37 +47,36 @@ public class AnAsynchronousProposerLauncher extends AnExampleConsensusProposerLa
 		super(aLocalName, aPortNumber);
 		// TODO Auto-generated constructor stub
 	}
-	protected Object lookupMulticastProxy(Class aClass, String aName) {
-		return gipcRegistry.lookupAll(aClass, aName);
-	}
-//	protected boolean eventualConsistency() {
-//		return true;
-//	}
-	protected ConsensusMechanism<String> createLocalGreetingMechanism(short anId) {
-		return new AnAsynchronousConsensusMechanism(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, (Learner) receiversRemoteGreetingMechanism );
-	}
-	protected ConsensusMechanism<Integer> createLocalMeaningOfLifeMechanism(short anId) {
-		return new AnAsynchronousConsensusMechanism(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, (Learner) receiversMeaningOfLifeMechanism);
-	}
 	@Override
-	protected Class remoteReceiverConsensusClass() {
-		return Learner.class;
+	protected ConsensusMechanismFactory<Integer> meaningConsensusMechanismFactory() {
+		return new AnAsynchronousConsensusMechanismFactory<>();
 	}
+
+	@Override
+	protected ConsensusMechanismFactory<String> greetingConsensusMechanismFactory() {
+		return new AnAsynchronousConsensusMechanismFactory<>();
+	}
+//	protected Object lookupMulticastProxy(Class aClass, String aName) {
+//		return gipcRegistry.lookupAll(aClass, aName);
+//	}
+//	protected ConsensusMechanism<String> createLocalGreetingMechanism(short anId) {
+//		return new AnAsynchronousConsensusMechanism(groupRPCSessionPort, GREETING_CONSENSUS_MECHANISM_NAME, anId, (Learner) receiversRemoteGreetingMechanism );
+//	}
+//	protected ConsensusMechanism<Integer> createLocalMeaningOfLifeMechanism(short anId) {
+//		return new AnAsynchronousConsensusMechanism(groupRPCSessionPort, MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId, (Learner) receiversMeaningOfLifeMechanism);
+//	}
 //	@Override
-//	protected Integer numMembersToWaitFor() {
-//		return 3;
+//	protected Class remoteReceiverConsensusClass() {
+//		return Learner.class;
 //	}
-//	public static void main (String[] args) {
-//		ConsensusTraceUtility.setTracing();		
-//		(new AnAsymmeticMultiPartyNonRejectionableProposerLauncher()).beProposer(MY_NAME, MY_PORT_NUMBER);;
-//	}
+
 	
 	// no reply has to be sent back, so do not bother with this method
-	@Override
-	protected Class remoteCallerConsensusClass() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+//	@Override
+//	protected Class remoteCallerConsensusClass() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//	
 
 }

@@ -155,6 +155,10 @@ public class AGroupRPCSessionPortLauncher extends
 	public Object lookup(String aRemoteName, String aProxyName) {
 		return lookup(aRemoteName, getMyClass(aProxyName), aProxyName);
 	}
+	@Override
+	public Object lookupCaller(String aProxyName) {
+		return lookupCaller(getMyClass(aProxyName), aProxyName);
+	}
 	
 	@Override
 	public Object lookupAllRemote(Class aProxyClass, String aProxyName) {

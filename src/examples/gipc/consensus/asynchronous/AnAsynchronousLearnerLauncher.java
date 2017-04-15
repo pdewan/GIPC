@@ -1,8 +1,11 @@
 package examples.gipc.consensus.asynchronous;
 
 import consensus.ConsensusMechanism;
+import consensus.ConsensusMechanismFactory;
 import consensus.Learned;
-import consensus.asynchronous.ALearnerMechanism;
+import consensus.asynchronous.ALearnerConsensusMechanism;
+import consensus.asynchronous.ALearnerConsensusMechanismFactory;
+import consensus.asynchronous.AnAsynchronousConsensusMechanismFactory;
 import examples.gipc.consensus.AnExampleConsensusMemberLauncher;
 
 public class AnAsynchronousLearnerLauncher extends
@@ -25,34 +28,44 @@ public class AnAsynchronousLearnerLauncher extends
 
 	// static final int MY_PORT_NUMBER = 7002;
 	// static final String MY_NAME = "2";
+//	@Override
+//	protected Object lookupMulticastProxy(Class aClass, String aName) {
+//		return Learned.class;
+//	}
+	// Create a learner factory at somep
 	@Override
-	protected Object lookupMulticastProxy(Class aClass, String aName) {
-		return Learned.class;
+	protected ConsensusMechanismFactory<Integer> meaningConsensusMechanismFactory() {
+		return new ALearnerConsensusMechanismFactory<>();
 	}
 
 	@Override
-	protected ConsensusMechanism<String> createLocalGreetingMechanism(short anId) {
-		return new ALearnerMechanism(groupRPCSessionPort,
-				GREETING_CONSENSUS_MECHANISM_NAME, anId);
+	protected ConsensusMechanismFactory<String> greetingConsensusMechanismFactory() {
+		return new ALearnerConsensusMechanismFactory<>();
 	}
 
-	@Override
-	protected ConsensusMechanism<Integer> createLocalMeaningOfLifeMechanism(
-			short anId) {
-		return new ALearnerMechanism(groupRPCSessionPort,
-				MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId);
-	}
+//	@Override
+//	protected ConsensusMechanism<String> createLocalGreetingMechanism(short anId) {
+//		return new ALearnerMechanism(groupRPCSessionPort,
+//				GREETING_CONSENSUS_MECHANISM_NAME, anId);
+//	}
+//
+//	@Override
+//	protected ConsensusMechanism<Integer> createLocalMeaningOfLifeMechanism(
+//			short anId) {
+//		return new ALearnerMechanism(groupRPCSessionPort,
+//				MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, anId);
+//	}
 
-	@Override
-	protected Class remoteReceiverConsensusClass() {
-		return null;
-	}
-	// no reply needed
-	@Override
-	protected Class remoteCallerConsensusClass() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	protected Class remoteReceiverConsensusClass() {
+//		return null;
+//	}
+//	// no reply needed
+//	@Override
+//	protected Class remoteCallerConsensusClass() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	// @Override
 	// protected void addListenersAndRejectionersToLocalGreetingMechanism() {
