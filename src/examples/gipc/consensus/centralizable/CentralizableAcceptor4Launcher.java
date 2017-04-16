@@ -1,19 +1,19 @@
-package examples.gipc.consensus.synchronous;
+package examples.gipc.consensus.centralizable;
 
 import port.trace.consensus.ConsensusTraceUtility;
 import examples.gipc.consensus.AMeaningOfLifeVetoer;
 import examples.gipc.consensus.Member4;
 
-public class SynchronousAcceptor4Launcher 
+public class CentralizableAcceptor4Launcher 
 //	extends AnAsymmetricMultiPartyLearnerLauncher 
-extends ASynchronousMemberLauncher
+extends ACentralizableMemberLauncher
 
 	implements Member4{
 	
 
 	
 	
-public SynchronousAcceptor4Launcher(String aLocalName,
+public CentralizableAcceptor4Launcher(String aLocalName,
 			int aPortNumber) {
 		super(aLocalName, aPortNumber);
 	}
@@ -27,7 +27,7 @@ protected void addListenersAndRejectionersToLocalMeaningOfLifeMechanism() {
 
 public static void main(String[] args) {
 	ConsensusTraceUtility.setTracing();
-	new SynchronousAcceptor4Launcher(MY_NAME, MY_PORT_NUMBER);
+	new CentralizableAcceptor4Launcher(MY_NAME, MY_PORT_NUMBER);
 }
 
 

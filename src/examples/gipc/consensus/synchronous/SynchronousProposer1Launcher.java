@@ -5,7 +5,7 @@ import examples.gipc.consensus.Member1;
 import port.trace.consensus.ConsensusTraceUtility;
 
 public class SynchronousProposer1Launcher extends
-		ASynchronousProposerAndAcceptorLauncher implements Member1 {
+		ASynchronousMemberLauncher implements Member1 {
 
 	public SynchronousProposer1Launcher(String aLocalName,
 			int aPortNumber) {
@@ -22,5 +22,6 @@ public class SynchronousProposer1Launcher extends
 		new SynchronousProposer1Launcher(MY_NAME, MY_PORT_NUMBER)
 				.proposeValues();
 	}
+	
 
 }

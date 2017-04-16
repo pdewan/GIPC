@@ -2,10 +2,10 @@ package examples.gipc.consensus.asynchronous;
 
 import consensus.ConsensusMechanism;
 import consensus.ConsensusMechanismFactory;
-import consensus.Learned;
 import consensus.asynchronous.ALearnerConsensusMechanism;
 import consensus.asynchronous.ALearnerConsensusMechanismFactory;
 import consensus.asynchronous.AnAsynchronousConsensusMechanismFactory;
+import consensus.asynchronous.Learned;
 import examples.gipc.consensus.AnExampleConsensusMemberLauncher;
 
 public class AnAsynchronousLearnerLauncher extends

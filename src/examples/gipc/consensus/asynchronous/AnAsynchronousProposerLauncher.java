@@ -7,13 +7,13 @@ import java.util.Set;
 
 import com.sun.javafx.event.EventUtil;
 
-import consensus.Acceptor;
 import consensus.ConsensusMechanism;
 import consensus.ConsensusMechanismFactory;
-import consensus.Learner;
 import consensus.asynchronous.AnAsynchronousConsensusMechanism;
 import consensus.asynchronous.AnAsynchronousConsensusMechanismFactory;
+import consensus.asynchronous.Learner;
 import consensus.asynchronous.LearnerMechanism;
+import consensus.synchronous.Acceptor;
 import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyProposer;
 import consensus.twoparty.symmetric.ASymmetricTwoPartyPeer;
 import consensus.twoparty.symmetric.SymmetricTwoPartyPeer;

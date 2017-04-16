@@ -13,8 +13,6 @@ import port.trace.consensus.ProposalPrepareNotificationSent;
 import port.trace.consensus.ProposalPreparedNotificationReceived;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
-import consensus.Accepted;
-import consensus.Acceptor;
 import consensus.ConsensusMemberSetKind;
 import consensus.ReplicationSynchrony;
 import consensus.ProposalState;
@@ -99,11 +97,11 @@ public class ASynchronousConsensusMechanism<StateType>
 		if (!isPending(aProposalNumber) && !isSendAcceptReplyForResolvedProposal()) {			
 				return;			
 		}
-		ProposalRejectionKind aRejectionKind = checkAcceptRequest(aProposalNumber, aProposal);
+		ProposalRejectionKind aRejectionKind = checkProposal(aProposalNumber, aProposal);
 		recordSentAcceptedNotification(aProposalNumber, aProposal, aRejectionKind);
 		sendAcceptedNotification(aProposalNumber, aProposal, aRejectionKind);		
 	}
-	protected void propose(float aProposalNumber, StateType aProposal) {	
+	protected void localPropose(float aProposalNumber, StateType aProposal) {	
 			if (isAsynchronousConsistency()) {
 				sendLearnNotification(aProposalNumber, aProposal, ProposalRejectionKind.ACCEPTED);
 			} else {
@@ -148,7 +146,7 @@ public class ASynchronousConsensusMechanism<StateType>
 	protected Boolean sufficientAgreements(float aProposalNumber, StateType aProposal, short aMaxAcceptors, short aCurrentAcceptors, int anAcceptNotifications, int anAgreements) {
 		
 		switch (getReplicationSynchrony()){
-		case SYNCHRONOUS:
+		case ALL_SYNCHRONOUS:
 			return synchronousAgreements(aProposalNumber, aProposal,aMaxAcceptors, aCurrentAcceptors, anAcceptNotifications, anAgreements);
 		case MAJORITY_SYNCHRONOUS:
 			return majorityAgreements(aProposalNumber, aProposal,aMaxAcceptors, aCurrentAcceptors, anAcceptNotifications, anAgreements);
@@ -178,7 +176,7 @@ public class ASynchronousConsensusMechanism<StateType>
 		return 0;
 	}
 	
-	protected void recordAcceptedInformation(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
+	protected void recordAcceptedNotification(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
 		if (isAgreement(aRejectionKind)) {
 			incrementCount(aProposalNumber, ACCEPT_SUCCESS, 1);
 		};
@@ -221,6 +219,9 @@ public class ASynchronousConsensusMechanism<StateType>
 			processProposalRejection(aProposalNumber, aProposal, ProposalRejectionKind.NOT_ENOUGH_ACCEPTS);
 			
 		}		
+	}
+	protected float lastAcceptedProposalNumber() {
+		return lastAcceptedProposalNumber;
 	}
 }
 

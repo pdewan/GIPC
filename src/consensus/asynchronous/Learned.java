@@ -1,4 +1,4 @@
-package consensus;
+package consensus.asynchronous;
 
 import java.rmi.Remote;
 

@@ -8,12 +8,11 @@ import port.trace.consensus.ProposalAcceptedNotificationSent;
 import port.trace.consensus.ProposalLearnedNotificationReceived;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
-import consensus.Acceptor;
 import consensus.AnAbstractConsensusMechanism;
-import consensus.Acceptor;
 import consensus.ProposalState;
 import consensus.ProposalRejectionKind;
 import consensus.asynchronous.ALearnerConsensusMechanism;
+import consensus.synchronous.Acceptor;
 
 public class AnAsymmetricTwoPartyProposer<StateType> extends
 		ALearnerConsensusMechanism<StateType> implements TwoPartyAssymetricProposer<StateType> {
@@ -37,7 +36,7 @@ public class AnAsymmetricTwoPartyProposer<StateType> extends
 		acceptor.accept(aProposalNumber, aProposal);		
 	}
 	@Override
-	protected void propose(float aProposalNumber, StateType aProposal) {
+	protected void localPropose(float aProposalNumber, StateType aProposal) {
 		sendAcceptRequest(aProposalNumber, aProposal);		
 	}
 	@Override

@@ -19,5 +19,16 @@ public interface ConsensusCustomization {
 	public boolean isSendAcceptReplyForResolvedProposal();
 	public void setSendAcceptReplyForResolvedProposal(
 			boolean newVal) ;
+	public boolean isClient() ;
+	public boolean isServer();
+	public boolean isCentralized() ;
+	public String getServerName() ;
+//	public void setIsClient(boolean isClient) ;
+
+	public void setIsServer(boolean isServer) ;
+
+	public void setServerName(String serverName) ;
+
+	public void setCentralized(boolean isCentralized);
 	
 }

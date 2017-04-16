@@ -57,11 +57,15 @@ public abstract class AnExampleConsensusMemberLauncher extends AConsensusMemberL
 //		= gipcRegistry.lookupCaller(remoteCallerConsensusClass(), MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME);
 
 		meaningOfLifeMechanism = createLocalMeaningOfLifeMechanism(anId);
+		customizeMeaningOfLifeConsensusMechanism();
 
 		addListenersAndRejectionersToLocalMeaningOfLifeMechanism();
 //		gipcRegistry.rebind(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, meaningOfLifeMechanism);	
 //		meaningOfLifeMechanism.setReplicationSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
 
+	}
+	protected void customizeMeaningOfLifeConsensusMechanism(){
+		
 	}
 	protected  void initConsensusMechanisms(short anId) {
 //		initGreetingConsensusMechanism(anId);

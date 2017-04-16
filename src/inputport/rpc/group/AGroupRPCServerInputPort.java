@@ -108,7 +108,7 @@ public class AGroupRPCServerInputPort extends ADuplexRPCServerInputPort implemen
 	public Object callAllAndMe(String objectName, Method method,
 			Object[] args) {
 		Set<String> aConnections = getConnectionsAndMe();
-		RemoteCallInitiated.newCase(this, aConnections.toString(), objectName, method, args);
+//		RemoteCallInitiated.newCase(this, aConnections.toString(), objectName, method, args);
 
 		Object aResult =  call (aConnections, objectName, method, args);
 		RemoteCallFinished.newCase(this, aConnections, objectName, method, args, aResult);
@@ -141,7 +141,7 @@ public class AGroupRPCServerInputPort extends ADuplexRPCServerInputPort implemen
 			Object[] args) {
 		Set<String> aConnections = getConnections();
 //		aConnections.add(getLocalName());
-		RemoteCallInitiated.newCase(this, aConnections, objectName, method, args);
+//		RemoteCallInitiated.newCase(this, aConnections, objectName, method, args);
 		Object retVal = call (aConnections, objectName, method, args);
 		RemoteCallFinished.newCase(this, aConnections, objectName, method, args, retVal);
 

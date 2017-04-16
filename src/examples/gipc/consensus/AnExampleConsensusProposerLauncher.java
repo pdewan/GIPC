@@ -5,11 +5,11 @@ import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.Set;
 
-import consensus.Acceptor;
 import consensus.ConsensusMechanism;
-import consensus.Learner;
 import consensus.asynchronous.AnAsynchronousConsensusMechanism;
+import consensus.asynchronous.Learner;
 import consensus.asynchronous.LearnerMechanism;
+import consensus.synchronous.Acceptor;
 import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyProposer;
 import consensus.twoparty.symmetric.ASymmetricTwoPartyPeer;
 import consensus.twoparty.symmetric.SymmetricTwoPartyPeer;

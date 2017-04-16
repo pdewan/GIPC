@@ -1,9 +1,9 @@
 package consensus.twoparty.symmetric;
 
 import inputport.ConnectionListener;
-import consensus.Acceptor;
 import consensus.ConsensusMechanism;
-import consensus.Learner;
+import consensus.asynchronous.Learner;
+import consensus.synchronous.Acceptor;
 
 public interface TwoPartySymmetricConsensusMechanism<StateType> extends 
 		ConsensusMechanism<StateType>,

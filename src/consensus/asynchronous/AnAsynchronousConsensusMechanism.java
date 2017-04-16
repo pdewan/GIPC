@@ -11,8 +11,6 @@ import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.ReplicationSynchrony;
-import consensus.Learned;
-import consensus.Learner;
 import consensus.ProposalState;
 import consensus.ProposalRejectionKind;
 
@@ -74,7 +72,7 @@ public class AnAsynchronousConsensusMechanism<StateType> extends
 		return false;
 	}
 	@Override
-	protected void propose(float aProposalNumber, StateType aProposal) {
+	protected void localPropose(float aProposalNumber, StateType aProposal) {
 		ProposalRejectionKind aRejectionKind = ProposalRejectionKind.ACCEPTED;
 		recordSentLearnNotification(aProposalNumber, aProposal, aRejectionKind);
 		sendLearnNotification(aProposalNumber, aProposal, aRejectionKind);

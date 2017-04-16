@@ -7,10 +7,10 @@ import port.trace.consensus.ProposalAcceptRequestSent;
 import port.trace.consensus.ProposalLearnNotificationSent;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
-import consensus.Acceptor;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.ProposalState;
 import consensus.ProposalRejectionKind;
+import consensus.synchronous.Acceptor;
 import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyProposer;
 
 public class ASymmetricTwoPartyPeer<StateType> extends
@@ -34,7 +34,7 @@ public class ASymmetricTwoPartyPeer<StateType> extends
 		peer.accept(aProposalNumber, aProposal);		
 	}
 	@Override
-	protected void propose(float aProposalNumber, StateType aProposal) {
+	protected void localPropose(float aProposalNumber, StateType aProposal) {
 		sendAcceptRequest(aProposalNumber, aProposal);
 	}
 

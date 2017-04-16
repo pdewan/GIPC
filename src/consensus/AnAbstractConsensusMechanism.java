@@ -10,10 +10,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import consensus.asynchronous.LearnedKind;
 import port.trace.RemoteEndConnected;
 import port.trace.RemoteEndDisconnected;
 import port.trace.consensus.ProposalConsensusOccurred;
 import port.trace.consensus.ProposalLearnNotificationReceived;
+import port.trace.consensus.ProposalMade;
 import port.trace.consensus.ProposalStateChanged;
 import port.trace.consensus.ProposalWaitEnded;
 import port.trace.consensus.ProposalWaitStarted;
@@ -52,10 +54,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected Map<Float, StateType> proposalValue = new HashMap();
 	protected String objectName;
 	
-	protected ConsistencyStrength consistencyStrength = ConsistencyStrength.NON_ATOMIC;	
-	protected ProposalRejectionKind proposalRejectionKind = ProposalRejectionKind.ACCEPTED;
-	protected ReplicationSynchrony consensusSynchrony = ReplicationSynchrony.SYNCHRONOUS;
-	protected LearnedKind learnedKind = LearnedKind.MESSAGE_TIMEOUT;
+
 	protected GroupRPCSessionPort inputPort;
 	protected boolean sendRejectionInformation = true;
 	
@@ -64,11 +63,20 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected short numMaximumMembers;
 	protected short numCurrentMembers;
 	protected short numInitialMembers;
+	
+	protected ConsistencyStrength consistencyStrength = ConsistencyStrength.NON_ATOMIC;	
+	protected ProposalRejectionKind proposalRejectionKind = ProposalRejectionKind.ACCEPTED;
+	protected ReplicationSynchrony consensusSynchrony = ReplicationSynchrony.ALL_SYNCHRONOUS;
+	protected LearnedKind learnedKind = LearnedKind.MESSAGE_TIMEOUT;
 	protected boolean allowVeto;
 	protected boolean valueSynchrony;
 	protected ConsensusMemberSetKind consensusMemberSet = ConsensusMemberSetKind.CURRENT_MEMBERS;
 	protected boolean acceptReplyForResolvedProposal = true;
 	protected boolean allowConcurrentProposals = false;
+	protected boolean isClient;
+	protected boolean isServer;
+	protected String serverName;
+	protected boolean isCentralized;
 
 	
 	
@@ -193,7 +201,11 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		numProposalsByMe++;
 		return lastProposalNumber;		
 	}
-	protected void propose(float aProposalNumber, StateType aProposal) {
+	protected void localOrRemotePropose(float aProposalNumber, StateType aProposal) {
+		localPropose(aProposalNumber, aProposal);
+	}
+
+	protected void localPropose(float aProposalNumber, StateType aProposal) {
 		
 	}
 //	protected void remotePropose(double aProposalNumber, StateType aProposal) {
@@ -221,10 +233,11 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public float propose(StateType aProposal) {
 		if (lastProposalisPending() && !getAllowConcurrentProposals())
 			return -1;
-		float myProposalNumber = getAndSetNextProposalNumber(aProposal);		
-		recordProposal(myProposalNumber, aProposal);
-		propose(myProposalNumber, aProposal);	
-		return myProposalNumber;
+		float aProposalNumber = getAndSetNextProposalNumber(aProposal);
+		ProposalMade.newCase(this, getObjectName(), aProposalNumber, aProposal);
+		recordProposal(aProposalNumber, aProposal);
+		localOrRemotePropose(aProposalNumber, aProposal);	
+		return aProposalNumber;
 	}
 	@Override
 	public void addConsensusListener(
@@ -305,7 +318,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		}		
 		return ProposalRejectionKind.ACCEPTED;
    }
-   protected synchronized ProposalRejectionKind checkAcceptRequest(float aProposalNumber, StateType aState ) {		
+   protected synchronized ProposalRejectionKind checkProposal(float aProposalNumber, StateType aState ) {		
 		return checkWithVetoer(aProposalNumber, aState);
   }
    protected boolean isAgreement(ProposalRejectionKind aRejectionKind) {
@@ -417,11 +430,11 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		return proposalState.get(aProposalNumber);
 	}
 	@Override
-	public Float getMyLastProposalNumber() {
+	public Float myLastProposalNumber() {
 		return myLastProposalNumber;
 	}
 	@Override
-	public Float getLastProposalNumber() {
+	public Float lastProposalNumber() {
 		return lastProposalNumber;
 	}
 	
@@ -618,7 +631,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	public boolean isSynchronous() {
 //		return false;
-		return getReplicationSynchrony() == ReplicationSynchrony.SYNCHRONOUS;
+		return getReplicationSynchrony() == ReplicationSynchrony.ALL_SYNCHRONOUS;
 	}
 	public void setAllowVeto(boolean allowVeto) {
 		this.allowVeto = allowVeto;
@@ -630,6 +643,33 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			boolean acceptReplyForResolvedProposal) {
 		this.acceptReplyForResolvedProposal = acceptReplyForResolvedProposal;
 	}
+	public boolean isClient() {
+		return !isServer();		
+	}
+	public boolean isServer() {
+		return isServer;
+	}
+	public boolean isCentralized() {
+		return isCentralized;
+	}
+	public String getServerName() {
+		return serverName;
+	}
+//	public void setIsClient(boolean isClient) {
+//		this.isClient = isClient;
+//	}
+
+	public void setIsServer(boolean isServer) {
+		this.isServer = isServer;
+	}
+
+	public void setServerName(String serverName) {
+		this.serverName = serverName;
+	}
+
+	public void setCentralized(boolean isCentralized) {
+		this.isCentralized = isCentralized;
+	}
 	
 	protected ConsensusMechanism<StateType> all() {
 		return (ConsensusMechanism<StateType>) gipcSessionRegistry.lookupAll(objectName);		
@@ -637,8 +677,15 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected ConsensusMechanism<StateType> allRemote() {
 		return (ConsensusMechanism<StateType>) gipcSessionRegistry.lookupAllRemote(objectName);		
 	}
-	protected ConsensusMechanism<StateType> caller() {
+	protected Object caller() {
 		return (ConsensusMechanism<StateType>) gipcSessionRegistry.lookupCaller(objectName);
+	}
+	protected Object member(String aMemberName) {
+		return (ConsensusMechanism<StateType>) gipcSessionRegistry.lookup(aMemberName, objectName);
+	}
+	
+	protected StateType proposal(float aProposalNumber) {
+		return proposalValue.get(aProposalNumber);
 	}
 
 }

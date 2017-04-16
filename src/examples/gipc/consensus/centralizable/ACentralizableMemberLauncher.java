@@ -1,17 +1,18 @@
-package examples.gipc.consensus.synchronous;
+package examples.gipc.consensus.centralizable;
 
-import consensus.Accepted;
-import consensus.Acceptor;
 import consensus.ConsensusMechanism;
 import consensus.ConsensusMechanismFactory;
 import consensus.ReplicationSynchrony;
+import consensus.central.ACentralizableConsensusMechanismFactory;
 import consensus.synchronous.ASynchronousConsensusMechanism;
 import consensus.synchronous.ASynchronousConsensusMechanismFactory;
+import consensus.synchronous.Accepted;
+import consensus.synchronous.Acceptor;
 import examples.gipc.consensus.AnExampleConsensusProposerLauncher;
 
-public class ASynchronousProposerAndAcceptorLauncher extends AnExampleConsensusProposerLauncher  {
+public class ACentralizableMemberLauncher extends AnExampleConsensusProposerLauncher  {
 
-	public ASynchronousProposerAndAcceptorLauncher(String aLocalName,
+	public ACentralizableMemberLauncher(String aLocalName,
 			int aPortNumber) {
 		super(aLocalName, aPortNumber);
 		// TODO Auto-generated constructor stub
@@ -19,18 +20,22 @@ public class ASynchronousProposerAndAcceptorLauncher extends AnExampleConsensusP
 
 	@Override
 	protected ConsensusMechanismFactory<Integer> meaningConsensusMechanismFactory() {
-		return new ASynchronousConsensusMechanismFactory<>();
+		return new ACentralizableConsensusMechanismFactory<>();
 	}
 
 	@Override
 	protected ConsensusMechanismFactory<String> greetingConsensusMechanismFactory() {
-		return new ASynchronousConsensusMechanismFactory<>();
-
-	}
-	protected  void initMeaningOfLifeConsensusMechanism(short anId) {
-		super.initMeaningOfLifeConsensusMechanism(anId);
-//		meaningOfLifeMechanism.setReplicationSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
-
+		return new ACentralizableConsensusMechanismFactory<>();	
+		}
+//	protected  void initMeaningOfLifeConsensusMechanism(short anId) {
+//		super.initMeaningOfLifeConsensusMechanism(anId);
+////		meaningOfLifeMechanism.setReplicationSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
+//
+//	}
+	protected void customizeMeaningOfLifeConsensusMechanism(){
+		meaningOfLifeMechanism.setCentralized(true);
+		meaningOfLifeMechanism.setServerName("1");
+		meaningOfLifeMechanism.setIsServer(false);
 	}
 	
 	

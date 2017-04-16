@@ -1,7 +1,7 @@
 package consensus.twoparty.asymmetric;
 
-import consensus.Accepted;
 import consensus.ConsensusMechanism;
+import consensus.synchronous.Accepted;
 
 public interface TwoPartyAssymetricProposer<StateType> extends 
 		ConsensusMechanism<StateType>,

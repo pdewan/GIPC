@@ -9,13 +9,13 @@ import port.trace.consensus.ProposalLearnNotificationReceived;
 import port.trace.consensus.ProposalLearnedNotificationSent;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
-import consensus.Accepted;
 import consensus.AnAbstractConsensusMechanism;
-import consensus.Learned;
-import consensus.Learner;
 import consensus.ProposalState;
 import consensus.ProposalRejectionKind;
 import consensus.asynchronous.ALearnerConsensusMechanism;
+import consensus.asynchronous.Learned;
+import consensus.asynchronous.Learner;
+import consensus.synchronous.Accepted;
 
 public class AnAsymmetricTwoPartyAcceptor<StateType> extends
 		ALearnerConsensusMechanism<StateType> implements TwoPartyAsymmetricAcceptor<StateType> {

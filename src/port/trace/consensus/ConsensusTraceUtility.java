@@ -31,6 +31,8 @@ public class ConsensusTraceUtility {
 		Tracer.setKeywordPrintStatus(ProposalLearnedNotificationReceived.class, true);
 		Tracer.setKeywordPrintStatus(ProposalLearnedNotificationSent.class, true);
 		
+		Tracer.setKeywordPrintStatus(ProposalMade.class, true);
+		
 		Tracer.setKeywordPrintStatus(ProposalLearnNotificationReceived.class, true);
 		Tracer.setKeywordPrintStatus(ProposalLearnNotificationSent.class, true);
 		
@@ -43,6 +45,11 @@ public class ConsensusTraceUtility {
 		Tracer.setKeywordPrintStatus(ProposalStateChanged.class, true);
 		Tracer.setKeywordPrintStatus(ProposalWaitEnded.class, true);
 		Tracer.setKeywordPrintStatus(ProposalWaitStarted.class, true);
+		Tracer.setKeywordPrintStatus(RemoteProposeRequestReceived.class, true);
+
+		Tracer.setKeywordPrintStatus(RemoteProposeRequestSent.class, true);
+
+		
 		Tracer.setKeywordPrintStatus(WaitedForSuccessfulProposalMessageReceipt.class, true);
 
 		Tracer.setKeywordPrintStatus(WaitingForSuccessfulProposalMessageReceipt.class, true);

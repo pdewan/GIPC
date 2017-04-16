@@ -1,15 +1,15 @@
-package examples.gipc.consensus.synchronous;
+package examples.gipc.consensus.centralizable;
 
 import port.trace.consensus.ConsensusTraceUtility;
 import examples.gipc.consensus.AGreetingVetoer;
 import examples.gipc.consensus.Member3;
 
-public class SynchronousAcceptor3Launcher extends
+public class CentralizableAcceptor3Launcher extends
 //		AnAsymmetricMultiPartyLearnerLauncher 
-ASynchronousMemberLauncher
+ACentralizableMemberLauncher
 		implements Member3 {
 
-	public SynchronousAcceptor3Launcher(String aLocalName,
+	public CentralizableAcceptor3Launcher(String aLocalName,
 			int aPortNumber) {
 		super(aLocalName, aPortNumber);
 	}
@@ -22,7 +22,7 @@ ASynchronousMemberLauncher
 
 	public static void main(String[] args) {
 		ConsensusTraceUtility.setTracing();
-		new SynchronousAcceptor3Launcher(MY_NAME, MY_PORT_NUMBER);
+		new CentralizableAcceptor3Launcher(MY_NAME, MY_PORT_NUMBER);
 	}
 
 }

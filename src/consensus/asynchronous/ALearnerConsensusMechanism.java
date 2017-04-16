@@ -5,7 +5,6 @@ import port.trace.consensus.ProposalLearnNotificationReceived;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.AnAbstractConsensusMechanism;
-import consensus.Learner;
 import consensus.ProposalState;
 import consensus.ProposalRejectionKind;
 

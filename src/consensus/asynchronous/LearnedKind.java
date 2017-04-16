@@ -1,4 +1,4 @@
-package consensus;
+package consensus.asynchronous;
 
 public enum LearnedKind {
 	MESSAGE_TIMEOUT,
