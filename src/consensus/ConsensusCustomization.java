@@ -9,7 +9,7 @@ public interface ConsensusCustomization {
 	public void setAcceptSynchrony(ReplicationSynchrony consensusSynchrony);
 	public void setSendRejectionInformation(boolean newVal);
 	public boolean isSendRejectionNotification();
-	public boolean isSynchronous();
+	public boolean isAllSynchronous();
 	public void setAllowVeto(boolean newVal);
 
 	public ConsensusMemberSetKind getConsensusMemberSetKind() ;

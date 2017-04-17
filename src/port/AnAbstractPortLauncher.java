@@ -1073,7 +1073,7 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	}
 	
 	public void connectedToMember(String aRemoteEndName, ConnectionType aConnectionType) {
-		System.out.println ("Connected to member:" + aRemoteEndName + " " + aConnectionType);
+//		System.out.println ("Connected to member:" + aRemoteEndName + " " + aConnectionType);
 		if (numPendingMemberConnects != 0) {
 			// why do we need this
 //			if (numPendingMemberConnects == 0) {

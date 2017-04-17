@@ -22,25 +22,14 @@ import consensus.asynchronous.AnAsynchronousConsensusMechanism;
 
 public class ASynchronousConsensusMechanism<StateType> extends
 		AnAcceptorConsensusMechanism<StateType> implements Accepted<StateType> {
-	// protected int numAcceptors;
-	// protected Accepted proposer;
+
 	protected float maxProposalNumberSentInAcceptRequest = -1;
 	protected float maxProposalNumberReceivedInAcceptedNotification = -1;
 	protected float maxProposalNumberReceivedInSuccessfulAcceptedNotification = -1;
 
-	//
-	// protected float maxReceivedAcceptRequestNumber = -1;
-	// // protected float maxReceivedAcceptedNotificationProposalNumber = -1;
-	// protected float maxSentAcceptedNotificationProposalNumber = -1;
-	//
-	// protected StateType lastAcceptedProposal = null;
-	// protected float lastAcceptedProposalNumber = -1;
-	// Accepted<StateType> proposer;
-	// protected MultiPartyAcceptor<StateType> acceptors;
 	public ASynchronousConsensusMechanism(GIPCSessionRegistry aRegistry,
 			String aName, short aMyId) {
 		super(aRegistry, aName, aMyId);
-		// proposer = aProposer;
 
 	}
 
@@ -48,52 +37,13 @@ public class ASynchronousConsensusMechanism<StateType> extends
 		return (Acceptor<StateType>) learners();
 	}
 
-	// protected Accepted proposer() {
-	// return (Accepted) caller();
-	// }
-	// protected void sendAcceptedNotification(float aProposalNumber, StateType
-	// aProposal, ProposalFeedbackKind aFeedbackKind){
-	// proposer().accepted(aProposalNumber, aProposal, aFeedbackKind );
-	// ProposalAcceptedNotificationSent.newCase(this, getObjectName(),
-	// aProposalNumber, aProposal, aFeedbackKind);
-	// }
 	protected void recordSentAcceptRequest(float aProposalNumber,
 			StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
 		maxProposalNumberSentInAcceptRequest = Math.max(
 				maxProposalNumberSentInAcceptRequest, aProposalNumber);
-		// if (isAgreement(aFeedbackKind)) {
-		// maxReceivedAccepProposalNumber =
-		// Math.max(maxSentAcceptProposalNumber, aProposalNumber);
-		// lastAcceptedProposal = aProposal;
-		// }
+
 	}
 
-	// protected void recordReceivedAcceptRequest(float aProposalNumber,
-	// StateType aProposal){
-	// maxReceivedAcceptRequestNumber = Math.max(maxReceivedAcceptRequestNumber,
-	// aProposalNumber);
-	// // if (isAgreement(aFeedbackKind)) {
-	// // maxReceivedAcceptProposalNumber =
-	// Math.max(maxSentAcceptProposalNumber, aProposalNumber);
-	// // lastAcceptedProposal = aProposal;
-	// // }
-	// }
-	// protected void recordSentAcceptedNotification(float aProposalNumber,
-	// StateType aProposal, ProposalFeedbackKind aFeedbackKind){
-	// maxSentAcceptedNotificationProposalNumber =
-	// Math.max(maxSentAcceptedNotificationProposalNumber, aProposalNumber);
-	// // if (isAgreement(aFeedbackKind)) {
-	// // maxReceivedAccepProposalNumber = Math.max(maxSentAcceptProposalNumber,
-	// aProposalNumber);
-	// // lastAcceptedProposal = aProposal;
-	// // }
-	// }
-	// protected void recordAndSendAcceptResponse(float aProposalNumber,
-	// StateType aProposal, ProposalFeedbackKind aFeedbackKind){
-	// recordSentAcceptedNotification(aProposalNumber, aProposal,
-	// aFeedbackKind);
-	// sendAcceptedNotification(aProposalNumber, aProposal, aFeedbackKind);
-	// }
 	protected void recordReceivedAcceptedNotification(float aProposalNumber,
 			StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
 		maxProposalNumberReceivedInAcceptedNotification = Math.max(
@@ -114,33 +64,6 @@ public class ASynchronousConsensusMechanism<StateType> extends
 			incrementCount(aProposalNumber, ACCEPT_SUCCESS, 1);
 		}
 	}
-
-	// protected float maxAcceptProposalNumber() {
-	// return maxProposalNumberSentInAcceptRequest;
-	// }
-	// protected float maxNonRejectionedProposalNumber() {
-	// return maxReceivedAcceptRequestNumber;
-	// }
-	// protected StateType lastAcceptedProposal() {
-	// return lastAcceptedProposal;
-	// }
-	// @Override
-	// public void accept(float aProposalNumber, StateType aProposal) {
-	// ProposalAcceptRequestReceived.newCase(this, getObjectName(),
-	// aProposalNumber, aProposal);
-	// recordReceivedAcceptRequest(aProposalNumber, aProposal);
-	// if (!isPending(aProposalNumber) &&
-	// !isSendAcceptReplyForResolvedProposal()) {
-	// return;
-	// }
-	// recordAndSendAcceptResponse(aProposalNumber, aProposal,
-	// checkProposal(aProposalNumber, aProposal));
-	// // ProposalFeedbackKind aFeedbackKind = checkProposal(aProposalNumber,
-	// aProposal);
-	// // recordSentAcceptedNotification(aProposalNumber, aProposal,
-	// aFeedbackKind);
-	// // sendAcceptedNotification(aProposalNumber, aProposal, aFeedbackKind);
-	// }
 
 	protected void localPropose(float aProposalNumber, StateType aProposal) {
 		if (isAsynchronousReplication()) {
@@ -225,7 +148,8 @@ public class ASynchronousConsensusMechanism<StateType> extends
 		return true;
 	}
 
-	protected Boolean sufficientAgreements(ReplicationSynchrony aReplicationSynchrony, float aProposalNumber,
+	protected Boolean sufficientAgreements(
+			ReplicationSynchrony aReplicationSynchrony, float aProposalNumber,
 			StateType aProposal, short aMaxAcceptors, short aCurrentAcceptors,
 			int anAcceptNotifications, int anAgreements) {
 
@@ -254,11 +178,10 @@ public class ASynchronousConsensusMechanism<StateType> extends
 		return false;
 	}
 
-	private Boolean sufficientAcceptors(ReplicationSynchrony aReplicationSynchrony,
-			float aProposalNumber,
+	private Boolean sufficientAcceptors(float aProposalNumber,
 			StateType aProposal) {
-		return sufficientAgreements(aReplicationSynchrony, aProposalNumber, aProposal,
-				numConsensusMembers(), numCurrentMembers(),
+		return sufficientAgreements(getAcceptSynchrony(), aProposalNumber,
+				aProposal, numConsensusMembers(), numCurrentMembers(),
 				getCount(aProposalNumber, ACCEPT_NOTIFICATION),
 				getCount(aProposalNumber, ACCEPT_SUCCESS));
 	}
@@ -277,16 +200,6 @@ public class ASynchronousConsensusMechanism<StateType> extends
 		return 0;
 	}
 
-	// protected void recordAcceptedNotification(float aProposalNumber,
-	// StateType aProposal,
-	// ProposalFeedbackKind aFeedbackKind) {
-	// recordNotificationCount(aProposalNumber, aProposal, aFeedbackKind,
-	// ACCEPT_SUCCESS);
-	// // if (isAgreement(aFeedbackKind)) {
-	// // incrementCount(aProposalNumber, ACCEPT_SUCCESS, 1);
-	// // };
-	// }
-
 	protected void recordNotificationCount(float aProposalNumber,
 			StateType aProposal, ProposalFeedbackKind aFeedbackKind,
 			String aNotificationKind) {
@@ -296,11 +209,6 @@ public class ASynchronousConsensusMechanism<StateType> extends
 		;
 	}
 
-	// protected void processRejectionedProposal(float aProposalNumber,
-	// StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
-	// recordAndSendLearnNotification(aProposalNumber, aProposal,
-	// aFeedbackKind);
-	// }
 	protected boolean heardFromAll() {
 		return false;
 	}
@@ -317,34 +225,20 @@ public class ASynchronousConsensusMechanism<StateType> extends
 
 	}
 
-	// protected boolean maybeProcessRejection(float aProposalNumber, StateType
-	// aProposal, ProposalFeedbackKind aFeedbackKind) {
-	// if (!isSuccess(aFeedbackKind)) {
-	//
-	// // if (isSynchronous() && !isSuccess(aFeedbackKind)) {
-	// processAcceptRejection(aProposalNumber, aProposal, aFeedbackKind);
-	// return true;
-	// }
-	// return false;
-	// }
-
-	protected void aggregateAcceptedNotification(ReplicationSynchrony aReplicationSynchrony,
-			float aProposalNumber,
+	protected void aggregateAcceptedNotification(
+			ReplicationSynchrony aReplicationSynchrony, float aProposalNumber,
 			StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
-		Boolean isSufficientAcceptors = sufficientAcceptors(aReplicationSynchrony, aProposalNumber,
+		Boolean isSufficientAcceptors = sufficientAcceptors(aProposalNumber,
 				aProposal);
 		if (isSufficientAcceptors == null)
 			return;
 		if (isSufficientAcceptors) {
-			recordAndSendLearnNotification(aProposalNumber,
-					proposal(aProposalNumber), ProposalFeedbackKind.SUCCESS);
-			// aFeedbackKind = ProposalFeedbackKind.SUCCESS;
-			// recordSentLearnNotification(aProposalNumber, aProposal,
-			// aFeedbackKind);
-			// sendLearnNotification(aProposalNumber, aProposal, aFeedbackKind);
+			recordAndSendLearnNotification(aProposalNumber, aProposal,
+					ProposalFeedbackKind.SUCCESS);
+
 		} else {
 			processAcceptRejection(aProposalNumber, aProposal,
-					ProposalFeedbackKind.NOT_ENOUGH_SUCCESSES);
+					ProposalFeedbackKind.AGGREGATE_DENIAL);
 
 		}
 	}
@@ -359,34 +253,12 @@ public class ASynchronousConsensusMechanism<StateType> extends
 		if (!isPending(aProposalNumber)) {
 			return;
 		}
-		if (!isSuccess(aFeedbackKind)) {
-
+		if (!isSuccess(aFeedbackKind) && isAllSynchronous()) {
 			processAcceptRejection(aProposalNumber, aProposal, aFeedbackKind);
 			return;
 		}
-		// if (maybeProcessRejection(aProposalNumber, aProposal, aFeedbackKind))
-		// {
-		// return;
-		// }
-		// if (isSynchronous() && !isAgreement(aFeedbackKind)) {
-		// processProposalRejection(aProposalNumber, aProposal, aFeedbackKind);
-		// return;
-		// }
-		// Boolean isSufficientAcceptors = sufficientAcceptors(aProposalNumber,
-		// aProposal);
-		// if (isSufficientAcceptors == null)
-		// return;
-		// if (isSufficientAcceptors) {
-		// aFeedbackKind = ProposalFeedbackKind.SUCCESS;
-		// recordSentLearnNotification(aProposalNumber, aProposal,
-		// aFeedbackKind);
-		// sendLearnNotification(aProposalNumber, aProposal, aFeedbackKind);
-		// } else {
-		// processProposalRejection(aProposalNumber, aProposal,
-		// ProposalFeedbackKind.NOT_ENOUGH_SUCCESSES);
-		//
-		// }
-		aggregateAcceptedNotification(getAcceptSynchrony(), aProposalNumber, aProposal, aFeedbackKind);
+		aggregateAcceptedNotification(getAcceptSynchrony(), aProposalNumber,
+				aProposal, aFeedbackKind);
 	}
 
 }

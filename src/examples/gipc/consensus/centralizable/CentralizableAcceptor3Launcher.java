@@ -16,7 +16,7 @@ ACentralizableMemberLauncher
 	@Override
 	protected void addListenersAndVetoersToLocalGreetingMechanism() {
 		super.addListenersAndVetoersToLocalGreetingMechanism();
-		greetingMechanism.addConsensusVetoers(new AGreetingVetoer());
+		greetingMechanism.addConsensusVetoer(new AGreetingVetoer());
 		
 	}
 

@@ -39,13 +39,13 @@ public class APreparerConsensusMechanism<StateType>
 	protected boolean isPrepareConcurrencyConflict (float aProposalNumber, StateType aState )  {
 		   return isAcceptConcurrencyConflict(aProposalNumber, aState);
 	}
-	 protected synchronized ProposalFeedbackKind checkProposalForPrepare(float aProposalNumber, StateType aProposal ) {
+	 protected synchronized ProposalFeedbackKind checkPrepareRequest(float aProposalNumber, StateType aProposal ) {
 		  return  isPrepareConcurrencyConflict(aProposalNumber, aProposal)?
 			    ProposalFeedbackKind.CONCURRENCY_CONFLICT:
 			 
 				checkWithVetoer(aProposalNumber, aProposal);
 	 }
-	 protected synchronized ProposalFeedbackKind checkProposalForAccept(float aProposalNumber, StateType aProposal ) {
+	 protected synchronized ProposalFeedbackKind checkAcceptRequest(float aProposalNumber, StateType aProposal ) {
 		   return (isAcceptConcurrencyConflict(aProposalNumber, aProposal))?
 			    ProposalFeedbackKind.CONCURRENCY_CONFLICT:
 			 ProposalFeedbackKind.SUCCESS;
@@ -67,7 +67,7 @@ public class APreparerConsensusMechanism<StateType>
 				 proposal(maxProposalNumberSentInSuccessfulAcceptedNotification), 
 				 aProposalNumber, 
 				 aProposal,
-				checkProposalForAccept(aProposalNumber, aProposal));		
+				checkAcceptRequest(aProposalNumber, aProposal));		
 	}
 	
 	protected void prepare(float aLastAcceptedProposalNumber, StateType aLastAcceptedProposal, float aPreparedProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {

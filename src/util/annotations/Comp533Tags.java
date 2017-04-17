@@ -25,6 +25,14 @@ public interface Comp533Tags {
 	
 	public static final String COLLECTION_SERIALIZER = "Collection Serializer";
 	
+	public static final String ARRAY_SERIALIZER = "Array Serializer";
+	
+	public static final String LIST_SERIALIZER = "List Serializer";
+	
+	public static final String SET_SERIALIZER = "Set Serializer";
+	
+	public static final String MAP_SERIALIZER = "Map Serializer";
+	
 	public static final String ENUM_SERIALIZER = "Enum Serializer";
 	
 	public static final String BEAN_SERIALIZER = "Bean Serializer";

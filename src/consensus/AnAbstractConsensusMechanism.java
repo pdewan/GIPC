@@ -47,7 +47,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected Map<String, Integer> proposalCounts = new HashMap<String, Integer>();
 
 	protected List<ConsensusListener<StateType>> consensusListeners = new ArrayList();
-	protected List<ProposalVetoer<StateType>> consensusRejectioners = new ArrayList();
+	protected List<ProposalVetoer<StateType>> consensusVetoers = new ArrayList();
 	
 	
 
@@ -77,7 +77,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected boolean valueSynchrony;
 	protected ConsensusMemberSetKind consensusMemberSet = ConsensusMemberSetKind.CURRENT_MEMBERS;
 	protected boolean acceptReplyForResolvedProposal = true;
-	protected boolean allowConcurrentProposals = false;
+	protected Boolean allowConcurrentProposals = false;
 	protected boolean isClient;
 	protected boolean isServer;
 	protected String serverName;
@@ -192,6 +192,9 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 //		return proposalState.get(aProposalNumber) == ProposalState.PROPOSAL_PENDING;
 //	}
 	protected boolean getAllowConcurrentProposals() {
+		if (allowConcurrentProposals == null) {
+			return !isSerializable();
+		}
 		return allowConcurrentProposals;
 	}
 	protected void setAllowConcurrentProposals(boolean newVal) {
@@ -260,14 +263,14 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		consensusListeners.remove(aConsensusListener);		
 	}
 	@Override
-	public void addConsensusVetoers(
+	public void addConsensusVetoer(
 			ProposalVetoer<StateType> aConsensusRejectioner) {
-		consensusRejectioners.add(aConsensusRejectioner);
+		consensusVetoers.add(aConsensusRejectioner);
 	}
 	@Override
-	public void removeConsensusRejectioner(
+	public void removeConsensusVetoer(
 			ProposalVetoer<StateType> aConsensusRejectioner) {
-		consensusRejectioners.remove(aConsensusRejectioner);		
+		consensusVetoers.remove(aConsensusRejectioner);		
 	}
 	@Override
 	public StateType getLastConsensusState() {
@@ -463,10 +466,10 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		}		
 		return retVal;
 	}
-	protected void supersedePendingProposalsBefore(float aProposalNumber) {
-		newProposalState(getPendingProposalsBefore(aProposalNumber),
-				ProposalState.PROPOSAL_SUPERSEDED);
-	}
+//	protected void supersedePendingProposalsBefore(float aProposalNumber) {
+//		newProposalState(getPendingProposalsBefore(aProposalNumber),
+//				ProposalState.PROPOSAL_SUPERSEDED);
+//	}
 	protected String makeKey(Float aProposalNumber, String anAttribute) {
 		return aProposalNumber +"." + anAttribute;
 	}
@@ -571,9 +574,11 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		case ACCESS_DENIAL:
 			return ProposalState.PROPOSAL_SERVICE_FAULT;
 		case SERVICE_DENIAL:
-			return ProposalState.PROPOSAL_SERVICE_FAULT;
+			return ProposalState.PROPOSAL_SERVICE_DENIAL;
 		case SERVICE_FAULT:
 			return ProposalState.PROPOSAL_SERVICE_FAULT;
+		case AGGREGATE_DENIAL:
+			return ProposalState.PROPOSAL_AGGREGATE_DENIAL;
 		default:
 			return null;
 				
@@ -628,7 +633,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public boolean isSendRejectionNotification() {
 		return sendRejectionInformation;
 	}
-	public boolean isSynchronous() {
+	public boolean isAllSynchronous() {
 //		return false;
 		return getAcceptSynchrony() == ReplicationSynchrony.ALL_SYNCHRONOUS;
 	}
