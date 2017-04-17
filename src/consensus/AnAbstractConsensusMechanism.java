@@ -4,6 +4,7 @@ import inputport.ConnectionRegistrar;
 import inputport.ConnectionType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -55,7 +56,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected String objectName;
 	
 
-	protected GroupRPCSessionPort inputPort;
+	protected GroupRPCSessionPort rpcSessionPort;
 	protected boolean sendRejectionInformation = true;
 	
 	protected GIPCSessionRegistry gipcSessionRegistry;
@@ -64,9 +65,13 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected short numCurrentMembers;
 	protected short numInitialMembers;
 	
-	protected ConcurrencyKind concurrencyKind = ConcurrencyKind.NON_ATOMIC;	
+	protected ConcurrencyKind concurrencyKind = ConcurrencyKind.SERIALIZABLE;	
 	protected ProposalFeedbackKind proposalRejectionKind = ProposalFeedbackKind.SUCCESS;
-	protected ReplicationSynchrony consensusSynchrony = ReplicationSynchrony.ALL_SYNCHRONOUS;
+	protected ReplicationSynchrony acceptSynchrony = ReplicationSynchrony.ALL_SYNCHRONOUS;
+	protected ReplicationSynchrony prepareSynchrony = ReplicationSynchrony.ALL_SYNCHRONOUS;
+
+	
+
 	protected LearnedKind learnedKind = LearnedKind.MESSAGE_TIMEOUT;
 	protected boolean allowVeto;
 	protected boolean valueSynchrony;
@@ -100,8 +105,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 //		myPrefix = Float.parseFloat("." + myId);
 		myPrefix = ((float) myId)/ (float) Math.pow(10, NUM_DIGITS_IN_ID);
 		objectName = anObjectName;
-		inputPort = aRegistry.getSessionPort();
-		inputPort.addConnectionListener(this);
+		rpcSessionPort = aRegistry.getSessionPort();
+		rpcSessionPort.addConnectionListener(this);
 //		numMaximumMembers = (short) (inputPort.getConnections().size() + 1);
 //		numCurrentMembers = numMaximumMembers;
 //		numInitialMembers = numMaximumMembers;
@@ -151,13 +156,16 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	
 	protected boolean isEventualConsistency() {
-		return consensusSynchrony == ReplicationSynchrony.ASYNCHRONOUS;
+		return acceptSynchrony == ReplicationSynchrony.ASYNCHRONOUS;
 	}
 	protected boolean isAsynchronousReplication() {
-		return consensusSynchrony == ReplicationSynchrony.ASYNCHRONOUS;
+		return acceptSynchrony == ReplicationSynchrony.ASYNCHRONOUS;
 	}
 	protected boolean isNonAtomic() {
 		return concurrencyKind == ConcurrencyKind.NON_ATOMIC;
+	}
+	protected boolean isSerializable() {
+		return concurrencyKind == ConcurrencyKind.SERIALIZABLE;
 	}
 	protected boolean learnedByTimeout() {
 		return learnedKind == LearnedKind.MESSAGE_TIMEOUT;
@@ -546,7 +554,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public synchronized void disconnected(String aRemoteEndName,
 			boolean anExplicitDisconnection, String anExplanation,
 			ConnectionType aConnectionType) {
-		RemoteEndDisconnected.newCase(this, inputPort.getLocalName(), aRemoteEndName, anExplicitDisconnection, anExplanation, aConnectionType);
+		RemoteEndDisconnected.newCase(this, rpcSessionPort.getLocalName(), aRemoteEndName, anExplicitDisconnection, anExplanation, aConnectionType);
 		numCurrentMembers--;
 //		newProposalState(getPendingProposals(),
 //				ProposalState.PROPOSAL_NOT_COMMUNICATED);
@@ -608,11 +616,11 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public void setProposalVetoKind(ProposalFeedbackKind proposalRejectionKind) {
 		this.proposalRejectionKind = proposalRejectionKind;
 	}
-	public ReplicationSynchrony getReplicationSynchrony() {
-		return consensusSynchrony;
+	public ReplicationSynchrony getAcceptSynchrony() {
+		return acceptSynchrony;
 	}
-	public void setReplicationSynchrony(ReplicationSynchrony consensusSynchrony) {
-		this.consensusSynchrony = consensusSynchrony;
+	public void setAcceptSynchrony(ReplicationSynchrony consensusSynchrony) {
+		this.acceptSynchrony = consensusSynchrony;
 	}
 	public void setSendRejectionInformation(boolean newVal) {
 		sendRejectionInformation = newVal;
@@ -622,7 +630,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	public boolean isSynchronous() {
 //		return false;
-		return getReplicationSynchrony() == ReplicationSynchrony.ALL_SYNCHRONOUS;
+		return getAcceptSynchrony() == ReplicationSynchrony.ALL_SYNCHRONOUS;
 	}
 	public void setAllowVeto(boolean allowVeto) {
 		this.allowVeto = allowVeto;
@@ -638,12 +646,19 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		return !isServer();		
 	}
 	public boolean isServer() {
-		return isServer;
+		return rpcSessionPort.getLocalName().equals(getServerName());
 	}
 	public boolean isCentralized2PC() {
 		return isCentralized;
 	}
 	public String getServerName() {
+		if (serverName == null) {
+			List<String> aMembers = 
+					new ArrayList(rpcSessionPort.getMemberConnections());
+			aMembers.add(rpcSessionPort.getLocalName());
+			Collections.sort(aMembers);
+			return aMembers.get(0); // at least this one is alive
+		}
 		return serverName;
 	}
 //	public void setIsClient(boolean isClient) {
@@ -677,6 +692,12 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	
 	protected StateType proposal(float aProposalNumber) {
 		return proposalValue.get(aProposalNumber);
+	}
+	public ReplicationSynchrony getPrepareSynchrony() {
+		return prepareSynchrony;
+	}
+	public void setPrepareSynchrony(ReplicationSynchrony prepareSynchrony) {
+		this.prepareSynchrony = prepareSynchrony;
 	}
 
 }

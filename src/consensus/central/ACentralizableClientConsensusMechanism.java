@@ -8,16 +8,16 @@ import consensus.ConsensusMechanism;
 import consensus.ProposalFeedbackKind;
 import consensus.synchronous.ASynchronousConsensusMechanism;
 
-public class ACentralizableConsensusMechanism<StateType> 
-	extends ACentralizableClientConsensusMechanism<StateType>
-	implements ProposeServer<StateType>{
+public class ACentralizableClientConsensusMechanism<StateType> 
+	extends ASynchronousConsensusMechanism<StateType>
+	{
 //	protected boolean isClient;
 //	protected boolean isServer;
 //	protected String serverName;
 //	protected boolean isCentralized;
 	protected ProposeServer<StateType> proposeServer;
 	
-	public ACentralizableConsensusMechanism(GIPCSessionRegistry aRegistry,
+	public ACentralizableClientConsensusMechanism(GIPCSessionRegistry aRegistry,
 			String aName, short aMyId) {
 		super(aRegistry, aName, aMyId);
 	}
@@ -62,17 +62,28 @@ public class ACentralizableConsensusMechanism<StateType>
 //			return 
 //				checkWithVetoer(aProposalNumber, aProposal);
 //	  }
-	
-	@Override
-	public void remotePropose(float aProposalNumber, StateType aProposal) {
-		RemoteProposeRequestReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
-		if (lastProposalisPending() && isSerializable()) {
-			sendLearnNotification(aProposalNumber, aProposal, ProposalFeedbackKind.CONCURRENCY_CONFLICT);
-			return;
-		} 
-		recordProposalState(aProposalNumber, aProposal);		
-		localPropose(aProposalNumber, aProposal);		
+	protected void dispatchPropose(float aProposalNumber, StateType aProposal) {
+		if (!isCentralized2PC() || isServer()) {
+			localPropose(aProposalNumber, aProposal);
+		}  else {			
+			sendProposeRequest(aProposalNumber, aProposal);
+		}
 	}
-	
+	protected void sendProposeRequest(float aProposalNumber, StateType aProposal) {
+		RemoteProposeRequestSent.newCase(this, getObjectName(), aProposalNumber, aProposal);
+		server().remotePropose(aProposalNumber, aProposal);
+	}
+//	@Override
+//	public void remotePropose(float aProposalNumber, StateType aProposal) {
+//		RemoteProposeRequestReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
+//		recordProposalState(aProposalNumber, aProposal);
+//		if (lastProposalisPending() && isSerializable()) {
+//			sendLearnNotification(aProposalNumber, aProposal, ProposalFeedbackKind.CONCURRENCY_CONFLICT);
+//		}
+//		localPropose(aProposalNumber, aProposal);
+//	}
+	protected ProposeServer<StateType> server() {
+		return (ProposeServer<StateType>) member(getServerName());
+	}
 
 }

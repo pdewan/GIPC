@@ -14,7 +14,7 @@ public class CentralizableProposer1Launcher extends
 	}
 	protected void customizeMeaningOfLifeConsensusMechanism(){
 		super.customizeMeaningOfLifeConsensusMechanism();
-		meaningOfLifeMechanism.setIsServer(true);
+//		meaningOfLifeMechanism.setIsServer(true);
 	}
 	
 	protected void doPropose() {

@@ -5,8 +5,8 @@ public interface ConsensusCustomization {
 	public void setConcurrencyKind(ConcurrencyKind consistencyStrength) ;
 	public ProposalFeedbackKind getProposalVetoKind();
 	public void setProposalVetoKind(ProposalFeedbackKind proposalRejectionKind);
-	public ReplicationSynchrony getReplicationSynchrony();
-	public void setReplicationSynchrony(ReplicationSynchrony consensusSynchrony);
+	public ReplicationSynchrony getAcceptSynchrony();
+	public void setAcceptSynchrony(ReplicationSynchrony consensusSynchrony);
 	public void setSendRejectionInformation(boolean newVal);
 	public boolean isSendRejectionNotification();
 	public boolean isSynchronous();
@@ -30,5 +30,8 @@ public interface ConsensusCustomization {
 	public void setServerName(String serverName) ;
 
 	public void setCentralized2PC(boolean isCentralized);
+	public ReplicationSynchrony getPrepareSynchrony() ;
+	public void setPrepareSynchrony(ReplicationSynchrony prepareSynchrony);
+	
 	
 }

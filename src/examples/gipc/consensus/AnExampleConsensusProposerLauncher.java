@@ -1,5 +1,7 @@
 package examples.gipc.consensus;
 
+import consensus.ProposalState;
+
 
 public abstract class AnExampleConsensusProposerLauncher extends AnExampleConsensusMemberLauncher{
 	
@@ -12,13 +14,33 @@ public abstract class AnExampleConsensusProposerLauncher extends AnExampleConsen
 	public static int MEANING_2 = 29;
 	public static long INIT_TIME = 6000;
 	
+	public void proposeMeaning(Integer aValue) {
+		while (true) {
+			float aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(aValue);	
+			meaningOfLifeMechanism.waitForConsensus(aMeaningOfLifeProposal);
+			ProposalState aState = meaningOfLifeMechanism.getProposalState(aMeaningOfLifeProposal);
+			if (aState != ProposalState.PROPOSAL_CONCURRENT_OPERATION) {
+				break;
+			}
+			}
+	}
+	
 	public  void proposeValues1() {
 //		double aGreetingProposal1 = greetingMechanism.propose(GREETING_1);
-		float aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING_1);		
+//		float aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING_1);	
+		proposeMeaning(MEANING_1);
 	}
 	public  void proposeValues2() {
+		proposeMeaning(MEANING_2);
 //		double aGreetingProposal1 = greetingMechanism.propose(GREETING_2);
-		float aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING_2);		
+//		while (true) {
+//		float aMeaningOfLifeProposal = meaningOfLifeMechanism.propose(MEANING_2);	
+//		meaningOfLifeMechanism.waitForConsensus(aMeaningOfLifeProposal);
+//		ProposalState aState = meaningOfLifeMechanism.getProposalState(aMeaningOfLifeProposal);
+//		if (aState != ProposalState.PROPOSAL_CONCURRENT_OPERATION) {
+//			break;
+//		}
+//		}
 	}
 	
 	protected void doPropose() {

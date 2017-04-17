@@ -12,6 +12,7 @@ import sun.security.util.PendingException;
 import consensus.ConsensusMechanism;
 import consensus.ProposalFeedbackKind;
 import consensus.ProposalState;
+import consensus.ReplicationSynchrony;
 import consensus.central.ACentralizableConsensusMechanism;
 import consensus.synchronous.ASynchronousConsensusMechanism;
 
@@ -77,10 +78,10 @@ public class APaxosConsensusMechanism<StateType>
 				
 //		caller().prepared(anAcceptedProposalNumber, anAcceptedProposal, anAcceptedProposalNumber, aFeedbackKind);
 	}
-	private Boolean sufficientPeparers(
+	private Boolean sufficientPeparers(ReplicationSynchrony aReplicationSynchrony, 
 			float aPreparedProposalNumber) {
 		int aNumPrepareNotifications = getCount(aPreparedProposalNumber, PREPARE_NOTIFICATION);
-		return sufficientAgreements(aPreparedProposalNumber, proposal(aPreparedProposalNumber), 
+		return sufficientAgreements(aReplicationSynchrony, aPreparedProposalNumber, proposal(aPreparedProposalNumber), 
 				numConsensusMembers(), numCurrentMembers(), 
 				aNumPrepareNotifications, 
 				aNumPrepareNotifications);
@@ -94,7 +95,7 @@ public class APaxosConsensusMechanism<StateType>
 	protected void aggregatePreparedNotification (
 			float anAcceptedProposalNumber, StateType anAcceptedProposal, 
 			float aPreparedProposalNumber, ProposalFeedbackKind aFeedbackKind) {
-		Boolean isSufficientPreparers = sufficientPeparers(aPreparedProposalNumber);
+		Boolean isSufficientPreparers = sufficientPeparers(getPrepareSynchrony(), aPreparedProposalNumber);
 		if (isSufficientPreparers == null)
 			return;
 		recordAndSendAcceptRequest(aPreparedProposalNumber, preparedState(aPreparedProposalNumber));		
