@@ -1,4 +1,4 @@
-package examples.gipc.consensus.sessionport.twoparty.symmetric;
+package examples.gipc.consensus.paxos;
 
 
 

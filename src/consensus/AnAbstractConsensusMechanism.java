@@ -64,8 +64,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected short numCurrentMembers;
 	protected short numInitialMembers;
 	
-	protected ConsistencyStrength consistencyStrength = ConsistencyStrength.NON_ATOMIC;	
-	protected ProposalRejectionKind proposalRejectionKind = ProposalRejectionKind.ACCEPTED;
+	protected ConcurrencyKind concurrencyKind = ConcurrencyKind.NON_ATOMIC;	
+	protected ProposalFeedbackKind proposalRejectionKind = ProposalFeedbackKind.SUCCESS;
 	protected ReplicationSynchrony consensusSynchrony = ReplicationSynchrony.ALL_SYNCHRONOUS;
 	protected LearnedKind learnedKind = LearnedKind.MESSAGE_TIMEOUT;
 	protected boolean allowVeto;
@@ -153,10 +153,12 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected boolean isEventualConsistency() {
 		return consensusSynchrony == ReplicationSynchrony.ASYNCHRONOUS;
 	}
-	protected boolean isAsynchronousConsistency() {
+	protected boolean isAsynchronousReplication() {
 		return consensusSynchrony == ReplicationSynchrony.ASYNCHRONOUS;
 	}
-	
+	protected boolean isNonAtomic() {
+		return concurrencyKind == ConcurrencyKind.NON_ATOMIC;
+	}
 	protected boolean learnedByTimeout() {
 		return learnedKind == LearnedKind.MESSAGE_TIMEOUT;
 	}
@@ -192,16 +194,16 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			return 0;
 		return (short) ((float) aProposalNumber);
 	}
-	protected float getAndSetNextProposalNumber(StateType aState) {
+	protected float getAndSetNextProposalNumber(StateType aProposal) {
 //		if (lastProposalisPending() && !getAllowConcurrentProposals())
 //			return -1;
 		lastProposalNumber = wholePart(lastProposalNumber) + 1 + myPrefix;
 		myLastProposalNumber = lastProposalNumber;
-		myLastState = aState;		
+		myLastState = aProposal;		
 		numProposalsByMe++;
 		return lastProposalNumber;		
 	}
-	protected void localOrRemotePropose(float aProposalNumber, StateType aProposal) {
+	protected void dispatchPropose(float aProposalNumber, StateType aProposal) {
 		localPropose(aProposalNumber, aProposal);
 	}
 
@@ -222,7 +224,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		return proposalState.get(aProposalNumber) != null;
 	}
 	
-	protected void recordProposal(float aProposalNumber, StateType aProposal) {
+	protected void recordProposalState(float aProposalNumber, StateType aProposal) {
 		if (existsProposal(aProposalNumber)) {
 			return;
 		}
@@ -235,8 +237,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			return -1;
 		float aProposalNumber = getAndSetNextProposalNumber(aProposal);
 		ProposalMade.newCase(this, getObjectName(), aProposalNumber, aProposal);
-		recordProposal(aProposalNumber, aProposal);
-		localOrRemotePropose(aProposalNumber, aProposal);	
+		recordProposalState(aProposalNumber, aProposal);
+		dispatchPropose(aProposalNumber, aProposal);	
 		return aProposalNumber;
 	}
 	@Override
@@ -250,7 +252,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		consensusListeners.remove(aConsensusListener);		
 	}
 	@Override
-	public void addConsensusRejectioner(
+	public void addConsensusVetoers(
 			ProposalVetoer<StateType> aConsensusRejectioner) {
 		consensusRejectioners.add(aConsensusRejectioner);
 	}
@@ -309,60 +311,49 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			newProposalState(aProposalNumber, proposalValue.get(aProposalNumber), aProposalState);
 		}		
 	}
-   protected synchronized ProposalRejectionKind checkWithVetoer(float aProposalNumber, StateType aState ) {		
-		for (ProposalVetoer<StateType> aConsensusRejectioner:consensusRejectioners){
-			ProposalRejectionKind aRejectionKind = aConsensusRejectioner.acceptProposal(aProposalNumber, aState);
-			if (aRejectionKind != ProposalRejectionKind.ACCEPTED) {
-				return aRejectionKind;
-			}			
-		}		
-		return ProposalRejectionKind.ACCEPTED;
-   }
-   protected synchronized ProposalRejectionKind checkProposal(float aProposalNumber, StateType aState ) {		
-		return checkWithVetoer(aProposalNumber, aState);
-  }
-   protected boolean isAgreement(ProposalRejectionKind aRejectionKind) {
-		return aRejectionKind == ProposalRejectionKind.ACCEPTED;
-	}
-   protected synchronized void notifyListeners(float aProposalNumber, StateType aState, ProposalState aProposalState ) {
+
+	   protected boolean isSuccess(ProposalFeedbackKind aFeedbackKind) {
+			return aFeedbackKind == ProposalFeedbackKind.SUCCESS;
+		}
+   protected synchronized void notifyListeners(float aProposalNumber, StateType aProposal, ProposalState aProposalState ) {
 		
 		boolean isLocal = isMyProposal(aProposalNumber);
 		for (ConsensusListener<StateType> aConsensusListener:consensusListeners){
-			aConsensusListener.newProposalState(aProposalNumber, aState, aProposalState);
+			aConsensusListener.newProposalState(aProposalNumber, aProposal, aProposalState);
 			if (aProposalState == ProposalState.PROPOSAL_CONSENSUS) {
-				aConsensusListener.newConsensusState(aState);
-				consensusState = aState;
+				aConsensusListener.newConsensusState(aProposal);
+				consensusState = aProposal;
 				lastConsensusProposal = aProposalNumber;
 			}
 
 			if (isLocal) {
-				aConsensusListener.newLocalProposalState(aProposalNumber, aState, aProposalState);	
+				aConsensusListener.newLocalProposalState(aProposalNumber, aProposal, aProposalState);	
 			} else {
-				aConsensusListener.newRemoteProposalState(aProposalNumber, aState, aProposalState);
+				aConsensusListener.newRemoteProposalState(aProposalNumber, aProposal, aProposalState);
 			}
 		}
 		
 		
 
 	}
-	protected synchronized void notify(float aProposalNumber, StateType aState, ProposalState aProposalState ) {
+	protected synchronized void notify(float aProposalNumber, StateType aProposal, ProposalState aProposalState ) {
 		
 //		boolean isLocal = isMyProposal(aProposalNumber);
 //		for (ConsensusListener<StateType> aConsensusListener:consensusListeners){
-//			aConsensusListener.newProposalState(aProposalNumber, aState, aProposalState);
+//			aConsensusListener.newProposalState(aProposalNumber, aProposal, aProposalState);
 //			if (aProposalState == ProposalState.PROPOSAL_CONSENSUS) {
-//				aConsensusListener.newConsensusState(aState);
-//				consensusState = aState;
+//				aConsensusListener.newConsensusState(aProposal);
+//				consensusState = aProposal;
 //				lastConsensusProposal = aProposalNumber;
 //			}
 //
 //			if (isLocal) {
-//				aConsensusListener.newLocalProposalState(aProposalNumber, aState, aProposalState);	
+//				aConsensusListener.newLocalProposalState(aProposalNumber, aProposal, aProposalState);	
 //			} else {
-//				aConsensusListener.newRemoteProposalState(aProposalNumber, aState, aProposalState);
+//				aConsensusListener.newRemoteProposalState(aProposalNumber, aProposal, aProposalState);
 //			}
 //		}
-		notifyListeners(aProposalNumber, aState, aProposalState);
+		notifyListeners(aProposalNumber, aProposal, aProposalState);
 		notifyAll();
 //		System.out.println("notify all");
 	}
@@ -378,33 +369,33 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 				
 		
 	}
-	protected synchronized void newProposalState(float aProposalNumber, StateType aState, ProposalState aProposalState ) {
-		if (aState == null) {
+	protected synchronized void newProposalState(float aProposalNumber, StateType aProposal, ProposalState aProposalState ) {
+		if (aProposal == null) {
 			System.out.println ("Null state");
 		}
 		if (!isPending(aProposalNumber)) {
 			return;		
 		}
 		proposalState.put(aProposalNumber, aProposalState);	
-		ProposalStateChanged.newCase(this, getObjectName(), aProposalNumber, aState, aProposalState);
-		notify(aProposalNumber, aState, aProposalState);
+		ProposalStateChanged.newCase(this, getObjectName(), aProposalNumber, aProposal, aProposalState);
+		notify(aProposalNumber, aProposal, aProposalState);
 	}
-//	protected void newLocalProposalState(double aProposalNumber, StateType aState, ProposalState aProposalState ) {
+//	protected void newLocalProposalState(double aProposalNumber, StateType aProposal, ProposalState aProposalState ) {
 //		proposalState.put(aProposalNumber, aProposalState);		
 //		for (ConsensusListener<StateType> aConsensusListener:consensusListeners){
 //			if (aProposalState == ProposalState.PROPOSAL_ACCEPTED) {
-//				aConsensusListener.newConsensusState(aState);
+//				aConsensusListener.newConsensusState(aProposal);
 //			}
-//			aConsensusListener.newLocalProposalState(aProposalNumber, aState, aProposalState);			
+//			aConsensusListener.newLocalProposalState(aProposalNumber, aProposal, aProposalState);			
 //		}
 //		notifyAll();
 //	}
-//	protected void newRemoteProposalState(float aProposalNumber, StateType aState, ProposalState aProposalState ) {
+//	protected void newRemoteProposalState(float aProposalNumber, StateType aProposal, ProposalState aProposalState ) {
 ////		proposalState.put(aProposalNumber, aProposalState);		
 //		for (ConsensusListener<StateType> aConsensusListener:consensusListeners){
-//			aConsensusListener.newRemoteProposalState(aProposalNumber, aState, aProposalState);
+//			aConsensusListener.newRemoteProposalState(aProposalNumber, aProposal, aProposalState);
 //			if (aProposalState == ProposalState.PROPOSAL_ACCEPTED) {
-//				aConsensusListener.newConsensusState(aState);
+//				aConsensusListener.newConsensusState(aProposal);
 //			}
 //			
 //		}
@@ -565,9 +556,9 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public boolean isPending(float aProposalNumber) {
 		return proposalState.get(aProposalNumber) == ProposalState.PROPOSAL_PENDING;
 	}
-	protected ProposalState toProposalState(ProposalRejectionKind aRejectionKind) {
-		switch (aRejectionKind) {
-		case CONCURRENT_OPERATION:
+	protected ProposalState toProposalState(ProposalFeedbackKind aFeedbackKind) {
+		switch (aFeedbackKind) {
+		case CONCURRENCY_CONFLICT:
 			return ProposalState.PROPOSAL_CONCURRENT_OPERATION;
 		case ACCESS_DENIAL:
 			return ProposalState.PROPOSAL_SERVICE_FAULT;
@@ -605,16 +596,16 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public void setLastConsensusProposal(Float lastConsensusProposal) {
 		this.lastConsensusProposal = lastConsensusProposal;
 	}
-	public ConsistencyStrength getConsistencyStrength() {
-		return consistencyStrength;
+	public ConcurrencyKind getConcurrencyKind() {
+		return concurrencyKind;
 	}
-	public void setConsistencyStrength(ConsistencyStrength consistencyStrength) {
-		this.consistencyStrength = consistencyStrength;
+	public void setConcurrencyKind(ConcurrencyKind consistencyStrength) {
+		this.concurrencyKind = consistencyStrength;
 	}
-	public ProposalRejectionKind getProposalVetoKind() {
+	public ProposalFeedbackKind getProposalVetoKind() {
 		return proposalRejectionKind;
 	}
-	public void setProposalVetoKind(ProposalRejectionKind proposalRejectionKind) {
+	public void setProposalVetoKind(ProposalFeedbackKind proposalRejectionKind) {
 		this.proposalRejectionKind = proposalRejectionKind;
 	}
 	public ReplicationSynchrony getReplicationSynchrony() {
@@ -649,7 +640,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public boolean isServer() {
 		return isServer;
 	}
-	public boolean isCentralized() {
+	public boolean isCentralized2PC() {
 		return isCentralized;
 	}
 	public String getServerName() {
@@ -667,21 +658,21 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		this.serverName = serverName;
 	}
 
-	public void setCentralized(boolean isCentralized) {
+	public void setCentralized2PC(boolean isCentralized) {
 		this.isCentralized = isCentralized;
 	}
 	
-	protected ConsensusMechanism<StateType> all() {
-		return (ConsensusMechanism<StateType>) gipcSessionRegistry.lookupAll(objectName);		
+	protected Object all() {
+		return  gipcSessionRegistry.lookupAll(objectName);		
 	}
-	protected ConsensusMechanism<StateType> allRemote() {
-		return (ConsensusMechanism<StateType>) gipcSessionRegistry.lookupAllRemote(objectName);		
+	protected Object allRemote() {
+		return gipcSessionRegistry.lookupAllRemote(objectName);		
 	}
 	protected Object caller() {
-		return (ConsensusMechanism<StateType>) gipcSessionRegistry.lookupCaller(objectName);
+		return  gipcSessionRegistry.lookupCaller(objectName);
 	}
 	protected Object member(String aMemberName) {
-		return (ConsensusMechanism<StateType>) gipcSessionRegistry.lookup(aMemberName, objectName);
+		return  gipcSessionRegistry.lookup(aMemberName, objectName);
 	}
 	
 	protected StateType proposal(float aProposalNumber) {

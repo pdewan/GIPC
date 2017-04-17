@@ -15,7 +15,7 @@ public interface LocalConsensusMechanism<StateType> extends ConsensusState<State
 	Float myLastProposalNumber();
 	Float lastProposalNumber();
 	void removeConsensusListener(ConsensusListener<StateType> aConsensusListener);
-	void addConsensusRejectioner(ProposalVetoer<StateType> aConsensusRejectioner);
+	void addConsensusVetoers(ProposalVetoer<StateType> aConsensusRejectioner);
 	void removeConsensusRejectioner(ProposalVetoer<StateType> aConsensusRejectioner);
 	boolean myLastProposalIsPending();
 	Set<Float> getPendingProposals();

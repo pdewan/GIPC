@@ -2,7 +2,7 @@ package consensus.asynchronous;
 
 import inputport.ConnectionRegistrar;
 import inputport.InputPort;
-import port.trace.consensus.ProposalAcceptedNotificationReceived;
+import port.trace.consensus.ProposalAcceptResponseReceived;
 import port.trace.consensus.ProposalLearnNotificationSent;
 import port.trace.consensus.ProposalLearnedNotificationReceived;
 import port.trace.consensus.ProposalQuorumAchieved;
@@ -12,11 +12,12 @@ import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.ReplicationSynchrony;
 import consensus.ProposalState;
-import consensus.ProposalRejectionKind;
+import consensus.ProposalFeedbackKind;
 
 public class AnAsynchronousConsensusMechanism<StateType> extends
 		ALearnerConsensusMechanism<StateType> {
 	protected Learner<StateType> learners;
+	protected float maxProposalNumberSentInLearnNotification = -1;
 	
 //	protected short numLearners;
 
@@ -39,11 +40,15 @@ public class AnAsynchronousConsensusMechanism<StateType> extends
 	protected short numCurrentLearners() {
 		return numCurrentMembers();
 	}
-	protected void recordSentLearnNotification(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
-		
+	protected void recordAndSendLearnNotification(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
+		recordSentLearnNotification(aProposalNumber, aProposal, aFeedbackKind);
+		sendLearnNotification(aProposalNumber, aProposal, aFeedbackKind);
+	}
+	protected void recordSentLearnNotification(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
+		maxProposalNumberSentInLearnNotification = Math.max(maxProposalNumberSentInLearnNotification, aProposalNumber);
 	}
 	protected void sendLearnNotification(float aProposalNumber,
-			StateType aProposal, ProposalRejectionKind anAgreement) {
+			StateType aProposal, ProposalFeedbackKind anAgreement) {
 		ProposalLearnNotificationSent.newCase(this, getObjectName(),
 				aProposalNumber, aProposal, anAgreement);
 		learners().learn(aProposalNumber, aProposal, anAgreement);
@@ -73,9 +78,10 @@ public class AnAsynchronousConsensusMechanism<StateType> extends
 	}
 	@Override
 	protected void localPropose(float aProposalNumber, StateType aProposal) {
-		ProposalRejectionKind aRejectionKind = ProposalRejectionKind.ACCEPTED;
-		recordSentLearnNotification(aProposalNumber, aProposal, aRejectionKind);
-		sendLearnNotification(aProposalNumber, aProposal, aRejectionKind);
+//		recordAndSendLearnNotification(aProposalNumber, aProposal, ProposalFeedbackKind.SUCCESS);
+//		ProposalFeedbackKind aFeedbackKind = ProposalFeedbackKind.SUCCESS;
+//		recordSentLearnNotification(aProposalNumber, aProposal, aFeedbackKind);
+//		sendLearnNotification(aProposalNumber, aProposal, aFeedbackKind);
 	}
 	
 

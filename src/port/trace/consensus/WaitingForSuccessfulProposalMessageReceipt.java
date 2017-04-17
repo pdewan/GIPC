@@ -1,6 +1,6 @@
 package port.trace.consensus;
 
-import consensus.ProposalRejectionKind;
+import consensus.ProposalFeedbackKind;
 import inputport.rpc.RemoteCall;
 import util.annotations.ComponentWidth;
 import util.annotations.DisplayToString;

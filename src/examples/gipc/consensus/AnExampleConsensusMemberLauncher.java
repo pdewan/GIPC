@@ -4,7 +4,7 @@ import port.sessionserver.SessionServerSelector;
 import consensus.ConsensusMechanism;
 import consensus.ConsensusMechanismFactory;
 import consensus.ConsensusMechanismSelector;
-import consensus.ConsistencyStrength;
+import consensus.ConcurrencyKind;
 import consensus.ReplicationSynchrony;
 import consensus.sessionport.AConsensusMemberLauncher;
 
@@ -37,17 +37,17 @@ public abstract class AnExampleConsensusMemberLauncher extends AConsensusMemberL
 	public AnExampleConsensusMemberLauncher(String aLocalName, int aPortNumber) {
 		init(aLocalName, aPortNumber);
 	}
-	protected void addListenersAndRejectionersToLocalGreetingMechanism() {
+	protected void addListenersAndVetoersToLocalGreetingMechanism() {
 		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());
 	}
-	protected void addListenersAndRejectionersToLocalMeaningOfLifeMechanism() {
+	protected void addListenersAndVetoersToLocalMeaningOfLifeMechanism() {
 		meaningOfLifeMechanism.addConsensusListener(new AMeaningOfLifeConsensusListener());
 	}
 	protected  void initGreetingConsensusMechanism(short anId) {
 //		receiversRemoteGreetingMechanism = lookupMulticastProxy(remoteReceiverConsensusClass(), GREETING_CONSENSUS_MECHANISM_NAME);
 //		callerRemoteGreetingMechanism = gipcRegistry.lookupCaller(remoteCallerConsensusClass(), GREETING_CONSENSUS_MECHANISM_NAME);
 		greetingMechanism = createLocalGreetingMechanism(anId);
-		addListenersAndRejectionersToLocalGreetingMechanism();
+		addListenersAndVetoersToLocalGreetingMechanism();
 
 //		gipcRegistry.rebind(GREETING_CONSENSUS_MECHANISM_NAME, greetingMechanism);
 	}	
@@ -59,7 +59,7 @@ public abstract class AnExampleConsensusMemberLauncher extends AConsensusMemberL
 		meaningOfLifeMechanism = createLocalMeaningOfLifeMechanism(anId);
 		customizeMeaningOfLifeConsensusMechanism();
 
-		addListenersAndRejectionersToLocalMeaningOfLifeMechanism();
+		addListenersAndVetoersToLocalMeaningOfLifeMechanism();
 //		gipcRegistry.rebind(MEANING_OF_LIFE_CONSENSUS_MECHANISM_NAME, meaningOfLifeMechanism);	
 //		meaningOfLifeMechanism.setReplicationSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
 

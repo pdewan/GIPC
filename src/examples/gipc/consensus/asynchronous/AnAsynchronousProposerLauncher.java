@@ -1,40 +1,8 @@
 package examples.gipc.consensus.asynchronous;
 
-import java.nio.ByteBuffer;
-import java.rmi.RemoteException;
-import java.util.Arrays;
-import java.util.Set;
-
-import com.sun.javafx.event.EventUtil;
-
-import consensus.ConsensusMechanism;
 import consensus.ConsensusMechanismFactory;
-import consensus.asynchronous.AnAsynchronousConsensusMechanism;
 import consensus.asynchronous.AnAsynchronousConsensusMechanismFactory;
-import consensus.asynchronous.Learner;
-import consensus.asynchronous.LearnerMechanism;
-import consensus.synchronous.Acceptor;
-import consensus.twoparty.asymmetric.AnAsymmetricTwoPartyProposer;
-import consensus.twoparty.symmetric.ASymmetricTwoPartyPeer;
-import consensus.twoparty.symmetric.SymmetricTwoPartyPeer;
-import consensus.twoparty.symmetric.TwoPartySymmetricConsensusMechanism;
-import bus.uigen.visitors.AddListenersAdapterVisitor;
-import inputport.rpc.GIPCRegistry;
-import port.ATracingConnectionListener;
-import port.SessionChoice;
-import port.trace.consensus.ConsensusTraceUtility;
-import sessionport.rpc.group.GIPCLocateSessionRegistry;
-import sessionport.rpc.group.GIPCSessionRegistry;
-import sessionport.rpc.group.GroupRPCSessionPort;
-import examples.gipc.consensus.AGreetingConsensusListener;
-import examples.gipc.consensus.AMeaningOfLifeConsensusListener;
 import examples.gipc.consensus.AnExampleConsensusProposerLauncher;
-import examples.gipc.counter.layers.AMultiLayeServerReceiveListener;
-import examples.gipc.counter.layers.AMultiLayerCounterServer;
-import examples.gipc.counter.sessionport.CounterSessionMember;
-import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
-import examples.mvc.rmi.duplex.DistributedRMICounter;
-import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;
 
 public class AnAsynchronousProposerLauncher extends AnExampleConsensusProposerLauncher  {
 

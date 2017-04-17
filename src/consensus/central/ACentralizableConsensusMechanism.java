@@ -5,6 +5,7 @@ import port.trace.consensus.RemoteProposeRequestSent;
 import bus.uigen.widgets.universal.CentralUniversalWidget;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import consensus.ConsensusMechanism;
+import consensus.ProposalFeedbackKind;
 import consensus.synchronous.ASynchronousConsensusMechanism;
 
 public class ACentralizableConsensusMechanism<StateType> 
@@ -52,11 +53,19 @@ public class ACentralizableConsensusMechanism<StateType>
 	//	public void remotePropose(float aProposalNumber, StateType aProposal) {
 //		propose(aProposalNumber, aProposal);
 //	}
-	protected void localOrRemotePropose(float aProposalNumber, StateType aProposal) {
-		if (!isCentralized() || isServer()) {
+	protected boolean isAcceptConcurrencyConflict (float aProposalNumber, StateType aProposal )  {
+		   return someProposalIsPending() ;
+	   }
+	   protected synchronized ProposalFeedbackKind checkProposalForAccept(float aProposalNumber, StateType aProposal ) {
+		   if (isAcceptConcurrencyConflict(aProposalNumber, aProposal))
+			   return ProposalFeedbackKind.CONCURRENCY_CONFLICT;
+			return 
+				checkWithVetoer(aProposalNumber, aProposal);
+	  }
+	protected void dispatchPropose(float aProposalNumber, StateType aProposal) {
+		if (!isCentralized2PC() || isServer()) {
 			localPropose(aProposalNumber, aProposal);
-		}  else {
-			
+		}  else {			
 			sendProposeRequest(aProposalNumber, aProposal);
 		}
 	}
@@ -67,7 +76,7 @@ public class ACentralizableConsensusMechanism<StateType>
 	@Override
 	public void remotePropose(float aProposalNumber, StateType aProposal) {
 		RemoteProposeRequestReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
-		recordProposal(aProposalNumber, aProposal);
+		recordProposalState(aProposalNumber, aProposal);
 		localPropose(aProposalNumber, aProposal);
 	}
 	protected ProposeServer<StateType> server() {

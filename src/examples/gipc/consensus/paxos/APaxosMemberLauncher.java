@@ -1,18 +1,20 @@
-package examples.gipc.consensus.centralizable;
+package examples.gipc.consensus.paxos;
 
+import consensus.ConcurrencyKind;
 import consensus.ConsensusMechanism;
 import consensus.ConsensusMechanismFactory;
 import consensus.ReplicationSynchrony;
 import consensus.central.ACentralizableConsensusMechanismFactory;
+import consensus.paxos.APaxosConsensusMechanismFactory;
 import consensus.synchronous.ASynchronousConsensusMechanism;
 import consensus.synchronous.ASynchronousConsensusMechanismFactory;
 import consensus.synchronous.Accepted;
 import consensus.synchronous.Acceptor;
 import examples.gipc.consensus.AnExampleConsensusProposerLauncher;
 
-public class ACentralizableMemberLauncher extends AnExampleConsensusProposerLauncher  {
+public class APaxosMemberLauncher extends AnExampleConsensusProposerLauncher  {
 
-	public ACentralizableMemberLauncher(String aLocalName,
+	public APaxosMemberLauncher(String aLocalName,
 			int aPortNumber) {
 		super(aLocalName, aPortNumber);
 		// TODO Auto-generated constructor stub
@@ -20,12 +22,12 @@ public class ACentralizableMemberLauncher extends AnExampleConsensusProposerLaun
 
 	@Override
 	protected ConsensusMechanismFactory<Integer> meaningConsensusMechanismFactory() {
-		return new ACentralizableConsensusMechanismFactory<>();
+		return new APaxosConsensusMechanismFactory();
 	}
 
 	@Override
 	protected ConsensusMechanismFactory<String> greetingConsensusMechanismFactory() {
-		return new ACentralizableConsensusMechanismFactory<>();	
+		return new APaxosConsensusMechanismFactory<>();	
 		}
 //	protected  void initMeaningOfLifeConsensusMechanism(short anId) {
 //		super.initMeaningOfLifeConsensusMechanism(anId);
@@ -33,9 +35,10 @@ public class ACentralizableMemberLauncher extends AnExampleConsensusProposerLaun
 //
 //	}
 	protected void customizeMeaningOfLifeConsensusMechanism(){
-		meaningOfLifeMechanism.setCentralized2PC(true);
-		meaningOfLifeMechanism.setServerName("1");
-		meaningOfLifeMechanism.setIsServer(false);
+		meaningOfLifeMechanism.setCentralized2PC(false);
+		meaningOfLifeMechanism.setConcurrencyKind(ConcurrencyKind.SERIALIZABLE);
+//		meaningOfLifeMechanism.setServerName("1");
+//		meaningOfLifeMechanism.setIsServer(false);
 	}
 	
 	

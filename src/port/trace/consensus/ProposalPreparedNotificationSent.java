@@ -1,5 +1,6 @@
 package port.trace.consensus;
 
+import consensus.ProposalFeedbackKind;
 import inputport.rpc.RemoteCall;
 import util.annotations.ComponentWidth;
 import util.annotations.DisplayToString;
@@ -9,14 +10,26 @@ import util.trace.TraceableInfo;
 public class ProposalPreparedNotificationSent extends TraceableInfo {
 	
 
-	public ProposalPreparedNotificationSent(String aMessage, Object aSource, String anObjectName, float aProposalNumber, Object aProposal) {
-		super(aMessage, aSource );
+	public ProposalPreparedNotificationSent(String aMessage, Object aSource, 
+			String anObjectName,
+			float anAcceptedProposalNumber,
+			Object anAcceptedProposal,
+			float aProposalNumber,
+			ProposalFeedbackKind aFeedbackKind) {
+		super(aMessage, aSource);
 	}
 	
 	
-	public static ProposalPreparedNotificationSent newCase(Object aSource, String anObjectName, float aProposalNumber, Object aProposal) {
-    	String aMessage =  anObjectName + "," + aProposalNumber + "=" + aProposal;
-    	ProposalPreparedNotificationSent retVal = new ProposalPreparedNotificationSent(aMessage, aSource, anObjectName, aProposalNumber, aProposal);
+	public static ProposalPreparedNotificationSent newCase(Object aSource, 
+			String anObjectName, 
+			float anAcceptedProposalNumber,
+			Object anAcceptedProposal,
+			float aProposalNumber,
+			ProposalFeedbackKind aFeedbackKind) {
+    	String aMessage =  anObjectName + "," + aProposalNumber + "<--(" + anAcceptedProposalNumber + "," + anAcceptedProposal + ") == " + aFeedbackKind;
+    	ProposalPreparedNotificationSent retVal = 
+    			new ProposalPreparedNotificationSent(aMessage, aSource, anObjectName,
+    					anAcceptedProposalNumber, anAcceptedProposal, aProposalNumber, aFeedbackKind);
    	    retVal.announce();
     	return retVal;
 

@@ -1,6 +1,6 @@
 package consensus;
 
-public enum ConsistencyStrength {
+public enum ConcurrencyKind {
 	NON_ATOMIC,
 	ATOMIC,
 	SERIALIZABLE

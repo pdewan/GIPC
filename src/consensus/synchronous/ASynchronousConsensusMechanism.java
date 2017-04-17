@@ -3,34 +3,39 @@ package consensus.synchronous;
 import inputport.ConnectionRegistrar;
 import inputport.InputPort;
 import inputport.datacomm.simplex.buffer.nio.AnAcceptCommand;
+import inputport.rpc.duplex.MaybeProcessReturnValue;
 import port.trace.consensus.SufficientAgreementsChecked;
 import port.trace.consensus.ProposalAcceptRequestReceived;
 import port.trace.consensus.ProposalAcceptRequestSent;
-import port.trace.consensus.ProposalAcceptedNotificationReceived;
+import port.trace.consensus.ProposalAcceptResponseReceived;
 import port.trace.consensus.ProposalAcceptedNotificationSent;
 import port.trace.consensus.ProposalLearnNotificationSent;
-import port.trace.consensus.ProposalPrepareNotificationSent;
+import port.trace.consensus.ProposalPrepareRequestSent;
 import port.trace.consensus.ProposalPreparedNotificationReceived;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.ConsensusMemberSetKind;
 import consensus.ReplicationSynchrony;
 import consensus.ProposalState;
-import consensus.ProposalRejectionKind;
+import consensus.ProposalFeedbackKind;
 import consensus.asynchronous.AnAsynchronousConsensusMechanism;
 
 public class ASynchronousConsensusMechanism<StateType> 
-	extends AnAsynchronousConsensusMechanism<StateType> 
+	extends AnAcceptorConsensusMechanism<StateType> 
 	implements Accepted<StateType>{
-	protected int numAcceptors;
-	protected Accepted proposer;
-	protected float maxSentAcceptRequestProposalNumber = -1;
-	protected float maxReceivedAcceptRequestNumber = -1;
-	protected float maxReceivedAcceptedNotificationProposalNumber = -1;
-	protected float maxSentAcceptedNotificationProposalNumber = -1;	
+//	protected int numAcceptors;
+//	protected Accepted proposer;
+	protected float maxProposalNumberSentInAcceptRequest = -1;
+	protected float maxProposalNumberReceivedInAcceptedNotification = -1;
+	protected float maxProposalNumberReceivedInSuccessfulAcceptedNotification = -1;
 
-	protected StateType  lastAcceptedProposal = null;
-	protected float lastAcceptedProposalNumber = -1;
+//
+//	protected float maxReceivedAcceptRequestNumber = -1;
+////	protected float maxReceivedAcceptedNotificationProposalNumber = -1;
+//	protected float maxSentAcceptedNotificationProposalNumber = -1;	
+//
+//	protected StateType  lastAcceptedProposal = null;
+//	protected float lastAcceptedProposalNumber = -1;
 //	Accepted<StateType> proposer;
 //	protected MultiPartyAcceptor<StateType> acceptors;
 	public ASynchronousConsensusMechanism(
@@ -42,71 +47,90 @@ public class ASynchronousConsensusMechanism<StateType>
 	protected Acceptor<StateType> acceptors() {
 		return  (Acceptor<StateType>) learners();
 	}
-	protected Accepted proposer() {
-		return (Accepted) caller();
-	}
-	protected void sendAcceptedNotification(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind){
-		proposer().accepted(aProposalNumber, aProposal, aRejectionKind );
-		ProposalAcceptedNotificationSent.newCase(this, getObjectName(), aProposalNumber, aProposal, aRejectionKind);
-	}
-	protected void recordSentAcceptRequest(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind){
-		maxSentAcceptRequestProposalNumber = Math.max(maxSentAcceptRequestProposalNumber, aProposalNumber);
-//		if (isAgreement(aRejectionKind)) {
+//	protected Accepted proposer() {
+//		return (Accepted) caller();
+//	}
+//	protected void sendAcceptedNotification(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind){
+//		proposer().accepted(aProposalNumber, aProposal, aFeedbackKind );
+//		ProposalAcceptedNotificationSent.newCase(this, getObjectName(), aProposalNumber, aProposal, aFeedbackKind);
+//	}
+	protected void recordSentAcceptRequest(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind){
+		maxProposalNumberSentInAcceptRequest = Math.max(maxProposalNumberSentInAcceptRequest, aProposalNumber);
+//		if (isAgreement(aFeedbackKind)) {
 //			maxReceivedAccepProposalNumber = Math.max(maxSentAcceptProposalNumber, aProposalNumber);
 //			lastAcceptedProposal = aProposal;
 //		}
 	}
-	protected void recordReceivedAcceptRequest(float aProposalNumber, StateType aProposal){
-		maxReceivedAcceptRequestNumber = Math.max(maxReceivedAcceptRequestNumber, aProposalNumber);
-//		if (isAgreement(aRejectionKind)) {
-//			maxReceivedAcceptProposalNumber = Math.max(maxSentAcceptProposalNumber, aProposalNumber);
-//			lastAcceptedProposal = aProposal;
-//		}
-	}
-	protected void recordSentAcceptedNotification(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind){
-		maxSentAcceptedNotificationProposalNumber = Math.max(maxSentAcceptedNotificationProposalNumber, aProposalNumber);
-//		if (isAgreement(aRejectionKind)) {
-//			maxReceivedAccepProposalNumber = Math.max(maxSentAcceptProposalNumber, aProposalNumber);
-//			lastAcceptedProposal = aProposal;
-//		}
-	}
-	protected void recordReceivedAcceptedNotification(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind){
-		maxReceivedAcceptedNotificationProposalNumber = Math.max(maxReceivedAcceptedNotificationProposalNumber, aProposalNumber);
+//	protected void recordReceivedAcceptRequest(float aProposalNumber, StateType aProposal){
+//		maxReceivedAcceptRequestNumber = Math.max(maxReceivedAcceptRequestNumber, aProposalNumber);
+////		if (isAgreement(aFeedbackKind)) {
+////			maxReceivedAcceptProposalNumber = Math.max(maxSentAcceptProposalNumber, aProposalNumber);
+////			lastAcceptedProposal = aProposal;
+////		}
+//	}
+//	protected void recordSentAcceptedNotification(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind){
+//		maxSentAcceptedNotificationProposalNumber = Math.max(maxSentAcceptedNotificationProposalNumber, aProposalNumber);
+////		if (isAgreement(aFeedbackKind)) {
+////			maxReceivedAccepProposalNumber = Math.max(maxSentAcceptProposalNumber, aProposalNumber);
+////			lastAcceptedProposal = aProposal;
+////		}
+//	}
+//	protected void recordAndSendAcceptResponse(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind){
+//		recordSentAcceptedNotification(aProposalNumber, aProposal, aFeedbackKind);
+//		sendAcceptedNotification(aProposalNumber, aProposal, aFeedbackKind);
+//	}
+	protected void recordReceivedAcceptedNotification(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind){
+		maxProposalNumberReceivedInAcceptedNotification = Math.max(maxProposalNumberReceivedInAcceptedNotification, aProposalNumber);
+//		maxReceivedAcceptedNotificationProposalNumber = Math.max(maxReceivedAcceptedNotificationProposalNumber, aProposalNumber);
 		incrementCount(aProposalNumber, ACCEPT_NOTIFICATION, 1);			
 
-		if (isAgreement(aRejectionKind)) {
-			lastAcceptedProposal = aProposal;
-			lastAcceptedProposalNumber = Math.max(aProposalNumber, lastAcceptedProposalNumber);
+		if (isSuccess(aFeedbackKind)) {
+//			lastAcceptedProposal = aProposal;
+//			lastAcceptedProposalNumber = Math.max(aProposalNumber, lastAcceptedProposalNumber);
+			maxProposalNumberReceivedInSuccessfulAcceptedNotification = 
+					Math.max(maxProposalNumberReceivedInAcceptedNotification, 
+							aProposalNumber);
 			incrementCount(aProposalNumber, ACCEPT_SUCCESS, 1);			
 		}
 	}
 	
-	protected float maxAcceptProposalNumber() {
-		return maxSentAcceptRequestProposalNumber;
-	}
-	protected float maxNonRejectionedProposalNumber() {
-		return maxReceivedAcceptRequestNumber;
-	}
-	protected StateType lastAcceptedProposal() {
-		return lastAcceptedProposal;
-	}
-	@Override
-	public void accept(float aProposalNumber, StateType aProposal) {
-		ProposalAcceptRequestReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
-		recordReceivedAcceptRequest(aProposalNumber, aProposal);
-		if (!isPending(aProposalNumber) && !isSendAcceptReplyForResolvedProposal()) {			
-				return;			
-		}
-		ProposalRejectionKind aRejectionKind = checkProposal(aProposalNumber, aProposal);
-		recordSentAcceptedNotification(aProposalNumber, aProposal, aRejectionKind);
-		sendAcceptedNotification(aProposalNumber, aProposal, aRejectionKind);		
-	}
+//	protected float maxAcceptProposalNumber() {
+//		return maxProposalNumberSentInAcceptRequest;
+//	}
+//	protected float maxNonRejectionedProposalNumber() {
+//		return maxReceivedAcceptRequestNumber;
+//	}
+//	protected StateType lastAcceptedProposal() {
+//		return lastAcceptedProposal;
+//	}
+//	@Override
+//	public void accept(float aProposalNumber, StateType aProposal) {
+//		ProposalAcceptRequestReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
+//		recordReceivedAcceptRequest(aProposalNumber, aProposal);
+//		if (!isPending(aProposalNumber) && !isSendAcceptReplyForResolvedProposal()) {			
+//				return;			
+//		}
+//		recordAndSendAcceptResponse(aProposalNumber, aProposal, checkProposal(aProposalNumber, aProposal));
+////		ProposalFeedbackKind aFeedbackKind = checkProposal(aProposalNumber, aProposal);
+////		recordSentAcceptedNotification(aProposalNumber, aProposal, aFeedbackKind);
+////		sendAcceptedNotification(aProposalNumber, aProposal, aFeedbackKind);		
+//	}
+	
 	protected void localPropose(float aProposalNumber, StateType aProposal) {	
-			if (isAsynchronousConsistency()) {
-				sendLearnNotification(aProposalNumber, aProposal, ProposalRejectionKind.ACCEPTED);
+			if (isAsynchronousReplication()) {
+				recordAndSendLearnNotification(aProposalNumber, aProposal, ProposalFeedbackKind.SUCCESS);
 			} else {
-				sendAcceptRequest(aProposalNumber, aProposal);
+				recordAndSendAcceptRequest(aProposalNumber, aProposal);
 			}
+	}
+	
+    protected void recordAndSendAcceptRequest (float aProposalNumber, StateType aProposal){
+		recordAcceptRequest(aProposalNumber, aProposal);
+		sendAcceptRequest(aProposalNumber, aProposal);
+	}
+	protected void recordAcceptRequest (float aProposalNumber, StateType aProposal){
+		maxProposalNumberSentInAcceptRequest = Math.max(maxProposalNumberSentInAcceptRequest, aProposalNumber);
+		
 	}
 	protected void sendAcceptRequest(float aProposalNumber, StateType aProposal) {
 		ProposalAcceptRequestSent.newCase(this, getObjectName(),
@@ -175,54 +199,92 @@ public class ASynchronousConsensusMechanism<StateType>
 		
 		return 0;
 	}
+//	protected void recordAcceptedNotification(float aProposalNumber, 
+//			StateType aProposal, 
+//			ProposalFeedbackKind aFeedbackKind) {
+//		recordNotificationCount(aProposalNumber, aProposal, aFeedbackKind, ACCEPT_SUCCESS);
+////		if (isAgreement(aFeedbackKind)) {
+////			incrementCount(aProposalNumber, ACCEPT_SUCCESS, 1);
+////		};
+//	}
 	
-	protected void recordAcceptedNotification(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
-		if (isAgreement(aRejectionKind)) {
-			incrementCount(aProposalNumber, ACCEPT_SUCCESS, 1);
+	protected void recordNotificationCount(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind, String aNotificationKind) {
+		if (isSuccess(aFeedbackKind)) {
+			incrementCount(aProposalNumber, aNotificationKind, 1);
 		};
 	}
-	protected void processRejectionedProposal(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
-	      sendLearnNotification(aProposalNumber, aProposal, aRejectionKind);
-	}
+//	protected void processRejectionedProposal(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
+//	      recordAndSendLearnNotification(aProposalNumber, aProposal, aFeedbackKind);
+//	}
 	protected boolean heardFromAll() {
 		return false;
 	}
-	protected void processProposalRejection(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
+	protected void processAcceptRejection(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
 		
 			if (isSendRejectionNotification()) {
-				 recordSentLearnNotification(aProposalNumber, aProposal, aRejectionKind);
-				 sendLearnNotification(aProposalNumber, aProposal, aRejectionKind);
+				 recordAndSendLearnNotification(aProposalNumber, aProposal, aFeedbackKind);
 			} else {
-				learn(aProposalNumber, aProposal, aRejectionKind);
+				learn(aProposalNumber, aProposal, aFeedbackKind);
 			}
 		
 	}
-	@Override
-	public void accepted(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
-		ProposalAcceptedNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, aRejectionKind);
-		recordReceivedAcceptedNotification(aProposalNumber, aProposal, aRejectionKind);
-		if (!isPending(aProposalNumber)) {
-			return;
-		}
-		if (isSynchronous() && !isAgreement(aRejectionKind)) {
-			processProposalRejection(aProposalNumber, aProposal, aRejectionKind);
-			return;
-		}		
+//	protected boolean maybeProcessRejection(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
+//		if (!isSuccess(aFeedbackKind)) {
+//
+////		if (isSynchronous() && !isSuccess(aFeedbackKind)) {
+//			processAcceptRejection(aProposalNumber, aProposal, aFeedbackKind);
+//			return true;
+//		}
+//		return false;
+//	}
+	
+	protected void aggregateAcceptedNotification (float aProposalNumber, StateType aProposal,  ProposalFeedbackKind aFeedbackKind) {
 		Boolean isSufficientAcceptors = sufficientAcceptors(aProposalNumber, aProposal);
 		if (isSufficientAcceptors == null)
 			return;
 		if (isSufficientAcceptors) {
-		  aRejectionKind = ProposalRejectionKind.ACCEPTED;
-		  recordSentLearnNotification(aProposalNumber, aProposal, aRejectionKind);
-	      sendLearnNotification(aProposalNumber, aProposal, aRejectionKind);
+			recordAndSendLearnNotification(aProposalNumber, proposal(aProposalNumber), ProposalFeedbackKind.SUCCESS);
+//		  aFeedbackKind = ProposalFeedbackKind.SUCCESS;
+//		  recordSentLearnNotification(aProposalNumber, aProposal, aFeedbackKind);
+//	      sendLearnNotification(aProposalNumber, aProposal, aFeedbackKind);
 		} else {
-			processProposalRejection(aProposalNumber, aProposal, ProposalRejectionKind.NOT_ENOUGH_ACCEPTS);
+			processAcceptRejection(aProposalNumber, aProposal, ProposalFeedbackKind.NOT_ENOUGH_SUCCESSES);
 			
 		}		
 	}
-	protected float lastAcceptedProposalNumber() {
-		return lastAcceptedProposalNumber;
+	@Override
+	public void accepted(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
+		ProposalAcceptResponseReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, aFeedbackKind);
+		recordReceivedAcceptedNotification(aProposalNumber, aProposal, aFeedbackKind);
+		if (!isPending(aProposalNumber)) {
+			return;
+		}
+		if (!isSuccess(aFeedbackKind)) {
+
+				processAcceptRejection(aProposalNumber, aProposal, aFeedbackKind);
+				return ;
+		}
+//		if (maybeProcessRejection(aProposalNumber, aProposal, aFeedbackKind)) {
+//			return;
+//		}
+//		if (isSynchronous() && !isAgreement(aFeedbackKind)) {
+//			processProposalRejection(aProposalNumber, aProposal, aFeedbackKind);
+//			return;
+//		}		
+//		Boolean isSufficientAcceptors = sufficientAcceptors(aProposalNumber, aProposal);
+//		if (isSufficientAcceptors == null)
+//			return;
+//		if (isSufficientAcceptors) {
+//		  aFeedbackKind = ProposalFeedbackKind.SUCCESS;
+//		  recordSentLearnNotification(aProposalNumber, aProposal, aFeedbackKind);
+//	      sendLearnNotification(aProposalNumber, aProposal, aFeedbackKind);
+//		} else {
+//			processProposalRejection(aProposalNumber, aProposal, ProposalFeedbackKind.NOT_ENOUGH_SUCCESSES);
+//			
+//		}	
+		aggregateAcceptedNotification(aProposalNumber,aProposal, aFeedbackKind);
 	}
+	
 }
 
 	

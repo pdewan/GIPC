@@ -1,10 +1,10 @@
 package consensus;
 
 public interface ConsensusCustomization {
-	public ConsistencyStrength getConsistencyStrength();
-	public void setConsistencyStrength(ConsistencyStrength consistencyStrength) ;
-	public ProposalRejectionKind getProposalVetoKind();
-	public void setProposalVetoKind(ProposalRejectionKind proposalRejectionKind);
+	public ConcurrencyKind getConcurrencyKind();
+	public void setConcurrencyKind(ConcurrencyKind consistencyStrength) ;
+	public ProposalFeedbackKind getProposalVetoKind();
+	public void setProposalVetoKind(ProposalFeedbackKind proposalRejectionKind);
 	public ReplicationSynchrony getReplicationSynchrony();
 	public void setReplicationSynchrony(ReplicationSynchrony consensusSynchrony);
 	public void setSendRejectionInformation(boolean newVal);
@@ -21,7 +21,7 @@ public interface ConsensusCustomization {
 			boolean newVal) ;
 	public boolean isClient() ;
 	public boolean isServer();
-	public boolean isCentralized() ;
+	public boolean isCentralized2PC() ;
 	public String getServerName() ;
 //	public void setIsClient(boolean isClient) ;
 
@@ -29,6 +29,6 @@ public interface ConsensusCustomization {
 
 	public void setServerName(String serverName) ;
 
-	public void setCentralized(boolean isCentralized);
+	public void setCentralized2PC(boolean isCentralized);
 	
 }

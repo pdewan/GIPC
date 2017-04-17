@@ -14,9 +14,9 @@ ASynchronousMemberLauncher
 		super(aLocalName, aPortNumber);
 	}
 	@Override
-	protected void addListenersAndRejectionersToLocalGreetingMechanism() {
-		super.addListenersAndRejectionersToLocalGreetingMechanism();
-		greetingMechanism.addConsensusRejectioner(new AGreetingVetoer());
+	protected void addListenersAndVetoersToLocalGreetingMechanism() {
+		super.addListenersAndVetoersToLocalGreetingMechanism();
+//		greetingMechanism.addConsensusVetoers(new AGreetingVetoer());
 		
 	}
 

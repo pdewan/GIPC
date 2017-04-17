@@ -6,10 +6,12 @@ import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.ProposalState;
-import consensus.ProposalRejectionKind;
+import consensus.ProposalFeedbackKind;
 
 public class ALearnerConsensusMechanism<StateType> extends
 		AnAbstractConsensusMechanism<StateType> implements Learner<StateType> {
+	protected float maxProposalNumberReceivedInLearnNotification = -1;
+
 	public ALearnerConsensusMechanism(GIPCSessionRegistry aRegistry, 
 			String aName, short aMyId
 			) {
@@ -18,17 +20,18 @@ public class ALearnerConsensusMechanism<StateType> extends
 //	protected Learned<StateType> proposer() {
 //		return proposer;
 //	}
-	protected void recordReceivedLearnNotification(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
-		recordProposal(aProposalNumber, aProposal);
+	protected void recordReceivedLearnNotification(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aRejectionKind) {
+		recordProposalState(aProposalNumber, aProposal);
 		if (!isPending(aProposalNumber))
 			return;
-		if (isAgreement(aRejectionKind))
+		maxProposalNumberReceivedInLearnNotification = Math.max(maxProposalNumberReceivedInLearnNotification, aProposalNumber);
+		if (isSuccess(aRejectionKind))
 			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
 		else
 			newProposalState(aProposalNumber, aProposal,toProposalState(aRejectionKind));
 	}
 	@Override
-	public synchronized void learn(float aProposalNumber, StateType aProposal, ProposalRejectionKind aRejectionKind) {
+	public synchronized void learn(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aRejectionKind) {
 		ProposalLearnNotificationReceived.newCase(this, getObjectName(), aProposalNumber, aProposal, aRejectionKind);
 		if (isValueSynchrony()) {
 			waitForReceipt(aProposalNumber, aProposal);

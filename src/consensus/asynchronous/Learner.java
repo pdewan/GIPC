@@ -1,9 +1,9 @@
 package consensus.asynchronous;
 
-import consensus.ProposalRejectionKind;
+import consensus.ProposalFeedbackKind;
 
 public interface Learner<StateType> {
-	void learn(float aProposalNumber, StateType aProposal, ProposalRejectionKind anAgreement);
+	void learn(float aProposalNumber, StateType aProposal, ProposalFeedbackKind anAgreement);
 
 
 }
