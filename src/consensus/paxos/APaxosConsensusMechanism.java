@@ -140,6 +140,14 @@ public class APaxosConsensusMechanism<StateType>
 //		}
 //	}
 	
+	protected ProposalState toProposalState(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
+		ProposalState result = toProposalState(aFeedbackKind);	
+		if (result == ProposalState.PROPOSAL_CONSENSUS && aProposal != proposal(aProposalNumber)) { // we were overridden
+			return ProposalState.PROPOSAL_CONCURRENT_OPERATION;
+		}
+		return result;
+	}
+	
 	protected Preparer<StateType> all() {
 		return (Preparer<StateType>) super.all();
 	}
@@ -186,7 +194,7 @@ public class APaxosConsensusMechanism<StateType>
 			return;
 		}
 		if (!isSuccess(aFeedbackKind)) {
-			newProposalState(aPreparedProposalNumber, proposal(aPreparedProposalNumber), toProposalState(aFeedbackKind));
+			newProposalState(aPreparedProposalNumber, proposal(aPreparedProposalNumber), toProposalState(aPreparedProposalNumber, anAcceptedProposal, aFeedbackKind));
 			return;
 		} 
 		aggregatePreparedNotification(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);

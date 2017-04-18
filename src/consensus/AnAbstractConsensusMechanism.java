@@ -244,8 +244,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	@Override
 	public float propose(StateType aProposal) {
-		if (lastProposalisPending() && !getAllowConcurrentProposals())
-			return -1;
+//		if (lastProposalisPending() && !getAllowConcurrentProposals())
+//			return -1;
 		float aProposalNumber = getAndSetNextProposalNumber(aProposal);
 		ProposalMade.newCase(this, getObjectName(), aProposalNumber, aProposal);
 		recordProposalState(aProposalNumber, aProposal);
@@ -579,12 +579,17 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			return ProposalState.PROPOSAL_SERVICE_FAULT;
 		case AGGREGATE_DENIAL:
 			return ProposalState.PROPOSAL_AGGREGATE_DENIAL;
+		case SUCCESS:
+			return ProposalState.PROPOSAL_CONSENSUS;
 		default:
 			return null;
 				
 
 		}
 	}
+//	protected ProposalState toProposalState(float aProposalNumber, ProposalFeedbackKind aFeedbackKind) {
+//		return toProposalState(aFeedbackKind);		
+//	}
 //	protected void setLearnedState(float aProposalNumber, StateType aProposal, ProposalVetoKind aRejectionKind) {
 //		if (isAgreement(aRejectionKind))
 //			newProposalState(aProposalNumber, aProposal, ProposalState.PROPOSAL_CONSENSUS);
