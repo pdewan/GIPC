@@ -17,12 +17,11 @@ public abstract class AnExampleConsensusProposerLauncher extends
 
 	public void proposeMeaning(Integer aValue) {
 		while (true) {
-			float aMeaningOfLifeProposal = meaningOfLifeMechanism
-					.propose(aValue);
-			if (aMeaningOfLifeProposal == -1) {
+			if (meaningOfLifeMechanism.someProposalIsPending()) {
 				meaningOfLifeMechanism.waitForConsensus(meaningOfLifeMechanism.lastProposalNumber());
-				continue;
 			}
+			float aMeaningOfLifeProposal = meaningOfLifeMechanism
+					.propose(aValue);			
 			meaningOfLifeMechanism.waitForConsensus(aMeaningOfLifeProposal);
 			ProposalState aState = meaningOfLifeMechanism
 					.getProposalState(aMeaningOfLifeProposal);

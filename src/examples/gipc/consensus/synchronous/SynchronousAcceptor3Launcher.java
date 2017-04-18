@@ -1,5 +1,6 @@
 package examples.gipc.consensus.synchronous;
 
+import port.trace.buffer.BufferTraceUtility;
 import port.trace.consensus.ConsensusTraceUtility;
 import examples.gipc.consensus.AGreetingVetoer;
 import examples.gipc.consensus.Member3;
@@ -21,6 +22,8 @@ ASynchronousMemberLauncher
 	}
 
 	public static void main(String[] args) {
+//		BufferTraceUtility.setTracing();
+
 		ConsensusTraceUtility.setTracing();
 		new SynchronousAcceptor3Launcher(MY_NAME, MY_PORT_NUMBER);
 	}

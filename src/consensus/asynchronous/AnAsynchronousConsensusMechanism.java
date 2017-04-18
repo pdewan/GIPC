@@ -5,6 +5,7 @@ import inputport.InputPort;
 import port.trace.consensus.ProposalAcceptResponseReceived;
 import port.trace.consensus.ProposalLearnNotificationSent;
 import port.trace.consensus.ProposalLearnedNotificationReceived;
+import port.trace.consensus.ProposalMade;
 import port.trace.consensus.ProposalQuorumAchieved;
 import port.trace.consensus.ProposalQuorumNotAchieved;
 import sessionport.rpc.group.GIPCSessionRegistry;
@@ -54,31 +55,37 @@ public class AnAsynchronousConsensusMechanism<StateType> extends
 		learners().learn(aProposalNumber, aProposal, anAgreement);
 
 	}
-//	protected void sendLearnNotificationToOthers(float aProposalNumber,
-//			StateType aProposal, ProposalVetoKind anAgreement) {
-//		sendLearnNotification(aProposalNumber, aProposal, anAgreement);
+	
+	@Override
+	public float propose(StateType aProposal) {
+//		if (lastProposalisPending() && !getAllowConcurrentProposals())
+//			return -1;
+		float aProposalNumber = getAndSetNextProposalNumber(aProposal);
+		ProposalMade.newCase(this, getObjectName(), aProposalNumber, aProposal);
+		recordProposalState(aProposalNumber, aProposal);
+		dispatchPropose(aProposalNumber, aProposal);	
+		return aProposalNumber;
+	}
+	protected void dispatchPropose(float aProposalNumber, StateType aProposal) {
+		localPropose(aProposalNumber, aProposal);
+	}
+	
+
+//	protected boolean sufficientLearners(short aMaxLearners, short aCurrentLearners) {
+//		return aMaxLearners == aCurrentLearners;
+//	}
 //
-//	}
-	protected boolean sufficientLearners(short aMaxLearners, short aCurrentLearners) {
-		return aMaxLearners == aCurrentLearners;
-	}
-//	protected void recordReceivedLearnNotification(float aProposalNumber, StateType aProposal, ProposalVetoKind anAgreement) {
-//		if (!isEventualConsistency() && learnedByTimeout()) {
-//			waitForReceipt(aProposalNumber, aProposal);			
+//	protected Boolean sufficientLearners(short aMaxLearners, short aCurrentLearners, short aLearnedNotifications) {
+//		if (aLearnedNotifications != aCurrentLearners)
+//			return null;
+//		if (aCurrentLearners >= aMaxLearners/2) {
+//			return true;	
 //		}
-//		super.recordReceivedLearnNotification(aProposalNumber, aProposal, anAgreement);
+//		return false;
 //	}
-	protected Boolean sufficientLearners(short aMaxLearners, short aCurrentLearners, short aLearnedNotifications) {
-		if (aLearnedNotifications != aCurrentLearners)
-			return null;
-		if (aCurrentLearners >= aMaxLearners/2) {
-			return true;	
-		}
-		return false;
-	}
 	@Override
 	protected void localPropose(float aProposalNumber, StateType aProposal) {
-//		recordAndSendLearnNotification(aProposalNumber, aProposal, ProposalFeedbackKind.SUCCESS);
+		recordAndSendLearnNotification(aProposalNumber, aProposal, ProposalFeedbackKind.SUCCESS);
 //		ProposalFeedbackKind aFeedbackKind = ProposalFeedbackKind.SUCCESS;
 //		recordSentLearnNotification(aProposalNumber, aProposal, aFeedbackKind);
 //		sendLearnNotification(aProposalNumber, aProposal, aFeedbackKind);

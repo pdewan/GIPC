@@ -2,6 +2,7 @@ package examples.gipc.consensus.synchronous;
 
 import examples.gipc.consensus.ExampleMemberLauncher;
 import examples.gipc.consensus.Member1;
+import port.trace.buffer.BufferTraceUtility;
 import port.trace.consensus.ConsensusTraceUtility;
 
 public class SynchronousProposer1Launcher extends
@@ -19,6 +20,7 @@ public class SynchronousProposer1Launcher extends
 
 	public static void main(String[] args) {
 		ConsensusTraceUtility.setTracing();
+//		BufferTraceUtility.setTracing();
 		new SynchronousProposer1Launcher(MY_NAME, MY_PORT_NUMBER)
 				.proposeValues();
 	}

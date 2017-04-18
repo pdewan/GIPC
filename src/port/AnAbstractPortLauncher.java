@@ -1088,6 +1088,7 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 
 	
 	public void connected(String aRemoteEndName, ConnectionType aConnectionType) {
+//		System.out.println ("connect notification:" + aRemoteEndName + " " + aConnectionType);
 		if (connectedToAllPorts) {
 //			if (numPendingMemberConnects != 0) {
 //				// why do we need this
