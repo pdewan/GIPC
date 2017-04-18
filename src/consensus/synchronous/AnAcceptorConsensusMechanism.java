@@ -73,6 +73,7 @@ public class AnAcceptorConsensusMechanism<StateType> extends
 				aFeedbackKind);
 		ProposalAcceptedNotificationSent.newCase(this, getObjectName(),
 				aProposalNumber, aProposal, aFeedbackKind);
+		
 
 		sendAcceptedNotification(aProposalNumber, aProposal, aFeedbackKind);
 	}
@@ -103,8 +104,13 @@ public class AnAcceptorConsensusMechanism<StateType> extends
 				&& !isSendAcceptReplyForResolvedProposal()) {
 			return;
 		}
+		ProposalFeedbackKind aFeedbackKind = checkAcceptRequest(aProposalNumber, aProposal);
+		
+		if (!isSuccess(aFeedbackKind) && !isSendRejectionNotification()) {
+			return;
+		}
 		recordAndSendAcceptedNotification(aProposalNumber, aProposal,
-				checkAcceptRequest(aProposalNumber, aProposal));
+				aFeedbackKind);
 	}
 
 }
