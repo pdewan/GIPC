@@ -29,6 +29,8 @@ public class ASynchronousMemberLauncher extends AnExampleConsensusProposerLaunch
 	}
 	protected  void initMeaningOfLifeConsensusMechanism(short anId) {
 		super.initMeaningOfLifeConsensusMechanism(anId);
+		meaningOfLifeMechanism.setAcceptSynchrony(ReplicationSynchrony.TWO_SYNCHRONOUS);
+
 //		meaningOfLifeMechanism.setReplicationSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
 
 	}

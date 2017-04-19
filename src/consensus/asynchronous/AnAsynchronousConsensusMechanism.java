@@ -30,8 +30,8 @@ public class AnAsynchronousConsensusMechanism<StateType> extends
 		// eventualConsistency = anEventualConsistency;
 	}
 
-	protected Learner<StateType> learners() {
-		return (Learner<StateType>) all();
+	protected Learner<StateType> otherLearners() {
+		return (Learner<StateType>) allRemote();
 	}
 	
 	protected short maxLearners() {
@@ -52,7 +52,8 @@ public class AnAsynchronousConsensusMechanism<StateType> extends
 			StateType aProposal, ProposalFeedbackKind anAgreement) {
 		ProposalLearnNotificationSent.newCase(this, getObjectName(),
 				aProposalNumber, aProposal, anAgreement);
-		learners().learn(aProposalNumber, aProposal, anAgreement);
+		learn(aProposalNumber, aProposal, anAgreement);
+		otherLearners().learn(aProposalNumber, aProposal, anAgreement);
 
 	}
 	

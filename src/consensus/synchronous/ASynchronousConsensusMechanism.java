@@ -34,7 +34,7 @@ public class ASynchronousConsensusMechanism<StateType> extends
 	}
 
 	protected Acceptor<StateType> acceptors() {
-		return (Acceptor<StateType>) learners();
+		return (Acceptor<StateType>) all();
 	}
 
 	protected void recordSentAcceptRequest(float aProposalNumber,
@@ -135,11 +135,11 @@ public class ASynchronousConsensusMechanism<StateType> extends
 				anAcceptNotifications, anAgreements);
 	}
 
-	protected Boolean oneAgreement(float aProposalNumber, StateType aProposal,
+	protected Boolean twoAgreement(float aProposalNumber, StateType aProposal,
 			short aMaxAcceptors, short aCurrentAcceptors,
 			int anAcceptNotifications, int anAgreements) {
 		return sufficientAgreements(aProposalNumber, aProposal, aMaxAcceptors,
-				aCurrentAcceptors, 1, anAcceptNotifications, anAgreements);
+				aCurrentAcceptors, 2, anAcceptNotifications, anAgreements);
 	}
 
 	protected Boolean asynchronousAgreements(float aProposalNumber,
@@ -162,8 +162,8 @@ public class ASynchronousConsensusMechanism<StateType> extends
 			return majorityAgreements(aProposalNumber, aProposal,
 					aMaxAcceptors, aCurrentAcceptors, anAcceptNotifications,
 					anAgreements);
-		case ONE_SYNCHRONOUS:
-			return oneAgreement(aProposalNumber, aProposal, aMaxAcceptors,
+		case TWO_SYNCHRONOUS:
+			return twoAgreement(aProposalNumber, aProposal, aMaxAcceptors,
 					aCurrentAcceptors, anAcceptNotifications, anAgreements);
 		case ASYNCHRONOUS:
 			return asynchronousAgreements(aProposalNumber, aProposal,
