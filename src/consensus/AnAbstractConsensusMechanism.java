@@ -186,7 +186,18 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		return aLastProposalState == ProposalState.PROPOSAL_PENDING;
 	}
 	public boolean someProposalIsPending() {
-		return getPendingProposals().size() > 0;
+		return pendingProposals().size() > 0;
+	}
+	@Override
+	public Set otherPendingProposals(float aProposalNumber) {
+		Set result = pendingProposals();
+		result.remove(aProposalNumber);
+		return result;		
+	}
+	public boolean someOtherProposalIsPending(float aProposalNumber) {
+		Set aPendingProposals = pendingProposals();
+		return otherPendingProposals(aProposalNumber).size() > 0;
+		
 	}
 //	public boolean sPending(float aProposalNumber) {
 //		return proposalState.get(aProposalNumber) == ProposalState.PROPOSAL_PENDING;
@@ -457,7 +468,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	
 	@Override
-	public Set<Float> getPendingProposals() {
+	public Set<Float> pendingProposals() {
 		Set<Float> retVal = new HashSet();
 		for (Float aProposal:getProposals()) {
 			if (proposalState.get(aProposal) == ProposalState.PROPOSAL_PENDING) {

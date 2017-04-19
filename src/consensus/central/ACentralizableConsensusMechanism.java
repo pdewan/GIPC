@@ -66,11 +66,11 @@ public class ACentralizableConsensusMechanism<StateType>
 	@Override
 	public void remotePropose(float aProposalNumber, StateType aProposal) {
 		RemoteProposeRequestReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
-		if (lastProposalisPending() && isSerializable()) {
+		recordProposalState(aProposalNumber, aProposal);
+		if (someOtherProposalIsPending(aProposalNumber) && isSerializable()) {
 			sendLearnNotification(aProposalNumber, aProposal, ProposalFeedbackKind.CONCURRENCY_CONFLICT);
 			return;
 		} 
-		recordProposalState(aProposalNumber, aProposal);		
 		localPropose(aProposalNumber, aProposal);		
 	}
 	
