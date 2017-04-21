@@ -1,5 +1,8 @@
 package consensus.paxos;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
 
 import port.trace.consensus.ProposalPreparedNotificationReceived;
@@ -20,6 +23,8 @@ public class APaxosConsensusMechanism<StateType>
 	extends APreparerConsensusMechanism<StateType>
 	implements Prepared<StateType>{
 
+	protected Map<Float, Boolean> aggregatePrepared = new HashMap();
+
 
 	protected float maxProposalNumberSentInPrepareRequest = -1;
 
@@ -33,14 +38,26 @@ public class APaxosConsensusMechanism<StateType>
 			String aName, short aMyId) {
 		super(aRegistry, aName, aMyId);
 	}
+	
+	protected void setAggregatePrepared(float aProposalNumber) {
+		aggregatePrepared.put(aProposalNumber, true);
+	}
+	
+	protected boolean isAggregatePrepared(float aProposalNumber) {
+		return (aggregatePrepared.get(aProposalNumber) != null) &&
+				aggregatePrepared.get(aProposalNumber);
+	}
+
 
 	protected void recordReceivedPreparedNotification(
 			float anAcceptedProposalNumber, StateType anAcceptedProposal, 
 			float aPreparedProposalNumber, ProposalFeedbackKind aFeedbackKind) {
 		maxProposalNumberReceivedInPreparedNotification = Math.max(
 				maxProposalNumberReceivedInPreparedNotification, aPreparedProposalNumber);
-		maxAcceptedProposalNumberReceivedInPreparedNotification = Math.max(
-				maxAcceptedProposalNumberReceivedInPreparedNotification,anAcceptedProposalNumber );
+		if (anAcceptedProposal != null) {
+			maxAcceptedProposalNumberReceivedInPreparedNotification = Math.max(
+					maxAcceptedProposalNumberReceivedInPreparedNotification,anAcceptedProposalNumber );
+		}
 		incrementCount(aPreparedProposalNumber, PREPARE_NOTIFICATION, 1);
 	}
 	private Boolean sufficientPeparers(ReplicationSynchrony aReplicationSynchrony, 
@@ -63,6 +80,7 @@ public class APaxosConsensusMechanism<StateType>
 		Boolean isSufficientPreparers = sufficientPeparers(getPrepareSynchrony(), aPreparedProposalNumber);
 		if (isSufficientPreparers == null)
 			return;
+		setAggregatePrepared(aPreparedProposalNumber);
 		recordAndSendAcceptRequest(aPreparedProposalNumber, preparedState(aPreparedProposalNumber));		
 	}
 
@@ -73,9 +91,10 @@ public class APaxosConsensusMechanism<StateType>
 	
 	protected ProposalState toProposalState(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
 		ProposalState result = toProposalState(aFeedbackKind);	
-		if (result == ProposalState.PROPOSAL_CONSENSUS && aProposal != proposal(aProposalNumber)) { // we were overridden
-			return ProposalState.PROPOSAL_CONCURRENT_OPERATION;
-		}
+//		if (result == ProposalState.PROPOSAL_CONSENSUS && 
+//				( !aProposal.equals(proposal(aProposalNumber)))) { // we were overridden
+//			return ProposalState.PROPOSAL_CONCURRENT_OPERATION;
+//		}
 		return result;
 	}
 	
@@ -115,7 +134,7 @@ public class APaxosConsensusMechanism<StateType>
 		ProposalPreparedNotificationReceived.newCase(this, getObjectName(), anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
 
 		recordReceivedPreparedNotification(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
-		if (!isPending(aPreparedProposalNumber)) {
+		if (!isPending(aPreparedProposalNumber) || isAggregatePrepared(aPreparedProposalNumber)) {
 			return;
 		}
 		if (!isSuccess(aFeedbackKind)) {

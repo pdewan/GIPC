@@ -21,5 +21,7 @@ public interface LocalConsensusMechanism<StateType> extends ConsensusState<State
 	Set<Float> pendingProposals();
 	 Float getLastConsensusProposal();
 	Set otherPendingProposals(float aProposalNumber);
+	ProposalState waitForConsensus(float aProposalNumber, Long aWaitTime);
+
 
 }

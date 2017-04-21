@@ -2,7 +2,7 @@ package consensus.asynchronous;
 
 import inputport.ConnectionRegistrar;
 import inputport.InputPort;
-import port.trace.consensus.ProposalAcceptResponseReceived;
+import port.trace.consensus.ProposalAcceptedNotificationReceived;
 import port.trace.consensus.ProposalLearnNotificationSent;
 import port.trace.consensus.ProposalLearnedNotificationReceived;
 import port.trace.consensus.ProposalMade;
@@ -53,8 +53,13 @@ public class AnAsynchronousConsensusMechanism<StateType> extends
 		ProposalLearnNotificationSent.newCase(this, getObjectName(),
 				aProposalNumber, aProposal, anAgreement);
 		learn(aProposalNumber, aProposal, anAgreement);
-		otherLearners().learn(aProposalNumber, aProposal, anAgreement);
+		sendLearnNotificationToOthers(aProposalNumber, aProposal, anAgreement);
+//		otherLearners().learn(aProposalNumber, aProposal, anAgreement);
 
+	}
+	protected void sendLearnNotificationToOthers(float aProposalNumber,
+			StateType aProposal, ProposalFeedbackKind anAgreement) {
+		otherLearners().learn(aProposalNumber, aProposal, anAgreement); 
 	}
 	
 	@Override

@@ -17,6 +17,11 @@ public abstract class AnExampleConsensusProposerLauncher extends
 	public static long INIT_TIME = 6000;
 	public static long RE_PROPOSE_TIME = 10000;
 	
+	protected boolean retry(ProposalState aState) {
+		
+		return aState == ProposalState.PROPOSAL_CONCURRENT_OPERATION ||
+				aState == ProposalState.CENTRAL_SERVER_DIED;
+	}
 	
 	public void proposeMeaning(Integer aValue) {
 		while (true) {
@@ -25,14 +30,20 @@ public abstract class AnExampleConsensusProposerLauncher extends
 			}
 			float aMeaningOfLifeProposal = meaningOfLifeMechanism
 					.propose(aValue);			
-			meaningOfLifeMechanism.waitForConsensus(aMeaningOfLifeProposal);
-			ProposalState aState = meaningOfLifeMechanism
-					.getProposalState(aMeaningOfLifeProposal);
-			if (aState != ProposalState.PROPOSAL_CONCURRENT_OPERATION && aState != 
-					ProposalState.CENTRAL_SERVER_DIED ) {
+			ProposalState aState = meaningOfLifeMechanism.waitForConsensus(aMeaningOfLifeProposal, RE_PROPOSE_TIME);
+			if (aState  == null) {
+				System.out.println ("timed out waiting for proposal:" + aMeaningOfLifeProposal);
+			}
+//			ProposalState aState = meaningOfLifeMechanism
+//					.getProposalState(aMeaningOfLifeProposal);
+			if (!retry(aState)) {
+//			if (aState != ProposalState.PROPOSAL_CONCURRENT_OPERATION && aState != 
+//					ProposalState.CENTRAL_SERVER_DIED ) {
 				break;
 			}
-			ThreadSupport.sleep(RE_PROPOSE_TIME);
+			if (aState != null) { // did not time our
+				ThreadSupport.sleep(RE_PROPOSE_TIME);
+			}
 		}
 	}
 

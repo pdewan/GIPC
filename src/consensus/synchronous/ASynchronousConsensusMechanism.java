@@ -7,7 +7,7 @@ import inputport.rpc.duplex.MaybeProcessReturnValue;
 import port.trace.consensus.SufficientAgreementsChecked;
 import port.trace.consensus.ProposalAcceptRequestReceived;
 import port.trace.consensus.ProposalAcceptRequestSent;
-import port.trace.consensus.ProposalAcceptResponseReceived;
+import port.trace.consensus.ProposalAcceptedNotificationReceived;
 import port.trace.consensus.ProposalAcceptedNotificationSent;
 import port.trace.consensus.ProposalLearnNotificationSent;
 import port.trace.consensus.ProposalPrepareRequestSent;
@@ -246,7 +246,7 @@ public class ASynchronousConsensusMechanism<StateType> extends
 	@Override
 	public void accepted(float aProposalNumber, StateType aProposal,
 			ProposalFeedbackKind aFeedbackKind) {
-		ProposalAcceptResponseReceived.newCase(this, getObjectName(),
+		ProposalAcceptedNotificationReceived.newCase(this, getObjectName(),
 				aProposalNumber, aProposal, aFeedbackKind);
 		recordReceivedAcceptedNotification(aProposalNumber, aProposal,
 				aFeedbackKind);

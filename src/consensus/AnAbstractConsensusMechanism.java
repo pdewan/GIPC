@@ -82,6 +82,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected boolean isServer;
 	protected String serverName;
 	protected boolean isCentralized;
+	private boolean didNotify;
 
 	
 	
@@ -377,6 +378,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 //		}
 		notifyListeners(aProposalNumber, aProposal, aProposalState);
 		notifyAll();
+		didNotify = true;
 //		System.out.println("notify all");
 	}
 //	protected boolean resolvedProposal(float aProposalNumber) {
@@ -423,6 +425,29 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 //		}
 //		notifyAll();
 //	}
+	@Override
+	public synchronized ProposalState waitForConsensus(float aProposalNumber, Long aWaitTime) {		
+		ProposalWaitStarted.newCase(this, getObjectName(), aProposalNumber, proposalValue.get(aProposalNumber));
+		while (isPending(aProposalNumber)) {
+			try {
+				if (aWaitTime != null)
+					wait(aWaitTime);
+				else
+					wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if (didNotify) {
+				didNotify = false;
+			} else {
+				return null; // time out
+			}
+		}
+		
+		ProposalState returnValue = proposalState.get(aProposalNumber);
+		ProposalWaitEnded.newCase(this, getObjectName(), aProposalNumber, proposalValue.get(aProposalNumber), returnValue);
+		return returnValue;
+	}
 	@Override
 	public synchronized ProposalState waitForConsensus(float aProposalNumber) {		
 		ProposalWaitStarted.newCase(this, getObjectName(), aProposalNumber, proposalValue.get(aProposalNumber));
@@ -719,7 +744,9 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	
 	protected StateType proposal(float aProposalNumber) {
-		return proposalValue.get(aProposalNumber);
+		StateType aProposal =  proposalValue.get(aProposalNumber);
+		return aProposal;
+//		return proposalValue.get(aProposalNumber);
 	}
 	public ReplicationSynchrony getPrepareSynchrony() {
 		return prepareSynchrony;

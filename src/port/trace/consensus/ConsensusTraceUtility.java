@@ -22,7 +22,7 @@ public class ConsensusTraceUtility {
 //		TraceableInfo.setPrintSource(true);
 		Tracer.setImplicitPrintKeywordKind(ImplicitKeywordKind.OBJECT_CLASS_NAME);
 
-		Tracer.setKeywordPrintStatus(ProposalAcceptResponseReceived.class, true);
+		Tracer.setKeywordPrintStatus(ProposalAcceptedNotificationReceived.class, true);
 		Tracer.setKeywordPrintStatus(ProposalAcceptedNotificationSent.class, true);
 		
 		Tracer.setKeywordPrintStatus(ProposalAcceptRequestReceived.class, true);

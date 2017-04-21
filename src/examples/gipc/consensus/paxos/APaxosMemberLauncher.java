@@ -3,6 +3,7 @@ package examples.gipc.consensus.paxos;
 import consensus.ConcurrencyKind;
 import consensus.ConsensusMechanism;
 import consensus.ConsensusMechanismFactory;
+import consensus.ProposalState;
 import consensus.ReplicationSynchrony;
 import consensus.central.ACentralizableConsensusMechanismFactory;
 import consensus.paxos.APaxosConsensusMechanismFactory;
@@ -19,6 +20,10 @@ public class APaxosMemberLauncher extends AnExampleConsensusProposerLauncher  {
 		super(aLocalName, aPortNumber);
 		// TODO Auto-generated constructor stub
 	}
+	protected boolean retry(ProposalState aState) {
+		
+		return aState == null |  super.retry(aState) || aState == ProposalState.PROPOSAL_AGGREGATE_DENIAL;
+	}
 
 	@Override
 	protected ConsensusMechanismFactory<Integer> meaningConsensusMechanismFactory() {
@@ -33,7 +38,8 @@ public class APaxosMemberLauncher extends AnExampleConsensusProposerLauncher  {
 	protected void customizeMeaningOfLifeConsensusMechanism(){
 		meaningOfLifeMechanism.setCentralized(false);
 		meaningOfLifeMechanism.setConcurrencyKind(ConcurrencyKind.SERIALIZABLE);
-
+		meaningOfLifeMechanism.setPrepareSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
+		meaningOfLifeMechanism.setAcceptSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
 	}	
 	@Override
 	protected short numMembersToWaitFor() {
