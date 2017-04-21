@@ -672,14 +672,21 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public boolean isCentralized2PC() {
 		return isCentralized;
 	}
+	protected List<String> getMembers() {
+		List<String> aMembers = 
+				new ArrayList(rpcSessionPort.getMemberConnections());
+		aMembers.add(rpcSessionPort.getLocalName());
+		return aMembers;
+	}
+	protected List<String> getSortedMembers() {
+		List<String> aMembers = getMembers();
+		Collections.sort(aMembers);
+		return aMembers;
+	}
 	public String getServerName() {
-		if (serverName == null) {
-			List<String> aMembers = 
-					new ArrayList(rpcSessionPort.getMemberConnections());
-			aMembers.add(rpcSessionPort.getLocalName());
-			Collections.sort(aMembers);
-			return aMembers.get(0); // at least this one is alive
-		}
+//		if (serverName == null) {
+//			return getSortedMembers().get(0); // at least this one is alive
+//		}
 		return serverName;
 	}
 //	public void setIsClient(boolean isClient) {

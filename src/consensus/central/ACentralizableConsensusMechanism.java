@@ -1,5 +1,7 @@
 package consensus.central;
 
+import inputport.ConnectionType;
+import port.trace.RemoteEndDisconnected;
 import port.trace.consensus.RemoteProposeRequestReceived;
 import port.trace.consensus.RemoteProposeRequestSent;
 import bus.uigen.widgets.universal.CentralUniversalWidget;
@@ -73,6 +75,7 @@ public class ACentralizableConsensusMechanism<StateType>
 		} 
 		localPropose(aProposalNumber, aProposal);		
 	}
+
 	
 
 }

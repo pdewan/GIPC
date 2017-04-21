@@ -260,12 +260,21 @@ public class ASessionBasedFP2PBufferConnectionsManager extends ABufferStaticSess
 	@Override
 	public void left(SessionParticipantDescription sessionClientDescription) {
 		Tracer.info("Received left message : " + sessionClientDescription );
+		String aLeaver = sessionClientDescription.getName();
+		sessionMemberNames.remove(sessionClientDescription.getName());
+
+
 		SimplexClientInputPort clientInputPort =
-		nameToClientInputPort.remove(sessionClientDescription.getName());
+		nameToClientInputPort.remove(aLeaver);
+//		nameToClientInputPort.remove(sessionClientDescription.getName());
+
 		if (clientInputPort != null) {			
 			clientInputPort.disconnect();
 			Tracer.info("Sending notification message to listeners");
-			variableServerClientPort.notifyDisconnect(sessionClientDescription.getName(), true, "Received Left Message from Session Server", null);
+			variableServerClientPort.notifyDisconnect(
+//					sessionClientDescription.getName(), 
+					aLeaver,
+					true, "Received Left Message from Session Server", null);
 		}		
 	}
 

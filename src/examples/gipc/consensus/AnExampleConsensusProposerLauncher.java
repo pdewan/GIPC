@@ -16,7 +16,8 @@ public abstract class AnExampleConsensusProposerLauncher extends
 	public static int MEANING_2 = 29;
 	public static long INIT_TIME = 6000;
 	public static long RE_PROPOSE_TIME = 10000;
-
+	
+	
 	public void proposeMeaning(Integer aValue) {
 		while (true) {
 			if (meaningOfLifeMechanism.someProposalIsPending()) {
@@ -27,7 +28,8 @@ public abstract class AnExampleConsensusProposerLauncher extends
 			meaningOfLifeMechanism.waitForConsensus(aMeaningOfLifeProposal);
 			ProposalState aState = meaningOfLifeMechanism
 					.getProposalState(aMeaningOfLifeProposal);
-			if (aState != ProposalState.PROPOSAL_CONCURRENT_OPERATION) {
+			if (aState != ProposalState.PROPOSAL_CONCURRENT_OPERATION && aState != 
+					ProposalState.CENTRAL_SERVER_DIED ) {
 				break;
 			}
 			ThreadSupport.sleep(RE_PROPOSE_TIME);
