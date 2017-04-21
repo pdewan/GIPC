@@ -33,7 +33,7 @@ public class ACentralizableMemberLauncher extends AnExampleConsensusProposerLaun
 //
 //	}
 	protected void customizeMeaningOfLifeConsensusMechanism(){
-		meaningOfLifeMechanism.setCentralized2PC(true);
+		meaningOfLifeMechanism.setCentralized(true);
 //		meaningOfLifeMechanism.setServerName("1");
 //		meaningOfLifeMechanism.setIsServer(false);
 	}

@@ -20,47 +20,20 @@ public class APaxosConsensusMechanism<StateType>
 	extends APreparerConsensusMechanism<StateType>
 	implements Prepared<StateType>{
 
-//	protected float maxPreparedProposalNumber;
-//	protected StateType maxPreparedProposal;
+
 	protected float maxProposalNumberSentInPrepareRequest = -1;
 
 	protected float maxProposalNumberReceivedInPreparedNotification;
 	protected float maxProposalNumberReceivedInSuccessfulPreparedNotification = -1;
 	
 	protected float maxAcceptedProposalNumberReceivedInPreparedNotification;
-//
-//	protected StateType  lastAcceptedProposal = null;
-//	protected float lastAcceptedProposalNumber = -1;
-//	protected float lastPreparedProposalNumber = -1;
+
 
 	public APaxosConsensusMechanism(GIPCSessionRegistry aRegistry,
 			String aName, short aMyId) {
 		super(aRegistry, aName, aMyId);
 	}
-//	protected boolean isConcurrencyConflict (float aProposalNumber, StateType aState )  {
-//		   return lastAcceptedProposalNumber() > aProposalNumber;
-//	}
-//	protected StateType lastAcceptedProposal() {
-//		return lastAcceptedProposal;
-//	}
-	
 
-//	@Override
-//	public void prepare(float aProposalNumber, StateType aProposal) {
-//		prepare(lastAcceptedProposalNumber(), lastAcceptedProposal(), aProposalNumber, 
-//				checkProposal(aProposalNumber, aProposal));		
-//	}
-//	
-//	protected void prepare(float anAcceptedProposalNumber, StateType anAcceptedProposal, float aPreparedProposalNumber, ProposalFeedbackKind aFeedbackKind) {
-//		if (!isSuccess(aFeedbackKind)) {
-//			processPrepareRejection(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
-//		} else {
-//			recordAndSendPrepareResponse(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
-//		}
-//	}
-//	protected Prepared<StateType> caller() {
-//		return (Prepared<StateType>) caller();
-//	}
 	protected void recordReceivedPreparedNotification(
 			float anAcceptedProposalNumber, StateType anAcceptedProposal, 
 			float aPreparedProposalNumber, ProposalFeedbackKind aFeedbackKind) {
@@ -69,14 +42,6 @@ public class APaxosConsensusMechanism<StateType>
 		maxAcceptedProposalNumberReceivedInPreparedNotification = Math.max(
 				maxAcceptedProposalNumberReceivedInPreparedNotification,anAcceptedProposalNumber );
 		incrementCount(aPreparedProposalNumber, PREPARE_NOTIFICATION, 1);
-
-//		if (isSuccess(aFeedbackKind)) {
-//			maxProposalNumberReceivedInSuccessfulPreparedNotification =
-//					Math.max(maxProposalNumberReceivedInSuccessfulPreparedNotification, aPreparedProposalNumber);
-//			incrementCount(aPreparedProposalNumber, anAttribute, anIncrement)
-//		}
-				
-//		caller().prepared(anAcceptedProposalNumber, anAcceptedProposal, anAcceptedProposalNumber, aFeedbackKind);
 	}
 	private Boolean sufficientPeparers(ReplicationSynchrony aReplicationSynchrony, 
 			float aPreparedProposalNumber) {
@@ -100,45 +65,11 @@ public class APaxosConsensusMechanism<StateType>
 			return;
 		recordAndSendAcceptRequest(aPreparedProposalNumber, preparedState(aPreparedProposalNumber));		
 	}
-//	protected boolean isConcurrencyConflict (float aProposalNumber, StateType aProposal )  {
-//		   return aProposalNumber < maxProposalNumberSentInPreparedNotification;
-//	}
-	
-//	protected void processPrepareRejection(float anAcceptedProposalNumber, StateType anAcceptedProposal, float aPreparedProposalNumber, ProposalFeedbackKind aFeedbackKind) {
-//		if (isSendRejectionNotification()) {
-//			recordAndSendPrepareResponse(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
-//		}
-//	}
-//	protected void recordReceivedPrepareResponse(float anAcceptedProposalNumber, StateType anAcceptedProposal, float aPreparedProposalNumber, ProposalFeedbackKind aFeedbackKind){
-//		maxReceivedPreparedNotificationProposalNumber = Math.max(maxReceivedPreparedNotificationProposalNumber, aProposalNumber);
-//		incrementCount(aProposalNumber, ACCEPT_NOTIFICATION, 1);			
-//
-//		if (isSuccess(aFeedbackKind)) {
-//			lastAcceptedProposal = aProposal;
-//			lastAcceptedProposalNumber = Math.max(aProposalNumber, lastAcceptedProposalNumber);
-//			incrementCount(aProposalNumber, ACCEPT_SUCCESS, 1);			
-//		}
-//	}
-//	protected void recordAndSendPrepareResponse(float anAcceptedProposalNumber, StateType anAcceptedProposal, float aPreparedProposalNumber, ProposalFeedbackKind aFeedbackKind) {
-//		recordReceivedPreparedNotification(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
-//		if (!isSuccess(aFeedbackKind)) {
-//			processPrepareRejection(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
-//		}
-//		sendPrepareResponse(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
-//	}	
-//	protected void sendPrepareResponse(float anAcceptedProposalNumber, StateType anAcceptedProposal, float aPreparedProposalNumber, ProposalFeedbackKind aFeedbackKind) {
-//		caller().prepared(anAcceptedProposalNumber, anAcceptedProposal, anAcceptedProposalNumber, aFeedbackKind);
-//	}
+
 	protected StateType successProposedState(float anAcceptedProposalNumber, StateType anAcceptedProposal, float aPreparedProposalNumber, ProposalFeedbackKind aFeedbackKind) {
 		return anAcceptedProposal == null?proposal(aPreparedProposalNumber):anAcceptedProposal;
 	}
-//	protected void dispatchPropose(float aProposalNumber, StateType aProposal) {
-//		if (isNonAtomic() || isServer()) {
-//			localPropose(aProposalNumber, aProposal);
-//		}  else {			
-//			sendProposeRequest(aProposalNumber, aProposal);
-//		}
-//	}
+
 	
 	protected ProposalState toProposalState(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
 		ProposalState result = toProposalState(aFeedbackKind);	
@@ -169,15 +100,9 @@ public class APaxosConsensusMechanism<StateType>
 		}  else {			
 			recordAndSendPrepareRequest(aProposalNumber, aProposal);
 		}
-//		if (isAsynchronousConsistency()) {
-//			recordAndSendLearnNotification(aProposalNumber, aProposal, ProposalFeedbackKind.SUCCESS);
-//		} else {
-//			recordAndSendAcceptRequest(aProposalNumber, aProposal);
-//		}
-}
-//	protected StateType toAcceptState(float anAcceptedProposalNumber, StateType anAcceptedProposal, float aPreparedProposalNumber) {
-//		
-//	}
+   }
+	
+	
 	protected void sendAcceptedNotification(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind){
 		sendAcceptedNotificationToLearners(aProposalNumber, aProposal, aFeedbackKind);
 	}

@@ -1,5 +1,6 @@
 package examples.gipc.consensus;
 
+import util.misc.ThreadSupport;
 import consensus.ProposalState;
 
 public abstract class AnExampleConsensusProposerLauncher extends
@@ -14,6 +15,7 @@ public abstract class AnExampleConsensusProposerLauncher extends
 	public static int MEANING_1 = 42;
 	public static int MEANING_2 = 29;
 	public static long INIT_TIME = 6000;
+	public static long RE_PROPOSE_TIME = 10000;
 
 	public void proposeMeaning(Integer aValue) {
 		while (true) {
@@ -28,29 +30,16 @@ public abstract class AnExampleConsensusProposerLauncher extends
 			if (aState != ProposalState.PROPOSAL_CONCURRENT_OPERATION) {
 				break;
 			}
+			ThreadSupport.sleep(RE_PROPOSE_TIME);
 		}
 	}
 
-	public void proposeValues1() {
-		// double aGreetingProposal1 = greetingMechanism.propose(GREETING_1);
-		// float aMeaningOfLifeProposal =
-		// meaningOfLifeMechanism.propose(MEANING_1);
+	public void proposeValues1() {		
 		proposeMeaning(MEANING_1);
 	}
 
 	public void proposeValues2() {
-		proposeMeaning(MEANING_2);
-		// double aGreetingProposal1 = greetingMechanism.propose(GREETING_2);
-		// while (true) {
-		// float aMeaningOfLifeProposal =
-		// meaningOfLifeMechanism.propose(MEANING_2);
-		// meaningOfLifeMechanism.waitForConsensus(aMeaningOfLifeProposal);
-		// ProposalState aState =
-		// meaningOfLifeMechanism.getProposalState(aMeaningOfLifeProposal);
-		// if (aState != ProposalState.PROPOSAL_CONCURRENT_OPERATION) {
-		// break;
-		// }
-		// }
+		proposeMeaning(MEANING_2);	
 	}
 
 	protected void doPropose() {

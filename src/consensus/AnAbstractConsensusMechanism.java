@@ -694,7 +694,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		this.serverName = serverName;
 	}
 
-	public void setCentralized2PC(boolean isCentralized) {
+	public void setCentralized(boolean isCentralized) {
 		this.isCentralized = isCentralized;
 	}
 	

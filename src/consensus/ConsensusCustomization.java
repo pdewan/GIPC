@@ -29,7 +29,7 @@ public interface ConsensusCustomization {
 
 	public void setServerName(String serverName) ;
 
-	public void setCentralized2PC(boolean isCentralized);
+	public void setCentralized(boolean isCentralized);
 	public ReplicationSynchrony getPrepareSynchrony() ;
 	public void setPrepareSynchrony(ReplicationSynchrony prepareSynchrony);
 	
