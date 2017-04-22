@@ -18,17 +18,12 @@ public class APreparerConsensusMechanism<StateType>
 	extends ACentralizableConsensusMechanism<StateType>
 	implements Preparer<StateType>{
 
-//	protected float maxPreparedProposalNumber;
-//	protected StateType maxPreparedProposal;
+
 	protected float maxProposalNumberReceivedInPrepareRequest = -1;
 	protected float maxProposalNumberSentInPreparedNotification = -1;
 	protected float maxProposalNumberSentInSuccessfulPreparedNotification = -1;
 
-//	protected float maxReceivedAcceptedProposalNumber = -1;
-//
-//	protected StateType  lastAcceptedProposal = null;
-//	protected float lastAcceptedProposalNumber = -1;
-//	protected float lastPreparedProposalNumber = -1;
+
 
 	public APreparerConsensusMechanism(GIPCSessionRegistry aRegistry,
 			String aName, short aMyId) {
@@ -36,41 +31,37 @@ public class APreparerConsensusMechanism<StateType>
 		setPrepareSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
 		setAcceptSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
 	}
-	protected boolean isAcceptConcurrencyConflict (float aProposalNumber, StateType aState )  {
-		   return maxProposalNumberSentInSuccessfulPreparedNotification > aProposalNumber;
-	}
+	
 	protected boolean isPrepareConcurrencyConflict (float aProposalNumber, StateType aState )  {
 		   return isAcceptConcurrencyConflict(aProposalNumber, aState);
 	}
-	 protected synchronized ProposalFeedbackKind checkPrepareRequest(float aProposalNumber, StateType aProposal ) {
+	protected synchronized ProposalFeedbackKind checkPrepareRequest(float aProposalNumber, StateType aProposal ) {
 		  return  isPrepareConcurrencyConflict(aProposalNumber, aProposal)?
-			    ProposalFeedbackKind.CONCURRENCY_CONFLICT:
-			 
+			    ProposalFeedbackKind.CONCURRENCY_CONFLICT:			 
 				checkWithVetoer(aProposalNumber, aProposal);
 	 }
-	 protected synchronized ProposalFeedbackKind checkAcceptRequest(float aProposalNumber, StateType aProposal ) {
+	protected boolean isAcceptConcurrencyConflict (float aProposalNumber, StateType aState )  {
+		   return maxProposalNumberSentInSuccessfulPreparedNotification > aProposalNumber;
+	}
+	protected synchronized ProposalFeedbackKind checkAcceptRequest(float aProposalNumber, StateType aProposal ) {
 		   return (isAcceptConcurrencyConflict(aProposalNumber, aProposal))?
 			    ProposalFeedbackKind.CONCURRENCY_CONFLICT:
 			 ProposalFeedbackKind.SUCCESS;
 	 }
-//	protected StateType lastAcceptedProposal() {
-//		return lastAcceptedProposal;
-//	}
-	
+
 	protected float maxProposalNumberSentInSuccessfulPreparedNotification() {
 		return maxProposalNumberSentInSuccessfulPreparedNotification;
 	}
 	@Override
 	public void prepare(float aProposalNumber, StateType aProposal) {
-//		float aLastAcceptedProposalNumber = maxProposalNumberSentInSuccessfulAcceptedNotification;
-//		StateType aLastAcceptedProposal = proposal(aLastAcceptedProposalNumber);
+
 		
 		ProposalPrepareRequestReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
 		prepare(maxProposalNumberSentInSuccessfulPreparedNotification, 
 				 proposal(maxProposalNumberSentInSuccessfulAcceptedNotification), 
 				 aProposalNumber, 
 				 aProposal,
-				checkAcceptRequest(aProposalNumber, aProposal));		
+				checkPrepareRequest(aProposalNumber, aProposal));		
 	}
 	
 	protected void prepare(float aLastAcceptedProposalNumber, StateType aLastAcceptedProposal, float aPreparedProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
@@ -87,16 +78,7 @@ public class APreparerConsensusMechanism<StateType>
 	protected Prepared<StateType> preparer() {
 		return (Prepared<StateType>) caller();
 	}
-//	protected void recordReceivedPreparedNotification(float anAcceptedProposalNumber, StateType anAcceptedProposal, float aPreparedProposalNumber, ProposalFeedbackKind aFeedbackKind) {
-//		maxProposalNumberSentInPreparedNotification = 
-//				Math.max(maxProposalNumberSentInPreparedNotification, 
-//						aPreparedProposalNumber);
-//		if (isSuccess(aFeedbackKind)) {
-//			maxProposalNumberSentInSuccessfulPreparedNotification =
-//					Math.max(maxProposalNumberSentInSuccessfulPreparedNotification, 
-//							aPreparedProposalNumber);
-//		}
-//	}
+
 	
 	protected void processPrepareRejection(float anAcceptedProposalNumber, StateType anAcceptedProposal, float aPreparedProposalNumber, ProposalFeedbackKind aFeedbackKind) {
 		if (isSendRejectionNotification()) {
@@ -129,32 +111,14 @@ public class APreparerConsensusMechanism<StateType>
 		return (Preparer<StateType>) super.all();
 	}
 	
-	protected void sendLearnNotificationToOthers(float aProposalNumber,
-			StateType aProposal, ProposalFeedbackKind anAgreement) {
-	}
+	
 	protected void recordReceivedPrepareRequest(float aProposalNumber, StateType aProposal){
 		recordProposalState(aProposalNumber, aProposal);
 		maxProposalNumberReceivedInPrepareRequest = Math.max(
 				maxProposalNumberReceivedInPrepareRequest, aProposalNumber);
-//		maxReceivedAcceptedNotificationProposalNumber = Math.max(maxReceivedAcceptedNotificationProposalNumber, aProposalNumber);
-//		incrementCount(aProposalNumber, ACCEPT_NOTIFICATION, 1);			
-//
-//		if (isSuccess(aFeedbackKind)) {
-//			lastAcceptedProposal = aProposal;
-//			lastAcceptedProposalNumber = Math.max(aProposalNumber, lastAcceptedProposalNumber);
-//			incrementCount(aProposalNumber, ACCEPT_SUCCESS, 1);			
-//		}
+
 	}
-//	
-//	protected float maxPreparedProposalNumber() {
-//		return maxPreparedProposalNumber;
-//	}
-//	protected StateType maxPreparedProposal() {
-//		return maxPreparedProposal;
-//	}
-//	protected float lastAcceptedProposalNumber() {
-//		return lastAcceptedProposalNumber;
-//	}
+
 
 	
 }

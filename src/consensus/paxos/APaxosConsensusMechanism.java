@@ -91,10 +91,7 @@ public class APaxosConsensusMechanism<StateType>
 	
 	protected ProposalState toProposalState(float aProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
 		ProposalState result = toProposalState(aFeedbackKind);	
-//		if (result == ProposalState.PROPOSAL_CONSENSUS && 
-//				( !aProposal.equals(proposal(aProposalNumber)))) { // we were overridden
-//			return ProposalState.PROPOSAL_CONCURRENT_OPERATION;
-//		}
+
 		return result;
 	}
 	
@@ -134,41 +131,18 @@ public class APaxosConsensusMechanism<StateType>
 		ProposalPreparedNotificationReceived.newCase(this, getObjectName(), anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
 
 		recordReceivedPreparedNotification(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
-		if (!isPending(aPreparedProposalNumber) || isAggregatePrepared(aPreparedProposalNumber)) {
+		if (!isPending(aPreparedProposalNumber) || 
+				isAggregatePrepared(aPreparedProposalNumber)) {
 			return;
-		}
+		}		
 		if (!isSuccess(aFeedbackKind)) {
 			newProposalState(aPreparedProposalNumber, proposal(aPreparedProposalNumber), toProposalState(aPreparedProposalNumber, anAcceptedProposal, aFeedbackKind));
 			return;
 		} 
-		aggregatePreparedNotification(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
-		
+		aggregatePreparedNotification(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);		
 			
 	}
-//	protected void recordReceivedPrepareNotification(float anAcceptedProposalNumber, StateType anAcceptedProposal, float aPreparedProposalNumber, ProposalFeedbackKind aFeedbackKind){
-//		recordProposalState(anAcceptedProposalNumber, anAcceptedProposal);
-//		ma
-//		
 
-//		maxReceivedAcceptedNotificationProposalNumber = Math.max(maxReceivedAcceptedNotificationProposalNumber, aProposalNumber);
-//		incrementCount(aProposalNumber, ACCEPT_NOTIFICATION, 1);			
-//
-//		if (isSuccess(aFeedbackKind)) {
-//			lastAcceptedProposal = aProposal;
-//			lastAcceptedProposalNumber = Math.max(aProposalNumber, lastAcceptedProposalNumber);
-//			incrementCount(aProposalNumber, ACCEPT_SUCCESS, 1);			
-//		}
-//	}
-	
-//	protected float maxPreparedProposalNumber() {
-//		return maxPreparedProposalNumber;
-//	}
-//	protected StateType maxPreparedProposal() {
-//		return maxPreparedProposal;
-//	}
-//	protected float lastAcceptedProposalNumber() {
-//		return lastAcceptedProposalNumber;
-//	}
 
 	
 }
