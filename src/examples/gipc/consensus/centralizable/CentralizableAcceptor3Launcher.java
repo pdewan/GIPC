@@ -13,13 +13,7 @@ ACentralizableMemberLauncher
 			int aPortNumber) {
 		super(aLocalName, aPortNumber);
 	}
-	@Override
-	protected void addListenersAndVetoersToLocalGreetingMechanism() {
-		super.addListenersAndVetoersToLocalGreetingMechanism();
-		greetingMechanism.addConsensusVetoer(new AGreetingVetoer());
-		
-	}
-
+	
 	public static void main(String[] args) {
 		ConsensusTraceUtility.setTracing();
 		new CentralizableAcceptor3Launcher(MY_NAME, MY_PORT_NUMBER);

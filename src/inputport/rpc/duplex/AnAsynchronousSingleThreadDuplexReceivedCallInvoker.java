@@ -87,11 +87,12 @@ public class AnAsynchronousSingleThreadDuplexReceivedCallInvoker
 			} else {
 				getReplier().setSender(aSource);
 			}
-			setLastCaller(aSource);
+			setRemoteCaller(aSource);
 				
 //			Tracer.setKeywordPrintStatus(this, true);
 			message.getReceiveListener().messageReceived(message.getSource(), message.getMessage());
-			
+			setRemoteCaller(null);
+
 			ReceivedCallEndedOld.newCase(this, message.getReceiveListener(), message.getSource(), (RemoteCall) message.getMessage());
 			}
 		} catch (SendToUnconnectedPortException connecte) {
@@ -102,11 +103,11 @@ public class AnAsynchronousSingleThreadDuplexReceivedCallInvoker
 		}
 		
 	}
-	public static String getLastCaller() {
+	public static String getRemoteCaller() {
 		// TODO Auto-generated method stub
 		return lastCaller;
 	}
-	public static void setLastCaller(String newVal) {
+	public static void setRemoteCaller(String newVal) {
 		lastCaller = newVal;
 		
 	}

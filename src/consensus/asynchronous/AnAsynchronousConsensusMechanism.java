@@ -50,15 +50,17 @@ public class AnAsynchronousConsensusMechanism<StateType> extends
 	}
 	protected void sendLearnNotification(float aProposalNumber,
 			StateType aProposal, ProposalFeedbackKind anAgreement) {
-		ProposalLearnNotificationSent.newCase(this, getObjectName(),
-				aProposalNumber, aProposal, anAgreement);
-		learn(aProposalNumber, aProposal, anAgreement);
+//		ProposalLearnNotificationSent.newCase(this, getObjectName(),
+//				aProposalNumber, aProposal, anAgreement);
+		localLearn(aProposalNumber, aProposal, anAgreement);
 		sendLearnNotificationToOthers(aProposalNumber, aProposal, anAgreement);
 //		otherLearners().learn(aProposalNumber, aProposal, anAgreement);
 
 	}
 	protected void sendLearnNotificationToOthers(float aProposalNumber,
 			StateType aProposal, ProposalFeedbackKind anAgreement) {
+		ProposalLearnNotificationSent.newCase(this, getObjectName(),
+				aProposalNumber, aProposal, anAgreement);
 		otherLearners().learn(aProposalNumber, aProposal, anAgreement); 
 	}
 	

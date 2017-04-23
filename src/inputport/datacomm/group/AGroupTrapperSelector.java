@@ -20,7 +20,8 @@ public class AGroupTrapperSelector<SendInMessageType, SendOutMessageType> implem
 	
 	public AGroupTrapperSelector() {
 		receiveFactories.add(new AReceiveMessageForwarderFactory());
-		sendFactories.add(new AGroupSendMessageForwarderFactory());		
+//		sendFactories.add(new AGroupSendMessageForwarderFactory());	
+		sendFactories.add(GroupSendMessageForwarderSelector.groupSendMessageForwaderFactory);	
 	}
 	
 	@Override

@@ -1,8 +1,7 @@
-package inputport.datacomm.group.object;
+package inputport.datacomm.group;
 
 import inputport.InputPort;
 import inputport.datacomm.NamingSender;
-import inputport.datacomm.group.GroupNamingSender;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,8 +25,7 @@ public class ADescendingMultipleSendGroupForwarder implements GroupNamingSender<
 	@Override
 	public void send(Set<String> clientNames, Object message) {
 		Tracer.info(this, this + " multiply sending  message " + message + " to " + clientNames);
-		List<String> aSortedList = new ArrayList(clientNames);
-		Collections.sort(aSortedList);
+		List<String> aSortedList = AnAscendingMultipleSendGroupForwarder.sort(clientNames);
 		for (int i = aSortedList.size() -1; i>= 0; i--) {
 			destination.send(aSortedList.get(i), message);
 		}

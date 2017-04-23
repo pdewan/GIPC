@@ -11,42 +11,47 @@ import consensus.synchronous.ASynchronousConsensusMechanism;
 import consensus.synchronous.ASynchronousConsensusMechanismFactory;
 import consensus.synchronous.Accepted;
 import consensus.synchronous.Acceptor;
-import examples.gipc.consensus.AnExampleConsensusProposerLauncher;
+import examples.gipc.consensus.AMeaningConsensusProposerLauncher;
+import examples.gipc.consensus.AnExampleGreetingMeaningConsensusProposerLauncher;
 
-public class APaxosMemberLauncher extends AnExampleConsensusProposerLauncher  {
+public class APaxosMemberLauncher extends AMeaningConsensusProposerLauncher {
+	protected boolean overrideRetry = false;
+//	protected boolean doNotRetry = true;
 
-	public APaxosMemberLauncher(String aLocalName,
-			int aPortNumber) {
+	public APaxosMemberLauncher(String aLocalName, int aPortNumber) {
 		super(aLocalName, aPortNumber);
-		// TODO Auto-generated constructor stub
 	}
+
 	protected boolean retry(ProposalState aState) {
-		
-		return aState == null |  super.retry(aState) || aState == ProposalState.PROPOSAL_AGGREGATE_DENIAL;
+
+		return !overrideRetry &&  (aState == null | super.retry(aState)
+				|| aState == ProposalState.PROPOSAL_AGGREGATE_DENIAL);
 	}
+	protected Long reProposeTime() {
+		return overrideRetry?null:super.reProposeTime();
+	}
+
 
 	@Override
 	protected ConsensusMechanismFactory<Integer> meaningConsensusMechanismFactory() {
 		return new APaxosConsensusMechanismFactory();
 	}
 
-	@Override
-	protected ConsensusMechanismFactory<String> greetingConsensusMechanismFactory() {
-		return new APaxosConsensusMechanismFactory<>();	
-		}
 
-	protected void customizeMeaningOfLifeConsensusMechanism(){
-		meaningOfLifeMechanism.setCentralized(false);
-		meaningOfLifeMechanism.setConcurrencyKind(ConcurrencyKind.SERIALIZABLE);
-		meaningOfLifeMechanism.setPrepareSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
-		meaningOfLifeMechanism.setAcceptSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
-	}	
 	@Override
 	protected short numMembersToWaitFor() {
 		return 3;
 	}
 
-	
-	
+	@Override
+	protected void customizeConsensusMechanisms() {
+		meaningOfLifeMechanism.setCentralized(false);
+		meaningOfLifeMechanism.setConcurrencyKind(ConcurrencyKind.SERIALIZABLE);
+		meaningOfLifeMechanism
+				.setPrepareSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
+		meaningOfLifeMechanism
+				.setAcceptSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
+		
+	}
 
 }

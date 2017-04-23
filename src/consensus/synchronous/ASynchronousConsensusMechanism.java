@@ -70,10 +70,15 @@ public class ASynchronousConsensusMechanism<StateType> extends
 			recordAndSendLearnNotification(aProposalNumber, aProposal,
 					ProposalFeedbackKind.SUCCESS);
 		} else {
-			recordAndSendAcceptRequest(aProposalNumber, aProposal);
+			startAcceptPhase(aProposalNumber, aProposal);
+//			recordAndSendAcceptRequest(aProposalNumber, aProposal);
 		}
 	}
-
+	protected void startAcceptPhase (float aProposalNumber,
+	StateType aProposal) {
+		recordAndSendAcceptRequest(aProposalNumber,
+				 aProposal);
+	}
 	protected void recordAndSendAcceptRequest(float aProposalNumber,
 			StateType aProposal) {
 		recordAcceptRequest(aProposalNumber, aProposal);
@@ -112,12 +117,15 @@ public class ASynchronousConsensusMechanism<StateType> extends
 			StateType aProposal, short aMaxAcceptors, short aCurrentAcceptors,
 			float aRequiredAgreements, int anAcceptNotifications,
 			int anAgreements) {
+		int aRemainingNotifications = aCurrentAcceptors - anAcceptNotifications;
 		Boolean retVal;
 		if (anAgreements >= aRequiredAgreements) {
 			retVal = true;
-		} else if (aCurrentAcceptors == anAcceptNotifications) {
+//		} else if (aCurrentAcceptors == anAcceptNotifications) {
+//			retVal = false;
+		} else if (anAgreements + aRemainingNotifications  < aRequiredAgreements) {
 			retVal = false;
-		} else {
+		} else {		
 			retVal = null;
 		}
 		SufficientAgreementsChecked.newCase(this, getObjectName(),

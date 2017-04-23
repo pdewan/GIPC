@@ -3,15 +3,15 @@ package examples.gipc.consensus;
 import util.misc.ThreadSupport;
 import consensus.ProposalState;
 
-public abstract class AnExampleConsensusProposerLauncher extends
-		AnExampleConsensusMemberLauncher {
+public abstract class AnExampleGreetingMeaningConsensusProposerLauncher extends
+		AnExampleGreetingMeaningConsensusMemberLauncher {
 
-	public AnExampleConsensusProposerLauncher(String aLocalName, int aPortNumber) {
+	public AnExampleGreetingMeaningConsensusProposerLauncher(String aLocalName, int aPortNumber) {
 		super(aLocalName, aPortNumber);
 	}
-
-	public static final String GREETING_1 = "Hello";
-	public static final String GREETING_2 = "Hi";
+//
+//	public static final String GREETING_1 = "Hello";
+//	public static final String GREETING_2 = "Hi";
 	public static int MEANING_1 = 42;
 	public static int MEANING_2 = 29;
 	public static long INIT_TIME = 6000;
@@ -22,10 +22,12 @@ public abstract class AnExampleConsensusProposerLauncher extends
 		return aState == ProposalState.PROPOSAL_CONCURRENT_OPERATION ||
 				aState == ProposalState.CENTRAL_SERVER_DIED;
 	}
-	
+	protected boolean waitForLastProposal() {
+		return false;
+	}
 	public void proposeMeaning(Integer aValue) {
 		while (true) {
-			if (meaningOfLifeMechanism.someProposalIsPending()) {
+			if (waitForLastProposal() && meaningOfLifeMechanism.someProposalIsPending()) {
 				meaningOfLifeMechanism.waitForConsensus(meaningOfLifeMechanism.lastProposalNumber());
 			}
 			float aMeaningOfLifeProposal = meaningOfLifeMechanism
@@ -34,11 +36,7 @@ public abstract class AnExampleConsensusProposerLauncher extends
 			if (aState  == null) {
 				System.out.println ("timed out waiting for proposal:" + aMeaningOfLifeProposal);
 			}
-//			ProposalState aState = meaningOfLifeMechanism
-//					.getProposalState(aMeaningOfLifeProposal);
 			if (!retry(aState)) {
-//			if (aState != ProposalState.PROPOSAL_CONCURRENT_OPERATION && aState != 
-//					ProposalState.CENTRAL_SERVER_DIED ) {
 				break;
 			}
 			if (aState != null) { // did not time our
@@ -60,9 +58,7 @@ public abstract class AnExampleConsensusProposerLauncher extends
 	}
 
 	public void proposeValues() {
-		// ThreadSupport.sleep(INIT_TIME);
 		doPropose();
-
 	}
 
 }

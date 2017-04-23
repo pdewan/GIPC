@@ -1,12 +1,13 @@
 package port.trace.consensus;
 
+import port.trace.rpc.RemoteCallbackInfo;
 import inputport.rpc.RemoteCall;
 import util.annotations.ComponentWidth;
 import util.annotations.DisplayToString;
 import util.trace.TraceableInfo;
 @DisplayToString(true)
 @ComponentWidth(1000)
-public class RemoteProposeRequestReceived extends TraceableInfo {
+public class RemoteProposeRequestReceived extends RemoteCallbackInfo {
 	
 
 	public RemoteProposeRequestReceived(String aMessage, Object aSource, String anObjectName, float aProposalNumber, Object aProposal) {
@@ -15,7 +16,7 @@ public class RemoteProposeRequestReceived extends TraceableInfo {
 	
 	
 	public static RemoteProposeRequestReceived newCase(Object aSource, String anObjectName, float aProposalNumber, Object aProposal) {
-    	String aMessage =  anObjectName + "," + aProposalNumber + "=" + aProposal;
+    	String aMessage = callerPrefix() + anObjectName + "," + aProposalNumber + "=" + aProposal;
     	RemoteProposeRequestReceived retVal = new RemoteProposeRequestReceived(aMessage, aSource, anObjectName, aProposalNumber, aProposal);
    	    retVal.announce();
     	return retVal;

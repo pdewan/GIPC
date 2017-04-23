@@ -19,8 +19,8 @@ public CentralizableAcceptor4Launcher(String aLocalName,
 	}
 
 @Override
-protected void addListenersAndVetoersToLocalMeaningOfLifeMechanism() {
-	super.addListenersAndVetoersToLocalMeaningOfLifeMechanism();
+protected void addListenersAndVetoersToConsensusMechanisms() {
+	super.addListenersAndVetoersToConsensusMechanisms();
 	meaningOfLifeMechanism.addConsensusVetoer(new AMeaningOfLifeVetoer());
 	
 }

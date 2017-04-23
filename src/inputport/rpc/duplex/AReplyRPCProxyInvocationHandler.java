@@ -17,7 +17,7 @@ public  class AReplyRPCProxyInvocationHandler extends ACachingAbstractRPCProxyIn
 	}	
 	@Override
 	protected Object call(String aRemoteEndPoint, String name, Method method, Object[] args) {	
-		String aCaller = AnAsynchronousSingleThreadDuplexReceivedCallInvoker.getLastCaller();
+		String aCaller = AnAsynchronousSingleThreadDuplexReceivedCallInvoker.getRemoteCaller();
 		if (aCaller == null)
 			aCaller = duplexInputPort.getSender();
 		

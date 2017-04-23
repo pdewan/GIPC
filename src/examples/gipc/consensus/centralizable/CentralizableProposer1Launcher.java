@@ -10,12 +10,8 @@ public class CentralizableProposer1Launcher extends
 	public CentralizableProposer1Launcher(String aLocalName,
 			int aPortNumber) {
 		super(aLocalName, aPortNumber);
-		// TODO Auto-generated constructor stub
 	}
-	protected void customizeMeaningOfLifeConsensusMechanism(){
-		super.customizeMeaningOfLifeConsensusMechanism();
-//		meaningOfLifeMechanism.setIsServer(true);
-	}
+	
 	
 	protected void doPropose() {
 		proposeValues1();

@@ -35,17 +35,27 @@ public class ALearnerConsensusMechanism<StateType> extends
 		newProposalState(aProposalNumber, aProposal,
 				toProposalState(aProposalNumber, aProposal, aFeedbackKind));
 	}
+	public synchronized void localLearn(float aProposalNumber, StateType aProposal,
+			ProposalFeedbackKind aRejectionKind) {
+		
+		if (isValueSynchrony()) {
+			waitForReceipt(aProposalNumber, aProposal);
+		}
+		recordReceivedLearnNotification(aProposalNumber, aProposal,
+				aRejectionKind);
+	}
 
 	@Override
 	public synchronized void learn(float aProposalNumber, StateType aProposal,
 			ProposalFeedbackKind aRejectionKind) {
 		ProposalLearnNotificationReceived.newCase(this, getObjectName(),
 				aProposalNumber, aProposal, aRejectionKind);
-		if (isValueSynchrony()) {
-			waitForReceipt(aProposalNumber, aProposal);
-		}
-		recordReceivedLearnNotification(aProposalNumber, aProposal,
-				aRejectionKind);
+		localLearn(aProposalNumber, aProposal, aRejectionKind);
+//		if (isValueSynchrony()) {
+//			waitForReceipt(aProposalNumber, aProposal);
+//		}
+//		recordReceivedLearnNotification(aProposalNumber, aProposal,
+//				aRejectionKind);
 	}
 	// protected void setLearnedState(float aProposalNumber, StateType
 	// aProposal, ProposalVetoKind anAgreement) {

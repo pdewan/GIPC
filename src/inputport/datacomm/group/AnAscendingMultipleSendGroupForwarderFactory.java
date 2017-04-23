@@ -1,8 +1,8 @@
-package inputport.datacomm.group.object;
+package inputport.datacomm.group;
 
 import inputport.InputPort;
 import inputport.datacomm.NamingSender;
-import inputport.datacomm.group.GroupNamingSender;
+import inputport.datacomm.group.object.MultipleSendGroupForwarderFactory;
 
 
 public class AnAscendingMultipleSendGroupForwarderFactory  implements MultipleSendGroupForwarderFactory {

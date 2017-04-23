@@ -57,11 +57,17 @@ public class APreparerConsensusMechanism<StateType>
 
 		
 		ProposalPrepareRequestReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
-		prepare(maxProposalNumberSentInSuccessfulPreparedNotification, 
+		prepare(maxProposalNumberSentInSuccessfulAcceptedNotification,
+//				maxProposalNumberSentInSuccessfulPreparedNotification, 
 				 proposal(maxProposalNumberSentInSuccessfulAcceptedNotification), 
 				 aProposalNumber, 
 				 aProposal,
 				checkPrepareRequest(aProposalNumber, aProposal));		
+	}
+	
+	protected void sendLearnNotificationToOthers(float aProposalNumber,
+			StateType aProposal, ProposalFeedbackKind anAgreement) {
+		
 	}
 	
 	protected void prepare(float aLastAcceptedProposalNumber, StateType aLastAcceptedProposal, float aPreparedProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
