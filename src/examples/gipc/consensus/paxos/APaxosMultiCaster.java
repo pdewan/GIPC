@@ -13,46 +13,43 @@ import inputport.datacomm.group.object.AnAscendingMultipleSendGroupForwarder;
 import inputport.rpc.SerializableCall;
 
 public class APaxosMultiCaster<InMessageType> extends AnAscendingGroupSendMessageForwarder<InMessageType> {
-
+	
+	public static final String ACCEPTED = "accepted";
+	public static final String ACCEPT = "accept";
 	
 	public APaxosMultiCaster(GroupNamingSender<InMessageType> aDestination) {
 		super(aDestination);
-		// TODO Auto-generated constructor stub
 	}
-	protected boolean isAcceptRequest(Object message) {
+
+	public static boolean isCall(Object message, String aCallName) {
 		if (message instanceof SerializableCall) {
 			SerializableCall aCall = (SerializableCall) message;
-			return(aCall.getSerializableMethod().getMethodName().equals("accept")) ;
+			return(aCall.getSerializableMethod().getMethodName().equals(aCallName)) ;
 					
 		}
 		return false;
 	}
+	
 	public void send(Collection<String> clientNames, InMessageType message) {
-		 if (!isAcceptRequest(message)) {
+		 
+		 if ( destination instanceof APaxosMultiCaster ||
+				 (!isCall(message, ACCEPTED) && !isCall(message, ACCEPT))) {
 			 super.send(clientNames, message);
 			 return;
 		}
+		
 		List<String> aSortedList = AnAscendingMultipleSendGroupForwarder.sort(clientNames);
-		String aFirstElement = aSortedList.remove(1);
-		destination.send(aFirstElement, message);
-		// send accept messages to 1 and 3
-		for (int i = aSortedList.size() -1; i>= 0; i--) {
-			super.send(aSortedList.get(i), message);
+		if (aSortedList.size() == 0) {
+			super.send(clientNames, message);
+		}
+		String aLastElement = aSortedList.remove(aSortedList.size() -1);
+		destination.send(aSortedList, message);
+		if (isCall(message, ACCEPT)) {
+			destination.send(aLastElement, message); // stop 1 until 3's prepare request is executed
+		} else {
+			destination.send(aLastElement, message); // stop 2 here until 3 is ready to begin accept phase 
 		}
 	}
-//	@Override
-//	public void send(Collection<String> clientNames, Object message) {
-//		if (!isAcceptRequest(message)) {
-//			 super.send(clientNames, message);
-//			 return;
-//		}
-//		List<String> aSortedList = AnAscendingMultipleSendGroupForwarder.sort(clientNames);
-//		String aFirstElement = aSortedList.remove(1);
-//		destination.send(aFirstElement, message);
-//		// send accept messages to 1 and 3
-//		for (int i = aSortedList.size() -1; i>= 0; i--) {
-//			super.send(aSortedList.get(i), message);
-//		}
-//	}
+
 
 }

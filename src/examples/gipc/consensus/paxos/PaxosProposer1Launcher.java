@@ -23,8 +23,7 @@ public class PaxosProposer1Launcher extends
 
 	public static void main(String[] args) {
 		ConsensusTraceUtility.setTracing();
-//		GroupSendMessageForwarderSelector.setGroupSendMessageForwarderFactory(
-//				new APaxosMultiCastFactory());
+
 		new PaxosProposer1Launcher(MY_NAME, MY_PORT_NUMBER)
 				.proposeValues();
 	}

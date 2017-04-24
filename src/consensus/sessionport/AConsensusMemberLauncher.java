@@ -19,12 +19,16 @@ public abstract class AConsensusMemberLauncher  {
 	protected abstract void createConsensusMechanisms(
 			short anId);
 	protected abstract void addListenersAndVetoersToConsensusMechanisms() ;
+	protected  void setFactories() {
+		
+	}
 	public AConsensusMemberLauncher(String aLocalName, int aPortNumber) {
 		init(aLocalName, aPortNumber);
 	}
 	
 	protected abstract void customizeConsensusMechanisms();
 	protected   void initConsensusMechanisms(short anId) {
+		setFactories();
 		createConsensusMechanisms(anId);
 		customizeConsensusMechanisms();
 		addListenersAndVetoersToConsensusMechanisms();

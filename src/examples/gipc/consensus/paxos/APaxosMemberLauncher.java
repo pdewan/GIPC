@@ -1,19 +1,12 @@
 package examples.gipc.consensus.paxos;
 
+import inputport.datacomm.group.GroupSendMessageForwarderSelector;
 import consensus.ConcurrencyKind;
-import consensus.ConsensusMechanism;
 import consensus.ConsensusMechanismFactory;
 import consensus.ProposalState;
 import consensus.ReplicationSynchrony;
-import consensus.central.ACentralizableConsensusMechanismFactory;
-import consensus.paxos.APaxosConsensusMechanismFactory;
 import consensus.paxos.sequential.ASequentialPaxosConsensusMechanismFactory;
-import consensus.synchronous.sequential.ASynchronousConsensusMechanism;
-import consensus.synchronous.sequential.ASynchronousConsensusMechanismFactory;
-import consensus.synchronous.sequential.Accepted;
-import consensus.synchronous.sequential.Acceptor;
 import examples.gipc.consensus.AnExampleProposerLauncher;
-import examples.gipc.consensus.AnExampleGreetingMeaningConsensusProposerLauncher;
 
 public class APaxosMemberLauncher extends AnExampleProposerLauncher {
 	protected boolean overrideRetry;
@@ -26,7 +19,7 @@ public class APaxosMemberLauncher extends AnExampleProposerLauncher {
 
 		return !overrideRetry && 
 				(aState == null | super.retry(aState)
-				| aState == ProposalState.PROPOSAL_AGGREGATE_DENIAL);
+				|| aState == ProposalState.PROPOSAL_AGGREGATE_DENIAL);
 	}
 	protected Long reProposeTime() {
 		return overrideRetry?null:super.reProposeTime();
@@ -93,6 +86,11 @@ public class APaxosMemberLauncher extends AnExampleProposerLauncher {
 //		simulateBasicPaxos();
 		simulateSequentialPaxos();
 		
+	}
+	@Override
+    protected  void setFactories() {
+//		GroupSendMessageForwarderSelector.setGroupSendMessageForwarderFactory(
+//		new APaxosMultiCastFactory());
 	}
 
 }

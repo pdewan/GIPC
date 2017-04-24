@@ -85,6 +85,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected String serverName;
 	protected boolean isCentralized;
 	private boolean didNotify;
+	private boolean overridingPaxos;
 
 	
 	
@@ -163,6 +164,12 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	protected boolean isAsynchronousReplication() {
 		return acceptSynchrony == ReplicationSynchrony.ASYNCHRONOUS;
+	}
+	protected boolean isOverridingPaxos() {
+		return overridingPaxos;
+	}
+	protected void setOverridingPaxos(boolean newVal) {
+		overridingPaxos = newVal;
 	}
 	protected boolean isNonAtomic() {
 		return concurrencyKind == ConcurrencyKind.NON_ATOMIC;

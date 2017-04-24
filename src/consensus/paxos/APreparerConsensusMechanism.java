@@ -48,7 +48,10 @@ public class APreparerConsensusMechanism<StateType>
 
 	}
 	protected boolean isNotPaxos() {
-		return isAsynchronousReplication() || isNonAtomic() || isCentralized();
+		return (!isSequentialAccess()) && 
+				(isAsynchronousReplication() || 
+						isNonAtomic() || 
+						isCentralized());
 	}
 	protected synchronized ProposalFeedbackKind checkAcceptRequest(float aProposalNumber, StateType aProposal ) {
 		if (isNotPaxos()) {

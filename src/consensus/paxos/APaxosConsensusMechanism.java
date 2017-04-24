@@ -144,7 +144,7 @@ public class APaxosConsensusMechanism<StateType> extends
 
 	protected void sendAcceptedNotification(float aProposalNumber,
 			StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
-		if (!isNotPaxos()) {
+		if (isNotPaxos()) {
 			super.sendAcceptedNotification(aProposalNumber, aProposal, aFeedbackKind);
 			return;
 		}
