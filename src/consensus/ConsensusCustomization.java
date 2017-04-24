@@ -21,7 +21,7 @@ public interface ConsensusCustomization {
 			boolean newVal) ;
 	public boolean isClient() ;
 	public boolean isServer();
-	public boolean isCentralized2PC() ;
+	public boolean isCentralized() ;
 	public String getServerName() ;
 //	public void setIsClient(boolean isClient) ;
 

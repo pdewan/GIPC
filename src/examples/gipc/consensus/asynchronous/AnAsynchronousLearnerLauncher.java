@@ -6,11 +6,11 @@ import consensus.asynchronous.sequential.ALearnerConsensusMechanism;
 import consensus.asynchronous.sequential.ALearnerConsensusMechanismFactory;
 import consensus.asynchronous.sequential.AnAsynchronousConsensusMechanismFactory;
 import consensus.asynchronous.sequential.Learned;
-import examples.gipc.consensus.AMeaningConsensusMemberLauncher;
+import examples.gipc.consensus.AnExampleConsensusMemberLauncher;
 import examples.gipc.consensus.AnExampleGreetingMeaningConsensusMemberLauncher;
 
 public class AnAsynchronousLearnerLauncher extends
-		AMeaningConsensusMemberLauncher {
+		AnExampleConsensusMemberLauncher {
 	
 	public AnAsynchronousLearnerLauncher(String aLocalName,
 			int aPortNumber) {

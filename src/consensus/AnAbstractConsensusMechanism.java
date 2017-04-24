@@ -696,7 +696,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public boolean isServer() {
 		return rpcSessionPort.getLocalName().equals(getServerName());
 	}
-	public boolean isCentralized2PC() {
+	public boolean isCentralized() {
 		return isCentralized;
 	}
 	protected List<String> getMembers() {

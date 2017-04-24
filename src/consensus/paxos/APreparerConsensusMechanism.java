@@ -7,6 +7,7 @@ import port.trace.consensus.RemoteProposeRequestSent;
 import bus.uigen.widgets.universal.CentralUniversalWidget;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sun.security.util.PendingException;
+import util.annotations.IsAtomicShape;
 import consensus.ConsensusMechanism;
 import consensus.ProposalFeedbackKind;
 import consensus.ProposalState;
@@ -46,19 +47,20 @@ public class APreparerConsensusMechanism<StateType>
 		   return maxProposalNumberReceivedInPrepareRequest > aProposalNumber;
 
 	}
+	protected boolean isNotPaxos() {
+		return isAsynchronousReplication() || isNonAtomic() || isCentralized();
+	}
 	protected synchronized ProposalFeedbackKind checkAcceptRequest(float aProposalNumber, StateType aProposal ) {
-		   return (isAcceptConcurrencyConflict(aProposalNumber, aProposal))?
+		if (isNotPaxos()) {
+			return super.checkAcceptRequest(aProposalNumber, aProposal);			
+		}		
+		return (isAcceptConcurrencyConflict(aProposalNumber, aProposal))?
 			    ProposalFeedbackKind.CONCURRENCY_CONFLICT:
 			 ProposalFeedbackKind.SUCCESS;
-	 }
-
-	
-	
+	 }	
 	
 	@Override
-	public void prepare(float aProposalNumber, StateType aProposal) {
-
-		
+	public void prepare(float aProposalNumber, StateType aProposal) {		
 		ProposalPrepareRequestReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
 		ProposalFeedbackKind aFeedbackKind = checkPrepareRequest(aProposalNumber, aProposal);
 		
@@ -68,12 +70,8 @@ public class APreparerConsensusMechanism<StateType>
 			anAcceptedState = proposal(aPreparedOrAcceptedProposalNumber);
 		} else if (sendPrepardNumberIfNoAccept()) {
 			aPreparedOrAcceptedProposalNumber = maxProposalNumberReceivedInPrepareRequest;
-		} 
-		
+		} 		
 		prepare(aPreparedOrAcceptedProposalNumber,
-//				maxProposalNumberSentInSuccessfulAcceptedNotification,
-//				maxProposalNumberSentInSuccessfulPreparedNotification, 
-//				 proposal(maxProposalNumberSentInSuccessfulAcceptedNotification), 
 				anAcceptedState,
 				 aProposalNumber, 
 				 aProposal,
@@ -82,7 +80,9 @@ public class APreparerConsensusMechanism<StateType>
 	
 	protected void sendLearnNotificationToOthers(float aProposalNumber,
 			StateType aProposal, ProposalFeedbackKind anAgreement) {
-		
+		if (isNotPaxos()) {
+			super.sendLearnNotificationToOthers(aProposalNumber, aProposal, anAgreement);
+		}		
 	}
 	
 	protected void prepare(float aLastPreparedOrAcceptedProposalNumber, StateType aLastAcceptedProposal, float aPreparedProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {

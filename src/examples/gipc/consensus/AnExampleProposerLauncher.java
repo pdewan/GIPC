@@ -3,10 +3,10 @@ package examples.gipc.consensus;
 import util.misc.ThreadSupport;
 import consensus.ProposalState;
 
-public abstract class AMeaningConsensusProposerLauncher extends
-		AMeaningConsensusMemberLauncher {
+public abstract class AnExampleProposerLauncher extends
+		AnExampleConsensusMemberLauncher {
 
-	public AMeaningConsensusProposerLauncher(String aLocalName, int aPortNumber) {
+	public AnExampleProposerLauncher(String aLocalName, int aPortNumber) {
 		super(aLocalName, aPortNumber);
 	}
 
@@ -22,6 +22,10 @@ public abstract class AMeaningConsensusProposerLauncher extends
 	
 	protected Long reProposeTime() {
 		return RE_PROPOSE_TIME;
+	}
+	
+	public void proposeGreeting(String aGreeting) {
+		greetingMechanism.propose(aGreeting);
 	}
 
 	public void proposeMeaning(Integer aValue) {

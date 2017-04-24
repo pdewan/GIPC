@@ -26,7 +26,7 @@ public class ACounterSessionMember implements CounterSessionMember {
 	protected static SessionChoice sessionChoice = SessionChoice.P2P;
 
 	protected static void init(String aMyName, int aPortNumber) {
-		gipcRegistry = GIPCLocateSessionRegistry.createSessionRegistry(
+		gipcRegistry = GIPCLocateSessionRegistry.createOrGetSessionRegistry(
 				"mysession", "localhost", aPortNumber, aMyName,
 				sessionChoice, 
 				numMembersToWaitFor);

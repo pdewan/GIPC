@@ -1,5 +1,8 @@
 package sessionport.rpc.group;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import port.AnAbstractPortLauncher;
 import port.ParticipantChoice;
 import port.PortLauncher;
@@ -13,8 +16,9 @@ import inputport.rpc.duplex.AnAbstractDuplexRPCServerPortLauncher;
 
 public class GIPCLocateSessionRegistry  {
 	static final String DEFAULT_SESSION_NAME = "GIPC Session";
+	static Map<String, AGroupRPCSessionPortLauncher> sessionNameToRegistry = new HashMap();
 	
-	public static GIPCSessionRegistry createSessionRegistry(
+	public static GIPCSessionRegistry createOrGetSessionRegistry(
 			String aSessionName,
 			String aSessionServerHost, 
 			int aMemberPortNumber, 
@@ -23,8 +27,13 @@ public class GIPCLocateSessionRegistry  {
 			short aNumMembersToWaitFor) {
 //		GIPCSessionRegistry result = createSessionRegistryWithoutConnecting(aSessionName, aSessionServerHost, aMemberPortNumber, aMemberName, aSessionChoice, aNumMembersToWaitFor);
 //		result.connect();
-		GroupRPCSessionPortLauncher result =
-				new AGroupRPCSessionPortLauncher(
+		AGroupRPCSessionPortLauncher result = sessionNameToRegistry.get(aSessionName);
+		if (result != null) {
+			 return result;
+		}
+
+//		GroupRPCSessionPortLauncher result =
+			result =	new AGroupRPCSessionPortLauncher(
 						"localhost",
 						SessionServerLauncher.SESSION_SERVER_ID,
 						SessionServerLauncher.SESSION_SERVER_NAME, 
@@ -38,6 +47,7 @@ public class GIPCLocateSessionRegistry  {
 						AFlexibleSessionPortClientLauncher.DO_CAUSAL, 
 						ParticipantChoice.MEMBER,
 						aNumMembersToWaitFor);
+		sessionNameToRegistry.put(aSessionName, result);
 		result.launch();
 		result.waitForConnections();
 		return result;
@@ -49,8 +59,13 @@ public class GIPCLocateSessionRegistry  {
 			String aMemberName, 
 			SessionChoice aSessionChoice,
 			short aNumMembersToWaitFor) {
+		AGroupRPCSessionPortLauncher result = sessionNameToRegistry.get(aSessionName);
+		if (result != null) {
+			 return result;
+		}
 
-		AGroupRPCSessionPortLauncher result =
+//		AGroupRPCSessionPortLauncher 
+		result =
 				new AGroupRPCSessionPortLauncher(
 						"localhost",
 						SessionServerLauncher.SESSION_SERVER_ID,
@@ -66,6 +81,8 @@ public class GIPCLocateSessionRegistry  {
 						ParticipantChoice.MEMBER,
 						aNumMembersToWaitFor);
 		result.launchWithoutConnecting();
+		sessionNameToRegistry.put(aSessionName, result);
+
 //		result.connect();
 //		result.launch();
 //		result.waitForConnections();

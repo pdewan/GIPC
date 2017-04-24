@@ -12,10 +12,10 @@ import consensus.synchronous.sequential.ASynchronousConsensusMechanism;
 import consensus.synchronous.sequential.ASynchronousConsensusMechanismFactory;
 import consensus.synchronous.sequential.Accepted;
 import consensus.synchronous.sequential.Acceptor;
-import examples.gipc.consensus.AMeaningConsensusProposerLauncher;
+import examples.gipc.consensus.AnExampleProposerLauncher;
 import examples.gipc.consensus.AnExampleGreetingMeaningConsensusProposerLauncher;
 
-public class APaxosMemberLauncher extends AMeaningConsensusProposerLauncher {
+public class APaxosMemberLauncher extends AnExampleProposerLauncher {
 	protected boolean overrideRetry;
 
 	public APaxosMemberLauncher(String aLocalName, int aPortNumber) {
@@ -44,21 +44,23 @@ public class APaxosMemberLauncher extends AMeaningConsensusProposerLauncher {
 		return 3;
 	}
 	
-	protected void simulateAsynchronous() {
+	protected void simulateNonAtomicAsynchronous() {
 		meaningOfLifeMechanism.setAcceptSynchrony(ReplicationSynchrony.ASYNCHRONOUS);
+		meaningOfLifeMechanism.setConcurrencyKind(ConcurrencyKind.NON_ATOMIC);
 	}
-	protected void simulateSynchronous() {
+	protected void simulateNonAtomicSynchronous() {
 		meaningOfLifeMechanism.setAcceptSynchrony(ReplicationSynchrony.ALL_SYNCHRONOUS);
+		meaningOfLifeMechanism.setConcurrencyKind(ConcurrencyKind.NON_ATOMIC);
 	}
 	protected void simulateCentralized() {
-		meaningOfLifeMechanism.setCentralized(false);
+		meaningOfLifeMechanism.setCentralized(true);
 	}
 	protected void simulateCentralizedSynchronous() {
-		simulateSynchronous();
+		simulateNonAtomicSynchronous();
 		simulateCentralized();
 	}
 	protected void simulateCentralizedAsynchronous() {
-		simulateAsynchronous();
+		simulateNonAtomicAsynchronous();
 		simulateCentralized();
 	}
 	protected void simulateBasicPaxos() {
@@ -84,6 +86,10 @@ public class APaxosMemberLauncher extends AMeaningConsensusProposerLauncher {
 	}
 	@Override
 	protected void customizeConsensusMechanisms() {
+//		simulateNonAtomicAsynchronous();
+//		simulateNonAtomicSynchronous();
+//		simulateCentralizedAsynchronous();
+//		simulateCentralizedSynchronous();
 //		simulateBasicPaxos();
 		simulateSequentialPaxos();
 		

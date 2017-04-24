@@ -3,9 +3,9 @@ package examples.gipc.consensus.asynchronous;
 import consensus.ConsensusMechanismFactory;
 import consensus.asynchronous.sequential.AnAsynchronousConsensusMechanismFactory;
 import examples.gipc.consensus.AnExampleGreetingMeaningConsensusProposerLauncher;
-import examples.gipc.consensus.AMeaningConsensusProposerLauncher;
+import examples.gipc.consensus.AnExampleProposerLauncher;
 
-public class AnAsynchronousProposerLauncher extends AMeaningConsensusProposerLauncher  {
+public class AnAsynchronousProposerLauncher extends AnExampleProposerLauncher  {
 
 	public AnAsynchronousProposerLauncher(String aLocalName,
 			int aPortNumber) {

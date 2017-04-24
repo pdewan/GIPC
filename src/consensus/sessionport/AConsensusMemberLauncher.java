@@ -16,7 +16,7 @@ public abstract class AConsensusMemberLauncher  {
 
 	
 	protected abstract short numMembersToWaitFor() ;
-	protected abstract  ConsensusMechanism<Integer> createConsensusMechanisms(
+	protected abstract void createConsensusMechanisms(
 			short anId);
 	protected abstract void addListenersAndVetoersToConsensusMechanisms() ;
 	public AConsensusMemberLauncher(String aLocalName, int aPortNumber) {

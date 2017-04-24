@@ -17,6 +17,7 @@ public class PaxosProposer1Launcher extends
 	
 	
 	protected void doPropose() {
+//		proposeGreeting("Hello");
 		proposeValues1();
 	}
 

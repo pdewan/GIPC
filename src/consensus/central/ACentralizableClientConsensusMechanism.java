@@ -30,7 +30,7 @@ public class ACentralizableClientConsensusMechanism<StateType>
 
 	protected void dispatchPropose(float aProposalNumber, StateType aProposal) {
 //		if (!isCentralized2PC() || isServer()) {
-		if (!isCentralized2PC() ) {
+		if (!isCentralized() ) {
 			localPropose(aProposalNumber, aProposal);
 		}  else {			
 			sendProposeRequest(aProposalNumber, aProposal);

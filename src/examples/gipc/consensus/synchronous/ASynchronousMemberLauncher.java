@@ -7,10 +7,10 @@ import consensus.synchronous.sequential.ASynchronousConsensusMechanism;
 import consensus.synchronous.sequential.ASynchronousConsensusMechanismFactory;
 import consensus.synchronous.sequential.Accepted;
 import consensus.synchronous.sequential.Acceptor;
-import examples.gipc.consensus.AMeaningConsensusProposerLauncher;
+import examples.gipc.consensus.AnExampleProposerLauncher;
 import examples.gipc.consensus.AnExampleGreetingMeaningConsensusProposerLauncher;
 
-public class ASynchronousMemberLauncher extends AMeaningConsensusProposerLauncher  {
+public class ASynchronousMemberLauncher extends AnExampleProposerLauncher  {
 
 	public ASynchronousMemberLauncher(String aLocalName,
 			int aPortNumber) {

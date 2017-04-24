@@ -125,7 +125,7 @@ public class APaxosConsensusMechanism<StateType> extends
 	}
 
 	protected void localPropose(float aProposalNumber, StateType aProposal) {
-		if (isNonAtomic()) {
+		if (isNotPaxos() ) {
 			super.localPropose(aProposalNumber, aProposal);
 		} else {
 			// recordAndSendPrepareRequest(aProposalNumber, aProposal);
@@ -144,6 +144,10 @@ public class APaxosConsensusMechanism<StateType> extends
 
 	protected void sendAcceptedNotification(float aProposalNumber,
 			StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
+		if (!isNotPaxos()) {
+			super.sendAcceptedNotification(aProposalNumber, aProposal, aFeedbackKind);
+			return;
+		}
 		sendAcceptedNotificationToLearners(aProposalNumber, aProposal,
 				aFeedbackKind);
 	}
