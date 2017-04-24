@@ -53,6 +53,15 @@ public class GIPCLocateSessionRegistry  {
 		return result;
 	}
 	public static GIPCSessionRegistry createSessionRegistryWithoutConnecting(
+			String aSessionName) {
+		AGroupRPCSessionPortLauncher result = sessionNameToRegistry.get(aSessionName);
+		if (result == null) {
+			System.out.println ("Session registry not created previously");
+		}
+		return result;
+		
+	}
+	public static GIPCSessionRegistry createSessionRegistryWithoutConnecting(
 			String aSessionName,
 			String aSessionServerHost, 
 			int aMemberPortNumber, 

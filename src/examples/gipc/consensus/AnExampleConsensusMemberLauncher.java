@@ -32,12 +32,7 @@ public abstract class AnExampleConsensusMemberLauncher extends AConsensusMemberL
 				sessionChoice, 
 				numMembersToWaitFor());
 		greetingMechanism = greetingConsensusMechanismFactory().createConsensusMechanism(
-				SESSION_MANAGER_HOST,
-				EXAMPLE_SESSION,
-				memberId, portNumber, 
-				GREETING_CONSENSUS_MECHANISM_NAME, 
-				sessionChoice, 
-				numMembersToWaitFor());
+				EXAMPLE_SESSION, memberId, GREETING_CONSENSUS_MECHANISM_NAME);
 	}
 	public AnExampleConsensusMemberLauncher(String aLocalName, int aPortNumber) {
 		super(aLocalName, aPortNumber);

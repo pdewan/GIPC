@@ -11,6 +11,9 @@ public interface ConsensusMechanismFactory<StateType> {
 			String anObjectName,
 			SessionChoice aSessionChoice,
 			short aNumMembersToWaitFor);
+	public ConsensusMechanism createConsensusMechanism(
+			String aSessionName,
+			short aMemberId, String anObjectName);
 			
 			
 

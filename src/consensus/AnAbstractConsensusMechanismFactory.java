@@ -31,5 +31,18 @@ public abstract class AnAbstractConsensusMechanismFactory<StateType> implements 
 		gipcRegistry.connect();
 		return aConsensusMechanism;
 	}
+	public ConsensusMechanism createConsensusMechanism(
+			String aSessionName,
+			short aMemberId, String anObjectName) {
+		String aMemberName = aMemberId + "";
+		GIPCSessionRegistry gipcRegistry = GIPCLocateSessionRegistry.createSessionRegistryWithoutConnecting(
+				aSessionName);
+//		groupRPCSessionPort = gipcRegistry.getSessionPort();
+		short anId = Short.parseShort(""+ aMemberId);
+		ConsensusMechanism aConsensusMechanism = instantiateConsensusMehanism(gipcRegistry, anObjectName, anId);
+		gipcRegistry.rebind(anObjectName, aConsensusMechanism);	
+//		gipcRegistry.connect();
+		return aConsensusMechanism;
+	}
 
 }
