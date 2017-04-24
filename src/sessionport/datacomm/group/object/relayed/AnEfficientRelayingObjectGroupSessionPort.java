@@ -6,6 +6,7 @@ import inputport.datacomm.group.GroupSendTrapper;
 import inputport.datacomm.group.GroupToUniSendTrapper;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 
+import java.util.Collection;
 import java.util.Set;
 
 import port.ParticipantChoice;
@@ -79,7 +80,7 @@ public class AnEfficientRelayingObjectGroupSessionPort
 	}
 
 	@Override
-	public void send(Set<String> clientNames, Object message) {
+	public void send(Collection<String> clientNames, Object message) {
 		groupSendTrapper.send(clientNames, message);
 	}
 	// not sendimg to self!

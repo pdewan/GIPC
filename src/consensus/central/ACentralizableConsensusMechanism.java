@@ -8,7 +8,7 @@ import bus.uigen.widgets.universal.CentralUniversalWidget;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import consensus.ConsensusMechanism;
 import consensus.ProposalFeedbackKind;
-import consensus.synchronous.ASynchronousConsensusMechanism;
+import consensus.synchronous.sequential.ASynchronousConsensusMechanism;
 
 public class ACentralizableConsensusMechanism<StateType> 
 	extends ACentralizableClientConsensusMechanism<StateType>

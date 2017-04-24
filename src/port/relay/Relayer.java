@@ -1,5 +1,6 @@
 package port.relay;
 
+import java.util.Collection;
 import java.util.Set;
 
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
@@ -10,7 +11,7 @@ public interface Relayer {
 //	void relayOthers(String aSessionName, MessageWithSource message);
 //	
 	void relay(String remoteEnd, MessageWithSource message);	
-	void relay(Set<String> remoteEnds, MessageWithSource message);
+	void relay(Collection<String> remoteEnds, MessageWithSource message);
 	void relayOthers(MessageWithSource message);
 
 

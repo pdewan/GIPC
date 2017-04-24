@@ -4,6 +4,7 @@ import inputport.InputPort;
 import inputport.datacomm.group.AnAbstractGroupSendTrapper;
 import inputport.datacomm.group.GroupNamingSender;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -64,7 +65,7 @@ public class ASingleResponseServerGroupSendTrapper extends AnAbstractGroupSendTr
 	// when replaying messages, no return value should be sent
 	// maybe value returning calls should not be replayed or return values should not be sent
 	// in latecomer mode this does not make sense as the messages may already have been sent
-	public synchronized void send(Set<String> clientNames, Object aMessage) {
+	public synchronized void send(Collection<String> clientNames, Object aMessage) {
 		if (sentMessagesManager.isServerForAllClients(inputPort.getLocalName()) &&  // will return true if no control message received
 //				!sentMessagesManager.isLatecomerBeforeBuffering())
 			!sentMessagesManager.isLatecomerBasedOnReplayMode()) // check this here for sure as we dont wnat to send to null clients
@@ -74,7 +75,7 @@ public class ASingleResponseServerGroupSendTrapper extends AnAbstractGroupSendTr
 		}
 
 	}
-	void groupSendWithoutBuffering(Set<String> clientNames, Object aMessage) {
+	void groupSendWithoutBuffering(Collection<String> clientNames, Object aMessage) {
 		// because this is sent without buffering, if this client goes ahead of theprimary
 		// server and then has to replay, the replay will go to individual users
 		// and thus not be logged.
@@ -98,7 +99,7 @@ public class ASingleResponseServerGroupSendTrapper extends AnAbstractGroupSendTr
 //		}		
 	}
 	
-	void bufferAndThenSendIndvidually(Set<String> clientNames, Object aMessage) {
+	void bufferAndThenSendIndvidually(Collection<String> clientNames, Object aMessage) {
 		sentMessagesManager.addGroupMessage(aMessage); // may be deleted now or later
 		for (String clientName:clientNames) {
 			sentMessagesManager.addMessage(clientName, aMessage); // record the id and for secondary servers, buffer the message

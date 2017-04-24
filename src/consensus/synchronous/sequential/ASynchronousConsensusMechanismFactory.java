@@ -1,17 +1,16 @@
-package consensus.asynchronous;
+package consensus.synchronous.sequential;
 
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.AnAbstractConsensusMechanismFactory;
 import consensus.ConsensusMechanism;
-import consensus.synchronous.ASynchronousConsensusMechanism;
 
-public class ALearnerConsensusMechanismFactory<StateType> extends AnAbstractConsensusMechanismFactory<StateType> {
+public class ASynchronousConsensusMechanismFactory<StateType> extends AnAbstractConsensusMechanismFactory<StateType> {
 
 	@Override
 	protected ConsensusMechanism instantiateConsensusMehanism(
 			GIPCSessionRegistry aRegistry, String anObjectName, short aMyId) {
-		return new ALearnerConsensusMechanism(aRegistry, anObjectName, aMyId);
+		return new ASynchronousConsensusMechanism(aRegistry, anObjectName, aMyId);
 	}
 
 }

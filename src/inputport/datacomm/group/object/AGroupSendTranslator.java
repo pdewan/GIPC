@@ -6,6 +6,7 @@ import inputport.datacomm.group.GroupNamingSender;
 import inputport.datacomm.simplex.buffer.SendRegistrar;
 
 import java.nio.ByteBuffer;
+import java.util.Collection;
 import java.util.Set;
 
 import serialization.Serializer;
@@ -24,7 +25,7 @@ public class AGroupSendTranslator extends AnAbstractGroupSendTrapper<Object, Byt
 		bufferSerializationSupport = SerializerPoolSelector.createSerializerPool((SendRegistrar) inputPort);
 	}
 	@Override
-	public void send(Set<String> clientNames, Object message) {
+	public void send(Collection<String> clientNames, Object message) {
 		Tracer.info(this, this + " group serializing message " + message + " to " + clientNames);
 		try {
 			ByteBuffer bbMessage = bufferSerializationSupport.outputBufferFromObject(message);		

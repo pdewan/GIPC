@@ -17,7 +17,7 @@ import consensus.ProposalFeedbackKind;
 import consensus.ProposalState;
 import consensus.ReplicationSynchrony;
 import consensus.central.ACentralizableConsensusMechanism;
-import consensus.synchronous.ASynchronousConsensusMechanism;
+import consensus.synchronous.sequential.ASynchronousConsensusMechanism;
 
 public class APaxosConsensusMechanism<StateType> extends
 		APreparerConsensusMechanism<StateType> implements Prepared<StateType> {
@@ -69,7 +69,6 @@ public class APaxosConsensusMechanism<StateType> extends
 				numConsensusMembers(), numCurrentMembers(),
 				aNumPrepareNotifications, aNumPrepareNotifications);
 	}
-
 	protected StateType preparedState(float aPreparedProposalNumber) {
 		float aChosenProposalNumber = maxAcceptedProposalNumberReceivedInPreparedNotification <= 0 ? aPreparedProposalNumber
 				: maxAcceptedProposalNumberReceivedInPreparedNotification;
@@ -155,14 +154,14 @@ public class APaxosConsensusMechanism<StateType> extends
 	}
 
 	@Override
-	public void prepared(float anAcceptedProposalNumber,
+	public void prepared(float aPreparedOrAcceptedProposalNumber,
 			StateType anAcceptedProposal, float aPreparedProposalNumber,
 			ProposalFeedbackKind aFeedbackKind) {
 		ProposalPreparedNotificationReceived.newCase(this, getObjectName(),
-				anAcceptedProposalNumber, anAcceptedProposal,
+				aPreparedOrAcceptedProposalNumber, anAcceptedProposal,
 				aPreparedProposalNumber, aFeedbackKind);
 
-		recordReceivedPreparedNotification(anAcceptedProposalNumber,
+		recordReceivedPreparedNotification(aPreparedOrAcceptedProposalNumber,
 				anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
 		if (!isPending(aPreparedProposalNumber)
 				|| isAggregatePrepared(aPreparedProposalNumber)) {
@@ -176,7 +175,7 @@ public class APaxosConsensusMechanism<StateType> extends
 							anAcceptedProposal, aFeedbackKind));
 			return;
 		}
-		aggregatePreparedNotification(anAcceptedProposalNumber,
+		aggregatePreparedNotification(aPreparedOrAcceptedProposalNumber,
 				anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
 
 	}

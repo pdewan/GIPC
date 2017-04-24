@@ -2,6 +2,7 @@ package inputport.datacomm.group;
 
 import inputport.datacomm.NamingSender;
 
+import java.util.Collection;
 import java.util.Set;
 
 import util.trace.Tracer;
@@ -12,7 +13,7 @@ public class AGroupToUniSendMessageForwarder<InMessageType> extends AnAbstractGr
 		 super (aDestination);
 	}
 	@Override
-	public void send(Set<String> clientNames, InMessageType message) {
+	public void send(Collection<String> clientNames, InMessageType message) {
 		Tracer.info(this, this + "group forwarding sent message:" + message +  " to: " + clientNames);
 		for (String clientName: clientNames)
 			destination.send(clientName,  message);

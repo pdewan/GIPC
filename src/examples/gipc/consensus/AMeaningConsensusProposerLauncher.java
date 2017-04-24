@@ -49,13 +49,21 @@ public abstract class AMeaningConsensusProposerLauncher extends
 			System.out.println("Retrying proposal");
 		}
 	}
+	
+	protected int meaning1() {
+		return MEANING_1;
+	}
+	
+	protected int meaning2() {
+		return MEANING_2;
+	}
 
 	public void proposeValues1() {
-		proposeMeaning(MEANING_1);
+		proposeMeaning(meaning1());
 	}
 
 	public void proposeValues2() {
-		proposeMeaning(MEANING_2);
+		proposeMeaning(meaning2());
 	}
 
 	protected void doPropose() {

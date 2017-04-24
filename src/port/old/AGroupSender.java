@@ -5,6 +5,7 @@ import inputport.datacomm.duplex.QueryableDuplexServerSender;
 import inputport.datacomm.group.GroupNamingSender;
 import inputport.datacomm.group.GroupSender;
 
+import java.util.Collection;
 import java.util.Set;
 
 
@@ -26,7 +27,7 @@ public class AGroupSender<MessageType> implements GroupSender<MessageType>{
 		duplexSender.reply(message);
 	}
 	@Override
-	public void send(Set<String> clientNames, MessageType message) {
+	public void send(Collection<String> clientNames, MessageType message) {
 		groupNamingSender.send(clientNames, message);
 	}
 	@Override

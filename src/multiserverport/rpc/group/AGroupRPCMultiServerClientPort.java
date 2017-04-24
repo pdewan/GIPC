@@ -8,6 +8,7 @@ import inputport.rpc.group.AGroupSerializableCallTrapperFactory;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.Set;
 
 import multiserverport.datacomm.group.GroupMultiServerClientPort;
@@ -136,7 +137,7 @@ public class AGroupRPCMultiServerClientPort extends ADuplexRPCMultiServerClientP
 		
 	}
 	@Override
-	public void send(Set<String> clientNames, Object message) {
+	public void send(Collection<String> clientNames, Object message) {
 		objectGroupMultiServerClientPort.send(clientNames, message);
 	}
 	

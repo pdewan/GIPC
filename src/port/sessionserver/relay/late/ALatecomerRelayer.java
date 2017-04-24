@@ -2,6 +2,7 @@ package port.sessionserver.relay.late;
 
 import inputport.rpc.group.GroupRPCServerInputPort;
 
+import java.util.Collection;
 import java.util.Set;
 
 import port.relay.ARelayer;
@@ -19,7 +20,7 @@ public class ALatecomerRelayer
 	}
 	
 	@Override
-	public void relay(String sessionName, Set<String> remoteEnds, MessageWithSource message) {
+	public void relay(String sessionName, Collection<String> remoteEnds, MessageWithSource message) {
 		Tracer.info(this, "Group relay, remote ends: " + remoteEnds + "of message " + message);
 //		super.relay(sessionName, remoteEnds, message);
 		super.relay(remoteEnds, message);

@@ -15,6 +15,7 @@ import inputport.datacomm.group.GroupToUniSendTrapper;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 
 import java.nio.ByteBuffer;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -99,7 +100,7 @@ public class AnOldGroupServerInputPort<MessageType>  implements GroupServerInput
 //		
 //	}
 	@Override
-	public void send(Set<String> clientNames, MessageType message) {
+	public void send(Collection<String> clientNames, MessageType message) {
 		groupNamingSender.send(clientNames, message);
 	}
 	

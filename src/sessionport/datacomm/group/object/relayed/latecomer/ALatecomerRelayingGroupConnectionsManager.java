@@ -3,6 +3,7 @@ package sessionport.datacomm.group.object.relayed.latecomer;
 import inputport.ConnectionType;
 import inputport.rpc.duplex.RPCReturnValue;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -282,7 +283,7 @@ public class ALatecomerRelayingGroupConnectionsManager
 		return !replayMode;
 	}
 	@Override
-	public void send(Set<String> clientNames, Object message) {
+	public void send(Collection<String> clientNames, Object message) {
 //		if (!replayMode) // control message is also not sent!
 		if (preSend(message))
 

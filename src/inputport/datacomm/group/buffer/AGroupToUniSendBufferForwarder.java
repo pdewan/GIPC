@@ -4,6 +4,7 @@ import inputport.datacomm.NamingSender;
 import inputport.datacomm.group.AnAbstractGroupToUniSendTrapper;
 
 import java.nio.ByteBuffer;
+import java.util.Collection;
 import java.util.Set;
 
 public class AGroupToUniSendBufferForwarder extends AnAbstractGroupToUniSendTrapper<ByteBuffer, ByteBuffer>{
@@ -11,7 +12,7 @@ public class AGroupToUniSendBufferForwarder extends AnAbstractGroupToUniSendTrap
 		 super (aDestination);
 	}	
 	@Override
-	public void send(Set<String> clientNames, ByteBuffer message) {
+	public void send(Collection<String> clientNames, ByteBuffer message) {
 		ByteBuffer messageCopy = null;
 		int position = 0;
 		int limit = 0;

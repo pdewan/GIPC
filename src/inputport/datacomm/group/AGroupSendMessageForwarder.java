@@ -1,5 +1,6 @@
 package inputport.datacomm.group;
 
+import java.util.Collection;
 import java.util.Set;
 
 import util.trace.Tracer;
@@ -10,7 +11,7 @@ public class AGroupSendMessageForwarder<InMessageType> extends AnAbstractGroupSe
 		 super (aDestination);
 	}
 	@Override
-	public void send(Set<String> clientNames, InMessageType message) {
+	public void send(Collection<String> clientNames, InMessageType message) {
 		Tracer.info(this, this + "group forwarding sent message:" + message +  " to: " + clientNames);
 		destination.send(clientNames,  message);
 	}

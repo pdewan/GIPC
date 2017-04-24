@@ -4,6 +4,7 @@ import inputport.InputPort;
 import inputport.datacomm.group.AnAbstractGroupSendTrapper;
 import inputport.datacomm.group.GroupNamingSender;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -51,7 +52,7 @@ public class CopyOfASingleResponseServerGroupSendTrapper extends AnAbstractGroup
 //	} 
 	
 	@Override
-	public synchronized void send(Set<String> clientNames, Object aMessage) {
+	public synchronized void send(Collection<String> clientNames, Object aMessage) {
 		boolean isCurrentServer = false;
 		for (String clientName:clientNames) {
 			if (!(sentMessagesManager.shouldSend(inputPort.getLocalName(), clientName))) {

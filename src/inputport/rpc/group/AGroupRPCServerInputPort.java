@@ -10,6 +10,7 @@ import inputport.rpc.duplex.ADuplexRPCServerInputPort;
 
 import java.io.Serializable;
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -203,7 +204,7 @@ public class AGroupRPCServerInputPort extends ADuplexRPCServerInputPort implemen
 		
 	}
 	@Override
-	public void send(Set<String> clientNames, Object message) {
+	public void send(Collection<String> clientNames, Object message) {
 		objectGroupServerInputPort.send(clientNames, message);
 	}
 	

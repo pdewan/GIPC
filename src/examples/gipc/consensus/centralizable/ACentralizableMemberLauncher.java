@@ -4,10 +4,10 @@ import consensus.ConsensusMechanism;
 import consensus.ConsensusMechanismFactory;
 import consensus.ReplicationSynchrony;
 import consensus.central.ACentralizableConsensusMechanismFactory;
-import consensus.synchronous.ASynchronousConsensusMechanism;
-import consensus.synchronous.ASynchronousConsensusMechanismFactory;
-import consensus.synchronous.Accepted;
-import consensus.synchronous.Acceptor;
+import consensus.synchronous.sequential.ASynchronousConsensusMechanism;
+import consensus.synchronous.sequential.ASynchronousConsensusMechanismFactory;
+import consensus.synchronous.sequential.Accepted;
+import consensus.synchronous.sequential.Acceptor;
 import examples.gipc.consensus.AMeaningConsensusProposerLauncher;
 import examples.gipc.consensus.AnExampleGreetingMeaningConsensusProposerLauncher;
 

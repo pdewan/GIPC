@@ -10,6 +10,7 @@ import inputport.datacomm.group.GroupServerInputPort;
 
 import java.io.Serializable;
 import java.nio.ByteBuffer;
+import java.util.Collection;
 import java.util.Set;
 
 import port.trace.AConnectionEvent;
@@ -79,7 +80,7 @@ public  class AGroupObjectServerInputPort extends
 	
 	
 	@Override
-	public void send(Set<String> clientNames, Object message) {
+	public void send(Collection<String> clientNames, Object message) {
 		if (clientNames.size() == 0) return;
 //		ByteBuffer message = bufferSerializationSupport.outputBufferFromSerializable(object);
 //		bbGroupServerInputPort.send(clientNames, message);

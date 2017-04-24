@@ -3,6 +3,7 @@ package port.causal;
 import inputport.datacomm.group.AnAbstractGroupSendTrapper;
 import inputport.datacomm.group.GroupNamingSender;
 
+import java.util.Collection;
 import java.util.Set;
 
 import util.trace.Tracer;
@@ -22,7 +23,7 @@ public class ACausalSendMessageForwarder extends AnAbstractGroupSendTrapper<Obje
 		myVectorTimeStamp.addUser(myName);
 	}
 	@Override
-	public void send(Set<String> remoteNames, Object message) {
+	public void send(Collection<String> remoteNames, Object message) {
 //		Message.info(this, this + " causually forwarding message " + message + " to " + remoteNames);
 		myVectorTimeStamp.addMessage(myName);
 		VectorTimeStampedMessage wrappedMessage = 

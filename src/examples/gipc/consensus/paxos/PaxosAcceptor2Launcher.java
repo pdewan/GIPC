@@ -17,6 +17,7 @@ APaxosMemberLauncher
 
 	public static void main(String[] args) {
 		ConsensusTraceUtility.setTracing();
+		
 		new PaxosAcceptor2Launcher(MY_NAME, MY_PORT_NUMBER);
 	}
 

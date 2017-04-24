@@ -4,6 +4,7 @@ import inputport.InputPort;
 import inputport.datacomm.NamingSender;
 import inputport.datacomm.group.GroupNamingSender;
 
+import java.util.Collection;
 import java.util.Set;
 
 import util.trace.Tracer;
@@ -21,7 +22,7 @@ public class AMultipleSendGroupForwarder implements GroupNamingSender<Object>{
 		destination = aDestination;
 	}
 	@Override
-	public void send(Set<String> clientNames, Object message) {
+	public void send(Collection<String> clientNames, Object message) {
 		Tracer.info(this, this + " multiply sending  message " + message + " to " + clientNames);
 		for (String clientName:clientNames) {
 			destination.send(clientName, message);

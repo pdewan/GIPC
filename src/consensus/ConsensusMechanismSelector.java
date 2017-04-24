@@ -1,6 +1,6 @@
 package consensus;
 
-import consensus.synchronous.ASynchronousConsensusMechanismFactory;
+import consensus.synchronous.sequential.ASynchronousConsensusMechanismFactory;
 import port.SessionChoice;
 
 public class ConsensusMechanismSelector {

@@ -2,6 +2,7 @@ package port.relay;
 
 import inputport.rpc.group.GroupRPCServerInputPort;
 
+import java.util.Collection;
 import java.util.Set;
 
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
@@ -41,7 +42,7 @@ public class ARelayer implements Relayer{
 	}
 	
 	@Override
-	public void relay(Set<String> remoteEnds, MessageWithSource message) {
+	public void relay(Collection<String> remoteEnds, MessageWithSource message) {
 		Tracer.info(this, "Relaying message:" + message + " to " + remoteEnds);		
 		groupRPCServerInputPort.send(remoteEnds, message);		
 	}

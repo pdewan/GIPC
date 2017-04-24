@@ -4,6 +4,7 @@ import inputport.InputPort;
 import inputport.datacomm.group.AnAbstractGroupSendTrapper;
 import inputport.datacomm.group.GroupNamingSender;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ public class ASingleResponseServerGroupSendTrapperWrongAssumptions extends AnAbs
 
 	
 	@Override
-	public void send(Set<String> clientNames, Object aMessage) {
+	public void send(Collection<String> clientNames, Object aMessage) {
 		sentMessagesManager.addMessage(clientNames, aMessage);
 		if (sentMessagesManager.shouldSend(inputPort.getLocalName(), clientNames)) {
 			List<MessageWithId> bufferedMessages = sentMessagesManager.getBufferedMessages(clientNames);

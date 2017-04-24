@@ -5,6 +5,7 @@ import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.group.AnAbstractGroupServerInputPort;
 
 import java.nio.ByteBuffer;
+import java.util.Collection;
 import java.util.Set;
 
 
@@ -28,7 +29,7 @@ public class ABufferGroupServerInputPort extends AnAbstractGroupServerInputPort<
 		setReceiveTrapper(receiveTrapper);
 	}
 	@Override
-	public void send(Set<String> clientNames, ByteBuffer message) {
+	public void send(Collection<String> clientNames, ByteBuffer message) {
 		groupSendTrapper.send(clientNames, message);
 
 	}

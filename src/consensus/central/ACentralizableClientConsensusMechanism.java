@@ -8,7 +8,7 @@ import sessionport.rpc.group.GIPCSessionRegistry;
 import consensus.ConsensusMechanism;
 import consensus.ProposalFeedbackKind;
 import consensus.ProposalState;
-import consensus.synchronous.ASynchronousConsensusMechanism;
+import consensus.synchronous.sequential.ASynchronousConsensusMechanism;
 
 public class ACentralizableClientConsensusMechanism<StateType> 
 	extends ASynchronousConsensusMechanism<StateType>

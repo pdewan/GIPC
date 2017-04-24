@@ -1,8 +1,9 @@
 package examples.gipc.consensus.paxos;
 
-import inputport.datacomm.group.ADescendingMultipleSendGroupForwarder;
-import inputport.datacomm.group.ADescendingMultipleSendGroupForwarderFactory;
-import inputport.datacomm.group.AnAscendingMultipleSendGroupForwarderFactory;
+import inputport.datacomm.group.GroupSendMessageForwarderSelector;
+import inputport.datacomm.group.object.ADescendingMultipleSendGroupForwarder;
+import inputport.datacomm.group.object.ADescendingMultipleSendGroupForwarderFactory;
+import inputport.datacomm.group.object.AnAscendingMultipleSendGroupForwarderFactory;
 import inputport.datacomm.group.object.MultipleSendGroupForwarderSelector;
 import examples.gipc.consensus.Member1;
 import examples.gipc.consensus.Member2;
@@ -22,10 +23,8 @@ public class PaxosProposer3Launcher extends
 
 	public static void main(String[] args) {
 		ConsensusTraceUtility.setTracing();
-		MultipleSendGroupForwarderSelector.setMultipleSendGroupForwarderFactory(
-				new APaxosMultiCastFactory());
-//		MultipleSendGroupForwarderSelector.setMultipleSendGroupForwarderFactory(new ADescendingMultipleSendGroupForwarderFactory());
-
+//		GroupSendMessageForwarderSelector.setGroupSendMessageForwarderFactory(
+//				new APaxosMultiCastFactory());
 		new PaxosProposer3Launcher(MY_NAME, MY_PORT_NUMBER)
 				.proposeValues();
 	}

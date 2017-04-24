@@ -45,7 +45,7 @@ public class AGroupServerMessagesManager extends AServerMessagesManager implemen
 //	}	
 	// called by send trapper
 	@Override
-	public boolean shouldSend (String aServerName, Set<String> clientNames) {
+	public boolean shouldSend (String aServerName, Collection<String> clientNames) {
 		return aServerName.equals(currentServerChoice);
 	}
 	//called by receive trapper
@@ -112,7 +112,7 @@ public class AGroupServerMessagesManager extends AServerMessagesManager implemen
 	
 	//called by group trapper, which clears the buffer
 	@Override
-	public List<MessageWithId> getBufferedMessages(Set<String> clientNames) {
+	public List<MessageWithId> getBufferedMessages(Collection<String> clientNames) {
 		return bufferedMessages;
 	}
 	
@@ -132,7 +132,7 @@ public class AGroupServerMessagesManager extends AServerMessagesManager implemen
 	
 	// updated by send trapper
 	@Override
-	public void addMessage(Set<String> clientNames, Object aMessage) {			
+	public void addMessage(Collection<String> clientNames, Object aMessage) {			
 		MessageWithId messageWithId = new AMessageWithId(aMessage, currentId);
 		bufferedMessages.add(messageWithId);
 		currentId ++;

@@ -32,6 +32,8 @@ public interface ConsensusCustomization {
 	public void setCentralized(boolean isCentralized);
 	public ReplicationSynchrony getPrepareSynchrony() ;
 	public void setPrepareSynchrony(ReplicationSynchrony prepareSynchrony);
+	public boolean isSequentialAccess() ;
+	public void setSequentialAccess(boolean sequentialAccess) ;
 	
 	
 }

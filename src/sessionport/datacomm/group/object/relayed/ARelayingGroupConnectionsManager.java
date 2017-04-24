@@ -1,5 +1,6 @@
 package sessionport.datacomm.group.object.relayed;
 
+import java.util.Collection;
 import java.util.Set;
 
 import port.ParticipantChoice;
@@ -22,7 +23,7 @@ public class ARelayingGroupConnectionsManager
 	}
 	// again, we do not make this synchronous, so that sends can happen with receives
 	@Override
-	public void send(Set<String> clientNames, Object message) {
+	public void send(Collection<String> clientNames, Object message) {
 //		Set<String> globalClientNames = new HashSet();
 //		for (String clientName: clientNames) {
 //			globalClientNames.add(ARelayer.localToUniqueRelayerName(sessionName, clientName));

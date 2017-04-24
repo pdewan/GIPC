@@ -9,6 +9,7 @@ import inputport.rpc.duplex.DuplexCallTrapperSharedState;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.Set;
 
 public class AGroupSerializableCallSendTrapper 
@@ -38,7 +39,7 @@ public class AGroupSerializableCallSendTrapper
 
 	}
 	@Override
-	public void send(Set<String> clientNames, Object message) {
+	public void send(Collection<String> clientNames, Object message) {
 		SerializableCall serializableCall = (SerializableCall) message;		
 //		lastSerializableCall = serializableCall;
 //		lastClientNames = clientNames;

@@ -8,6 +8,7 @@ import inputport.datacomm.group.buffer.ServerBufferGroupIPTrapperSelector;
 import inputport.datacomm.group.buffer.ServerGroupToUniSendSendBufferTrapperSelector;
 
 import java.nio.ByteBuffer;
+import java.util.Collection;
 import java.util.Set;
 
 import multiserverport.datacomm.duplex.DuplexMultiServerClientPort;
@@ -56,7 +57,7 @@ public class ABufferGroupMultiServerClientPort
 
 	
 	@Override
-	public void send(Set<String> clientNames, ByteBuffer message) {
+	public void send(Collection<String> clientNames, ByteBuffer message) {
 		groupSendTrapper.send(clientNames, message);
 
 	}

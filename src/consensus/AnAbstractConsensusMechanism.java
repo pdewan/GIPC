@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import consensus.asynchronous.LearnedKind;
+import consensus.asynchronous.sequential.LearnedKind;
 import port.trace.RemoteEndConnected;
 import port.trace.RemoteEndDisconnected;
 import port.trace.consensus.ProposalConsensusOccurred;
@@ -42,6 +42,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected Float lastProposalNumber;
 	protected Float myLastProposalNumber;
 	protected Float lastConsensusProposal;
+	protected boolean sequentialAccess = false;
+	
 	
 	protected StateType myLastState;
 	protected Map<String, Integer> proposalCounts = new HashMap<String, Integer>();
@@ -753,6 +755,12 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	public void setPrepareSynchrony(ReplicationSynchrony prepareSynchrony) {
 		this.prepareSynchrony = prepareSynchrony;
+	}
+	public boolean isSequentialAccess() {
+		return sequentialAccess;
+	}
+	public void setSequentialAccess(boolean sequentialAccess) {
+		this.sequentialAccess = sequentialAccess;
 	}
 
 }

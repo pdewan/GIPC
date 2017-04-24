@@ -1,7 +1,7 @@
 package examples.gipc.consensus.asynchronous;
 
 import consensus.ConsensusMechanismFactory;
-import consensus.asynchronous.AnAsynchronousConsensusMechanismFactory;
+import consensus.asynchronous.sequential.AnAsynchronousConsensusMechanismFactory;
 import examples.gipc.consensus.AnExampleGreetingMeaningConsensusProposerLauncher;
 import examples.gipc.consensus.AMeaningConsensusProposerLauncher;
 
