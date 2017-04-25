@@ -52,9 +52,17 @@ public abstract class AnExampleConsensusMemberLauncher extends AConsensusMemberL
 	public AnExampleConsensusMemberLauncher(String aLocalName, int aPortNumber) {
 		super(aLocalName, aPortNumber);
 	}	
-	protected void addListenersAndVetoersToConsensusMechanisms() {
+	protected void addListenersAndVetoersToMeaningMechanism() {
 		meaningOfLifeMechanism.addConsensusListener(new AMeaningOfLifeConsensusListener());
+	}
+	protected void addListenersAndVetoersToGreetingMechanism() {
 		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());
+	}
+	protected void addListenersAndVetoersToConsensusMechanisms() {
+		addListenersAndVetoersToMeaningMechanism();
+		addListenersAndVetoersToGreetingMechanism();
+//		meaningOfLifeMechanism.addConsensusListener(new AMeaningOfLifeConsensusListener());
+//		greetingMechanism.addConsensusListener(new AGreetingConsensusListener());
 	}
 	@Override
 	protected short numMembersToWaitFor() {

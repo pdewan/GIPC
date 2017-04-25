@@ -14,7 +14,9 @@ public class APaxosScenariosMemberLauncher extends APaxosMemberLauncher {
 	public APaxosScenariosMemberLauncher(String aLocalName, int aPortNumber) {
 		super(aLocalName, aPortNumber);
 	}
-
+	protected  void createConsensusMechanisms(short anId) {
+		createMeaningConsensusMechanism();
+	}
 	@Override
 	protected void customizeConsensusMechanisms() {
 

@@ -29,7 +29,12 @@ public class APaxosMemberLauncher extends AnExampleProposerLauncher {
 	protected  void createConsensusMechanisms(short anId) {
 		super.createConsensusMechanisms(anId);
 	}
-
+	protected void addListenersAndVetoersToConsensusMechanisms() {
+		super.addListenersAndVetoersToConsensusMechanisms();
+	}
+	public void proposeValues() {
+		super.proposeValues();
+	}
 
 	@Override
 	protected ConsensusMechanismFactory<Integer> meaningConsensusMechanismFactory() {
