@@ -610,6 +610,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 			ConnectionType aConnectionType) {
 		RemoteEndDisconnected.newCase(this, rpcSessionPort.getLocalName(), aRemoteEndName, anExplicitDisconnection, anExplanation, aConnectionType);
 		numCurrentMembers--;
+		System.err.println (aRemoteEndName + " has left the session");
 //		newProposalState(getPendingProposals(),
 //				ProposalState.PROPOSAL_NOT_COMMUNICATED);
 	}

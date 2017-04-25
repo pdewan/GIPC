@@ -24,6 +24,11 @@ public class APaxosMemberLauncher extends AnExampleProposerLauncher {
 	protected Long reProposeTime() {
 		return overrideRetry?null:super.reProposeTime();
 	}
+	@Override
+
+	protected  void createConsensusMechanisms(short anId) {
+		super.createConsensusMechanisms(anId);
+	}
 
 
 	@Override
@@ -89,14 +94,15 @@ public class APaxosMemberLauncher extends AnExampleProposerLauncher {
 		
 	}
 	protected void setThreads() {
-//		meaningOfLifeMechanism.setAcceptedInSeparareThread(true);
-//		meaningOfLifeMechanism.setAcceptInSeparateThread(true);
-//		meaningOfLifeMechanism.setPrepareInSeparateThread(true);
+		meaningOfLifeMechanism.setAcceptedInSeparareThread(true);
+		meaningOfLifeMechanism.setAcceptInSeparateThread(true);
+		meaningOfLifeMechanism.setPrepareInSeparateThread(true);
 	}
 	@Override
+	// needed only for creating example cases
     protected  void setFactories() {
-//		GroupSendMessageForwarderSelector.setGroupSendMessageForwarderFactory(
-//		new APaxosMultiCastFactory());
+		GroupSendMessageForwarderSelector.setGroupSendMessageForwarderFactory(
+		new APaxosMultiCastFactory());
 	}
 
 }

@@ -1,4 +1,4 @@
-package examples.gipc.consensus.paxos;
+package examples.gipc.consensus.paxos.scenarios;
 
 import java.util.Collection;
 import java.util.List;
