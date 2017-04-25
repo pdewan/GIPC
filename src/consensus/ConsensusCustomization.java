@@ -23,17 +23,19 @@ public interface ConsensusCustomization {
 	public boolean isServer();
 	public boolean isCentralized() ;
 	public String getServerName() ;
-//	public void setIsClient(boolean isClient) ;
-
-	public void setIsServer(boolean isServer) ;
-
-	public void setServerName(String serverName) ;
-
+//	public void setIsServer(boolean isServer) ;
+	public void setServerName(String serverName);
 	public void setCentralized(boolean isCentralized);
 	public ReplicationSynchrony getPrepareSynchrony() ;
 	public void setPrepareSynchrony(ReplicationSynchrony prepareSynchrony);
 	public boolean isSequentialAccess() ;
 	public void setSequentialAccess(boolean sequentialAccess) ;
+	public boolean isAcceptInSeparateThread() ;
+	public void setAcceptInSeparateThread(boolean acceptInSeparateThread) ;
+	public boolean isPrepareInSeparateThread() ;
+	public void setPrepareInSeparateThread(boolean prepareInSeparateThread) ;
+	public boolean isAcceptedInSeparareThread() ;
+	public void setAcceptedInSeparareThread(boolean acceptedInSeparareThread) ;
 	
 	
 }

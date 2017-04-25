@@ -95,7 +95,13 @@ public class ASynchronousConsensusMechanism<StateType> extends
 	protected void sendAcceptRequest(float aProposalNumber, StateType aProposal) {
 		ProposalAcceptRequestSent.newCase(this, getObjectName(),
 				aProposalNumber, aProposal);
+		if (!isAcceptInSeparateThread()) {
 		acceptors().accept(aProposalNumber, aProposal);
+		} else {
+			Thread anAcceptThread = new Thread (new AnAcceptMulticastRunnable<StateType>(acceptors(), aProposalNumber, aProposal));
+			anAcceptThread.setName("Accept Multicaster: " + aProposalNumber);
+			anAcceptThread.start();
+		}
 	}
 
 	protected boolean customSufficientAgrements(float aProposalNumber,

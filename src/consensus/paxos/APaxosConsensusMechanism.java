@@ -18,6 +18,7 @@ import consensus.ProposalState;
 import consensus.ReplicationSynchrony;
 import consensus.central.ACentralizableConsensusMechanism;
 import consensus.synchronous.sequential.ASynchronousConsensusMechanism;
+import consensus.synchronous.sequential.AnAcceptedMulticastRunnable;
 
 public class APaxosConsensusMechanism<StateType> extends
 		APreparerConsensusMechanism<StateType> implements Prepared<StateType> {
@@ -104,7 +105,7 @@ public class APaxosConsensusMechanism<StateType> extends
 		return result;
 	}
 
-	protected Preparer<StateType> all() {
+	protected Preparer<StateType> preparers() {
 		return (Preparer<StateType>) super.all();
 	}
 
@@ -119,9 +120,19 @@ public class APaxosConsensusMechanism<StateType> extends
 		maxProposalNumberSentInPrepareRequest = Math.max(
 				maxProposalNumberSentInPrepareRequest, aProposalNumber);
 	}
+	
+	
 
 	protected void sendPrepareRequest(float aProposalNumber, StateType aProposal) {
-		all().prepare(aProposalNumber, aProposal);
+		if (!isPrepareInSeparateThread()) {
+		   preparers().prepare(aProposalNumber, aProposal);
+		} else {
+			Thread aThread = new Thread (
+					new APrepareMulticastRunnable<StateType>(preparers(), 
+							aProposalNumber, aProposal));
+			aThread.setName("Prepare Thread:" + aProposalNumber);
+			aThread.start();
+		}
 	}
 
 	protected void localPropose(float aProposalNumber, StateType aProposal) {
@@ -154,7 +165,15 @@ public class APaxosConsensusMechanism<StateType> extends
 
 	protected void sendAcceptedNotificationToLearners(float aProposalNumber,
 			StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
-		all().accepted(aProposalNumber, aProposal, aFeedbackKind);
+		if (!isAcceptedInSeparareThread()) {
+			preparers().accepted(aProposalNumber, aProposal, aFeedbackKind);
+		} else {
+			Thread aThread = new Thread(
+					new AnAcceptedMulticastRunnable<StateType>(
+							preparers(), aProposalNumber, aProposal, aFeedbackKind));
+			aThread.setName("Accepted thread " + aProposalNumber);
+			aThread.start();
+		}
 	}
 
 	@Override

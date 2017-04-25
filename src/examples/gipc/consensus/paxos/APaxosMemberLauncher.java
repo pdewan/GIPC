@@ -83,9 +83,15 @@ public class APaxosMemberLauncher extends AnExampleProposerLauncher {
 //		simulateNonAtomicSynchronous();
 //		simulateCentralizedAsynchronous();
 //		simulateCentralizedSynchronous();
-//		simulateBasicPaxos();
-		simulateSequentialPaxos();
+		simulateBasicPaxos();
+//		simulateSequentialPaxos();
+		setThreads();// needed only for creating example cases
 		
+	}
+	protected void setThreads() {
+//		meaningOfLifeMechanism.setAcceptedInSeparareThread(true);
+//		meaningOfLifeMechanism.setAcceptInSeparateThread(true);
+//		meaningOfLifeMechanism.setPrepareInSeparateThread(true);
 	}
 	@Override
     protected  void setFactories() {

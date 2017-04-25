@@ -83,9 +83,15 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected boolean isClient;
 	protected boolean isServer;
 	protected String serverName;
-	protected boolean isCentralized;
-	private boolean didNotify;
-	private boolean overridingPaxos;
+	protected boolean centralized;
+	protected boolean didNotify;
+	
+	protected boolean acceptInSeparateThread;
+	protected boolean prepareInSeparateThread;
+	protected boolean acceptedInSeparareThread;
+	
+	
+//	private boolean overridingPaxos;
 
 	
 	
@@ -165,12 +171,12 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected boolean isAsynchronousReplication() {
 		return acceptSynchrony == ReplicationSynchrony.ASYNCHRONOUS;
 	}
-	protected boolean isOverridingPaxos() {
-		return overridingPaxos;
-	}
-	protected void setOverridingPaxos(boolean newVal) {
-		overridingPaxos = newVal;
-	}
+//	protected boolean isOverridingPaxos() {
+//		return overridingPaxos;
+//	}
+//	protected void setOverridingPaxos(boolean newVal) {
+//		overridingPaxos = newVal;
+//	}
 	protected boolean isNonAtomic() {
 		return concurrencyKind == ConcurrencyKind.NON_ATOMIC;
 	}
@@ -704,7 +710,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 		return rpcSessionPort.getLocalName().equals(getServerName());
 	}
 	public boolean isCentralized() {
-		return isCentralized;
+		return centralized;
 	}
 	protected List<String> getMembers() {
 		List<String> aMembers = 
@@ -727,16 +733,16 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 //		this.isClient = isClient;
 //	}
 
-	public void setIsServer(boolean isServer) {
-		this.isServer = isServer;
-	}
+//	public void setIsServer(boolean isServer) {
+//		this.isServer = isServer;
+//	}
 
 	public void setServerName(String serverName) {
 		this.serverName = serverName;
 	}
 
 	public void setCentralized(boolean isCentralized) {
-		this.isCentralized = isCentralized;
+		this.centralized = isCentralized;
 	}
 	
 	protected Object all() {
@@ -768,6 +774,24 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	public void setSequentialAccess(boolean sequentialAccess) {
 		this.sequentialAccess = sequentialAccess;
+	}
+	public boolean isAcceptInSeparateThread() {
+		return acceptInSeparateThread;
+	}
+	public void setAcceptInSeparateThread(boolean acceptInSeparateThread) {
+		this.acceptInSeparateThread = acceptInSeparateThread;
+	}
+	public boolean isPrepareInSeparateThread() {
+		return prepareInSeparateThread;
+	}
+	public void setPrepareInSeparateThread(boolean prepareInSeparateThread) {
+		this.prepareInSeparateThread = prepareInSeparateThread;
+	}
+	public boolean isAcceptedInSeparareThread() {
+		return acceptedInSeparareThread;
+	}
+	public void setAcceptedInSeparareThread(boolean acceptedInSeparareThread) {
+		this.acceptedInSeparareThread = acceptedInSeparareThread;
 	}
 
 }

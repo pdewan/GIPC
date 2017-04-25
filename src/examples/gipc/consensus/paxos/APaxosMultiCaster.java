@@ -16,6 +16,8 @@ public class APaxosMultiCaster<InMessageType> extends AnAscendingGroupSendMessag
 	
 	public static final String ACCEPTED = "accepted";
 	public static final String ACCEPT = "accept";
+	public static final String PREPARE = "prepare";
+
 	
 	public APaxosMultiCaster(GroupNamingSender<InMessageType> aDestination) {
 		super(aDestination);
@@ -30,10 +32,36 @@ public class APaxosMultiCaster<InMessageType> extends AnAscendingGroupSendMessag
 		return false;
 	}
 	
+	protected void sendAccept(List<String> aSortedList, InMessageType message) {
+		String aLastElement = aSortedList.remove(aSortedList.size() -1);
+		destination.send(aSortedList, message);
+		// stop 1 from sending accept to 3 until 3's prepare request is executed at all sites		
+		destination.send(aLastElement, message); 		
+	}
+    protected void sendAccepted(List<String> aSortedList, InMessageType message) {
+    	String aLastElement = aSortedList.remove(aSortedList.size() -1);
+		destination.send(aSortedList, message);
+		// stop 2 from sending accepted to 3 here until 3 is ready to begin accept phase 
+		destination.send(aLastElement, message); 	
+		
+	}
+    protected void sendPrepare(List<String> aSortedList, InMessageType message) {
+    	String aFirstElement = aSortedList.remove(0);
+    	String aLastElement = aSortedList.remove(aSortedList.size() -1);
+		destination.send(aSortedList, message);
+		// stop 3 from sending prepare request to 1 until 1 has sent accept to others
+		destination.send(aFirstElement, message); 
+		destination.send(aLastElement, message);
+		
+	}
+   
+	
 	public void send(Collection<String> clientNames, InMessageType message) {
 		 
 		 if ( destination instanceof APaxosMultiCaster ||
-				 (!isCall(message, ACCEPTED) && !isCall(message, ACCEPT))) {
+				 (!isCall(message, ACCEPTED) && 
+					!isCall(message, ACCEPT) &&
+					!isCall(message, PREPARE ))) {
 			 super.send(clientNames, message);
 			 return;
 		}
@@ -42,13 +70,20 @@ public class APaxosMultiCaster<InMessageType> extends AnAscendingGroupSendMessag
 		if (aSortedList.size() == 0) {
 			super.send(clientNames, message);
 		}
-		String aLastElement = aSortedList.remove(aSortedList.size() -1);
-		destination.send(aSortedList, message);
 		if (isCall(message, ACCEPT)) {
-			destination.send(aLastElement, message); // stop 1 until 3's prepare request is executed
-		} else {
-			destination.send(aLastElement, message); // stop 2 here until 3 is ready to begin accept phase 
+			sendAccept(aSortedList, message);
+		} else if (isCall(message, ACCEPTED)) {
+			sendAccepted(aSortedList, message);
+		} else if (isCall(message, PREPARE)) {
+			sendPrepare(aSortedList, message);
 		}
+//		String aLastElement = aSortedList.remove(aSortedList.size() -1);
+//		destination.send(aSortedList, message);
+//		if (isCall(message, ACCEPT)) {
+//			destination.send(aLastElement, message); // stop 1 until 3's prepare request is executed
+//		} else {
+//			destination.send(aLastElement, message); // stop 2 here until 3 is ready to begin accept phase 
+//		}
 	}
 
 
