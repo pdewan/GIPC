@@ -95,7 +95,7 @@ public class APaxosMemberLauncher extends AnExampleProposerLauncher {
 //		simulateCentralizedSynchronous();
 		simulateBasicPaxos();
 //		simulateSequentialPaxos();
-		setThreads();// needed only for creating example cases
+//		setThreads();// needed only for creating example cases
 		
 	}
 	protected void setThreads() {
@@ -103,11 +103,11 @@ public class APaxosMemberLauncher extends AnExampleProposerLauncher {
 		meaningOfLifeMechanism.setAcceptInSeparateThread(true);
 		meaningOfLifeMechanism.setPrepareInSeparateThread(true);
 	}
-	@Override
+//	@Override
 	// needed only for creating example cases
-    protected  void setFactories() {
-		GroupSendMessageForwarderSelector.setGroupSendMessageForwarderFactory(
-		new APaxosMultiCastFactory());
-	}
+//    protected  void setFactories() {
+////		GroupSendMessageForwarderSelector.setGroupSendMessageForwarderFactory(
+////		new APaxosMultiCastFactory());
+//	}
 
 }

@@ -14,15 +14,17 @@ public class APaxosScenariosMemberLauncher extends APaxosMemberLauncher {
 	public APaxosScenariosMemberLauncher(String aLocalName, int aPortNumber) {
 		super(aLocalName, aPortNumber);
 	}
+	@Override
 	protected  void createConsensusMechanisms(short anId) {
 		createMeaningConsensusMechanism();
 	}
 	@Override
 	protected void customizeConsensusMechanisms() {
-
 		simulateBasicPaxos();
-		setThreads();// needed only for creating example cases
-		
+		setThreads();// needed only for creating example cases		
+	}
+	protected void addListenersAndVetoersToConsensusMechanisms() {
+		addListenersAndVetoersToMeaningMechanism();;
 	}
 	protected void setThreads() {
 		meaningOfLifeMechanism.setAcceptedInSeparareThread(true);
@@ -35,5 +37,4 @@ public class APaxosScenariosMemberLauncher extends APaxosMemberLauncher {
 		GroupSendMessageForwarderSelector.setGroupSendMessageForwarderFactory(
 		new APaxosMultiCastFactory());
 	}
-
 }
