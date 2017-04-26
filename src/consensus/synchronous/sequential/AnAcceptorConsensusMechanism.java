@@ -99,12 +99,14 @@ public class AnAcceptorConsensusMechanism<StateType> extends
 	public void accept(float aProposalNumber, StateType aProposal) {
 		ProposalAcceptRequestReceived.newCase(this, getObjectName(),
 				aProposalNumber, aProposal);
+		ProposalFeedbackKind aFeedbackKind = checkAcceptRequest(aProposalNumber, aProposal);
+
 		recordReceivedAcceptRequest(aProposalNumber, aProposal);
 		if (!isPending(aProposalNumber)
 				&& !isSendAcceptReplyForResolvedProposal()) {
 			return;
 		}
-		ProposalFeedbackKind aFeedbackKind = checkAcceptRequest(aProposalNumber, aProposal);
+//		ProposalFeedbackKind aFeedbackKind = checkAcceptRequest(aProposalNumber, aProposal);
 		
 		if (!isSuccess(aFeedbackKind) && !isSendRejectionNotification()) {
 			return;

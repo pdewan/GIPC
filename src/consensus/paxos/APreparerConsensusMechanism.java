@@ -21,7 +21,7 @@ public class APreparerConsensusMechanism<StateType>
 
 	protected boolean sendPrepardNumberIfNoAccept = true;
 
-	protected float maxProposalNumberReceivedInPrepareRequest = -1;
+	protected float maxProposalNumberReceivedInPrepareOrAcceptRequest = -1;
 //	protected float proposalNumberSentInLastPreparedNotification = -1;
 //	protected float maxProposalNumberSentInSuccessfulPreparedNotification = -1;
 
@@ -42,9 +42,10 @@ public class APreparerConsensusMechanism<StateType>
 			    ProposalFeedbackKind.CONCURRENCY_CONFLICT:			 
 				checkWithVetoer(aProposalNumber, aProposal);
 	 }
+	
 	protected boolean isAcceptConcurrencyConflict (float aProposalNumber, StateType aState )  {
 //		   return maxProposalNumberSentInSuccessfulPreparedNotification > aProposalNumber;
-		   return maxProposalNumberReceivedInPrepareRequest > aProposalNumber;
+		   return maxProposalNumberReceivedInPrepareOrAcceptRequest > aProposalNumber;
 
 	}
 	protected boolean isNotPaxos() {
@@ -72,7 +73,7 @@ public class APreparerConsensusMechanism<StateType>
 		if (aPreparedOrAcceptedProposalNumber != -1) {			
 			anAcceptedState = proposal(aPreparedOrAcceptedProposalNumber);
 		} else if (sendPrepardNumberIfNoAccept()) {
-			aPreparedOrAcceptedProposalNumber = maxProposalNumberReceivedInPrepareRequest;
+			aPreparedOrAcceptedProposalNumber = maxProposalNumberReceivedInPrepareOrAcceptRequest;
 		} 		
 		prepare(aPreparedOrAcceptedProposalNumber,
 				anAcceptedState,
@@ -111,8 +112,8 @@ public class APreparerConsensusMechanism<StateType>
 	}
 
 	protected void recordSentPreparedNotification(float anAcceptedProposalNumber, StateType anAcceptedProposal, float aPreparedProposalNumber, ProposalFeedbackKind aFeedbackKind) {
-		maxProposalNumberReceivedInPrepareRequest =
-				Math.max(maxProposalNumberReceivedInPrepareRequest, aPreparedProposalNumber );
+		maxProposalNumberReceivedInPrepareOrAcceptRequest =
+				Math.max(maxProposalNumberReceivedInPrepareOrAcceptRequest, aPreparedProposalNumber );
 //		if (isSuccess(aFeedbackKind)) {
 //		maxProposalNumberSentInSuccessfulPreparedNotification =
 //				Math.max(maxProposalNumberSentInSuccessfulPreparedNotification, aPreparedProposalNumber );
@@ -143,9 +144,15 @@ public class APreparerConsensusMechanism<StateType>
 	
 	protected void recordReceivedPrepareRequest(float aProposalNumber, StateType aProposal){
 		recordProposalState(aProposalNumber, aProposal);
-		maxProposalNumberReceivedInPrepareRequest = Math.max(
-				maxProposalNumberReceivedInPrepareRequest, aProposalNumber);
+		maxProposalNumberReceivedInPrepareOrAcceptRequest = Math.max(
+				maxProposalNumberReceivedInPrepareOrAcceptRequest, aProposalNumber);
 
+	}
+	protected void recordReceivedAcceptRequest(float aProposalNumber,
+			StateType aProposal) {
+		super.recordReceivedAcceptRequest(aProposalNumber, aProposal);
+		maxProposalNumberReceivedInPrepareOrAcceptRequest = Math.max(
+				maxProposalNumberReceivedInPrepareOrAcceptRequest, aProposalNumber);
 	}
 
 	protected boolean sendPrepardNumberIfNoAccept() {

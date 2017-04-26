@@ -37,16 +37,21 @@ public class APaxosMultiCaster<InMessageType> extends AnAscendingGroupSendMessag
 	}
 	
 	protected void sendAcceptFrom1(List<String> aSortedList, InMessageType message) {
-		String aLastElement = aSortedList.remove(aSortedList.size() -1);
-		destination.send(aSortedList, message);
-		// stop 1 from sending accept to 3 until 3's prepare request is executed at all sites		
-		destination.send(aLastElement, message); 
+		String aFirstElement = aSortedList.remove(0);
+		// send to 1 (itself)
+		destination.send(aFirstElement, message); 
+		String aSecondElement = aSortedList.remove(0);
+		// send to 2
+		destination.send(aSecondElement, message); 
+		// send to others (3)
+		destination.send(aSortedList, message);		
 	}
 	protected void sendAcceptFrom3(List<String> aSortedList, InMessageType message) {
 		String aLastElement = aSortedList.remove(aSortedList.size() -1);
+		// send to 3 (itself)
 		destination.send(aSortedList, message);
-		// stop 1 from sending accept to 3 until 3's prepare request is executed at all sites		
-		destination.send(aLastElement, message); 
+		// send to others (1 and 2)
+		destination.send(aSortedList, message); 
 	}
 
 	
@@ -57,17 +62,15 @@ public class APaxosMultiCaster<InMessageType> extends AnAscendingGroupSendMessag
 			sendAcceptFrom3(aSortedList, message);
 		} else {
 			destination.send(aSortedList, message);
-		}
-//		String aLastElement = aSortedList.remove(aSortedList.size() -1);
-//		destination.send(aSortedList, message);
-//		// stop 1 from sending accept to 3 until 3's prepare request is executed at all sites		
-//		destination.send(aLastElement, message); 		
+		}	
 	}
 	
 	// stop 2 from sending accepted to 3 here until 3 is ready to begin accept phase 
 	 protected void sendAcceptedFrom2(List<String> aSortedList, InMessageType message) {
 	    	String aLastElement = aSortedList.remove(aSortedList.size() -1);
+	    	// send to 1 and 2
 			destination.send(aSortedList, message);
+			// send to 3
 			destination.send(aLastElement, message); 		
 		}
     protected void sendAccepted(List<String> aSortedList, InMessageType message) {
@@ -75,35 +78,23 @@ public class APaxosMultiCaster<InMessageType> extends AnAscendingGroupSendMessag
     		sendAcceptedFrom2(aSortedList, message);
     	} else {
     		destination.send(aSortedList, message);
-    	}
-//    	String aLastElement = aSortedList.remove(aSortedList.size() -1);
-//		destination.send(aSortedList, message);
-//		// stop 2 from sending accepted to 3 here until 3 is ready to begin accept phase 
-//		destination.send(aLastElement, message); 		
+    	}	
 	}
-    
+    // we do not have to really control this method
     protected void sendPrepareFrom1(List<String> aSortedList, InMessageType message) {
-//    	String aFirstElement = aSortedList.remove(0);
-    	String aLastElement = aSortedList.remove(aSortedList.size() -1);
-		destination.send(aLastElement, message);
-
-		destination.send(aSortedList, message);
-		// stop 3 from sending prepare request to 1 until 1 has sent accept to others
-//		destination.send(aFirstElement, message); 
-//		destination.send(aLastElement, message);
+    	destination.send(aSortedList, message);
 		
 	}
-    //prevent 3 from sending to 1 and 2 before 1 prepares everyone
     protected void sendPrepareFrom3(List<String> aSortedList, InMessageType message) {
     	
-//    	String aFirstElement = aSortedList.remove(0);
     	String aLastElement = aSortedList.remove(aSortedList.size() -1);
+    	// send to 3 (itself)
 		destination.send(aLastElement, message);
-
+		// send to 1
+    	String aFirstElement = aSortedList.remove(0);
+		destination.send(aFirstElement, message);
+		// send to others (2)
 		destination.send(aSortedList, message);
-		// stop 3 from sending prepare request to 1 until 1 has sent accept to others
-//		destination.send(aFirstElement, message); 
-//		destination.send(aLastElement, message);
 		
 	}
     protected void sendPrepare(List<String> aSortedList, InMessageType message) {
@@ -113,16 +104,7 @@ public class APaxosMultiCaster<InMessageType> extends AnAscendingGroupSendMessag
     		sendPrepareFrom3(aSortedList, message);
     	} else {
     		destination.send(aSortedList, message);
-    	}
-////    	String aFirstElement = aSortedList.remove(0);
-//    	String aLastElement = aSortedList.remove(aSortedList.size() -1);
-//		destination.send(aLastElement, message);
-//
-//		destination.send(aSortedList, message);
-//		// stop 3 from sending prepare request to 1 until 1 has sent accept to others
-////		destination.send(aFirstElement, message); 
-////		destination.send(aLastElement, message);
-		
+    	}		
 	}
    
 	
@@ -147,13 +129,6 @@ public class APaxosMultiCaster<InMessageType> extends AnAscendingGroupSendMessag
 		} else if (isCall(message, PREPARE)) {
 			sendPrepare(aSortedList, message);
 		}
-//		String aLastElement = aSortedList.remove(aSortedList.size() -1);
-//		destination.send(aSortedList, message);
-//		if (isCall(message, ACCEPT)) {
-//			destination.send(aLastElement, message); // stop 1 until 3's prepare request is executed
-//		} else {
-//			destination.send(aLastElement, message); // stop 2 here until 3 is ready to begin accept phase 
-//		}
 	}
 
 

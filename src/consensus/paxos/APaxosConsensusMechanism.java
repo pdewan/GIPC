@@ -150,7 +150,11 @@ public class APaxosConsensusMechanism<StateType> extends
 
 	protected void startAcceptPhase(float aProposalNumber, StateType aProposal) {
 		super.startAcceptPhase(aProposalNumber, aProposal);
-
+	}
+	protected void recordReceivedAcceptedNotification(float aProposalNumber,
+			StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
+		super.recordProposalState(aProposalNumber, aProposal); // could be the first time we have seen this proposal
+		super.recordReceivedAcceptedNotification(aProposalNumber, aProposal, aFeedbackKind);
 	}
 
 	protected void sendAcceptedNotification(float aProposalNumber,
