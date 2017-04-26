@@ -20,7 +20,7 @@ public class APaxosMultiCastFactory  implements GroupSendTrapperFactory{
 	@Override
 	public GroupSendTrapper createGroupSendTrapper(InputPort anInputPort,
 			GroupNamingSender aDestination) {
-		return new APaxosMultiCaster(aDestination);
+		return new APaxosMultiCaster(anInputPort, aDestination);
 	}
 
 }

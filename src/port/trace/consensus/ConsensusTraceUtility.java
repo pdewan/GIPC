@@ -56,7 +56,7 @@ public class ConsensusTraceUtility {
 		Tracer.setKeywordPrintStatus(WaitingForSuccessfulProposalMessageReceipt.class, true);
 		
 //		Tracer.setKeywordPrintStatus(ReceivedCallInitiated.class, true);
-		Tracer.setKeywordPrintStatus(RemoteCallInitiated.class, true);
+//		Tracer.setKeywordPrintStatus(RemoteCallInitiated.class, true);
 //		Tracer.setKeywordPrintStatus(RemoteEndConnected.class, true);
 //		Tracer.setKeywordPrintStatus(RemoteEndDisconnected.class, true);
 		

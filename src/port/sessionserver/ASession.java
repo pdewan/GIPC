@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import port.ParticipantChoice;
+import util.models.Hashcodetable;
 import util.trace.Tracer;
 
 public class ASession implements Session {
@@ -16,6 +17,7 @@ public class ASession implements Session {
 	Set<SessionObserver> serverObservers = new HashSet();
 	
 	Set<SessionObserver> observers = new HashSet(); //separate to avoid duplicates
+	Hashcodetable<ServerPortDescription, SessionObserver> descriptionToObserver = new Hashcodetable<>();
 
 
 	List<SessionParticipantDescription> servers = new ArrayList();
@@ -39,6 +41,7 @@ public class ASession implements Session {
 		notifyObserversJoin(aSessionParticipantDescription,  observers);
 		notifyObserversJoin(aSessionParticipantDescription,  serverObservers); // added this
 		members.add(aSessionParticipantDescription);
+		descriptionToObserver.put(aSessionParticipantDescription, aSessionObserver);
 		addObserver(aSessionObserver);
 	}
 	@Override
@@ -147,10 +150,30 @@ public class ASession implements Session {
 	public List<SessionParticipantDescription> getServers() {
 		return servers;
 	}
+	
+	public static int indexOf(List aList, Object anElement) {
+		for (int i = 0; i < aList.size(); i++) {
+			Object member = aList.get(i);
+			if (member.equals(anElement)) {
+				return i;
+				
+			}				
+		}
+		return -1;
+		
+	}
 
 	@Override
+	/*
+	 * This code is crazy, not fixing for now
+	 */
 	public void leave(ServerPortDescription aSessionClientDescription) {
 		Tracer.info(this, "Session leave by " +  aSessionClientDescription);
+		SessionObserver anObserver =
+					descriptionToObserver.remove(aSessionClientDescription);
+		if (anObserver != null) {
+			observers.remove(anObserver);
+		}
 
 		int clientIndex = -1;
 		for (int i = 0; i < servers.size(); i++) {
@@ -254,6 +277,9 @@ public class ASession implements Session {
 //		observers.remove(clientIndex);
 		notifyObserversLeave(aSessionClientDescription, serverObservers);
 		notifyObserversLeave(aSessionClientDescription, clientObservers);
+		
+//		int anObserverIndex = indexOf(observers, aSessionClientDescription);
+//		observers.remove(aSessionClientDescription); // in case it is in this set
 
 		notifyObserversLeave(aSessionClientDescription, observers);
 //		List<SessionObserver> disconnectedObservers = new ArrayList();

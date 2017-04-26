@@ -48,7 +48,7 @@ public class AReadCommand implements ReadCommand {
 			return true;
 		} catch (IOException e) {
 //			e.printStackTrace();
-			System.err.println ("AReadCommand:" + e.getMessage());
+			System.err.println ("AReadCommand for " + socketChannel + ":" +  e.getMessage());
 			SelectionKey key = socketChannel.keyFor(selectionManager.getSelector());
 			selectionManager.close(key, e);
 			notifyCloseListeners(socketChannel, e);
