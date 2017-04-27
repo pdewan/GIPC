@@ -50,10 +50,12 @@ public class APaxosMemberLauncher extends AnExampleProposerLauncher {
 	protected void simulateNonAtomicAsynchronous() {
 		meaningOfLifeMechanism.setAcceptSynchrony(ReplicationSynchrony.ASYNCHRONOUS);
 		meaningOfLifeMechanism.setConcurrencyKind(ConcurrencyKind.NON_ATOMIC);
+		meaningOfLifeMechanism.setSequentialAccess(false);
 	}
 	protected void simulateNonAtomicSynchronous() {
 		meaningOfLifeMechanism.setAcceptSynchrony(ReplicationSynchrony.ALL_SYNCHRONOUS);
 		meaningOfLifeMechanism.setConcurrencyKind(ConcurrencyKind.NON_ATOMIC);
+		meaningOfLifeMechanism.setSequentialAccess(false);
 	}
 	protected void simulateCentralized() {
 		meaningOfLifeMechanism.setCentralized(true);
