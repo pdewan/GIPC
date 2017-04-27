@@ -30,11 +30,11 @@ public class ASequentialPaxosConsensusMechanism<StateType> extends
 		super(aRegistry, aName, aMyId);
 	}
 	@Override
-	protected StateType preparedState(float aPreparedProposalNumber) {
+	protected StateType preparedProposal(float aPreparedProposalNumber) {
 		if (isSequentialAccess()) {
 			return proposal(aPreparedProposalNumber);
 		}
-		return super.preparedState(aPreparedProposalNumber);
+		return super.preparedProposal(aPreparedProposalNumber);
 	}
 	
 

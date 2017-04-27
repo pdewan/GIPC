@@ -30,6 +30,7 @@ public class APaxosScenariosMemberLauncher extends APaxosMemberLauncher {
 		meaningOfLifeMechanism.setAcceptedInSeparareThread(true);
 		meaningOfLifeMechanism.setAcceptInSeparateThread(true);
 		meaningOfLifeMechanism.setPrepareInSeparateThread(true);
+		meaningOfLifeMechanism.setPreparedInSeparateThread(true);
 	}
 	@Override
 	// needed only for creating example cases

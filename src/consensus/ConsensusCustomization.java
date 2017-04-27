@@ -21,7 +21,7 @@ public interface ConsensusCustomization {
 			boolean newVal) ;
 	public boolean isClient() ;
 	public boolean isServer();
-	public boolean isCentralized() ;
+	public boolean isCentralizedPropose() ;
 	public String getServerName() ;
 //	public void setIsServer(boolean isServer) ;
 	public void setServerName(String serverName);
@@ -36,6 +36,8 @@ public interface ConsensusCustomization {
 	public void setPrepareInSeparateThread(boolean prepareInSeparateThread) ;
 	public boolean isAcceptedInSeparareThread() ;
 	public void setAcceptedInSeparareThread(boolean acceptedInSeparareThread) ;
+	public boolean isPreparedInSeparateThread() ;
+	public void setPreparedInSeparateThread(boolean preparedInSeparateThread);
 	
 	
 }

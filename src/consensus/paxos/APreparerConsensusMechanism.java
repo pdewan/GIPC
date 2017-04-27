@@ -14,6 +14,7 @@ import consensus.ProposalState;
 import consensus.ReplicationSynchrony;
 import consensus.central.ACentralizableConsensusMechanism;
 import consensus.synchronous.sequential.ASynchronousConsensusMechanism;
+import consensus.synchronous.sequential.AnAcceptedMulticastRunnable;
 
 public class APreparerConsensusMechanism<StateType> 
 	extends ACentralizableConsensusMechanism<StateType>
@@ -34,8 +35,8 @@ public class APreparerConsensusMechanism<StateType>
 		setAcceptSynchrony(ReplicationSynchrony.MAJORITY_SYNCHRONOUS);
 	}
 	
-	protected boolean isPrepareConcurrencyConflict (float aProposalNumber, StateType aState )  {
-		   return isAcceptConcurrencyConflict(aProposalNumber, aState);
+	protected boolean isAcceptConcurrencyConflict (float aProposalNumber, StateType aState )  {
+		   return isPrepareConcurrencyConflict(aProposalNumber, aState);
 	}
 	protected synchronized ProposalFeedbackKind checkPrepareRequest(float aProposalNumber, StateType aProposal ) {
 		  return  isPrepareConcurrencyConflict(aProposalNumber, aProposal)?
@@ -43,16 +44,40 @@ public class APreparerConsensusMechanism<StateType>
 				checkWithVetoer(aProposalNumber, aProposal);
 	 }
 	
-	protected boolean isAcceptConcurrencyConflict (float aProposalNumber, StateType aState )  {
-//		   return maxProposalNumberSentInSuccessfulPreparedNotification > aProposalNumber;
+	protected boolean isPrepareConcurrencyConflict (float aProposalNumber, StateType aState )  {
 		   return maxProposalNumberReceivedInPrepareOrAcceptRequest > aProposalNumber;
-
 	}
 	protected boolean isNotPaxos() {
 		return (!isSequentialAccess()) && 
 				(isAsynchronousReplication() || 
 						isNonAtomic() || 
-						isCentralized());
+						isCentralizedPropose());
+	}
+	protected Preparer<StateType> preparers() {
+		return (Preparer<StateType>) super.all();
+	}
+	protected void sendAcceptedNotification(float aProposalNumber,
+			StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
+		if (isNotPaxos()) {
+			super.sendAcceptedNotification(aProposalNumber, aProposal,
+					aFeedbackKind);
+			return;
+		}
+		sendAcceptedNotificationToLearners(aProposalNumber, aProposal,
+				aFeedbackKind);
+	}
+
+	protected void sendAcceptedNotificationToLearners(float aProposalNumber,
+			StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
+		if (!isAcceptedInSeparareThread()) {
+			preparers().accepted(aProposalNumber, aProposal, aFeedbackKind);
+		} else {
+			Thread aThread = new Thread(
+					new AnAcceptedMulticastRunnable<StateType>(preparers(),
+							aProposalNumber, aProposal, aFeedbackKind));
+			aThread.setName("Accepted thread " + aProposalNumber);
+			aThread.start();
+		}
 	}
 	protected synchronized ProposalFeedbackKind checkAcceptRequest(float aProposalNumber, StateType aProposal ) {
 		if (isNotPaxos()) {
@@ -66,8 +91,7 @@ public class APreparerConsensusMechanism<StateType>
 	@Override
 	public void prepare(float aProposalNumber, StateType aProposal) {		
 		ProposalPrepareRequestReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
-		ProposalFeedbackKind aFeedbackKind = checkPrepareRequest(aProposalNumber, aProposal);
-		
+		ProposalFeedbackKind aFeedbackKind = checkPrepareRequest(aProposalNumber, aProposal);		
 		float aPreparedOrAcceptedProposalNumber = maxProposalNumberSentInSuccessfulAcceptedNotification ;
 		StateType anAcceptedState = null;
 		if (aPreparedOrAcceptedProposalNumber != -1) {			
@@ -82,6 +106,7 @@ public class APreparerConsensusMechanism<StateType>
 				checkPrepareRequest(aProposalNumber, aProposal));		
 	}
 	
+	
 	protected void sendLearnNotificationToOthers(float aProposalNumber,
 			StateType aProposal, ProposalFeedbackKind anAgreement) {
 		if (isNotPaxos()) {
@@ -91,6 +116,7 @@ public class APreparerConsensusMechanism<StateType>
 	
 	protected void prepare(float aLastPreparedOrAcceptedProposalNumber, StateType aLastAcceptedProposal, float aPreparedProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
 		recordReceivedPrepareRequest(aPreparedProposalNumber, aProposal);
+		// peparer has started the accept phase
 		if (!isPending(aPreparedProposalNumber)) {
 			return;
 		}
@@ -100,8 +126,8 @@ public class APreparerConsensusMechanism<StateType>
 			recordAndSendPrepareResponse(aLastPreparedOrAcceptedProposalNumber, aLastAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
 		}
 	}
-	protected Prepared<StateType> preparer() {
-		return (Prepared<StateType>) caller();
+	protected Prepared<StateType> caller() {
+		return (Prepared<StateType>) super.caller();
 	}
 
 	
@@ -126,7 +152,21 @@ public class APreparerConsensusMechanism<StateType>
 		sendPrepareResponse(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
 	}	
 	protected void sendPrepareResponse(float anAcceptedProposalNumber, StateType anAcceptedProposal, float aPreparedProposalNumber, ProposalFeedbackKind aFeedbackKind) {
-		preparer().prepared(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
+		caller().prepared(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
+		// do not want to invoke caller in a separate thread as the name of caler can change
+////		preparer().prepared(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
+//		if (!isPreparedInSeparateThread()) {
+//			caller().prepared(anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
+//
+//		} else {
+//			Thread aThread = new Thread(
+//					new APreparedMulticastRunnable<StateType>(caller(), 
+//							anAcceptedProposalNumber, anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind));
+//
+//							
+//			aThread.setName("Prepared Thread:" + aPreparedProposalNumber);
+//			aThread.start();
+//		}
 	}
 	/*
 	 * Cannot decide between sending last prepared number or not.

@@ -83,12 +83,13 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	protected boolean isClient;
 	protected boolean isServer;
 	protected String serverName;
-	protected boolean centralized;
+	protected boolean centralizedPropose;
 	protected boolean didNotify;
 	
 	protected boolean acceptInSeparateThread;
 	protected boolean prepareInSeparateThread;
 	protected boolean acceptedInSeparareThread;
+	private boolean preparedInSeparateThread;
 	
 	
 //	private boolean overridingPaxos;
@@ -710,8 +711,8 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	public boolean isServer() {
 		return rpcSessionPort.getLocalName().equals(getServerName());
 	}
-	public boolean isCentralized() {
-		return centralized;
+	public boolean isCentralizedPropose() {
+		return centralizedPropose;
 	}
 	protected List<String> getMembers() {
 		List<String> aMembers = 
@@ -743,7 +744,7 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 
 	public void setCentralized(boolean isCentralized) {
-		this.centralized = isCentralized;
+		this.centralizedPropose = isCentralized;
 	}
 	
 	protected Object all() {
@@ -781,6 +782,12 @@ public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechani
 	}
 	public void setAcceptInSeparateThread(boolean acceptInSeparateThread) {
 		this.acceptInSeparateThread = acceptInSeparateThread;
+	}
+	public boolean isPreparedInSeparateThread() {
+		return preparedInSeparateThread;
+	}
+	public void setPreparedInSeparateThread(boolean preparedInSeparateThread) {
+		this.preparedInSeparateThread = preparedInSeparateThread;
 	}
 	public boolean isPrepareInSeparateThread() {
 		return prepareInSeparateThread;

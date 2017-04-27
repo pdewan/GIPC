@@ -3,27 +3,16 @@ package consensus.paxos;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
-
 import port.trace.consensus.ProposalPreparedNotificationReceived;
-import port.trace.consensus.ProposalPreparedNotificationSent;
-import port.trace.consensus.RemoteProposeRequestReceived;
-import port.trace.consensus.RemoteProposeRequestSent;
-import bus.uigen.widgets.universal.CentralUniversalWidget;
 import sessionport.rpc.group.GIPCSessionRegistry;
-import sun.security.util.PendingException;
-import consensus.ConsensusMechanism;
 import consensus.ProposalFeedbackKind;
 import consensus.ProposalState;
 import consensus.ReplicationSynchrony;
-import consensus.central.ACentralizableConsensusMechanism;
-import consensus.synchronous.sequential.ASynchronousConsensusMechanism;
-import consensus.synchronous.sequential.AnAcceptedMulticastRunnable;
 
 public class APaxosConsensusMechanism<StateType> extends
 		APreparerConsensusMechanism<StateType> implements Prepared<StateType> {
 
-	protected Map<Float, Boolean> aggregatePrepared = new HashMap();
+	protected Map<Float, Boolean> preparePhaseOver = new HashMap();
 
 	protected float maxProposalNumberSentInPrepareRequest = -1;
 
@@ -37,13 +26,13 @@ public class APaxosConsensusMechanism<StateType> extends
 		super(aRegistry, aName, aMyId);
 	}
 
-	protected void setAggregatePrepared(float aProposalNumber) {
-		aggregatePrepared.put(aProposalNumber, true);
+	protected void setPreparePhaseOver(float aProposalNumber) {
+		preparePhaseOver.put(aProposalNumber, true);
 	}
 
-	protected boolean isAggregatePrepared(float aProposalNumber) {
-		return (aggregatePrepared.get(aProposalNumber) != null)
-				&& aggregatePrepared.get(aProposalNumber);
+	protected boolean isPreparePhaseOver(float aProposalNumber) {
+		return (preparePhaseOver.get(aProposalNumber) != null)
+				&& preparePhaseOver.get(aProposalNumber);
 	}
 
 	protected void recordReceivedPreparedNotification(
@@ -70,7 +59,8 @@ public class APaxosConsensusMechanism<StateType> extends
 				numConsensusMembers(), numCurrentMembers(),
 				aNumPrepareNotifications, aNumPrepareNotifications);
 	}
-	protected StateType preparedState(float aPreparedProposalNumber) {
+
+	protected StateType preparedProposal(float aPreparedProposalNumber) {
 		float aChosenProposalNumber = maxAcceptedProposalNumberReceivedInPreparedNotification <= 0 ? aPreparedProposalNumber
 				: maxAcceptedProposalNumberReceivedInPreparedNotification;
 		return proposal(aChosenProposalNumber);
@@ -83,9 +73,17 @@ public class APaxosConsensusMechanism<StateType> extends
 				getPrepareSynchrony(), aPreparedProposalNumber);
 		if (isSufficientPreparers == null)
 			return;
-		setAggregatePrepared(aPreparedProposalNumber);
-		startAcceptPhase(aPreparedProposalNumber,
-				preparedState(aPreparedProposalNumber));
+		setPreparePhaseOver(aPreparedProposalNumber);
+		if (isSufficientPreparers) {
+			startAcceptPhase(aPreparedProposalNumber,
+					preparedProposal(aPreparedProposalNumber));
+		} else {
+			newProposalState(
+					aPreparedProposalNumber,
+					proposal(aPreparedProposalNumber),
+					ProposalState.PROPOSAL_AGGREGATE_DENIAL);
+			return;
+		}
 
 		// recordAndSendAcceptRequest(aPreparedProposalNumber,
 		// preparedState(aPreparedProposalNumber));
@@ -105,9 +103,9 @@ public class APaxosConsensusMechanism<StateType> extends
 		return result;
 	}
 
-	protected Preparer<StateType> preparers() {
-		return (Preparer<StateType>) super.all();
-	}
+//	protected Preparer<StateType> preparers() {
+//		return (Preparer<StateType>) super.all();
+//	}
 
 	protected void recordAndSendPrepareRequest(float aProposalNumber,
 			StateType aProposal) {
@@ -120,15 +118,13 @@ public class APaxosConsensusMechanism<StateType> extends
 		maxProposalNumberSentInPrepareRequest = Math.max(
 				maxProposalNumberSentInPrepareRequest, aProposalNumber);
 	}
-	
-	
 
 	protected void sendPrepareRequest(float aProposalNumber, StateType aProposal) {
 		if (!isPrepareInSeparateThread()) {
-		   preparers().prepare(aProposalNumber, aProposal);
+			preparers().prepare(aProposalNumber, aProposal);
 		} else {
-			Thread aThread = new Thread (
-					new APrepareMulticastRunnable<StateType>(preparers(), 
+			Thread aThread = new Thread(
+					new APrepareMulticastRunnable<StateType>(preparers(),
 							aProposalNumber, aProposal));
 			aThread.setName("Prepare Thread:" + aProposalNumber);
 			aThread.start();
@@ -136,7 +132,7 @@ public class APaxosConsensusMechanism<StateType> extends
 	}
 
 	protected void localPropose(float aProposalNumber, StateType aProposal) {
-		if (isNotPaxos() ) {
+		if (isNotPaxos()) {
 			super.localPropose(aProposalNumber, aProposal);
 		} else {
 			// recordAndSendPrepareRequest(aProposalNumber, aProposal);
@@ -151,34 +147,40 @@ public class APaxosConsensusMechanism<StateType> extends
 	protected void startAcceptPhase(float aProposalNumber, StateType aProposal) {
 		super.startAcceptPhase(aProposalNumber, aProposal);
 	}
+
 	protected void recordReceivedAcceptedNotification(float aProposalNumber,
 			StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
-		super.recordProposalState(aProposalNumber, aProposal); // could be the first time we have seen this proposal
-		super.recordReceivedAcceptedNotification(aProposalNumber, aProposal, aFeedbackKind);
-	}
-
-	protected void sendAcceptedNotification(float aProposalNumber,
-			StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
-		if (isNotPaxos()) {
-			super.sendAcceptedNotification(aProposalNumber, aProposal, aFeedbackKind);
-			return;
-		}
-		sendAcceptedNotificationToLearners(aProposalNumber, aProposal,
+		super.recordProposalState(aProposalNumber, aProposal); // could be the
+																// first time we
+																// have seen
+																// this proposal
+		super.recordReceivedAcceptedNotification(aProposalNumber, aProposal,
 				aFeedbackKind);
 	}
 
-	protected void sendAcceptedNotificationToLearners(float aProposalNumber,
-			StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
-		if (!isAcceptedInSeparareThread()) {
-			preparers().accepted(aProposalNumber, aProposal, aFeedbackKind);
-		} else {
-			Thread aThread = new Thread(
-					new AnAcceptedMulticastRunnable<StateType>(
-							preparers(), aProposalNumber, aProposal, aFeedbackKind));
-			aThread.setName("Accepted thread " + aProposalNumber);
-			aThread.start();
-		}
-	}
+//	protected void sendAcceptedNotification(float aProposalNumber,
+//			StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
+//		if (isNotPaxos()) {
+//			super.sendAcceptedNotification(aProposalNumber, aProposal,
+//					aFeedbackKind);
+//			return;
+//		}
+//		sendAcceptedNotificationToLearners(aProposalNumber, aProposal,
+//				aFeedbackKind);
+//	}
+//
+//	protected void sendAcceptedNotificationToLearners(float aProposalNumber,
+//			StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
+//		if (!isAcceptedInSeparareThread()) {
+//			preparers().accepted(aProposalNumber, aProposal, aFeedbackKind);
+//		} else {
+//			Thread aThread = new Thread(
+//					new AnAcceptedMulticastRunnable<StateType>(preparers(),
+//							aProposalNumber, aProposal, aFeedbackKind));
+//			aThread.setName("Accepted thread " + aProposalNumber);
+//			aThread.start();
+//		}
+//	}
 
 	@Override
 	public void prepared(float aPreparedOrAcceptedProposalNumber,
@@ -191,10 +193,10 @@ public class APaxosConsensusMechanism<StateType> extends
 		recordReceivedPreparedNotification(aPreparedOrAcceptedProposalNumber,
 				anAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
 		if (!isPending(aPreparedProposalNumber)
-				|| isAggregatePrepared(aPreparedProposalNumber)) {
+				|| isPreparePhaseOver(aPreparedProposalNumber)) {
 			return;
 		}
-		if (!isSuccess(aFeedbackKind)) {
+		if (aFeedbackKind == ProposalFeedbackKind.CONCURRENCY_CONFLICT) {
 			newProposalState(
 					aPreparedProposalNumber,
 					proposal(aPreparedProposalNumber),

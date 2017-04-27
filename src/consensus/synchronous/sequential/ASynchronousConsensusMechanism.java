@@ -125,7 +125,7 @@ public class ASynchronousConsensusMechanism<StateType> extends
 			int anAgreements) {
 		int aRemainingNotifications = aCurrentAcceptors - anAcceptNotifications;
 		Boolean retVal;
-		if (anAgreements >= aRequiredAgreements) {
+		if (anAgreements > aRequiredAgreements) {
 			retVal = true;
 //		} else if (aCurrentAcceptors == anAcceptNotifications) {
 //			retVal = false;

@@ -17,6 +17,8 @@ public class APaxosMultiCaster<InMessageType> extends AnAscendingGroupSendMessag
 	public static final String ACCEPTED = "accepted";
 	public static final String ACCEPT = "accept";
 	public static final String PREPARE = "prepare";
+//	public static final String PREPARED = "prepared";
+
 	protected InputPort inputPort;
 	protected String myName;
 
@@ -97,11 +99,24 @@ public class APaxosMultiCaster<InMessageType> extends AnAscendingGroupSendMessag
 		destination.send(aSortedList, message);
 		
 	}
+    protected void sendPreparedFrom3(List<String> aSortedList, InMessageType message) {    	
+    	
+		destination.send(aSortedList, message);
+		
+	}
     protected void sendPrepare(List<String> aSortedList, InMessageType message) {
     	if (myName.equals("1")) {
     		sendPrepareFrom1(aSortedList, message);
     	} else if (myName.equalsIgnoreCase("3")) {
     		sendPrepareFrom3(aSortedList, message);
+    	} else {
+    		destination.send(aSortedList, message);
+    	}		
+	}
+    protected void sendPrepared(List<String> aSortedList, InMessageType message) {
+    	if (myName.equals("3") && aSortedList.contains("3")) {
+    		sendPreparedFrom3(aSortedList, message);
+    
     	} else {
     		destination.send(aSortedList, message);
     	}		
@@ -113,7 +128,9 @@ public class APaxosMultiCaster<InMessageType> extends AnAscendingGroupSendMessag
 		 if ( destination instanceof APaxosMultiCaster ||
 				 (!isCall(message, ACCEPTED) && 
 					!isCall(message, ACCEPT) &&
-					!isCall(message, PREPARE ))) {
+					!isCall(message, PREPARE ) 
+//					!isCall(message, PREPARED)
+					)) {
 			 super.send(clientNames, message);
 			 return;
 		}
@@ -128,7 +145,10 @@ public class APaxosMultiCaster<InMessageType> extends AnAscendingGroupSendMessag
 			sendAccepted(aSortedList, message);
 		} else if (isCall(message, PREPARE)) {
 			sendPrepare(aSortedList, message);
-		}
+		} 
+//		else if (isCall(message, PREPARED)) {
+//			sendPrepared(aSortedList, message);
+//		}
 	}
 
 
