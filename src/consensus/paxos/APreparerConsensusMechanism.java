@@ -49,7 +49,8 @@ public class APreparerConsensusMechanism<StateType>
 	}
 	protected boolean isNotPaxos() {
 		return (!isSequentialAccess()) && 
-				(isAsynchronousReplication() || 
+				(
+//						isAsynchronousReplication() || 
 						isNonAtomic() || 
 						isCentralizedPropose());
 	}
@@ -91,14 +92,15 @@ public class APreparerConsensusMechanism<StateType>
 	@Override
 	public void prepare(float aProposalNumber, StateType aProposal) {		
 		ProposalPrepareRequestReceived.newCase(this, getObjectName(), aProposalNumber, aProposal);
-		ProposalFeedbackKind aFeedbackKind = checkPrepareRequest(aProposalNumber, aProposal);		
+//		ProposalFeedbackKind aFeedbackKind = checkPrepareRequest(aProposalNumber, aProposal);		
 		float aPreparedOrAcceptedProposalNumber = maxProposalNumberSentInSuccessfulAcceptedNotification ;
 		StateType anAcceptedState = null;
 		if (aPreparedOrAcceptedProposalNumber != -1) {			
 			anAcceptedState = proposal(aPreparedOrAcceptedProposalNumber);
 		} else if (sendPrepardNumberIfNoAccept()) {
 			aPreparedOrAcceptedProposalNumber = maxProposalNumberReceivedInPrepareOrAcceptRequest;
-		} 		
+		} 
+		
 		prepare(aPreparedOrAcceptedProposalNumber,
 				anAcceptedState,
 				 aProposalNumber, 
@@ -116,10 +118,13 @@ public class APreparerConsensusMechanism<StateType>
 	
 	protected void prepare(float aLastPreparedOrAcceptedProposalNumber, StateType aLastAcceptedProposal, float aPreparedProposalNumber, StateType aProposal, ProposalFeedbackKind aFeedbackKind) {
 		recordReceivedPrepareRequest(aPreparedProposalNumber, aProposal);
-		// peparer has started the accept phase
-		if (!isPending(aPreparedProposalNumber)) {
-			return;
-		}
+		if (
+				// we accepted this proposal before preparing for it
+				aPreparedProposalNumber == aLastPreparedOrAcceptedProposalNumber
+				// peparer has started the accept phase
+				|| !isPending(aPreparedProposalNumber)) {
+			return;			
+		}		
 		if (!isSuccess(aFeedbackKind)) {
 			processPrepareRejection(aLastPreparedOrAcceptedProposalNumber, aLastAcceptedProposal, aPreparedProposalNumber, aFeedbackKind);
 		} else {
