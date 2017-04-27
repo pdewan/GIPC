@@ -47,6 +47,7 @@ public class AnRPCReturnValueQueue implements RPCReturnValueQueue, ConnectionLis
 			if (willBlock) {
 				if (!isConnected) {
 					inputPort.addConnectionListener(this);
+					isConnected = true;
 				}
 				RemoteCallBlockedForReturnValue.newCase(this, this);
 			}
