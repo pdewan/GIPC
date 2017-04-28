@@ -145,7 +145,7 @@ public class ASynchronousConsensusMechanism<StateType> extends
 			StateType aProposal, short aMaxAcceptors, short aCurrentAcceptors,
 			int anAcceptNotifications, int anAgreements) {
 		return sufficientAgreements(aProposalNumber, aProposal, aMaxAcceptors,
-				aCurrentAcceptors, Math.round(((float) aMaxAcceptors) / (2.0)),
+				aCurrentAcceptors, Math.round(((float) aMaxAcceptors + 1) / (2.0)),
 				anAcceptNotifications, anAgreements);
 	}
 
