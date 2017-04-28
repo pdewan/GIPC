@@ -125,7 +125,7 @@ public class ASynchronousConsensusMechanism<StateType> extends
 			int anAgreements) {
 		int aRemainingNotifications = aCurrentAcceptors - anAcceptNotifications;
 		Boolean retVal;
-		if (anAgreements > aRequiredAgreements) {
+		if (anAgreements >= aRequiredAgreements) {
 			retVal = true;
 //		} else if (aCurrentAcceptors == anAcceptNotifications) {
 //			retVal = false;
@@ -145,7 +145,7 @@ public class ASynchronousConsensusMechanism<StateType> extends
 			StateType aProposal, short aMaxAcceptors, short aCurrentAcceptors,
 			int anAcceptNotifications, int anAgreements) {
 		return sufficientAgreements(aProposalNumber, aProposal, aMaxAcceptors,
-				aCurrentAcceptors, (float) (((float) aMaxAcceptors) / (2.0)),
+				aCurrentAcceptors, Math.round(((float) aMaxAcceptors) / (2.0)),
 				anAcceptNotifications, anAgreements);
 	}
 

@@ -26,6 +26,10 @@ public class APaxosScenariosMemberLauncher extends APaxosMemberLauncher {
 	protected void addListenersAndVetoersToConsensusMechanisms() {
 		addListenersAndVetoersToMeaningMechanism();;
 	}
+	// for case 7 call this
+	protected void doNotOverrideRetry() {
+		overrideRetry = false;
+	}
 	protected void setThreads() {
 		meaningOfLifeMechanism.setAcceptedInSeparareThread(true);
 		meaningOfLifeMechanism.setAcceptInSeparateThread(true);
