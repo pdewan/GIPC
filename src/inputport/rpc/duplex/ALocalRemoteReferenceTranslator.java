@@ -398,6 +398,9 @@ public class ALocalRemoteReferenceTranslator implements LocalRemoteReferenceTran
 				// with traditional map a call back for hashcode happens
 				remoteToRemoteSerializable.put(proxy, remoteSerializable);
 				
+				// Register to allow this node to forward through proxy
+				duplexRPCInputPort.register(remoteSerializable.getObjectName(), proxy);
+				
 			return proxy; // this means will
 		} catch (Exception e) {
 			e.printStackTrace();
