@@ -153,23 +153,11 @@ public class ALocalRemoteReferenceTranslator implements LocalRemoteReferenceTran
     			return original;
     	if (!(original instanceof Serializable)) // cannot deepCopy
     			return original;
-    	Object copy;
-    	try {
-    		copy = Common.deepCopy(original);
-    		
-    	} catch (Exception e) {
-    		return original;
-    	}
-    	if (copy != original) {
-    		boolean changed = transformSentFieldsOfSuperTypes(original, copy, original.getClass());
-        	if (changed) 
-        		return copy;	
-    	}
     	
     	if (visited == null) visited = new VisitedObjectsImpl();
     	
     	// TODO separate to make api friendly
-    	copy = visited.getCopy(original);
+    	Object copy = visited.getCopy(original);
     	if (copy != null) {
     		return copy;
     	} else if (original instanceof Collection) {
@@ -181,6 +169,19 @@ public class ALocalRemoteReferenceTranslator implements LocalRemoteReferenceTran
     	} else if (original.getClass().isArray()) {
     		return deepTransformSentArrayReference(original, visited, transformSentReferenceCaller);
     	}
+    	
+    	try {
+    		copy = Common.deepCopy(original);
+    		
+    	} catch (Exception e) {
+    		return original;
+    	}
+    	if (copy == original) // could not serialize
+    		return original;
+    		
+		boolean changed = transformSentFieldsOfSuperTypes(original, copy, original.getClass());
+    	if (changed) 
+    		return copy;
     	
     	return original;
     }
@@ -397,9 +398,6 @@ public class ALocalRemoteReferenceTranslator implements LocalRemoteReferenceTran
 				remoteSerializableToRemote.put(remoteSerializable, proxy);
 				// with traditional map a call back for hashcode happens
 				remoteToRemoteSerializable.put(proxy, remoteSerializable);
-				
-				// Register to allow this node to forward through proxy
-				duplexRPCInputPort.register(remoteSerializable.getObjectName(), proxy);
 				
 			return proxy; // this means will
 		} catch (Exception e) {
