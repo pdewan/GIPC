@@ -22,7 +22,7 @@ public abstract class AnAbstractReceivedCallInvoker implements ReceivedCallInvok
 		announceConnectionEvents();
 	}
 	void announceConnectionEvents() {
-		for (String method:rpcRegistry.registeredMethodNames()) {
+		for (String method:rpcRegistry.registeredMethodNames().toArray(new String[0])) {
 			ConnectiontEventBus.newEvent(new AConnectionEvent(this, method, false));
 		}
 	}
