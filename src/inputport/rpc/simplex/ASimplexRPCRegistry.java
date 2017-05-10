@@ -1,17 +1,16 @@
 package inputport.rpc.simplex;
 
-import inputport.rpc.RPCRegistry;
-
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
+import inputport.rpc.RPCRegistry;
 import util.introspect.JavaIntrospectUtility;
 import util.misc.RemoteReflectionUtility;
 
 public class ASimplexRPCRegistry implements RPCRegistry {
-	Map<String, Object> nameToServer = new HashMap();
+	Map<String, Object> nameToServer = new ConcurrentHashMap();
 	public void register(Class aType, Object aServerObject) {
 //		nameToServer.put(aType.getName(), aServerObject);
 		register(aType.getName(), aServerObject);	// will be overridden in subclass
