@@ -26,7 +26,9 @@ public class ADuplexRPCRegistry extends ASimplexRPCRegistry {
 		String className = aServerObject.getClass().getName();
 		
 		// Unwrap proxy class
+		// it should never come here
 		if (Proxy.isProxyClass(aServerObject.getClass())) {
+			System.err.println ("unwrapping proxy class should not happen");
 			Object ih = Proxy.getInvocationHandler(aServerObject);
 			if (ih instanceof ANonCachingAbstractRPCProxyInvocationHandler) {
 				className = ((ANonCachingAbstractRPCProxyInvocationHandler) ih).getProxyTargetClass().getName();
