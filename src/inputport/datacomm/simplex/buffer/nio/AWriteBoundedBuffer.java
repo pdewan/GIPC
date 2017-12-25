@@ -4,7 +4,9 @@ import java.nio.channels.CancelledKeyException;
 import java.nio.channels.SelectableChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
 import port.trace.nio.SocketChannelInterestOp;
@@ -13,6 +15,7 @@ import util.trace.Tracer;
 
 public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 //	public static final int MAX_BUFFERS = 256*4; // 1 K buffers should be enough
+	protected List<WriteBoundedBufferListener> writeBoundedBufferListeners = new ArrayList();
 	ArrayBlockingQueue<WriteCommand> contents = 
 		new ArrayBlockingQueue(AScatterGatherSelectionManager.getMaxOutstandingWrites());
 	SocketChannel channel;
@@ -40,11 +43,21 @@ public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 		contents.add(anElement);
 		
 	}
+	protected void initiateReadCommand() {
+		selectionManager.getReadHandler(channel).initiate();
+	}
+	protected void bufferIsEmpty() {
+//		initiateReadCommand();
+		for (WriteBoundedBufferListener aListener:writeBoundedBufferListeners) {
+			aListener.bufferIsEmpty(channel);
+		}	
+	}
 	@Override
 	public WriteCommand remove(WriteCommand anElement) {
 		WriteCommand retVal = contents.remove();
 		if (isEmpty()) {
-			selectionManager.getReadHandler(channel).initiate();
+			bufferIsEmpty();
+//			selectionManager.getReadHandler(channel).initiate();
 		}
 		return retVal;
 	}
@@ -71,13 +84,15 @@ public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 			Tracer.info(this, "Received CancelledKeyException");
 			selectionManager.close(key, cke);
 			return false;
-		}
-		
-		
+		}		
 	}
 	@Override
 	public Iterator<WriteCommand> iterator() {
 		return contents.iterator();
+	}
+	@Override
+	public void addListener(WriteBoundedBufferListener aListener) {
+		writeBoundedBufferListeners.add(aListener);
 	}
 	
 

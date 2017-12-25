@@ -29,4 +29,6 @@ public interface SelectionWriteManager {
 
 	WriteBoundedBuffer get(SocketChannel socketChannel);
 
+	WriteBoundedBuffer getBufferedWriteBoundedBuffer(SocketChannel channel);
+
 }

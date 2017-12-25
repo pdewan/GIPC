@@ -1,6 +1,6 @@
 package inputport.datacomm.simplex.buffer.nio;
 
-public class ASelectionManagerManager  {
+public class SelectionManagerFactory  {
 	public static String SELECTING_THREAD_NAME = "Selecting Thread";
 	protected static SelectionManager selectionManager;
 	public static SelectionManager getSelectionManager() {

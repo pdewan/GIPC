@@ -14,7 +14,7 @@ import port.trace.nio.SocketChannelRegistered;
 import util.trace.Tracer;
 
 
-public class AnAcceptCommand implements AcceptCommand {
+public class AnAcceptCommand extends AnAbstractNIOCommand implements AcceptCommand {
 	InetAddress serverHost;
 //	SocketChannelAcceptListener listener;
 	List<SocketChannelAcceptListener> listeners = new ArrayList();
@@ -22,10 +22,16 @@ public class AnAcceptCommand implements AcceptCommand {
 	int newOps;
 	ServerSocketChannel serverSocketChannel;
 	SelectionManager selectingRunnable;
-	public AnAcceptCommand(SelectionManager theSelectingRunnable, ServerSocketChannel theSocketChannel) {
-	
+	public AnAcceptCommand(SelectionManager theSelectingRunnable, 
+			ServerSocketChannel theSocketChannel,
+			Integer aNextInterestOps) {
+		super (aNextInterestOps);	
 		serverSocketChannel = theSocketChannel;
 		selectingRunnable = theSelectingRunnable;
+	}	
+	public AnAcceptCommand(SelectionManager theSelectingRunnable, 
+			ServerSocketChannel theSocketChannel) {
+		this(theSelectingRunnable, theSocketChannel, null);
 	}	
 	public InetAddress getServerHost() {
 		return serverHost;

@@ -20,6 +20,7 @@ public class AnNIODuplexBufferClientInputPortDriver extends AnNIOSimplexBufferCl
 		super.connected(theSocketChannel);
 //		selectionManager.registerReadListener(theSocketChannel, this);
 		observableNIOManager.addReadListener(theSocketChannel, this);
+		observableNIOManager.addWriteBoundedBufferListener(theSocketChannel, this);
 		
 	}
 	@Override
@@ -32,6 +33,11 @@ public class AnNIODuplexBufferClientInputPortDriver extends AnNIOSimplexBufferCl
 	public void setSkeleton(DuplexBufferGenericClientInputPort<SocketChannel> theSkeleton) {
 		super.setSkeleton(theSkeleton);
 		duplexSkeleton = theSkeleton;
+	}
+	@Override
+	public void bufferIsEmpty(SocketChannel aSocketChannel) {
+		observableNIOManager.enableReads(aSocketChannel);
+		
 	}
 
 }

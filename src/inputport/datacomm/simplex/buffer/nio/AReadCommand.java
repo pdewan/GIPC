@@ -14,7 +14,7 @@ import port.trace.nio.SocketChannelRead;
 import util.trace.Tracer;
 
 
-public class AReadCommand implements ReadCommand {
+public class AReadCommand extends AnAbstractNIOCommand implements ReadCommand {
 	public static final int READ_BUFFER_SIZE = 256*4*256*4*4; // with late comer, even 1 M was not enough in simple demo
 	SocketChannel socketChannel;
 	SelectionManager selectionManager;
@@ -22,10 +22,15 @@ public class AReadCommand implements ReadCommand {
 	List<SocketChannelCloseListener> closeListeners = new ArrayList();
 	List<SocketChannelReadListener> readListeners = new ArrayList();
 	public AReadCommand(SelectionManager theSelectionManager,
-			SocketChannel theSocketChannel) {
+			SocketChannel theSocketChannel, Integer aNextInterestOps) {
+		super(aNextInterestOps);
 		socketChannel = theSocketChannel;
 		selectionManager = theSelectionManager;	
 		allocateReadState();
+	}
+	public AReadCommand(SelectionManager theSelectionManager,
+			SocketChannel theSocketChannel) {
+		this(theSelectionManager, theSocketChannel, null);
 	}
 	@Override
 	public SelectableChannel getChannel() {

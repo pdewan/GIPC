@@ -17,7 +17,7 @@ import util.trace.Tracer;
 
 
 
-public class AConnectCommand implements ConnectCommand {
+public class AConnectCommand extends AnAbstractNIOCommand implements ConnectCommand {
 	InetAddress serverHost;
 //	SocketChannelConnectListener listener;
 	List<SocketChannelConnectListener> listeners = new ArrayList();
@@ -25,7 +25,13 @@ public class AConnectCommand implements ConnectCommand {
 	SocketChannel socketChannel;
 	boolean connected;
 	SelectionManager selectionManager;
-	public AConnectCommand(SelectionManager theSelectionManager, SocketChannel theSocketChannel, InetAddress theServerHost, int thePort) {
+	public AConnectCommand(
+			SelectionManager theSelectionManager, 
+			SocketChannel theSocketChannel, 
+			InetAddress theServerHost, 
+			int thePort,
+			Integer aNextInterestOps) {
+		super(aNextInterestOps);
 		serverHost = theServerHost;
 //		if (theListener != null)
 //			addConnectListener(theListener);
@@ -33,6 +39,13 @@ public class AConnectCommand implements ConnectCommand {
 		port = thePort;
 		selectionManager = theSelectionManager;
 	}	
+	public AConnectCommand(
+			SelectionManager theSelectionManager, 
+			SocketChannel theSocketChannel, 
+			InetAddress theServerHost, 
+			int thePort) {
+		this(theSelectionManager, theSocketChannel, theServerHost, thePort, null);
+	}
 	public InetAddress getServerHost() {
 		return serverHost;
 	}
@@ -74,16 +87,29 @@ public class AConnectCommand implements ConnectCommand {
 			return false;
 		}
 	}
+	
+//	protected Integer postCommandInterestOps() {
+//		return SelectionKey.OP_READ;
+//	}
+//	
+//	public void changeInterestOps(SelectionKey aSelectionKey, Integer aNextOps) {
+//		if (aNextOps == null) return;
+//		aSelectionKey.interestOps(aNextOps);
+//		SocketChannelInterestOp.newCase(this, aSelectionKey, aNextOps);
+//		SocketChannelInterestOp.newCase(this, aSelectionKey, aNextOps);
+//	}
+	
 	void doGiveReponse() {
 		SelectionKey selectionKey = socketChannel.keyFor(selectionManager.getSelector());		
 //		connected = true;
 		Tracer.info(this, "Registering read op for:" + socketChannel );
 //		selectionKey.interestOps(SelectionKey.OP_READ);
-		Tracer.info(this, "New ops for:" + socketChannel + " are "  + selectionKey.interestOps());
+//		Tracer.info(this, "New ops for:" + socketChannel + " are "  + selectionKey.interestOps());
 		for (SocketChannelConnectListener listener:listeners)
 			listener.connected(socketChannel);
 		selectionKey.interestOps(SelectionKey.OP_READ);
 		SocketChannelInterestOp.newCase(this, selectionKey, SelectionKey.OP_READ);
+		changeInterestOps(selectionKey, postCommandInterestOps());
 
 	}
 	@Override

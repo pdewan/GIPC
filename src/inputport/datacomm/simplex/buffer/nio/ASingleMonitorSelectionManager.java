@@ -243,6 +243,11 @@ public class ASingleMonitorSelectionManager implements SelectionManager {
 	public void registerCloseListener(SelectableChannel aChannel, SocketChannelCloseListener aCloseListener) {
 		channelToCloseListener.put(aChannel, aCloseListener);		
 	}
+	@Override
+	public WriteBoundedBuffer getWriteBoundedBuffer(SocketChannel aSocketChannel) {
+		return channelToBufferedWriteBoundedBuffer.get(aSocketChannel);
+
+	}
 	
 	
 

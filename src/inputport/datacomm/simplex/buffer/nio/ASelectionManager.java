@@ -264,6 +264,10 @@ public class ASelectionManager implements SelectionManager {
 		return readManager.getReadHandler(theSocketChannel);
 	}
 	@Override
+	public WriteBoundedBuffer getWriteBoundedBuffer(SocketChannel aSocketChannel) {
+		return writeManager.getBufferedWriteBoundedBuffer(aSocketChannel);
+	}
+	@Override
 	public void putBufferedWrite(WriteCommand bufferedWrite) {
 		writeManager.putBufferedWrite(bufferedWrite);
 		

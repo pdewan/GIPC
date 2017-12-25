@@ -13,7 +13,9 @@ public class AScatterGatherSelectionManager extends ASelectionManager implements
 	
 	private static  int maxOutstandingWrites = 10; // with custom seralizers 
 
-
+	public AScatterGatherSelectionManager() {
+		
+	}
 	protected SelectionReadManager createSelectionReadManager() {
 		return new AScatterGatherSelectionReadManager(this);
 	}

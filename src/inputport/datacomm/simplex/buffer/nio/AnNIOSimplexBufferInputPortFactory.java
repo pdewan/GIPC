@@ -24,7 +24,7 @@ public class AnNIOSimplexBufferInputPortFactory  implements SimplexInputPortFact
 			String theServerName) {	
 		Tracer.info(this, "Creating and linking NIO simplex server skeleton and driver");
 		GenericSimplexServerInputPort<ServerSocketChannel, SocketChannel> skeleton = new AGenericSimplexBufferServerInputPort(theServerName, theServerId);
-		SelectionManager selectionManager = ASelectionManagerManager.getSelectionManager();
+		SelectionManager selectionManager = SelectionManagerFactory.getSelectionManager();
 		SimplexBufferServerInputPortDriver<ServerSocketChannel, SocketChannel> driver = new AnNIOSimplexBufferServerInpuPorttDriver(selectionManager, theServerId);
 		skeleton.setDriver(driver);
 		driver.setSkeleton(skeleton);
@@ -34,7 +34,7 @@ public class AnNIOSimplexBufferInputPortFactory  implements SimplexInputPortFact
 	public SimplexClientInputPort<ByteBuffer> createSimplexClientInputPort(String theServerHost,
 			String theServerId, String aServerName, String theClientName) {
 		Tracer.info(this, "Creating and linking simplex client skeleton and driver");
-		SelectionManager selectionManager = ASelectionManagerManager.getSelectionManager();
+		SelectionManager selectionManager = SelectionManagerFactory.getSelectionManager();
 		GenericSimplexClientInputPort skeleton = new AGenericSimplexBufferClientInputPort(theServerHost, theServerId, aServerName, theClientName);
 		SimplexBufferClientInputPortDriver<SocketChannel> implementation = new AnNIOSimplexBufferClientInputPortDriver(selectionManager, theServerHost, theServerId, aServerName);
 		skeleton.setDriver(implementation);

@@ -5,6 +5,6 @@ import inputport.datacomm.simplex.buffer.SimplexBufferServerInputPortDriver;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
-public interface NIOSimplexServerInputDriver extends SimplexBufferServerInputPortDriver<ServerSocketChannel, SocketChannel>, SocketChannelAcceptListener, SocketChannelConnectListener, SocketChannelReadListener, SocketChannelCloseListener {
+public interface NIOSimplexServerInputDriver extends WriteBoundedBufferListener, SimplexBufferServerInputPortDriver<ServerSocketChannel, SocketChannel>, SocketChannelAcceptListener, SocketChannelConnectListener, SocketChannelReadListener, SocketChannelCloseListener {
 
 }

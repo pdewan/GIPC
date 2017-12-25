@@ -10,12 +10,14 @@ import util.trace.Tracer;
 
 public class AnObservableNIOManager implements ObservableNIOManager{
 	SelectionManager selectionManager;
+	boolean allowReads;
+	
 	public AnObservableNIOManager(SelectionManager aSelectionManager) {
 		selectionManager = aSelectionManager;
 	}
-	public AnObservableNIOManager() {
-		selectionManager = ASelectionManagerManager.getSelectionManager();
-	}
+//	public AnObservableNIOManager() {
+//		selectionManager = SelectionManagerFactory.getSelectionManager();
+//	}
 	@Override
 	public void accept(ServerSocketChannel channel,
 			SocketChannelAcceptListener[] listeners) {
@@ -77,21 +79,34 @@ public class AnObservableNIOManager implements ObservableNIOManager{
 		connect(channel, theServerHost, thePort, listeners);		
 	}
 	
-
-	
-
-	
-
-	
-
 	@Override
 	public void write(SocketChannel channel, ByteBuffer byteBuffer,
 			SocketChannelWriteListener listener) {
 		SocketChannelWriteListener[] listeners = {listener};
 		write(channel, byteBuffer, listeners);		
 	}
-
-	
-	
-
+	@Override
+	public void enableReads(SocketChannel aChannel) {
+		selectionManager.getReadHandler(aChannel).initiate();
+	}
+	@Override
+	public void addWriteBoundedBufferListener(SocketChannel aSocketChannel, WriteBoundedBufferListener aListener) {
+		selectionManager.getWriteBoundedBuffer(aSocketChannel).addListener(aListener);
+	}
+//	@Override
+//	public void bufferIsEmpty(SelectionManager aSelectionManager,
+//			SocketChannel aSocketChannel) {
+//		if (!isAllowReads()) {
+//			return;
+//		}
+//		enableReads(aSocketChannel);		
+//	}
+//	@Override
+//	public boolean isAllowReads() {
+//		return allowReads;
+//	}
+//	@Override
+//	public void setAllowReads(boolean allowReads) {
+//		this.allowReads = allowReads;
+//	}
 }

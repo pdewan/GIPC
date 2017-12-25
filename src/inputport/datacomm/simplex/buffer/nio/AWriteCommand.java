@@ -12,7 +12,7 @@ import util.trace.Tracer;
 
 
 
-public class AWriteCommand implements WriteCommand  {
+public class AWriteCommand extends AnAbstractNIOCommand implements WriteCommand  {
 	SocketChannel socketChannel;
 	ByteBuffer writeBuffer;
 	List<SocketChannelWriteListener> writeListeners = new ArrayList() ;
@@ -20,7 +20,12 @@ public class AWriteCommand implements WriteCommand  {
 	SelectionManager selectingRunnable;
 	static int nextWriteId = 0;
 	int writeId;
-	public AWriteCommand (SelectionManager aSelectingRunnable, SocketChannel  aSocketChannel, ByteBuffer aWriteBuffer) {
+	public AWriteCommand (
+			SelectionManager aSelectingRunnable, 
+			SocketChannel  aSocketChannel, 
+			ByteBuffer aWriteBuffer,
+			Integer aNextInterestOps) {
+		super (aNextInterestOps);
 		socketChannel = aSocketChannel;
 //		writeBuffer = theWriteBuffer.duplicate();
 		writeBuffer = aWriteBuffer;
@@ -33,6 +38,12 @@ public class AWriteCommand implements WriteCommand  {
 //			addwriteListener( aWriteListener);
 //		if (aCloseListener != null)
 //			selectingRunnable.getReadHandler(aSocketChannel).addCloseListener( aCloseListener);
+	}
+	public AWriteCommand (
+			SelectionManager aSelectingRunnable, 
+			SocketChannel  aSocketChannel, 
+			ByteBuffer aWriteBuffer) {
+		this(aSelectingRunnable, aSocketChannel, aWriteBuffer, null);		
 	}
 	@Override
 	public void addwriteListener(SocketChannelWriteListener aListener) {

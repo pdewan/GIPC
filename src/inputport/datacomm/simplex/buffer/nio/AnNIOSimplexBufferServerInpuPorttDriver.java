@@ -25,6 +25,9 @@ public class AnNIOSimplexBufferServerInpuPorttDriver implements NIOSimplexServer
 		observableNIOManager = new AnObservableNIOManager(selectionManager);
 //		myName = theMyName;	
 	}
+	protected void registerAsWriteBufferListener(SocketChannel aSocketChannel) {
+		observableNIOManager.addWriteBoundedBufferListener(aSocketChannel, this);
+	}
 	@Override
 	public void connect() {
 		serverSocketChannel = createSocketChannel();
@@ -39,7 +42,7 @@ public class AnNIOSimplexBufferServerInpuPorttDriver implements NIOSimplexServer
 //		Tracer.info(this, "Waking up selector to process newly queued accept request");
 //		selectionManager.getSelector().wakeup();
 	}
-	ServerSocketChannel createSocketChannel() {
+	protected ServerSocketChannel createSocketChannel() {
 		try {			
 			//localHost = InetAddress.getLocalHost();
 			ServerSocketChannel retVal = ServerSocketChannel.open();
@@ -58,9 +61,10 @@ public class AnNIOSimplexBufferServerInpuPorttDriver implements NIOSimplexServer
 	@Override
 	public void socketChannelAccepted(
 			ServerSocketChannel theServerSocketChannel,
-			SocketChannel theSocketChannel) {
-		observableNIOManager.addCloseListener(theSocketChannel, this);
-		observableNIOManager.addReadListener(theSocketChannel, this);
+			SocketChannel aSocketChannel) {
+		observableNIOManager.addCloseListener(aSocketChannel, this);
+		observableNIOManager.addReadListener(aSocketChannel, this);
+		registerAsWriteBufferListener(aSocketChannel);
 //		selectionManager.registerCloseListener(theSocketChannel, this);
 //		selectionManager.registerReadListener(theSocketChannel, this);
 //		socketChannelToClientProxy.put(theSocketChannel, new AClientProxy(this));
@@ -114,6 +118,11 @@ public class AnNIOSimplexBufferServerInpuPorttDriver implements NIOSimplexServer
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	@Override
+	public void bufferIsEmpty(SocketChannel aSocketChannel) {
+		observableNIOManager.enableReads(aSocketChannel);
+		
 	}
 
 	

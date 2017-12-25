@@ -1,9 +1,9 @@
 package port.old;
 
 
-import inputport.datacomm.simplex.buffer.nio.ASelectionManagerManager;
+import inputport.datacomm.simplex.buffer.nio.SelectionManagerFactory;
 
-public class AMonolithicNIOInputPortFactory extends ASelectionManagerManager implements MonolithicInputPortFactory  {	
+public class AMonolithicNIOInputPortFactory extends SelectionManagerFactory implements MonolithicInputPortFactory  {	
 	@Override
 	public MonolithicServerInputPort createServerInputPort(String theServerId,
 			String theServerName) {

@@ -9,7 +9,7 @@ import inputport.datacomm.duplex.buffer.DuplexBufferGenericClientInputPort;
 import inputport.datacomm.duplex.buffer.DuplexBufferGenericServerInputPort;
 import inputport.datacomm.duplex.buffer.DuplexClientInputPortDriver;
 import inputport.datacomm.duplex.buffer.DuplexServerInputPortDriver;
-import inputport.datacomm.simplex.buffer.nio.ASelectionManagerManager;
+import inputport.datacomm.simplex.buffer.nio.SelectionManagerFactory;
 
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
@@ -17,7 +17,7 @@ import java.nio.channels.SocketChannel;
 import util.trace.Tracer;
 
 
-public class AnNIODuplexBufferInputPortFactory extends ASelectionManagerManager implements DuplexInputPortFactory {
+public class AnNIODuplexBufferInputPortFactory extends SelectionManagerFactory implements DuplexInputPortFactory {
 
 	@Override
 	public DuplexServerInputPort createDuplexServerInputPort(String theServerId,

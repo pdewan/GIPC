@@ -19,6 +19,7 @@ public interface SelectionManager extends Runnable {
 			SocketChannelCloseListener theCloseListener);
 	public void close(SelectionKey selectionKey, Exception readException);
 	public ReadCommand getReadHandler(SocketChannel theSocketChannel);
+	WriteBoundedBuffer getWriteBoundedBuffer(SocketChannel aSocketChannel);
 
 
 //	boolean registerWriteOpsForBufferedWrites(SocketChannel channel);
