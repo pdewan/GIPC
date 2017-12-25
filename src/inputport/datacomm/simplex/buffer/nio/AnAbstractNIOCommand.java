@@ -12,6 +12,9 @@ public  class AnAbstractNIOCommand {
 	protected Integer postCommandInterestOps() {
 		return nextInterestOps;
 	}
+	public void changeInterestOps(SelectionKey aSelectionKey) {
+		changeInterestOps(aSelectionKey, nextInterestOps);
+	}
 	
 	public void changeInterestOps(SelectionKey aSelectionKey, Integer aNextOps) {
 		if (aNextOps == null) return;

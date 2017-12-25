@@ -22,16 +22,16 @@ public class AnAcceptCommand extends AnAbstractNIOCommand implements AcceptComma
 	int newOps;
 	ServerSocketChannel serverSocketChannel;
 	SelectionManager selectingRunnable;
-	public AnAcceptCommand(SelectionManager theSelectingRunnable, 
-			ServerSocketChannel theSocketChannel,
+	public AnAcceptCommand(SelectionManager aSelectingRunnable, 
+			ServerSocketChannel aSocketChannel,
 			Integer aNextInterestOps) {
 		super (aNextInterestOps);	
-		serverSocketChannel = theSocketChannel;
-		selectingRunnable = theSelectingRunnable;
+		serverSocketChannel = aSocketChannel;
+		selectingRunnable = aSelectingRunnable;
 	}	
-	public AnAcceptCommand(SelectionManager theSelectingRunnable, 
-			ServerSocketChannel theSocketChannel) {
-		this(theSelectingRunnable, theSocketChannel, null);
+	public AnAcceptCommand(SelectionManager aSelectingRunnable, 
+			ServerSocketChannel aSocketChannel) {
+		this(aSelectingRunnable, aSocketChannel, null);
 	}	
 	public InetAddress getServerHost() {
 		return serverHost;
@@ -68,7 +68,10 @@ public class AnAcceptCommand extends AnAbstractNIOCommand implements AcceptComma
 			for (SocketChannelAcceptListener listener:listeners)
 				listener.socketChannelAccepted(serverSocketChannel, newSocketChannel);
 			newSocketChannel.configureBlocking(false);
-			newSocketChannel.register(selectingRunnable.getSelector(), SelectionKey.OP_READ);	
+			Integer aNextInterestOps = nextInterestOps != null?nextInterestOps:0;
+//			newSocketChannel.register(selectingRunnable.getSelector(), SelectionKey.OP_READ);	
+			newSocketChannel.register(selectingRunnable.getSelector(), aNextInterestOps);	
+
 			SocketChannelRegistered.newCase(this, newSocketChannel, selectingRunnable.getSelector(), SelectionKey.OP_READ);
 
 			return true;

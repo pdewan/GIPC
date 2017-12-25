@@ -28,6 +28,7 @@ public class AnNIOSimplexBufferClientInputPortDriver  implements NIOSimplexClien
 			selectionManager = theSelectingRunnable;
 			serverName = aServerName;
 			observableNIOManager = new AnObservableNIOManager(selectionManager);
+			ConnectCommandSelector.setFactory(new AWritingConnectCommandFactory());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

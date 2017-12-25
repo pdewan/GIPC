@@ -22,7 +22,8 @@ public class AnObservableNIOManager implements ObservableNIOManager{
 	public void accept(ServerSocketChannel channel,
 			SocketChannelAcceptListener[] listeners) {
 		AcceptCommand acceptRequestResponse = 
-			new AnAcceptCommand(selectionManager, channel);
+				AcceptCommandSelector.getFactory().createAcceptCommand(selectionManager, channel);
+//			new AnAcceptCommand(selectionManager, channel);
 		for (SocketChannelAcceptListener listener:listeners) {
 			acceptRequestResponse.addAcceptListener(listener);
 		}
@@ -34,7 +35,8 @@ public class AnObservableNIOManager implements ObservableNIOManager{
 	public void connect(SocketChannel channel, InetAddress theServerHost,
 			int thePort, SocketChannelConnectListener[] listeners) {
 		ConnectCommand connectCommand = 
-			new AConnectCommand(selectionManager, channel, theServerHost, thePort);
+//			new AConnectCommand(selectionManager, channel, theServerHost, thePort);
+		ConnectCommandSelector.getFactory().createConnectCommand(selectionManager, channel, theServerHost, thePort);
 		for (SocketChannelConnectListener listener:listeners) {
 			connectCommand.addConnectListener(listener);
 		}

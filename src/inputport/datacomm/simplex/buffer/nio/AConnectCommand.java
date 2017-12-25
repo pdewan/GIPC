@@ -26,25 +26,25 @@ public class AConnectCommand extends AnAbstractNIOCommand implements ConnectComm
 	boolean connected;
 	SelectionManager selectionManager;
 	public AConnectCommand(
-			SelectionManager theSelectionManager, 
-			SocketChannel theSocketChannel, 
-			InetAddress theServerHost, 
-			int thePort,
+			SelectionManager aSelectionManager, 
+			SocketChannel aSocketChannel, 
+			InetAddress aServerHost, 
+			int aPort,
 			Integer aNextInterestOps) {
 		super(aNextInterestOps);
-		serverHost = theServerHost;
+		serverHost = aServerHost;
 //		if (theListener != null)
 //			addConnectListener(theListener);
-		socketChannel = theSocketChannel;
-		port = thePort;
-		selectionManager = theSelectionManager;
+		socketChannel = aSocketChannel;
+		port = aPort;
+		selectionManager = aSelectionManager;
 	}	
 	public AConnectCommand(
-			SelectionManager theSelectionManager, 
-			SocketChannel theSocketChannel, 
-			InetAddress theServerHost, 
-			int thePort) {
-		this(theSelectionManager, theSocketChannel, theServerHost, thePort, null);
+			SelectionManager aSelectionManager, 
+			SocketChannel aSocketChannel, 
+			InetAddress aServerHost, 
+			int aPort) {
+		this(aSelectionManager, aSocketChannel, aServerHost, aPort, null);
 	}
 	public InetAddress getServerHost() {
 		return serverHost;
@@ -107,9 +107,10 @@ public class AConnectCommand extends AnAbstractNIOCommand implements ConnectComm
 //		Tracer.info(this, "New ops for:" + socketChannel + " are "  + selectionKey.interestOps());
 		for (SocketChannelConnectListener listener:listeners)
 			listener.connected(socketChannel);
-		selectionKey.interestOps(SelectionKey.OP_READ);
-		SocketChannelInterestOp.newCase(this, selectionKey, SelectionKey.OP_READ);
-		changeInterestOps(selectionKey, postCommandInterestOps());
+		changeInterestOps(selectionKey);
+//		selectionKey.interestOps(SelectionKey.OP_READ);
+//		SocketChannelInterestOp.newCase(this, selectionKey, SelectionKey.OP_READ);
+//		changeInterestOps(selectionKey, postCommandInterestOps());
 
 	}
 	@Override

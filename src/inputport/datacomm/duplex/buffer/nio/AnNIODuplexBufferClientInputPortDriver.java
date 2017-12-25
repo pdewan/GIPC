@@ -3,6 +3,7 @@ package inputport.datacomm.duplex.buffer.nio;
 import inputport.datacomm.duplex.buffer.DuplexBufferGenericClientInputPort;
 import inputport.datacomm.duplex.buffer.DuplexClientInputPortSkeleton;
 import inputport.datacomm.simplex.buffer.nio.AnNIOSimplexBufferClientInputPortDriver;
+import inputport.datacomm.simplex.buffer.nio.ConnectCommandSelector;
 import inputport.datacomm.simplex.buffer.nio.SelectionManager;
 
 import java.nio.ByteBuffer;
@@ -13,7 +14,9 @@ public class AnNIODuplexBufferClientInputPortDriver extends AnNIOSimplexBufferCl
 	DuplexClientInputPortSkeleton duplexSkeleton;
 	public AnNIODuplexBufferClientInputPortDriver(SelectionManager theSelectingRunnable,
 			String theRemoteHostName, String theRemotePort, String aServerName) {
-		super(theSelectingRunnable, theRemoteHostName, theRemotePort, aServerName);		
+		super(theSelectingRunnable, theRemoteHostName, theRemotePort, aServerName);	
+		ConnectCommandSelector.setFactory(new AReadingWritingConnectCommandFactory());
+
 	}
 	@Override
 	public void connected(SocketChannel theSocketChannel) {

@@ -5,7 +5,9 @@ import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
-public interface ReadCommandCreator {	
+public interface ReadCommandFactory {	
 	ReadCommand createReadCommand(SelectionManager aSelectionManager,
 			SocketChannel aSocketChannel);	
+	ReadCommand createReadCommand(SelectionManager aSelectionManager,
+			SocketChannel aSocketChannel, Integer amInterestOps);	
 }

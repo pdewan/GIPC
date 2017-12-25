@@ -23,6 +23,7 @@ public class AnNIOSimplexBufferServerInpuPorttDriver implements NIOSimplexServer
 		selectionManager = theSelectingRunnable;
 		portNumber = Integer.parseInt(thePortId);
 		observableNIOManager = new AnObservableNIOManager(selectionManager);
+		AcceptCommandSelector.setFactory(new AReadingAcceptCommandFactory());
 //		myName = theMyName;	
 	}
 	protected void registerAsWriteBufferListener(SocketChannel aSocketChannel) {

@@ -10,6 +10,7 @@ import java.nio.ByteBuffer;
 
 import port.ATracingConnectionListener;
 import port.AnAbstractPortLauncher;
+import port.trace.nio.NIOTraceUtility;
 
 public class ASimplexBufferServerInputPortLauncher extends AnAbstractPortLauncher {
 	public static final String UPPECASE_SERVER_NAME = "Upper Case Server";
@@ -36,6 +37,7 @@ public class ASimplexBufferServerInputPortLauncher extends AnAbstractPortLaunche
 	}
 	
 	public static void main (String[] args) {
+		NIOTraceUtility.setTracing();
 		(new ASimplexBufferServerInputPortLauncher()).launch();
 	}
 }
