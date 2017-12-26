@@ -2,7 +2,7 @@ package inputport.datacomm.simplex.buffer.nio;
 
 import java.nio.channels.SelectionKey;
 
-import port.trace.nio.SocketChannelInterestOp;
+import trace.port.nio.SocketChannelInterestOp;
 
 public  class AnAbstractNIOCommand {
 	Integer nextInterestOps;

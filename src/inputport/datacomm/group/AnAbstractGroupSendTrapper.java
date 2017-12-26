@@ -3,8 +3,8 @@ package inputport.datacomm.group;
 import java.util.HashSet;
 import java.util.Set;
 
-import port.trace.AConnectionEvent;
-import port.trace.ConnectiontEventBus;
+import trace.port.AConnectionEvent;
+import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
 
 

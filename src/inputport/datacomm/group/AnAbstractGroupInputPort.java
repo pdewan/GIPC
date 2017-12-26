@@ -16,9 +16,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import port.trace.AConnectionEvent;
-import port.trace.AReplaceConnectionEvent;
-import port.trace.ConnectiontEventBus;
+import trace.port.AConnectionEvent;
+import trace.port.AReplaceConnectionEvent;
+import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
 
 

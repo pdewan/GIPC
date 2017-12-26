@@ -1,8 +1,8 @@
 package inputport.datacomm;
 import java.nio.ByteBuffer;
 
-import port.trace.buffer.TrapperBufferSendInitiated;
-import port.trace.objects.TrapperObjectSendInitiated;
+import trace.port.buffer.TrapperBufferSendInitiated;
+import trace.port.objects.TrapperObjectSendInitiated;
 
 public class ASendMessageForwarder<InAndOutMessageType> extends AnAbstractSendTrapper<InAndOutMessageType, InAndOutMessageType>{
 	public ASendMessageForwarder(NamingSender<InAndOutMessageType>  aDestination) {

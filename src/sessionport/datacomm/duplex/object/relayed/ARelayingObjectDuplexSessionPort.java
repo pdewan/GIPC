@@ -24,11 +24,11 @@ import port.ParticipantChoice;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionParticipantDescription;
-import port.trace.AConnectionEvent;
-import port.trace.AReplaceConnectionEvent;
-import port.trace.ConnectiontEventBus;
 import sessionport.datacomm.duplex.DuplexSessionPort;
 import sessionport.datacomm.duplex.buffer.example.ABufferDuplexSessionPortLauncher;
+import trace.port.AConnectionEvent;
+import trace.port.AReplaceConnectionEvent;
+import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
 
 

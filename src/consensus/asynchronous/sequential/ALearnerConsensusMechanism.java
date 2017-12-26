@@ -1,9 +1,9 @@
 package consensus.asynchronous.sequential;
 
 import inputport.InputPort;
-import port.trace.consensus.ProposalLearnNotificationReceived;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
+import trace.port.consensus.ProposalLearnNotificationReceived;
 import consensus.AnAbstractConsensusMechanism;
 import consensus.ProposalState;
 import consensus.ProposalFeedbackKind;

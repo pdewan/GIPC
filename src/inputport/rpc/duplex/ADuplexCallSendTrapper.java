@@ -1,10 +1,10 @@
 package inputport.rpc.duplex;
 
-import port.trace.rpc.RemoteCallReturnValueDetermined;
 import inputport.InputPort;
 import inputport.datacomm.NamingSender;
 import inputport.rpc.RemoteCall;
 import inputport.rpc.simplex.ASimplexCallSendTrapper;
+import trace.port.rpc.RemoteCallReturnValueDetermined;
 import util.trace.Tracer;
 
 public class ADuplexCallSendTrapper extends ASimplexCallSendTrapper {

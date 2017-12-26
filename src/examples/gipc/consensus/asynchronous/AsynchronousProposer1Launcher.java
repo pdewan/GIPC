@@ -2,7 +2,7 @@ package examples.gipc.consensus.asynchronous;
 
 import examples.gipc.consensus.ExampleMemberLauncher;
 import examples.gipc.consensus.Member1;
-import port.trace.consensus.ConsensusTraceUtility;
+import trace.port.consensus.ConsensusTraceUtility;
 
 public class AsynchronousProposer1Launcher extends
 		AnAsynchronousProposerLauncher implements Member1 {

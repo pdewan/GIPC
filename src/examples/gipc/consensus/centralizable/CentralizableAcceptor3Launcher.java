@@ -1,6 +1,6 @@
 package examples.gipc.consensus.centralizable;
 
-import port.trace.consensus.ConsensusTraceUtility;
+import trace.port.consensus.ConsensusTraceUtility;
 import examples.gipc.consensus.AGreetingVetoer;
 import examples.gipc.consensus.Member3;
 

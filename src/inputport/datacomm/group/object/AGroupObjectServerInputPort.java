@@ -13,8 +13,8 @@ import java.nio.ByteBuffer;
 import java.util.Collection;
 import java.util.Set;
 
-import port.trace.AConnectionEvent;
-import port.trace.ConnectiontEventBus;
+import trace.port.AConnectionEvent;
+import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
 
 

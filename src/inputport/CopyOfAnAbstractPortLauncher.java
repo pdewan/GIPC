@@ -35,7 +35,7 @@ import port.PortLauncher;
 import port.PortLauncherSupport;
 import port.PortMessageKind;
 import port.SessionChoice;
-import port.trace.ConnectionEventManagerFactory;
+import trace.port.ConnectionEventManagerFactory;
 
 public abstract class CopyOfAnAbstractPortLauncher implements PortLauncher, ConnectionListener, Runnable {
 //	public final static String SERVER_NAME = "Echo Server";

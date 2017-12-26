@@ -2,8 +2,8 @@ package examples.gipc.consensus.synchronous;
 
 import examples.gipc.consensus.ExampleMemberLauncher;
 import examples.gipc.consensus.Member1;
-import port.trace.buffer.BufferTraceUtility;
-import port.trace.consensus.ConsensusTraceUtility;
+import trace.port.buffer.BufferTraceUtility;
+import trace.port.consensus.ConsensusTraceUtility;
 
 public class SynchronousProposer1Launcher extends
 		ASynchronousMemberLauncher implements Member1 {

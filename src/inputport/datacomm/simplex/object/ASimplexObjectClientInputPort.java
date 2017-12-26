@@ -9,10 +9,10 @@ import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 import java.nio.ByteBuffer;
 import java.util.Set;
 
-import port.trace.AConnectionEvent;
-import port.trace.AReplaceConnectionEvent;
-import port.trace.ConnectiontEventBus;
-import port.trace.objects.ObjectSendInitiated;
+import trace.port.AConnectionEvent;
+import trace.port.AReplaceConnectionEvent;
+import trace.port.ConnectiontEventBus;
+import trace.port.objects.ObjectSendInitiated;
 import util.trace.Tracer;
 
 

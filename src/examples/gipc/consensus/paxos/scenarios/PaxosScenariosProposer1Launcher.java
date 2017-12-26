@@ -5,7 +5,7 @@ import inputport.datacomm.group.object.AnAscendingMultipleSendGroupForwarderFact
 import inputport.datacomm.group.object.MultipleSendGroupForwarderSelector;
 import examples.gipc.consensus.ExampleMemberLauncher;
 import examples.gipc.consensus.Member1;
-import port.trace.consensus.ConsensusTraceUtility;
+import trace.port.consensus.ConsensusTraceUtility;
 
 public class PaxosScenariosProposer1Launcher extends
 		APaxosScenariosMemberLauncher implements Member1 {

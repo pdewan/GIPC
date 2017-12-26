@@ -9,8 +9,8 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-import port.trace.nio.SocketChannelInterestOp;
-import port.trace.nio.SocketChannelRead;
+import trace.port.nio.SocketChannelInterestOp;
+import trace.port.nio.SocketChannelRead;
 import util.trace.Tracer;
 
 
@@ -64,7 +64,7 @@ public class AReadCommand extends AnAbstractNIOCommand implements ReadCommand {
 		
 		Tracer.info(this, "Processing read on channel:" + socketChannel);
 		readIntoBuffer();
-		readBuffer.flip();
+		readBuffer.flip();// why flip if we are clearing later? To do the wrap correctly?
 		Tracer.info(this, "Read buffer after flip:" + readBuffer);
 		ByteBuffer messageBuffer = ByteBuffer.wrap(readBuffer.array(), 0, readBuffer.remaining());
 		notifyRead(socketChannel, messageBuffer, readBuffer.remaining());
@@ -88,7 +88,7 @@ public class AReadCommand extends AnAbstractNIOCommand implements ReadCommand {
 	protected void notifyRead(SocketChannel theSocketChannel, ByteBuffer theBuffer, int length ) {
 		for (SocketChannelReadListener readListener:readListeners)
 //		if (readListener != null)
-			readListener.socketChannelRead(theSocketChannel, theBuffer);
+			readListener.socketChannelRead(theSocketChannel, theBuffer, length);
 		
 	}
 	protected void allocateReadState() {

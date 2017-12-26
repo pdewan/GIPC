@@ -13,12 +13,12 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import port.trace.ReplayStartInfo;
-import port.trace.SyncReplayEndInfo;
-import port.trace.rpc.CallReceived;
-import port.trace.rpc.ProxyCacheInvalidated;
-import port.trace.rpc.ProxyMethodCalled;
-import port.trace.rpc.ProxyPureFunctionCalled;
+import trace.port.ReplayStartInfo;
+import trace.port.SyncReplayEndInfo;
+import trace.port.rpc.CallReceived;
+import trace.port.rpc.ProxyCacheInvalidated;
+import trace.port.rpc.ProxyMethodCalled;
+import trace.port.rpc.ProxyPureFunctionCalled;
 import util.introspect.JavaIntrospectUtility;
 import util.misc.HashIdentityMap;
 import util.misc.IdentityMap;

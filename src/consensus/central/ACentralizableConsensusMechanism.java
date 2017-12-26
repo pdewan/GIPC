@@ -1,11 +1,11 @@
 package consensus.central;
 
 import inputport.ConnectionType;
-import port.trace.RemoteEndDisconnected;
-import port.trace.consensus.RemoteProposeRequestReceived;
-import port.trace.consensus.RemoteProposeRequestSent;
 import bus.uigen.widgets.universal.CentralUniversalWidget;
 import sessionport.rpc.group.GIPCSessionRegistry;
+import trace.port.RemoteEndDisconnected;
+import trace.port.consensus.RemoteProposeRequestReceived;
+import trace.port.consensus.RemoteProposeRequestSent;
 import consensus.ConsensusMechanism;
 import consensus.ProposalFeedbackKind;
 import consensus.synchronous.sequential.ASynchronousConsensusMechanism;

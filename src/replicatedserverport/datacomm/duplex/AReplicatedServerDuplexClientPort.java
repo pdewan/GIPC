@@ -12,13 +12,13 @@ import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 import java.util.List;
 
 import multiserverport.datacomm.group.GroupMultiServerClientPort;
-import port.trace.AConnectionEvent;
-import port.trace.AReplaceConnectionEvent;
-import port.trace.ConnectiontEventBus;
 import replicatedserverport.datacomm.simplex.AReplicatedServerClientPort;
 import replicatedserverport.datacomm.simplex.ClientMultiToReplicatedTrapperSelector;
 import replicatedserverport.datacomm.simplex.MultiToReplicatedTrapperSelector;
 import replicatedserverport.datacomm.simplex.ReplicatedServerObjectTrapperSelector;
+import trace.port.AConnectionEvent;
+import trace.port.AReplaceConnectionEvent;
+import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
 // even though this port is duplex, it involves group send and receive because it is replicated
 public class AReplicatedServerDuplexClientPort<MessageType> 

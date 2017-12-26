@@ -2,7 +2,7 @@ package examples.gipc.consensus.centralizable;
 
 import examples.gipc.consensus.ExampleMemberLauncher;
 import examples.gipc.consensus.Member1;
-import port.trace.consensus.ConsensusTraceUtility;
+import trace.port.consensus.ConsensusTraceUtility;
 
 public class CentralizableProposer1Launcher extends
 		ACentralizableMemberLauncher implements Member1 {

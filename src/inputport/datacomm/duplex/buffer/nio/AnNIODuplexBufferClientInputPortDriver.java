@@ -28,7 +28,7 @@ public class AnNIODuplexBufferClientInputPortDriver extends AnNIOSimplexBufferCl
 	}
 	@Override
 	public void socketChannelRead(SocketChannel theSocketChannel,
-			ByteBuffer theMessage) {
+			ByteBuffer theMessage, int aLength) {
 		duplexSkeleton.messageReceived(serverName, theMessage);		
 	}	
 

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import port.trace.JoinCallInitiated;
+import trace.port.JoinCallInitiated;
 import util.trace.Tracer;
 
 

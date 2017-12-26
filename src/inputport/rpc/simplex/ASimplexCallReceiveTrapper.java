@@ -7,11 +7,11 @@ import inputport.rpc.RPCRegistry;
 import inputport.rpc.ReceivedCallInvoker;
 import inputport.rpc.RemoteCall;
 import inputport.rpc.duplex.AnAsynchronousSingleThreadDuplexReceivedCallInvoker;
-import port.trace.AConnectionEvent;
-import port.trace.AReplaceConnectionEvent;
-import port.trace.ConnectiontEventBus;
-import port.trace.rpc.CallInitiated;
-import port.trace.rpc.CallReceived;
+import trace.port.AConnectionEvent;
+import trace.port.AReplaceConnectionEvent;
+import trace.port.ConnectiontEventBus;
+import trace.port.rpc.CallInitiated;
+import trace.port.rpc.CallReceived;
 import util.trace.Tracer;
 
 

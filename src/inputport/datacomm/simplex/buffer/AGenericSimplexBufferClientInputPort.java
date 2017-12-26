@@ -11,20 +11,20 @@ import java.nio.ByteBuffer;
 import java.util.HashSet;
 import java.util.Set;
 
-import port.trace.AConnectionEvent;
-import port.trace.ConnectiontEventBus;
-import port.trace.buffer.BufferChannelConnectFailure;
-import port.trace.buffer.BufferChannelConnectFinished;
-import port.trace.buffer.BufferChannelConnectInitiated;
-import port.trace.buffer.BufferChannelDisconnectInitiated;
-import port.trace.buffer.BufferChannelDisconnected;
-import port.trace.buffer.BufferSendFinished;
-import port.trace.buffer.BufferSendInitiated;
-import port.trace.buffer.BufferSendToUnconnectedChannelIgnored;
-import port.trace.buffer.NumberBytesSent;
-import port.trace.buffer.TrapperBufferSendFinished;
-import port.trace.buffer.ClientNameSendInitiated;
-import port.trace.buffer.DuplicateBufferChannelConnectIgnored;
+import trace.port.AConnectionEvent;
+import trace.port.ConnectiontEventBus;
+import trace.port.buffer.BufferChannelConnectFailure;
+import trace.port.buffer.BufferChannelConnectFinished;
+import trace.port.buffer.BufferChannelConnectInitiated;
+import trace.port.buffer.BufferChannelDisconnectInitiated;
+import trace.port.buffer.BufferChannelDisconnected;
+import trace.port.buffer.BufferSendFinished;
+import trace.port.buffer.BufferSendInitiated;
+import trace.port.buffer.BufferSendToUnconnectedChannelIgnored;
+import trace.port.buffer.ClientNameSendInitiated;
+import trace.port.buffer.DuplicateBufferChannelConnectIgnored;
+import trace.port.buffer.NumberBytesSent;
+import trace.port.buffer.TrapperBufferSendFinished;
 import util.trace.Tracer;
 
 

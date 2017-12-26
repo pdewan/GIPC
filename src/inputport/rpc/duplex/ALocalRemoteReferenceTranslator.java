@@ -15,7 +15,7 @@ import inputport.rpc.DirectedRPCProxyGenerator;
 import inputport.rpc.duplex.referencetranslator.ReferenceTranslator;
 import inputport.rpc.duplex.referencetranslator.VisitedObjects;
 import inputport.rpc.duplex.referencetranslator.VisitedObjectsImpl;
-import port.trace.rpc.SentObjectTransformed;
+import trace.port.rpc.SentObjectTransformed;
 import util.misc.Common;
 import util.misc.HashIdentityMap;
 import util.misc.IdentityMap;

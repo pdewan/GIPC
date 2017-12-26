@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import port.trace.AsyncReplayEndInfo;
-import port.trace.ConnectedToSessionServer;
-import port.trace.ReplayStartInfo;
+import trace.port.AsyncReplayEndInfo;
+import trace.port.ConnectedToSessionServer;
+import trace.port.ReplayStartInfo;
 import util.trace.TraceableBus;
 import util.trace.Tracer;
 

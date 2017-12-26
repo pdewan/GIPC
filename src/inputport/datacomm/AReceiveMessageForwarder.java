@@ -4,8 +4,8 @@ import inputport.InputPort;
 
 import java.nio.ByteBuffer;
 
-import port.trace.buffer.TrapperBufferReceived;
-import port.trace.objects.TrapperObjectReceived;
+import trace.port.buffer.TrapperBufferReceived;
+import trace.port.objects.TrapperObjectReceived;
 
 
 

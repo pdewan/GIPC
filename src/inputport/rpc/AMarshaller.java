@@ -2,7 +2,7 @@ package inputport.rpc;
 
 import java.lang.reflect.Method;
 
-import port.trace.rpc.ProxyMethodConvertedToCallObject;
+import trace.port.rpc.ProxyMethodConvertedToCallObject;
 
 public class AMarshaller implements Marshaller<String>{
 

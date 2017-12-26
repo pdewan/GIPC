@@ -22,10 +22,10 @@ import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionParticipantDescription;
 import port.sessionserver.relay.ARelayerSupportingSessionServer;
 import port.sessionserver.relay.RelayerSupportingSessionServer;
-import port.trace.AConnectionEvent;
-import port.trace.ConnectedToSessionServer;
-import port.trace.ConnectiontEventBus;
 import sessionport.datacomm.duplex.DuplexSessionPort;
+import trace.port.AConnectionEvent;
+import trace.port.ConnectedToSessionServer;
+import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
 
 public class ARelayingDuplexConnectionsManager implements

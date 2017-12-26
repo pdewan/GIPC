@@ -37,7 +37,7 @@ public class AnNIOSimplexBufferServerInpuPorttDriver implements NIOSimplexServer
 			registerWithSelectionManager();
 	}
 	void registerWithSelectionManager() {
-		observableNIOManager.accept(serverSocketChannel, this);
+		observableNIOManager.enableAccepts(serverSocketChannel, this);
 //		AcceptCommand acceptRequestResponse = new AnAcceptCommand(selectionManager, serverSocketChannel, this);
 //		selectionManager.putRequestResponse(acceptRequestResponse);	
 //		Tracer.info(this, "Waking up selector to process newly queued accept request");
@@ -93,7 +93,7 @@ public class AnNIOSimplexBufferServerInpuPorttDriver implements NIOSimplexServer
 
 	@Override
 	public void socketChannelRead(SocketChannel theSocketChannel,
-			ByteBuffer theMessage) {
+			ByteBuffer theMessage, int aLength) {
 		skeleton.messageReceived(theSocketChannel, theMessage);
 
 	}

@@ -10,7 +10,7 @@ import inputport.rpc.simplex.SimplexRPC;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
-import port.trace.rpc.ProxyCreated;
+import trace.port.rpc.ProxyCreated;
 import util.misc.RemoteReflectionUtility;
 
 public class DirectedRPCProxyGenerator {

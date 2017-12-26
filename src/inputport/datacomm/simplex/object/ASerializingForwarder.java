@@ -7,10 +7,10 @@ import inputport.datacomm.simplex.buffer.SendRegistrar;
 
 import java.nio.ByteBuffer;
 
-import port.trace.objects.ObjectSerializationFinished;
-import port.trace.objects.ObjectSerializationInitiated;
 import serialization.Serializer;
 import serialization.SerializerPoolSelector;
+import trace.port.objects.ObjectSerializationFinished;
+import trace.port.objects.ObjectSerializationInitiated;
 import util.trace.Tracer;
 
 

@@ -7,8 +7,8 @@ import inputport.rpc.simplex.ASimplexReceivedCallInvoker;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 
-import port.trace.rpc.ReturnMessageCreated;
-import port.trace.rpc.SentObjectTransformed;
+import trace.port.rpc.ReturnMessageCreated;
+import trace.port.rpc.SentObjectTransformed;
 import util.trace.Tracer;
 
 public class ADuplexReceivedCallInvoker extends ASimplexReceivedCallInvoker

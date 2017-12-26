@@ -17,8 +17,8 @@ import java.util.Set;
 import port.ParticipantChoice;
 import port.sessionserver.ASession;
 import port.sessionserver.SessionParticipantDescription;
-import port.trace.AConnectionEvent;
-import port.trace.ConnectiontEventBus;
+import trace.port.AConnectionEvent;
+import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
 import variableserverport.SimplexVariableServerClientPort;
 

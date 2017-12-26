@@ -41,7 +41,6 @@ import port.delay.AClientDelayingPortLauncherSupport;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionParticipantDescription;
-import port.trace.ConnectionEventManagerFactory;
 import sessionport.datacomm.duplex.buffer.BufferDuplexSessionPortSelector;
 import sessionport.datacomm.duplex.object.ObjectDuplexSessionPortSelector;
 import sessionport.datacomm.group.buffer.BufferGroupSessionPortSelector;
@@ -54,6 +53,7 @@ import staticsessionport.datacomm.group.buffer.BufferGroupStaticSessionPortSelec
 import staticsessionport.datacomm.group.object.GroupObjectStaticSessionPortSelector;
 import staticsessionport.rpc.duplex.DuplexRPCStaticSessionPortSelector;
 import staticsessionport.rpc.group.GroupRPCStaticSessionPortSelector;
+import trace.port.ConnectionEventManagerFactory;
 
 public abstract class AnAbstractPortLauncher implements PortLauncher, ConnectionListener, Runnable {
 ;

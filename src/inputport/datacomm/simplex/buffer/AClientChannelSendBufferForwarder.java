@@ -5,7 +5,7 @@ import inputport.datacomm.NamingSender;
 
 import java.nio.ByteBuffer;
 
-import port.trace.buffer.BufferSendInitiated;
+import trace.port.buffer.BufferSendInitiated;
 import util.trace.Tracer;
 
 

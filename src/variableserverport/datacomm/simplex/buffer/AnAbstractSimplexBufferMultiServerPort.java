@@ -19,10 +19,10 @@ import java.util.Set;
 
 import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
-import port.trace.AConnectionEvent;
-import port.trace.AReplaceConnectionEvent;
-import port.trace.ConnectiontEventBus;
 import sessionport.datacomm.duplex.buffer.example.ABufferDuplexSessionPortLauncher;
+import trace.port.AConnectionEvent;
+import trace.port.AReplaceConnectionEvent;
+import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
 import variableserverport.SimplexVariableServerClientPort;
 

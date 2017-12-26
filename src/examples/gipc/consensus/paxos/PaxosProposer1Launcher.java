@@ -8,8 +8,8 @@ import inputport.datacomm.simplex.buffer.nio.AReadCommand;
 import inputport.datacomm.simplex.buffer.nio.AWriteBoundedBuffer;
 import examples.gipc.consensus.ExampleMemberLauncher;
 import examples.gipc.consensus.Member1;
-import port.trace.consensus.ConsensusTraceUtility;
-import port.trace.nio.NIOTraceUtility;
+import trace.port.consensus.ConsensusTraceUtility;
+import trace.port.nio.NIOTraceUtility;
 import util.trace.Tracer;
 
 public class PaxosProposer1Launcher extends

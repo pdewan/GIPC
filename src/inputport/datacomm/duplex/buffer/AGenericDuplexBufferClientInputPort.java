@@ -10,11 +10,11 @@ import inputport.datacomm.simplex.buffer.AGenericSimplexBufferClientInputPort;
 import java.nio.ByteBuffer;
 import java.util.List;
 
-import port.trace.AConnectionEvent;
-import port.trace.ConnectiontEventBus;
-import port.trace.buffer.BufferClientChannelLocallyConnected;
-import port.trace.buffer.BufferReceived;
-import port.trace.buffer.ReplyDestinationAssociatedWithPort;
+import trace.port.AConnectionEvent;
+import trace.port.ConnectiontEventBus;
+import trace.port.buffer.BufferClientChannelLocallyConnected;
+import trace.port.buffer.BufferReceived;
+import trace.port.buffer.ReplyDestinationAssociatedWithPort;
 import util.trace.Tracer;
 
 

@@ -12,10 +12,10 @@ import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.util.Set;
 
-import port.trace.AConnectionEvent;
-import port.trace.AReplaceConnectionEvent;
-import port.trace.ConnectiontEventBus;
-import port.trace.rpc.RemoteCallInitiated;
+import trace.port.AConnectionEvent;
+import trace.port.AReplaceConnectionEvent;
+import trace.port.ConnectiontEventBus;
+import trace.port.rpc.RemoteCallInitiated;
 import util.trace.Tracer;
 
 

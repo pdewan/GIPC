@@ -12,18 +12,18 @@ import java.util.Map;
 import java.util.Set;
 
 import consensus.asynchronous.sequential.LearnedKind;
-import port.trace.RemoteEndConnected;
-import port.trace.RemoteEndDisconnected;
-import port.trace.consensus.ProposalConsensusOccurred;
-import port.trace.consensus.ProposalLearnNotificationReceived;
-import port.trace.consensus.ProposalMade;
-import port.trace.consensus.ProposalStateChanged;
-import port.trace.consensus.ProposalWaitEnded;
-import port.trace.consensus.ProposalWaitStarted;
-import port.trace.consensus.WaitedForSuccessfulProposalMessageReceipt;
-import port.trace.consensus.WaitingForSuccessfulProposalMessageReceipt;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
+import trace.port.RemoteEndConnected;
+import trace.port.RemoteEndDisconnected;
+import trace.port.consensus.ProposalConsensusOccurred;
+import trace.port.consensus.ProposalLearnNotificationReceived;
+import trace.port.consensus.ProposalMade;
+import trace.port.consensus.ProposalStateChanged;
+import trace.port.consensus.ProposalWaitEnded;
+import trace.port.consensus.ProposalWaitStarted;
+import trace.port.consensus.WaitedForSuccessfulProposalMessageReceipt;
+import trace.port.consensus.WaitingForSuccessfulProposalMessageReceipt;
 import util.misc.ThreadSupport;
 import util.trace.Tracer;
 

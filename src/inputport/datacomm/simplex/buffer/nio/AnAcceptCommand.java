@@ -1,5 +1,6 @@
 package inputport.datacomm.simplex.buffer.nio;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.nio.channels.SelectableChannel;
 import java.nio.channels.SelectionKey;
@@ -8,9 +9,10 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-import port.trace.nio.SocketChannelAccepted;
-import port.trace.nio.SocketChannelInterestOp;
-import port.trace.nio.SocketChannelRegistered;
+import trace.port.nio.SocketChannelAccepted;
+import trace.port.nio.SocketChannelBlockingConfigured;
+import trace.port.nio.SocketChannelInterestOp;
+import trace.port.nio.SocketChannelRegistered;
 import util.trace.Tracer;
 
 
@@ -43,12 +45,23 @@ public class AnAcceptCommand extends AnAbstractNIOCommand implements AcceptComma
 //	public SocketChannelAcceptListener getListener() {
 //		return listener;
 //	}
+	protected void configureBlocking() {
+		try {
+			boolean aBlockingStatus = false;
+			serverSocketChannel.configureBlocking(aBlockingStatus);
+			SocketChannelBlockingConfigured.newCase(this, serverSocketChannel, aBlockingStatus);
+//			serverSocketChannel.configureBlocking(false);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
 	@Override
 	public boolean initiate() {
 		try {
 			Tracer.info(this, "Regisering  accept op for channel:" + serverSocketChannel);
-			serverSocketChannel.configureBlocking(false);
-
+			configureBlocking();
+//			serverSocketChannel.configureBlocking(false);
 			serverSocketChannel.register(selectingRunnable.getSelector(), SelectionKey.OP_ACCEPT);
 			SocketChannelRegistered.newCase(this, serverSocketChannel, selectingRunnable.getSelector(), SelectionKey.OP_ACCEPT);
 			return true;

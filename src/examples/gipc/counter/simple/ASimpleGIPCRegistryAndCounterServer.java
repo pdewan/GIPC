@@ -9,8 +9,8 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 import port.ATracingConnectionListener;
-import port.trace.buffer.BufferTraceUtility;
-import port.trace.rpc.RPCTraceUtility;
+import trace.port.buffer.BufferTraceUtility;
+import trace.port.rpc.RPCTraceUtility;
 import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;

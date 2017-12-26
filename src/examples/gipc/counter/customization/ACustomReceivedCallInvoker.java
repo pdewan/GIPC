@@ -11,7 +11,7 @@ import inputport.rpc.duplex.RPCReturnValue;
 
 import java.io.Serializable;
 
-import port.trace.rpc.ReturnMessageCreated;
+import trace.port.rpc.ReturnMessageCreated;
 import util.trace.Tracer;
 
 

@@ -1,8 +1,8 @@
 package port.common;
 
-import port.trace.AConnectionEventManager;
-import port.trace.ConnectionEventListener;
-import port.trace.ConnectiontEventBus;
+import trace.port.AConnectionEventManager;
+import trace.port.ConnectionEventListener;
+import trace.port.ConnectiontEventBus;
 import bus.uigen.ObjectEditor;
 
 public class PortMisc {

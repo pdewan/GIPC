@@ -9,10 +9,11 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-import port.trace.nio.SocketChannelConnectFinished;
-import port.trace.nio.SocketChannelConnectInitiated;
-import port.trace.nio.SocketChannelInterestOp;
-import port.trace.nio.SocketChannelRegistered;
+import trace.port.nio.SocketChannelBlockingConfigured;
+import trace.port.nio.SocketChannelConnectFinished;
+import trace.port.nio.SocketChannelConnectInitiated;
+import trace.port.nio.SocketChannelInterestOp;
+import trace.port.nio.SocketChannelRegistered;
 import util.trace.Tracer;
 
 
@@ -52,6 +53,17 @@ public class AConnectCommand extends AnAbstractNIOCommand implements ConnectComm
 	public int getPort() {
 		return port;
 	}
+	protected void configureBlocking() {
+		try {
+			boolean aBlockingStatus = false;
+			socketChannel.configureBlocking(aBlockingStatus);
+			SocketChannelBlockingConfigured.newCase(this, socketChannel, aBlockingStatus);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 	
 	@Override
 	public boolean initiate() {
@@ -62,7 +74,8 @@ public class AConnectCommand extends AnAbstractNIOCommand implements ConnectComm
 			// only solution maybe to throw a sleep in here or in the program that calls connect.			
 //			socketChannel.configureBlocking(false);
 //			socketChannel.configureBlocking(true); // asynchrony is causing problems
-			socketChannel.configureBlocking(false);
+			configureBlocking();
+//			socketChannel.configureBlocking(false);
 			Tracer.info(this, "Making connect request for host " + serverHost + " port " + port);
 			InetSocketAddress anAddress = new InetSocketAddress(serverHost, port);
 			

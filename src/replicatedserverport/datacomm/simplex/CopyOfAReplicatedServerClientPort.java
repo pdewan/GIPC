@@ -11,9 +11,9 @@ import java.nio.ByteBuffer;
 import java.util.Set;
 
 import multiserverport.datacomm.group.GroupMultiServerClientPort;
-import port.trace.AConnectionEvent;
-import port.trace.AReplaceConnectionEvent;
-import port.trace.ConnectiontEventBus;
+import trace.port.AConnectionEvent;
+import trace.port.AReplaceConnectionEvent;
+import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
 
 public class CopyOfAReplicatedServerClientPort<MessageType> implements SimplexClientInputPort<MessageType>{

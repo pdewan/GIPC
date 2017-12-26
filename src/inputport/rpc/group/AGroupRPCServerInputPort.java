@@ -14,11 +14,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import port.trace.AConnectionEvent;
-import port.trace.AReplaceConnectionEvent;
-import port.trace.ConnectiontEventBus;
-import port.trace.rpc.RemoteCallFinished;
-import port.trace.rpc.RemoteCallInitiated;
+import trace.port.AConnectionEvent;
+import trace.port.AReplaceConnectionEvent;
+import trace.port.ConnectiontEventBus;
+import trace.port.rpc.RemoteCallFinished;
+import trace.port.rpc.RemoteCallInitiated;
 import util.trace.Tracer;
 
 

@@ -20,7 +20,7 @@ public class AMonolithicNIODuplexClientInputPort extends AMonolithicNIOClientInp
 	}
 	@Override
 	public void socketChannelRead(SocketChannel theSocketChannel,
-			ByteBuffer theMessage) {
+			ByteBuffer theMessage, int aLength) {
 		notifyPortReceive(serverName, theMessage, theMessage.limit() - theMessage.position());		
 	}
 	

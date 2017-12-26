@@ -161,7 +161,7 @@ public class AMonolithicNIOServerInputPort extends AConnectionSendReceiptNotifie
 	}
 	@Override
 	public void socketChannelRead(SocketChannel theSocketChannel,
-			ByteBuffer theMessage) {
+			ByteBuffer theMessage, int aLength) {
 //		socketChannelToClientProxy.get(theSocketChannel).socketChannelRead(theSocketChannel, theMessage, length);
 		String clientName = socketChannelToClientName.get(theSocketChannel);
 		if (clientName == null) {

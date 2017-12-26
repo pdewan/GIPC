@@ -1,6 +1,6 @@
 package replicatedserverport.rpc.duplex.singleresponse.example;
 
-import port.trace.ConnectionEventManagerFactory;
+import trace.port.ConnectionEventManagerFactory;
 import bus.uigen.ObjectEditor;
 
 public class AliceSingleResponseGroupRPCClientPortLauncher {

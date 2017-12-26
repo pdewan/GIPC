@@ -5,8 +5,8 @@ import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.rpc.duplex.DuplexReceivedCallInvokerSelector;
 import inputport.rpc.duplex.DuplexSentCallCompleterSelector;
 import inputport.rpc.duplex.SynchronousDuplexReceivedCallInvokerSelector;
-import port.trace.rpc.RPCTraceUtility;
 import serialization.SerializerSelector;
+import trace.port.rpc.RPCTraceUtility;
 import examples.gipc.counter.layers.AMultiLayerCounterClient;
 
 public class ACustomCounterClient extends AMultiLayerCounterClient{

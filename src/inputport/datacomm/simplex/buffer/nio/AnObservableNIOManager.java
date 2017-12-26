@@ -15,12 +15,15 @@ public class AnObservableNIOManager implements ObservableNIOManager{
 	public AnObservableNIOManager(SelectionManager aSelectionManager) {
 		selectionManager = aSelectionManager;
 	}
+	public AnObservableNIOManager() {
+		selectionManager = SelectionManagerFactory.getSelectionManager();
+	}
 //	public AnObservableNIOManager() {
 //		selectionManager = SelectionManagerFactory.getSelectionManager();
 //	}
-	@Override
-	public void accept(ServerSocketChannel channel,
-			SocketChannelAcceptListener[] listeners) {
+	
+	public void enableAccepts(ServerSocketChannel channel,
+			SocketChannelAcceptListener... listeners) {
 		AcceptCommand acceptRequestResponse = 
 				AcceptCommandSelector.getFactory().createAcceptCommand(selectionManager, channel);
 //			new AnAcceptCommand(selectionManager, channel);
@@ -33,7 +36,7 @@ public class AnObservableNIOManager implements ObservableNIOManager{
 	}
 	@Override
 	public void connect(SocketChannel channel, InetAddress theServerHost,
-			int thePort, SocketChannelConnectListener[] listeners) {
+			int thePort, SocketChannelConnectListener... listeners) {
 		ConnectCommand connectCommand = 
 //			new AConnectCommand(selectionManager, channel, theServerHost, thePort);
 		ConnectCommandSelector.getFactory().createConnectCommand(selectionManager, channel, theServerHost, thePort);
@@ -51,7 +54,7 @@ public class AnObservableNIOManager implements ObservableNIOManager{
 		for (SocketChannelWriteListener listener:listeners) {
 			bufferedWrite.addwriteListener(listener);
 		}
-		Tracer.info(this, "Created bufferd write and associated it with listeners");
+		Tracer.info(this, "Created buffered write and associated it with listeners");
 		selectionManager.putBufferedWrite(bufferedWrite);		
 	}
 
@@ -66,27 +69,32 @@ public class AnObservableNIOManager implements ObservableNIOManager{
 		selectionManager.getReadHandler(channel).addCloseListener(listener);
 		
 	}
-	@Override
-	public void accept(ServerSocketChannel channel,
-			SocketChannelAcceptListener listener) {
-		SocketChannelAcceptListener[] listeners = {listener};
-		accept (channel, listeners);
-		
-	}
+//	@Override
+//	public void enableAccepts(ServerSocketChannel channel,
+//			SocketChannelAcceptListener listener) {
+//		
+//		SocketChannelAcceptListener[] listeners = {};
+//		if (listener !=null) {
+//			listeners = new SocketChannelAcceptListener[] {listener};
+//		}
+//			
+//		doAccept (channel, listeners);
+//		
+//	}
 	
-	@Override
-	public void connect(SocketChannel channel, InetAddress theServerHost,
-			int thePort, SocketChannelConnectListener listener) {
-		SocketChannelConnectListener[] listeners = {listener};
-		connect(channel, theServerHost, thePort, listeners);		
-	}
+//	@Override
+//	public void connect(SocketChannel channel, InetAddress theServerHost,
+//			int thePort, SocketChannelConnectListener listener) {
+//		SocketChannelConnectListener[] listeners = {listener};
+//		connect(channel, theServerHost, thePort, listeners);		
+//	}
 	
-	@Override
-	public void write(SocketChannel channel, ByteBuffer byteBuffer,
-			SocketChannelWriteListener listener) {
-		SocketChannelWriteListener[] listeners = {listener};
-		write(channel, byteBuffer, listeners);		
-	}
+//	@Override
+//	public void write(SocketChannel channel, ByteBuffer byteBuffer,
+//			SocketChannelWriteListener listener) {
+//		SocketChannelWriteListener[] listeners = {listener};
+//		write(channel, byteBuffer, listeners);		
+//	}
 	@Override
 	public void enableReads(SocketChannel aChannel) {
 		selectionManager.getReadHandler(aChannel).initiate();

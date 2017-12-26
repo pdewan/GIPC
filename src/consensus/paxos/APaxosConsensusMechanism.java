@@ -3,8 +3,8 @@ package consensus.paxos;
 import java.util.HashMap;
 import java.util.Map;
 
-import port.trace.consensus.ProposalPreparedNotificationReceived;
 import sessionport.rpc.group.GIPCSessionRegistry;
+import trace.port.consensus.ProposalPreparedNotificationReceived;
 import consensus.ProposalFeedbackKind;
 import consensus.ProposalState;
 import consensus.ReplicationSynchrony;

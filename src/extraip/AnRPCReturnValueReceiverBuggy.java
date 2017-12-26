@@ -1,7 +1,7 @@
 package extraip;
 
 
-import port.trace.rpc.ReceivedObjectTransformed;
+import trace.port.rpc.ReceivedObjectTransformed;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
 import inputport.rpc.duplex.RPCReturnValue;
 

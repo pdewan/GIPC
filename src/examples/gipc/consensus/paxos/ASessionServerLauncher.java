@@ -3,8 +3,8 @@ package examples.gipc.consensus.paxos;
 import inputport.datacomm.simplex.buffer.nio.AConnectCommand;
 import inputport.datacomm.simplex.buffer.nio.AReadCommand;
 import inputport.datacomm.simplex.buffer.nio.AWriteBoundedBuffer;
-import port.trace.consensus.ProposalAcceptedNotificationReceived;
-import port.trace.nio.NIOTraceUtility;
+import trace.port.consensus.ProposalAcceptedNotificationReceived;
+import trace.port.nio.NIOTraceUtility;
 import util.trace.Tracer;
 
 

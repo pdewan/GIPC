@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import port.trace.ReplayStartInfo;
-import port.trace.SyncReplayEndInfo;
+import trace.port.ReplayStartInfo;
+import trace.port.SyncReplayEndInfo;
 import util.trace.TraceableBus;
 import util.trace.Tracer;
 

@@ -16,7 +16,7 @@ public class AClientProxy  implements ClientProxy  {
 	}
 	@Override
 	public void socketChannelRead(SocketChannel theSocketChannel,
-			ByteBuffer message) {	
+			ByteBuffer message, int aLength) {	
 		int length = message.limit() - message.position();
 		if (clientName == null) {
 //			byte[] stringBytes = new byte[message.limit()];

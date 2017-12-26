@@ -1,7 +1,7 @@
 package inputport.datacomm;
 import inputport.InputPort;
-import port.trace.AConnectionEvent;
-import port.trace.ConnectiontEventBus;
+import trace.port.AConnectionEvent;
+import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
 
 public abstract class AnAbstractReceiveTrapper<InMessageType, OutMessageType> implements ReceiveTrapper<InMessageType, OutMessageType> {

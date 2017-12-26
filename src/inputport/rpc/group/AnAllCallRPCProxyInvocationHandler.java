@@ -4,8 +4,8 @@ import inputport.rpc.ACachingAbstractRPCProxyInvocationHandler;
 
 import java.lang.reflect.Method;
 
-import port.trace.rpc.RemoteCallFinished;
-import port.trace.rpc.RemoteCallInitiated;
+import trace.port.rpc.RemoteCallFinished;
+import trace.port.rpc.RemoteCallInitiated;
 
 
 public  class AnAllCallRPCProxyInvocationHandler extends ACachingAbstractRPCProxyInvocationHandler {

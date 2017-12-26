@@ -7,11 +7,11 @@ import inputport.InputPort;
 import java.util.HashMap;
 import java.util.Map;
 
-import port.trace.rpc.ReceivedObjectTransformed;
-import port.trace.rpc.RemoteCallBlockedForReturnValue;
-import port.trace.rpc.RemoteCallReceivedReturnValue;
-import port.trace.rpc.RemoteCallWaitingForReturnValue;
-import port.trace.rpc.ReturnValueQueueCreated;
+import trace.port.rpc.ReceivedObjectTransformed;
+import trace.port.rpc.RemoteCallBlockedForReturnValue;
+import trace.port.rpc.RemoteCallReceivedReturnValue;
+import trace.port.rpc.RemoteCallWaitingForReturnValue;
+import trace.port.rpc.ReturnValueQueueCreated;
 import util.trace.Tracer;
 
 

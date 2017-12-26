@@ -9,11 +9,11 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import port.trace.objects.BufferDeserializationInitiated;
-import port.trace.objects.ObjectSerializationInitiated;
-import port.trace.objects.SerializerPoolCreated;
-import port.trace.objects.SerializerReturnedToPool;
-import port.trace.objects.SerializerTakenFromPool;
+import trace.port.objects.BufferDeserializationInitiated;
+import trace.port.objects.ObjectSerializationInitiated;
+import trace.port.objects.SerializerPoolCreated;
+import trace.port.objects.SerializerReturnedToPool;
+import trace.port.objects.SerializerTakenFromPool;
 import util.misc.HashIdentityMap;
 import util.misc.IdentityMap;
 import util.trace.Tracer;

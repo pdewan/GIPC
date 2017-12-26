@@ -1,12 +1,12 @@
 package consensus.paxos;
 
-import port.trace.consensus.ProposalPrepareRequestReceived;
-import port.trace.consensus.ProposalPreparedNotificationSent;
-import port.trace.consensus.RemoteProposeRequestReceived;
-import port.trace.consensus.RemoteProposeRequestSent;
 import bus.uigen.widgets.universal.CentralUniversalWidget;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sun.security.util.PendingException;
+import trace.port.consensus.ProposalPrepareRequestReceived;
+import trace.port.consensus.ProposalPreparedNotificationSent;
+import trace.port.consensus.RemoteProposeRequestReceived;
+import trace.port.consensus.RemoteProposeRequestSent;
 import util.annotations.IsAtomicShape;
 import consensus.ConsensusMechanism;
 import consensus.ProposalFeedbackKind;

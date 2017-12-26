@@ -3,11 +3,11 @@ package replicatedserverport.rpc.group.singleresponse.relayed.latecomer.jitter.e
 import port.ParticipantChoice;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
-import port.trace.ConnectionEventManagerFactory;
 import replicatedserverport.rpc.group.flexibleresponse.flexibejitter.AJitteryFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
+import trace.port.ConnectionEventManagerFactory;
 import bus.uigen.ObjectEditor;
 
 public class BobJitterySingleResponseLatecomerReplicatedPortLauncher {

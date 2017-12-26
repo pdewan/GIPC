@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
-import port.trace.nio.SocketChannelInterestOp;
+import trace.port.nio.SocketChannelInterestOp;
 import util.trace.Tracer;
 
 

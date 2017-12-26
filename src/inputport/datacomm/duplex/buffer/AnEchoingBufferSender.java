@@ -7,8 +7,8 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
-import port.trace.buffer.BufferLocalSendFinished;
-import port.trace.buffer.BufferLocalSendInitiated;
+import trace.port.buffer.BufferLocalSendFinished;
+import trace.port.buffer.BufferLocalSendInitiated;
 import util.trace.Tracer;
 import inputport.datacomm.ReceiveListener;
 

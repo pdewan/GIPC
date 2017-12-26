@@ -5,10 +5,10 @@ import inputport.datacomm.ReceiveNotifier;
 
 import java.nio.ByteBuffer;
 
-import port.trace.objects.BufferDeserializationFinished;
-import port.trace.objects.BufferDeserializationInitiated;
 import serialization.Serializer;
 import serialization.SerializerPoolSelector;
+import trace.port.objects.BufferDeserializationFinished;
+import trace.port.objects.BufferDeserializationInitiated;
 import util.trace.Tracer;
 
 
