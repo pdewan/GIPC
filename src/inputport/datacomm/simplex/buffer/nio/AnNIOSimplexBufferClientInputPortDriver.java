@@ -2,6 +2,10 @@ package inputport.datacomm.simplex.buffer.nio;
 
 import inputport.ConnectionType;
 import inputport.datacomm.simplex.buffer.SimplexClientInputPortSkeleton;
+import inputport.nio.AnObservableNIOManager;
+import inputport.nio.ConnectCommandSelector;
+import inputport.nio.ObservableNIOManager;
+import inputport.nio.SelectionManager;
 
 import java.io.EOFException;
 import java.io.IOException;

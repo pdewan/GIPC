@@ -1,6 +1,6 @@
 package port.old;
 
-import inputport.datacomm.simplex.buffer.nio.SocketChannelWriteListener;
+import inputport.nio.SocketChannelWriteListener;
 
 public interface MonolithicNIODuplexServerInputPort extends MonolithicNIOServerInputPort, MonolithicDuplexServerInputPort, SocketChannelWriteListener  {
 

@@ -1,7 +1,7 @@
 package port.old;
 
-import inputport.datacomm.simplex.buffer.nio.SocketChannelCloseListener;
-import inputport.datacomm.simplex.buffer.nio.SocketChannelReadListener;
+import inputport.nio.SocketChannelCloseListener;
+import inputport.nio.SocketChannelReadListener;
 
 public interface ClientProxy extends SocketChannelReadListener, SocketChannelCloseListener {
 

@@ -4,10 +4,10 @@ import java.net.InetAddress;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
-import inputport.datacomm.simplex.buffer.nio.AConnectCommand;
 import inputport.datacomm.simplex.buffer.nio.AWritingConnectCommandFactory;
-import inputport.datacomm.simplex.buffer.nio.ConnectCommand;
-import inputport.datacomm.simplex.buffer.nio.SelectionManager;
+import inputport.nio.AConnectCommand;
+import inputport.nio.ConnectCommand;
+import inputport.nio.SelectionManager;
 
 public class AReadingWritingConnectCommandFactory extends AWritingConnectCommandFactory {
 	@Override

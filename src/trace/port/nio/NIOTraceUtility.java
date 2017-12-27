@@ -19,6 +19,8 @@ public class NIOTraceUtility {
 		TraceableInfo.setPrintSource(true);
 		Tracer.setImplicitPrintKeywordKind(ImplicitKeywordKind.OBJECT_CLASS_NAME);		
 		Tracer.setKeywordPrintStatus(SocketChannelAccepted.class, true);
+		Tracer.setKeywordPrintStatus(SocketChannelBlockingConfigured.class, true);
+		Tracer.setKeywordPrintStatus(SocketChannelBound.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelConnectFinished.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelConnectInitiated.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelInterestOp.class, true);

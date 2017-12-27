@@ -1,6 +1,6 @@
 package port.old;
 
-import inputport.datacomm.simplex.buffer.nio.SelectionManager;
+import inputport.nio.SelectionManager;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;

@@ -1,7 +1,7 @@
 package port.old;
-import inputport.datacomm.simplex.buffer.nio.AcceptCommand;
-import inputport.datacomm.simplex.buffer.nio.AnAcceptCommand;
-import inputport.datacomm.simplex.buffer.nio.SelectionManager;
+import inputport.nio.AcceptCommand;
+import inputport.nio.AnAcceptCommand;
+import inputport.nio.SelectionManager;
 
 import java.io.EOFException;
 import java.io.IOException;

@@ -3,8 +3,8 @@ package inputport.datacomm.duplex.buffer.nio;
 import inputport.datacomm.duplex.buffer.DuplexBufferGenericClientInputPort;
 import inputport.datacomm.duplex.buffer.DuplexClientInputPortSkeleton;
 import inputport.datacomm.simplex.buffer.nio.AnNIOSimplexBufferClientInputPortDriver;
-import inputport.datacomm.simplex.buffer.nio.ConnectCommandSelector;
-import inputport.datacomm.simplex.buffer.nio.SelectionManager;
+import inputport.nio.ConnectCommandSelector;
+import inputport.nio.SelectionManager;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;

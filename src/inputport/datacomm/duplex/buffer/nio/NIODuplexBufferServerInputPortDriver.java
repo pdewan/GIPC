@@ -2,7 +2,7 @@ package inputport.datacomm.duplex.buffer.nio;
 
 import inputport.datacomm.duplex.buffer.DuplexServerInputPortDriver;
 import inputport.datacomm.simplex.buffer.nio.NIOSimplexServerInputDriver;
-import inputport.datacomm.simplex.buffer.nio.SocketChannelWriteListener;
+import inputport.nio.SocketChannelWriteListener;
 
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;

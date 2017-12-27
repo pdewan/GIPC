@@ -3,7 +3,7 @@ package inputport.datacomm.duplex.buffer.nio;
 import inputport.datacomm.duplex.SendToUnkonwnRemoteNameException;
 import inputport.datacomm.duplex.buffer.DuplexServerInputPortSkeleton;
 import inputport.datacomm.simplex.buffer.nio.AnNIOSimplexBufferServerInpuPorttDriver;
-import inputport.datacomm.simplex.buffer.nio.SelectionManager;
+import inputport.nio.SelectionManager;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;

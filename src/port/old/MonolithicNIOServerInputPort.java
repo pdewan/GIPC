@@ -1,9 +1,9 @@
 package port.old;
 
-import inputport.datacomm.simplex.buffer.nio.SocketChannelAcceptListener;
-import inputport.datacomm.simplex.buffer.nio.SocketChannelCloseListener;
-import inputport.datacomm.simplex.buffer.nio.SocketChannelConnectListener;
-import inputport.datacomm.simplex.buffer.nio.SocketChannelReadListener;
+import inputport.nio.SocketChannelAcceptListener;
+import inputport.nio.SocketChannelCloseListener;
+import inputport.nio.SocketChannelConnectListener;
+import inputport.nio.SocketChannelReadListener;
 
 public interface MonolithicNIOServerInputPort extends MonolithicServerInputPort, SocketChannelAcceptListener, SocketChannelConnectListener, SocketChannelReadListener, SocketChannelCloseListener {
 
