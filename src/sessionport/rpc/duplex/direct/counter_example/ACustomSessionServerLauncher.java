@@ -1,6 +1,6 @@
 package sessionport.rpc.duplex.direct.counter_example;
 
-import inputport.nio.AScatterGatherSelectionManager;
+import inputport.nio.manager.AScatterGatherSelectionManager;
 import port.sessionserver.ASessionServerLauncher;
 import serialization.SerializerSelector;
 import util.trace.Tracer;

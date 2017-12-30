@@ -1,8 +1,8 @@
 package port.old;
 
-import inputport.nio.SocketChannelCloseListener;
-import inputport.nio.SocketChannelConnectListener;
-import inputport.nio.SocketChannelWriteListener;
+import inputport.nio.manager.SocketChannelCloseListener;
+import inputport.nio.manager.SocketChannelConnectListener;
+import inputport.nio.manager.SocketChannelWriteListener;
 
 public interface MonolithicNIOClientInputPort extends MonolithicClientInputPort, SocketChannelConnectListener, SocketChannelCloseListener, SocketChannelWriteListener{
 

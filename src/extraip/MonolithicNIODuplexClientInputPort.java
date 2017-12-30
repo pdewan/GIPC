@@ -1,6 +1,6 @@
 package extraip;
 
-import inputport.nio.SocketChannelReadListener;
+import inputport.nio.manager.SocketChannelReadListener;
 import port.old.MonolithicDuplexClientInputPort;
 import port.old.MonolithicNIOClientInputPort;
 

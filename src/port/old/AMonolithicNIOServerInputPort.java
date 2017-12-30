@@ -1,7 +1,7 @@
 package port.old;
-import inputport.nio.AcceptCommand;
-import inputport.nio.AnAcceptCommand;
-import inputport.nio.SelectionManager;
+import inputport.nio.manager.AcceptCommand;
+import inputport.nio.manager.AnAcceptCommand;
+import inputport.nio.manager.SelectionManager;
 
 import java.io.EOFException;
 import java.io.IOException;

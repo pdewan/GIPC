@@ -1,6 +1,6 @@
 package port.old;
 
-import inputport.nio.SelectionManagerFactory;
+import inputport.nio.manager.SelectionManagerFactory;
 
 public class AMonolithicNIODuplexInputPortFactory extends SelectionManagerFactory implements MonolithicDuplexInputPortFactory  {	
 	@Override

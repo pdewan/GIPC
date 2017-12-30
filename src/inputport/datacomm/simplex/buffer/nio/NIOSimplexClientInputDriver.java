@@ -1,9 +1,9 @@
 package inputport.datacomm.simplex.buffer.nio;
 
 import inputport.datacomm.simplex.buffer.SimplexBufferClientInputPortDriver;
-import inputport.nio.SocketChannelCloseListener;
-import inputport.nio.SocketChannelConnectListener;
-import inputport.nio.SocketChannelWriteListener;
+import inputport.nio.manager.SocketChannelCloseListener;
+import inputport.nio.manager.SocketChannelConnectListener;
+import inputport.nio.manager.SocketChannelWriteListener;
 
 import java.nio.channels.SocketChannel;
 

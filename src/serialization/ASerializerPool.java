@@ -1,7 +1,7 @@
 package serialization;
 
 import inputport.datacomm.simplex.buffer.SendRegistrar;
-import inputport.nio.AScatterGatherSelectionManager;
+import inputport.nio.manager.AScatterGatherSelectionManager;
 
 import java.io.NotSerializableException;
 import java.io.StreamCorruptedException;

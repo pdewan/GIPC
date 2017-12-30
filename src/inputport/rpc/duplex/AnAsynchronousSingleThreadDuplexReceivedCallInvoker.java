@@ -3,7 +3,7 @@ package inputport.rpc.duplex;
 
 import inputport.datacomm.SendToUnconnectedPortException;
 import inputport.datacomm.duplex.DuplexInputPort;
-import inputport.nio.AScatterGatherSelectionManager;
+import inputport.nio.manager.AScatterGatherSelectionManager;
 import inputport.rpc.RemoteCall;
 
 import java.util.concurrent.BlockingQueue;

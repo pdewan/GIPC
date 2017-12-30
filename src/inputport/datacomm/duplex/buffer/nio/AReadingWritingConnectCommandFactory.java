@@ -5,9 +5,9 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
 import inputport.datacomm.simplex.buffer.nio.AWritingConnectCommandFactory;
-import inputport.nio.AConnectCommand;
-import inputport.nio.ConnectCommand;
-import inputport.nio.SelectionManager;
+import inputport.nio.manager.AConnectCommand;
+import inputport.nio.manager.ConnectCommand;
+import inputport.nio.manager.SelectionManager;
 
 public class AReadingWritingConnectCommandFactory extends AWritingConnectCommandFactory {
 	@Override

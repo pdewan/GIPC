@@ -2,7 +2,7 @@ package consensus.synchronous.sequential;
 
 import inputport.ConnectionRegistrar;
 import inputport.InputPort;
-import inputport.nio.AnAcceptCommand;
+import inputport.nio.manager.AnAcceptCommand;
 import inputport.rpc.duplex.MaybeProcessReturnValue;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;

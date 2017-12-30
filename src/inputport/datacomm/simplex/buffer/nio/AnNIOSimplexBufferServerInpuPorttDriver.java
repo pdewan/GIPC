@@ -1,9 +1,9 @@
 package inputport.datacomm.simplex.buffer.nio;
 import inputport.datacomm.simplex.buffer.SimplexServerInputPortSkeleton;
-import inputport.nio.AcceptCommandSelector;
-import inputport.nio.AnObservableNIOManager;
-import inputport.nio.ObservableNIOManager;
-import inputport.nio.SelectionManager;
+import inputport.nio.manager.AcceptCommandSelector;
+import inputport.nio.manager.AnObservableNIOManager;
+import inputport.nio.manager.ObservableNIOManager;
+import inputport.nio.manager.SelectionManager;
 
 import java.io.EOFException;
 import java.io.IOException;
