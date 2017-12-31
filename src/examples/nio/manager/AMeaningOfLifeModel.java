@@ -14,7 +14,7 @@ public class AMeaningOfLifeModel implements MeaningOfLifeModel {
 	public void setMeaning(String newValue) {
 		String oldValue = meaning;
 		meaning = newValue;
-		propertyChangeSupport.firePropertyChange("meaning", oldValue, newValue);
+		propertyChangeSupport.firePropertyChange("Meaning", oldValue, newValue);
 	}
 	@Override
 	public void addPropertyChangeListener(PropertyChangeListener aListener) {

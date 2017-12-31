@@ -9,19 +9,20 @@ import inputport.nio.manager.AConnectCommandFactory;
 import inputport.nio.manager.AnObservableNIOManager;
 import inputport.nio.manager.ConnectCommandSelector;
 import inputport.nio.manager.ObservableNIOManager;
+import inputport.nio.manager.ObservableNIOManagerFactory;
 
 public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient{
-	ObservableNIOManager nioManager;
+//	ObservableNIOManager nioManager;
 	String clientName;
 	MeaningOfLifeModel meaningOfLifeModel;
 	MeaningOfLifeController meaningOfLifeController;
 	MeaningOfLifeView meaningOfLifeView;
-	MeaningOfLifeSender meaningOfLifeSender;
+	MeaningOfLifeClientSender meaningOfLifeSender;
 	SocketChannel socketChannel;
 	public AMeaningOfLifeNIOClient(String aClientName) {
 //		try {
 		ConnectCommandSelector.setFactory(new AConnectCommandFactory());
-		nioManager = new AnObservableNIOManager();
+//		nioManager = new AnObservableNIOManager();
 		clientName = aClientName;
 		
 //		SocketChannel aSocketChannel = createSocketChannel();
@@ -55,7 +56,7 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient{
 			
 			socketChannel = createSocketChannel();
 			InetAddress aServerAddress = InetAddress.getByName(aServerHost);
-			nioManager.connect(socketChannel, aServerAddress, aServerPort, this);
+			ObservableNIOManagerFactory.getSingleton().connect(socketChannel, aServerAddress, aServerPort, this);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}		
@@ -73,11 +74,7 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient{
 	
 	@Override
 	public void connected(SocketChannel aSocketChannel) {
-//		Runnable aMeaningOfLifeRunnable = new AMeaningOfLifeProcessor(nioManager, aSocketChannel, clientName);
-//		Thread aMeaningOfLifeThread = new Thread(aMeaningOfLifeRunnable);
-//		aMeaningOfLifeThread.start();
-//		nioManager.addReadListener(aChannel, aListener)
-		meaningOfLifeSender = new AMeaningOfLifeSender(nioManager, aSocketChannel, clientName);
+		meaningOfLifeSender = new AMeaningOfLifeClientSender(aSocketChannel, clientName);
 		meaningOfLifeModel.addPropertyChangeListener(meaningOfLifeSender);
 	}
 	@Override
@@ -91,9 +88,14 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient{
 		aClient.initiateConnection(aServerHost, aServerPort);
 		aClient.createUI();
 	}
+//	public static String chooseServerHost(String[] args){
+//		return args.length == 1?args[0]:"localhost";
+//	}
 	public static void main (String[] args) {
 		NIOTraceUtility.setTracing();
-		createClient("localhost", ServerPort.SERVER_PORT, "client");		
+		createClient(
+				ClientArgsProcessor.chooseServerHost(args), ServerPort.SERVER_PORT, 
+				ClientArgsProcessor.chooseClientName(args) );	
 		
 	}
 }

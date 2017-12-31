@@ -1,18 +1,19 @@
 package examples.nio.manager;
 
 import inputport.nio.manager.ObservableNIOManager;
+import inputport.nio.manager.ObservableNIOManagerFactory;
 
 import java.beans.PropertyChangeEvent;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.Scanner;
 
-public class AMeaningOfLifeSender implements MeaningOfLifeSender{
-	ObservableNIOManager nioManager;
+public class AMeaningOfLifeClientSender implements MeaningOfLifeClientSender{
+//	ObservableNIOManager nioManager;
 	SocketChannel socketChannel;
 	String clientName;
-	public AMeaningOfLifeSender(ObservableNIOManager anNIOManager, SocketChannel aSocketChannel, String aClientName) {
-		nioManager = anNIOManager;
+	public AMeaningOfLifeClientSender(SocketChannel aSocketChannel, String aClientName) {
+//		nioManager = anNIOManager;
 		socketChannel = aSocketChannel;	
 		clientName = aClientName;
 	}
@@ -40,9 +41,10 @@ public class AMeaningOfLifeSender implements MeaningOfLifeSender{
 //	}
 
 	@Override
-	public void propertyChange(PropertyChangeEvent evt) {
-		ByteBuffer aMeaningByteBuffer = ByteBuffer.wrap((clientName + ":" + evt.getNewValue()).getBytes());
-		nioManager.write(socketChannel, aMeaningByteBuffer);	
+	public void propertyChange(PropertyChangeEvent anEvent) {
+		if (!anEvent.getPropertyName().equals("Meaning")) return;
+		ByteBuffer aMeaningByteBuffer = ByteBuffer.wrap((clientName + ":" + anEvent.getNewValue()).getBytes());
+		ObservableNIOManagerFactory.getSingleton().write(socketChannel, aMeaningByteBuffer);	
 	}
 
 }

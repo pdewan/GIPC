@@ -15,17 +15,16 @@ import inputport.datacomm.simplex.buffer.nio.AReadingAcceptCommandFactory;
 import inputport.nio.manager.AcceptCommandSelector;
 import inputport.nio.manager.AnObservableNIOManager;
 import inputport.nio.manager.ObservableNIOManager;
+import inputport.nio.manager.ObservableNIOManagerFactory;
 import inputport.nio.manager.SelectionManager;
 import inputport.nio.manager.SelectionManagerFactory;
 
 public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
-	ObservableNIOManager nioManager;
 	
 	public AMeaningOfLifeNIOServer(int aServerPort) {
 			AcceptCommandSelector.setFactory(new AReadingAcceptCommandFactory());			
 			ServerSocketChannel aServerSocketChannel  = createSocketChannel(aServerPort);
-			nioManager = new AnObservableNIOManager();
-			nioManager.enableAccepts(aServerSocketChannel, this);
+			ObservableNIOManagerFactory.getSingleton().enableAccepts(aServerSocketChannel, this);
 	}
 	protected ServerSocketChannel createSocketChannel(int aServerPort) {
 		try {			
@@ -40,31 +39,14 @@ public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 			return null;
 		}
 	}
-//	@Override
-//	public void socketChannelRead(SocketChannel aSocketChannel,
-//			ByteBuffer aMessage, int aLength) {
-////		byte[] aMyBytes = new byte[aLength];
-////		 System.arraycopy(aMessage, aMessage.position(), aMyBytes, 0, aLength);
-//
-////		String aMeaning = new String(aMessage.array());
-//		 String aMeaning = new String(aMessage.array(), aMessage.position(), aLength);
-//		System.out.println ("Meaning of Life from " + aMeaning);		
-//	}
 	@Override
 	public void socketChannelAccepted(ServerSocketChannel aServerSocketChannel,
 			SocketChannel aSocketChannel) {
-		MeaningOfLifeReceiver aMeaningOfLifeReceiver = new AMeaningOfLfeReceiver();
-		nioManager.addReadListener(aSocketChannel, aMeaningOfLifeReceiver);
-		
-	}
-	
-	
+		MeaningOfLifeReceiver aMeaningOfLifeReceiver = new AMeaningOfLfeServerReceiver();
+		ObservableNIOManagerFactory.getSingleton().addReadListener(aSocketChannel, aMeaningOfLifeReceiver);		
+	}	
     public static void main(String[] args) {
     	NIOTraceUtility.setTracing();
-    	new AMeaningOfLifeNIOServer(SERVER_PORT);
-		
+    	new AMeaningOfLifeNIOServer(SERVER_PORT);		
 	}
-	
-	
-
 }

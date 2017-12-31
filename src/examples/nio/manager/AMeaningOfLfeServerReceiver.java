@@ -3,7 +3,7 @@ package examples.nio.manager;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 
-public class AMeaningOfLfeReceiver implements MeaningOfLifeReceiver{
+public class AMeaningOfLfeServerReceiver implements MeaningOfLifeReceiver{
 
 	@Override
 	public void socketChannelRead(SocketChannel aSocketChannel,

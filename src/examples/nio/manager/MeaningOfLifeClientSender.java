@@ -2,6 +2,6 @@ package examples.nio.manager;
 
 import java.beans.PropertyChangeListener;
 
-public interface MeaningOfLifeSender extends PropertyChangeListener{
+public interface MeaningOfLifeClientSender extends PropertyChangeListener{
 
 }
