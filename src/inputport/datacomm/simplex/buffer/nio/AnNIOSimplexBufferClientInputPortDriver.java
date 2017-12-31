@@ -2,9 +2,9 @@ package inputport.datacomm.simplex.buffer.nio;
 
 import inputport.ConnectionType;
 import inputport.datacomm.simplex.buffer.SimplexClientInputPortSkeleton;
-import inputport.nio.manager.AnObservableNIOManager;
+import inputport.nio.manager.AnNIOManager;
 import inputport.nio.manager.ConnectCommandSelector;
-import inputport.nio.manager.ObservableNIOManager;
+import inputport.nio.manager.NIOManager;
 import inputport.nio.manager.SelectionManager;
 
 import java.io.EOFException;
@@ -22,7 +22,7 @@ public class AnNIOSimplexBufferClientInputPortDriver  implements NIOSimplexClien
 	protected SelectionManager selectionManager;
 	protected String serverName;
 	protected SocketChannel socketChannel;
-	protected ObservableNIOManager observableNIOManager;
+	protected NIOManager observableNIOManager;
 
 	SimplexClientInputPortSkeleton<SocketChannel> clientInputPortSkeleton;
 	public AnNIOSimplexBufferClientInputPortDriver(SelectionManager theSelectingRunnable, String theRemoteHostName, String theRemotePort, String aServerName) {
@@ -31,7 +31,7 @@ public class AnNIOSimplexBufferClientInputPortDriver  implements NIOSimplexClien
 			port = Integer.parseInt(theRemotePort);
 			selectionManager = theSelectingRunnable;
 			serverName = aServerName;
-			observableNIOManager = new AnObservableNIOManager(selectionManager);
+			observableNIOManager = new AnNIOManager(selectionManager);
 			ConnectCommandSelector.setFactory(new AWritingConnectCommandFactory());
 		} catch (Exception e) {
 			e.printStackTrace();

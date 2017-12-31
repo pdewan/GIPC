@@ -1,7 +1,7 @@
 package examples.nio.manager;
 
-import inputport.nio.manager.ObservableNIOManager;
-import inputport.nio.manager.ObservableNIOManagerFactory;
+import inputport.nio.manager.NIOManager;
+import inputport.nio.manager.NIOManagerFactory;
 
 import java.beans.PropertyChangeEvent;
 import java.nio.ByteBuffer;
@@ -44,7 +44,7 @@ public class AMeaningOfLifeClientSender implements MeaningOfLifeClientSender{
 	public void propertyChange(PropertyChangeEvent anEvent) {
 		if (!anEvent.getPropertyName().equals("Meaning")) return;
 		ByteBuffer aMeaningByteBuffer = ByteBuffer.wrap((clientName + ":" + anEvent.getNewValue()).getBytes());
-		ObservableNIOManagerFactory.getSingleton().write(socketChannel, aMeaningByteBuffer);	
+		NIOManagerFactory.getSingleton().write(socketChannel, aMeaningByteBuffer);	
 	}
 
 }

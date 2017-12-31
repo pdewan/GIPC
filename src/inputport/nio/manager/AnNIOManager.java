@@ -8,14 +8,14 @@ import java.nio.channels.SocketChannel;
 import util.trace.Tracer;
 
 
-public class AnObservableNIOManager implements ObservableNIOManager{
+public class AnNIOManager implements NIOManager{
 	SelectionManager selectionManager;
 	boolean allowReads;
 	
-	public AnObservableNIOManager(SelectionManager aSelectionManager) {
+	public AnNIOManager(SelectionManager aSelectionManager) {
 		selectionManager = aSelectionManager;
 	}
-	public AnObservableNIOManager() {
+	public AnNIOManager() {
 		selectionManager = SelectionManagerFactory.getSelectionManager();
 	}
 //	public AnObservableNIOManager() {

@@ -6,10 +6,10 @@ import java.nio.channels.SocketChannel;
 
 import trace.port.nio.NIOTraceUtility;
 import inputport.nio.manager.AConnectCommandFactory;
-import inputport.nio.manager.AnObservableNIOManager;
+import inputport.nio.manager.AnNIOManager;
 import inputport.nio.manager.ConnectCommandSelector;
-import inputport.nio.manager.ObservableNIOManager;
-import inputport.nio.manager.ObservableNIOManagerFactory;
+import inputport.nio.manager.NIOManager;
+import inputport.nio.manager.NIOManagerFactory;
 
 public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient{
 //	ObservableNIOManager nioManager;
@@ -56,7 +56,7 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient{
 			
 			socketChannel = createSocketChannel();
 			InetAddress aServerAddress = InetAddress.getByName(aServerHost);
-			ObservableNIOManagerFactory.getSingleton().connect(socketChannel, aServerAddress, aServerPort, this);
+			NIOManagerFactory.getSingleton().connect(socketChannel, aServerAddress, aServerPort, this);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}		

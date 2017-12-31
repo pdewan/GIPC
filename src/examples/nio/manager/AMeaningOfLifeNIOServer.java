@@ -13,9 +13,9 @@ import trace.port.nio.NIOTraceUtility;
 import trace.port.nio.SocketChannelBound;
 import inputport.datacomm.simplex.buffer.nio.AReadingAcceptCommandFactory;
 import inputport.nio.manager.AcceptCommandSelector;
-import inputport.nio.manager.AnObservableNIOManager;
-import inputport.nio.manager.ObservableNIOManager;
-import inputport.nio.manager.ObservableNIOManagerFactory;
+import inputport.nio.manager.AnNIOManager;
+import inputport.nio.manager.NIOManager;
+import inputport.nio.manager.NIOManagerFactory;
 import inputport.nio.manager.SelectionManager;
 import inputport.nio.manager.SelectionManagerFactory;
 
@@ -24,7 +24,7 @@ public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 	public AMeaningOfLifeNIOServer(int aServerPort) {
 			AcceptCommandSelector.setFactory(new AReadingAcceptCommandFactory());			
 			ServerSocketChannel aServerSocketChannel  = createSocketChannel(aServerPort);
-			ObservableNIOManagerFactory.getSingleton().enableAccepts(aServerSocketChannel, this);
+			NIOManagerFactory.getSingleton().enableAccepts(aServerSocketChannel, this);
 	}
 	protected ServerSocketChannel createSocketChannel(int aServerPort) {
 		try {			
@@ -42,11 +42,16 @@ public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 	@Override
 	public void socketChannelAccepted(ServerSocketChannel aServerSocketChannel,
 			SocketChannel aSocketChannel) {
+		NIOManagerFactory.getSingleton().addWriteBoundedBufferListener(aSocketChannel, this);
 		MeaningOfLifeReceiver aMeaningOfLifeReceiver = new AMeaningOfLfeServerReceiver();
-		ObservableNIOManagerFactory.getSingleton().addReadListener(aSocketChannel, aMeaningOfLifeReceiver);		
+		NIOManagerFactory.getSingleton().addReadListener(aSocketChannel, aMeaningOfLifeReceiver);		
 	}	
     public static void main(String[] args) {
     	NIOTraceUtility.setTracing();
     	new AMeaningOfLifeNIOServer(SERVER_PORT);		
+	}
+	@Override
+	public void bufferIsEmpty(SocketChannel aSocketChannel) {
+		NIOManagerFactory.getSingleton().enableReads(aSocketChannel);		
 	}
 }
