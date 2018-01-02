@@ -6,5 +6,5 @@ import inputport.nio.manager.WriteBoundedBufferListener;
 
 
 public interface MeaningOfLifeNIOServer extends ServerPort, SocketChannelAcceptListener , WriteBoundedBufferListener {
-
+	public void initialize(int aServerPort);
 }

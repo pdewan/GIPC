@@ -49,7 +49,7 @@ public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 	protected void bufferIsEmpty() {
 //		initiateReadCommand();
 		for (WriteBoundedBufferListener aListener:writeBoundedBufferListeners) {
-			aListener.bufferIsEmpty(channel);
+			aListener.writeBufferIsEmpty(channel);
 		}	
 	}
 	@Override

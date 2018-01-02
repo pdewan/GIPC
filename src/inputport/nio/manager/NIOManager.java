@@ -6,7 +6,7 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
 public interface NIOManager {	
-    public void enableAccepts(ServerSocketChannel aChannel, SocketChannelAcceptListener... aListener);
+    public void enableListenableAccepts(ServerSocketChannel aChannel, SocketChannelAcceptListener... aListener);
 //    public void accept(ServerSocketChannel aChannel, SocketChannelAcceptListener[] listeners);
 //	public void connect(SocketChannel aSocketChannel, InetAddress theServerHost, int thePort, SocketChannelConnectListener aListener);
 //	public void connect(SocketChannel aSocketChannel, InetAddress theServerHost, int thePort, SocketChannelConnectListener[] listeners);

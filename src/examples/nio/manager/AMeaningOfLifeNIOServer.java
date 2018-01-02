@@ -20,38 +20,84 @@ import inputport.nio.manager.SelectionManager;
 import inputport.nio.manager.SelectionManagerFactory;
 
 public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
-	
-	public AMeaningOfLifeNIOServer(int aServerPort) {
-			AcceptCommandSelector.setFactory(new AReadingAcceptCommandFactory());			
-			ServerSocketChannel aServerSocketChannel  = createSocketChannel(aServerPort);
-			NIOManagerFactory.getSingleton().enableAccepts(aServerSocketChannel, this);
+	MeaningOfLifeReceiver meaningOfLifeReceiver;
+
+	public AMeaningOfLifeNIOServer() {
+
 	}
+
+	protected void createCommunicationObjects() {
+		createReceiver();
+	}
+	protected void createReceiver() {
+		meaningOfLifeReceiver = new AMeaningOfLifeServerReceiver();
+	}
+
+	// public AMeaningOfLifeNIOServer(int aServerPort) {
+	// AcceptCommandSelector.setFactory(new AReadingAcceptCommandFactory());
+	// ServerSocketChannel aServerSocketChannel =
+	// createSocketChannel(aServerPort);
+	// NIOManagerFactory.getSingleton().enableAccepts(aServerSocketChannel,
+	// this);
+	// }
+	protected void setFactories() {
+		AcceptCommandSelector.setFactory(new AReadingAcceptCommandFactory());
+	}
+
+	protected void makeServerConnectable(int aServerPort) {
+		ServerSocketChannel aServerSocketChannel = createSocketChannel(aServerPort);
+		NIOManagerFactory.getSingleton().enableListenableAccepts(
+				aServerSocketChannel, this);
+	}
+
+	public void initialize(int aServerPort) {
+		setFactories();
+		createCommunicationObjects();
+		makeServerConnectable(aServerPort);
+	}
+
 	protected ServerSocketChannel createSocketChannel(int aServerPort) {
-		try {			
+		try {
 			ServerSocketChannel retVal = ServerSocketChannel.open();
 			InetSocketAddress isa = new InetSocketAddress(aServerPort);
 			retVal.socket().bind(isa);
 			SocketChannelBound.newCase(this, retVal, isa);
 			return retVal;
-		
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
+
+	protected void addWriteBufferListener(SocketChannel aSocketChannel) {
+		NIOManagerFactory.getSingleton().addWriteBoundedBufferListener(
+				aSocketChannel, this);
+	}
+
+	protected void addReadListener(SocketChannel aSocketChannel) {
+		NIOManagerFactory.getSingleton().addReadListener(aSocketChannel,
+				meaningOfLifeReceiver);
+	}
+
+	protected void addListeners(SocketChannel aSocketChannel) {
+		addWriteBufferListener(aSocketChannel);
+		addReadListener(aSocketChannel);		
+	}
 	@Override
 	public void socketChannelAccepted(ServerSocketChannel aServerSocketChannel,
 			SocketChannel aSocketChannel) {
-		NIOManagerFactory.getSingleton().addWriteBoundedBufferListener(aSocketChannel, this);
-		MeaningOfLifeReceiver aMeaningOfLifeReceiver = new AMeaningOfLfeServerReceiver();
-		NIOManagerFactory.getSingleton().addReadListener(aSocketChannel, aMeaningOfLifeReceiver);		
-	}	
-    public static void main(String[] args) {
-    	NIOTraceUtility.setTracing();
-    	new AMeaningOfLifeNIOServer(SERVER_PORT);		
+		addListeners(aSocketChannel);
 	}
 	@Override
-	public void bufferIsEmpty(SocketChannel aSocketChannel) {
-		NIOManagerFactory.getSingleton().enableReads(aSocketChannel);		
+	public void writeBufferIsEmpty(SocketChannel aSocketChannel) {
+		NIOManagerFactory.getSingleton().enableReads(aSocketChannel);
+	}
+
+	public static void main(String[] args) {
+		NIOTraceUtility.setTracing();
+		MeaningOfLifeNIOServer aServer = new AMeaningOfLifeNIOServer();
+		aServer.initialize(ServerPort.SERVER_PORT);
+
 	}
 }

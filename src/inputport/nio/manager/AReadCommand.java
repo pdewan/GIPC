@@ -99,11 +99,21 @@ public class AReadCommand extends AnAbstractNIOCommand implements ReadCommand {
 	}
 	
 	@Override
-	public void addReadListener(SocketChannelReadListener theReadListener) {
-		readListeners.add(theReadListener);
+	public void addReadListener(SocketChannelReadListener aListener) {
+		if (aListener == null) {
+			System.err.println("Ignoring attempt to register null read listener");
+			return;
+		}
+		if (readListeners.contains(aListener))
+			return;
+		readListeners.add(aListener);
 		
 	}
 	public void addCloseListener(SocketChannelCloseListener aListener) {
+		if (aListener == null) {
+			System.err.println("Ignoring attempt to register null close listener");
+			return;
+		}
 		if (closeListeners.contains(aListener))
 			return;
 		closeListeners.add(aListener);

@@ -11,91 +11,107 @@ import inputport.nio.manager.ConnectCommandSelector;
 import inputport.nio.manager.NIOManager;
 import inputport.nio.manager.NIOManagerFactory;
 
-public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient{
-//	ObservableNIOManager nioManager;
+public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
+	// ObservableNIOManager nioManager;
 	String clientName;
 	MeaningOfLifeModel meaningOfLifeModel;
 	MeaningOfLifeController meaningOfLifeController;
 	MeaningOfLifeView meaningOfLifeView;
 	MeaningOfLifeClientSender meaningOfLifeSender;
 	SocketChannel socketChannel;
+
 	public AMeaningOfLifeNIOClient(String aClientName) {
-//		try {
-		ConnectCommandSelector.setFactory(new AConnectCommandFactory());
-//		nioManager = new AnObservableNIOManager();
 		clientName = aClientName;
-		
-//		SocketChannel aSocketChannel = createSocketChannel();
-//		InetAddress aServerAddress = InetAddress.getByName(aServerHost);
-//		nioManager.connect(aSocketChannel, aServerAddress, aServerPort, this);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}		
 	}
-	
+	protected void setFactories() {		
+		ConnectCommandSelector.setFactory(new AConnectCommandFactory());
+	}
+	public void initialize(String aServerHost, int aServerPort) {		
+		createModel();
+		setFactories();
+		connectToServer(aServerHost, aServerPort);
+		createUI();
+	}
+
 	public void createModel() {
 		meaningOfLifeModel = new AMeaningOfLifeModel();
-//		meaningOfLifeView = new AMeaningOfLifeView();
-//		meaningOfLifeModel.addPropertyChangeListener(meaningOfLifeView);
-//		meaningOfLifeController = new AMeaningOfLifeController(meaningOfLifeModel);
-//		meaningOfLifeController.processInput();
 	}
+
 	public void createUI() {
-//		meaningOfLifeModel = new AMeaningOfLifeModel();
 		meaningOfLifeView = new AMeaningOfLifeView();
 		meaningOfLifeModel.addPropertyChangeListener(meaningOfLifeView);
-		meaningOfLifeController = new AMeaningOfLifeController(meaningOfLifeModel);
+		meaningOfLifeController = new AMeaningOfLifeController(
+				meaningOfLifeModel);
 		meaningOfLifeController.processInput();
 	}
+
 	public void processInput() {
 		meaningOfLifeController.processInput();
+	}	
+
+	public void connectToServer(String aServerHost, int aServerPort) {
+		socketChannel = createSocketChannel();
+		// no listeners need to be registered, assuming writes go through
+		connectToSocketChannel(aServerHost, aServerPort);
+
 	}
-	
-	public void initiateConnection(String aServerHost, int aServerPort)  {
+
+	protected void connectToSocketChannel(String aServerHost, int aServerPort) {
 		try {
-			
-			socketChannel = createSocketChannel();
 			InetAddress aServerAddress = InetAddress.getByName(aServerHost);
-			NIOManagerFactory.getSingleton().connect(socketChannel, aServerAddress, aServerPort, this);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}		
+			NIOManagerFactory.getSingleton().connect(socketChannel,
+					aServerAddress, aServerPort, this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	SocketChannel createSocketChannel() {
+
+	protected SocketChannel createSocketChannel() {
 		try {
 			SocketChannel retVal = SocketChannel.open();
 			return retVal;
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
+
 	@Override
 	public void connected(SocketChannel aSocketChannel) {
-		meaningOfLifeSender = new AMeaningOfLifeClientSender(aSocketChannel, clientName);
+		createSender(aSocketChannel);
+//		meaningOfLifeSender = new AMeaningOfLifeClientSender(aSocketChannel,
+//				clientName);
+//		meaningOfLifeModel.addPropertyChangeListener(meaningOfLifeSender);
+	}
+	protected void createCommunicationObjects(SocketChannel aSocketChannel) {
+		createSender(aSocketChannel);
+	}
+	
+	protected void createSender(SocketChannel aSocketChannel) {
+		meaningOfLifeSender = new AMeaningOfLifeClientSender(aSocketChannel,
+				clientName);
 		meaningOfLifeModel.addPropertyChangeListener(meaningOfLifeSender);
 	}
 	@Override
-	public void notConnected(SocketChannel theSocketChannel, Exception e) {
-		e.printStackTrace();
-		
+	public void notConnected(SocketChannel aSocketChannel, Exception e) {
+		System.err.println("Could not connect:" +aSocketChannel);
+		if (e != null)
+		   e.printStackTrace();
 	}
-	public static void createClient(String aServerHost, int aServerPort, String aClientName){
-		MeaningOfLifeNIOClient aClient = new AMeaningOfLifeNIOClient(aClientName);
-		aClient.createModel();
-		aClient.initiateConnection(aServerHost, aServerPort);
-		aClient.createUI();
+
+	public static void launchClient(String aServerHost, int aServerPort,
+			String aClientName) {
+		MeaningOfLifeNIOClient aClient = new AMeaningOfLifeNIOClient(
+				aClientName);
+		aClient.initialize(aServerHost, aServerPort);		
 	}
-//	public static String chooseServerHost(String[] args){
-//		return args.length == 1?args[0]:"localhost";
-//	}
-	public static void main (String[] args) {
+
+
+	public static void main(String[] args) {
 		NIOTraceUtility.setTracing();
-		createClient(
-				ClientArgsProcessor.chooseServerHost(args), ServerPort.SERVER_PORT, 
-				ClientArgsProcessor.chooseClientName(args) );	
-		
+		launchClient(ClientArgsProcessor.chooseServerHost(args),
+				ServerPort.SERVER_PORT,
+				ClientArgsProcessor.chooseClientName(args));
+
 	}
 }

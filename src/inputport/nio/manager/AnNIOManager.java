@@ -22,7 +22,7 @@ public class AnNIOManager implements NIOManager{
 //		selectionManager = SelectionManagerFactory.getSelectionManager();
 //	}
 	
-	public void enableAccepts(ServerSocketChannel channel,
+	public void enableListenableAccepts(ServerSocketChannel channel,
 			SocketChannelAcceptListener... listeners) {
 		AcceptCommand acceptRequestResponse = 
 				AcceptCommandSelector.getFactory().createAcceptCommand(selectionManager, channel);

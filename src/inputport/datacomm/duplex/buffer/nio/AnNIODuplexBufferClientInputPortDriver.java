@@ -38,7 +38,7 @@ public class AnNIODuplexBufferClientInputPortDriver extends AnNIOSimplexBufferCl
 		duplexSkeleton = theSkeleton;
 	}
 	@Override
-	public void bufferIsEmpty(SocketChannel aSocketChannel) {
+	public void writeBufferIsEmpty(SocketChannel aSocketChannel) {
 		observableNIOManager.enableReads(aSocketChannel);
 		
 	}
