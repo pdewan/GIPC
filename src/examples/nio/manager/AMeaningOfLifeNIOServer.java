@@ -21,7 +21,7 @@ import inputport.nio.manager.SelectionManagerFactory;
 
 public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 	MeaningOfLifeReceiver meaningOfLifeReceiver;
-
+	ServerSocketChannel serverSocketChannel;
 	public AMeaningOfLifeNIOServer() {
 
 	}
@@ -45,13 +45,14 @@ public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 	}
 
 	protected void makeServerConnectable(int aServerPort) {
-		ServerSocketChannel aServerSocketChannel = createSocketChannel(aServerPort);
+//		ServerSocketChannel aServerSocketChannel = createSocketChannel(aServerPort);
 		NIOManagerFactory.getSingleton().enableListenableAccepts(
-				aServerSocketChannel, this);
+				serverSocketChannel, this);
 	}
 
 	public void initialize(int aServerPort) {
-		setFactories();
+		setFactories();		
+		serverSocketChannel = createSocketChannel(aServerPort);
 		createCommunicationObjects();
 		makeServerConnectable(aServerPort);
 	}
@@ -70,10 +71,10 @@ public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 		}
 	}
 
-	protected void addWriteBufferListener(SocketChannel aSocketChannel) {
-		NIOManagerFactory.getSingleton().addWriteBoundedBufferListener(
-				aSocketChannel, this);
-	}
+//	protected void addWriteBufferListener(SocketChannel aSocketChannel) {
+//		NIOManagerFactory.getSingleton().addWriteBoundedBufferListener(
+//				aSocketChannel, this);
+//	}
 
 	protected void addReadListener(SocketChannel aSocketChannel) {
 		NIOManagerFactory.getSingleton().addReadListener(aSocketChannel,
@@ -81,7 +82,7 @@ public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 	}
 
 	protected void addListeners(SocketChannel aSocketChannel) {
-		addWriteBufferListener(aSocketChannel);
+//		addWriteBufferListener(aSocketChannel);
 		addReadListener(aSocketChannel);		
 	}
 	@Override

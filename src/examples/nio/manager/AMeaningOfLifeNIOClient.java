@@ -29,6 +29,8 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 	public void initialize(String aServerHost, int aServerPort) {		
 		createModel();
 		setFactories();
+		socketChannel = createSocketChannel();
+		addListeners();
 		connectToServer(aServerHost, aServerPort);
 		createUI();
 	}
@@ -50,7 +52,7 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 	}	
 
 	public void connectToServer(String aServerHost, int aServerPort) {
-		socketChannel = createSocketChannel();
+		createCommunicationObjects(socketChannel);
 		// no listeners need to be registered, assuming writes go through
 		connectToSocketChannel(aServerHost, aServerPort);
 
@@ -78,10 +80,8 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 
 	@Override
 	public void connected(SocketChannel aSocketChannel) {
-		createSender(aSocketChannel);
-//		meaningOfLifeSender = new AMeaningOfLifeClientSender(aSocketChannel,
-//				clientName);
-//		meaningOfLifeModel.addPropertyChangeListener(meaningOfLifeSender);
+		System.out.println("Ready to send messages to server");
+//		addListeners();
 	}
 	protected void createCommunicationObjects(SocketChannel aSocketChannel) {
 		createSender(aSocketChannel);
@@ -90,7 +90,12 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 	protected void createSender(SocketChannel aSocketChannel) {
 		meaningOfLifeSender = new AMeaningOfLifeClientSender(aSocketChannel,
 				clientName);
-		meaningOfLifeModel.addPropertyChangeListener(meaningOfLifeSender);
+	}
+	protected void addListeners() {
+		addModelListener();
+	}
+	protected void addModelListener(){
+		meaningOfLifeModel.addPropertyChangeListener(meaningOfLifeSender);		
 	}
 	@Override
 	public void notConnected(SocketChannel aSocketChannel, Exception e) {
@@ -105,6 +110,7 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 				aClientName);
 		aClient.initialize(aServerHost, aServerPort);		
 	}
+
 
 
 	public static void main(String[] args) {
