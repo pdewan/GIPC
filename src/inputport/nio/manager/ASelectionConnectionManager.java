@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import trace.port.nio.SelectorWokenUp;
 import util.trace.Tracer;
 
 
@@ -40,6 +41,7 @@ public class ASelectionConnectionManager implements SelectionConnectionManager  
 
 		requestQueue.add(request);
 		Tracer.info(this, "Waking up selector after adding command:" + request);
+		SelectorWokenUp.newCase(this, selectionManager.getSelector());
 		selectionManager.getSelector().wakeup();
 		Tracer.info(this, "leaving synchronized putRequestResponse");
 

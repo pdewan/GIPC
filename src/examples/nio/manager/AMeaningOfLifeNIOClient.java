@@ -30,6 +30,7 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 		createModel();
 		setFactories();
 		socketChannel = createSocketChannel();
+		createCommunicationObjects();
 		addListeners();
 		connectToServer(aServerHost, aServerPort);
 		createUI();
@@ -52,7 +53,7 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 	}	
 
 	public void connectToServer(String aServerHost, int aServerPort) {
-		createCommunicationObjects(socketChannel);
+		createCommunicationObjects();
 		// no listeners need to be registered, assuming writes go through
 		connectToSocketChannel(aServerHost, aServerPort);
 
@@ -83,12 +84,12 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 		System.out.println("Ready to send messages to server");
 //		addListeners();
 	}
-	protected void createCommunicationObjects(SocketChannel aSocketChannel) {
-		createSender(aSocketChannel);
+	protected void createCommunicationObjects() {
+		createSender();
 	}
 	
-	protected void createSender(SocketChannel aSocketChannel) {
-		meaningOfLifeSender = new AMeaningOfLifeClientSender(aSocketChannel,
+	protected void createSender() {
+		meaningOfLifeSender = new AMeaningOfLifeClientSender(socketChannel,
 				clientName);
 	}
 	protected void addListeners() {

@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import trace.port.nio.SelectorWokenUp;
 import util.trace.Tracer;
 
 
@@ -79,6 +80,7 @@ public class ASingleMonitorSelectionManager implements SelectionManager {
 			bufferedWriteBoundedBuffer.put(bufferedWrite);	
 			if (registerWriteOpsForBufferedWrites(bufferedWrite)) {
 				Tracer.info(this, "Waking up selector as new write registered");
+				SelectorWokenUp.newCase(this, selector);
 				selector.wakeup();
 			}
 //			Tracer.info(this, "Finished storing of buffered write with id:" + bufferedWrite.getId());

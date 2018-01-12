@@ -7,6 +7,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
+import trace.port.nio.SelectorWokenUp;
 import util.trace.Tracer;
 
 
@@ -69,6 +70,7 @@ public class ASelectionWriteManager implements SelectionWriteManager  {
 			bufferedWriteBoundedBuffer.put(bufferedWrite);	
 			if (registerWriteOpsForBufferedWrites(bufferedWrite)) {
 				Tracer.info(this, "Waking up selector as new write registered");
+				SelectorWokenUp.newCase(this, selectionManager.getSelector());
 				selectionManager.getSelector().wakeup();
 			}
 //			Tracer.info(this, "Finished storing of buffered write with id:" + bufferedWrite.getId());
