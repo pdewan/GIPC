@@ -28,8 +28,6 @@ public class NIOTraceUtility {
 		Tracer.setKeywordPrintStatus(SocketChannelRead.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelRegistered.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelWritten.class, true);
-
-
 	}
 
 }
