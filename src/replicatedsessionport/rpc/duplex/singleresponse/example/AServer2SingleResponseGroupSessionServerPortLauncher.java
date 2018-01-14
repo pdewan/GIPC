@@ -2,7 +2,7 @@ package replicatedsessionport.rpc.duplex.singleresponse.example;
 
 import port.sessionserver.ASessionServerLauncher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
-import trace.port.ConnectionEventManagerFactory;
+import util.trace.port.ConnectionEventManagerFactory;
 import bus.uigen.ObjectEditor;
 
 public class AServer2SingleResponseGroupSessionServerPortLauncher  {

@@ -3,9 +3,9 @@ package examples.gipc.consensus.paxos;
 import inputport.nio.manager.AConnectCommand;
 import inputport.nio.manager.AReadCommand;
 import inputport.nio.manager.AWriteBoundedBuffer;
-import trace.port.consensus.ProposalAcceptedNotificationReceived;
-import trace.port.nio.NIOTraceUtility;
 import util.trace.Tracer;
+import util.trace.port.consensus.ProposalAcceptedNotificationReceived;
+import util.trace.port.nio.NIOTraceUtility;
 
 
 

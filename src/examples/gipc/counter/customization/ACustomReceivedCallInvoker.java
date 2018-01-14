@@ -11,8 +11,8 @@ import inputport.rpc.duplex.RPCReturnValue;
 
 import java.io.Serializable;
 
-import trace.port.rpc.ReturnMessageCreated;
 import util.trace.Tracer;
+import util.trace.port.rpc.ReturnMessageCreated;
 
 
 public class ACustomReceivedCallInvoker extends ADuplexReceivedCallInvoker {

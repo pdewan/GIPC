@@ -1,6 +1,6 @@
 package examples.gipc.consensus.asynchronous;
 
-import trace.port.consensus.ConsensusTraceUtility;
+import util.trace.port.consensus.ConsensusTraceUtility;
 import examples.gipc.consensus.Member3;
 
 public class AsynchronousLearner3Launcher extends

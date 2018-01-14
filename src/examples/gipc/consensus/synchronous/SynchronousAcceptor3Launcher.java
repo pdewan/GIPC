@@ -1,7 +1,7 @@
 package examples.gipc.consensus.synchronous;
 
-import trace.port.buffer.BufferTraceUtility;
-import trace.port.consensus.ConsensusTraceUtility;
+import util.trace.port.buffer.BufferTraceUtility;
+import util.trace.port.consensus.ConsensusTraceUtility;
 import examples.gipc.consensus.AGreetingVetoer;
 import examples.gipc.consensus.Member3;
 

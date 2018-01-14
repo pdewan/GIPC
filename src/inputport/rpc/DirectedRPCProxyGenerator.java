@@ -10,8 +10,8 @@ import inputport.rpc.simplex.SimplexRPC;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
-import trace.port.rpc.ProxyCreated;
 import util.misc.RemoteReflectionUtility;
+import util.trace.port.rpc.ProxyCreated;
 
 public class DirectedRPCProxyGenerator {
 	static boolean shortCircuitLocalCallsToRemotes = true;

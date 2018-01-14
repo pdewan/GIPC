@@ -9,12 +9,12 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-import trace.port.nio.SocketChannelBlockingConfigured;
-import trace.port.nio.SocketChannelConnectFinished;
-import trace.port.nio.SocketChannelConnectInitiated;
-import trace.port.nio.SocketChannelInterestOp;
-import trace.port.nio.SocketChannelRegistered;
 import util.trace.Tracer;
+import util.trace.port.nio.SocketChannelBlockingConfigured;
+import util.trace.port.nio.SocketChannelConnectFinished;
+import util.trace.port.nio.SocketChannelConnectInitiated;
+import util.trace.port.nio.SocketChannelInterestOp;
+import util.trace.port.nio.SocketChannelRegistered;
 
 public class AConnectCommand extends AnAbstractNIOCommand implements
 		ConnectCommand {

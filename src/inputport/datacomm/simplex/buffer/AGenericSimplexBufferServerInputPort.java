@@ -15,21 +15,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import trace.port.AConnectionEvent;
-import trace.port.AReplaceConnectionEvent;
-import trace.port.ConnectiontEventBus;
-import trace.port.buffer.BufferChannelConnectFinished;
-import trace.port.buffer.BufferChannelConnectInitiated;
-import trace.port.buffer.BufferChannelDisconnectInitiated;
-import trace.port.buffer.BufferChannelDisconnected;
-import trace.port.buffer.BufferReceived;
-import trace.port.buffer.ClientNameAssociatedWithPort;
-import trace.port.buffer.ClientNameLookedUp;
-import trace.port.buffer.DuplicateBufferChannelConnectIgnored;
-import trace.port.buffer.NumberBytesReceived;
-import trace.port.buffer.ReplyDestinationAssociatedWithPort;
-import trace.port.buffer.TrapperBufferReceived;
 import util.trace.Tracer;
+import util.trace.port.AConnectionEvent;
+import util.trace.port.AReplaceConnectionEvent;
+import util.trace.port.ConnectiontEventBus;
+import util.trace.port.buffer.BufferChannelConnectFinished;
+import util.trace.port.buffer.BufferChannelConnectInitiated;
+import util.trace.port.buffer.BufferChannelDisconnectInitiated;
+import util.trace.port.buffer.BufferChannelDisconnected;
+import util.trace.port.buffer.BufferReceived;
+import util.trace.port.buffer.ClientNameAssociatedWithPort;
+import util.trace.port.buffer.ClientNameLookedUp;
+import util.trace.port.buffer.DuplicateBufferChannelConnectIgnored;
+import util.trace.port.buffer.NumberBytesReceived;
+import util.trace.port.buffer.ReplyDestinationAssociatedWithPort;
+import util.trace.port.buffer.TrapperBufferReceived;
 
 
 

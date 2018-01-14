@@ -13,10 +13,10 @@ import java.util.Set;
 import multiserverport.datacomm.duplex.DuplexMultiServerClientPort;
 import multiserverport.datacomm.group.AnAbstractGroupMultiServerClientPort;
 import multiserverport.datacomm.group.GroupMultiServerClientPort;
-import trace.port.AConnectionEvent;
-import trace.port.AReplaceConnectionEvent;
-import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
+import util.trace.port.AConnectionEvent;
+import util.trace.port.AReplaceConnectionEvent;
+import util.trace.port.ConnectiontEventBus;
 
 
 

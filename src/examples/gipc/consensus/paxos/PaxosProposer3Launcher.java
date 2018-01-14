@@ -8,7 +8,7 @@ import inputport.datacomm.group.object.MultipleSendGroupForwarderSelector;
 import examples.gipc.consensus.Member1;
 import examples.gipc.consensus.Member2;
 import examples.gipc.consensus.Member3;
-import trace.port.consensus.ConsensusTraceUtility;
+import util.trace.port.consensus.ConsensusTraceUtility;
 
 public class PaxosProposer3Launcher extends
 	APaxosMemberLauncher implements Member3 {

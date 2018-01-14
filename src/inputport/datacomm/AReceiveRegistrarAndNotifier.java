@@ -3,9 +3,9 @@ package inputport.datacomm;
 import java.util.ArrayList;
 import java.util.List;
 
-import trace.port.ReceiveListenerNotified;
-import trace.port.ReceiveListenerRegistered;
 import util.trace.Tracer;
+import util.trace.port.ReceiveListenerNotified;
+import util.trace.port.ReceiveListenerRegistered;
 
 public class AReceiveRegistrarAndNotifier<MessageType> implements ReceiveRegistrarAndNotifier<MessageType> {
 

@@ -7,9 +7,9 @@ import java.nio.ByteBuffer;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
-import trace.port.buffer.BufferLocalSendFinished;
-import trace.port.buffer.BufferLocalSendInitiated;
 import util.trace.Tracer;
+import util.trace.port.buffer.BufferLocalSendFinished;
+import util.trace.port.buffer.BufferLocalSendInitiated;
 import inputport.datacomm.ReceiveListener;
 
 public class AnEchoingBufferSender implements  EchoingBufferSender{

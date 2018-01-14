@@ -11,21 +11,21 @@ import java.nio.ByteBuffer;
 import java.util.HashSet;
 import java.util.Set;
 
-import trace.port.AConnectionEvent;
-import trace.port.ConnectiontEventBus;
-import trace.port.buffer.BufferChannelConnectFailure;
-import trace.port.buffer.BufferChannelConnectFinished;
-import trace.port.buffer.BufferChannelConnectInitiated;
-import trace.port.buffer.BufferChannelDisconnectInitiated;
-import trace.port.buffer.BufferChannelDisconnected;
-import trace.port.buffer.BufferSendFinished;
-import trace.port.buffer.BufferSendInitiated;
-import trace.port.buffer.BufferSendToUnconnectedChannelIgnored;
-import trace.port.buffer.ClientNameSendInitiated;
-import trace.port.buffer.DuplicateBufferChannelConnectIgnored;
-import trace.port.buffer.NumberBytesSent;
-import trace.port.buffer.TrapperBufferSendFinished;
 import util.trace.Tracer;
+import util.trace.port.AConnectionEvent;
+import util.trace.port.ConnectiontEventBus;
+import util.trace.port.buffer.BufferChannelConnectFailure;
+import util.trace.port.buffer.BufferChannelConnectFinished;
+import util.trace.port.buffer.BufferChannelConnectInitiated;
+import util.trace.port.buffer.BufferChannelDisconnectInitiated;
+import util.trace.port.buffer.BufferChannelDisconnected;
+import util.trace.port.buffer.BufferSendFinished;
+import util.trace.port.buffer.BufferSendInitiated;
+import util.trace.port.buffer.BufferSendToUnconnectedChannelIgnored;
+import util.trace.port.buffer.ClientNameSendInitiated;
+import util.trace.port.buffer.DuplicateBufferChannelConnectIgnored;
+import util.trace.port.buffer.NumberBytesSent;
+import util.trace.port.buffer.TrapperBufferSendFinished;
 
 
 public class AGenericSimplexBufferClientInputPort<ChannelType>  implements GenericSimplexClientInputPort<ChannelType>  {

@@ -9,8 +9,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
-import trace.port.nio.SocketChannelInterestOp;
 import util.trace.Tracer;
+import util.trace.port.nio.SocketChannelInterestOp;
 
 
 public class AWriteBoundedBuffer implements WriteBoundedBuffer {

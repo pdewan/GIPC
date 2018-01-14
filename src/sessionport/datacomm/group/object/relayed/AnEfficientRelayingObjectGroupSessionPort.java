@@ -14,10 +14,10 @@ import sessionport.datacomm.duplex.object.relayed.ARelayingObjectDuplexSessionPo
 import sessionport.datacomm.duplex.object.relayed.RelayingDuplexConnectionsManager;
 import sessionport.datacomm.group.GroupSessionPort;
 import sessionport.datacomm.group.object.relayed.latecomer.ObjectGroupSPRelayedTrapperSelector;
-import trace.port.AConnectionEvent;
-import trace.port.AReplaceConnectionEvent;
-import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
+import util.trace.port.AConnectionEvent;
+import util.trace.port.AReplaceConnectionEvent;
+import util.trace.port.ConnectiontEventBus;
 // this one sends bulk sends groups to relayers rather than individuals
 // so we use group port instead of duplex
 public class AnEfficientRelayingObjectGroupSessionPort  

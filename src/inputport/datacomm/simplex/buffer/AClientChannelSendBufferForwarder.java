@@ -5,8 +5,8 @@ import inputport.datacomm.NamingSender;
 
 import java.nio.ByteBuffer;
 
-import trace.port.buffer.BufferSendInitiated;
 import util.trace.Tracer;
+import util.trace.port.buffer.BufferSendInitiated;
 
 
 public class AClientChannelSendBufferForwarder<ChannelType>  implements NamingSender<ByteBuffer>{

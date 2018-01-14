@@ -9,11 +9,11 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-import trace.port.nio.SocketChannelAccepted;
-import trace.port.nio.SocketChannelBlockingConfigured;
-import trace.port.nio.SocketChannelInterestOp;
-import trace.port.nio.SocketChannelRegistered;
 import util.trace.Tracer;
+import util.trace.port.nio.SocketChannelAccepted;
+import util.trace.port.nio.SocketChannelBlockingConfigured;
+import util.trace.port.nio.SocketChannelInterestOp;
+import util.trace.port.nio.SocketChannelRegistered;
 
 
 public class AnAcceptCommand extends AnAbstractNIOCommand implements AcceptCommand {

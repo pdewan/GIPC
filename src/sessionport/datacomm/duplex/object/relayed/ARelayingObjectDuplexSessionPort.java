@@ -26,10 +26,10 @@ import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionParticipantDescription;
 import sessionport.datacomm.duplex.DuplexSessionPort;
 import sessionport.datacomm.duplex.buffer.example.ABufferDuplexSessionPortLauncher;
-import trace.port.AConnectionEvent;
-import trace.port.AReplaceConnectionEvent;
-import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
+import util.trace.port.AConnectionEvent;
+import util.trace.port.AReplaceConnectionEvent;
+import util.trace.port.ConnectiontEventBus;
 
 
 public class ARelayingObjectDuplexSessionPort implements DuplexSessionPort<Object>, ConnectionListener {

@@ -53,7 +53,7 @@ import staticsessionport.datacomm.group.buffer.BufferGroupStaticSessionPortSelec
 import staticsessionport.datacomm.group.object.GroupObjectStaticSessionPortSelector;
 import staticsessionport.rpc.duplex.DuplexRPCStaticSessionPortSelector;
 import staticsessionport.rpc.group.GroupRPCStaticSessionPortSelector;
-import trace.port.ConnectionEventManagerFactory;
+import util.trace.port.ConnectionEventManagerFactory;
 
 public abstract class AnAbstractPortLauncher implements PortLauncher, ConnectionListener, Runnable {
 ;

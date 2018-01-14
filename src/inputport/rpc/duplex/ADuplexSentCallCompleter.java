@@ -7,12 +7,12 @@ import inputport.InputPort;
 import java.util.HashMap;
 import java.util.Map;
 
-import trace.port.rpc.ReceivedObjectTransformed;
-import trace.port.rpc.RemoteCallBlockedForReturnValue;
-import trace.port.rpc.RemoteCallReceivedReturnValue;
-import trace.port.rpc.RemoteCallWaitingForReturnValue;
-import trace.port.rpc.ReturnValueQueueCreated;
 import util.trace.Tracer;
+import util.trace.port.rpc.ReceivedObjectTransformed;
+import util.trace.port.rpc.RemoteCallBlockedForReturnValue;
+import util.trace.port.rpc.RemoteCallReceivedReturnValue;
+import util.trace.port.rpc.RemoteCallWaitingForReturnValue;
+import util.trace.port.rpc.ReturnValueQueueCreated;
 
 
 public class ADuplexSentCallCompleter extends AnAbstractDuplexSentCallCompleter implements DuplexSentCallCompleter, ConnectionListener {

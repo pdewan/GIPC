@@ -1,6 +1,6 @@
 package examples.gipc.consensus.paxos.scenarios;
 
-import trace.port.consensus.ConsensusTraceUtility;
+import util.trace.port.consensus.ConsensusTraceUtility;
 import examples.gipc.consensus.AGreetingVetoer;
 import examples.gipc.consensus.Member2;
 import examples.gipc.consensus.Member3;

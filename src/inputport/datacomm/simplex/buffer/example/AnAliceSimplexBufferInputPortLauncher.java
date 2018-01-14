@@ -1,6 +1,6 @@
 package inputport.datacomm.simplex.buffer.example;
 
-import trace.port.nio.NIOTraceUtility;
+import util.trace.port.nio.NIOTraceUtility;
 
 
 public class AnAliceSimplexBufferInputPortLauncher {

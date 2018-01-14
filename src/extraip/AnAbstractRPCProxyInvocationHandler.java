@@ -10,7 +10,6 @@ import java.rmi.server.RemoteObject;
 import java.util.HashSet;
 import java.util.Set;
 
-import trace.port.rpc.CallReceived;
 import util.introspect.JavaIntrospectUtility;
 import util.misc.HashIdentityMap;
 import util.misc.IdentityMap;
@@ -18,6 +17,7 @@ import util.remote.InvocationHandlerWithProperties;
 import util.trace.TraceableBus;
 import util.trace.TraceableListener;
 import util.trace.Tracer;
+import util.trace.port.rpc.CallReceived;
 
 public abstract class AnAbstractRPCProxyInvocationHandler implements
 		InvocationHandlerWithProperties, TraceableListener {

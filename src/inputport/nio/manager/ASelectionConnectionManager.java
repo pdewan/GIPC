@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import trace.port.nio.SelectorWokenUp;
 import util.trace.Tracer;
+import util.trace.port.nio.SelectorWokenUp;
 
 
 

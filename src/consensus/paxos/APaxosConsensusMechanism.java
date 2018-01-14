@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import sessionport.rpc.group.GIPCSessionRegistry;
-import trace.port.consensus.ProposalPreparedNotificationReceived;
+import util.trace.port.consensus.ProposalPreparedNotificationReceived;
 import consensus.ProposalFeedbackKind;
 import consensus.ProposalState;
 import consensus.ReplicationSynchrony;

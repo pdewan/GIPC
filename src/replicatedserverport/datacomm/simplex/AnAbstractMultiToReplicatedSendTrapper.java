@@ -2,8 +2,8 @@ package replicatedserverport.datacomm.simplex;
 
 import inputport.datacomm.AnAbstractSendTrapper;
 import inputport.datacomm.group.GroupSender;
-import trace.port.AConnectionEvent;
-import trace.port.ConnectiontEventBus;
+import util.trace.port.AConnectionEvent;
+import util.trace.port.ConnectiontEventBus;
 
 public abstract class AnAbstractMultiToReplicatedSendTrapper<InMessageType, OutMessageType> extends AnAbstractSendTrapper<InMessageType, OutMessageType>
 	implements MultiToReplicatedSendTrapper<InMessageType, OutMessageType>{

@@ -14,7 +14,7 @@ import port.PortLauncherSupport;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.relay.late.ALatecomerRelayerAndSessionServerLauncherSupport;
 import port.sessionserver.relay.late.LatecomerRelayerAndSessionServerSelector;
-import trace.port.ConnectionEventManagerFactory;
+import util.trace.port.ConnectionEventManagerFactory;
 import bus.uigen.ObjectEditor;
 
 public  class ALatecomerSessionServerLauncher extends AnAbstractPortLauncher{

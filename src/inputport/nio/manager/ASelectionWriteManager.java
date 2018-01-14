@@ -7,8 +7,8 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
-import trace.port.nio.SelectorWokenUp;
 import util.trace.Tracer;
+import util.trace.port.nio.SelectorWokenUp;
 
 
 

@@ -3,9 +3,9 @@ package variableserverport.datacomm.duplex.buffer;
 import java.nio.ByteBuffer;
 
 import port.ParticipantChoice;
-import trace.port.AConnectionEvent;
-import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
+import util.trace.port.AConnectionEvent;
+import util.trace.port.ConnectiontEventBus;
 import variableserverport.datacomm.duplex.DuplexVariableServerClientPort;
 import variableserverport.datacomm.simplex.buffer.AnAbstractSimplexBufferVariableServerConnectionsManager;
 

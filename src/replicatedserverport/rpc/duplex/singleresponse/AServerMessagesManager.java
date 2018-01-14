@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import trace.port.ReplayStartInfo;
-import trace.port.SyncReplayEndInfo;
 import util.trace.TraceableBus;
 import util.trace.Tracer;
+import util.trace.port.ReplayStartInfo;
+import util.trace.port.SyncReplayEndInfo;
 
 // probbaly need a lock here or have an object that implements both kinds of trappers
 public class AServerMessagesManager implements ServerMessagesManager{

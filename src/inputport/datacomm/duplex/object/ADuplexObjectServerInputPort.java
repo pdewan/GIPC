@@ -12,8 +12,8 @@ import inputport.datacomm.simplex.object.ServerObjectTrapperSelector;
 import java.nio.ByteBuffer;
 import java.util.Set;
 
-import trace.port.AConnectionEvent;
-import trace.port.ConnectiontEventBus;
+import util.trace.port.AConnectionEvent;
+import util.trace.port.ConnectiontEventBus;
 
 
 

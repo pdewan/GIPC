@@ -3,9 +3,9 @@ package inputport.datacomm.group;
 import java.util.HashSet;
 import java.util.Set;
 
-import trace.port.AConnectionEvent;
-import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
+import util.trace.port.AConnectionEvent;
+import util.trace.port.ConnectiontEventBus;
 
 
 public abstract  class AnAbstractGroupSendTrapper<InMessageType, OutMessageType>  

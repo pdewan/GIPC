@@ -1,0 +1,27 @@
+-----------------
+To run locally
+Run MeaningOfLifeNIOPServerLauncher
+Run AliceMeaningOfLifeNIOClient
+Run BobMeaningOfLifeNIOClient
+
+Provide input to each client in response to prompts.
+--------------------------
+To connect to a remote server.
+Run MeaningOfLifeNIOClientLauncher, with arguments <host name> <client name>
+e.g.
+MeaningOfLifeNIOClientLauncher login.cs.unc.edu "john smith"
+The name of the local host is "localhost"
+
+
+In Eclipse, to provide arguments.
+Execute Run->Run Configurations...
+Right Click Java Application->New
+Specify project,main class, and arguments
+
+Or you can just run the main class without arguments, which will create a 
+configuration. Terminate program. Now you can execute Run Configurations.. and  edit 
+the created configurations and go to arguments tab to supply the args.
+
+ 
+
+

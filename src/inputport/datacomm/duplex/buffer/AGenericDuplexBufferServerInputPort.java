@@ -11,13 +11,13 @@ import inputport.datacomm.simplex.buffer.SendRegistrarAndNotifier;
 
 import java.nio.ByteBuffer;
 
-import trace.port.AConnectionEvent;
-import trace.port.ConnectiontEventBus;
-import trace.port.buffer.BufferReplyInitiated;
-import trace.port.buffer.BufferSendFinished;
-import trace.port.buffer.BufferSendInitiated;
-import trace.port.buffer.BufferSendToUnconnectedChannelIgnored;
 import util.trace.Tracer;
+import util.trace.port.AConnectionEvent;
+import util.trace.port.ConnectiontEventBus;
+import util.trace.port.buffer.BufferReplyInitiated;
+import util.trace.port.buffer.BufferSendFinished;
+import util.trace.port.buffer.BufferSendInitiated;
+import util.trace.port.buffer.BufferSendToUnconnectedChannelIgnored;
 
 public class AGenericDuplexBufferServerInputPort<RequestChannelType, MessageChannelType> extends AGenericSimplexBufferServerInputPort<RequestChannelType, MessageChannelType> 
              implements DuplexBufferGenericServerInputPort<RequestChannelType, MessageChannelType> {

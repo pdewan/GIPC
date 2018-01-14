@@ -14,18 +14,18 @@ import java.util.Set;
 import consensus.asynchronous.sequential.LearnedKind;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
-import trace.port.RemoteEndConnected;
-import trace.port.RemoteEndDisconnected;
-import trace.port.consensus.ProposalConsensusOccurred;
-import trace.port.consensus.ProposalLearnNotificationReceived;
-import trace.port.consensus.ProposalMade;
-import trace.port.consensus.ProposalStateChanged;
-import trace.port.consensus.ProposalWaitEnded;
-import trace.port.consensus.ProposalWaitStarted;
-import trace.port.consensus.WaitedForSuccessfulProposalMessageReceipt;
-import trace.port.consensus.WaitingForSuccessfulProposalMessageReceipt;
 import util.misc.ThreadSupport;
 import util.trace.Tracer;
+import util.trace.port.RemoteEndConnected;
+import util.trace.port.RemoteEndDisconnected;
+import util.trace.port.consensus.ProposalConsensusOccurred;
+import util.trace.port.consensus.ProposalLearnNotificationReceived;
+import util.trace.port.consensus.ProposalMade;
+import util.trace.port.consensus.ProposalStateChanged;
+import util.trace.port.consensus.ProposalWaitEnded;
+import util.trace.port.consensus.ProposalWaitStarted;
+import util.trace.port.consensus.WaitedForSuccessfulProposalMessageReceipt;
+import util.trace.port.consensus.WaitingForSuccessfulProposalMessageReceipt;
 
 public class AnAbstractConsensusMechanism<StateType> implements ConsensusMechanism<StateType> {
 //	protected ConsensusState<StateType> consensusState;

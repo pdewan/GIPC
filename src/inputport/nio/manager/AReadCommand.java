@@ -9,9 +9,9 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-import trace.port.nio.SocketChannelInterestOp;
-import trace.port.nio.SocketChannelRead;
 import util.trace.Tracer;
+import util.trace.port.nio.SocketChannelInterestOp;
+import util.trace.port.nio.SocketChannelRead;
 
 
 public class AReadCommand extends AnAbstractNIOCommand implements ReadCommand {

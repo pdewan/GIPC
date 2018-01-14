@@ -9,7 +9,7 @@ import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
 import inputport.rpc.duplex.RPCReturnValue;
 import inputport.rpc.duplex.RPCReturnValueQueue;
-import trace.port.rpc.ReturnValueQueuedOld;
+import util.trace.port.rpc.ReturnValueQueuedOld;
 
 
 

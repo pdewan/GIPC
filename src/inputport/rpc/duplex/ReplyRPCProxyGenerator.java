@@ -5,8 +5,8 @@ import inputport.rpc.DirectedRPCProxyGenerator;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
-import trace.port.rpc.ProxyCreated;
 import util.misc.RemoteReflectionUtility;
+import util.trace.port.rpc.ProxyCreated;
 
 public class ReplyRPCProxyGenerator {
 	public static Object generateUniRPCProxy(Class localInterface, Class remoteInterfac) {

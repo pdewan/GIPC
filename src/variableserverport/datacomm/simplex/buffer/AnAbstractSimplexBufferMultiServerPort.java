@@ -20,10 +20,10 @@ import java.util.Set;
 import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
 import sessionport.datacomm.duplex.buffer.example.ABufferDuplexSessionPortLauncher;
-import trace.port.AConnectionEvent;
-import trace.port.AReplaceConnectionEvent;
-import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
+import util.trace.port.AConnectionEvent;
+import util.trace.port.AReplaceConnectionEvent;
+import util.trace.port.ConnectiontEventBus;
 import variableserverport.SimplexVariableServerClientPort;
 
 // should this also be called variable server

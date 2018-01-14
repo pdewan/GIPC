@@ -7,12 +7,12 @@ import inputport.InputPort;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import trace.port.rpc.ReceivedObjectTransformed;
-import trace.port.rpc.ReceivedReturnValueQueued;
-import trace.port.rpc.RemoteCallBlockedForReturnValue;
-import trace.port.rpc.RemoteCallReturnValueDetermined;
-import trace.port.rpc.RemoteCallUnblockingWithReturnValue;
 import util.trace.Tracer;
+import util.trace.port.rpc.ReceivedObjectTransformed;
+import util.trace.port.rpc.ReceivedReturnValueQueued;
+import util.trace.port.rpc.RemoteCallBlockedForReturnValue;
+import util.trace.port.rpc.RemoteCallReturnValueDetermined;
+import util.trace.port.rpc.RemoteCallUnblockingWithReturnValue;
 
 public class AnRPCReturnValueQueue implements RPCReturnValueQueue, ConnectionListener {
 	LocalRemoteReferenceTranslator localRemoteReferenceTranslator;

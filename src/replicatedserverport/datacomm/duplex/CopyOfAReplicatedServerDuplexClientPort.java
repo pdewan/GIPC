@@ -14,10 +14,10 @@ import java.util.List;
 import multiserverport.datacomm.group.GroupMultiServerClientPort;
 import replicatedserverport.datacomm.simplex.AReplicatedServerClientPort;
 import replicatedserverport.datacomm.simplex.ReplicatedServerObjectTrapperSelector;
-import trace.port.AConnectionEvent;
-import trace.port.AReplaceConnectionEvent;
-import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
+import util.trace.port.AConnectionEvent;
+import util.trace.port.AReplaceConnectionEvent;
+import util.trace.port.ConnectiontEventBus;
 // even though this port is duplex, it involves group send and receive because it is replicated
 public class CopyOfAReplicatedServerDuplexClientPort<MessageType> 
 	extends AReplicatedServerClientPort<MessageType> 

@@ -17,9 +17,9 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Set;
 
-import trace.port.AConnectionEvent;
-import trace.port.AReplaceConnectionEvent;
-import trace.port.ConnectiontEventBus;
+import util.trace.port.AConnectionEvent;
+import util.trace.port.AReplaceConnectionEvent;
+import util.trace.port.ConnectiontEventBus;
 
 
 

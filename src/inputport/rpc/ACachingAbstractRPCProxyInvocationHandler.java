@@ -13,12 +13,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import trace.port.ReplayStartInfo;
-import trace.port.SyncReplayEndInfo;
-import trace.port.rpc.CallReceived;
-import trace.port.rpc.ProxyCacheInvalidated;
-import trace.port.rpc.ProxyMethodCalled;
-import trace.port.rpc.ProxyPureFunctionCalled;
 import util.introspect.JavaIntrospectUtility;
 import util.misc.HashIdentityMap;
 import util.misc.IdentityMap;
@@ -26,6 +20,12 @@ import util.remote.InvocationHandlerWithProperties;
 import util.trace.TraceableBus;
 import util.trace.TraceableListener;
 import util.trace.Tracer;
+import util.trace.port.ReplayStartInfo;
+import util.trace.port.SyncReplayEndInfo;
+import util.trace.port.rpc.CallReceived;
+import util.trace.port.rpc.ProxyCacheInvalidated;
+import util.trace.port.rpc.ProxyMethodCalled;
+import util.trace.port.rpc.ProxyPureFunctionCalled;
 
 public abstract class ACachingAbstractRPCProxyInvocationHandler extends
 ANonCachingAbstractRPCProxyInvocationHandler implements

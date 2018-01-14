@@ -4,7 +4,7 @@ import inputport.datacomm.duplex.object.DuplexObjectInputPortSelector;
 import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.rpc.duplex.DuplexReceivedCallInvokerSelector;
 import inputport.rpc.duplex.DuplexSentCallCompleterSelector;
-import trace.port.rpc.RPCTraceUtility;
+import util.trace.port.rpc.RPCTraceUtility;
 import examples.gipc.counter.layers.AMultiLayerCounterClient;
 import examples.gipc.counter.layers.AMultiLayerCounterServer;
 

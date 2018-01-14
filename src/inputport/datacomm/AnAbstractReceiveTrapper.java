@@ -1,8 +1,8 @@
 package inputport.datacomm;
 import inputport.InputPort;
-import trace.port.AConnectionEvent;
-import trace.port.ConnectiontEventBus;
 import util.trace.Tracer;
+import util.trace.port.AConnectionEvent;
+import util.trace.port.ConnectiontEventBus;
 
 public abstract class AnAbstractReceiveTrapper<InMessageType, OutMessageType> implements ReceiveTrapper<InMessageType, OutMessageType> {
 	protected ReceiveNotifier<OutMessageType> destination;

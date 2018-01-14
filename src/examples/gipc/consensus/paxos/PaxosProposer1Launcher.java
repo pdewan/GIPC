@@ -8,9 +8,9 @@ import inputport.nio.manager.AReadCommand;
 import inputport.nio.manager.AWriteBoundedBuffer;
 import examples.gipc.consensus.ExampleMemberLauncher;
 import examples.gipc.consensus.Member1;
-import trace.port.consensus.ConsensusTraceUtility;
-import trace.port.nio.NIOTraceUtility;
 import util.trace.Tracer;
+import util.trace.port.consensus.ConsensusTraceUtility;
+import util.trace.port.nio.NIOTraceUtility;
 
 public class PaxosProposer1Launcher extends
 		APaxosMemberLauncher implements Member1 {

@@ -9,11 +9,11 @@ import inputport.rpc.RemoteCall;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import trace.port.rpc.CallInitiated;
-import trace.port.rpc.ReceivedCallDequeued;
-import trace.port.rpc.ReceivedCallEndedOld;
-import trace.port.rpc.ReceivedCallQueued;
 import util.trace.Tracer;
+import util.trace.port.rpc.CallInitiated;
+import util.trace.port.rpc.ReceivedCallDequeued;
+import util.trace.port.rpc.ReceivedCallEndedOld;
+import util.trace.port.rpc.ReceivedCallQueued;
 
 
 

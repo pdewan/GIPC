@@ -4,8 +4,8 @@ import inputport.InputPort;
 import inputport.datacomm.AnAbstractSendTrapper;
 import inputport.datacomm.NamingSender;
 import inputport.rpc.RemoteCall;
-import trace.port.rpc.RemoteCallGenerated;
 import util.trace.Tracer;
+import util.trace.port.rpc.RemoteCallGenerated;
 
 
 public class ASimplexCallSendTrapper extends AnAbstractSendTrapper<Object, Object> {

@@ -3,11 +3,11 @@ package inputport.rpc;
 
 import java.lang.reflect.Method;
 
-import trace.port.AConnectionEvent;
-import trace.port.ConnectiontEventBus;
-import trace.port.rpc.ReceivedCallEnded;
-import trace.port.rpc.ReceivedCallInitiated;
-import trace.port.rpc.RegisteredObjectLookedUp;
+import util.trace.port.AConnectionEvent;
+import util.trace.port.ConnectiontEventBus;
+import util.trace.port.rpc.ReceivedCallEnded;
+import util.trace.port.rpc.ReceivedCallInitiated;
+import util.trace.port.rpc.RegisteredObjectLookedUp;
 
 
 

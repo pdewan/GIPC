@@ -1,6 +1,9 @@
 package examples.nio.manager;
 
-import trace.port.nio.NIOTraceUtility;
+import examples.nio.manager.client.AMeaningOfLifeNIOClient;
+import examples.nio.manager.client.ClientArgsProcessor;
+import examples.nio.manager.server.ServerPort;
+import util.trace.port.nio.NIOTraceUtility;
 
 public class BobMeaningOfLifeNIOClient {
 	public static void main (String[] args) {

@@ -4,7 +4,7 @@ import inputport.rpc.duplex.DuplexRPCClientInputPort;
 
 import java.nio.ByteBuffer;
 
-import trace.port.rpc.RPCTraceUtility;
+import util.trace.port.rpc.RPCTraceUtility;
 import examples.gipc.counter.AGIPCCounterClient;
 import examples.gipc.counter.simple.ASimpleGIPCCounterClient;
 

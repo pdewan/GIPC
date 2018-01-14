@@ -2,7 +2,7 @@ package inputport.nio.manager;
 
 import java.nio.channels.SelectionKey;
 
-import trace.port.nio.SocketChannelInterestOp;
+import util.trace.port.nio.SocketChannelInterestOp;
 
 public  class AnAbstractNIOCommand {
 	Integer nextInterestOps;

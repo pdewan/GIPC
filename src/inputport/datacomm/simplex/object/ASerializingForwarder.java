@@ -9,9 +9,9 @@ import java.nio.ByteBuffer;
 
 import serialization.Serializer;
 import serialization.SerializerPoolSelector;
-import trace.port.objects.ObjectSerializationFinished;
-import trace.port.objects.ObjectSerializationInitiated;
 import util.trace.Tracer;
+import util.trace.port.objects.ObjectSerializationFinished;
+import util.trace.port.objects.ObjectSerializationInitiated;
 
 
 public class ASerializingForwarder extends AnAbstractSendTrapper<Object, ByteBuffer> implements SerializingForwarder{
