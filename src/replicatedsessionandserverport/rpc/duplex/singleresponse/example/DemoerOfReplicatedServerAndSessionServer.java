@@ -1,6 +1,5 @@
 package replicatedsessionandserverport.rpc.duplex.singleresponse.example;
 
-import port.ParticipantChoice;
 import bus.uigen.pipe.MainClassLaunchingUtility;
 /* wonder how this worked. The replicated servers do nto join session server
  * as down in AnAbstractSimplexBufferVariableServerConnectionsManager is code

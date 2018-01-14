@@ -11,6 +11,7 @@ import examples.nio.manager.mvc.MeaningOfLifeController;
 import examples.nio.manager.mvc.MeaningOfLifeModel;
 import examples.nio.manager.mvc.MeaningOfLifeView;
 import examples.nio.manager.server.ServerPort;
+import util.trace.bean.BeanTraceUtility;
 import util.trace.port.nio.NIOTraceUtility;
 import inputport.nio.manager.AConnectCommandFactory;
 import inputport.nio.manager.AnNIOManager;
@@ -114,6 +115,8 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 
 	public static void launchClient(String aServerHost, int aServerPort,
 			String aClientName) {
+		NIOTraceUtility.setTracing();
+		BeanTraceUtility.setTracing();
 		MeaningOfLifeNIOClient aClient = new AMeaningOfLifeNIOClient(
 				aClientName);
 		aClient.initialize(aServerHost, aServerPort);		
@@ -121,8 +124,7 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 
 
 
-	public static void main(String[] args) {
-		NIOTraceUtility.setTracing();
+	public static void main(String[] args) {	
 		launchClient(ClientArgsProcessor.chooseServerHost(args),
 				ServerPort.SERVER_PORT,
 				ClientArgsProcessor.chooseClientName(args));

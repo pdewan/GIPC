@@ -3,8 +3,8 @@ package inputport.rpc.group.mvc.collaborative.relaying.example;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.group.mvc.collaborative.example.AGroupRPCServerCollaborativeMVCLauncher;
 import util.trace.Tracer;
+import util.trace.uigen.TraceableDisplayAndWaitManagerFactory;
 import bus.uigen.ObjectEditor;
-import bus.uigen.trace.TraceableDisplayAndWaitManagerFactory;
 import examples.mvc.local.simplex.SimplexUpperCaser;
 
 

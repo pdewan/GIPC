@@ -7,9 +7,6 @@ import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLaun
 import sessionport.datacomm.group.object.relayed.latecomer.ALatecomerRelayingGroupConnectionsManager;
 import util.trace.ImplicitKeywordKind;
 import util.trace.Tracer;
-import bus.uigen.OEFrame;
-import bus.uigen.ObjectEditor;
-import bus.uigen.trace.TraceableDisplayAndWaitManagerFactory;
 
 public class AReplicatedServer2SingleResponseGroupSessionServerPortLauncher  {
 	public static String SERVER = "Server 2";

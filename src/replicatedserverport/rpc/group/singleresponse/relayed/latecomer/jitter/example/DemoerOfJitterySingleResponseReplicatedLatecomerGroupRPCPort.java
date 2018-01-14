@@ -17,11 +17,11 @@ import replicatedserverport.rpc.group.singleresponse.relayed.latecomer.example.A
 import replicatedserverport.rpc.group.singleresponse.relayed.latecomer.example.BobSingleResponseLatecomerReplicatedPortLauncher;
 import replicatedserverport.rpc.group.singleresponse.relayed.latecomer.example.CathySingleResponseLatecomerReplicatedPortLauncher;
 import bus.uigen.pipe.MainClassLaunchingUtility;
-import bus.uigen.trace.ClassAdapterReceivedPropertyChangeEvent;
 import util.trace.ImplicitKeywordKind;
 import util.trace.Tracer;
 import util.trace.console.ConsoleInput;
 import util.trace.console.ConsoleOutput;
+import util.trace.uigen.ClassAdapterReceivedPropertyChangeEvent;
 
 public class DemoerOfJitterySingleResponseReplicatedLatecomerGroupRPCPort {
 	public static void main(String args[]) {

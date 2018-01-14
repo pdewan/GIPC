@@ -2,9 +2,6 @@ package replicatedsessionandserverport.rpc.duplex.singleresponse.example;
 
 import replicatedserverport.rpc.group.flexibleresponse.flexible.ASingleReponseReplicatedLatecomerSessionServerLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.Server1Launcher;
-import bus.uigen.OEFrame;
-import bus.uigen.ObjectEditor;
-import bus.uigen.trace.TraceableDisplayAndWaitManagerFactory;
 
 public class AReplicatedSingleResponseReplicatedLatecomerSessionServer1Launcher implements Server1Launcher{
 	
