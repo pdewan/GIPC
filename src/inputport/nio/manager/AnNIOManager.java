@@ -10,6 +10,7 @@ import util.trace.Tracer;
 import util.trace.port.nio.ListenableAcceptsEnabled;
 import util.trace.port.nio.ReadListenerAdded;
 import util.trace.port.nio.ReadsEnabled;
+import util.trace.port.nio.WriteListenerAdded;
 
 
 public class AnNIOManager implements NIOManager{
@@ -108,6 +109,7 @@ public class AnNIOManager implements NIOManager{
 	}
 	@Override
 	public void addWriteBoundedBufferListener(SocketChannel aSocketChannel, WriteBoundedBufferListener aListener) {
+		WriteListenerAdded.newCase(this, aSocketChannel, aListener);
 		selectionManager.getWriteBoundedBuffer(aSocketChannel).addListener(aListener);
 	}
 //	@Override

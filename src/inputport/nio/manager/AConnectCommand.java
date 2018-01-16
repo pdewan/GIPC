@@ -11,7 +11,7 @@ import java.util.List;
 
 import util.trace.Tracer;
 import util.trace.port.nio.SocketChannelBlockingConfigured;
-import util.trace.port.nio.SocketChannelConnectFinished;
+import util.trace.port.nio.SocketChannelConnected;
 import util.trace.port.nio.SocketChannelConnectInitiated;
 import util.trace.port.nio.SocketChannelInterestOp;
 import util.trace.port.nio.SocketChannelRegistered;
@@ -147,7 +147,7 @@ public class AConnectCommand extends AnAbstractNIOCommand implements
 			// Tracer.info(this, "Giving response for socket channel: " +
 			// socketChannel);
 			connected = socketChannel.finishConnect();
-			SocketChannelConnectFinished.newCase(this, socketChannel);
+			SocketChannelConnected.newCase(this, socketChannel);
 			// Message.info("Finish connections status  for channel " +
 			// socketChannel + " " + connected);
 			if (!connected) {

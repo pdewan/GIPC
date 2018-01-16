@@ -10,16 +10,16 @@ import inputport.rpc.RemoteCall;
 import util.trace.TraceableInfo;
 import util.trace.port.rpc.ReceivedCallEndedOld;
 
-public class SocketChannelConnectFinished extends TraceableInfo {	
-	public SocketChannelConnectFinished(String aMessage, Object aFinder,
+public class SocketChannelConnected extends TraceableInfo {	
+	public SocketChannelConnected(String aMessage, Object aFinder,
 			SocketChannel aSocketChannel) {
 		super(aMessage, aFinder);
 	}
-	public static SocketChannelConnectFinished newCase(Object aSource, 			
+	public static SocketChannelConnected newCase(Object aSource, 			
 			SocketChannel aSocketChannel) {    	
 		String aMessage = 
 				aSocketChannel.toString() ;
-		SocketChannelConnectFinished retVal = new SocketChannelConnectFinished(aMessage, 
+		SocketChannelConnected retVal = new SocketChannelConnected(aMessage, 
 				aSource, 
 				aSocketChannel);
     	retVal.announce();

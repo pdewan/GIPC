@@ -85,13 +85,13 @@ public class AWriteCommand extends AnAbstractNIOCommand implements WriteCommand 
 			if (writeBuffer.remaining() > 0) {
 				SelectionKey selectionKey = socketChannel.keyFor(selectingRunnable.getSelector());
 				selectionKey.interestOps(SelectionKey.OP_WRITE);
-				Tracer.info(this, "Putting buffer back as not all of it written. Socket channel: " + socketChannel + " interst ops: " + selectionKey.interestOps());
+//				Tracer.info(this, "Putting buffer back as not all of it written. Socket channel: " + socketChannel + " interst ops: " + selectionKey.interestOps());
 				SocketChannelInterestOp.newCase(this, selectionKey, SelectionKey.OP_WRITE);
 
 				//				theSelectingRunnable.putBufferedWrite(this);
-				return false;
+				return false; // this means the buffer will not be removed by the writer
 			}
-			writeBuffer.flip();
+			writeBuffer.flip(); // so that it gets into read mode
 			Tracer.info(this, "written to channel" + socketChannel + " flipped buffer:" + getId() + " with contents" + writeBuffer.toString());
 //			Tracer.info(this, "flipping buffer for reading by write listeners:" + writeBuffer.toString());
 			for (SocketChannelWriteListener writeListener:writeListeners)

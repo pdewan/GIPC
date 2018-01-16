@@ -11,6 +11,8 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 import util.trace.Tracer;
 import util.trace.port.nio.SocketChannelInterestOp;
+import util.trace.port.nio.WriteBufferIsEmpty;
+import util.trace.port.nio.WriteListenerAdded;
 import util.trace.port.nio.WriteRequestDequeued;
 import util.trace.port.nio.WriteRequestEnqueued;
 
@@ -51,6 +53,7 @@ public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 	}
 	protected void bufferIsEmpty() {
 //		initiateReadCommand();
+		WriteBufferIsEmpty.newCase(this, channel, writeBoundedBufferListeners);
 		for (WriteBoundedBufferListener aListener:writeBoundedBufferListeners) {
 			aListener.writeBufferIsEmpty(channel);
 		}	
@@ -96,6 +99,7 @@ public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 	}
 	@Override
 	public void addListener(WriteBoundedBufferListener aListener) {
+//		WriteListenerAdded.newCase(this, channel, aListener);
 		writeBoundedBufferListeners.add(aListener);
 	}
 	

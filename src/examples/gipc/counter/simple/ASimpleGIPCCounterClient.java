@@ -16,7 +16,7 @@ import util.trace.Tracer;
 import util.trace.port.buffer.ClientNameSendInitiated;
 import util.trace.port.buffer.TrapperBufferReceived;
 import util.trace.port.buffer.TrapperBufferSendInitiated;
-import util.trace.port.nio.SocketChannelConnectFinished;
+import util.trace.port.nio.SocketChannelConnected;
 import util.trace.port.nio.SocketChannelRead;
 import util.trace.port.nio.SocketChannelWritten;
 import util.trace.port.objects.TrapperObjectReceived;

@@ -29,12 +29,14 @@ public class NIOTraceUtility {
 		Tracer.setKeywordPrintStatus(SocketChannelAccepted.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelBlockingConfigured.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelBound.class, true);
-		Tracer.setKeywordPrintStatus(SocketChannelConnectFinished.class, true);
-		Tracer.setKeywordPrintStatus(SocketChannelConnectInitiated.class, true);
+		Tracer.setKeywordPrintStatus(SocketChannelConnected.class, true);
+//		Tracer.setKeywordPrintStatus(SocketChannelConnectInitiated.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelInterestOp.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelRead.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelRegistered.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelWritten.class, true);
+		Tracer.setKeywordPrintStatus(WriteBufferIsEmpty.class, true);
+		Tracer.setKeywordPrintStatus(WriteListenerAdded.class, true);
 		Tracer.setKeywordPrintStatus(WriteRequestEnqueued.class, true);
 		Tracer.setKeywordPrintStatus(WriteRequestDequeued.class, true);
 

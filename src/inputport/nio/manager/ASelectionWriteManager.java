@@ -68,11 +68,12 @@ public class ASelectionWriteManager implements SelectionWriteManager  {
 			WriteBoundedBuffer bufferedWriteBoundedBuffer = getBufferedWriteBoundedBuffer(bufferedWrite);
 
 			bufferedWriteBoundedBuffer.put(bufferedWrite);	
-			if (registerWriteOpsForBufferedWrites(bufferedWrite)) {
+			// do we need to initiate as selector will do so
+//			if (registerWriteOpsForBufferedWrites(bufferedWrite)) {
 				Tracer.info(this, "Waking up selector as new write registered");
 				SelectorWokenUp.newCase(this, selectionManager.getSelector());
 				selectionManager.getSelector().wakeup();
-			}
+//			}
 //			Tracer.info(this, "Finished storing of buffered write with id:" + bufferedWrite.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -115,7 +116,7 @@ public class ASelectionWriteManager implements SelectionWriteManager  {
 	public synchronized void  preProcessBufferedWrites() {
 		Tracer.info(this, "entering synchronized preProcessBufferedWrites");
 
-
+		// do not need this, do we?
 		for (SocketChannel channel: channelToBufferedWriteBoundedBuffer.keySet()) {
 			if (!makeRequestForWriteBoundedBuffer(channel))
 				Tracer.info(this, "channel not connected or no pending writes:" + channel);
