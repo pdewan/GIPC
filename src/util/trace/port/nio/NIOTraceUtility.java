@@ -18,7 +18,10 @@ public class NIOTraceUtility {
 		TraceableInfo.setPrintTraceable(true);
 		TraceableInfo.setPrintSource(true);
 		Tracer.setImplicitPrintKeywordKind(ImplicitKeywordKind.OBJECT_CLASS_NAME);	
+		Tracer.setKeywordPrintStatus(ListenableAcceptsEnabled.class, true);
+		Tracer.setKeywordPrintStatus(ReadListenerAdded.class, true);
 		Tracer.setKeywordPrintStatus(ReadRequestCreated.class, true);
+		Tracer.setKeywordPrintStatus(ReadsEnabled.class, true);
 		Tracer.setKeywordPrintStatus(SelectorWokenUp.class, true);
 		Tracer.setKeywordPrintStatus(SelectorRequestEnqueued.class, true);
 		Tracer.setKeywordPrintStatus(SelectorRequestDequeued.class, true);

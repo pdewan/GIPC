@@ -90,7 +90,6 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 	@Override
 	public void connected(SocketChannel aSocketChannel) {
 		System.out.println("Ready to send messages to server");
-//		addListeners();
 	}
 	protected void createCommunicationObjects() {
 		createSender();

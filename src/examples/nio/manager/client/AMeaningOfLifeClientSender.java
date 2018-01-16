@@ -17,28 +17,6 @@ public class AMeaningOfLifeClientSender implements MeaningOfLifeClientSender{
 		socketChannel = aSocketChannel;	
 		clientName = aClientName;
 	}
-	
-//	@Override
-//	public synchronized void run() {
-//		while (true) {
-//			System.out.println("Meaning of life?");
-//			String aMeaning = scanner.nextLine();				
-//			ByteBuffer aMeaningByteBuffer = ByteBuffer.wrap((clientName + ":" + aMeaning).getBytes());
-//			nioManager.write(socketChannel, aMeaningByteBuffer);	
-//			String aMessageSent = new String( aMeaningByteBuffer.array());
-//		}		
-//	}
-//	public void createLocalUI() {
-//		while (true) {
-//			System.out.println("Meaning of life?");
-//			String aMeaning = scanner.nextLine();				
-//			ByteBuffer aMeaningByteBuffer = ByteBuffer.wrap((clientName + ":" + aMeaning).getBytes());
-//			System.out.println("Meaning:" + aMeaning);
-//			nioManager.write(socketChannel, aMeaningByteBuffer);	
-//			String aMessageSent = new String( aMeaningByteBuffer.array());
-//		}	
-//		
-//	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent anEvent) {
