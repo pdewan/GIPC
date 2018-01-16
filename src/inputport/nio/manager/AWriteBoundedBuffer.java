@@ -11,6 +11,8 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 import util.trace.Tracer;
 import util.trace.port.nio.SocketChannelInterestOp;
+import util.trace.port.nio.WriteRequestDequeued;
+import util.trace.port.nio.WriteRequestEnqueued;
 
 
 public class AWriteBoundedBuffer implements WriteBoundedBuffer {
@@ -40,6 +42,7 @@ public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 			Tracer.error("Overflow of header buffer queue of size:" + AScatterGatherSelectionManager.getMaxOutstandingWrites());
 			return;
 		}
+		WriteRequestEnqueued.newCase(this, anElement);
 		contents.add(anElement);
 		
 	}
@@ -55,6 +58,7 @@ public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 	@Override
 	public WriteCommand remove(WriteCommand anElement) {
 		WriteCommand retVal = contents.remove();
+		WriteRequestDequeued.newCase(this, anElement);
 		if (isEmpty()) {
 			bufferIsEmpty();
 //			selectionManager.getReadHandler(channel).initiate();

@@ -4,8 +4,12 @@ import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.util.Arrays;
 
 import util.trace.Tracer;
+import util.trace.port.nio.ListenableAcceptsEnabled;
+import util.trace.port.nio.ReadListenerAdded;
+import util.trace.port.nio.ReadsEnabled;
 
 
 public class AnNIOManager implements NIOManager{
@@ -24,6 +28,7 @@ public class AnNIOManager implements NIOManager{
 	
 	public void enableListenableAccepts(ServerSocketChannel channel,
 			SocketChannelAcceptListener... listeners) {
+		ListenableAcceptsEnabled.newCase(this, channel, listeners);
 		AcceptCommand acceptRequestResponse = 
 				AcceptCommandSelector.getFactory().createAcceptCommand(selectionManager, channel);
 //			new AnAcceptCommand(selectionManager, channel);
@@ -61,6 +66,7 @@ public class AnNIOManager implements NIOManager{
 	@Override
 	public void addReadListener(SocketChannel channel,
 			SocketChannelReadListener listener) {
+		ReadListenerAdded.newCase(this, channel, listener);
 		selectionManager.getReadHandler(channel).addReadListener(listener);
 	}
 	@Override
@@ -97,6 +103,7 @@ public class AnNIOManager implements NIOManager{
 //	}
 	@Override
 	public void enableReads(SocketChannel aChannel) {
+		ReadsEnabled.newCase(this, aChannel);
 		selectionManager.getReadHandler(aChannel).initiate();
 	}
 	@Override

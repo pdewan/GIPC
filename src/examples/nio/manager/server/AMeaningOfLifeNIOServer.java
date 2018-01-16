@@ -33,19 +33,12 @@ public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 		meaningOfLifeReceiver = new AMeaningOfLifeServerReceiver();
 	}
 
-	// public AMeaningOfLifeNIOServer(int aServerPort) {
-	// AcceptCommandSelector.setFactory(new AReadingAcceptCommandFactory());
-	// ServerSocketChannel aServerSocketChannel =
-	// createSocketChannel(aServerPort);
-	// NIOManagerFactory.getSingleton().enableAccepts(aServerSocketChannel,
-	// this);
-	// }
+	
 	protected void setFactories() {
 		AcceptCommandSelector.setFactory(new AReadingAcceptCommandFactory());
 	}
 
 	protected void makeServerConnectable(int aServerPort) {
-//		ServerSocketChannel aServerSocketChannel = createSocketChannel(aServerPort);
 		NIOManagerFactory.getSingleton().enableListenableAccepts(
 				serverSocketChannel, this);
 	}
@@ -71,10 +64,7 @@ public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 		}
 	}
 
-//	protected void addWriteBufferListener(SocketChannel aSocketChannel) {
-//		NIOManagerFactory.getSingleton().addWriteBoundedBufferListener(
-//				aSocketChannel, this);
-//	}
+
 
 	protected void addReadListener(SocketChannel aSocketChannel) {
 		NIOManagerFactory.getSingleton().addReadListener(aSocketChannel,

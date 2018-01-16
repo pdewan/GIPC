@@ -10,6 +10,8 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import util.trace.Tracer;
+import util.trace.port.nio.SelectorRequestDequeued;
+import util.trace.port.nio.SelectorRequestEnqueued;
 import util.trace.port.nio.SelectorWokenUp;
 
 
@@ -38,7 +40,7 @@ public class ASelectionConnectionManager implements SelectionConnectionManager  
 	 */
 	public synchronized void putRequestResponse (RequestResponse request) {	
 		Tracer.info(this, "entering synchronized putRequestResponse");
-
+		SelectorRequestEnqueued.newCase(this, request);
 		requestQueue.add(request);
 		Tracer.info(this, "Waking up selector after adding command:" + request);
 		SelectorWokenUp.newCase(this, selectionManager.getSelector());
@@ -55,6 +57,7 @@ public class ASelectionConnectionManager implements SelectionConnectionManager  
 
 		// synchronized because while processing, what if new request added
 		for (Request request:requestQueue) {
+			SelectorRequestDequeued.newCase(this, request);
 			Tracer.info(this, "Calling makeRequest on:" + request);
 			request.initiate(); 
 			Tracer.info(this, "Associating request  with channel to wait for response :" + request.getChannel());

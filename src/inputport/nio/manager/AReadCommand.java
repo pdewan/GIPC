@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import util.trace.Tracer;
+import util.trace.port.nio.ReadRequestCreated;
 import util.trace.port.nio.SocketChannelInterestOp;
 import util.trace.port.nio.SocketChannelRead;
 
@@ -22,9 +23,9 @@ public class AReadCommand extends AnAbstractNIOCommand implements ReadCommand {
 	List<SocketChannelCloseListener> closeListeners = new ArrayList();
 	List<SocketChannelReadListener> readListeners = new ArrayList();
 	public AReadCommand(SelectionManager theSelectionManager,
-			SocketChannel theSocketChannel, Integer aNextInterestOps) {
-		super(aNextInterestOps);
-		socketChannel = theSocketChannel;
+			SocketChannel aSocketChannel, Integer aNextInterestOps) {
+		super(aSocketChannel, aNextInterestOps);
+		socketChannel = aSocketChannel;
 		selectionManager = theSelectionManager;	
 		allocateReadState();
 	}

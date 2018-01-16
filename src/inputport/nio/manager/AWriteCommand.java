@@ -25,7 +25,7 @@ public class AWriteCommand extends AnAbstractNIOCommand implements WriteCommand 
 			SocketChannel  aSocketChannel, 
 			ByteBuffer aWriteBuffer,
 			Integer aNextInterestOps) {
-		super (aNextInterestOps);
+		super (aSocketChannel, aNextInterestOps);
 		socketChannel = aSocketChannel;
 //		writeBuffer = theWriteBuffer.duplicate();
 		writeBuffer = aWriteBuffer;

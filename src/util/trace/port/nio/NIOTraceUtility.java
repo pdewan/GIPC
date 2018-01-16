@@ -17,8 +17,12 @@ public class NIOTraceUtility {
 		Tracer.setDisplayThreadName(true); 
 		TraceableInfo.setPrintTraceable(true);
 		TraceableInfo.setPrintSource(true);
-		Tracer.setImplicitPrintKeywordKind(ImplicitKeywordKind.OBJECT_CLASS_NAME);		
+		Tracer.setImplicitPrintKeywordKind(ImplicitKeywordKind.OBJECT_CLASS_NAME);	
+		Tracer.setKeywordPrintStatus(ReadRequestCreated.class, true);
 		Tracer.setKeywordPrintStatus(SelectorWokenUp.class, true);
+		Tracer.setKeywordPrintStatus(SelectorRequestEnqueued.class, true);
+		Tracer.setKeywordPrintStatus(SelectorRequestDequeued.class, true);
+		Tracer.setKeywordPrintStatus(SelectorRequestNextInterestOp.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelAccepted.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelBlockingConfigured.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelBound.class, true);
@@ -28,6 +32,10 @@ public class NIOTraceUtility {
 		Tracer.setKeywordPrintStatus(SocketChannelRead.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelRegistered.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelWritten.class, true);
+		Tracer.setKeywordPrintStatus(WriteRequestEnqueued.class, true);
+		Tracer.setKeywordPrintStatus(WriteRequestDequeued.class, true);
+
+
 	}
 
 }

@@ -27,7 +27,7 @@ public class AnAcceptCommand extends AnAbstractNIOCommand implements AcceptComma
 	public AnAcceptCommand(SelectionManager aSelectingRunnable, 
 			ServerSocketChannel aSocketChannel,
 			Integer aNextInterestOps) {
-		super (aNextInterestOps);	
+		super (aSocketChannel, aNextInterestOps);	
 		serverSocketChannel = aSocketChannel;
 		selectingRunnable = aSelectingRunnable;
 	}	

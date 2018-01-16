@@ -15,6 +15,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import util.trace.Tracer;
+import util.trace.port.nio.ReadRequestCreated;
 import util.trace.port.nio.SelectorWokenUp;
 
 
@@ -43,7 +44,9 @@ public class ASingleMonitorSelectionManager implements SelectionManager {
 		}
 	}
 	protected ReadCommand createReadHandler(SocketChannel theSocketChannel) {
-		return new AReadCommand(this, theSocketChannel);
+		ReadCommand retVal = new AReadCommand(this, theSocketChannel);
+		ReadRequestCreated.newCase(this, retVal);
+		return retVal;
 	}
 	protected void allocateReadState(SocketChannel theSocketChannel) {
 		ReadCommand readHandler = createReadHandler(theSocketChannel);

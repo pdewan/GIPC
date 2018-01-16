@@ -19,7 +19,7 @@ public class SocketChannelAccepted extends SocketChannelInfo {
 	public static SocketChannelAccepted newCase(Object aSource, 			
 			SocketChannel aSocketChannel, ServerSocketChannel aServerSocketChannel) {    	
 		String aMessage = 
-				aSocketChannel.toString();
+				aSocketChannel.toString() + "<-" + aServerSocketChannel;
 		SocketChannelAccepted retVal = new SocketChannelAccepted(aMessage, 
 				aSource, 
 				aSocketChannel,

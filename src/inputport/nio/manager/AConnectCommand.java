@@ -29,7 +29,7 @@ public class AConnectCommand extends AnAbstractNIOCommand implements
 	public AConnectCommand(SelectionManager aSelectionManager,
 			SocketChannel aSocketChannel, InetAddress aServerHost, int aPort,
 			Integer aNextInterestOps) {
-		super(aNextInterestOps);
+		super(aSocketChannel, aNextInterestOps);
 		serverHost = aServerHost;
 		// if (theListener != null)
 		// addConnectListener(theListener);

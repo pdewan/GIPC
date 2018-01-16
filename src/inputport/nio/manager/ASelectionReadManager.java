@@ -5,6 +5,8 @@ import java.nio.channels.SocketChannel;
 import java.util.HashMap;
 import java.util.Map;
 
+import util.trace.port.nio.ReadRequestCreated;
+
 
 
 public class ASelectionReadManager implements SelectionReadManager  {
@@ -15,7 +17,10 @@ public class ASelectionReadManager implements SelectionReadManager  {
 	}
 	
 	protected ReadCommand createReadHandler(SocketChannel theSocketChannel) {
-		return new AReadCommand(selectionManager, theSocketChannel);
+		ReadCommand retVal = new AReadCommand(selectionManager, theSocketChannel);
+		ReadRequestCreated.newCase(this, retVal);
+		
+		return retVal;
 	}
 	
 	protected void allocateReadState(SocketChannel theSocketChannel) {
