@@ -1,15 +1,15 @@
 package examples.nio.manager;
 
+import assignments.util.mainArgs.ClientArgsProcessor;
+import assignments.util.mainArgs.ServerPort;
 import examples.nio.manager.client.AMeaningOfLifeNIOClient;
-import examples.nio.manager.client.ClientArgsProcessor;
-import examples.nio.manager.server.ServerPort;
 import util.trace.port.nio.NIOTraceUtility;
 
 public class BobMeaningOfLifeNIOClient {
 	public static void main (String[] args) {
 		NIOTraceUtility.setTracing();
 		AMeaningOfLifeNIOClient.launchClient(
-				ClientArgsProcessor.chooseServerHost(args), 
+				ClientArgsProcessor.getServerHost(args), 
 				ServerPort.SERVER_PORT, 
 				"Bob");	
 	}

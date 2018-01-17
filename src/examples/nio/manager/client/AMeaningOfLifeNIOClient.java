@@ -4,13 +4,14 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.nio.channels.SocketChannel;
 
+import assignments.util.mainArgs.ClientArgsProcessor;
+import assignments.util.mainArgs.ServerPort;
 import examples.nio.manager.mvc.AMeaningOfLifeController;
 import examples.nio.manager.mvc.AMeaningOfLifeModel;
 import examples.nio.manager.mvc.AMeaningOfLifeView;
 import examples.nio.manager.mvc.MeaningOfLifeController;
 import examples.nio.manager.mvc.MeaningOfLifeModel;
 import examples.nio.manager.mvc.MeaningOfLifeView;
-import examples.nio.manager.server.ServerPort;
 import util.trace.bean.BeanTraceUtility;
 import util.trace.port.nio.NIOTraceUtility;
 import inputport.nio.manager.AConnectCommandFactory;
@@ -114,8 +115,9 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 
 	public static void launchClient(String aServerHost, int aServerPort,
 			String aClientName) {
-		NIOTraceUtility.setTracing();
-		BeanTraceUtility.setTracing();
+		// These are done automatically now
+//		NIOTraceUtility.setTracing();
+//		BeanTraceUtility.setTracing();
 		MeaningOfLifeNIOClient aClient = new AMeaningOfLifeNIOClient(
 				aClientName);
 		aClient.initialize(aServerHost, aServerPort);		
@@ -124,9 +126,9 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 
 
 	public static void main(String[] args) {	
-		launchClient(ClientArgsProcessor.chooseServerHost(args),
+		launchClient(ClientArgsProcessor.getServerHost(args),
 				ServerPort.SERVER_PORT,
-				ClientArgsProcessor.chooseClientName(args));
+				ClientArgsProcessor.getClientName(args));
 
 	}
 }

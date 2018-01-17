@@ -80,8 +80,8 @@ public class AWriteCommand extends AnAbstractNIOCommand implements WriteCommand 
 //			socketChannel.write(prefixBuffer);
 //			String writeBufferToString = writeBuffer.toString();
 //			Message.info("writing to channel " + socketChannel + " buffer:" + getId() + " with contents" + writeBuffer);
-			socketChannel.write(writeBuffer);
 			SocketChannelWritten.newCase(this, socketChannel, writeBuffer);
+			socketChannel.write(writeBuffer);
 			if (writeBuffer.remaining() > 0) {
 				SelectionKey selectionKey = socketChannel.keyFor(selectingRunnable.getSelector());
 				selectionKey.interestOps(SelectionKey.OP_WRITE);

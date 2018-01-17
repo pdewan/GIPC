@@ -1,0 +1,10 @@
+package assignments.util.inputParameters;
+
+public enum ConsensusAlgorithm {
+	NON_ATOMIC_ASYNCHRONOUS,
+	NON_ATOMIC_SYNCHRONOUS,
+	CENTRALIZED_ASYNCHRONOUS,
+	CENTRALIZED_SYNCHRONOUS,
+	BASIC_PAXOS,
+	SEQUENTIAL_PAXOS
+}

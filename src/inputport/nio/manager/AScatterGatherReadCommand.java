@@ -5,6 +5,9 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 
 import util.trace.Tracer;
+import util.trace.port.nio.SocketChannelFullMessageRead;
+import util.trace.port.nio.SocketChannelHeaderRead;
+import util.trace.port.nio.SocketChannelPartialMessageFound;
 
 
 public class AScatterGatherReadCommand extends AReadCommand{
@@ -23,7 +26,7 @@ public class AScatterGatherReadCommand extends AReadCommand{
 	protected void processRead() throws IOException {
 		readIntoBuffer();
 		partialMessageReceived = false; // have received new data, so older value may not be correct
-
+		int numIterations = 0;
 		while (true) {
 			if (readBuffer.remaining() == 0 || partialMessageReceived) {
 				if (!maybeClearBuffer(readBuffer,partialMessageReceived, expectingHeader ))
@@ -34,6 +37,7 @@ public class AScatterGatherReadCommand extends AReadCommand{
 			} else {
 				maybeExtractMessageAndNotifyReadListener(socketChannel);
 			}
+			numIterations++;
 		}
 		// reset if no state is required, the readBuffer check is probably redundant given the loop above
 	
@@ -74,9 +78,19 @@ public class AScatterGatherReadCommand extends AReadCommand{
 			}
 //			channelToExpectingHeader.put(socketChannel, false);
 			expectingHeader = false;
+//			if (readBuffer.remaining() > 4) {
+//				System.out.println("got more than header");
+//			}
 			messageLength = readBuffer.getInt();
+			
+//			if (messageLength > 16) {
+//				System.out.println("something wrong");
+//
+//			}
+			
 			Tracer.info(this, "Message length extracted:" + messageLength);
 			readBuffer.mark();
+			SocketChannelHeaderRead.newCase(this, socketChannel, readBuffer, messageLength);
 			Tracer.info(this, "Marked buffer at current position:" + readBuffer);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,6 +100,7 @@ public class AScatterGatherReadCommand extends AReadCommand{
 	protected void maybeExtractMessageAndNotifyReadListener(SocketChannel socketChannel) {
 		Tracer.info(this, "Read message buffer:" + readBuffer + " from " + socketChannel);
 		if (readBuffer.remaining() < messageLength) {
+			SocketChannelPartialMessageFound.newCase(this, socketChannel, readBuffer, readBuffer.remaining());
 			Tracer.info(this, "Did not receive full message length:" + messageLength);	
 			Tracer.info(this, "Not changing position or limit");
 			partialMessageReceived = true;
@@ -95,7 +110,8 @@ public class AScatterGatherReadCommand extends AReadCommand{
 		expectingHeader = true;
 		partialMessageReceived = false;
 		ByteBuffer messageBuffer = ByteBuffer.wrap(readBuffer.array(), readBuffer.position(), messageLength);
-		Tracer.info(this, "Sending listener new message byte buffer, sharing the array of the read buffer:" + messageBuffer);		
+		Tracer.info(this, "Sending listener new message byte buffer, sharing the array of the read buffer:" + messageBuffer);
+		SocketChannelFullMessageRead.newCase(this, socketChannel, readBuffer, messageLength);
 		notifyRead(socketChannel, messageBuffer, messageLength);
 		// should we not clear the buffer?
 		readBuffer.position(readBuffer.position() + messageLength);

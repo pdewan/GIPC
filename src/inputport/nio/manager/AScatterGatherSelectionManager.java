@@ -11,7 +11,7 @@ public class AScatterGatherSelectionManager extends ASelectionManager implements
 //	int messageLength;
 //	public static final int MAX_OUTSTANDING_WRITES = 256*4*4; // 4K buffers should be enough for even mouse movements, but with custom serializers get heap space issues
 	
-	private static  int maxOutstandingWrites = 10; // with custom seralizers 
+	private static  int maxOutstandingWrites = 1000; // with custom seralizers 
 
 	public AScatterGatherSelectionManager() {
 		

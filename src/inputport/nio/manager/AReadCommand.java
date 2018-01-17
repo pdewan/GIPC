@@ -66,16 +66,20 @@ public class AReadCommand extends AnAbstractNIOCommand implements ReadCommand {
 		Tracer.info(this, "Processing read on channel:" + socketChannel);
 		readIntoBuffer();
 		readBuffer.flip();// why flip if we are clearing later? To do the wrap correctly?
+
 		Tracer.info(this, "Read buffer after flip:" + readBuffer);
 		ByteBuffer messageBuffer = ByteBuffer.wrap(readBuffer.array(), 0, readBuffer.remaining());
+
 		notifyRead(socketChannel, messageBuffer, readBuffer.remaining());
 		readBuffer.clear();	
 		Tracer.info(this, "Cleared read buffer");
 	}
 	protected int  readIntoBuffer() throws IOException {
-		
 		int bytesRead = socketChannel.read(readBuffer);
-		SocketChannelRead.newCase(this, socketChannel, readBuffer);
+		SocketChannelRead.newCase(this, socketChannel, readBuffer, bytesRead);
+
+//		SocketChannelRead.newCase(this, socketChannel, readBuffer);
+
 		if (readBuffer.position() == readBuffer.capacity()) {
 			Tracer.error("Read Buffer Overflow. Bytes read : " + bytesRead);
 		}

@@ -9,6 +9,7 @@ import java.nio.channels.SocketChannel;
 
 import javax.net.ServerSocketFactory;
 
+import assignments.util.mainArgs.ServerArgsProcessor;
 import util.trace.port.nio.NIOTraceUtility;
 import util.trace.port.nio.SocketChannelBound;
 import inputport.datacomm.simplex.buffer.nio.AReadingAcceptCommandFactory;
@@ -88,7 +89,7 @@ public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 	public static void main(String[] args) {
 		NIOTraceUtility.setTracing();
 		MeaningOfLifeNIOServer aServer = new AMeaningOfLifeNIOServer();
-		aServer.initialize(ServerPort.SERVER_PORT);
+		aServer.initialize(ServerArgsProcessor.getServerPort(args));
 
 	}
 }
