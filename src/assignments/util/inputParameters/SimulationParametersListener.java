@@ -2,8 +2,12 @@ package assignments.util.inputParameters;
 
 public interface SimulationParametersListener {
 	void atomicBroadcast(boolean newValue);
-	void ipcMechanism(IPCMechanism newValue);
+	/**
+	 * Send programmed input
+	 */
 	void experimentInput();
+	void localProcessingOnly(boolean newValue);
+	void ipcMechanism(IPCMechanism newValue);
 	void broadcastBroadcastMode(boolean newValue);
 	void waitForBroadcastConsensus(boolean newValue);
 	void broadcastIPCMechanism(boolean newValue);

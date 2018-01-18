@@ -9,6 +9,7 @@ public class AnExampleSimulationParametersListener implements SimulationParamete
  * i t
  * atomic t
  * e
+ * l f
  */
 	@Override
 	public void atomicBroadcast(boolean newValue) {
@@ -24,6 +25,11 @@ public class AnExampleSimulationParametersListener implements SimulationParamete
 	public void experimentInput() {
 		System.out.println("experimentInput");			
 	}
+	@Override
+	public void localProcessingOnly(boolean newValue) {
+		System.out.println("localProcessingOnly " + newValue);			
+	}
+
 
 	@Override
 	public void broadcastBroadcastMode(boolean newValue) {
@@ -64,4 +70,5 @@ public class AnExampleSimulationParametersListener implements SimulationParamete
 		
 	}
 
+	
 }
