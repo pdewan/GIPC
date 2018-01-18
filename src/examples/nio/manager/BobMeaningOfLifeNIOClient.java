@@ -10,7 +10,7 @@ public class BobMeaningOfLifeNIOClient {
 		NIOTraceUtility.setTracing();
 		AMeaningOfLifeNIOClient.launchClient(
 				ClientArgsProcessor.getServerHost(args), 
-				ServerPort.SERVER_PORT, 
+				ClientArgsProcessor.getServerPort(args), 
 				"Bob");	
 	}
 

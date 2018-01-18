@@ -9,7 +9,7 @@ public class AliceMeaningOfLifeNIOClient {
 	public static void main (String[] args) {
 		NIOTraceUtility.setTracing();
 		AMeaningOfLifeNIOClient.launchClient(ClientArgsProcessor.getServerHost(args), 
-				ServerPort.SERVER_PORT, 
+				ClientArgsProcessor.getServerPort(args), 
 				"Alice");	
 	}
 

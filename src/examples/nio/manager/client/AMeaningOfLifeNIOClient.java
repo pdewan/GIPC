@@ -127,7 +127,7 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 
 	public static void main(String[] args) {	
 		launchClient(ClientArgsProcessor.getServerHost(args),
-				ServerPort.SERVER_PORT,
+				ClientArgsProcessor.getServerPort(args),
 				ClientArgsProcessor.getClientName(args));
 
 	}
