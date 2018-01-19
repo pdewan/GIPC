@@ -13,6 +13,7 @@ import examples.nio.manager.mvc.MeaningOfLifeController;
 import examples.nio.manager.mvc.MeaningOfLifeModel;
 import examples.nio.manager.mvc.MeaningOfLifeView;
 import util.trace.bean.BeanTraceUtility;
+import util.trace.factories.FactoryTraceUtility;
 import util.trace.port.nio.NIOTraceUtility;
 import inputport.nio.manager.AnNIOManager;
 import inputport.nio.manager.NIOManager;
@@ -124,6 +125,7 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 		/*
 		 * Put these two in your clients also
 		 */
+		FactoryTraceUtility.setTracing();
 		BeanTraceUtility.setTracing();
 		NIOTraceUtility.setTracing();
 		MeaningOfLifeNIOClient aClient = new AMeaningOfLifeNIOClient(
