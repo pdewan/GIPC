@@ -7,7 +7,12 @@ import java.beans.PropertyChangeEvent;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.Scanner;
-
+/**
+ * Listens to model changes and sends them to the connected server through the
+ * NIO manager.
+ * @author Dewan
+ *
+ */
 public class AMeaningOfLifeClientSender implements MeaningOfLifeClientSender{
 //	ObservableNIOManager nioManager;
 	SocketChannel socketChannel;

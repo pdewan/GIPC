@@ -10,7 +10,7 @@ import inputport.datacomm.simplex.buffer.GenericSimplexServerInputPort;
 import inputport.datacomm.simplex.buffer.SimplexBufferClientInputPortDriver;
 import inputport.datacomm.simplex.buffer.SimplexBufferServerInputPortDriver;
 import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.SelectionManagerFactory;
+import inputport.nio.manager.factories.SelectionManagerFactory;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;

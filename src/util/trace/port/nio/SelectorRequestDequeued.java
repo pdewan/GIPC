@@ -1,7 +1,7 @@
 package util.trace.port.nio;
 
-import inputport.nio.manager.Request;
-import inputport.nio.manager.RequestResponse;
+import inputport.nio.manager.commands.Request;
+import inputport.nio.manager.commands.RequestResponse;
 import util.trace.TraceableInfo;
 
 public class SelectorRequestDequeued extends TraceableInfo {	

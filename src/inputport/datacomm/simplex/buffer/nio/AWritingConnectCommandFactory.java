@@ -1,10 +1,10 @@
 package inputport.datacomm.simplex.buffer.nio;
 
-import inputport.nio.manager.AConnectCommand;
-import inputport.nio.manager.AConnectCommandFactory;
-import inputport.nio.manager.ConnectCommand;
-import inputport.nio.manager.ConnectCommandFactory;
 import inputport.nio.manager.SelectionManager;
+import inputport.nio.manager.commands.ConnectCommand;
+import inputport.nio.manager.commands.classes.AConnectCommand;
+import inputport.nio.manager.factories.ConnectCommandFactory;
+import inputport.nio.manager.factories.classes.AConnectCommandFactory;
 
 import java.net.InetAddress;
 import java.nio.channels.SelectionKey;

@@ -3,9 +3,9 @@ package examples.gipc.consensus.paxos;
 import inputport.datacomm.group.GroupSendMessageForwarderSelector;
 import inputport.datacomm.group.object.AnAscendingMultipleSendGroupForwarderFactory;
 import inputport.datacomm.group.object.MultipleSendGroupForwarderSelector;
-import inputport.nio.manager.AConnectCommand;
-import inputport.nio.manager.AReadCommand;
 import inputport.nio.manager.AWriteBoundedBuffer;
+import inputport.nio.manager.commands.classes.AConnectCommand;
+import inputport.nio.manager.commands.classes.AReadCommand;
 import examples.gipc.consensus.ExampleMemberLauncher;
 import examples.gipc.consensus.Member1;
 import util.trace.Tracer;
@@ -28,7 +28,7 @@ public class PaxosProposer1Launcher extends
 
 	public static void main(String[] args) {
 //		ConsensusTraceUtility.setTracing();
-		NIOTraceUtility.setTracing();;
+//		NIOTraceUtility.setTracing();;
 		new PaxosProposer1Launcher(MY_NAME, MY_PORT_NUMBER)
 				.proposeValues();
 	}

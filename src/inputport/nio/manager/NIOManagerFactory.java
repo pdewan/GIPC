@@ -17,8 +17,8 @@ public class NIOManagerFactory {
 		singleton = newValue;
 	}
 	
-	static {
-		NIOTraceUtility.setTracing();
-	}
+//	static {
+//		NIOTraceUtility.setTracing();
+//	}
 
 }

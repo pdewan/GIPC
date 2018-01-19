@@ -14,14 +14,18 @@ import examples.nio.manager.mvc.MeaningOfLifeModel;
 import examples.nio.manager.mvc.MeaningOfLifeView;
 import util.trace.bean.BeanTraceUtility;
 import util.trace.port.nio.NIOTraceUtility;
-import inputport.nio.manager.AConnectCommandFactory;
 import inputport.nio.manager.AnNIOManager;
-import inputport.nio.manager.ConnectCommandSelector;
 import inputport.nio.manager.NIOManager;
 import inputport.nio.manager.NIOManagerFactory;
-
+import inputport.nio.manager.factories.classes.AConnectCommandFactory;
+import inputport.nio.manager.factories.selectors.ConnectCommandFactorySelector;
+/**
+ * Performs client tasks together with the helper listener (observer) class - AMeaningOfLifeClientSender.
+ * The entry point is launchClient.
+ * Implements some of  mundane listener tasks itself - look at its interface to see which listeners.
+ * Can be further modularized by having separate helper listeners.
+ */
 public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
-	// ObservableNIOManager nioManager;
 	String clientName;
 	MeaningOfLifeModel meaningOfLifeModel;
 	MeaningOfLifeController meaningOfLifeController;
@@ -33,7 +37,7 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 		clientName = aClientName;
 	}
 	protected void setFactories() {		
-		ConnectCommandSelector.setFactory(new AConnectCommandFactory());
+		ConnectCommandFactorySelector.setFactory(new AConnectCommandFactory());
 	}
 	public void initialize(String aServerHost, int aServerPort) {		
 		createModel();
@@ -112,12 +116,16 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 		if (e != null)
 		   e.printStackTrace();
 	}
-
+	/**
+	 * Connect the client with the specified name to the specified server.
+	 */
 	public static void launchClient(String aServerHost, int aServerPort,
 			String aClientName) {
-		// These are done automatically now
-//		NIOTraceUtility.setTracing();
-//		BeanTraceUtility.setTracing();
+		/*
+		 * Put these two in your clients also
+		 */
+		BeanTraceUtility.setTracing();
+		NIOTraceUtility.setTracing();
 		MeaningOfLifeNIOClient aClient = new AMeaningOfLifeNIOClient(
 				aClientName);
 		aClient.initialize(aServerHost, aServerPort);		

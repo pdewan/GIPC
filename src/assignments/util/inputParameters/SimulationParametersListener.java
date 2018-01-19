@@ -1,5 +1,8 @@
 package assignments.util.inputParameters;
 
+import util.interactiveMethodInvocation.ConsensusAlgorithm;
+import util.interactiveMethodInvocation.IPCMechanism;
+
 public interface SimulationParametersListener {
 	void atomicBroadcast(boolean newValue);
 	/**

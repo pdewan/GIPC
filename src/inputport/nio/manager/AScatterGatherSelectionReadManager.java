@@ -1,14 +1,15 @@
 package inputport.nio.manager;
 
+import inputport.nio.manager.commands.ReadCommand;
+import inputport.nio.manager.commands.classes.AScatterGatherReadCommand;
+
 import java.nio.channels.SocketChannel;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 
 
 
 public class AScatterGatherSelectionReadManager extends ASelectionReadManager   {
 //	public static final int BYTES_IN_INT =  Integer.SIZE/Byte.SIZE;
-	BlockingQueue<HeaderWriteCommand> headerBufferPool = new ArrayBlockingQueue<HeaderWriteCommand>(AScatterGatherSelectionManager.getMaxOutstandingWrites());
+//	BlockingQueue<HeaderWriteCommand> headerBufferPool = new ArrayBlockingQueue<HeaderWriteCommand>(AScatterGatherSelectionManager.getMaxOutstandingWrites());
 
 
 	int messageLength;

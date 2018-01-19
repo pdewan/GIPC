@@ -1,6 +1,6 @@
 package util.trace.port.nio;
 
-import inputport.nio.manager.WriteCommand;
+import inputport.nio.manager.commands.WriteCommand;
 import util.trace.TraceableInfo;
 
 public class WriteRequestDequeued extends TraceableInfo {	

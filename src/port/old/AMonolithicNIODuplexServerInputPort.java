@@ -2,9 +2,9 @@ package port.old;
 
 import inputport.datacomm.duplex.NoMessageReceivedByResponderException;
 import inputport.datacomm.duplex.SendToUnkonwnRemoteNameException;
-import inputport.nio.manager.AWriteCommand;
 import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.WriteCommand;
+import inputport.nio.manager.commands.WriteCommand;
+import inputport.nio.manager.commands.classes.AWriteCommand;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;

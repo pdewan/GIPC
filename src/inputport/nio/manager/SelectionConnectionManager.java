@@ -1,5 +1,9 @@
 package inputport.nio.manager;
 
+import inputport.nio.manager.commands.RequestResponse;
+import inputport.nio.manager.commands.Response;
+import inputport.nio.manager.listeners.SocketChannelCloseListener;
+
 import java.nio.channels.SelectableChannel;
 import java.nio.channels.SelectionKey;
 

@@ -1,7 +1,7 @@
 package util.trace.port.nio;
 
-import inputport.nio.manager.ReadCommand;
-import inputport.nio.manager.WriteCommand;
+import inputport.nio.manager.commands.ReadCommand;
+import inputport.nio.manager.commands.WriteCommand;
 import util.trace.TraceableInfo;
 
 public class ReadRequestCreated extends TraceableInfo {	

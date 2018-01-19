@@ -7,7 +7,7 @@ import util.trace.port.nio.NIOTraceUtility;
 
 public class BobMeaningOfLifeNIOClient {
 	public static void main (String[] args) {
-		NIOTraceUtility.setTracing();
+//		NIOTraceUtility.setTracing();
 		AMeaningOfLifeNIOClient.launchClient(
 				ClientArgsProcessor.getServerHost(args), 
 				ClientArgsProcessor.getServerPort(args), 

@@ -1,11 +1,11 @@
 package port.old;
 
 import inputport.datacomm.SendToUnconnectedPortException;
-import inputport.nio.manager.AConnectCommand;
-import inputport.nio.manager.AWriteCommand;
-import inputport.nio.manager.ConnectCommand;
 import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.WriteCommand;
+import inputport.nio.manager.commands.ConnectCommand;
+import inputport.nio.manager.commands.WriteCommand;
+import inputport.nio.manager.commands.classes.AConnectCommand;
+import inputport.nio.manager.commands.classes.AWriteCommand;
 
 import java.io.EOFException;
 import java.io.IOException;

@@ -4,7 +4,11 @@ Run MeaningOfLifeNIOPServerLauncher
 Run AliceMeaningOfLifeNIOClient
 Run BobMeaningOfLifeNIOClient
 
-Provide input to each client in response to prompts.
+Provide input to each client in response to prompts. For example, try:
+42
+29
+e
+q
 --------------------------
 To connect to a remote server.
 Run MeaningOfLifeNIOClientLauncher, with arguments <host name> <client name>

@@ -30,7 +30,9 @@ public class NIOTraceUtility {
 		Tracer.setKeywordPrintStatus(SocketChannelBlockingConfigured.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelBound.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelConnected.class, true);
-//		Tracer.setKeywordPrintStatus(SocketChannelConnectInitiated.class, true);
+		Tracer.setKeywordPrintStatus(SocketChannelConnectInitiated.class, true);
+		Tracer.setKeywordPrintStatus(SocketChannelConnectRequested.class, true);
+
 		Tracer.setKeywordPrintStatus(SocketChannelFullMessageRead.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelHeaderRead.class, true);
 
@@ -39,6 +41,7 @@ public class NIOTraceUtility {
 
 		Tracer.setKeywordPrintStatus(SocketChannelRead.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelRegistered.class, true);
+		Tracer.setKeywordPrintStatus(SocketChannelWriteRequested.class, true);
 		Tracer.setKeywordPrintStatus(SocketChannelWritten.class, true);
 		Tracer.setKeywordPrintStatus(WriteBufferIsEmpty.class, true);
 		Tracer.setKeywordPrintStatus(WriteListenerAdded.class, true);

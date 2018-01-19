@@ -10,15 +10,17 @@ import java.nio.channels.SocketChannel;
 import javax.net.ServerSocketFactory;
 
 import assignments.util.mainArgs.ServerArgsProcessor;
+import util.trace.factories.FactoryTraceUtility;
+import util.trace.factories.SelectorFactorySet;
 import util.trace.port.nio.NIOTraceUtility;
 import util.trace.port.nio.SocketChannelBound;
-import inputport.datacomm.simplex.buffer.nio.AReadingAcceptCommandFactory;
-import inputport.nio.manager.AcceptCommandSelector;
 import inputport.nio.manager.AnNIOManager;
 import inputport.nio.manager.NIOManager;
 import inputport.nio.manager.NIOManagerFactory;
 import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.SelectionManagerFactory;
+import inputport.nio.manager.factories.SelectionManagerFactory;
+import inputport.nio.manager.factories.classes.AReadingAcceptCommandFactory;
+import inputport.nio.manager.factories.selectors.AcceptCommandFactorySelector;
 
 public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 	MeaningOfLifeServerReceiver meaningOfLifeReceiver;
@@ -36,7 +38,7 @@ public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 
 	
 	protected void setFactories() {
-		AcceptCommandSelector.setFactory(new AReadingAcceptCommandFactory());
+		AcceptCommandFactorySelector.setFactory(new AReadingAcceptCommandFactory());
 	}
 
 	protected void makeServerConnectable(int aServerPort) {
@@ -87,6 +89,7 @@ public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 	}
 
 	public static void main(String[] args) {
+		FactoryTraceUtility.setTracing();
 		NIOTraceUtility.setTracing();
 		MeaningOfLifeNIOServer aServer = new AMeaningOfLifeNIOServer();
 		aServer.initialize(ServerArgsProcessor.getServerPort(args));

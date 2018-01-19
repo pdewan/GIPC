@@ -9,7 +9,7 @@ import inputport.datacomm.duplex.buffer.DuplexBufferGenericClientInputPort;
 import inputport.datacomm.duplex.buffer.DuplexBufferGenericServerInputPort;
 import inputport.datacomm.duplex.buffer.DuplexClientInputPortDriver;
 import inputport.datacomm.duplex.buffer.DuplexServerInputPortDriver;
-import inputport.nio.manager.SelectionManagerFactory;
+import inputport.nio.manager.factories.SelectionManagerFactory;
 
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;

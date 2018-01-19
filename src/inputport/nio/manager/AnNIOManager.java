@@ -1,5 +1,20 @@
 package inputport.nio.manager;
 
+import inputport.nio.manager.commands.AcceptCommand;
+import inputport.nio.manager.commands.ConnectCommand;
+import inputport.nio.manager.commands.WriteCommand;
+import inputport.nio.manager.commands.classes.AWriteCommand;
+import inputport.nio.manager.factories.SelectionManagerFactory;
+import inputport.nio.manager.factories.selectors.AcceptCommandFactorySelector;
+import inputport.nio.manager.factories.selectors.ConnectCommandFactorySelector;
+import inputport.nio.manager.factories.selectors.WriteCommandFactorySelector;
+import inputport.nio.manager.listeners.SocketChannelAcceptListener;
+import inputport.nio.manager.listeners.SocketChannelCloseListener;
+import inputport.nio.manager.listeners.SocketChannelConnectListener;
+import inputport.nio.manager.listeners.SocketChannelReadListener;
+import inputport.nio.manager.listeners.SocketChannelWriteListener;
+import inputport.nio.manager.listeners.WriteBoundedBufferListener;
+
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
@@ -10,6 +25,8 @@ import util.trace.Tracer;
 import util.trace.port.nio.ListenableAcceptsEnabled;
 import util.trace.port.nio.ReadListenerAdded;
 import util.trace.port.nio.ReadsEnabled;
+import util.trace.port.nio.SocketChannelConnectRequested;
+import util.trace.port.nio.SocketChannelWriteRequested;
 import util.trace.port.nio.WriteListenerAdded;
 
 
@@ -31,7 +48,7 @@ public class AnNIOManager implements NIOManager{
 			SocketChannelAcceptListener... listeners) {
 		ListenableAcceptsEnabled.newCase(this, channel, listeners);
 		AcceptCommand acceptRequestResponse = 
-				AcceptCommandSelector.getFactory().createAcceptCommand(selectionManager, channel);
+				AcceptCommandFactorySelector.getFactory().createAcceptCommand(selectionManager, channel);
 //			new AnAcceptCommand(selectionManager, channel);
 		for (SocketChannelAcceptListener listener:listeners) {
 			acceptRequestResponse.addAcceptListener(listener);
@@ -43,9 +60,10 @@ public class AnNIOManager implements NIOManager{
 	@Override
 	public void connect(SocketChannel channel, InetAddress theServerHost,
 			int thePort, SocketChannelConnectListener... listeners) {
+		SocketChannelConnectRequested.newCase(this, channel, theServerHost, thePort, listeners);
 		ConnectCommand connectCommand = 
 //			new AConnectCommand(selectionManager, channel, theServerHost, thePort);
-		ConnectCommandSelector.getFactory().createConnectCommand(selectionManager, channel, theServerHost, thePort);
+		ConnectCommandFactorySelector.getFactory().createConnectCommand(selectionManager, channel, theServerHost, thePort);
 		for (SocketChannelConnectListener listener:listeners) {
 			connectCommand.addConnectListener(listener);
 		}
@@ -56,7 +74,10 @@ public class AnNIOManager implements NIOManager{
 	@Override
 	public void write(SocketChannel channel, ByteBuffer byteBuffer,
 			SocketChannelWriteListener[] listeners) {
-		WriteCommand bufferedWrite = new AWriteCommand(selectionManager, channel, byteBuffer);
+		SocketChannelWriteRequested.newCase(this, channel, byteBuffer, listeners);
+//		WriteCommand bufferedWrite = new AWriteCommand(selectionManager, channel, byteBuffer);
+		WriteCommand bufferedWrite = WriteCommandFactorySelector.getFactory().createWriteCommand(selectionManager, channel, byteBuffer);
+
 		for (SocketChannelWriteListener listener:listeners) {
 			bufferedWrite.addwriteListener(listener);
 		}

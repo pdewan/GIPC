@@ -1,5 +1,8 @@
 package inputport.nio.manager;
 
+import inputport.nio.manager.commands.WriteCommand;
+import inputport.nio.manager.listeners.WriteBoundedBufferListener;
+
 import java.nio.channels.CancelledKeyException;
 import java.nio.channels.SelectableChannel;
 import java.nio.channels.SelectionKey;
@@ -53,6 +56,17 @@ public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 	}
 	protected void bufferIsEmpty() {
 //		initiateReadCommand();
+		SelectionKey key = channel.keyFor(selectionManager.getSelector());
+		try {
+			key.interestOps(0);
+			Tracer.info(this, "New interestops op for:" + channel + " are:" +key.interestOps());
+			SocketChannelInterestOp.newCase(this, key, 0);
+
+			
+		} catch (CancelledKeyException cke) { // we get this on socket close for some reason
+			Tracer.info(this, "Received CancelledKeyException");
+			selectionManager.close(key, cke);
+		}	
 		WriteBufferIsEmpty.newCase(this, channel, writeBoundedBufferListeners);
 		for (WriteBoundedBufferListener aListener:writeBoundedBufferListeners) {
 			aListener.writeBufferIsEmpty(channel);
@@ -82,9 +96,12 @@ public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 		SelectionKey key = channel.keyFor(selectionManager.getSelector());
 		try {
 			Tracer.info(this, "Registering write op for:" + channel );
-			key.interestOps(SelectionKey.OP_WRITE);
+			if (key.interestOps() != SelectionKey.OP_WRITE ) {
+				key.interestOps(SelectionKey.OP_WRITE);
 			Tracer.info(this, "New interestops op for:" + channel + " are:" +key.interestOps());
 			SocketChannelInterestOp.newCase(this, key, SelectionKey.OP_WRITE);
+			}
+			
 
 			return true;
 		} catch (CancelledKeyException cke) { // we get this on socket close for some reason

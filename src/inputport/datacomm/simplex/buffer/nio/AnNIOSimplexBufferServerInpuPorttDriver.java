@@ -1,9 +1,10 @@
 package inputport.datacomm.simplex.buffer.nio;
 import inputport.datacomm.simplex.buffer.SimplexServerInputPortSkeleton;
-import inputport.nio.manager.AcceptCommandSelector;
 import inputport.nio.manager.AnNIOManager;
 import inputport.nio.manager.NIOManager;
 import inputport.nio.manager.SelectionManager;
+import inputport.nio.manager.factories.classes.AReadingAcceptCommandFactory;
+import inputport.nio.manager.factories.selectors.AcceptCommandFactorySelector;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class AnNIOSimplexBufferServerInpuPorttDriver implements NIOSimplexServer
 		selectionManager = theSelectingRunnable;
 		portNumber = Integer.parseInt(thePortId);
 		observableNIOManager = new AnNIOManager(selectionManager);
-		AcceptCommandSelector.setFactory(new AReadingAcceptCommandFactory());
+		AcceptCommandFactorySelector.setFactory(new AReadingAcceptCommandFactory());
 //		myName = theMyName;	
 	}
 	protected void registerAsWriteBufferListener(SocketChannel aSocketChannel) {

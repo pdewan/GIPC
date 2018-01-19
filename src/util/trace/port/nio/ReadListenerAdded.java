@@ -8,8 +8,8 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Arrays;
 
-import inputport.nio.manager.SocketChannelAcceptListener;
-import inputport.nio.manager.SocketChannelReadListener;
+import inputport.nio.manager.listeners.SocketChannelAcceptListener;
+import inputport.nio.manager.listeners.SocketChannelReadListener;
 import inputport.rpc.RemoteCall;
 import util.trace.TraceableInfo;
 import util.trace.port.rpc.ReceivedCallEndedOld;

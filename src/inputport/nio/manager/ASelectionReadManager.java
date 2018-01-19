@@ -1,5 +1,10 @@
 package inputport.nio.manager;
 
+import inputport.nio.manager.commands.ReadCommand;
+import inputport.nio.manager.commands.classes.AReadCommand;
+import inputport.nio.manager.factories.selectors.ReadCommandFactorySelector;
+import inputport.nio.manager.listeners.SocketChannelReadListener;
+
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.HashMap;
@@ -17,7 +22,8 @@ public class ASelectionReadManager implements SelectionReadManager  {
 	}
 	
 	protected ReadCommand createReadHandler(SocketChannel theSocketChannel) {
-		ReadCommand retVal = new AReadCommand(selectionManager, theSocketChannel);
+//		ReadCommand retVal = new AReadCommand(selectionManager, theSocketChannel);
+		ReadCommand retVal = ReadCommandFactorySelector.getFactory().createReadCommand(selectionManager, theSocketChannel);
 		ReadRequestCreated.newCase(this, retVal);
 		
 		return retVal;
