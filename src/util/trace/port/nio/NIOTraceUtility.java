@@ -22,7 +22,9 @@ public class NIOTraceUtility {
 		Tracer.setKeywordPrintStatus(ReadListenerAdded.class, true);
 		Tracer.setKeywordPrintStatus(ReadRequestCreated.class, true);
 		Tracer.setKeywordPrintStatus(ReadsEnabled.class, true);
+		Tracer.setKeywordPrintStatus(SelectCalled.class, true);
 		Tracer.setKeywordPrintStatus(SelectorWokenUp.class, true);
+		Tracer.setKeywordPrintStatus(SelectUnblocked.class, true);
 		Tracer.setKeywordPrintStatus(SelectorRequestEnqueued.class, true);
 		Tracer.setKeywordPrintStatus(SelectorRequestDequeued.class, true);
 		Tracer.setKeywordPrintStatus(SelectorRequestNextInterestOp.class, true);

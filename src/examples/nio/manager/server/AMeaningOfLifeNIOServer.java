@@ -10,6 +10,7 @@ import java.nio.channels.SocketChannel;
 import javax.net.ServerSocketFactory;
 
 import assignments.util.mainArgs.ServerArgsProcessor;
+import util.trace.bean.BeanTraceUtility;
 import util.trace.factories.FactoryTraceUtility;
 import util.trace.factories.SelectorFactorySet;
 import util.trace.port.nio.NIOTraceUtility;
@@ -91,6 +92,7 @@ public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 	public static void main(String[] args) {
 		FactoryTraceUtility.setTracing();
 		NIOTraceUtility.setTracing();
+		BeanTraceUtility.setTracing();// not really needed, but does not hurt
 		MeaningOfLifeNIOServer aServer = new AMeaningOfLifeNIOServer();
 		aServer.initialize(ServerArgsProcessor.getServerPort(args));
 

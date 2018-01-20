@@ -113,17 +113,7 @@ public class AConnectCommand extends AnAbstractNIOCommand implements
 		}
 	}
 
-	// protected Integer postCommandInterestOps() {
-	// return SelectionKey.OP_READ;
-	// }
-	//
-	// public void changeInterestOps(SelectionKey aSelectionKey, Integer
-	// aNextOps) {
-	// if (aNextOps == null) return;
-	// aSelectionKey.interestOps(aNextOps);
-	// SocketChannelInterestOp.newCase(this, aSelectionKey, aNextOps);
-	// SocketChannelInterestOp.newCase(this, aSelectionKey, aNextOps);
-	// }
+
 
 	void doGiveReponse() {
 		SelectionKey selectionKey = socketChannel.keyFor(selectionManager

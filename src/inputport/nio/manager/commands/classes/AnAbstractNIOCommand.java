@@ -23,9 +23,10 @@ public  class AnAbstractNIOCommand {
 	}
 	
 	public void changeInterestOps(SelectionKey aSelectionKey, Integer aNextOps) {
-		if (aNextOps == null) return;
+		if (aNextOps == null) 
+			aNextOps = 0;
 		aSelectionKey.interestOps(aNextOps);
 		SocketChannelInterestOp.newCase(this, aSelectionKey, aNextOps);
-		SocketChannelInterestOp.newCase(this, aSelectionKey, aNextOps);
+//		SocketChannelInterestOp.newCase(this, aSelectionKey, aNextOps);
 	}
 }

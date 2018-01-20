@@ -27,6 +27,7 @@ public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 		new ArrayBlockingQueue(AScatterGatherSelectionManager.getMaxOutstandingWrites());
 	SocketChannel channel;
 	SelectionManager selectionManager;
+	protected int savedInterestOps;
 	public AWriteBoundedBuffer(SelectionManager theSelectionManager, SocketChannel theSocketChannel) {
 		channel = theSocketChannel;
 		selectionManager = theSelectionManager;		
@@ -58,7 +59,7 @@ public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 //		initiateReadCommand();
 		SelectionKey key = channel.keyFor(selectionManager.getSelector());
 		try {
-			key.interestOps(0);
+			key.interestOps(savedInterestOps);
 			Tracer.info(this, "New interestops op for:" + channel + " are:" +key.interestOps());
 			SocketChannelInterestOp.newCase(this, key, 0);
 
@@ -97,6 +98,7 @@ public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 		try {
 			Tracer.info(this, "Registering write op for:" + channel );
 			if (key.interestOps() != SelectionKey.OP_WRITE ) {
+				savedInterestOps = key.interestOps();
 				key.interestOps(SelectionKey.OP_WRITE);
 			Tracer.info(this, "New interestops op for:" + channel + " are:" +key.interestOps());
 			SocketChannelInterestOp.newCase(this, key, SelectionKey.OP_WRITE);
