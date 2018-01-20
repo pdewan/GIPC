@@ -84,10 +84,10 @@ public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 			SocketChannel aSocketChannel) {
 		addListeners(aSocketChannel);
 	}
-	@Override
-	public void writeBufferIsEmpty(SocketChannel aSocketChannel) {
-		NIOManagerFactory.getSingleton().enableReads(aSocketChannel);
-	}
+//	@Override
+//	public void writeBufferIsEmpty(SocketChannel aSocketChannel) {
+//		NIOManagerFactory.getSingleton().enableReads(aSocketChannel);
+//	}
 
 	public static void main(String[] args) {
 		FactoryTraceUtility.setTracing();
