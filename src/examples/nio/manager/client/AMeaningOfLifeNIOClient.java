@@ -67,7 +67,7 @@ public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 	}	
 
 	public void connectToServer(String aServerHost, int aServerPort) {
-		createCommunicationObjects();
+//		createCommunicationObjects();
 		// no listeners need to be registered, assuming writes go through
 		connectToSocketChannel(aServerHost, aServerPort);
 
