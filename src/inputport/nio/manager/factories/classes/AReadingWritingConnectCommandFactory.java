@@ -16,7 +16,7 @@ import inputport.nio.manager.commands.classes.AConnectCommand;
  * @author Dewan
  *
  */
-public class AReadingWritingConnectCommandFactory extends AWritingConnectCommandFactory {
+public class AReadingWritingConnectCommandFactory extends AConnectCommandFactory {
 	@Override
 	public ConnectCommand createConnectCommand(
 			SelectionManager aSelectionManager, SocketChannel aSocketChannel,

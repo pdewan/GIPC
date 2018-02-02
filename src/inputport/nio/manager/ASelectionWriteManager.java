@@ -142,7 +142,7 @@ public class ASelectionWriteManager implements SelectionWriteManager  {
 	public void  processChannelBufferedWrites(WriteBoundedBuffer bufferedWriteBoundedBuffer) {	
 		for (WriteCommand bufferedWrite: bufferedWriteBoundedBuffer) {
 			if (bufferedWrite.execute())
-				bufferedWriteBoundedBuffer.remove(bufferedWrite);
+				bufferedWriteBoundedBuffer.remove(bufferedWrite); // cannot really remove from iterator. need to fix
 			else //  break out of inner loop as the last bufferedWrite could not finish
 				break;
 		}		

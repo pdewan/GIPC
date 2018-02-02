@@ -10,6 +10,8 @@ import java.nio.channels.SocketChannel;
 import javax.net.ServerSocketFactory;
 
 import assignments.util.mainArgs.ServerArgsProcessor;
+import util.annotations.Tags;
+import util.tags.DistributedTags;
 import util.trace.bean.BeanTraceUtility;
 import util.trace.factories.FactoryTraceUtility;
 import util.trace.factories.SelectorFactorySet;
@@ -22,7 +24,7 @@ import inputport.nio.manager.SelectionManager;
 import inputport.nio.manager.factories.SelectionManagerFactory;
 import inputport.nio.manager.factories.classes.AReadingAcceptCommandFactory;
 import inputport.nio.manager.factories.selectors.AcceptCommandFactorySelector;
-
+@Tags(DistributedTags.SERVER)
 public class AMeaningOfLifeNIOServer implements MeaningOfLifeNIOServer {
 	MeaningOfLifeServerReceiver meaningOfLifeReceiver;
 	ServerSocketChannel serverSocketChannel;

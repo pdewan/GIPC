@@ -29,8 +29,8 @@ public class AConnectCommandFactory implements ConnectCommandFactory {
 	@Override
 	public ConnectCommand createConnectCommand(
 			SelectionManager aSelectionManager, SocketChannel aSocketChannel,
-			InetAddress aServerHost, int aPort, Integer anInterestOps) {
-		return new AConnectCommand(aSelectionManager, aSocketChannel, aServerHost, aPort, anInterestOps);
+			InetAddress aServerHost, int aPort, Integer aNextInterestOps) {
+		return new AConnectCommand(aSelectionManager, aSocketChannel, aServerHost, aPort, aNextInterestOps);
 	}
 
 }

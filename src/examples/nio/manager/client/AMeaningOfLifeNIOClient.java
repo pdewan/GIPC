@@ -12,6 +12,8 @@ import examples.nio.manager.mvc.AMeaningOfLifeView;
 import examples.nio.manager.mvc.MeaningOfLifeController;
 import examples.nio.manager.mvc.MeaningOfLifeModel;
 import examples.nio.manager.mvc.MeaningOfLifeView;
+import util.annotations.Tags;
+import util.tags.DistributedTags;
 import util.trace.bean.BeanTraceUtility;
 import util.trace.factories.FactoryTraceUtility;
 import util.trace.port.nio.NIOTraceUtility;
@@ -26,6 +28,7 @@ import inputport.nio.manager.factories.selectors.ConnectCommandFactorySelector;
  * Implements some of  mundane listener tasks itself - look at its interface to see which listeners.
  * Can be further modularized by having separate helper listeners.
  */
+@Tags(DistributedTags.CLIENT)
 public class AMeaningOfLifeNIOClient implements MeaningOfLifeNIOClient {
 	String clientName;
 	MeaningOfLifeModel meaningOfLifeModel;
