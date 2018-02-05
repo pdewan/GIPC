@@ -5,6 +5,8 @@ package util.trace.port.nio;
 import util.trace.ImplicitKeywordKind;
 import util.trace.TraceableInfo;
 import util.trace.Tracer;
+import util.trace.port.PerformanceExperimentEnded;
+import util.trace.port.PerformanceExperimentStarted;
 
 
 public class NIOTraceUtility {
@@ -22,6 +24,8 @@ public class NIOTraceUtility {
 		Tracer.setKeywordPrintStatus(ReadListenerAdded.class, true);
 		Tracer.setKeywordPrintStatus(ReadRequestCreated.class, true);
 		Tracer.setKeywordPrintStatus(ReadsEnabled.class, true);
+		Tracer.setKeywordPrintStatus(PerformanceExperimentEnded.class, true);
+		Tracer.setKeywordPrintStatus(PerformanceExperimentStarted.class, true);
 		Tracer.setKeywordPrintStatus(SelectCalled.class, true);
 		Tracer.setKeywordPrintStatus(SelectorWokenUp.class, true);
 		Tracer.setKeywordPrintStatus(SelectUnblocked.class, true);
