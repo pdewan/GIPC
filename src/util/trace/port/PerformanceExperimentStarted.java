@@ -17,10 +17,11 @@ public class PerformanceExperimentStarted extends TraceableInfo {
 		super (aMessage, aFinder);	
 	}
 	
-	public static PerformanceExperimentStarted newCase(Object aSource, Object aFinder, 
+	public static PerformanceExperimentStarted newCase( Object aSource, 
 			long aStartTime, int aNumInputs) {
     	String aMessage = aStartTime + ":" + aNumInputs;
-    	PerformanceExperimentStarted retVal = new PerformanceExperimentStarted(aMessage, aFinder, aStartTime, aNumInputs);
+    	PerformanceExperimentStarted retVal = 
+    			new PerformanceExperimentStarted(aMessage, aSource, aStartTime, aNumInputs);
     	retVal.announce();
     	return retVal;
 	}
