@@ -57,5 +57,11 @@ public class AnExampleSimulationParametersListener implements SimulationParamete
 	public void consensusAlgorithm(ConsensusAlgorithm newValue) {
 		System.out.println("consensusAlgorithm " + newValue);		
 	}
+
+	@Override
+	public void quit(int aCode) {
+		System.out.println("Quitting with code " + aCode);
+		System.exit(aCode);
+	}
 	
 }

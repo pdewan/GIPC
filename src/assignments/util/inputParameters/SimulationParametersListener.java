@@ -16,4 +16,5 @@ public interface SimulationParametersListener {
 	void broadcastIPCMechanism(boolean newValue);
 	void waitForIPCMechanismConsensus(boolean newValue);
 	void consensusAlgorithm(ConsensusAlgorithm newValue);
+	void quit(int aCode);
 }

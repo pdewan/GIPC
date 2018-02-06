@@ -17,12 +17,13 @@ public class ExampleSimulationParametersControllerUser  {
 /**
  * Run this program see how the following inputs are translated to method calls:
  * p
- * a t
- * a f
- * i t
- * atomic t
+ * a true
+ * a false
+ * i true
+ * atomic true
  * e
- * l f
+ * l false
+ * q 0
  */
 	public static void main(String[] args) {
 		/*
