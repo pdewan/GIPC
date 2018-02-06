@@ -17,4 +17,8 @@ public interface SimulationParametersListener {
 	void waitForIPCMechanismConsensus(boolean newValue);
 	void consensusAlgorithm(ConsensusAlgorithm newValue);
 	void quit(int aCode);
+	/**
+	 * simulationCommand
+	 */
+	void simulationCommand(String aCommand);
 }

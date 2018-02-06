@@ -63,5 +63,11 @@ public class AnExampleSimulationParametersListener implements SimulationParamete
 		System.out.println("Quitting with code " + aCode);
 		System.exit(aCode);
 	}
+
+	@Override
+	public void simulationCommand(String aCommand) {
+		System.out.println("Simulation command: " + aCommand);
+		
+	}
 	
 }
