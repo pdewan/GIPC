@@ -136,7 +136,7 @@ public abstract class ACommandToMethodCallTranslator implements CommandToMethodC
 	@Override
 	public void processCommands(Class aClass) {
 		while (true) {
-			System.out.println("Enter (prefixes of) print, quit or a method and its parameters separated by whitespace:");
+			System.out.println("Enter (prefixes of) print, quit or a method and its parameters separated by commas:");
 			String nextLine = scanner.nextLine();
 			int aSpaceIndex = indexOf(whiteSpace, nextLine);
 			if (aSpaceIndex == -1) {

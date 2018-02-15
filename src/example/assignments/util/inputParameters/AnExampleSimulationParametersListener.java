@@ -69,5 +69,10 @@ public class AnExampleSimulationParametersListener implements SimulationParamete
 		System.out.println("Simulation command: " + aCommand);
 		
 	}
+
+	@Override
+	public void headless(boolean newValue) {
+		System.out.println("Headless: " + newValue);		
+	}
 	
 }

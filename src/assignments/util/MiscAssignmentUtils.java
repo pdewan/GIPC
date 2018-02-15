@@ -8,4 +8,8 @@ public class MiscAssignmentUtils {
 		byte[] anArrayCopy = Arrays.copyOfRange(aByteBuffer.array(), aByteBuffer.position(), aByteBuffer.limit());
 		return ByteBuffer.wrap(anArrayCopy);
 	}
+	public static void setHeadless(boolean newVal) {
+		System.setProperty("java.awt.headless", Boolean.toString(newVal));
+		
+	}
 }
