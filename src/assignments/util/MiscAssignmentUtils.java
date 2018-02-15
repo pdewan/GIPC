@@ -12,4 +12,7 @@ public class MiscAssignmentUtils {
 		System.setProperty("java.awt.headless", Boolean.toString(newVal));
 		
 	}
+	public static void setHeadless(String newVal) {
+		System.setProperty("java.awt.headless", newVal);		
+	}
 }
