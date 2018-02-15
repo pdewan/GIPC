@@ -70,9 +70,6 @@ public class AnExampleSimulationParametersListener implements SimulationParamete
 		
 	}
 
-	@Override
-	public void headless(boolean newValue) {
-		System.out.println("Headless: " + newValue);		
-	}
+	
 	
 }

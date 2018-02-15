@@ -17,6 +17,10 @@ public class ClientArgsProcessor {
 	public static final int PORT_ARG_INDEX = 1;
 	public static final int CLIENT_NAME_ARG_INDEX = 2;
 	public static final String DEFAULT_CLIENT_NAME = "Generic Client";
+	public static final String DEFAULT_HEADLESS_VALUE = "false";
+
+	public static final int HEADLESS_ARG_INDEX = 3;
+	
 	
 	/**
 	 * Extracts the server hostname from argument #0,  if it exists, returns default
@@ -44,6 +48,15 @@ public class ClientArgsProcessor {
 		return args.length > CLIENT_NAME_ARG_INDEX?
 			args[CLIENT_NAME_ARG_INDEX]:
 				DEFAULT_CLIENT_NAME;
+	}
+	/**
+	 * Extracts the headless property from argument #3,  if it exists, returns default
+	 * value otherwise
+	 */
+	public static String getHeadless(String[] args){
+		return args.length > HEADLESS_ARG_INDEX?
+			args[HEADLESS_ARG_INDEX]:
+				DEFAULT_HEADLESS_VALUE;
 	}
 
 }

@@ -21,5 +21,4 @@ public interface SimulationParametersListener {
 	 * simulationCommand
 	 */
 	void simulationCommand(String aCommand);
-	void headless(boolean newValue);
 }
