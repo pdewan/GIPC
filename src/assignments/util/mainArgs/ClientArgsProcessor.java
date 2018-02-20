@@ -22,6 +22,7 @@ public class ClientArgsProcessor {
 	public static final String DEFAULT_HEADLESS_VALUE = "false";
 
 	public static final int HEADLESS_ARG_INDEX = 3;
+	public static final int REGISTRY_HOST_ARG_INDEX = 4;
 	
 	public static String[] removeEmpty(String[] args) {
 		return Arrays.stream(args).filter(s -> !s.isEmpty()).toArray(String[]::new);
@@ -62,6 +63,15 @@ public class ClientArgsProcessor {
 		return args.length > HEADLESS_ARG_INDEX?
 			args[HEADLESS_ARG_INDEX]:
 				DEFAULT_HEADLESS_VALUE;
+	}
+	/**
+	 * Extracts the registry hostname from argument #4,  if it exists, returns server
+	 * hostname otherwise
+	 */
+	public static String getRegistryHost(String[] args){
+		return args.length > REGISTRY_HOST_ARG_INDEX?
+				args[REGISTRY_HOST_ARG_INDEX]:
+				getServerHost(args);
 	}
 
 }
