@@ -1,5 +1,7 @@
 package assignments.util.mainArgs;
 
+import java.util.Arrays;
+
 /** 
  * Example client args supported by this library:
  * 
@@ -21,6 +23,9 @@ public class ClientArgsProcessor {
 
 	public static final int HEADLESS_ARG_INDEX = 3;
 	
+	public static String[] removeEmpty(String[] args) {
+		return Arrays.stream(args).filter(s -> !s.isEmpty()).toArray(String[]::new);
+	}
 	
 	/**
 	 * Extracts the server hostname from argument #0,  if it exists, returns default
