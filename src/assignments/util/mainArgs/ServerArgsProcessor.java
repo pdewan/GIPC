@@ -1,5 +1,6 @@
 package assignments.util.mainArgs;
 
+import java.rmi.registry.Registry;
 import java.util.Arrays;
 
 /** 
@@ -20,6 +21,8 @@ import java.util.Arrays;
 public class ServerArgsProcessor {
 	public static final int PORT_ARG_INDEX = 0;	
 	public static final int REGISTRY_HOST_ARG_INDEX = 1;
+	public static final int REGISTRY_PORT_ARG_INDEX = 2;
+
 
 	public static String[] removeEmpty(String[] args) {
 		return Arrays.stream(args).filter(s -> !s.isEmpty()).toArray(String[]::new);
@@ -38,5 +41,10 @@ public class ServerArgsProcessor {
 		return args.length > REGISTRY_HOST_ARG_INDEX?
 				args[REGISTRY_HOST_ARG_INDEX]:
 				"localhost";
+	}
+	public static int getRegistryPort(String[] args){
+		return args.length > REGISTRY_PORT_ARG_INDEX ?
+				Integer.parseInt(args[REGISTRY_PORT_ARG_INDEX]):
+					Registry.REGISTRY_PORT;
 	}
 }
