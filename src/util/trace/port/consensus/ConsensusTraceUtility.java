@@ -47,6 +47,7 @@ public class ConsensusTraceUtility {
 		Tracer.setKeywordPrintStatus(ProposalStateChanged.class, true);
 		Tracer.setKeywordPrintStatus(ProposalWaitEnded.class, true);
 		Tracer.setKeywordPrintStatus(ProposalWaitStarted.class, true);
+		Tracer.setKeywordPrintStatus(ProposedStateSet.class, true);
 		Tracer.setKeywordPrintStatus(RemoteProposeRequestReceived.class, true);
 
 		Tracer.setKeywordPrintStatus(RemoteProposeRequestSent.class, true);
