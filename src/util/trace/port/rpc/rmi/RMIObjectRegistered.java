@@ -17,7 +17,7 @@ public class RMIObjectRegistered extends TraceableInfo {
 	
 	
 	public static RMIObjectRegistered newCase(Object aSource, String anObjectName, Object anObject, Registry aRegistry) {
-    	String aMessage = anObject + ":" + anObjectName + "<->" + aRegistry;
+    	String aMessage = anObject + "<->" + anObjectName + ":" + aRegistry;
     	RMIObjectRegistered retVal = new RMIObjectRegistered(aMessage, aSource, anObjectName, anObject, aRegistry);
    	    retVal.announce();
     	return retVal;

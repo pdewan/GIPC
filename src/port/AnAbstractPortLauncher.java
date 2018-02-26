@@ -1176,8 +1176,10 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 
 	}
 	public Object lookup(Class anInterface, String aName) {
-		GIPCObjectLookedUp.newCase(this, anInterface, aName, (GIPCRegistry) this);
-		return createProxy( anInterface, aName);
+		Object retVal = createProxy( anInterface, aName);
+		GIPCObjectLookedUp.newCase(this, retVal, anInterface, aName, (GIPCRegistry) this);
+		return retVal;
+//		return createProxy( anInterface, aName);
 	}
 	public Object lookupCaller(Class anInterface, String aName) {
 		if (anInterface == null)

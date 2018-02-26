@@ -12,14 +12,14 @@ import util.trace.TraceableInfo;
 public class GIPCObjectLookedUp extends TraceableInfo {
 	
 
-	public GIPCObjectLookedUp(String aMessage, Object aSource, Class aClass, String anObjectName, GIPCRegistry aRegistry) {
+	public GIPCObjectLookedUp(String aMessage, Object aSource, Object anObject, Class aClass, String anObjectName, GIPCRegistry aRegistry) {
 		super(aMessage, aSource );
 	}
 	
 	
-	public static GIPCObjectLookedUp newCase(Object aSource, Class aClass, String anObjectName, GIPCRegistry aRegistry) {
-    	String aMessage =  aClass + ":" + anObjectName + "<->" + aRegistry;
-    	GIPCObjectLookedUp retVal = new GIPCObjectLookedUp(aMessage, aSource, aClass, anObjectName, aRegistry);
+	public static GIPCObjectLookedUp newCase(Object aSource, Object anObject, Class aClass, String anObjectName, GIPCRegistry aRegistry) {
+    	String aMessage =  anObject + "<->"   + anObjectName + ":" + aClass + ":" + aRegistry;
+    	GIPCObjectLookedUp retVal = new GIPCObjectLookedUp(aMessage, aSource, anObject, aClass, anObjectName, aRegistry);
    	    retVal.announce();
     	return retVal;
 	}

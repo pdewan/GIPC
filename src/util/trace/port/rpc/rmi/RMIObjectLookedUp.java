@@ -17,7 +17,7 @@ public class RMIObjectLookedUp extends TraceableInfo {
 	
 	
 	public static RMIObjectLookedUp newCase(Object aSource, Object anObject, String anObjectName, Registry aRegistry) {
-    	String aMessage = anObject + ":" + anObjectName + "<->" + aRegistry;
+    	String aMessage = anObject + "<->" + anObjectName + ":" + aRegistry;
     	RMIObjectLookedUp retVal = new RMIObjectLookedUp(aMessage, aSource, anObject, anObjectName, aRegistry);
    	    retVal.announce();
     	return retVal;

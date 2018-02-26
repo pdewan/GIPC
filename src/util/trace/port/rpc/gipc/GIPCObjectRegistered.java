@@ -18,7 +18,7 @@ public class GIPCObjectRegistered extends TraceableInfo {
 	
 	
 	public static GIPCObjectRegistered newCase(Object aSource, String anObjectName, Object anObject, GIPCRegistry aRegistry) {
-    	String aMessage = anObject + ":" + anObjectName + "<->" + aRegistry;
+    	String aMessage = anObject + "<->" + anObjectName + ":" + aRegistry;
     	GIPCObjectRegistered retVal = new GIPCObjectRegistered(aMessage, aSource, anObjectName, anObject, aRegistry);
    	    retVal.announce();
     	return retVal;
