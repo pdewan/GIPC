@@ -19,7 +19,7 @@ public class ASimpleGIPCRegistryAndCounterServer  implements SimpleRegistryAndCo
 	protected static DistributedRMICounter counter;
 	protected static GIPCRegistry gipcRegistry;
 	protected static void init() {
-		gipcRegistry = GIPCLocateRegistry.createRegistry(REGISTRY_PORT_NAME);
+		gipcRegistry = GIPCLocateRegistry.createRegistry(SERVER_PORT);
 		counter = new ADistributedInheritingRMICounter();			
 		gipcRegistry.rebind(COUNTER_NAME, counter);	
 		gipcRegistry.getInputPort().addConnectionListener(new ATracingConnectionListener(gipcRegistry.getInputPort()));

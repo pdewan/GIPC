@@ -39,8 +39,11 @@ public class GIPCLocateRegistry {
 //				aServerId,
 //				lastServerName);
 		GIPCRegistry result = getRegistryWithoutConnecting(aHostName, aPortNumber, aClientName);
-		result.connect();
+		boolean aStatus = result.connect();
+		if (aStatus)
 		return result;
+		else
+			return null;
 	}
 	public static GIPCRegistry getRegistryWithoutConnecting(String aHostName, int aPortNumber, String aClientName) {
 //		lastClientName = clientNamePrefix + lastClientId;

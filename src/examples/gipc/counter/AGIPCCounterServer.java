@@ -19,7 +19,7 @@ import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;
 public class AGIPCCounterServer extends CounterServerLauncher implements SimpleRegistryAndCounterServer {	
 	public static void main (String[] args) {
 		try {
-			GIPCRegistry gipcRegistry = GIPCLocateRegistry.createRegistry(REGISTRY_PORT_NAME);
+			GIPCRegistry gipcRegistry = GIPCLocateRegistry.createRegistry(SERVER_PORT);
 			DistributedRMICounter counter1 = new ADistributedInheritingRMICounter();
 			DistributedRMICounter counter2 = new ADistributedInheritingRMICounter();
 

@@ -33,7 +33,7 @@ public interface GIPCRegistry extends PortLauncher{
 	 */
 	public Object lookup(Class anInterface, String aName);
 	public Object lookupCaller(Class anInterface, String aName);
-	public void connect();
+	public boolean connect();
 
 
 	DuplexRPCClientInputPort getRPCClientPort();

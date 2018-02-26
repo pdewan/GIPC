@@ -1066,10 +1066,10 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 		setStateAfterPortButBeforeConnection();
 //		connectPorts();
 	}
-	public void connect() {
+	public boolean connect() {
 		connectPorts();
 //		waitForConnections();
-		waitForConnections();// for member connections, this is kludgy
+		return waitForConnections();// for member connections, this is kludgy
 	}
 	
 	public void connectedToMember(String aRemoteEndName, ConnectionType aConnectionType) {
@@ -1146,7 +1146,7 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 	}
 
 	
-	public synchronized void waitForConnections() {
+	public synchronized boolean waitForConnections() {
 		// if (connectedToAllPorts) return;
 		try {
 			if (!connectedToAllPorts) {
@@ -1156,6 +1156,7 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 					System.err
 							.println("Could not connnect to server within ms:"
 									+ connectionTimeOut);
+					return false;
 				}
 			}
 //			if (//numPendingMemberConnects != 0 &&
@@ -1163,10 +1164,12 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 //				wait();
 //			}
 			waitForMemberConnections();
+			return true;
 		
 		} catch (Exception e) {
 
 			e.printStackTrace();
+			return false;
 		}
 
 	}

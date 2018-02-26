@@ -25,7 +25,7 @@ public class AGIPCCounterClient extends CounterServerLauncher implements SimpleC
 	}
 	public static void main (String[] args) {	
 		try {
-			GIPCRegistry gipcRegistry = GIPCLocateRegistry.getRegistry(REGISTRY_HOST_NAME, REGISTRY_PORT_NAME, "client");
+			GIPCRegistry gipcRegistry = GIPCLocateRegistry.getRegistry(SERVER_HOST_NAME, SERVER_PORT, "client");
 //			test(gipcRegistry, DistributedRMICounter.class);
 			ACachingAbstractRPCProxyInvocationHandler.setInvokeObjectMethodsRemotely(true);
 //			test(gipcRegistry, DistributedRMICounter.class);

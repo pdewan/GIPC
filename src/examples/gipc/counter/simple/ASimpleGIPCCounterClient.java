@@ -48,8 +48,13 @@ public class ASimpleGIPCCounterClient implements SimpleCounterClient{
 	
 	public static void init(String aClientName) {
 		ACachingAbstractRPCProxyInvocationHandler.setInvokeObjectMethodsRemotely(false);
-		gipcRegistry = GIPCLocateRegistry.getRegistry(REGISTRY_HOST_NAME, REGISTRY_PORT_NAME, aClientName);
+		gipcRegistry = GIPCLocateRegistry.getRegistry(SERVER_HOST_NAME, SERVER_PORT, aClientName);
+		if (gipcRegistry == null) {
+			System.err.println("Could not connect to server :" + SERVER_HOST_NAME + ":" + SERVER_PORT);
+			System.exit(-1);
+		}
 		counter = (DistributedRMICounter) gipcRegistry.lookup(DistributedRMICounter.class, COUNTER_NAME);	
+		
 		gipcRegistry.getInputPort().addConnectionListener(new ATracingConnectionListener(gipcRegistry.getInputPort()));
 	}
 	public static void doOperations() {

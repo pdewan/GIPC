@@ -11,7 +11,7 @@ import examples.mvc.rmi.duplex.DistributedRMICounter;
 public class ASimpleRMIRegistryAndCounterServer  implements SimpleRegistryAndCounterServer{	
 	public static void main (String[] args) {
 		try {
-			Registry rmiRegistry = LocateRegistry.createRegistry(REGISTRY_PORT_NAME);
+			Registry rmiRegistry = LocateRegistry.createRegistry(SERVER_PORT);
 			DistributedRMICounter counter = new ADistributedInheritingRMICounter();			
 			UnicastRemoteObject.exportObject(counter, 0);
 			rmiRegistry.rebind(COUNTER_NAME, counter);
