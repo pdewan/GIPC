@@ -19,14 +19,16 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 	protected boolean waitForIPCMechanismConsensus = false;
 	protected ConsensusAlgorithm consensusAlgorithm = ConsensusAlgorithm.CENTRALIZED_SYNCHRONOUS;
 
-	protected boolean atomicBroadcast = false;
+	protected Boolean atomicBroadcast = false;
 	@Override
-	public boolean isAtomicBroadcast() {
+	public Boolean isAtomicBroadcast() {
 		return atomicBroadcast;
 	}
+	@Override
 	public boolean isLocalProcessingOnly() {
 		return localProcessingOnly;
 	}
+	@Override
 	public void setLocalProcessingOnly(boolean localProcessingOnly) {
 		this.localProcessingOnly = localProcessingOnly;
 	}
@@ -62,7 +64,7 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 
 	}
 	@Override
-	public void setAtomicBroadcast(boolean newValue) {
+	public void setAtomicBroadcast(Boolean newValue) {
 		atomicBroadcast = newValue;
 		ProposedStateSet.newCase(this, CommunicationStateNames.BROADCAST_MODE, -1, newValue);
 	}

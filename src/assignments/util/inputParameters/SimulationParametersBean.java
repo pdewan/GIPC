@@ -11,9 +11,9 @@ import util.interactiveMethodInvocation.IPCMechanism;
  *
  */
 public interface SimulationParametersBean extends SimulationParametersListener {
-	boolean isAtomicBroadcast();
+	Boolean isAtomicBroadcast();
 
-	void setAtomicBroadcast(boolean newValue);
+	void setAtomicBroadcast(Boolean newValue);
 
 	void setIPCMechanism(IPCMechanism newValue);
 
@@ -26,6 +26,10 @@ public interface SimulationParametersBean extends SimulationParametersListener {
 	public void setWaitForIPCMechanismConsensus(boolean waitForIPCMechanismConsensus) ;
 	public ConsensusAlgorithm getConsensusAlgorithm() ;
 	public void setConsensusAlgorithm(ConsensusAlgorithm consensusAlgorithm) ;
+
+	boolean isLocalProcessingOnly();
+
+	void setLocalProcessingOnly(boolean localProcessingOnly);
 
 
 }
