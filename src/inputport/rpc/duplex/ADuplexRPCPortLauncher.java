@@ -14,6 +14,7 @@ import port.PortLauncherSupport;
 import port.PortMessageKind;
 import port.SessionChoice;
 import port.sessionserver.AServerPortDescription;
+import util.trace.port.rpc.gipc.GIPCObjectRegistered;
 
 
 
@@ -71,6 +72,7 @@ public class ADuplexRPCPortLauncher extends AnAbstractPortLauncher implements GI
 //	}
 	
 	public void rebind(String aName, Object anObject) {
+		GIPCObjectRegistered.newCase(this, aName, anObject, this);
 //		registry.put(aName, anObject);
 		register(aName, anObject);
 	}

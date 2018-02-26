@@ -18,6 +18,7 @@ import inputport.datacomm.simplex.buffer.SendRegistrar;
 import inputport.datacomm.simplex.buffer.SimplexBufferInputPortSelector;
 import inputport.datacomm.simplex.object.ASimplexObjectInputPortLauncherSupport;
 import inputport.datacomm.simplex.object.SimplexObjectInputPortSelector;
+import inputport.rpc.GIPCRegistry;
 import inputport.rpc.RPCProxyGenerator;
 import inputport.rpc.RPCProxyGeneratorHolder;
 import inputport.rpc.RPCRegistry;
@@ -54,6 +55,7 @@ import staticsessionport.datacomm.group.object.GroupObjectStaticSessionPortSelec
 import staticsessionport.rpc.duplex.DuplexRPCStaticSessionPortSelector;
 import staticsessionport.rpc.group.GroupRPCStaticSessionPortSelector;
 import util.trace.port.ConnectionEventManagerFactory;
+import util.trace.port.rpc.gipc.GIPCObjectLookedUp;
 
 public abstract class AnAbstractPortLauncher implements PortLauncher, ConnectionListener, Runnable {
 ;
@@ -1174,6 +1176,7 @@ public abstract class AnAbstractPortLauncher implements PortLauncher, Connection
 
 	}
 	public Object lookup(Class anInterface, String aName) {
+		GIPCObjectLookedUp.newCase(this, anInterface, aName, (GIPCRegistry) this);
 		return createProxy( anInterface, aName);
 	}
 	public Object lookupCaller(Class anInterface, String aName) {

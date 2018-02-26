@@ -1,5 +1,7 @@
 package inputport.rpc;
 
+import util.trace.port.rpc.gipc.GIPCRegistryCreated;
+import util.trace.port.rpc.gipc.GIPCRegistryLocated;
 import inputport.rpc.duplex.AnAbstractDuplexRPCClientPortLauncher;
 import inputport.rpc.duplex.AnAbstractDuplexRPCServerPortLauncher;
 
@@ -11,6 +13,7 @@ public class GIPCLocateRegistry {
 	static protected String lastServerName;
 	static protected String lastClientName;
 	public static GIPCRegistry createRegistry(int aPortNumber) {
+		GIPCRegistryCreated.newCase(GIPCRegistry.class, aPortNumber);
 		lastServerName = serverNamePrefix + lastServerId;
 		lastServerId++;
 		String aServerId = "" + aPortNumber;
@@ -38,6 +41,7 @@ public class GIPCLocateRegistry {
 //				aHostName,
 //				aServerId,
 //				lastServerName);
+		GIPCRegistryLocated.newCase(GIPCRegistry.class, aHostName, aPortNumber, aClientName);
 		GIPCRegistry result = getRegistryWithoutConnecting(aHostName, aPortNumber, aClientName);
 		boolean aStatus = result.connect();
 		if (aStatus)
