@@ -17,7 +17,7 @@ import java.util.Arrays;
  */
 public class ClientArgsProcessor {
 	public static final int HOST_ARG_INDEX = 0;	
-	public static final int PORT_ARG_INDEX = 1;
+	public static final int NIO_PORT_ARG_INDEX = 1;
 	public static final int CLIENT_NAME_ARG_INDEX = 2;
 	public static final String DEFAULT_CLIENT_NAME = "Generic Client";
 	public static final String DEFAULT_HEADLESS_VALUE = "false";
@@ -25,6 +25,7 @@ public class ClientArgsProcessor {
 	public static final int HEADLESS_ARG_INDEX = 3;
 	public static final int REGISTRY_HOST_ARG_INDEX = 4;
 	public static final int REGISTRY_PORT_ARG_INDEX = 5;
+	public static final int GIPC_PORT_ARG_INDEX = 6;
 	
 	public static String[] removeEmpty(String[] args) {
 		return Arrays.stream(args).filter(s -> !s.isEmpty()).toArray(String[]::new);
@@ -44,8 +45,8 @@ public class ClientArgsProcessor {
 	 * port otherwise
 	 */
 	public static int getServerPort(String[] args){
-		return args.length > PORT_ARG_INDEX ?
-				Integer.parseInt(args[PORT_ARG_INDEX]):
+		return args.length > NIO_PORT_ARG_INDEX ?
+				Integer.parseInt(args[NIO_PORT_ARG_INDEX]):
 				ServerPort.SERVER_PORT;
 	}
 	/**
@@ -83,6 +84,16 @@ public class ClientArgsProcessor {
 		return args.length > REGISTRY_PORT_ARG_INDEX ?
 				Integer.parseInt(args[REGISTRY_PORT_ARG_INDEX]):
 				Registry.REGISTRY_PORT;
+	}
+	
+	/**
+	 * Extracts the GIPC port from argument #6,  if it exists, returns default
+	 * port otherwise
+	 */
+	public static int getGIPCPort(String[] args){
+		return args.length > GIPC_PORT_ARG_INDEX ?
+				Integer.parseInt(args[GIPC_PORT_ARG_INDEX]):
+					ServerPort.GIPC_SERVER_PORT;
 	}
 
 }
