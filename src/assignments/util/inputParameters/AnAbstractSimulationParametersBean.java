@@ -105,6 +105,10 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 		setBroadcastBroadcastMode(newValue);		
 	}
 	@Override
+	public void broadcastMetaState(boolean newValue) {
+		setBroadcastMetaState(newValue);		
+	}
+	@Override
 	public void waitForBroadcastConsensus(boolean newValue) {
 		setWaitForBroadcastConsensus(newValue);		
 	}
