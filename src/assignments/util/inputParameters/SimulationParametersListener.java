@@ -11,9 +11,11 @@ public interface SimulationParametersListener {
 	void experimentInput();
 	void localProcessingOnly(boolean newValue);
 	void ipcMechanism(IPCMechanism newValue);
-	void broadcastBroadcastMode(boolean newValue);
+	void broadcastMetaState(boolean newValue);	
+//	void broadcastBroadcastMode(boolean newValue);
+	void delaySends(int aMillisecondDelay);
 	void waitForBroadcastConsensus(boolean newValue);
-	void broadcastIPCMechanism(boolean newValue);
+//	void broadcastIPCMechanism(boolean newValue);	
 	void waitForIPCMechanismConsensus(boolean newValue);
 	void consensusAlgorithm(ConsensusAlgorithm newValue);
 	void quit(int aCode);

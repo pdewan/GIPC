@@ -13,13 +13,18 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 	protected boolean localProcessingOnly = false;
 	protected boolean broadcastBroadcastMode = false;
 	protected boolean broadcastIPCMechanism = false;
+	protected boolean broadcastMetaState = false;
+
 
 	
 	protected boolean waitForBroadcastConsensus = false;
 	protected boolean waitForIPCMechanismConsensus = false;
-	protected ConsensusAlgorithm consensusAlgorithm = ConsensusAlgorithm.CENTRALIZED_SYNCHRONOUS;
+	protected ConsensusAlgorithm consensusAlgorithm = ConsensusAlgorithm.CENTRALIZED_ASYNCHRONOUS;
 
 	protected Boolean atomicBroadcast = false;
+	
+	protected int delay = 0;
+	
 	@Override
 	public Boolean isAtomicBroadcast() {
 		return atomicBroadcast;
@@ -95,7 +100,7 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 		setLocalProcessingOnly(newValue);
 		
 	}
-	@Override
+//	@Override
 	public void broadcastBroadcastMode(boolean newValue) {
 		setBroadcastBroadcastMode(newValue);		
 	}
@@ -103,9 +108,19 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 	public void waitForBroadcastConsensus(boolean newValue) {
 		setWaitForBroadcastConsensus(newValue);		
 	}
-	@Override
+//	@Override
 	public void broadcastIPCMechanism(boolean newValue) {
 		setBroadcastIPCMechanism(newValue);		
+	}
+	@Override
+	public boolean isBroadcastMetaState() {
+		return broadcastMetaState;
+	}
+	@Override
+	public void setBroadcastMetaState(boolean broadcastMetaState) {
+		this.broadcastMetaState = broadcastMetaState;
+		broadcastBroadcastMode(broadcastMetaState);
+		broadcastIPCMechanism(broadcastMetaState);
 	}
 	@Override
 	public void waitForIPCMechanismConsensus(boolean newValue) {
@@ -118,6 +133,17 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 	public void simulationCommand(String aCommand) {
 		ProposalMade.newCase(this, CommunicationStateNames.COMMAND, -1, aCommand);
 	}
-
+	@Override
+	public void delaySends(int aMillisecondDelay) {
+		setDelay(aMillisecondDelay);		
+	}
+	@Override
+	public int getDelay() {
+		return delay;
+	}
+	@Override
+	public void setDelay(int delay) {
+		this.delay = delay;
+	}
 	
 }

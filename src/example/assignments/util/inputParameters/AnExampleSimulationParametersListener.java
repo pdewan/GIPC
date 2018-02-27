@@ -31,7 +31,7 @@ public class AnExampleSimulationParametersListener implements SimulationParamete
 	}
 
 
-	@Override
+//	@Override
 	public void broadcastBroadcastMode(boolean newValue) {
 		System.out.println("broadcastBroadcastMode " + newValue);		
 	}
@@ -43,7 +43,7 @@ public class AnExampleSimulationParametersListener implements SimulationParamete
 		
 	}
 
-	@Override
+//	@Override
 	public void broadcastIPCMechanism(boolean newValue) {
 		System.out.println("broadcastIPCMechanism " + newValue);		
 	}
@@ -67,6 +67,20 @@ public class AnExampleSimulationParametersListener implements SimulationParamete
 	@Override
 	public void simulationCommand(String aCommand) {
 		System.out.println("Simulation command: " + aCommand);
+		
+	}
+
+	@Override
+	public void broadcastMetaState(boolean newValue) {
+		System.out.println("broadcastMetaState " + newValue);		
+
+		
+	}
+
+	@Override
+	public void delaySends(int aMilliseconcDelay) {
+		System.out.println("delaySends " + aMilliseconcDelay);		
+
 		
 	}
 

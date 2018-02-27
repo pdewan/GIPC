@@ -31,5 +31,13 @@ public interface SimulationParametersBean extends SimulationParametersListener {
 
 	void setLocalProcessingOnly(boolean localProcessingOnly);
 
+	boolean isBroadcastMetaState();
+
+	void setBroadcastMetaState(boolean broadcastMetaState);
+
+	int getDelay();
+
+	void setDelay(int delay);
+
 
 }
