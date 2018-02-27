@@ -159,10 +159,10 @@ public abstract class ACommandToMethodCallTranslator implements CommandToMethodC
 			}
 			
 
-			if (isQuitCommand(aTokens)) {
-				System.out.println("Exiting");
-				System.exit(0);
-			}
+//			if (isQuitCommand(aTokens)) {
+//				System.out.println("Exiting");
+//				System.exit(0);
+//			}
 			if (isPrintCommand(aTokens)) {
 				printClassCommands(SimulationParametersListener.class);
 				continue;
