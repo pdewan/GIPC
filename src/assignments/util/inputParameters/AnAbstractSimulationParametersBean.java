@@ -26,7 +26,7 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 	protected int delay = 0;
 	
 	@Override
-	public Boolean isAtomicBroadcast() {
+	public synchronized Boolean isAtomicBroadcast() {
 		return atomicBroadcast;
 	}
 	@Override
@@ -69,7 +69,7 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 
 	}
 	@Override
-	public void setAtomicBroadcast(Boolean newValue) {
+	public synchronized void setAtomicBroadcast(Boolean newValue) {
 		atomicBroadcast = newValue;
 		ProposedStateSet.newCase(this, CommunicationStateNames.BROADCAST_MODE, -1, newValue);
 	}
@@ -79,13 +79,13 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 		setAtomicBroadcast(newValue);
 	}
 	@Override
-	public void setIPCMechanism(IPCMechanism newValue) {
+	public synchronized void setIPCMechanism(IPCMechanism newValue) {
 		ipcMechanism = newValue;
 		ProposedStateSet.newCase(this, CommunicationStateNames.IPC_MECHANISM, -1, newValue);
 	}
 	protected IPCMechanism ipcMechanism = IPCMechanism.NIO;
 	@Override
-	public IPCMechanism getIPCMechanism() {
+	public synchronized IPCMechanism getIPCMechanism() {
 		return ipcMechanism;
 	}
 
