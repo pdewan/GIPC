@@ -70,8 +70,8 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 	}
 	@Override
 	public synchronized void setAtomicBroadcast(Boolean newValue) {
-		atomicBroadcast = newValue;
 		ProposedStateSet.newCase(this, CommunicationStateNames.BROADCAST_MODE, -1, newValue);
+		atomicBroadcast = newValue;
 	}
 	@Override
 	public void atomicBroadcast(boolean newValue) {
@@ -80,8 +80,8 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 	}
 	@Override
 	public synchronized void setIPCMechanism(IPCMechanism newValue) {
-		ipcMechanism = newValue;
 		ProposedStateSet.newCase(this, CommunicationStateNames.IPC_MECHANISM, -1, newValue);
+		ipcMechanism = newValue;
 	}
 	protected IPCMechanism ipcMechanism = IPCMechanism.NIO;
 	@Override
