@@ -3,6 +3,8 @@ package assignments.util;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
+import consensus.ProposalFeedbackKind;
+
 public class MiscAssignmentUtils {
 	public static ByteBuffer deepDuplicate(ByteBuffer aByteBuffer) {
 		byte[] anArrayCopy = Arrays.copyOfRange(aByteBuffer.array(), aByteBuffer.position(), aByteBuffer.limit());
@@ -14,5 +16,11 @@ public class MiscAssignmentUtils {
 	}
 	public static void setHeadless(String newVal) {
 		System.setProperty("java.awt.headless", newVal);		
+	}
+	public static ProposalFeedbackKind toProposalFeedbackKind(boolean aBoolean) {
+		return aBoolean?ProposalFeedbackKind.SUCCESS:ProposalFeedbackKind.SERVICE_DENIAL;
+	}
+	public static Boolean toBoolean(ProposalFeedbackKind aProposalFeedbackKind) {
+		return  aProposalFeedbackKind == ProposalFeedbackKind.SUCCESS;
 	}
 }
