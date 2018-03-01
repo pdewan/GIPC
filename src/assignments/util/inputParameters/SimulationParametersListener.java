@@ -19,6 +19,7 @@ public interface SimulationParametersListener {
 	void waitForIPCMechanismConsensus(boolean newValue);
 	void consensusAlgorithm(ConsensusAlgorithm newValue);
 	void quit(int aCode);
+	void rejectMetaStateChange(boolean newValue);
 	/**
 	 * simulationCommand
 	 */

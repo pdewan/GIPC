@@ -20,7 +20,9 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 	protected boolean waitForBroadcastConsensus = false;
 	protected boolean waitForIPCMechanismConsensus = false;
 	protected ConsensusAlgorithm consensusAlgorithm = ConsensusAlgorithm.CENTRALIZED_ASYNCHRONOUS;
+	protected boolean rejectMetaStateChange = false;
 
+	
 	protected Boolean atomicBroadcast = false;
 	
 	protected int delay = 0;
@@ -149,5 +151,15 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 	public void setDelay(int delay) {
 		this.delay = delay;
 	}
+	public boolean isRejectMetaStateChange() {
+		return rejectMetaStateChange;
+	}
+	public void setRejectMetaStateChange(boolean rejectMetaStateChange) {
+		this.rejectMetaStateChange = rejectMetaStateChange;
+	}
+	public void rejectMetaStateChange(boolean newValue) {
+		setRejectMetaStateChange(newValue);
+	}
+
 	
 }
