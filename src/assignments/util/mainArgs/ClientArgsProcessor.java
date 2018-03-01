@@ -26,6 +26,9 @@ public class ClientArgsProcessor {
 	public static final int REGISTRY_HOST_ARG_INDEX = 4;
 	public static final int REGISTRY_PORT_ARG_INDEX = 5;
 	public static final int GIPC_PORT_ARG_INDEX = 6;
+	public static final int ACCEPT_IPC_CHANGE_ARG_INDEX =7;
+	public static final String DEFAULT_ACCEPT_IPC_CHANGE_VALUE = "true";
+
 	
 	public static String[] removeEmpty(String[] args) {
 		return Arrays.stream(args).filter(s -> !s.isEmpty()).toArray(String[]::new);
@@ -51,7 +54,7 @@ public class ClientArgsProcessor {
 	}
 	/**
 	 * Extracts the client name from argument #2,  if it exists, returns default
-	 * value otherwise
+	 * value (false) otherwise
 	 */
 	public static String getClientName(String[] args){
 		return args.length > CLIENT_NAME_ARG_INDEX?
@@ -94,6 +97,15 @@ public class ClientArgsProcessor {
 		return args.length > GIPC_PORT_ARG_INDEX ?
 				Integer.parseInt(args[GIPC_PORT_ARG_INDEX]):
 					ServerPort.GIPC_SERVER_PORT;
+	}
+	/**
+	 * Extracts the acceptipcchange property from argument #7,  if it exists, returns default
+	 * value (true) otherwise
+	 */
+	public static String getAcceptIPCChange(String[] args){
+		return args.length > ACCEPT_IPC_CHANGE_ARG_INDEX?
+			args[ACCEPT_IPC_CHANGE_ARG_INDEX]:
+				DEFAULT_ACCEPT_IPC_CHANGE_VALUE;
 	}
 
 }
