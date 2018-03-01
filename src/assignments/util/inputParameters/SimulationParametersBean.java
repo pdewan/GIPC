@@ -38,6 +38,9 @@ public interface SimulationParametersBean extends SimulationParametersListener {
 	int getDelay();
 
 	void setDelay(int delay);
+	public void setRejectMetaStateChange(boolean rejectMetaStateChange);
+	public boolean isRejectMetaStateChange();
+
 
 
 }
