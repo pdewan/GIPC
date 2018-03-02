@@ -16,7 +16,8 @@ public class NIOTraceUtility {
 	 */
 	public static void setTracing() {
 		Tracer.showInfo(true);
-		Tracer.setDisplayThreadName(true); 
+		Tracer.setDisplayThreadName(true);
+		Tracer.setDisplayTime(true);
 		TraceableInfo.setPrintTraceable(true);
 		TraceableInfo.setPrintSource(true);
 		Tracer.setImplicitPrintKeywordKind(ImplicitKeywordKind.OBJECT_CLASS_NAME);	
