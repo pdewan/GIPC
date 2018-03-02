@@ -98,14 +98,14 @@ public class ClientArgsProcessor {
 				Integer.parseInt(args[GIPC_PORT_ARG_INDEX]):
 					ServerPort.GIPC_SERVER_PORT;
 	}
-	/**
-	 * Extracts the acceptipcchange property from argument #7,  if it exists, returns default
-	 * value (true) otherwise
-	 */
-	public static String getAcceptIPCChange(String[] args){
-		return args.length > ACCEPT_IPC_CHANGE_ARG_INDEX?
-			args[ACCEPT_IPC_CHANGE_ARG_INDEX]:
-				DEFAULT_ACCEPT_IPC_CHANGE_VALUE;
-	}
+//	/**
+//	 * Extracts the acceptipcchange property from argument #7,  if it exists, returns default
+//	 * value (true) otherwise
+//	 */
+//	public static String getAcceptIPCChange(String[] args){
+//		return args.length > ACCEPT_IPC_CHANGE_ARG_INDEX?
+//			args[ACCEPT_IPC_CHANGE_ARG_INDEX]:
+//				DEFAULT_ACCEPT_IPC_CHANGE_VALUE;
+//	}
 
 }
