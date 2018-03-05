@@ -28,7 +28,10 @@ public interface SimulationParametersListener {
 		System.out.println("broadcastMetaState called with argument '" + newValue + "' but it has not been implemented.");
 	}
 
-	// void broadcastBroadcastMode(boolean newValue);
+//	default void broadcastBroadcastMode(boolean newValue) {
+//		System.out.println("broadcastBroadcastMode called with argument '" + newValue + "' but it has not been implemented.");
+//	}
+	
 	default void delaySends(int aMillisecondDelay) {
 		System.out.println("delaySends called with argument '" + aMillisecondDelay + "' but it has not been implemented.");
 	}
@@ -37,7 +40,10 @@ public interface SimulationParametersListener {
 		System.out.println("waitForBroadcastConsensus called with argument '" + newValue + "' but it has not been implemented.");
 	}
 
-	// void broadcastIPCMechanism(boolean newValue);
+//	 default void broadcastIPCMechanism(boolean newValue) {
+//		System.out.println("broadcastIPCMechanism called with argument '" + newValue + "' but it has not been implemented.");
+//	}
+	 
 	default void waitForIPCMechanismConsensus(boolean newValue) {
 		System.out.println("waitForIPCMechanismConsensus called with argument '" + newValue
 				+ "' but it has not been implemented.");
