@@ -20,7 +20,7 @@ public class SocketChannelConnectRequested extends SocketChannelInfo {
 	}
 	public static SocketChannelConnectRequested newCase(Object aSource, 			
 			SocketChannel aSocketChannel, InetAddress aHost, int aPort, SocketChannelConnectListener... listeners) {    	
-		String aMessage = "(" + aHost + "." + aPort + "," + Arrays.toString(listeners) + ") <-" +
+		String aMessage = "(" + aHost + ":" + aPort + "," + Arrays.toString(listeners) + ") <-" +
 				aSocketChannel.toString();
 		SocketChannelConnectRequested retVal = new SocketChannelConnectRequested(aMessage, 
 				aSource, 
