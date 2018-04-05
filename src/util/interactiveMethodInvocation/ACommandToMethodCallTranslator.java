@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,10 +18,15 @@ import assignments.util.inputParameters.SimulationParametersListener;
  *
  */
 public abstract class ACommandToMethodCallTranslator implements CommandToMethodCallTranslator {
-	static Scanner scanner = new Scanner(System.in);
+	static Scanner scanner;
 	String[] booleanInputs = {"true", "false"};
 	public static String PRINT_COMMAND = "print";
 	public static String QUIT_COMMAND = "quit";
+	
+	static {
+		System.out.println("Command processor scanner opened");
+		scanner = new Scanner(System.in);
+	}
 	
 	
 //	public  boolean parseBoolean(String aValue) {
@@ -137,7 +143,19 @@ public abstract class ACommandToMethodCallTranslator implements CommandToMethodC
 	public void processCommands(Class aClass) {
 		while (true) {
 			System.out.println("Enter (prefixes of) print, quit or a method and its parameters separated by commas:");
-			String nextLine = scanner.nextLine();
+//			while(!scanner.hasNextLine()) {
+//				try {
+//					Thread.sleep(50);
+//				} catch (InterruptedException e) {
+//				}
+//			}
+			String nextLine;
+			try {
+				nextLine = scanner.nextLine();
+			} catch (NoSuchElementException e) {
+				e.printStackTrace();
+				break;
+			}
 			int aSpaceIndex = indexOf(whiteSpace, nextLine);
 			if (aSpaceIndex == -1) {
 				System.out.println("Method name missing:" + nextLine);
