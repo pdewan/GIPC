@@ -9,6 +9,9 @@ import examples.gipc.counter.layers.AMultiLayerCounterClient;
 import examples.gipc.counter.layers.AMultiLayerCounterServer;
 
 public class ACustomCounterServer extends AMultiLayerCounterServer{
+	/*
+	 * Simply call the client factory method
+	 */
 	public static void setFactories() {
 		ACustomCounterClient.setFactories();
 
@@ -19,7 +22,13 @@ public class ACustomCounterServer extends AMultiLayerCounterServer{
 		setFactories();
 		init();
 		setPort();
-		addListeners();
+		addListeners(); // for receiving bytebuffer and object messages implicitly
+		
+		/*
+		 * Code for making explicit receive calls to receive messages
+		 * It does not work in the default implementation. Your assignment
+		 * should make it work
+		 */
 		while (true) {
 			ReceiveReturnMessage aReceivedMessage = gipcRegistry.getRPCServerPort().receive();
 			if (aReceivedMessage == null) {

@@ -13,6 +13,9 @@ public class ACustomDuplexObjectServerInputPort extends ADuplexObjectServerInput
 			DuplexServerInputPort<ByteBuffer> aBBDuplexServerInputPort) {
 		super(aBBDuplexServerInputPort);
 	}
+	/**
+	 * Changes the notifier that invokes receive listeners
+	 */
 	protected ReceiveRegistrarAndNotifier<Object> createReceiveRegistrarAndNotifier() {
 		return new ACustomReceiveNotifier();
 	}

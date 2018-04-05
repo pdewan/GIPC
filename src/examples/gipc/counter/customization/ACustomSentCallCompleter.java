@@ -13,16 +13,17 @@ public class ACustomSentCallCompleter extends ADuplexSentCallCompleter	{
 	public ACustomSentCallCompleter(DuplexRPCInputPort aPort, LocalRemoteReferenceTranslator aRemoteHandler) {
 		super(aPort, aRemoteHandler);		
 	}	
-	@Override
-	protected void returnValueReceived(String aRemoteEndPoint, Object message) {
-		System.out.println ("Processing return value of call:" + aRemoteEndPoint + "." + message);
-		super.returnValueReceived(aRemoteEndPoint, message);		
-	}
+		
 	@Override
 	public Object waitForReturnValue(String aRemoteEndPoint) {
 		Object retVal = super.waitForReturnValue(aRemoteEndPoint);		
 		System.out.println (aRemoteEndPoint +  "-->" + retVal);
 		return retVal;
+	}
+	@Override
+	protected void returnValueReceived(String aRemoteEndPoint, Object message) {
+		System.out.println ("Processing return value of call:" + aRemoteEndPoint + "." + message);
+		super.returnValueReceived(aRemoteEndPoint, message);		
 	}
 	protected Object getReturnValueOfRemoteFunctionCall(String aRemoteEndPoint, Object aMessage) {
 		System.out.println ("getReturnValueOfRemoteFunctionCall called");
