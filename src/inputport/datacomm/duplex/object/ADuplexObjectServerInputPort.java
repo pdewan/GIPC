@@ -122,7 +122,16 @@ public class ADuplexObjectServerInputPort extends ASimplexObjectServerInputPort 
 	public void reply(String aRemoteEnd, Object aMessage) {
 		send(aRemoteEnd, aMessage);
 	}
+//	public ReceiveReturnMessage<Object> receive() {
+//		return receive(getSender());		
+//
+//	}
 	public ReceiveReturnMessage<Object> receive() {
+		String aLastSender = getSender();
+		if (aLastSender == null) {
+			System.out.println("Paramaterless receive returns null as no message sent so far");
+			return null;
+		}
 		return receive(getSender());		
 
 	}
@@ -131,6 +140,7 @@ public class ADuplexObjectServerInputPort extends ASimplexObjectServerInputPort 
 		System.err.println("Receive not implemented");
 		return null;
 	}
+	
 	
 //	public static void main (String[] args) {
 //		Tracer.showInfo(true);

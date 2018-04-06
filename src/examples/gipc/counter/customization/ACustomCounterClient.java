@@ -6,6 +6,7 @@ import inputport.rpc.duplex.DuplexReceivedCallInvokerSelector;
 import inputport.rpc.duplex.DuplexSentCallCompleterSelector;
 import inputport.rpc.duplex.SynchronousDuplexReceivedCallInvokerSelector;
 import serialization.SerializerSelector;
+import util.trace.port.objects.ObjectTraceUtility;
 import util.trace.port.rpc.RPCTraceUtility;
 import examples.gipc.counter.layers.AMultiLayerCounterClient;
 /**
@@ -50,6 +51,22 @@ public class ACustomCounterClient extends AMultiLayerCounterClient{
 		 */
 		SerializerSelector.setSerializerFactory(new ACustomSerializerFactory());	
 	}
+	
+	/**
+	 * Code for making explicit receive calls to receive messages
+	 * It does not work in the default implementation. Your assignment
+	 * should make it work.
+	 */
+	public static void doReceive() {		
+		
+		while (true) {
+			ReceiveReturnMessage aReceivedMessage = duplexRPCClientInputPort.receive();
+			if (aReceivedMessage == null) {
+				break;
+			}
+			System.out.println("Received message:" + aReceivedMessage );
+		}
+	}
 	/**
 	 * Call the superclass methods.
 	 * 
@@ -58,21 +75,15 @@ public class ACustomCounterClient extends AMultiLayerCounterClient{
 	 * 
 	 */
 	public static void main (String[] args) {
-//		BufferTraceUtility.setTracing();
-//		RPCTraceUtility.setTracing();
+		ObjectTraceUtility.setTracing();
+		RPCTraceUtility.setTracing();		
 		setFactories();
 		init("Client 1");
 		setPort();
 		sendByteBuffers();
 		sendObjects();
 		doOperations();	
-		while (true) {
-			ReceiveReturnMessage aReceivedMessage = gipcRegistry.getRPCClientPort().receive();
-			if (aReceivedMessage == null) {
-				break;
-			}
-			System.out.println("Received message:" + aReceivedMessage );
-		}
+		doReceive();
 	}
 	
 

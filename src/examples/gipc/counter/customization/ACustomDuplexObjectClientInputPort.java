@@ -24,7 +24,7 @@ public class ACustomDuplexObjectClientInputPort extends ADuplexObjectClientInput
 		super.send(aDestination, aMessage);	
 	}
 	/**
-	 * Overrides the unimplemented receive method
+	 * Overrides the unimplemented paramaterized receive method
 	 */
 	@Override
 	public ReceiveReturnMessage<Object> receive(String aSource) {

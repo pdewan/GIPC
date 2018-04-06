@@ -7,6 +7,8 @@ public interface ExplicitReceiveListener<MessageType> extends ReceiveListener <M
 
 //	public void  messageReceived(String remoteClientName, MessageType aessage);
 	ReceiveReturnMessage<MessageType> getReceivedMessage();
+	boolean hasBlockedThread();
+
 
 	
 
