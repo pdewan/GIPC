@@ -10,7 +10,10 @@ import util.trace.port.rpc.RPCTraceUtility;
 import examples.gipc.counter.layers.AMultiLayerCounterClient;
 /**
  * A class that uses factories to change the components of the GIPC RPC
- * implementation
+ * implementation.
+ * 
+ * It also calls theexplicit receive operation implemented currently in 
+ * GIPC by a stub method.
  *
  */
 public class ACustomCounterClient extends AMultiLayerCounterClient{
@@ -47,6 +50,13 @@ public class ACustomCounterClient extends AMultiLayerCounterClient{
 		 */
 		SerializerSelector.setSerializerFactory(new ACustomSerializerFactory());	
 	}
+	/**
+	 * Call the superclass methods.
+	 * 
+	 * Use the main thread to receive and print messages explicitly. USe this
+	 * to test your implementation of receive.
+	 * 
+	 */
 	public static void main (String[] args) {
 //		BufferTraceUtility.setTracing();
 //		RPCTraceUtility.setTracing();

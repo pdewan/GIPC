@@ -14,9 +14,9 @@ public class ReceivedMessageQueued extends TraceableInfo {
 	}
 	
 	
-	public static ReceivedMessageQueued newCase(Object aSource, Object aQueue,  Object aCall) {
-    	String aMessage =  aCall + "->" + aQueue;
-    	ReceivedMessageQueued retVal = new ReceivedMessageQueued(aMessage, aSource, aQueue, aCall);
+	public static ReceivedMessageQueued newCase(Object aSource, Object aQueue,  Object aReceivedMessage) {
+    	String aMessage =  aReceivedMessage + "->" + aQueue;
+    	ReceivedMessageQueued retVal = new ReceivedMessageQueued(aMessage, aSource, aQueue, aReceivedMessage);
    	    retVal.announce();
     	return retVal;
 

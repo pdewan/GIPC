@@ -9,14 +9,14 @@ import util.trace.TraceableInfo;
 public class ReceivedMessageDequeued extends TraceableInfo {
 	
 
-	public ReceivedMessageDequeued(String aMessage, Object aSource, Object aQueue, Object aCall) {
+	public ReceivedMessageDequeued(String aMessage, Object aSource, Object aQueue, Object aReceivedMessage) {
 		super(aMessage, aSource );
 	}
 	
 	
-	public static ReceivedMessageDequeued newCase(Object aSource, Object aQueue,  Object aCall) {
-    	String aMessage =  aCall + "<-" + aQueue;
-    	ReceivedMessageDequeued retVal = new ReceivedMessageDequeued(aMessage, aSource, aQueue, aCall);
+	public static ReceivedMessageDequeued newCase(Object aSource, Object aQueue,  Object aReceivedMessage) {
+    	String aMessage =  aReceivedMessage + "<-" + aQueue;
+    	ReceivedMessageDequeued retVal = new ReceivedMessageDequeued(aMessage, aSource, aQueue, aReceivedMessage);
    	    retVal.announce();
     	return retVal;
 

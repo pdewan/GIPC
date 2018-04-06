@@ -27,7 +27,7 @@ public class ACustomCounterServer extends AMultiLayerCounterServer{
 		/*
 		 * Code for making explicit receive calls to receive messages
 		 * It does not work in the default implementation. Your assignment
-		 * should make it work
+		 * should make it work.
 		 */
 		while (true) {
 			ReceiveReturnMessage aReceivedMessage = gipcRegistry.getRPCServerPort().receive();

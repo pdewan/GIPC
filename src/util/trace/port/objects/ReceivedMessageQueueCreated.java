@@ -8,8 +8,8 @@ public class ReceivedMessageQueueCreated extends GIPCQueueCreated{
 		super(aMessage, aFinder, aQueue);
 	}
 
-	public static ReceivedMessageQueueCreated newCase(Object aFinder, Object aQueue, String anExplanation) {
-    	String aMessage = "Queue " + aQueue + " created for " + anExplanation;
+	public static ReceivedMessageQueueCreated newCase(Object aFinder, Object aQueue) {
+    	String aMessage = "Queue " + aQueue + " created for " + "received messages";
     	ReceivedMessageQueueCreated retVal =
    	    new ReceivedMessageQueueCreated(aMessage, aFinder, aQueue);
     	retVal.announce();
