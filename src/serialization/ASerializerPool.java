@@ -85,9 +85,12 @@ public class ASerializerPool implements SerializerPool {
 //				Tracer.error("Overflow of output buffers and if sending thread is selection thread, deadlock will occur");
 			
 			outputSupportBoundedBuffer.put(bufferSerializationSupport); // guaranteed to not block
+//			SerializerReturnedToPool.newCase(this, outputSupportBoundedBuffer, bufferSerializationSupport);
+			if (!initializingBufferPool) {
+//			Tracer.info(this, "Producing output buffer");
 			SerializerReturnedToPool.newCase(this, outputSupportBoundedBuffer, bufferSerializationSupport);
-			if (!initializingBufferPool)
-			Tracer.info(this, "Producing output buffer");
+
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

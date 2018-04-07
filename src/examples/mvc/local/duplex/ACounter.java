@@ -10,10 +10,14 @@ public class ACounter implements Counter{
 	}
 	Integer value = 0;	
 	public Object getValue() {
+		System.out.println("getValue called (locally or remotely)");
 		if (value < 0) throw new IllegalStateException();
+		System.out.println("getValue returns:" + value);
+
 		return value;
 	}	
 	public void increment(int val) {
+		System.out.println("Increment called (locally or remotely):" + val);
 		value += val;
 	}	
 	@Override

@@ -1,5 +1,7 @@
 package examples.gipc.counter.layers;
 
+import util.trace.port.objects.ObjectTraceUtility;
+import util.trace.port.rpc.RPCTraceUtility;
 import inputport.datacomm.duplex.DuplexInputPort;
 import inputport.rpc.GIPCRegistry;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
@@ -24,9 +26,15 @@ public class AMultiLayerCounterServer extends ASimpleGIPCRegistryAndCounterServe
 	public static void addListeners() {
 		duplexRPCServerInputPort.addReceiveListener(new AMultiLayeServerReceiveListener(counter));		
 	}
-	public static void main (String[] args) {		
-//		BufferTraceUtility.setTracing();
+	/**
+	 * Run the programs with and without the code in main commented out
+	 */
+	public static void setTracing() {
+//		ObjectTraceUtility.setTracing();
 //		RPCTraceUtility.setTracing();
+	}
+	public static void main (String[] args) {	
+		setTracing();
 		init();
 		setPort();
 		addListeners();

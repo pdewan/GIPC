@@ -19,14 +19,17 @@ public class AMultiLayeServerReceiveListener extends
 
 	public AMultiLayeServerReceiveListener(DistributedRMICounter aCounter) {
 		counter = aCounter;	}
-
+	/**
+	 * Increments counter based on message received
+	 */
 	@Override
 	public void messageReceived(String aSourceName, Object aMessage) {
+		System.out.println ("Incrementing counter in response to message:" + aSourceName + " <-" + aMessage);
 		try {
 			if (aMessage instanceof ByteBuffer) {
 				Integer anInt = Integer
 						.parseInt(AGenericSimplexBufferServerInputPort
-								.extractString((ByteBuffer) aMessage));
+								.extractString((ByteBuffer) aMessage));				
 				counter.increment(anInt);
 
 			} else {
