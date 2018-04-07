@@ -2,6 +2,7 @@ package examples.gipc.counter.layers;
 
 import util.trace.port.objects.ObjectTraceUtility;
 import util.trace.port.rpc.RPCTraceUtility;
+import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.duplex.DuplexInputPort;
 import inputport.rpc.GIPCRegistry;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
@@ -14,6 +15,7 @@ import examples.gipc.counter.simple.ASimpleGIPCRegistryAndCounterServer;
  */
 public class AMultiLayerCounterServer extends ASimpleGIPCRegistryAndCounterServer {
 	protected static DuplexRPCServerInputPort duplexRPCServerInputPort;
+	protected static ReceiveListener receiveListener;
 	/**
 	 * Assigns the rpc registry port to a global variable
 	 */
@@ -24,19 +26,21 @@ public class AMultiLayerCounterServer extends ASimpleGIPCRegistryAndCounterServe
 	 * Adds a single listener for receiving both bytebuffers and objects
 	 */
 	public static void addListeners() {
-		duplexRPCServerInputPort.addReceiveListener(new AMultiLayeServerReceiveListener(counter));		
+		receiveListener = new AMultiLayeServerReceiveListener(counter);
+		duplexRPCServerInputPort.addReceiveListener(receiveListener);		
 	}
 	/**
 	 * Run the programs with and without the code in main commented out
 	 */
 	public static void setTracing() {
-//		ObjectTraceUtility.setTracing();
-//		RPCTraceUtility.setTracing();
+		ObjectTraceUtility.setTracing();
+		RPCTraceUtility.setTracing();
 	}
-	public static void main (String[] args) {	
-		setTracing();
+	public static void launch() {
+//		setTracing();
 		init();
 		setPort();
 		addListeners();
 	}
+	
 }

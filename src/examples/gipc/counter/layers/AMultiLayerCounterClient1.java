@@ -12,9 +12,10 @@ import examples.gipc.counter.simple.ASimpleGIPCCounterClient;
  * Just calls AMultiLayerCounterClient with a hardwired client name
  *
  */
-public class AMultiLayerCounterClient1 extends ASimpleGIPCCounterClient {
+public class AMultiLayerCounterClient1  {
 	public static final String CLIENT1_NAME = "Client1";
 	public static void main (String[] args) {
+//		AMultiLayerCounterServer.setTracing();
 		AMultiLayerCounterClient.launchClient(CLIENT1_NAME);
 	}
 }

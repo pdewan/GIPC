@@ -126,7 +126,7 @@ public class ADuplexObjectClientInputPort extends ASimplexObjectClientInputPort 
 	public ReceiveReturnMessage<Object> receive() {
 		String aLastSender = getSender();
 		if (aLastSender == null) {
-			System.out.println("Paramaterless receive returns null as no message sent so far");
+//			System.out.println("Paramaterless receive returns null as no message sent so far");
 			return null;
 		}
 		return receive(getSender());		
