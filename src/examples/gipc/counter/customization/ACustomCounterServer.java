@@ -55,7 +55,7 @@ public class ACustomCounterServer extends AMultiLayerCounterServer{
 		duplexRPCServerInputPort.addConnectionListener(customServerConnectionListener);
 	}
 	public static void launch() {
-		
+		setFactories();
 		AMultiLayerCounterServer.launch();
 		addConnectListener();
 		doReceive();

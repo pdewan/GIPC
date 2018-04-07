@@ -10,6 +10,14 @@ public class ATracingFactorySetter implements FactorySetter{
 	@Override
 	public void setFactories() {
 		/*
+		 * Determines the ports  for sending and
+		 * receiving objects. Needed for sync receive.
+		 */
+		DuplexObjectInputPortSelector.setDuplexInputPortFactory(
+				new ACustomDuplexObjectInputPortFactory());
+		
+		
+		/*
 		 * Two alternatives for received call invoker factory, with one
 		 * commented out. This factory determines the object that 
 		 * actually calls a method of a remote object in response to
@@ -27,12 +35,7 @@ public class ATracingFactorySetter implements FactorySetter{
 		DuplexSentCallCompleterSelector.setDuplexSentCallCompleterFactory(
 				new ACustomSentCallCompleterFactory());
 		
-		/*
-		 * Determines the ports  for sending and
-		 * receiving objects
-		 */
-		DuplexObjectInputPortSelector.setDuplexInputPortFactory(
-				new ACustomDuplexObjectInputPortFactory());
+		
 		/*
 		 * This is for the serializer assignment, determines the serializer
 		 */
