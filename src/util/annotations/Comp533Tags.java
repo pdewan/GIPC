@@ -52,6 +52,8 @@ public interface Comp533Tags {
 	public static final String BLOCKING_RPC_CLIENT1 = "Blocking RPC Client 1";
 	public static final String BLOCKING_RPC_CLIENT2 = "Blocking RPC Client 2";
 	public static final String BLOCKING_RPC_SERVER = "Blocking RPC Server";
+	
+	public static final String CUSTOM_IPC = "Custom IPC";
 
 	
 
