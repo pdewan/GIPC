@@ -40,6 +40,21 @@ public interface Comp533Tags {
 	public static final String NULL_SERIALIZER = "Null Serializer";
 	
 	public static final String LIST_PATTERN_SERIALIZER = "List Pattern Serializer";
+	
+	public static final String EXPLICIT_RECEIVE_CLIENT1 = "Explicit Receive Client 1";
+	public static final String EXPLICIT_RECEIVE_CLIENT2 = "Explicit Receive Client 2";
+	public static final String EXPLICIT_RECEIVE_SERVER = "Explicit Receive Server";
+	
+	public static final String CUSTOM_RPC_CLIENT1 = "Custom RPC Client 1";
+	public static final String CUSTOM_RPC_CLIENT2 = "Custom RPC Client 2";
+	public static final String CUSTOM_RPC_SERVER = "Custom RPC Server";
+	
+	public static final String BLOCKING_RPC_CLIENT1 = "Blocking RPC Client 1";
+	public static final String BLOCKING_RPC_CLIENT2 = "Blocking RPC Client 2";
+	public static final String BLOCKING_RPC_SERVER = "Blocking RPC Server";
+
+	
+
 
 
 	
