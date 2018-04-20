@@ -27,9 +27,13 @@ public class AReceiveRegistrarAndNotifier<MessageType> implements ReceiveRegistr
 	@Override
 	public synchronized void notifyPortReceive (String remoteEnd, MessageType message) {
 		Tracer.info(this, "Notifying receive listeners");
+		try {
 		for (ReceiveListener<MessageType> portReceiveListener:portReceiveListeners) {
 			ReceiveListenerNotified.newCase(this, portReceiveListener, message);
 			portReceiveListener.messageReceived(remoteEnd, message);
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

@@ -29,8 +29,12 @@ public class ASendRegistrarAndNotifier  implements SendRegistrarAndNotifier {
 	@Override
 	public synchronized void notifyPortSend (String aRemoteEnd, ByteBuffer message, int sendId) {
 		Tracer.info(this, "Notifying to send listeners message:" + message + " sendId:" + sendId);
+		try {
 		for (ByteBufferSendListener portSendListener:portSendListeners)
 			portSendListener.messageSent(aRemoteEnd, message, sendId);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 	
