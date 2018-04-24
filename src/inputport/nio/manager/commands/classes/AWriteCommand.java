@@ -50,7 +50,7 @@ public class AWriteCommand extends AnAbstractNIOCommand implements WriteCommand 
 		this(aSelectingRunnable, aSocketChannel, aWriteBuffer, null);		
 	}
 	@Override
-	public void addwriteListener(SocketChannelWriteListener aListener) {
+	public synchronized void addwriteListener(SocketChannelWriteListener aListener) {
 		writeListeners.add(aListener);
 	}
 //	@Override
@@ -70,7 +70,7 @@ public class AWriteCommand extends AnAbstractNIOCommand implements WriteCommand 
 		return writeBuffer;
 	}
 	@Override
-	public boolean execute() {
+	public synchronized boolean execute() {
 		// whjy are we guaranteed connected?
 //		if (!socketChannel.isConnected())
 //			return false;
@@ -98,9 +98,13 @@ public class AWriteCommand extends AnAbstractNIOCommand implements WriteCommand 
 			writeBuffer.flip(); // so that it gets into read mode
 			Tracer.info(this, "written to channel" + socketChannel + " flipped buffer:" + getId() + " with contents" + writeBuffer.toString());
 //			Tracer.info(this, "flipping buffer for reading by write listeners:" + writeBuffer.toString());
+			try {
 			for (SocketChannelWriteListener writeListener:writeListeners)
 				writeListener.written(socketChannel, writeBuffer, getId());
 			Tracer.info(this, "notified listeners about write");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
 			return true;
 			

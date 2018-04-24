@@ -26,8 +26,8 @@ public class AReadCommand extends AnAbstractNIOCommand implements ReadCommand {
 	SocketChannel socketChannel;
 	SelectionManager selectionManager;
 	ByteBuffer readBuffer;
-	List<SocketChannelCloseListener> closeListeners = new ArrayList();
-	List<SocketChannelReadListener> readListeners = new ArrayList();
+	private List<SocketChannelCloseListener> closeListeners = new ArrayList();
+	private List<SocketChannelReadListener> readListeners = new ArrayList();
 	public AReadCommand(SelectionManager theSelectionManager,
 			SocketChannel aSocketChannel, Integer aNextInterestOps) {
 		super(aSocketChannel, aNextInterestOps);
@@ -54,7 +54,7 @@ public class AReadCommand extends AnAbstractNIOCommand implements ReadCommand {
 		return false;
 	}
 	@Override
-	public boolean execute() {
+	public synchronized boolean execute() {
 		try {
 			processRead();
 			return true;
@@ -96,7 +96,7 @@ public class AReadCommand extends AnAbstractNIOCommand implements ReadCommand {
 		return bytesRead;
 			
      }
-	protected void notifyRead(SocketChannel theSocketChannel, ByteBuffer theBuffer, int length ) {
+	protected synchronized void notifyRead(SocketChannel theSocketChannel, ByteBuffer theBuffer, int length ) {
 		SocketChannelFullMessageRead.newCase(this, socketChannel, theBuffer, length, readListeners);
 
 		for (SocketChannelReadListener readListener:readListeners)
@@ -112,7 +112,7 @@ public class AReadCommand extends AnAbstractNIOCommand implements ReadCommand {
 	}
 	
 	@Override
-	public void addReadListener(SocketChannelReadListener aListener) {
+	public synchronized void addReadListener(SocketChannelReadListener aListener) {
 		if (aListener == null) {
 			System.err.println("Ignoring attempt to register null read listener");
 			return;
@@ -122,7 +122,7 @@ public class AReadCommand extends AnAbstractNIOCommand implements ReadCommand {
 		readListeners.add(aListener);
 		
 	}
-	public void addCloseListener(SocketChannelCloseListener aListener) {
+	public synchronized void addCloseListener(SocketChannelCloseListener aListener) {
 		if (aListener == null) {
 			System.err.println("Ignoring attempt to register null close listener");
 			return;
@@ -132,10 +132,15 @@ public class AReadCommand extends AnAbstractNIOCommand implements ReadCommand {
 		closeListeners.add(aListener);
 	}
 	public void notifyCloseListeners(SocketChannel theSocketChannel, Exception anException) {
-		
+		try {
 	for (SocketChannelCloseListener closeListener:closeListeners)
 	    closeListener.closed(theSocketChannel, anException);
-	}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	} 
+		
+	
 	
 
 }

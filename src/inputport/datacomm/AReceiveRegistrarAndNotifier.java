@@ -9,10 +9,10 @@ import util.trace.port.ReceiveListenerRegistered;
 
 public class AReceiveRegistrarAndNotifier<MessageType> implements ReceiveRegistrarAndNotifier<MessageType> {
 
-	protected List<ReceiveListener<MessageType>> portReceiveListeners = new ArrayList();
+	private List<ReceiveListener<MessageType>> portReceiveListeners = new ArrayList();
 
 	@Override
-	public void addReceiveListener(ReceiveListener<MessageType> portReceiveListener) {		
+	public synchronized void addReceiveListener(ReceiveListener<MessageType> portReceiveListener) {		
 		ReceiveListenerRegistered.newCase(this, portReceiveListener);
 		Tracer.info(this, "Registering receive listener:" + portReceiveListener);
 		if (portReceiveListeners.contains(portReceiveListener))
@@ -20,21 +20,25 @@ public class AReceiveRegistrarAndNotifier<MessageType> implements ReceiveRegistr
 		portReceiveListeners.add(portReceiveListener);		
 	}
 	@Override
-	public void removeReceiveListener(ReceiveListener<MessageType> portReceiveListener) {		
+	public synchronized void removeReceiveListener(ReceiveListener<MessageType> portReceiveListener) {		
 		Tracer.info(this, "Removing receive listener:" + portReceiveListener);
 		portReceiveListeners.remove(portReceiveListener);		
 	}
 	@Override
-	public void notifyPortReceive (String remoteEnd, MessageType message) {
+	public synchronized void notifyPortReceive (String remoteEnd, MessageType message) {
 		Tracer.info(this, "Notifying receive listeners");
+		try {
 		for (ReceiveListener<MessageType> portReceiveListener:portReceiveListeners) {
 			ReceiveListenerNotified.newCase(this, portReceiveListener, message);
 			portReceiveListener.messageReceived(remoteEnd, message);
 		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
-	public List<ReceiveListener<MessageType>> getReceiveListeners() {
+	public synchronized List<ReceiveListener<MessageType>> getReceiveListeners() {
 		return portReceiveListeners;
 	}
 

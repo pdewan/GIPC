@@ -10,9 +10,9 @@ import util.trace.Tracer;
 
 
 public class AConnectRegistrarAndNotifier implements ConnectionRegistrarAndNotifier {
-	List<ConnectionListener> portConnectListeners = new ArrayList();
+	private List<ConnectionListener> portConnectListeners = new ArrayList(); // private so no one else modifies it concurrently
 	@Override
-	public void addConnectionListener(ConnectionListener portConnectListener) {
+	public synchronized void addConnectionListener(ConnectionListener portConnectListener) {
 		if (portConnectListeners.contains(portConnectListener)) {
 			System.out.println ("Ignoring duplicate connect listnener");
 			return;
@@ -20,7 +20,7 @@ public class AConnectRegistrarAndNotifier implements ConnectionRegistrarAndNotif
 		portConnectListeners.add(portConnectListener);		
 	}
 	@Override
-	public void removeConnectionListener(ConnectionListener portConnectListener) {
+	public synchronized void  removeConnectionListener(ConnectionListener portConnectListener) {
 		portConnectListeners.remove(portConnectListener);		
 	}
 	@Override
@@ -30,12 +30,12 @@ public class AConnectRegistrarAndNotifier implements ConnectionRegistrarAndNotif
 			portConnectListener.connected(remoteEnd, aConnectionType);		
 	}
 	@Override
-	public void notifyConnectFailure (String remoteEnd, String message, ConnectionType aConnectionType) {
+	public  synchronized void notifyConnectFailure (String remoteEnd, String message, ConnectionType aConnectionType) {
 		for (ConnectionListener portConnectListener:portConnectListeners)
 			portConnectListener.notConnected(remoteEnd, message, aConnectionType);		
 	}
 	@Override
-	public void notifyDisconnect (String aRemoteEnd, boolean anExplcitClose, String aCloseReason, ConnectionType aConnectionType) {
+	public synchronized void notifyDisconnect (String aRemoteEnd, boolean anExplcitClose, String aCloseReason, ConnectionType aConnectionType) {
 		for (ConnectionListener portConnectListener:portConnectListeners)
 			portConnectListener.disconnected(aRemoteEnd, anExplcitClose, aCloseReason, aConnectionType);		
 	}

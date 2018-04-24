@@ -143,19 +143,21 @@ public abstract class ACommandToMethodCallTranslator implements CommandToMethodC
 	public void processCommands(Class aClass) {
 		while (true) {
 			System.out.println("Enter (prefixes of) print, quit or a method and its parameters separated by commas:");
-//			while(!scanner.hasNextLine()) {
-//				try {
-//					Thread.sleep(50);
-//				} catch (InterruptedException e) {
-//				}
-//			}
-			String nextLine;
-			try {
-				nextLine = scanner.nextLine();
-			} catch (NoSuchElementException e) {
-				e.printStackTrace();
-				break;
+			while(!scanner.hasNextLine()) {
+				try {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+					break;
+				}
 			}
+			String nextLine;
+//			try {
+				nextLine = scanner.nextLine();
+//			} catch (NoSuchElementException e) {
+//				e.printStackTrace();
+//				break;
+//			}
 			int aSpaceIndex = indexOf(whiteSpace, nextLine);
 			if (aSpaceIndex == -1) {
 				System.out.println("Method name missing:" + nextLine);

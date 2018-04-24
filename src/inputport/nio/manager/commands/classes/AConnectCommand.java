@@ -125,10 +125,17 @@ public class AConnectCommand extends AnAbstractNIOCommand implements
 		// selectionKey.interestOps(SelectionKey.OP_READ);
 		// Tracer.info(this, "New ops for:" + socketChannel + " are " +
 		// selectionKey.interestOps());
-		for (SocketChannelConnectListener listener : listeners)
-			listener.connected(socketChannel);
 		
 		changeInterestOps(selectionKey);
+
+		try {
+		for (SocketChannelConnectListener listener : listeners)
+			listener.connected(socketChannel);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+//		changeInterestOps(selectionKey);
 		// selectionKey.interestOps(SelectionKey.OP_READ);
 		// SocketChannelInterestOp.newCase(this, selectionKey,
 		// SelectionKey.OP_READ);

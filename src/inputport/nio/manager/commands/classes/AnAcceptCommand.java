@@ -23,7 +23,7 @@ import util.trace.port.nio.SocketChannelRegistered;
 public class AnAcceptCommand extends AnAbstractNIOCommand implements AcceptCommand {
 	InetAddress serverHost;
 //	SocketChannelAcceptListener listener;
-	List<SocketChannelAcceptListener> listeners = new ArrayList();
+	private List<SocketChannelAcceptListener> listeners = new ArrayList();
 	int port;
 	int newOps;
 	ServerSocketChannel serverSocketChannel;
@@ -75,22 +75,31 @@ public class AnAcceptCommand extends AnAbstractNIOCommand implements AcceptComma
 		}
 	}
 	@Override
-	public boolean execute() {
+	public synchronized boolean execute() {
 		try {
 			SocketChannel newSocketChannel = serverSocketChannel.accept();
 			SocketChannelAccepted.newCase(this, newSocketChannel, serverSocketChannel,listeners );
 //			newSocketChannel.configureBlocking(false);	
 			Tracer.info(this, "New socket channel with read ops enabled:" + newSocketChannel);
 //			newSocketChannel.register(selectingRunnable.getSelector(), SelectionKey.OP_READ);			
-			for (SocketChannelAcceptListener listener:listeners)
-				listener.socketChannelAccepted(serverSocketChannel, newSocketChannel);
+//			try {
+//			for (SocketChannelAcceptListener listener:listeners)
+//				listener.socketChannelAccepted(serverSocketChannel, newSocketChannel);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
 			newSocketChannel.configureBlocking(false);
 			Integer aNextInterestOps = nextInterestOps != null?nextInterestOps:0;
 //			newSocketChannel.register(selectingRunnable.getSelector(), SelectionKey.OP_READ);	
 			newSocketChannel.register(selectingRunnable.getSelector(), aNextInterestOps);	
 
 			SocketChannelRegistered.newCase(this, newSocketChannel, selectingRunnable.getSelector(), SelectionKey.OP_READ);
-
+			try {
+				for (SocketChannelAcceptListener listener:listeners)
+					listener.socketChannelAccepted(serverSocketChannel, newSocketChannel);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,7 +107,7 @@ public class AnAcceptCommand extends AnAbstractNIOCommand implements AcceptComma
 		}
 	}
 	@Override
-	public void addAcceptListener(SocketChannelAcceptListener aListener) {
+	public synchronized void addAcceptListener(SocketChannelAcceptListener aListener) {
 		listeners.add(aListener);
 	}
 	
