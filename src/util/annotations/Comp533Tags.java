@@ -9,7 +9,12 @@ public interface Comp533Tags {
 	
 	public static final String LOGICAL_TEXTUAL_SERIALIZER = "Logical Textual Serializer";
 	
-	public static final String LOGICAL_BINARY_SERIALIZER = "Logical BINARY Serializer";
+	public static final String LOGICAL_BINARY_SERIALIZER = "Logical Binary Serializer";
+	
+	public static final String LOGICAL_TEXTUAL_SERIALIZER_FACTORY = "Logical Textual Serializer Factory";
+	
+	public static final String LOGICAL_BINARY_SERIALIZER_FACTORY = "Logical Binary Serializer Factory";
+
 	
 	public static final String SHORT_SERIALIZER = "Short Serializer";
 	
@@ -22,6 +27,9 @@ public interface Comp533Tags {
 	public static final String DOUBLE_SERIALIZER = "Double Serializer";
 	
 	public static final String BOOLEAN_SERIALIZER = "Boolean Serializer";
+	
+	public static final String STRING_SERIALIZER = "String Serializer";
+
 	
 	public static final String COLLECTION_SERIALIZER = "Collection Serializer";
 	
