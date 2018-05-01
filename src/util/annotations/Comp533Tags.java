@@ -62,6 +62,11 @@ public interface Comp533Tags {
 	public static final String BLOCKING_RPC_SERVER = "Blocking RPC Server";
 	
 	public static final String CUSTOM_IPC = "Custom IPC";
+	public static final String CUSTOM_SERIALIZER = "Custom Serializer";
+	
+	public static final String CUSTOM_SERIALIZER_CLIENT1 = "Custom Serializer Client 1";
+	public static final String CUSTOM_SERIALIZER_CLIENT2  = "Custom Serializer Client 2";
+	public static final String CUSTOM_SERIALIZER_SERVER = "Custom Serializer Server";
 
 	
 
