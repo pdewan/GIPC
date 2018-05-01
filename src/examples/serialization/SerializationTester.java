@@ -22,7 +22,7 @@ public class SerializationTester {
 	
 	enum Color {RED,GREEN, BLUE}
 
-	public static void testSerialization() {
+	public static Serializer testSerialization() {
 		// part 1
 		
 		Serializer serializer = SerializerSelector.createSerializer();
@@ -91,6 +91,7 @@ public class SerializationTester {
 		List recursiveList = new ArrayList();
 		recursiveList.add(recursiveList);
 		translate(serializer, recursiveList);
+		return serializer;
 
 	}
 
