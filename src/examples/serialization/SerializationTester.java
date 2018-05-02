@@ -1,7 +1,9 @@
 package examples.serialization;
 
+import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -94,13 +96,20 @@ public class SerializationTester {
 		return serializer;
 
 	}
+	
+	static String toString(Object a) {
+		if (a.getClass().isArray()) {
+			return Arrays.toString((Object[])a);
+		}
+		return a.toString();
+	}
 
 	static void translate(Serializer serializer, Object object) {
 		try {
-			System.out.println("Serializing " + object);
+			System.out.println("Serializing " + toString(object));
 			ByteBuffer buffer = serializer.outputBufferFromObject(object);
 			Object readVal = serializer.objectFromInputBuffer(buffer);
-			System.out.println("Deserialized " + readVal);
+			System.out.println("Deserialized " + toString(readVal));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
