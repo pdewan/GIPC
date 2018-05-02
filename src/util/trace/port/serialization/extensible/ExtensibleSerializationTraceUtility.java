@@ -38,21 +38,25 @@ public class ExtensibleSerializationTraceUtility implements SimpleCounterClient{
 	 * Do not change this, I will keep updating it and you will run into conflicts
 	 * Make a copy if you want this changed
 	 */
-	public static void setTracing() {
+	public static void setTracing(boolean newVal) {
 		Tracer.showInfo(true);
 		Tracer.setDisplayThreadName(true); 
 		TraceableInfo.setPrintTraceable(true);
 		TraceableInfo.setPrintSource(true);
 		Tracer.setImplicitPrintKeywordKind(ImplicitKeywordKind.OBJECT_CLASS_NAME);	
 		
-		Tracer.setKeywordPrintStatus(BufferDeserializationFinished.class, true);
-		Tracer.setKeywordPrintStatus(BufferDeserializationInitiated.class, true);
-		Tracer.setKeywordPrintStatus(ExtensibleBufferDeserializationFinished.class, true);
-		Tracer.setKeywordPrintStatus(ExtensibleBufferDeserializationInitiated.class, true);
-		Tracer.setKeywordPrintStatus(ObjectSerializationFinished.class, true);
-		Tracer.setKeywordPrintStatus(ObjectSerializationInitiated.class, true);
-		Tracer.setKeywordPrintStatus(ExtensibleValueSerializationFinished.class, true);
-		Tracer.setKeywordPrintStatus(ExtensibleValueSerializationInitiated.class, true);			
+		Tracer.setKeywordPrintStatus(BufferDeserializationFinished.class, newVal);
+		Tracer.setKeywordPrintStatus(BufferDeserializationInitiated.class, newVal);
+		Tracer.setKeywordPrintStatus(ExtensibleBufferDeserializationFinished.class, newVal);
+		Tracer.setKeywordPrintStatus(ExtensibleBufferDeserializationInitiated.class, newVal);
+		Tracer.setKeywordPrintStatus(ObjectSerializationFinished.class, newVal);
+		Tracer.setKeywordPrintStatus(ObjectSerializationInitiated.class, newVal);
+		Tracer.setKeywordPrintStatus(ExtensibleValueSerializationFinished.class, newVal);
+		Tracer.setKeywordPrintStatus(ExtensibleValueSerializationInitiated.class, newVal);			
+
+	}
+	public static void setTracing() {
+		setTracing(true);	
 
 	}
 
