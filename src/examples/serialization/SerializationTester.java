@@ -23,11 +23,15 @@ public class SerializationTester {
 	}
 	
 	enum Color {RED,GREEN, BLUE}
-
 	public static Serializer testSerialization() {
+		Serializer serializer = SerializerSelector.createSerializer();
+		return testSerialization(serializer);
+	}
+
+	public static Serializer testSerialization(Serializer serializer) {
 		// part 1
 		
-		Serializer serializer = SerializerSelector.createSerializer();
+		
 		translate(serializer, 5);
 		translate(serializer, (short)5);
 		translate(serializer, (long)5);
@@ -46,7 +50,7 @@ public class SerializationTester {
 		translate(serializer, list);
 		list = new Vector();
 		list.add("Hello world");
-		list.add(3);
+		list.add(5);
 		list.add(Color.BLUE);
 		list.add(null);
 		translate(serializer, list);
@@ -56,13 +60,14 @@ public class SerializationTester {
 		translate(serializer, map);
 		map = new Hashtable();
 		map.put("greeting", "ni hao");
-		map.put(5, 4.0);
+		map.put(5, 2.0);
 		translate(serializer, map);
 		Set<String> set = new HashSet();
 		set.add("Hello world");
 		set.add("Goodbye world");
 		translate(serializer, set);
 		list.add(set);
+		map.put("greeting", "namaste");
 		list.add(map);
 		translate(serializer, list);
 		// part 2

@@ -17,7 +17,9 @@ public class ExtensibleValueSerializationInitiated extends TraceableInfo {
 
 	public static ExtensibleValueSerializationInitiated newCase(Object aValueSerializer,
 			Object anObject, Object anInputBuffer) {
-		String aMessage = anInputBuffer + "<--" + anObject;
+		String aMessage = 
+//				aValueSerializer + ":" + 
+						anInputBuffer + "<--" + anObject;
 		ExtensibleValueSerializationInitiated retVal = new ExtensibleValueSerializationInitiated(
 				aMessage, aValueSerializer, anObject, anInputBuffer);
 		retVal.announce();

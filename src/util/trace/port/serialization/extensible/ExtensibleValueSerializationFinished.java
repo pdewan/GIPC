@@ -17,7 +17,9 @@ public class ExtensibleValueSerializationFinished extends TraceableInfo {
 
 	public static ExtensibleValueSerializationFinished newCase(Object aValueSerializer,
 			Object anObject, Object anOutputBuffer, Object aVisitedObjects) {
-		String aMessage = anOutputBuffer + "<--" + anObject + "(" + aVisitedObjects + ")";;
+		String aMessage = 
+//				aValueSerializer + ":" + 
+		anOutputBuffer + "<--" + anObject + "(" + aVisitedObjects + ")";;
 		ExtensibleValueSerializationFinished retVal = new ExtensibleValueSerializationFinished(
 				aMessage, aValueSerializer, anObject, anOutputBuffer, aVisitedObjects);
 		retVal.announce();

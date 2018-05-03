@@ -17,7 +17,8 @@ public class ExtensibleBufferDeserializationInitiated extends TraceableInfo {
 	public static ExtensibleBufferDeserializationInitiated newCase(Object aValueSerializer, 
 			String aSource,
 			Object anInputBuffer, Class aDeserializedClass) {    	
-		String aMessage =
+		String aMessage = 
+//				aValueSerializer + ":" +
 				anInputBuffer + "->" +
 				
 				aDeserializedClass.getClass().getSimpleName(); 

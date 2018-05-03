@@ -22,7 +22,9 @@ public class ExtensibleBufferDeserializationFinished extends TraceableInfo {
 			Object aValueSerializer, String aSource, Object anInputBuffer,
 			Object anOutputObject,
 			Object aRetrievedObjects) {
-		String aMessage = anInputBuffer + "->" + anOutputObject + "(" + aRetrievedObjects + ")";
+		String aMessage = 
+//				aValueSerializer + ":" + 
+				anInputBuffer + "->" + anOutputObject + "(" + aRetrievedObjects + ")";
 		ExtensibleBufferDeserializationFinished retVal = new ExtensibleBufferDeserializationFinished(
 				aMessage, aValueSerializer, anInputBuffer, anOutputObject, aRetrievedObjects);
 		retVal.announce();
