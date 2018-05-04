@@ -29,6 +29,8 @@ public class SerializationTester {
 	}
 
 	public static Serializer testSerialization(Serializer serializer) {
+		
+		System.out.println ("I*** STARTING TEST SERIALIZATION WITH SERIALIZER:" + serializer);
 		// part 1
 		
 		
@@ -98,6 +100,8 @@ public class SerializationTester {
 		List recursiveList = new ArrayList();
 		recursiveList.add(recursiveList);
 		translate(serializer, recursiveList);
+		System.out.println ("I*** ENDED TEST SERIALIZATION WITH SERIALIZER:" + serializer);
+
 		return serializer;
 
 	}
