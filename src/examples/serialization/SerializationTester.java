@@ -113,14 +113,16 @@ public class SerializationTester {
 		return a.toString();
 	}
 
-	static void translate(Serializer serializer, Object object) {
+	public static Object translate(Serializer serializer, Object object) {
 		try {
 			System.out.println("Serializing " + toString(object));
 			ByteBuffer buffer = serializer.outputBufferFromObject(object);
 			Object readVal = serializer.objectFromInputBuffer(buffer);
 			System.out.println("Deserialized " + toString(readVal));
+			return readVal;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
 	}
 	//
