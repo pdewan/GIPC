@@ -107,6 +107,9 @@ public class SerializationTester {
 	}
 	
 	static String toString(Object a) {
+		if (a == null) {
+			return "null";
+		}
 		if (a.getClass().isArray()) {
 			return Arrays.toString((Object[])a);
 		}
