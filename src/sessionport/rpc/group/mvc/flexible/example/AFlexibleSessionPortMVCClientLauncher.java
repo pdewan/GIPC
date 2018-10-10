@@ -1,5 +1,8 @@
 package sessionport.rpc.group.mvc.flexible.example;
 
+import examples.mvc.local.duplex.DuplexFrostyModel;
+import examples.mvc.local.duplex.DuplexUpperCaser;
+import examples.mvc.local.simplex.SimplexUpperCaser;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
 import inputport.rpc.DirectedRPCProxyGenerator;
@@ -13,9 +16,6 @@ import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
 import sessionport.rpc.group.GroupRPCSessionPort;
-import examples.mvc.local.duplex.DuplexFrostyModel;
-import examples.mvc.local.duplex.DuplexUpperCaser;
-import examples.mvc.local.simplex.SimplexUpperCaser;
 
 public class AFlexibleSessionPortMVCClientLauncher extends ADuplexRPCClientMVCLauncher{
 	public AFlexibleSessionPortMVCClientLauncher(String aSessionServerHost, 

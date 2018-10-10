@@ -3,13 +3,8 @@ package inputport.rpc.duplex;
 import java.util.HashMap;
 import java.util.Map;
 
-import examples.mvc.local.duplex.ACounter;
-import inputport.rpc.GIPCRegistry;
 import inputport.rpc.RPCRegistry;
-import port.AnAbstractPortLauncher;
-import port.PortAccessKind;
 import port.PortKind;
-import port.PortMessageKind;
 
 public class AnAbstractDuplexRPCServerPortLauncher extends ADuplexRPCPortLauncher {
 

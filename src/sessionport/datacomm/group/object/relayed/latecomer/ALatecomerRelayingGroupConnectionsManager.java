@@ -1,12 +1,10 @@
 package sessionport.datacomm.group.object.relayed.latecomer;
 
-import inputport.ConnectionType;
-import inputport.rpc.duplex.RPCReturnValue;
-
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
+import inputport.ConnectionType;
+import inputport.rpc.duplex.RPCReturnValue;
 import port.ParticipantChoice;
 import port.sessionserver.AJoinInfo;
 import port.sessionserver.SessionParticipantDescription;

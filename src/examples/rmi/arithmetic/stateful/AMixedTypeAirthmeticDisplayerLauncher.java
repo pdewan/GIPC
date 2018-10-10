@@ -2,7 +2,6 @@ package examples.rmi.arithmetic.stateful;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.Scanner;
 
 import util.annotations.Tags;
 import util.tags.DistributedTags;

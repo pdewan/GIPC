@@ -1,5 +1,9 @@
 package inputport.rpc.group;
 
+import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.Set;
+
 import inputport.InputPort;
 import inputport.datacomm.SendTrapper;
 import inputport.datacomm.group.AnAbstractGroupSendTrapper;
@@ -7,10 +11,6 @@ import inputport.datacomm.group.GroupNamingSender;
 import inputport.rpc.SerializableCall;
 import inputport.rpc.duplex.DuplexCallTrapperSharedState;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
-
-import java.lang.reflect.Method;
-import java.util.Collection;
-import java.util.Set;
 
 public class AGroupSerializableCallSendTrapper 
         extends AnAbstractGroupSendTrapper<Object, Object> {

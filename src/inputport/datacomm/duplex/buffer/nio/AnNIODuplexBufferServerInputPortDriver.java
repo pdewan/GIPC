@@ -1,13 +1,13 @@
 package inputport.datacomm.duplex.buffer.nio;
 
+import java.nio.ByteBuffer;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+
 import inputport.datacomm.duplex.SendToUnkonwnRemoteNameException;
 import inputport.datacomm.duplex.buffer.DuplexServerInputPortSkeleton;
 import inputport.datacomm.simplex.buffer.nio.AnNIOSimplexBufferServerInpuPorttDriver;
 import inputport.nio.manager.SelectionManager;
-
-import java.nio.ByteBuffer;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
 
 
 public class AnNIODuplexBufferServerInputPortDriver extends AnNIOSimplexBufferServerInpuPorttDriver 

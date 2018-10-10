@@ -1,10 +1,6 @@
 package util.trace.port.nio;
 
-import java.nio.channels.SelectionKey;
-
-import inputport.rpc.RemoteCall;
 import util.trace.TraceableInfo;
-import util.trace.port.rpc.ReceivedCallEndedOld;
 
 public class RemoteCommandExecuted extends TraceableInfo {	
 	protected String command;

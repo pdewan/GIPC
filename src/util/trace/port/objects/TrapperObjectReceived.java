@@ -1,7 +1,7 @@
 package util.trace.port.objects;
 
-import util.trace.port.MessageReceiveInfo;
 import inputport.datacomm.ReceiveNotifier;
+import util.trace.port.MessageReceiveInfo;
 
 public class TrapperObjectReceived extends MessageReceiveInfo {
 	Object objectMessage;

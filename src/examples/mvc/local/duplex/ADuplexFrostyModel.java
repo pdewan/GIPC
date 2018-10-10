@@ -3,9 +3,9 @@ package examples.mvc.local.duplex;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import examples.mvc.local.simplex.ASimplexFrostyModel;
 import util.annotations.Explanation;
 import util.trace.Tracer;
-import examples.mvc.local.simplex.ASimplexFrostyModel;
 
 @Explanation("Converts input into upper case + counter")
 public class ADuplexFrostyModel extends ASimplexFrostyModel implements DuplexFrostyModel {

@@ -1,5 +1,10 @@
 package inputport;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.ReceiveRegistrar;
 import inputport.datacomm.duplex.buffer.ADuplexBufferInputPortLauncherSupport;
@@ -20,12 +25,6 @@ import inputport.rpc.duplex.DuplexRPCInputPortSelector;
 import inputport.rpc.group.AGroupRPCInputPortLauncherSupport;
 import inputport.rpc.group.GroupRPCInputPortSelector;
 import inputport.rpc.simplex.SimplexRPCInputPortSelector;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import port.APortDescription;
 import port.ParticipantChoice;
 import port.PortAccessKind;

@@ -1,6 +1,5 @@
 package consensus.asynchronous.sequential;
 
-import inputport.ConnectionListener;
 import consensus.ConsensusMechanism;
 
 public interface LearnerMechanism<StateType> extends 

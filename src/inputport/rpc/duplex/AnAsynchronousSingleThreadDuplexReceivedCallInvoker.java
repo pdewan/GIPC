@@ -1,16 +1,14 @@
 package inputport.rpc.duplex;
 
 
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
 import inputport.datacomm.SendToUnconnectedPortException;
 import inputport.datacomm.duplex.DuplexInputPort;
 import inputport.nio.manager.AScatterGatherSelectionManager;
 import inputport.rpc.RemoteCall;
-
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-
 import util.trace.Tracer;
-import util.trace.port.rpc.CallInitiated;
 import util.trace.port.rpc.ReceivedCallDequeued;
 import util.trace.port.rpc.ReceivedCallEndedOld;
 import util.trace.port.rpc.ReceivedCallQueued;

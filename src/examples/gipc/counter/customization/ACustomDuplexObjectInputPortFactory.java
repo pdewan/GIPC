@@ -1,10 +1,10 @@
 package examples.gipc.counter.customization;
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.DuplexServerInputPort;
 import inputport.datacomm.duplex.object.ADuplexObjectInputPortFactory;
-
-import java.nio.ByteBuffer;
 
 public class ACustomDuplexObjectInputPortFactory extends ADuplexObjectInputPortFactory{
 	public DuplexClientInputPort<Object> createDuplexClientInputPort(DuplexClientInputPort<ByteBuffer> bbClientInputPort) {

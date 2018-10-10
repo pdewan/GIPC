@@ -1,9 +1,9 @@
 package extraip;
 
 
-import util.trace.port.rpc.ReceivedObjectTransformed;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
 import inputport.rpc.duplex.RPCReturnValue;
+import util.trace.port.rpc.ReceivedObjectTransformed;
 
 
 public class AnRPCReturnValueReceiverBuggy implements BuggyRPCReturnValueReceiver {

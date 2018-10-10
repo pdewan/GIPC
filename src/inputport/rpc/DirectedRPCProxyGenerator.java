@@ -2,14 +2,13 @@ package inputport.rpc;
 
 
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
+
 import inputport.QueryablePort;
 import inputport.rpc.duplex.example.AnAnotherCounter;
 import inputport.rpc.duplex.example.AnotherCounter;
 import inputport.rpc.simplex.SimplexRPC;
-
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Proxy;
-
 import util.misc.RemoteReflectionUtility;
 import util.trace.port.rpc.ProxyCreated;
 

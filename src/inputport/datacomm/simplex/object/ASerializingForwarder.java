@@ -1,12 +1,11 @@
 package inputport.datacomm.simplex.object;
 
+import java.nio.ByteBuffer;
+
 import inputport.InputPort;
 import inputport.datacomm.AnAbstractSendTrapper;
 import inputport.datacomm.NamingSender;
 import inputport.datacomm.simplex.buffer.SendRegistrar;
-
-import java.nio.ByteBuffer;
-
 import serialization.Serializer;
 import serialization.SerializerPoolSelector;
 import util.trace.Tracer;

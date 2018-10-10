@@ -1,11 +1,10 @@
 package replicatedserverport.rpc.duplex.singleresponse;
 
-import inputport.datacomm.SendTrapper;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import inputport.datacomm.SendTrapper;
 import util.trace.TraceableBus;
 import util.trace.Tracer;
 import util.trace.port.AsyncReplayEndInfo;

@@ -1,15 +1,6 @@
 package inputport.rpc.duplex.mvc.singleuser.example;
 
 
-import inputport.InputPort;
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
-import inputport.rpc.simplex.mvc.example.ASimplexRPCClientMVCLauncher;
-import inputport.rpc.simplex.mvc.example.SimplexRPCServerMVCLauncher;
-import port.ParticipantChoice;
-import port.PortAccessKind;
-import port.PortLauncherSupport;
-import port.SessionChoice;
-import port.sessionserver.SessionParticipantDescription;
 import examples.mvc.local.duplex.ACounter;
 import examples.mvc.local.duplex.ADuplexFrostyAWTGUI;
 import examples.mvc.local.duplex.ADuplexFrostyConsoleUI;
@@ -19,6 +10,15 @@ import examples.mvc.local.duplex.Counter;
 import examples.mvc.local.duplex.DuplexFrostyModel;
 import examples.mvc.local.duplex.DuplexUpperCaser;
 import examples.mvc.local.simplex.FrostyConsoleInteractor;
+import inputport.InputPort;
+import inputport.rpc.duplex.DuplexRPCClientInputPort;
+import inputport.rpc.simplex.mvc.example.ASimplexRPCClientMVCLauncher;
+import inputport.rpc.simplex.mvc.example.SimplexRPCServerMVCLauncher;
+import port.ParticipantChoice;
+import port.PortAccessKind;
+import port.PortLauncherSupport;
+import port.SessionChoice;
+import port.sessionserver.SessionParticipantDescription;
 
 
 

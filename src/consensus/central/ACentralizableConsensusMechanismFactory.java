@@ -1,8 +1,8 @@
 package consensus.central;
 
-import sessionport.rpc.group.GIPCSessionRegistry;
 import consensus.AnAbstractConsensusMechanismFactory;
 import consensus.ConsensusMechanism;
+import sessionport.rpc.group.GIPCSessionRegistry;
 
 public class ACentralizableConsensusMechanismFactory<StateType> extends AnAbstractConsensusMechanismFactory<StateType> {
 

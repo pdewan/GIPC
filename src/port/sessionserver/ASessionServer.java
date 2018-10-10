@@ -1,13 +1,12 @@
 package port.sessionserver;
 
 
-import inputport.rpc.duplex.DuplexRPCServerInputPort;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import util.trace.Tracer;
 import util.trace.port.JoinCallInitiated;
 

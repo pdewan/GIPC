@@ -1,9 +1,8 @@
 package util.trace.port.buffer;
 
-import inputport.datacomm.NamingSender;
-
 import java.nio.ByteBuffer;
 
+import inputport.datacomm.NamingSender;
 import util.trace.port.MessageSendInfo;
 
 public class TrapperBufferSendInitiated extends MessageSendInfo {

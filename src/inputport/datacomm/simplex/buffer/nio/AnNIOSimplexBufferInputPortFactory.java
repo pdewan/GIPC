@@ -1,5 +1,9 @@
 package inputport.datacomm.simplex.buffer.nio;
 
+import java.nio.ByteBuffer;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+
 import inputport.datacomm.simplex.SimplexClientInputPort;
 import inputport.datacomm.simplex.SimplexInputPortFactory;
 import inputport.datacomm.simplex.SimplexServerInputPort;
@@ -11,11 +15,6 @@ import inputport.datacomm.simplex.buffer.SimplexBufferClientInputPortDriver;
 import inputport.datacomm.simplex.buffer.SimplexBufferServerInputPortDriver;
 import inputport.nio.manager.SelectionManager;
 import inputport.nio.manager.factories.SelectionManagerFactory;
-
-import java.nio.ByteBuffer;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
-
 import util.trace.Tracer;
 
 

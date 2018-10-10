@@ -5,7 +5,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 import util.trace.bean.AddedPropertyChangeListener;
-import util.trace.bean.BeanTraceUtility;
 import util.trace.bean.NotifiedPropertyChangeEvent;
 import util.trace.bean.SetProperty;
 /**

@@ -1,10 +1,9 @@
 package variableserverport.datacomm.duplex.buffer;
 
-import inputport.datacomm.ReceiveListener;
-
 import java.nio.ByteBuffer;
 import java.util.List;
 
+import inputport.datacomm.ReceiveListener;
 import port.ParticipantChoice;
 import sessionport.datacomm.duplex.buffer.example.ABufferDuplexSessionPortLauncher;
 import variableserverport.datacomm.duplex.DuplexVariableServerClientPort;

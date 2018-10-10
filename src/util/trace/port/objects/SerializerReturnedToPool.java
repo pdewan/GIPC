@@ -1,7 +1,6 @@
 package util.trace.port.objects;
 
 import util.trace.TraceableInfo;
-import inputport.datacomm.NamingSender;
 
 public class SerializerReturnedToPool extends TraceableInfo {
 	

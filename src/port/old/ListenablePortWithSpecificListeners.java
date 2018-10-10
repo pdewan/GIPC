@@ -1,9 +1,9 @@
 package port.old;
 
+import java.nio.ByteBuffer;
+
 import inputport.ConnectListener;
 import inputport.ConnectionType;
-
-import java.nio.ByteBuffer;
 
 public interface ListenablePortWithSpecificListeners extends OldInputPort {
 	void  addPortReceiveListener (String remoteEnd, ByteBufferReceiveListener portReceiveListener);

@@ -3,11 +3,11 @@ package consensus.paxos;
 import java.util.HashMap;
 import java.util.Map;
 
-import sessionport.rpc.group.GIPCSessionRegistry;
-import util.trace.port.consensus.ProposalPreparedNotificationReceived;
 import consensus.ProposalFeedbackKind;
 import consensus.ProposalState;
 import consensus.ReplicationSynchrony;
+import sessionport.rpc.group.GIPCSessionRegistry;
+import util.trace.port.consensus.ProposalPreparedNotificationReceived;
 
 public class APaxosConsensusMechanism<StateType> extends
 		APreparerConsensusMechanism<StateType> implements Prepared<StateType> {

@@ -1,11 +1,10 @@
 package port.sessionserver.relay.late.mvc.dynamic.example;
 
-import inputport.ConnectionListenerWithPort;
-import inputport.ConnectionType;
-
 import java.io.Serializable;
 import java.util.List;
 
+import inputport.ConnectionListenerWithPort;
+import inputport.ConnectionType;
 import port.ParticipantChoice;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionParticipantDescription;

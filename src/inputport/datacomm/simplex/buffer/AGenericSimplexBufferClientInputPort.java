@@ -1,16 +1,15 @@
 package inputport.datacomm.simplex.buffer;
 
+import java.nio.ByteBuffer;
+import java.util.HashSet;
+import java.util.Set;
+
 import inputport.AConnectRegistrarAndNotifier;
 import inputport.ConnectionListener;
 import inputport.ConnectionRegistrarAndNotifier;
 import inputport.ConnectionType;
 import inputport.datacomm.SendToUnconnectedPortException;
 import inputport.datacomm.SendTrapper;
-
-import java.nio.ByteBuffer;
-import java.util.HashSet;
-import java.util.Set;
-
 import util.trace.Tracer;
 import util.trace.port.AConnectionEvent;
 import util.trace.port.ConnectiontEventBus;
@@ -25,7 +24,6 @@ import util.trace.port.buffer.BufferSendToUnconnectedChannelIgnored;
 import util.trace.port.buffer.ClientNameSendInitiated;
 import util.trace.port.buffer.DuplicateBufferChannelConnectIgnored;
 import util.trace.port.buffer.NumberBytesSent;
-import util.trace.port.buffer.TrapperBufferSendFinished;
 
 
 public class AGenericSimplexBufferClientInputPort<ChannelType>  implements GenericSimplexClientInputPort<ChannelType>  {

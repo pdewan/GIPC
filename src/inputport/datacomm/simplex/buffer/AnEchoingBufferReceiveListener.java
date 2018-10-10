@@ -1,9 +1,8 @@
 package inputport.datacomm.simplex.buffer;
-import inputport.InputPort;
-import inputport.datacomm.ReceiveListener;
-
 import java.nio.ByteBuffer;
 
+import inputport.InputPort;
+import inputport.datacomm.ReceiveListener;
 import port.common.DistMisc;
 
 

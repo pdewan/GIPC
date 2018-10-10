@@ -1,5 +1,8 @@
 package inputport.datacomm.duplex.object;
 
+import java.nio.ByteBuffer;
+import java.util.List;
+
 import inputport.datacomm.AReceiveRegistrarAndNotifier;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.ReceiveNotifier;
@@ -10,10 +13,6 @@ import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.simplex.object.ASimplexObjectClientInputPort;
 import inputport.datacomm.simplex.object.ClientObjectTrapperSelector;
 import inputport.datacomm.simplex.object.ObjectTranslatingIPTrapperSelector;
-
-import java.nio.ByteBuffer;
-import java.util.List;
-
 import util.trace.port.AConnectionEvent;
 import util.trace.port.ConnectiontEventBus;
 

@@ -1,14 +1,13 @@
 package port;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import inputport.datacomm.duplex.buffer.ADuplexBufferInputPortLauncherSupport;
 import inputport.datacomm.duplex.object.ADuplexObjectInputPortLauncherSupport;
 import inputport.datacomm.simplex.buffer.ASimplexBufferInputPortLauncherSupport;
 import inputport.datacomm.simplex.object.ASimplexObjectInputPortLauncherSupport;
 import inputport.rpc.duplex.ADuplexRPCInputPortLauncherSupport;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import sessionport.datacomm.group.object.direct.AnObjectGroupSessionPortDirectLauncherSupport;
 import sessionport.datacomm.group.object.relayed.AnObjectGroupSessionPortRelayedLauncherSupport;
 import sessionport.datacomm.group.object.relayed.latecomer.AnObjectGroupSessionPortLatecomerLauncherSupport;

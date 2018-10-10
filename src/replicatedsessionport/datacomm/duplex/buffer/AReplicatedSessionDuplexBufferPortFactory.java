@@ -1,11 +1,10 @@
 package replicatedsessionport.datacomm.duplex.buffer;
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.DuplexServerInputPort;
 import inputport.datacomm.group.GroupServerInputPort;
-
-import java.nio.ByteBuffer;
-
 import port.ParticipantChoice;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionParticipantDescription;

@@ -1,10 +1,9 @@
 package faulttoleranttest;
 
-import inputport.ConnectionListener;
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
-
 import java.util.Scanner;
 
+import inputport.ConnectionListener;
+import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import port.ParticipantChoice;
 import port.causal.ACausalGroupSessionPortLauncherSupport;
 import port.delay.DelayUtlity;

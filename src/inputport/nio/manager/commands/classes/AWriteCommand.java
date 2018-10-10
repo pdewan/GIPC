@@ -1,15 +1,14 @@
 package inputport.nio.manager.commands.classes;
 
-import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.commands.WriteCommand;
-import inputport.nio.manager.listeners.SocketChannelWriteListener;
-
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
+import inputport.nio.manager.SelectionManager;
+import inputport.nio.manager.commands.WriteCommand;
+import inputport.nio.manager.listeners.SocketChannelWriteListener;
 import util.trace.Tracer;
 import util.trace.port.nio.SocketChannelInterestOp;
 import util.trace.port.nio.SocketChannelWritten;

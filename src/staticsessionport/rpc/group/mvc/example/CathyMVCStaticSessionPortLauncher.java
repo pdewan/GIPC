@@ -3,7 +3,6 @@ package staticsessionport.rpc.group.mvc.example;
 import port.sessionserver.SessionParticipantDescription;
 import port.sessionserverAndRelay.mvc.example.UpperCaseSession;
 import sessionport.rpc.group.mvc.direct.example.ClientDirectSessionPort;
-import sessionport.rpc.group.mvc.flexible.example.BobSessionPort;
 import sessionport.rpc.group.mvc.flexible.example.CathySessionPort;
 
 public class CathyMVCStaticSessionPortLauncher implements CathySessionPort,ClientDirectSessionPort {

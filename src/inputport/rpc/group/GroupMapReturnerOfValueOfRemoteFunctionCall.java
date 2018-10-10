@@ -1,10 +1,9 @@
 package inputport.rpc.group;
 
-import inputport.rpc.RemoteCall;
-import inputport.rpc.duplex.DuplexSentCallCompleter;
-
 import java.util.Map;
 import java.util.Set;
+
+import inputport.rpc.RemoteCall;
 
 
 public interface GroupMapReturnerOfValueOfRemoteFunctionCall  extends GroupReturnerOfValueOfRemoteFunctionCall{

@@ -1,11 +1,10 @@
 package multiserverport.datacomm.simplex.buffer;
 
-import inputport.datacomm.duplex.DuplexClientInputPort;
-import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
-
 import java.io.Serializable;
 import java.nio.ByteBuffer;
 
+import inputport.datacomm.duplex.DuplexClientInputPort;
+import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
 import port.ParticipantChoice;
 import variableserverport.SimplexVariableServerClientPort;
 import variableserverport.datacomm.simplex.buffer.AnAbstractSimplexBufferVariableServerConnectionsManager;

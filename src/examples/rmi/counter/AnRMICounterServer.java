@@ -7,8 +7,6 @@ import java.rmi.server.UnicastRemoteObject;
 
 import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
-import examples.rmi.counter.repository.ARemoteRepository;
-import examples.rmi.counter.repository.RemoteRepository;
 
 public class AnRMICounterServer extends CounterServerLauncher {	
 	public static void doOperations(

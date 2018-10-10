@@ -1,9 +1,9 @@
 package port.common;
 
+import bus.uigen.ObjectEditor;
 import util.trace.port.AConnectionEventManager;
 import util.trace.port.ConnectionEventListener;
 import util.trace.port.ConnectiontEventBus;
-import bus.uigen.ObjectEditor;
 
 public class PortMisc {
 	public static void displayConnections() {

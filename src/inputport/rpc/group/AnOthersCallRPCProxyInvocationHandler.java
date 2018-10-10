@@ -1,8 +1,8 @@
 package inputport.rpc.group;
 
-import inputport.rpc.ACachingAbstractRPCProxyInvocationHandler;
-
 import java.lang.reflect.Method;
+
+import inputport.rpc.ACachingAbstractRPCProxyInvocationHandler;
 
 
 public  class AnOthersCallRPCProxyInvocationHandler extends ACachingAbstractRPCProxyInvocationHandler {

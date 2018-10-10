@@ -3,7 +3,6 @@ package util.trace.port.rpc;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
-import inputport.rpc.RemoteCall;
 import util.annotations.ComponentWidth;
 import util.annotations.DisplayToString;
 import util.trace.TraceableInfo;

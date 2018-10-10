@@ -2,32 +2,16 @@ package multiserverport.rpc.group.example;
 
 import inputport.ConnectionListener;
 import inputport.InputPort;
-import inputport.datacomm.duplex.DuplexInputPort;
-import inputport.datacomm.duplex.object.echoer.example.AFrostyObjectConnectionListener;
-import inputport.rpc.duplex.example.ARegisteredEchoer;
-import inputport.rpc.duplex.example.AnotherEchoer;
-import inputport.rpc.duplex.example.DuplexCounterAndSenderAwareSummer;
-import inputport.rpc.group.GroupRPCProxyGenerator;
-import inputport.rpc.group.GroupRPCServerInputPort;
-import inputport.rpc.group.example.AGroupCounterAndSenderAwareSumPrinter;
 import inputport.rpc.group.example.AnOldGroupRPCClientInputPortLauncher;
-
-import java.util.Scanner;
-
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.sessionserver.ASessionParticipantDescription;
 import port.sessionserver.SessionParticipantDescription;
 import port.sessionserver.relay.RelayerClientAndServerSupport;
-import sessionport.rpc.duplex.relayed.example.Adder;
-import sessionport.rpc.duplex.relayed.example.AnAdder;
 import sessionport.rpc.group.AnOldGroupCallingConnectListener;
 import sessionport.rpc.group.GroupRPCSessionPort;
-import staticsessionport.datacomm.group.object.example.AGroupObjectStaticSessionPortLauncher;
 import staticsessionport.rpc.group.AStaticSessionGroupRPCPortLauncherSupport;
 import staticsessionport.rpc.group.GroupRPCStaticSessionPortSelector;
-import examples.mvc.rmi.collaborative.relaying.AnEchoer;
-import examples.mvc.rmi.collaborative.relaying.Echoer;
 
 
 public class AGroupRPCMultiServerClientPortLauncher extends AnOldGroupRPCClientInputPortLauncher {

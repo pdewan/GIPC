@@ -1,11 +1,10 @@
 package port.sessionserver;
 
+import java.nio.ByteBuffer;
+
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.simplex.SimplexServerInputPort;
-
-import java.nio.ByteBuffer;
-
 import port.ATracingConnectionListener;
 import port.AnAbstractPortLauncher;
 import port.PortLauncherSupport;

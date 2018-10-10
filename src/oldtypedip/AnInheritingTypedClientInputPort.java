@@ -1,16 +1,15 @@
 package oldtypedip;
 
+import java.io.Serializable;
+import java.nio.ByteBuffer;
+import java.util.Set;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.DisconnectListener;
 import inputport.datacomm.simplex.buffer.ASendRegistrarAndNotifier;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 import inputport.datacomm.simplex.buffer.SendRegistrarAndNotifier;
-
-import java.io.Serializable;
-import java.nio.ByteBuffer;
-import java.util.Set;
-
 import port.old.AConnectionSendReceiptNotifier;
 import port.old.ByteBufferReceiveListener;
 import port.old.MonolithicDuplexClientInputPort;

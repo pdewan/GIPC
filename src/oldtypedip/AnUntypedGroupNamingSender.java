@@ -1,12 +1,11 @@
 package oldtypedip;
 
 
-import inputport.datacomm.duplex.DuplexSender;
-import inputport.datacomm.group.GroupNamingSender;
-
 import java.nio.ByteBuffer;
 import java.util.Collection;
-import java.util.Set;
+
+import inputport.datacomm.duplex.DuplexSender;
+import inputport.datacomm.group.GroupNamingSender;
 
 
 

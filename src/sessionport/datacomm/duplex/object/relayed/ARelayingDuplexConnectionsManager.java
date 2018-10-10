@@ -1,17 +1,16 @@
 package sessionport.datacomm.duplex.object.relayed;
 
-import inputport.ConnectionType;
-import inputport.rpc.DirectedRPCProxyGenerator;
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
-import inputport.rpc.duplex.DuplexRPCInputPort;
-import inputport.rpc.duplex.DuplexRPCInputPortSelector;
-
 import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import inputport.ConnectionType;
+import inputport.rpc.DirectedRPCProxyGenerator;
+import inputport.rpc.duplex.DuplexRPCClientInputPort;
+import inputport.rpc.duplex.DuplexRPCInputPort;
+import inputport.rpc.duplex.DuplexRPCInputPortSelector;
 import port.ParticipantChoice;
 import port.relay.ARelayer;
 import port.relay.Relayer;

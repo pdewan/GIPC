@@ -1,7 +1,7 @@
 package util.trace.port.rpc;
 
-import util.trace.port.MessageReceiveInfo;
 import inputport.rpc.RemoteCall;
+import util.trace.port.MessageReceiveInfo;
 
 public class CallInfo extends MessageReceiveInfo {
 	RemoteCall call;

@@ -1,9 +1,9 @@
 package inputport.datacomm;
 
-import inputport.InputPort;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import inputport.InputPort;
 
 public abstract class AReceiveTrapperSelector<SendInMessageType, SendOutMessageType> implements ReceiveTrapperSelector<SendInMessageType, SendOutMessageType> {	
 

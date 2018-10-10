@@ -1,9 +1,9 @@
 package inputport.datacomm.duplex.buffer;
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.ATrapperSelector;
 import inputport.datacomm.TrapperSelector;
-
-import java.nio.ByteBuffer;
 
 public class DuplexBufferServerIPTrapperSelector {
 	 static TrapperSelector<ByteBuffer, ByteBuffer> 

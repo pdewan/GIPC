@@ -1,7 +1,7 @@
 package util.trace.port.objects;
 
-import util.trace.port.MessageSendInfo;
 import inputport.datacomm.NamingSender;
+import util.trace.port.MessageSendInfo;
 
 public class TrapperObjectSendInitiated extends MessageSendInfo {
 	Object object;

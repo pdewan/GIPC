@@ -1,13 +1,12 @@
 package extraip;
 
+import java.net.InetAddress;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.datacomm.duplex.DuplexServerInputPort;
 import inputport.datacomm.duplex.object.DuplexObjectInputPortSelector;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
-
-import java.net.InetAddress;
-
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.ASessionServer;
 import port.sessionserver.ServerPortDescription;

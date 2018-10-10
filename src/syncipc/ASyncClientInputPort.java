@@ -1,14 +1,13 @@
 package syncipc;
 
-import inputport.ConnectionListener;
-import inputport.ConnectionType;
-import inputport.DisconnectListener;
-import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
-
 import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.util.Set;
 
+import inputport.ConnectionListener;
+import inputport.ConnectionType;
+import inputport.DisconnectListener;
+import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 import oldtypedip.AnInheritingTypedClientInputPort;
 import oldtypedip.TypedClientInputPort;
 import oldtypedip.TypedReceiveListener;

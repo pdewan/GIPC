@@ -1,12 +1,12 @@
 package extraip;
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.NamingSender;
 import inputport.datacomm.duplex.buffer.AServerChannelSendBufferForwarderFactory;
 import inputport.datacomm.duplex.buffer.DuplexBufferGenericServerInputPort;
 import inputport.datacomm.duplex.buffer.DuplexServerInputPortDriver;
 import inputport.datacomm.duplex.buffer.ServerChannelBufferSendTrapperFactory;
-
-import java.nio.ByteBuffer;
 
 public class ServerChannelBufferSendTrapperSelector<SocketChannel> {
 	static ServerChannelBufferSendTrapperFactory serverChannelBufferSendTrapperFactory = new AServerChannelSendBufferForwarderFactory();

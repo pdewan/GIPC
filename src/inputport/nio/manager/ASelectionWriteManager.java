@@ -1,7 +1,5 @@
 package inputport.nio.manager;
 
-import inputport.nio.manager.commands.WriteCommand;
-
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
@@ -9,6 +7,7 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
+import inputport.nio.manager.commands.WriteCommand;
 import util.trace.Tracer;
 import util.trace.port.nio.SelectorWokenUp;
 

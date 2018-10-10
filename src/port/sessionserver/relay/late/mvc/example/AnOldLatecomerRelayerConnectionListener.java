@@ -1,10 +1,9 @@
 package port.sessionserver.relay.late.mvc.example;
 
-import inputport.ConnectionListenerWithPort;
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
-
 import java.util.List;
 
+import inputport.ConnectionListenerWithPort;
+import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.relay.mvc.example.AnOldRelayerConnectionListener;
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;

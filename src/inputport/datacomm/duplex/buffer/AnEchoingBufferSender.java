@@ -1,8 +1,5 @@
 package inputport.datacomm.duplex.buffer;
 
-import inputport.datacomm.ReceiveListener;
-import inputport.datacomm.duplex.DuplexInputPort;
-
 import java.nio.ByteBuffer;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -10,7 +7,6 @@ import java.util.concurrent.LinkedBlockingDeque;
 import util.trace.Tracer;
 import util.trace.port.buffer.BufferLocalSendFinished;
 import util.trace.port.buffer.BufferLocalSendInitiated;
-import inputport.datacomm.ReceiveListener;
 
 public class AnEchoingBufferSender implements  EchoingBufferSender{
 	// why only sever port? something crazy

@@ -1,7 +1,5 @@
 package consensus.synchronous.sequential;
 
-import java.rmi.Remote;
-
 import consensus.ProposalFeedbackKind;
 
 public interface Accepted<StateType> extends Acceptor<StateType>{

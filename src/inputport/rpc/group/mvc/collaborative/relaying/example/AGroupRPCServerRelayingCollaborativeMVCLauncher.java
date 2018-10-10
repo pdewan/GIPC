@@ -1,11 +1,11 @@
 package inputport.rpc.group.mvc.collaborative.relaying.example;
 
+import bus.uigen.ObjectEditor;
+import examples.mvc.local.simplex.SimplexUpperCaser;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.group.mvc.collaborative.example.AGroupRPCServerCollaborativeMVCLauncher;
 import util.trace.Tracer;
 import util.trace.uigen.TraceableDisplayAndWaitManagerFactory;
-import bus.uigen.ObjectEditor;
-import examples.mvc.local.simplex.SimplexUpperCaser;
 
 
 

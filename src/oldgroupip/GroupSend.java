@@ -1,9 +1,9 @@
 package oldgroupip;
 
 
-import inputport.datacomm.duplex.DuplexSender;
-
 import java.util.Set;
+
+import inputport.datacomm.duplex.DuplexSender;
 
 
 public interface GroupSend<MessageType> extends DuplexSender<MessageType>  {

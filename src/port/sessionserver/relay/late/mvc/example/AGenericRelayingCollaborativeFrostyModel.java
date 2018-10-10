@@ -2,14 +2,14 @@ package port.sessionserver.relay.late.mvc.example;
 
 import java.beans.PropertyChangeEvent;
 
+import examples.mvc.local.duplex.ADuplexFrostyModel;
+import examples.mvc.local.duplex.Counter;
+import examples.mvc.local.duplex.DuplexUpperCaser;
 import port.relay.Relayer;
 import port.relay.mvc.example.GenericRelayingCollaborativeFrostyModel;
 import sessionport.datacomm.duplex.object.relayed.AMessageWithSource;
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
 import util.trace.Tracer;
-import examples.mvc.local.duplex.ADuplexFrostyModel;
-import examples.mvc.local.duplex.Counter;
-import examples.mvc.local.duplex.DuplexUpperCaser;
 
 
 public class AGenericRelayingCollaborativeFrostyModel extends ADuplexFrostyModel implements GenericRelayingCollaborativeFrostyModel {

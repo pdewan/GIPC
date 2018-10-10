@@ -2,7 +2,6 @@ package examples.gipc.counter.customization;
 
 import java.nio.ByteBuffer;
 
-import inputport.datacomm.AReceiveRegistrarAndNotifier;
 import inputport.datacomm.ReceiveRegistrarAndNotifier;
 import inputport.datacomm.duplex.DuplexServerInputPort;
 import inputport.datacomm.duplex.object.ADuplexObjectServerInputPort;

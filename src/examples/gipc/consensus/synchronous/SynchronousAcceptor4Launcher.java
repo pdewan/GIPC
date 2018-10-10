@@ -1,9 +1,8 @@
 package examples.gipc.consensus.synchronous;
 
-import util.trace.port.buffer.BufferTraceUtility;
-import util.trace.port.consensus.ConsensusTraceUtility;
 import examples.gipc.consensus.AMeaningOfLifeVetoer;
 import examples.gipc.consensus.Member4;
+import util.trace.port.consensus.ConsensusTraceUtility;
 
 public class SynchronousAcceptor4Launcher 
 extends ASynchronousMemberLauncher

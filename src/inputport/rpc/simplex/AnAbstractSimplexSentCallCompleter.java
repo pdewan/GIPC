@@ -1,8 +1,8 @@
 package inputport.rpc.simplex;
 
-import inputport.rpc.RemoteCall;
-
 import java.lang.reflect.Method;
+
+import inputport.rpc.RemoteCall;
 
 
 

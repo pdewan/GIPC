@@ -1,12 +1,12 @@
 package inputport.datacomm.simplex.object;
 
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.simplex.SimplexClientInputPort;
 import inputport.datacomm.simplex.SimplexInputPortFactory;
 import inputport.datacomm.simplex.SimplexServerInputPort;
 import inputport.datacomm.simplex.buffer.SimplexBufferInputPortSelector;
-
-import java.nio.ByteBuffer;
 
 
 

@@ -1,5 +1,8 @@
 package port.old;
 
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.duplex.ReplyRPCProxyGenerator;
 import inputport.rpc.duplex.example.ARegisteredEchoer;
@@ -7,9 +10,6 @@ import inputport.rpc.duplex.example.AnAnotherCounter;
 import inputport.rpc.duplex.example.AnotherCounter;
 import inputport.rpc.duplex.example.AnotherEchoer;
 import inputport.rpc.simplex.example.AnUpperCasePrinter;
-
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 public class ADuplexCounterAndSenderAwareSummer extends AnUpperCasePrinter implements DuplexCounterAndSenderAwareSummer, Runnable{
 	protected DuplexRPCServerInputPort duplexRPCServerInputPort;
 	protected AnotherCounter counter;

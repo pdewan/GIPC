@@ -1,21 +1,11 @@
 package inputport.nio.manager.factories.classes;
 
-import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.commands.ConnectCommand;
-import inputport.nio.manager.commands.ReadCommand;
-import inputport.nio.manager.commands.WriteCommand;
-import inputport.nio.manager.commands.classes.AConnectCommand;
-import inputport.nio.manager.commands.classes.AReadCommand;
-import inputport.nio.manager.commands.classes.AScatterGatherReadCommand;
-import inputport.nio.manager.commands.classes.AWriteCommand;
-import inputport.nio.manager.factories.ConnectCommandFactory;
-import inputport.nio.manager.factories.ReadCommandFactory;
-import inputport.nio.manager.factories.WriteCommandFactory;
-
-import java.net.InetAddress;
-import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
+
+import inputport.nio.manager.SelectionManager;
+import inputport.nio.manager.commands.ReadCommand;
+import inputport.nio.manager.commands.classes.AScatterGatherReadCommand;
+import inputport.nio.manager.factories.ReadCommandFactory;
 
 /*
  * A factory for creating read commands. The main difference between

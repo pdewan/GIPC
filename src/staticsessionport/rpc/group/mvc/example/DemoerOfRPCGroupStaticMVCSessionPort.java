@@ -1,6 +1,5 @@
 package staticsessionport.rpc.group.mvc.example;
 
-import port.sessionserver.relay.late.ALatecomerSessionServerLauncher;
 import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfRPCGroupStaticMVCSessionPort {

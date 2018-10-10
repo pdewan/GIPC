@@ -1,6 +1,5 @@
 package util.trace.port.objects;
 
-import util.trace.TraceableInfo;
 import util.trace.port.GIPCQueueCreated;
 
 public class ReceivedMessageQueueCreated extends GIPCQueueCreated{

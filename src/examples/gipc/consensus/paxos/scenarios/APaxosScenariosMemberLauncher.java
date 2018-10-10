@@ -1,13 +1,7 @@
 package examples.gipc.consensus.paxos.scenarios;
 
-import inputport.datacomm.group.GroupSendMessageForwarderSelector;
-import consensus.ConcurrencyKind;
-import consensus.ConsensusMechanismFactory;
-import consensus.ProposalState;
-import consensus.ReplicationSynchrony;
-import consensus.paxos.sequential.ASequentialPaxosConsensusMechanismFactory;
-import examples.gipc.consensus.AnExampleProposerLauncher;
 import examples.gipc.consensus.paxos.APaxosMemberLauncher;
+import inputport.datacomm.group.GroupSendMessageForwarderSelector;
 
 public class APaxosScenariosMemberLauncher extends APaxosMemberLauncher {
 

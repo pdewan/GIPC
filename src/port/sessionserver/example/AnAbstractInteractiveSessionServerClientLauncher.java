@@ -1,10 +1,9 @@
 package port.sessionserver.example;
 
-import inputport.InputPort;
-import inputport.datacomm.simplex.buffer.example.UICreator;
-
 import java.util.Scanner;
 
+import inputport.InputPort;
+import inputport.datacomm.simplex.buffer.example.UICreator;
 import port.ParticipantChoice;
 
 

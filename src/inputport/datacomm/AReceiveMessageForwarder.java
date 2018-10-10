@@ -1,9 +1,8 @@
 package inputport.datacomm;
 
-import inputport.InputPort;
-
 import java.nio.ByteBuffer;
 
+import inputport.InputPort;
 import util.trace.port.buffer.TrapperBufferReceived;
 import util.trace.port.objects.TrapperObjectReceived;
 

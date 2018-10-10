@@ -1,12 +1,10 @@
 package inputport.datacomm.simplex.buffer;
 
-import inputport.InputPort;
-import inputport.datacomm.NamingSender;
-
 import java.nio.ByteBuffer;
 
+import inputport.InputPort;
+import inputport.datacomm.NamingSender;
 import util.trace.Tracer;
-import util.trace.port.buffer.BufferSendInitiated;
 
 
 public class AClientChannelSendBufferForwarder<ChannelType>  implements NamingSender<ByteBuffer>{

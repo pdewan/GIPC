@@ -1,11 +1,10 @@
 package sessionport.datacomm.duplex.object.direct;
 
-import inputport.datacomm.duplex.object.ADuplexObjectServerInputPort;
-
 import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Set;
 
+import inputport.datacomm.duplex.object.ADuplexObjectServerInputPort;
 import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
 import sessionport.datacomm.duplex.DuplexSessionPort;

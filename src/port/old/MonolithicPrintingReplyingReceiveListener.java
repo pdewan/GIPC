@@ -1,8 +1,8 @@
 package port.old;
 
-import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
-
 import java.nio.ByteBuffer;
+
+import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 
 
 

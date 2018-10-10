@@ -1,7 +1,5 @@
 package inputport.rpc.duplex;
 
-import inputport.datacomm.duplex.DuplexInputPort;
-
 public interface AsynchronousDuplexReceivedCallInvoker extends DuplexReceivedCallInvoker, Runnable{
 //	public void setReplier(DuplexRPCInputPort replier) ;
 //	@Override

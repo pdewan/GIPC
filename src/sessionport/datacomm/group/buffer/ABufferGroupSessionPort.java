@@ -1,13 +1,11 @@
 package sessionport.datacomm.group.buffer;
 
 
-import inputport.datacomm.ReceiveListener;
-import inputport.datacomm.group.buffer.ABufferGroupServerInputPort;
-
 import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Set;
 
+import inputport.datacomm.group.buffer.ABufferGroupServerInputPort;
 import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
 import sessionport.datacomm.duplex.DuplexSessionPort;

@@ -1,6 +1,5 @@
 package examples.gipc.counter.customization;
 
-import examples.gipc.counter.layers.AMultiLayerCounterClient;
 import examples.gipc.counter.layers.AMultiLayerCounterClient1;
 
 public class ACustomCounterClient1Launcher extends AMultiLayerCounterClient1 {

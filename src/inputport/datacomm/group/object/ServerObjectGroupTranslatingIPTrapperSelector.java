@@ -1,9 +1,9 @@
 package inputport.datacomm.group.object;
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.group.AGroupTrapperSelector;
 import inputport.datacomm.group.GroupTrapperSelector;
-
-import java.nio.ByteBuffer;
 
 
 public class ServerObjectGroupTranslatingIPTrapperSelector {

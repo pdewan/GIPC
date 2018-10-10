@@ -1,5 +1,9 @@
 package port.old;
 
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
 import inputport.rpc.duplex.example.ARegisteredEchoer;
 import inputport.rpc.duplex.example.AnAnotherCounter;
 import inputport.rpc.duplex.example.AnUnregisteredEchoer;
@@ -10,11 +14,6 @@ import inputport.rpc.group.GroupRPCProxyGenerator;
 import inputport.rpc.group.example.ACounterWithObjectValue;
 import inputport.rpc.group.example.AGroupCounterAndSenderAwareSumPrinter;
 import inputport.rpc.group.example.CounterWithObjectValue;
-
-import java.util.Scanner;
-
-import javax.swing.JOptionPane;
-
 import port.common.PortMisc;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.ServerPortDescription;

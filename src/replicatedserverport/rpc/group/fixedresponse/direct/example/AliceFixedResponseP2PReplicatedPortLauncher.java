@@ -3,10 +3,8 @@ package replicatedserverport.rpc.group.fixedresponse.direct.example;
 import inputport.datacomm.simplex.object.example.AliceClientLauncher;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
-import replicatedserverport.rpc.duplex.fixedresponse.ClientServerMapping;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.Server1Launcher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
 public class AliceFixedResponseP2PReplicatedPortLauncher {

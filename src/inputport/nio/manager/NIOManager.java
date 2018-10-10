@@ -1,16 +1,16 @@
 package inputport.nio.manager;
 
+import java.net.InetAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+
 import inputport.nio.manager.listeners.SocketChannelAcceptListener;
 import inputport.nio.manager.listeners.SocketChannelCloseListener;
 import inputport.nio.manager.listeners.SocketChannelConnectListener;
 import inputport.nio.manager.listeners.SocketChannelReadListener;
 import inputport.nio.manager.listeners.SocketChannelWriteListener;
 import inputport.nio.manager.listeners.WriteBoundedBufferListener;
-
-import java.net.InetAddress;
-import java.nio.ByteBuffer;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
 
 public interface NIOManager {
 	/**

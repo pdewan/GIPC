@@ -1,15 +1,14 @@
 package extraip;
 
-import inputport.rpc.duplex.ARemoteSerializable;
-import inputport.rpc.duplex.DuplexRPCInputPort;
-import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
-import inputport.rpc.simplex.SimplexRPC;
-
 import java.lang.reflect.Method;
 import java.rmi.server.RemoteObject;
 import java.util.HashSet;
 import java.util.Set;
 
+import inputport.rpc.duplex.ARemoteSerializable;
+import inputport.rpc.duplex.DuplexRPCInputPort;
+import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
+import inputport.rpc.simplex.SimplexRPC;
 import util.introspect.JavaIntrospectUtility;
 import util.misc.HashIdentityMap;
 import util.misc.IdentityMap;

@@ -1,9 +1,8 @@
 package extraip;
 
-import inputport.datacomm.NamingSender;
-
 import java.nio.ByteBuffer;
 
+import inputport.datacomm.NamingSender;
 import port.delay.ADelayableMessage;
 import port.delay.AMessageWithDestination;
 import port.delay.ASendMessageDeliverer;

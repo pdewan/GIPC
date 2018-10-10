@@ -1,9 +1,6 @@
 package consensus.sessionport;
 
-import consensus.ConsensusMechanism;
-import examples.gipc.consensus.AMeaningOfLifeConsensusListener;
 import port.SessionChoice;
-import sessionport.rpc.group.GIPCLocateSessionRegistry;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
 

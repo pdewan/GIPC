@@ -1,5 +1,6 @@
 package port.sessionserver.relay.mvc.example;
 
+import examples.mvc.local.duplex.DuplexUpperCaser;
 import inputport.ConnectionListenerWithPort;
 import inputport.InputPort;
 import inputport.rpc.DirectedRPCProxyGenerator;
@@ -7,7 +8,6 @@ import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.mvc.singleuser.example.ADuplexRPCServerMVCLauncher;
 import port.ATracingConnectionListener;
 import port.relay.mvc.example.GenericRelayingCollaborativeFrostyModel;
-import examples.mvc.local.duplex.DuplexUpperCaser;
 
 public class AnMVCServerConnectionListener extends ATracingConnectionListener implements ConnectionListenerWithPort{
 	protected GenericRelayingCollaborativeFrostyModel model;	

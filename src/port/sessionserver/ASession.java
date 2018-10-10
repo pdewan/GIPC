@@ -1,13 +1,12 @@
 package port.sessionserver;
 
-import inputport.ConnectionType;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import inputport.ConnectionType;
 import port.ParticipantChoice;
 import util.models.Hashcodetable;
 import util.trace.Tracer;

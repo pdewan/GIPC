@@ -3,16 +3,10 @@ package sessionport.rpc.group;
 import java.util.HashMap;
 import java.util.Map;
 
-import port.AnAbstractPortLauncher;
 import port.ParticipantChoice;
-import port.PortLauncher;
 import port.SessionChoice;
 import port.sessionserver.SessionServerLauncher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
-import sessionport.rpc.group.direct.example.AModularGroupRPCDirectSessionPortLauncher;
-import inputport.rpc.GIPCLocateRegistry;
-import inputport.rpc.GIPCRegistry;
-import inputport.rpc.duplex.AnAbstractDuplexRPCServerPortLauncher;
 
 public class GIPCLocateSessionRegistry  {
 	static final String DEFAULT_SESSION_NAME = "GIPC Session";

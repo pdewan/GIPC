@@ -1,6 +1,5 @@
 package examples.nio.manager.mvc;
 
-import java.nio.ByteBuffer;
 import java.util.Scanner;
 /**
  * Defines a controller object that allows the user to input a sequence of 

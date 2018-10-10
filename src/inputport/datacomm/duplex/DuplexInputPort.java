@@ -4,7 +4,6 @@ import inputport.BasicReceivingPort;
 import inputport.BasicSendingPort;
 import inputport.InputPort;
 import inputport.RemoteEndPointProperties;
-import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.duplex.object.explicitreceive.ExplicitReceive;
 import inputport.datacomm.duplex.object.explicitreceive.ExplicitSourceReceive;
 

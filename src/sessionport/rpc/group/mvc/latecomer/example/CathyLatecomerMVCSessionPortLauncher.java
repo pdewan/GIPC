@@ -3,7 +3,6 @@ package sessionport.rpc.group.mvc.latecomer.example;
 import port.sessionserver.SessionServerLauncher;
 import port.sessionserverAndRelay.mvc.example.UpperCaseSession;
 import sessionport.rpc.group.mvc.flexible.example.AFlexibleSessionPortMVCClientLauncher;
-import sessionport.rpc.group.mvc.flexible.example.BobSessionPort;
 import sessionport.rpc.group.mvc.flexible.example.CathySessionPort;
 
 public class CathyLatecomerMVCSessionPortLauncher implements CathySessionPort, LatecomerClientSessionPort {

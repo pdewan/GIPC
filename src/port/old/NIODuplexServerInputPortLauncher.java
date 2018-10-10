@@ -1,10 +1,10 @@
 package port.old;
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.duplex.DuplexInputPortFactory;
 import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
 import inputport.datacomm.duplex.buffer.nio.AnNIODuplexBufferInputPortFactory;
-
-import java.nio.ByteBuffer;
 
 
 

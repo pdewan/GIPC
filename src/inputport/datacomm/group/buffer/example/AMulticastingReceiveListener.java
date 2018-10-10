@@ -1,9 +1,9 @@
 package inputport.datacomm.group.buffer.example;
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.duplex.buffer.echoer.example.AReplyingUpperCaseBufferReceiveListener;
 import inputport.datacomm.group.GroupInputPort;
-
-import java.nio.ByteBuffer;
 
 
 public class AMulticastingReceiveListener extends AReplyingUpperCaseBufferReceiveListener {

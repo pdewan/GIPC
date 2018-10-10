@@ -1,18 +1,10 @@
 package examples.gipc.counter.customization;
 
 
-import inputport.datacomm.NamingSender;
 import inputport.datacomm.duplex.DuplexInputPort;
 import inputport.rpc.RPCRegistry;
 import inputport.rpc.duplex.ADuplexReceivedCallInvoker;
-import inputport.rpc.duplex.AnRPCReturnValue;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
-import inputport.rpc.duplex.RPCReturnValue;
-
-import java.io.Serializable;
-
-import util.trace.Tracer;
-import util.trace.port.rpc.ReturnMessageCreated;
 
 
 public class ACustomReceivedCallInvoker extends ADuplexReceivedCallInvoker {

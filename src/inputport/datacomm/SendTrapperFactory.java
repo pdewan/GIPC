@@ -1,8 +1,6 @@
 package inputport.datacomm;
 
 
-import java.nio.ByteBuffer;
-
 import inputport.InputPort;
 
 public interface SendTrapperFactory<InMessageType, OutMessageType> {

@@ -1,8 +1,8 @@
 package port.old;
 
-import inputport.datacomm.group.GroupServerInputPort;
-
 import java.nio.ByteBuffer;
+
+import inputport.datacomm.group.GroupServerInputPort;
 
 
 

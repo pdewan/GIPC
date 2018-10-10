@@ -1,4 +1,11 @@
 package inputport.datacomm.simplex.buffer;
+import java.nio.ByteBuffer;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import inputport.AConnectRegistrarAndNotifier;
 import inputport.ConnectionListener;
 import inputport.ConnectionRegistrarAndNotifier;
@@ -7,14 +14,6 @@ import inputport.datacomm.AReceiveRegistrarAndNotifier;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.ReceiveRegistrarAndNotifier;
 import inputport.datacomm.ReceiveTrapper;
-
-import java.nio.ByteBuffer;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import util.trace.Tracer;
 import util.trace.port.AConnectionEvent;
 import util.trace.port.AReplaceConnectionEvent;
@@ -29,7 +28,6 @@ import util.trace.port.buffer.ClientNameLookedUp;
 import util.trace.port.buffer.DuplicateBufferChannelConnectIgnored;
 import util.trace.port.buffer.NumberBytesReceived;
 import util.trace.port.buffer.ReplyDestinationAssociatedWithPort;
-import util.trace.port.buffer.TrapperBufferReceived;
 
 
 

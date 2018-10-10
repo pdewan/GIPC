@@ -1,13 +1,11 @@
 package port.old;
 
+import java.util.Collection;
+import java.util.List;
+
 import inputport.InputPort;
 import inputport.datacomm.group.AnAbstractGroupSendTrapper;
 import inputport.datacomm.group.GroupNamingSender;
-
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-
 import replicatedserverport.rpc.duplex.singleresponse.MessageWithId;
 
 public class ASingleResponseServerGroupSendTrapperWrongAssumptions extends AnAbstractGroupSendTrapper<Object, Object> {

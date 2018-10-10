@@ -1,9 +1,9 @@
 package inputport.rpc;
 
-import util.trace.port.rpc.gipc.GIPCRegistryCreated;
-import util.trace.port.rpc.gipc.GIPCRegistryLocated;
 import inputport.rpc.duplex.AnAbstractDuplexRPCClientPortLauncher;
 import inputport.rpc.duplex.AnAbstractDuplexRPCServerPortLauncher;
+import util.trace.port.rpc.gipc.GIPCRegistryCreated;
+import util.trace.port.rpc.gipc.GIPCRegistryLocated;
 
 public class GIPCLocateRegistry {
 	static protected int lastServerId = 0;

@@ -1,14 +1,9 @@
 package sessionport.rpc.group.direct.example;
 
 import port.ParticipantChoice;
-import port.sessionserver.ASessionServerLauncher;
 import port.sessionserver.SessionServerLauncher;
-import port.sessionserverAndRelay.mvc.example.UpperCaseSession;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
-import sessionport.rpc.group.mvc.direct.example.ClientDirectSessionPort;
-import sessionport.rpc.group.mvc.flexible.example.AFlexibleSessionPortMVCClientLauncher;
 import sessionport.rpc.group.mvc.flexible.example.AliceSessionPort;
-import sessionport.rpc.group.mvc.flexible.example.CathySessionPort;
 
 public class AModularAliceGroupRPCDirectSessionPort implements AliceSessionPort {
 	public static void main(String[] args) {

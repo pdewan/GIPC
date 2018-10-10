@@ -1,19 +1,12 @@
 package examples.gipc.counter.simple;
 
 
-import inputport.rpc.GIPCLocateRegistry;
-import inputport.rpc.GIPCRegistry;
-
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
-
-import port.ATracingConnectionListener;
-import util.trace.port.buffer.BufferTraceUtility;
-import util.trace.port.rpc.RPCTraceUtility;
 import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;
+import inputport.rpc.GIPCLocateRegistry;
+import inputport.rpc.GIPCRegistry;
+import port.ATracingConnectionListener;
 
 public class ASimpleGIPCRegistryAndCounterServer  implements SimpleRegistryAndCounterServer{	
 	protected static DistributedRMICounter counter;

@@ -1,12 +1,11 @@
 package extraip;
 
 
+import java.lang.reflect.Method;
+
 import inputport.rpc.duplex.DuplexRPC;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.duplex.ReplyRPCProxyGenerator;
-
-import java.lang.reflect.Method;
-
 import sessionport.rpc.duplex.relayed.example.Adder;
 
 

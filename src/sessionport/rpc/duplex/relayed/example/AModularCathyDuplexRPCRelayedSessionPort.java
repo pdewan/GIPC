@@ -1,12 +1,8 @@
 package sessionport.rpc.duplex.relayed.example;
 
 import port.ParticipantChoice;
-import port.sessionserver.ASessionServerLauncher;
 import port.sessionserver.SessionServerLauncher;
-import port.sessionserverAndRelay.mvc.example.UpperCaseSession;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
-import sessionport.rpc.group.mvc.direct.example.ClientDirectSessionPort;
-import sessionport.rpc.group.mvc.flexible.example.AFlexibleSessionPortMVCClientLauncher;
 import sessionport.rpc.group.mvc.flexible.example.CathySessionPort;
 
 public class AModularCathyDuplexRPCRelayedSessionPort implements CathySessionPort {

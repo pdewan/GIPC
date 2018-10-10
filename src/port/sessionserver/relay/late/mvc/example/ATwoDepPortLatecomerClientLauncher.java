@@ -1,13 +1,12 @@
 package port.sessionserver.relay.late.mvc.example;
 
 
+import java.util.List;
+
 import inputport.ConnectionListenerWithPort;
 import inputport.ConnectionType;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
-
-import java.util.List;
-
 import port.relay.mvc.example.GenericRelayingCollaborativeFrostyModel;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.JoinInfo;

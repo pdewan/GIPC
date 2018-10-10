@@ -1,10 +1,9 @@
 package port.sessionserver;
 
-import inputport.ConnectionListener;
-
 import java.io.Serializable;
 import java.util.List;
 
+import inputport.ConnectionListener;
 import port.ParticipantChoice;
 
 

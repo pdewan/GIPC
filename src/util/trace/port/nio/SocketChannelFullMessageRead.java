@@ -1,15 +1,10 @@
 package util.trace.port.nio;
 
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.util.List;
 
 import inputport.nio.manager.listeners.SocketChannelReadListener;
-import inputport.rpc.RemoteCall;
-import util.trace.TraceableInfo;
-import util.trace.port.rpc.ReceivedCallEndedOld;
 
 public class SocketChannelFullMessageRead extends SocketChannelDataInfo {	
 	public SocketChannelFullMessageRead(String aMessage, Object aFinder,

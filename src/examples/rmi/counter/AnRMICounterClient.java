@@ -1,12 +1,9 @@
 package examples.rmi.counter;
 
 
-import inputport.rpc.ACachingAbstractRPCProxyInvocationHandler;
-
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 
 public class AnRMICounterClient extends CounterServerLauncher{

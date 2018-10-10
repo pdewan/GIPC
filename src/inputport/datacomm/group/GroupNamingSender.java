@@ -1,9 +1,9 @@
 package inputport.datacomm.group;
 
 
-import inputport.datacomm.NamingSender;
-
 import java.util.Collection;
+
+import inputport.datacomm.NamingSender;
 
 
 public interface GroupNamingSender<MessageType> 

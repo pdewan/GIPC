@@ -1,7 +1,6 @@
 package inputport.datacomm.group;
 
 import java.util.Collection;
-import java.util.Set;
 
 import util.trace.Tracer;
 

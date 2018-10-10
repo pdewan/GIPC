@@ -1,9 +1,8 @@
 package inputport.datacomm.simplex.buffer.example;
 
-import inputport.datacomm.simplex.SimplexClientInputPort;
-
 import java.nio.ByteBuffer;
 
+import inputport.datacomm.simplex.SimplexClientInputPort;
 import util.misc.Console;
 
 public class ASimplexBufferFrostyConsoleUI implements UserInterfaceManager{

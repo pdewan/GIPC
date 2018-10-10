@@ -1,17 +1,16 @@
 package util.trace.port;
 
-import inputport.datacomm.AReceiveRegistrarAndNotifier;
-import inputport.datacomm.ReceiveListener;
-import inputport.datacomm.ReceiveRegistrarAndNotifier;
-import inputport.datacomm.SendTrapper;
-import inputport.datacomm.SendTrapperSetter;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import inputport.datacomm.AReceiveRegistrarAndNotifier;
+import inputport.datacomm.ReceiveListener;
+import inputport.datacomm.ReceiveRegistrarAndNotifier;
+import inputport.datacomm.SendTrapper;
+import inputport.datacomm.SendTrapperSetter;
 import util.models.Hashcodetable;
 import util.trace.Tracer;
 

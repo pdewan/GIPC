@@ -1,25 +1,11 @@
 package consensus.synchronous.sequential;
 
-import inputport.ConnectionRegistrar;
-import inputport.InputPort;
-import inputport.nio.manager.commands.classes.AnAcceptCommand;
-import inputport.rpc.duplex.MaybeProcessReturnValue;
-import sessionport.rpc.group.GIPCSessionRegistry;
-import sessionport.rpc.group.GroupRPCSessionPort;
-import util.trace.port.consensus.ProposalAcceptRequestReceived;
-import util.trace.port.consensus.ProposalAcceptRequestSent;
-import util.trace.port.consensus.ProposalAcceptedNotificationReceived;
-import util.trace.port.consensus.ProposalAcceptedNotificationSent;
-import util.trace.port.consensus.ProposalLearnNotificationSent;
-import util.trace.port.consensus.ProposalPrepareRequestSent;
-import util.trace.port.consensus.ProposalPreparedNotificationReceived;
-import util.trace.port.consensus.SufficientAgreementsChecked;
-import consensus.ConsensusMemberSetKind;
-import consensus.ProposalVetoer;
-import consensus.ReplicationSynchrony;
-import consensus.ProposalState;
 import consensus.ProposalFeedbackKind;
+import consensus.ProposalVetoer;
 import consensus.asynchronous.sequential.AnAsynchronousConsensusMechanism;
+import sessionport.rpc.group.GIPCSessionRegistry;
+import util.trace.port.consensus.ProposalAcceptRequestReceived;
+import util.trace.port.consensus.ProposalAcceptedNotificationSent;
 
 public class AnAcceptorConsensusMechanism<StateType> extends
 		AnAsynchronousConsensusMechanism<StateType> implements

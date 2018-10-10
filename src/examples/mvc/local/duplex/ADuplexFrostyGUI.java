@@ -3,10 +3,10 @@ package examples.mvc.local.duplex;
 import java.awt.Component;
 import java.beans.PropertyChangeEvent;
 
-import util.awt.TextComponentInterface;
-import util.models.PropertyListenerRegisterer;
 import examples.mvc.local.simplex.ASimplexFrostyGUI;
 import examples.mvc.local.simplex.SimplexFrostyModel;
+import util.awt.TextComponentInterface;
+import util.models.PropertyListenerRegisterer;
 
 
 public abstract class ADuplexFrostyGUI extends ASimplexFrostyGUI  implements DuplexUserInterfaceManager{

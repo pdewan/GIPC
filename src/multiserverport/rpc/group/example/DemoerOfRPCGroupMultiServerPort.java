@@ -1,6 +1,5 @@
 package multiserverport.rpc.group.example;
 
-import port.sessionserver.relay.late.ALatecomerSessionServerLauncher;
 import bus.uigen.pipe.MainClassLaunchingUtility;
 
 public class DemoerOfRPCGroupMultiServerPort {

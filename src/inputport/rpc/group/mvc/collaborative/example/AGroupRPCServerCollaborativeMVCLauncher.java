@@ -1,5 +1,7 @@
 package inputport.rpc.group.mvc.collaborative.example;
 
+import examples.mvc.local.duplex.Counter;
+import examples.mvc.local.simplex.SimplexUpperCaser;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.duplex.mvc.multiuser.example.AMultiUserDuplexRPCServerMVCLauncher;
 import inputport.rpc.group.GroupRPCProxyGenerator;
@@ -9,8 +11,6 @@ import port.PortAccessKind;
 import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
-import examples.mvc.local.duplex.Counter;
-import examples.mvc.local.simplex.SimplexUpperCaser;
 
 
 

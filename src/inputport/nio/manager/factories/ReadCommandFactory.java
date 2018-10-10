@@ -1,12 +1,9 @@
 package inputport.nio.manager.factories;
 
+import java.nio.channels.SocketChannel;
+
 import inputport.nio.manager.SelectionManager;
 import inputport.nio.manager.commands.ReadCommand;
-
-import java.net.InetAddress;
-import java.nio.ByteBuffer;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
 
 public interface ReadCommandFactory {	
 	ReadCommand createReadCommand(SelectionManager aSelectionManager,

@@ -1,6 +1,5 @@
 package replicatedsessionport.rpc.duplex.singleresponse.example;
 
-import port.ParticipantChoice;
 import bus.uigen.pipe.MainClassLaunchingUtility;
 /*
  * This allows the servervs to be replicatd of course but to also dynamically come and go

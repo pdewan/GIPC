@@ -1,12 +1,12 @@
 package inputport.rpc.duplex.example;
 
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
 import inputport.datacomm.duplex.buffer.echoer.example.AReplyingUpperCaseBufferReceiveListener;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.duplex.ReplyRPCProxyGenerator;
 import inputport.rpc.simplex.example.ASenderAwareUpperCasePrinter;
-
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 public class ADuplexUpperCasePrinter extends ASenderAwareUpperCasePrinter implements DuplexUpperCasePrinter{
 	protected DuplexRPCServerInputPort duplexRPCServerInputPort;
 	protected AnotherCounter counter;

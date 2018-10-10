@@ -1,5 +1,9 @@
 package port.common;
 
+import java.nio.ByteBuffer;
+import java.util.HashMap;
+import java.util.Map;
+
 import inputport.datacomm.ATrapperSelector;
 import inputport.datacomm.TrapperSelector;
 import inputport.datacomm.group.AGroupToUniSendTrapperSelector;
@@ -7,11 +11,6 @@ import inputport.datacomm.group.AGroupTrapperSelector;
 import inputport.datacomm.group.GroupToUniSendTrapperSelector;
 import inputport.datacomm.group.GroupTrapperSelector;
 import inputport.datacomm.group.buffer.AGroupToUniSendBufferSelector;
-
-import java.nio.ByteBuffer;
-import java.util.HashMap;
-import java.util.Map;
-
 import port.sessionserver.ServerPortDescription;
 import replicatedserver.datacomm.duplex.anycast.AGetterAnyCastSendForwarderFactory;
 import replicatedserverport.datacomm.simplex.AMultiToReplicatedTrapperFactory;

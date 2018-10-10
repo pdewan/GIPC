@@ -1,14 +1,7 @@
 package sessionport.rpc.group.direct.example;
 
-import port.sessionserver.ASessionServerLauncher;
-import port.sessionserver.relay.ASessionServerRelayerLauncher;
-import port.sessionserver.relay.ARelayerSupportingSessionServerLauncher;
-import port.sessionserver.relay.SessionServerRelayerLauncher;
-import sessionport.datacomm.group.object.relayed.example.CathyClientRelayedGroupSessionPort;
-import sessionport.datacomm.group.object.relayed.latecomer.ASessionPortLatecomerSupportingSessionServerLauncher;
-import sessionport.datacomm.group.object.relayed.latecomer.example.AliceMemberLatecomerGroupSessionPort;
-import sessionport.datacomm.group.object.relayed.latecomer.example.BobServerLatecomerGroupSessionPort;
 import bus.uigen.pipe.MainClassLaunchingUtility;
+import port.sessionserver.ASessionServerLauncher;
 
 public class ModularDemoerOfGroupRPCDirectSessionPort {
 	public static void main(String args[]) {

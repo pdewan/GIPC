@@ -1,9 +1,8 @@
 package sessionport.datacomm.duplex.buffer.fullp2p;
 
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
-
 import java.nio.ByteBuffer;
 
+import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import port.ParticipantChoice;
 import sessionport.datacomm.duplex.AnAbstractDuplexSessionPortFactory;
 import sessionport.datacomm.duplex.DuplexSessionPort;

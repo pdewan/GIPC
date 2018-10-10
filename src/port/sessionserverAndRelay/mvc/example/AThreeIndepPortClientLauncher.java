@@ -1,14 +1,13 @@
 package port.sessionserverAndRelay.mvc.example;
 
 
+import java.util.List;
+
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCInputPortSelector;
 import inputport.rpc.simplex.mvc.example.SimplexRPCServerMVCLauncher;
-
-import java.util.List;
-
 import port.relay.RelayerLauncher;
 import port.relay.mvc.example.ATwoServerClientLauncher;
 import port.sessionserver.AServerPortDescription;

@@ -1,10 +1,9 @@
 package inputport.datacomm.simplex.buffer;
 
-import inputport.datacomm.simplex.SimplexInputPortFactory;
-import inputport.datacomm.simplex.buffer.nio.AnNIOSimplexBufferInputPortFactory;
-
 import java.nio.ByteBuffer;
 
+import inputport.datacomm.simplex.SimplexInputPortFactory;
+import inputport.datacomm.simplex.buffer.nio.AnNIOSimplexBufferInputPortFactory;
 import port.AnAbstractPortLauncherSupport;
 import port.PortLauncherSupport;
 

@@ -1,11 +1,11 @@
 package extraip;
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.NamingSender;
 import inputport.datacomm.duplex.buffer.AServerChannelSendBufferForwarder;
 import inputport.datacomm.duplex.buffer.DuplexBufferGenericServerInputPort;
 import inputport.datacomm.duplex.buffer.DuplexServerInputPortDriver;
-
-import java.nio.ByteBuffer;
 
 
 

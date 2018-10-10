@@ -1,12 +1,12 @@
 package inputport.datacomm.duplex.object;
 
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.DuplexInputPortFactory;
 import inputport.datacomm.duplex.DuplexServerInputPort;
 import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
-
-import java.nio.ByteBuffer;
 
 
 

@@ -1,9 +1,9 @@
 package inputport.datacomm.simplex.buffer.example;
 
+import java.nio.ByteBuffer;
+
 import inputport.InputPort;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
-
-import java.nio.ByteBuffer;
 public class ATracingSendListener  implements ByteBufferSendListener {
 	InputPort inputPort;
 	public ATracingSendListener(InputPort anInputPort) {

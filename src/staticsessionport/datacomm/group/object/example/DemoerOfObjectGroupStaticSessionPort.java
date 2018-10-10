@@ -1,6 +1,5 @@
 package staticsessionport.datacomm.group.object.example;
 
-import port.sessionserver.relay.late.ALatecomerSessionServerLauncher;
 import bus.uigen.pipe.MainClassLaunchingUtility;
 // must click on each dialogue box after all processes have connected
 // can probably automate that for testing purposes

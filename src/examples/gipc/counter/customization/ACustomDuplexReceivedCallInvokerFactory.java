@@ -1,9 +1,8 @@
 package examples.gipc.counter.customization;
 
-import inputport.datacomm.NamingSender;
 import inputport.datacomm.duplex.DuplexInputPort;
-import inputport.rpc.RPCRegistry;
 import inputport.rpc.DuplexReceivedCallInvokerFactory;
+import inputport.rpc.RPCRegistry;
 import inputport.rpc.duplex.DuplexReceivedCallInvoker;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
 

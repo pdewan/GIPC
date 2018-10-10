@@ -1,11 +1,10 @@
 package port.sessionserver.relay.late.mvc.example;
 
 
-import inputport.ConnectionListenerWithPort;
-import inputport.ConnectionType;
-
 import java.util.List;
 
+import inputport.ConnectionListenerWithPort;
+import inputport.ConnectionType;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.JoinInfo;
 import port.sessionserver.ServerPortDescription;

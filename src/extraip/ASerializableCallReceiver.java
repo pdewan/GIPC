@@ -1,15 +1,14 @@
 package extraip;
 
 
+import java.io.Serializable;
+
 import inputport.rpc.RPCOnUnregisteredObjectException;
 import inputport.rpc.RPCRegistry;
 import inputport.rpc.ReceivedCallInvoker;
 import inputport.rpc.SerializableCall;
 import inputport.rpc.duplex.AnRPCReturnValue;
 import inputport.rpc.duplex.RPCReturnValue;
-
-import java.io.Serializable;
-
 import oldtypedip.TypedUniSend;
 
 

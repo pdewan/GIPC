@@ -1,11 +1,9 @@
 package port.causal;
 
+import java.util.Collection;
+
 import inputport.datacomm.group.AnAbstractGroupSendTrapper;
 import inputport.datacomm.group.GroupNamingSender;
-
-import java.util.Collection;
-import java.util.Set;
-
 import util.trace.Tracer;
 
 

@@ -1,12 +1,5 @@
 package port.old;
 
-import inputport.datacomm.SendToUnconnectedPortException;
-import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.commands.ConnectCommand;
-import inputport.nio.manager.commands.WriteCommand;
-import inputport.nio.manager.commands.classes.AConnectCommand;
-import inputport.nio.manager.commands.classes.AWriteCommand;
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -15,6 +8,12 @@ import java.nio.channels.SocketChannel;
 import java.util.Set;
 
 import extraip.ASendConnectionListener;
+import inputport.datacomm.SendToUnconnectedPortException;
+import inputport.nio.manager.SelectionManager;
+import inputport.nio.manager.commands.ConnectCommand;
+import inputport.nio.manager.commands.WriteCommand;
+import inputport.nio.manager.commands.classes.AConnectCommand;
+import inputport.nio.manager.commands.classes.AWriteCommand;
 
 public class AMonolithicNIOClientInputPort extends AConnectionSendReceiptNotifier implements MonolithicNIOClientInputPort {
 	InetAddress host;

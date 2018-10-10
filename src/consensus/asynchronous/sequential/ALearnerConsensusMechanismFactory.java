@@ -1,10 +1,8 @@
 package consensus.asynchronous.sequential;
 
-import sessionport.rpc.group.GIPCSessionRegistry;
-import sessionport.rpc.group.GroupRPCSessionPort;
 import consensus.AnAbstractConsensusMechanismFactory;
 import consensus.ConsensusMechanism;
-import consensus.synchronous.sequential.ASynchronousConsensusMechanism;
+import sessionport.rpc.group.GIPCSessionRegistry;
 
 public class ALearnerConsensusMechanismFactory<StateType> extends AnAbstractConsensusMechanismFactory<StateType> {
 

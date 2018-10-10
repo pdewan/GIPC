@@ -1,12 +1,5 @@
 package examples.gipc.consensus.paxos.scenarios;
 
-import inputport.datacomm.group.GroupSendMessageForwarderSelector;
-import inputport.datacomm.group.object.ADescendingMultipleSendGroupForwarder;
-import inputport.datacomm.group.object.ADescendingMultipleSendGroupForwarderFactory;
-import inputport.datacomm.group.object.AnAscendingMultipleSendGroupForwarderFactory;
-import inputport.datacomm.group.object.MultipleSendGroupForwarderSelector;
-import examples.gipc.consensus.Member1;
-import examples.gipc.consensus.Member2;
 import examples.gipc.consensus.Member3;
 import util.trace.port.consensus.ConsensusTraceUtility;
 

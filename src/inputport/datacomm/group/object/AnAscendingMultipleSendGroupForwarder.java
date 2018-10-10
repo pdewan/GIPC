@@ -1,15 +1,13 @@
 package inputport.datacomm.group.object;
 
-import inputport.InputPort;
-import inputport.datacomm.NamingSender;
-import inputport.datacomm.group.GroupNamingSender;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
+import inputport.InputPort;
+import inputport.datacomm.NamingSender;
+import inputport.datacomm.group.GroupNamingSender;
 import util.trace.Tracer;
 
 

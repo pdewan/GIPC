@@ -1,9 +1,5 @@
 package inputport.nio.manager.commands.classes;
 
-import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.commands.AcceptCommand;
-import inputport.nio.manager.listeners.SocketChannelAcceptListener;
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.nio.channels.SelectableChannel;
@@ -13,10 +9,12 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
+import inputport.nio.manager.SelectionManager;
+import inputport.nio.manager.commands.AcceptCommand;
+import inputport.nio.manager.listeners.SocketChannelAcceptListener;
 import util.trace.Tracer;
 import util.trace.port.nio.SocketChannelAccepted;
 import util.trace.port.nio.SocketChannelBlockingConfigured;
-import util.trace.port.nio.SocketChannelInterestOp;
 import util.trace.port.nio.SocketChannelRegistered;
 
 

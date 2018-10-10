@@ -5,8 +5,6 @@ package util.trace.port.rpc.gipc;
 import util.trace.ImplicitKeywordKind;
 import util.trace.TraceableInfo;
 import util.trace.Tracer;
-import util.trace.port.PerformanceExperimentEnded;
-import util.trace.port.PerformanceExperimentStarted;
 
 
 public class GIPCRPCTraceUtility {

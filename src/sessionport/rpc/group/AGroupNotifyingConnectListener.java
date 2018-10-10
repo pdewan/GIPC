@@ -1,14 +1,8 @@
 package sessionport.rpc.group;
 
-import java.util.Arrays;
-
 import inputport.ConnectionListener;
-import inputport.ConnectionType;
-import inputport.rpc.DirectedRPCProxyGenerator;
-import inputport.rpc.group.GroupRPCProxyGenerator;
 import sessionport.rpc.duplex.DuplexRPCSessionPort;
 import sessionport.rpc.duplex.relayed.example.ACallingConnectListener;
-import sessionport.rpc.duplex.relayed.example.Adder;
 
 public class AGroupNotifyingConnectListener extends ACallingConnectListener implements ConnectionListener{
 	public AGroupNotifyingConnectListener(DuplexRPCSessionPort aSessionPort) {

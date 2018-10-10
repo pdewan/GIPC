@@ -1,5 +1,8 @@
 package inputport.datacomm.group.object;
 
+import java.nio.ByteBuffer;
+import java.util.Collection;
+
 import inputport.datacomm.ReceiveTrapper;
 import inputport.datacomm.duplex.DuplexServerInputPort;
 import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
@@ -7,12 +10,6 @@ import inputport.datacomm.group.AnAbstractGroupServerInputPort;
 import inputport.datacomm.group.GroupNamingSender;
 import inputport.datacomm.group.GroupSendTrapper;
 import inputport.datacomm.group.GroupServerInputPort;
-
-import java.io.Serializable;
-import java.nio.ByteBuffer;
-import java.util.Collection;
-import java.util.Set;
-
 import util.trace.Tracer;
 import util.trace.port.AConnectionEvent;
 import util.trace.port.ConnectiontEventBus;

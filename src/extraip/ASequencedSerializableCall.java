@@ -1,8 +1,8 @@
 package extraip;
 
-import inputport.rpc.ASerializableCall;
-
 import java.lang.reflect.Method;
+
+import inputport.rpc.ASerializableCall;
 
 
 public class ASequencedSerializableCall extends ASerializableCall implements SequencedSerializableCall{

@@ -1,13 +1,13 @@
 package inputport.datacomm.group;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import inputport.InputPort;
 import inputport.datacomm.AReceiveMessageForwarderFactory;
 import inputport.datacomm.ReceiveNotifier;
 import inputport.datacomm.ReceiveTrapper;
 import inputport.datacomm.ReceiveTrapperFactory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AGroupTrapperSelector<SendInMessageType, SendOutMessageType> implements GroupTrapperSelector<SendInMessageType, SendOutMessageType>{
 	List<ReceiveTrapperFactory<SendOutMessageType, SendInMessageType>>  receiveFactories = new ArrayList();

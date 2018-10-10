@@ -1,14 +1,7 @@
 package examples.gipc.counter.customization;
 
-import inputport.datacomm.duplex.object.DuplexObjectInputPortSelector;
-import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
-import inputport.rpc.duplex.DuplexReceivedCallInvokerSelector;
-import inputport.rpc.duplex.DuplexSentCallCompleterSelector;
-import inputport.rpc.duplex.SynchronousDuplexReceivedCallInvokerSelector;
-import serialization.SerializerSelector;
-import util.trace.port.objects.ObjectTraceUtility;
-import util.trace.port.rpc.RPCTraceUtility;
 import examples.gipc.counter.layers.AMultiLayerCounterClient;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 /**
  * A class that uses factories to change the components of the GIPC RPC
  * implementation.

@@ -1,14 +1,13 @@
 package replicatedserverport.rpc.group.relayed.latecomer.asymmetric.example;
 
+import java.util.Scanner;
+
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.group.GroupAllSender;
 import inputport.datacomm.simplex.buffer.example.ASimplexBufferClientInputPortLauncher;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
-
-import java.util.Scanner;
-
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.common.PortMisc;

@@ -1,15 +1,7 @@
 package examples.gipc.counter.customization;
 
-import inputport.datacomm.duplex.object.DuplexObjectInputPortSelector;
-import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
-import inputport.rpc.duplex.DuplexRPCServerInputPort;
-import inputport.rpc.duplex.DuplexReceivedCallInvokerSelector;
-import inputport.rpc.duplex.DuplexSentCallCompleterSelector;
-import util.misc.ThreadSupport;
-import util.trace.port.objects.ObjectTraceUtility;
-import util.trace.port.rpc.RPCTraceUtility;
-import examples.gipc.counter.layers.AMultiLayerCounterClient;
 import examples.gipc.counter.layers.AMultiLayerCounterServer;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 
 public class ACustomCounterServer extends AMultiLayerCounterServer{
 	public static final long POLLING_TIME = 1000;

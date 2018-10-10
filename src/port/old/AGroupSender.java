@@ -1,12 +1,12 @@
 package port.old;
 
 
+import java.util.Collection;
+import java.util.Set;
+
 import inputport.datacomm.duplex.QueryableDuplexServerSender;
 import inputport.datacomm.group.GroupNamingSender;
 import inputport.datacomm.group.GroupSender;
-
-import java.util.Collection;
-import java.util.Set;
 
 
 public class AGroupSender<MessageType> implements GroupSender<MessageType>{

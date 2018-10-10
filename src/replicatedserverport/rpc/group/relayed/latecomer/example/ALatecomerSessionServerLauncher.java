@@ -1,13 +1,13 @@
 package replicatedserverport.rpc.group.relayed.latecomer.example;
 
+import java.nio.ByteBuffer;
+
+import bus.uigen.ObjectEditor;
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.simplex.SimplexServerInputPort;
 import inputport.datacomm.simplex.buffer.AnEchoingBufferReceiveListener;
-
-import java.nio.ByteBuffer;
-
 import port.ATracingConnectionListener;
 import port.AnAbstractPortLauncher;
 import port.PortLauncherSupport;
@@ -15,7 +15,6 @@ import port.sessionserver.ServerPortDescription;
 import port.sessionserver.relay.late.ALatecomerRelayerAndSessionServerLauncherSupport;
 import port.sessionserver.relay.late.LatecomerRelayerAndSessionServerSelector;
 import util.trace.port.ConnectionEventManagerFactory;
-import bus.uigen.ObjectEditor;
 
 public  class ALatecomerSessionServerLauncher extends AnAbstractPortLauncher{
 	public static String SESSION_SERVER_NAME = "Sessions Server";

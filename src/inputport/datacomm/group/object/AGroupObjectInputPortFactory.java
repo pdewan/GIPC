@@ -1,6 +1,8 @@
 package inputport.datacomm.group.object;
 
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.DuplexServerInputPort;
 import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
@@ -9,8 +11,6 @@ import inputport.datacomm.duplex.object.ADuplexObjectServerInputPort;
 import inputport.datacomm.group.GroupInputPortFactory;
 import inputport.datacomm.group.GroupServerInputPort;
 import inputport.datacomm.group.buffer.BufferGroupInputPortSelector;
-
-import java.nio.ByteBuffer;
 
 
 

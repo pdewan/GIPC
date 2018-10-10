@@ -1,5 +1,10 @@
 package oldtypedip;
 
+import java.nio.ByteBuffer;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.datacomm.ReceiveListener;
@@ -13,11 +18,6 @@ import inputport.datacomm.group.GroupSendTrapper;
 import inputport.datacomm.group.GroupServerInputPort;
 import inputport.datacomm.group.GroupToUniSendTrapper;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
-
-import java.nio.ByteBuffer;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
 
 

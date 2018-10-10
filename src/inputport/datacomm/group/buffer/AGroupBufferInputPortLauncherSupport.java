@@ -1,9 +1,9 @@
 package inputport.datacomm.group.buffer;
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.duplex.buffer.ADuplexBufferInputPortLauncherSupport;
 import inputport.datacomm.group.GroupInputPortFactory;
-
-import java.nio.ByteBuffer;
 
 
 public class AGroupBufferInputPortLauncherSupport extends ADuplexBufferInputPortLauncherSupport {

@@ -4,7 +4,6 @@ import java.nio.ByteBuffer;
 
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.object.ADuplexObjectClientInputPort;
-import inputport.datacomm.duplex.object.DuplexObjectInputPortSelector;
 import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 /**
  * Overrides interesting methods of the default object client input port

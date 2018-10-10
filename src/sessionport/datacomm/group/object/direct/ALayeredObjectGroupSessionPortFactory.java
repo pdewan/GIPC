@@ -1,10 +1,9 @@
 package sessionport.datacomm.group.object.direct;
 
 
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
-
 import java.nio.ByteBuffer;
 
+import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import port.ParticipantChoice;
 import sessionport.datacomm.duplex.DuplexSessionPort;
 import sessionport.datacomm.duplex.object.direct.AnObjectDuplexSessionPort;

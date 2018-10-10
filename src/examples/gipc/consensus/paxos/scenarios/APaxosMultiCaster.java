@@ -2,11 +2,8 @@ package examples.gipc.consensus.paxos.scenarios;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
-import util.trace.Tracer;
 import inputport.InputPort;
-import inputport.datacomm.NamingSender;
 import inputport.datacomm.group.AnAscendingGroupSendMessageForwarder;
 import inputport.datacomm.group.GroupNamingSender;
 import inputport.datacomm.group.object.AnAscendingMultipleSendGroupForwarder;

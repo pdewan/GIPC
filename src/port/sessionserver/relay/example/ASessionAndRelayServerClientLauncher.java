@@ -10,7 +10,6 @@ import port.relay.Relayer;
 import port.sessionserver.SessionObserver;
 import port.sessionserver.example.ASessionServerClientLauncher;
 import port.sessionserver.relay.ARelayerSupportingSessionServer;
-import port.sessionserver.relay.RelayerSupportingSessionServer;
 import sessionport.datacomm.duplex.object.relayed.AMessageWithSource;
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
 

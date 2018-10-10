@@ -1,14 +1,14 @@
 package inputport.datacomm.duplex.buffer.nio;
 
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
+
 import inputport.datacomm.duplex.buffer.DuplexBufferGenericClientInputPort;
 import inputport.datacomm.duplex.buffer.DuplexClientInputPortSkeleton;
 import inputport.datacomm.simplex.buffer.nio.AnNIOSimplexBufferClientInputPortDriver;
 import inputport.nio.manager.SelectionManager;
 import inputport.nio.manager.factories.classes.AReadingWritingConnectCommandFactory;
 import inputport.nio.manager.factories.selectors.ConnectCommandFactorySelector;
-
-import java.nio.ByteBuffer;
-import java.nio.channels.SocketChannel;
 
 
 public class AnNIODuplexBufferClientInputPortDriver extends AnNIOSimplexBufferClientInputPortDriver implements NIODuplexBufferClientInputPortDriver{

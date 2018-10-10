@@ -1,14 +1,10 @@
 package replicatedserverport.rpc.group.fixedresponse.direct.example;
 
-import inputport.datacomm.simplex.object.example.BobClientLauncher;
 import inputport.datacomm.simplex.object.example.CathyClientLauncher;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
-import replicatedserverport.rpc.duplex.fixedresponse.ClientServerMapping;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleResponseReplicatedSessionPortLauncher;
 import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.Server2Launcher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.Server3Launcher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 
 public class CathyFixedResponseP2PReplicatedPortLauncher {

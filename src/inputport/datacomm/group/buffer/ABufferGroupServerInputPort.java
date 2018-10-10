@@ -1,12 +1,11 @@
 package inputport.datacomm.group.buffer;
 
+import java.nio.ByteBuffer;
+import java.util.Collection;
+
 import inputport.datacomm.duplex.DuplexServerInputPort;
 import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.group.AnAbstractGroupServerInputPort;
-
-import java.nio.ByteBuffer;
-import java.util.Collection;
-import java.util.Set;
 
 
 

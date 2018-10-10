@@ -5,10 +5,6 @@ package util.trace.port.consensus;
 import util.trace.ImplicitKeywordKind;
 import util.trace.TraceableInfo;
 import util.trace.Tracer;
-import util.trace.port.RemoteEndConnected;
-import util.trace.port.RemoteEndDisconnected;
-import util.trace.port.buffer.BufferTraceUtility;
-import util.trace.port.rpc.CallReceived;
 import util.trace.port.rpc.ReceivedCallInitiated;
 import util.trace.port.rpc.RemoteCallInitiated;
 

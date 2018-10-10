@@ -1,8 +1,4 @@
 package port.old;
-import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.commands.AcceptCommand;
-import inputport.nio.manager.commands.classes.AnAcceptCommand;
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -11,6 +7,10 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.HashMap;
 import java.util.Map;
+
+import inputport.nio.manager.SelectionManager;
+import inputport.nio.manager.commands.AcceptCommand;
+import inputport.nio.manager.commands.classes.AnAcceptCommand;
 
 
 

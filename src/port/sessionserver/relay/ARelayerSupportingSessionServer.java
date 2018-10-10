@@ -1,12 +1,11 @@
 package port.sessionserver.relay;
 
-import inputport.ConnectionListener;
-import inputport.ConnectionType;
-import inputport.rpc.duplex.DuplexRPCServerInputPort;
-
 import java.util.HashMap;
 import java.util.Map;
 
+import inputport.ConnectionListener;
+import inputport.ConnectionType;
+import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import port.sessionserver.ASessionServer;
 import port.sessionserver.ServerPortDescription;
 

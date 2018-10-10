@@ -1,11 +1,10 @@
 package port.old;
 
-import inputport.datacomm.duplex.DuplexServerInputPort;
-import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
-
 import java.nio.ByteBuffer;
 
 import extraip.APrintingReceiveAndSendListener;
+import inputport.datacomm.duplex.DuplexServerInputPort;
+import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 
 
 

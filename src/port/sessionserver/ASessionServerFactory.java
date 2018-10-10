@@ -1,10 +1,10 @@
 package port.sessionserver;
 
-import inputport.rpc.duplex.DuplexRPCInputPortSelector;
-import inputport.rpc.duplex.DuplexRPCServerInputPort;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import inputport.rpc.duplex.DuplexRPCInputPortSelector;
+import inputport.rpc.duplex.DuplexRPCServerInputPort;
 
 
 

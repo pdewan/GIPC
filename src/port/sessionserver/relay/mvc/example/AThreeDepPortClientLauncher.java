@@ -1,15 +1,15 @@
 package port.sessionserver.relay.mvc.example;
 
 
+import java.util.List;
+
+import examples.mvc.local.duplex.DuplexFrostyModel;
 import inputport.ConnectionListenerWithPort;
 import inputport.ConnectionType;
 import inputport.InputPort;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.mvc.singleuser.example.ADuplexRPCClientMVCLauncher;
 import inputport.rpc.simplex.mvc.example.SimplexRPCClientMVCLauncher;
-
-import java.util.List;
-
 import port.APortDescription;
 import port.PortAccessKind;
 import port.PortDescription;
@@ -28,7 +28,6 @@ import port.sessionserver.relay.ARelayerSupportingSessionServer;
 import port.sessionserver.relay.RelayerSupportingSessionServer;
 import port.sessionserverAndRelay.mvc.example.UpperCaseSession;
 import util.trace.Tracer;
-import examples.mvc.local.duplex.DuplexFrostyModel;
 
 public class AThreeDepPortClientLauncher extends   ADuplexRPCClientMVCLauncher   {
 	protected RelayerSupportingSessionServer sessionServerProxy;

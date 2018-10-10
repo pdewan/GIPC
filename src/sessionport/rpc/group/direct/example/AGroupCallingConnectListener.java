@@ -3,10 +3,7 @@ package sessionport.rpc.group.direct.example;
 import java.util.Arrays;
 
 import inputport.ConnectionListener;
-import inputport.ConnectionType;
-import inputport.rpc.DirectedRPCProxyGenerator;
 import inputport.rpc.group.GroupRPCProxyGenerator;
-import sessionport.rpc.duplex.DuplexRPCSessionPort;
 import sessionport.rpc.duplex.relayed.example.ACallingConnectListener;
 import sessionport.rpc.duplex.relayed.example.Adder;
 import sessionport.rpc.group.GroupRPCSessionPort;

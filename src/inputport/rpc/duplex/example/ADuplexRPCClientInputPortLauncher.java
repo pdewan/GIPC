@@ -11,7 +11,6 @@ import inputport.rpc.duplex.ADuplexRPCInputPortLauncherSupport;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCInputPortSelector;
 import inputport.rpc.simplex.example.ASimplexRPCClientInputPortLauncher;
-import inputport.rpc.simplex.example.AnUpperCasePrinter;
 import inputport.rpc.simplex.example.UpperCasePrinter;
 import port.PortLauncherSupport;
 

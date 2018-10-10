@@ -1,8 +1,8 @@
 package inputport.datacomm.group.buffer;
 
-import inputport.datacomm.group.GroupToUniSendTrapperSelector;
-
 import java.nio.ByteBuffer;
+
+import inputport.datacomm.group.GroupToUniSendTrapperSelector;
 
 public class ServerGroupToUniSendSendBufferTrapperSelector {
 	static GroupToUniSendTrapperSelector<ByteBuffer, ByteBuffer> trapperSelector = new AGroupToUniSendBufferSelector();

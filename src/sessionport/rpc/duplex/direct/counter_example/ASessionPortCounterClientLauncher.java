@@ -1,19 +1,18 @@
 package sessionport.rpc.duplex.direct.counter_example;
 
+import java.util.Scanner;
+
+import examples.mvc.local.duplex.ACounter;
+import examples.mvc.local.duplex.Counter;
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.simplex.object.ObjectTranslatingIPTrapperSelector;
 import inputport.rpc.DirectedRPCProxyGenerator;
 import inputport.rpc.duplex.AnAbstractDuplexRPCClientPortLauncher;
-
-import java.util.Scanner;
-
 import port.PortAccessKind;
 import port.PortKind;
 import port.SessionChoice;
 import sessionport.rpc.duplex.DuplexRPCSessionPort;
-import examples.mvc.local.duplex.ACounter;
-import examples.mvc.local.duplex.Counter;
 
 public class ASessionPortCounterClientLauncher extends
 		AnAbstractDuplexRPCClientPortLauncher {

@@ -1,5 +1,6 @@
 package replicatedserverport.rpc.group.singleresponse.relayed.latecomer.example;
 
+import bus.uigen.ObjectEditor;
 import port.ParticipantChoice;
 import port.SessionChoice;
 import port.sessionserver.ASessionServerLauncher;
@@ -7,7 +8,6 @@ import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleRespons
 import replicatedserverport.rpc.group.flexibleresponse.flexible.ReplicationChoice;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 import util.trace.port.ConnectionEventManagerFactory;
-import bus.uigen.ObjectEditor;
 
 public class AliceSingleResponseLatecomerReplicatedPortLauncher {
 	public static void main(String[] args) {

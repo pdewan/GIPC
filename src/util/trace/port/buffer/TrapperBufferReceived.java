@@ -1,9 +1,8 @@
 package util.trace.port.buffer;
 
-import inputport.datacomm.ReceiveNotifier;
-
 import java.nio.ByteBuffer;
 
+import inputport.datacomm.ReceiveNotifier;
 import util.trace.port.MessageReceiveInfo;
 
 public class TrapperBufferReceived extends MessageReceiveInfo {

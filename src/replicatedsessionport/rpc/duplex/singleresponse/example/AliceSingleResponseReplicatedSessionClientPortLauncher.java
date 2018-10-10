@@ -1,10 +1,9 @@
 package replicatedsessionport.rpc.duplex.singleresponse.example;
 
+import bus.uigen.ObjectEditor;
 import port.sessionserver.ASessionServerLauncher;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.AFlexibleResponseReplicatedSessionPortLauncher;
 import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
 import util.trace.port.ConnectionEventManagerFactory;
-import bus.uigen.ObjectEditor;
 
 public class AliceSingleResponseReplicatedSessionClientPortLauncher {
 

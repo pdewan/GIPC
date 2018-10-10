@@ -1,6 +1,5 @@
 package examples.gipc.consensus.asynchronous;
 
-import examples.gipc.consensus.Member1;
 import examples.gipc.consensus.Member2;
 import util.trace.port.consensus.ConsensusTraceUtility;
 

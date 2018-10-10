@@ -1,10 +1,5 @@
 package consensus;
 
-import java.util.Set;
-
-import inputport.ConnectionListener;
-
-
 public interface BasicConsensusMechanism<StateType>   {
 	/**
 	 * propose a new value, and get back an ID for the proposal

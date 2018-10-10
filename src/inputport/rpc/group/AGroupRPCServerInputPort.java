@@ -1,19 +1,17 @@
 package inputport.rpc.group;
 
 
+import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 //import extraip.AGroupAdder;
 //import extraip.GroupAdder;
 import inputport.datacomm.group.GroupSendTrapper;
 import inputport.datacomm.group.GroupServerInputPort;
 import inputport.datacomm.group.GroupToUniSendTrapper;
 import inputport.rpc.duplex.ADuplexRPCServerInputPort;
-
-import java.io.Serializable;
-import java.lang.reflect.Method;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
 import util.trace.Tracer;
 import util.trace.port.AConnectionEvent;
 import util.trace.port.AReplaceConnectionEvent;

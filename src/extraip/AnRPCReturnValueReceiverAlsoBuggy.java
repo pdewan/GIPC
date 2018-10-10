@@ -1,11 +1,11 @@
 package extraip;
 
 
-import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
-import inputport.rpc.duplex.RPCReturnValue;
-
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+
+import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
+import inputport.rpc.duplex.RPCReturnValue;
 
 
 public class AnRPCReturnValueReceiverAlsoBuggy implements BuggyRPCReturnValueReceiver {

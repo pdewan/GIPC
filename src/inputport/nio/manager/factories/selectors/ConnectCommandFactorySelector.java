@@ -1,8 +1,8 @@
 package inputport.nio.manager.factories.selectors;
 
-import util.trace.factories.SelectorFactorySet;
 import inputport.nio.manager.factories.ConnectCommandFactory;
 import inputport.nio.manager.factories.classes.AConnectCommandFactory;
+import util.trace.factories.SelectorFactorySet;
 
 /**
  * Chooses the factory that creates the connect commmand. 

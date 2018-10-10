@@ -1,13 +1,12 @@
 package inputport.datacomm.simplex.buffer.mvc.example;
 
-import inputport.datacomm.ReceiveListener;
-
 import java.io.StreamCorruptedException;
 import java.nio.ByteBuffer;
 
-import serialization.Serializer;
 import examples.mvc.local.simplex.ASimplexUpperCaser;
 import examples.mvc.local.simplex.SimplexUpperCaser;
+import inputport.datacomm.ReceiveListener;
+import serialization.Serializer;
 
 public class ASimplexBufferServerUpperCaseReceiveTrapper  implements ReceiveListener<ByteBuffer>{
 //	protected InputPort inputPort;

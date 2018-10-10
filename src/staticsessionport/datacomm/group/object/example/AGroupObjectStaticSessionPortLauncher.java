@@ -1,5 +1,9 @@
 package staticsessionport.datacomm.group.object.example;
 
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.duplex.DuplexInputPort;
@@ -7,11 +11,6 @@ import inputport.datacomm.duplex.object.echoer.example.ADuplexObjectClientInputP
 import inputport.datacomm.duplex.object.echoer.example.AFrostyObjectConnectionListener;
 import inputport.datacomm.group.GroupSender;
 import inputport.rpc.duplex.example.DuplexCounterAndSenderAwareSummer;
-
-import java.util.Scanner;
-
-import javax.swing.JOptionPane;
-
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.sessionserver.ASessionParticipantDescription;

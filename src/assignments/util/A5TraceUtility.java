@@ -5,12 +5,7 @@ package assignments.util;
 import util.trace.ImplicitKeywordKind;
 import util.trace.TraceableInfo;
 import util.trace.Tracer;
-import util.trace.port.objects.ReceivedMessageDequeued;
-import util.trace.port.objects.ReceivedMessageQueueCreated;
 import util.trace.port.objects.SerializerTakenFromPool;
-import util.trace.port.rpc.ProxyMethodCalled;
-import util.trace.port.rpc.ReceivedReturnValueQueued;
-import util.trace.port.rpc.RemoteCallReturnValueDetermined;
 
 
 public class A5TraceUtility {

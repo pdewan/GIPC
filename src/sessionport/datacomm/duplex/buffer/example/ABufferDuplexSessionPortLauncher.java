@@ -1,9 +1,8 @@
 package sessionport.datacomm.duplex.buffer.example;
 
-import inputport.ConnectionListener;
-
 import java.nio.ByteBuffer;
 
+import inputport.ConnectionListener;
 import port.ParticipantChoice;
 import sessionport.datacomm.duplex.DuplexSessionPort;
 import sessionport.datacomm.duplex.buffer.ABufferDuplexReceiveListener;

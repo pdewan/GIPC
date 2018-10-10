@@ -1,11 +1,11 @@
 package extraip;
 
+import java.nio.ByteBuffer;
+
 import inputport.InputPort;
 import inputport.datacomm.NamingSender;
 import inputport.datacomm.simplex.buffer.AClientChannelSendBufferForwarder;
 import inputport.datacomm.simplex.buffer.SimplexBufferClientInputPortDriver;
-
-import java.nio.ByteBuffer;
 
 public class AClientChannelBufferDelayer<ChannelType> extends AnAbstractDelayer implements NamingSender<ByteBuffer>{
 //	UniNamingSender<Object> forwarder;

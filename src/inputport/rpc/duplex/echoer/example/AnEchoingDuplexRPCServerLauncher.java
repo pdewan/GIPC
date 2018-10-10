@@ -1,4 +1,7 @@
 package inputport.rpc.duplex.echoer.example;
+import examples.mvc.local.duplex.ADuplexUpperCaser;
+import examples.mvc.local.duplex.Counter;
+import examples.mvc.local.duplex.DuplexUpperCaser;
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.rpc.duplex.AnAbstractDuplexRPCServerPortLauncher;
@@ -6,9 +9,6 @@ import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.duplex.ReplyRPCProxyGenerator;
 import inputport.rpc.duplex.mvc.singleuser.example.DuplexRPCClientMVCLauncher;
 import port.ATracingConnectionListener;
-import examples.mvc.local.duplex.ADuplexUpperCaser;
-import examples.mvc.local.duplex.Counter;
-import examples.mvc.local.duplex.DuplexUpperCaser;
 public class AnEchoingDuplexRPCServerLauncher extends AnAbstractDuplexRPCServerPortLauncher implements EchoingDuplexServerLauncher  {
 	public AnEchoingDuplexRPCServerLauncher(String aServerName,
 			String aServerPort) {

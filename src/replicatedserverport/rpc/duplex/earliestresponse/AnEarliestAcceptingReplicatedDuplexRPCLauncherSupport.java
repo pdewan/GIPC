@@ -2,11 +2,8 @@ package replicatedserverport.rpc.duplex.earliestresponse;
 
 import inputport.datacomm.TrapperFactory;
 import inputport.rpc.duplex.ADuplexCallTrapperFactory;
-import replicatedserverport.datacomm.duplex.earliest.AnEarliestAcceptingMultiToUniReceiveForwarderFactory;
 import replicatedserverport.datacomm.duplex.earliest.AnEarliestAcceptingReplicatedPortLauncherSupport;
-import replicatedserverport.datacomm.simplex.ClientMultiToReplicatedTrapperSelector;
 import replicatedserverport.rpc.duplex.ReplicatedDuplexClientSerializableCallTrapperSelector;
-import replicatedserverport.rpc.duplex.singleresponse.ASingleResponseClientDuplexCallTrapperFactory;
 
 public class AnEarliestAcceptingReplicatedDuplexRPCLauncherSupport extends AnEarliestAcceptingReplicatedPortLauncherSupport {
 	public  void setFactories() {

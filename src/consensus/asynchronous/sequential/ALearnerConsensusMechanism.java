@@ -1,12 +1,10 @@
 package consensus.asynchronous.sequential;
 
-import inputport.InputPort;
-import sessionport.rpc.group.GIPCSessionRegistry;
-import sessionport.rpc.group.GroupRPCSessionPort;
-import util.trace.port.consensus.ProposalLearnNotificationReceived;
 import consensus.AnAbstractConsensusMechanism;
-import consensus.ProposalState;
 import consensus.ProposalFeedbackKind;
+import consensus.ProposalState;
+import sessionport.rpc.group.GIPCSessionRegistry;
+import util.trace.port.consensus.ProposalLearnNotificationReceived;
 
 public class ALearnerConsensusMechanism<StateType> extends
 		AnAbstractConsensusMechanism<StateType> implements Learner<StateType> {

@@ -1,5 +1,9 @@
 package port;
 
+import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.List;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.InputPort;
@@ -26,17 +30,11 @@ import inputport.rpc.duplex.ADuplexRPCInputPortLauncherSupport;
 import inputport.rpc.duplex.DuplexRPCInputPortSelector;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.duplex.ReplyRPCProxyGenerator;
-import inputport.rpc.duplex.counter.example.DuplexCounterServerLauncher;
 import inputport.rpc.group.AGroupRPCInputPortLauncherSupport;
 import inputport.rpc.group.GroupRPCInputPortSelector;
 import inputport.rpc.group.GroupRPCProxyGenerator;
 import inputport.rpc.group.GroupRPCServerInputPort;
 import inputport.rpc.simplex.SimplexRPCInputPortSelector;
-
-import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.List;
-
 import port.causal.ACausalGroupSessionPortLauncherSupport;
 import port.delay.AClientDelayingPortLauncherSupport;
 import port.sessionserver.AServerPortDescription;

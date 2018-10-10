@@ -1,14 +1,12 @@
 package inputport.nio.manager.commands.classes;
 
-import inputport.nio.manager.AScatterGatherSelectionManager;
-import inputport.nio.manager.SelectionManager;
-
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 
+import inputport.nio.manager.AScatterGatherSelectionManager;
+import inputport.nio.manager.SelectionManager;
 import util.trace.Tracer;
-import util.trace.port.nio.SocketChannelFullMessageRead;
 import util.trace.port.nio.SocketChannelHeaderRead;
 import util.trace.port.nio.SocketChannelPartialMessageFound;
 

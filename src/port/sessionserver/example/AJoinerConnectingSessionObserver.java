@@ -1,12 +1,11 @@
 package port.sessionserver.example;
 
-import inputport.datacomm.duplex.DuplexClientInputPort;
-import inputport.datacomm.duplex.object.DuplexObjectInputPortSelector;
-import inputport.datacomm.duplex.object.echoer.example.AFrostyObjectConnectionListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import inputport.datacomm.duplex.DuplexClientInputPort;
+import inputport.datacomm.duplex.object.DuplexObjectInputPortSelector;
+import inputport.datacomm.duplex.object.echoer.example.AFrostyObjectConnectionListener;
 import port.delay.example.AnEchoingObjectReceiveListener;
 import port.sessionserver.AJoinInfo;
 import port.sessionserver.JoinInfo;

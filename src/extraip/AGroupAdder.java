@@ -1,11 +1,10 @@
 package extraip;
 
 
-import inputport.rpc.group.GroupRPCProxyGenerator;
-import inputport.rpc.group.GroupRPCServerInputPort;
-
 import java.lang.reflect.Method;
 
+import inputport.rpc.group.GroupRPCProxyGenerator;
+import inputport.rpc.group.GroupRPCServerInputPort;
 import sessionport.rpc.duplex.relayed.example.Adder;
 
 
