@@ -2,35 +2,16 @@ package sessionport.rpc.group;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
 
-import examples.mvc.local.simplex.SimplexUpperCaser;
-import inputport.ConnectionListener;
-import inputport.InputPort;
 import inputport.rpc.DirectedRPCProxyGenerator;
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
-import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.group.GroupRPCProxyGenerator;
-import inputport.rpc.simplex.SimplexRPCServerInputPort;
-import port.ATracingConnectionListener;
-import port.AnAbstractPortLauncher;
 import port.ParticipantChoice;
 import port.PortAccessKind;
-import port.PortKind;
 import port.PortLauncherSupport;
 import port.SessionChoice;
-import replicatedserverport.rpc.group.ReplicatedServerSessionPortSelector;
-import replicatedserverport.rpc.group.flexibleresponse.flexible.AnEarliestReponseReplicatedSessionServerLauncher;
-import sessionport.datacomm.group.object.flexible.AFlexibleSessionPortClientLauncher;
-import sessionport.rpc.duplex.DuplexRPCSessionPort;
-import sessionport.rpc.duplex.DuplexRPCSessionPortSelector;
 import sessionport.rpc.duplex.direct.example.AModularDuplexRPCDirectSessionPortLauncher;
-import sessionport.rpc.duplex.relayed.example.ACallingConnectListener;
-import sessionport.rpc.duplex.relayed.example.Adder;
-import sessionport.rpc.duplex.relayed.example.AnAdder;
-import sessionport.rpc.group.direct.example.AGroupCallingConnectListener;
 
 
 public class AGroupRPCSessionPortLauncher extends

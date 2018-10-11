@@ -1,8 +1,8 @@
 package inputport.datacomm.duplex.buffer;
 
-import inputport.datacomm.NamingSender;
-
 import java.nio.ByteBuffer;
+
+import inputport.datacomm.NamingSender;
 
 public class AServerChannelSendBufferForwarderFactory<RequestChannelType, ChannelType> implements ServerChannelBufferSendTrapperFactory<RequestChannelType, ChannelType> {
 

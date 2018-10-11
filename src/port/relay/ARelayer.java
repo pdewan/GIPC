@@ -1,10 +1,8 @@
 package port.relay;
 
-import inputport.rpc.group.GroupRPCServerInputPort;
-
 import java.util.Collection;
-import java.util.Set;
 
+import inputport.rpc.group.GroupRPCServerInputPort;
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
 import util.trace.Tracer;
 

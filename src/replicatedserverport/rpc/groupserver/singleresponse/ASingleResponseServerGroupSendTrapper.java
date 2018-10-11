@@ -1,13 +1,12 @@
 package replicatedserverport.rpc.groupserver.singleresponse;
 
-import inputport.InputPort;
-import inputport.datacomm.group.AnAbstractGroupSendTrapper;
-import inputport.datacomm.group.GroupNamingSender;
-
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import inputport.InputPort;
+import inputport.datacomm.group.AnAbstractGroupSendTrapper;
+import inputport.datacomm.group.GroupNamingSender;
 import replicatedserverport.rpc.duplex.singleresponse.ASingleResponseServerDuplexSendTrapper;
 import replicatedserverport.rpc.duplex.singleresponse.BufferedMessageSender;
 import util.trace.Tracer;

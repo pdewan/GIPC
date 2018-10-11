@@ -1,10 +1,10 @@
 package sessionport.datacomm.group.buffer;
 
+import java.nio.ByteBuffer;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.datacomm.group.GroupServerInputPort;
-
-import java.nio.ByteBuffer;
 
 public class AGroupSendingConnectListener implements ConnectionListener{
 	GroupServerInputPort<ByteBuffer> sessionPort;

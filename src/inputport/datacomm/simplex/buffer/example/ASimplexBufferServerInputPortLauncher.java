@@ -1,13 +1,12 @@
 package inputport.datacomm.simplex.buffer.example;
 
+import java.nio.ByteBuffer;
+
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.simplex.SimplexServerInputPort;
 import inputport.datacomm.simplex.buffer.SimplexBufferInputPortSelector;
-
-import java.nio.ByteBuffer;
-
 import port.ATracingConnectionListener;
 import port.AnAbstractPortLauncher;
 import util.trace.port.nio.NIOTraceUtility;

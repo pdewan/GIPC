@@ -1,8 +1,5 @@
 package inputport;
 
-import inputport.ConnectionListener;
-import inputport.ConnectionType;
-import inputport.InputPort;
 import port.ATracingConnectionListener;
 
 public class ASynchronizingConnectionListener extends ATracingConnectionListener implements SynchronizingConnectionListener{

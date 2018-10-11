@@ -1,7 +1,6 @@
 package util.trace.port.buffer;
 
 import util.trace.TraceableInfo;
-import inputport.datacomm.NamingSender;
 
 public class ClientNameSendInitiated extends TraceableInfo {
 	Object object;

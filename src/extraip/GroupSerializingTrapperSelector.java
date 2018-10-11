@@ -1,9 +1,9 @@
 package extraip;
+import java.nio.ByteBuffer;
+
 import inputport.InputPort;
 import inputport.datacomm.group.GroupNamingSender;
 import inputport.datacomm.group.GroupSendTrapperFactory;
-
-import java.nio.ByteBuffer;
 
 
 public class GroupSerializingTrapperSelector {

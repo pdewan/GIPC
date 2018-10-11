@@ -1,8 +1,8 @@
 package inputport.datacomm.duplex.buffer;
 
-import inputport.datacomm.duplex.DuplexServerInputPort;
-
 import java.nio.ByteBuffer;
+
+import inputport.datacomm.duplex.DuplexServerInputPort;
 
 
 // omitting <ChannelTyoe> in DuplexServerInputPort can cause probems

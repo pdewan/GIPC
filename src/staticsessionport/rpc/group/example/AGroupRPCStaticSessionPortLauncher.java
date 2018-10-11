@@ -1,5 +1,7 @@
 package staticsessionport.rpc.group.example;
 
+import java.util.Scanner;
+
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.duplex.DuplexInputPort;
@@ -10,9 +12,6 @@ import inputport.rpc.duplex.example.DuplexCounterAndSenderAwareSummer;
 import inputport.rpc.group.GroupRPCProxyGenerator;
 import inputport.rpc.group.example.AGroupCounterAndSenderAwareSumPrinter;
 import inputport.rpc.group.example.AnOldGroupRPCClientInputPortLauncher;
-
-import java.util.Scanner;
-
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.sessionserver.ASessionParticipantDescription;
@@ -21,8 +20,6 @@ import sessionport.rpc.group.GroupRPCSessionPort;
 import staticsessionport.datacomm.group.object.example.AGroupObjectStaticSessionPortLauncher;
 import staticsessionport.rpc.group.AStaticSessionGroupRPCPortLauncherSupport;
 import staticsessionport.rpc.group.GroupRPCStaticSessionPortSelector;
-import examples.mvc.rmi.collaborative.relaying.AnEchoer;
-import examples.mvc.rmi.collaborative.relaying.Echoer;
 
 
 public class AGroupRPCStaticSessionPortLauncher extends AnOldGroupRPCClientInputPortLauncher {

@@ -1,8 +1,8 @@
 package port.sessionserver.example;
 
-import inputport.datacomm.duplex.DuplexClientInputPort;
-
 import java.util.List;
+
+import inputport.datacomm.duplex.DuplexClientInputPort;
 
 
 public interface JoinerConnectingSessionObserver extends JoinerProcessingSessionObserver{

@@ -1,26 +1,8 @@
 package examples.gipc.counter.simple;
 
 
-import inputport.rpc.GIPCLocateRegistry;
-import inputport.rpc.GIPCRegistry;
-
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-
-import util.trace.ImplicitKeywordKind;
-import util.trace.TraceableInfo;
-import util.trace.Tracer;
-import util.trace.port.buffer.BufferTraceUtility;
-import util.trace.port.buffer.ClientNameSendInitiated;
-import util.trace.port.buffer.TrapperBufferReceived;
-import util.trace.port.buffer.TrapperBufferSendInitiated;
-import util.trace.port.objects.TrapperObjectReceived;
-import util.trace.port.objects.TrapperObjectSendInitiated;
-import util.trace.port.rpc.RPCTraceUtility;
-import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
-import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.rmi.counter.simple.SimpleCounterClient;
+import util.trace.port.rpc.RPCTraceUtility;
 
 public class ASimpleGIPCCounterClient0 extends ASimpleGIPCCounterClient implements SimpleCounterClient{
 	

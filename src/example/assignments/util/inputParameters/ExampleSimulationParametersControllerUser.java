@@ -1,7 +1,6 @@
 package example.assignments.util.inputParameters;
 
 import assignments.util.inputParameters.ASimulationParametersController;
-import assignments.util.inputParameters.SimulationParametersListener;
 import util.interactiveMethodInvocation.SimulationParametersController;
 /**
  * Shows how one can gather dynamic simulation parameters from

@@ -1,5 +1,10 @@
 package inputport.datacomm.group;
 
+import java.nio.ByteBuffer;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.datacomm.AReceiveRegistrarAndNotifier;
@@ -10,12 +15,6 @@ import inputport.datacomm.SendTrapper;
 import inputport.datacomm.duplex.DuplexInputPort;
 import inputport.datacomm.duplex.NoMessageReceivedByResponderException;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
-
-import java.nio.ByteBuffer;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import util.trace.Tracer;
 import util.trace.port.AConnectionEvent;
 import util.trace.port.AReplaceConnectionEvent;

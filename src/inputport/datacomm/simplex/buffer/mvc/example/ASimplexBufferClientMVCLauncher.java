@@ -1,16 +1,8 @@
 package inputport.datacomm.simplex.buffer.mvc.example;
 
 
-import inputport.InputPort;
-import inputport.datacomm.simplex.SimplexClientInputPort;
-import inputport.datacomm.simplex.buffer.ASimplexBufferInputPortLauncherSupport;
-import inputport.datacomm.simplex.buffer.SimplexBufferInputPortSelector;
-import inputport.datacomm.simplex.object.mvc.example.ASimplexObjectClientMVCLauncher;
-import inputport.datacomm.simplex.object.mvc.example.ASimplexUpperCaserProxy;
-
 import java.nio.ByteBuffer;
 
-import port.PortLauncherSupport;
 import examples.mvc.local.simplex.ASimplexFrostyAWTGUI;
 import examples.mvc.local.simplex.ASimplexFrostyConsoleUI;
 import examples.mvc.local.simplex.ASimplexFrostyModel;
@@ -18,6 +10,13 @@ import examples.mvc.local.simplex.ASimplexFrostyVerticalGUI;
 import examples.mvc.local.simplex.FrostyConsoleInteractor;
 import examples.mvc.local.simplex.SimplexFrostyModel;
 import examples.mvc.local.simplex.SimplexUpperCaser;
+import inputport.InputPort;
+import inputport.datacomm.simplex.SimplexClientInputPort;
+import inputport.datacomm.simplex.buffer.ASimplexBufferInputPortLauncherSupport;
+import inputport.datacomm.simplex.buffer.SimplexBufferInputPortSelector;
+import inputport.datacomm.simplex.object.mvc.example.ASimplexObjectClientMVCLauncher;
+import inputport.datacomm.simplex.object.mvc.example.ASimplexUpperCaserProxy;
+import port.PortLauncherSupport;
 
 
 

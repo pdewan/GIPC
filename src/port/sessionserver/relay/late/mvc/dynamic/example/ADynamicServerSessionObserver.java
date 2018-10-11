@@ -1,12 +1,11 @@
 package port.sessionserver.relay.late.mvc.dynamic.example;
 
-import inputport.ConnectionListenerWithPort;
-import inputport.ConnectionType;
-import inputport.datacomm.ReceiveListener;
-
 import java.io.Serializable;
 import java.util.List;
 
+import inputport.ConnectionListenerWithPort;
+import inputport.ConnectionType;
+import inputport.datacomm.ReceiveListener;
 import port.ParticipantChoice;
 import port.relay.mvc.example.GenericRelayingCollaborativeFrostyModel;
 import port.sessionserver.ServerPortDescription;

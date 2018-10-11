@@ -1,16 +1,15 @@
 package inputport.datacomm.simplex.buffer.mvc.example;
 
+import java.nio.ByteBuffer;
+
+import examples.mvc.local.simplex.ASimplexUpperCaser;
+import examples.mvc.local.simplex.SimplexUpperCaser;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.simplex.buffer.ASimplexBufferInputPortLauncherSupport;
 import inputport.datacomm.simplex.buffer.SimplexBufferInputPortSelector;
 import inputport.datacomm.simplex.object.mvc.example.ASimplexObjectServerMVCLauncher;
-
-import java.nio.ByteBuffer;
-
 import port.PortLauncherSupport;
-import examples.mvc.local.simplex.ASimplexUpperCaser;
-import examples.mvc.local.simplex.SimplexUpperCaser;
 
 
 

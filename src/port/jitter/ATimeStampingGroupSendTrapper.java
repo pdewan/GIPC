@@ -1,11 +1,9 @@
 package port.jitter;
 
+import java.util.Collection;
+
 import inputport.datacomm.group.AnAbstractGroupSendTrapper;
 import inputport.datacomm.group.GroupNamingSender;
-
-import java.util.Collection;
-import java.util.Set;
-
 import util.trace.Tracer;
 
 public class ATimeStampingGroupSendTrapper extends AnAbstractGroupSendTrapper {

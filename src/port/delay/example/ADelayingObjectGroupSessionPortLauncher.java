@@ -1,11 +1,10 @@
 package port.delay.example;
 
+import java.util.Scanner;
+
 import inputport.ConnectionListener;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCInputPortSelector;
-
-import java.util.Scanner;
-
 import port.ParticipantChoice;
 import port.causal.ACausalGroupSessionPortLauncherSupport;
 import port.delay.DelayUtlity;

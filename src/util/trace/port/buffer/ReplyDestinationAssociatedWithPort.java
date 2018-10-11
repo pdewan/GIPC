@@ -1,6 +1,5 @@
 package util.trace.port.buffer;
 
-import inputport.rpc.RemoteCall;
 import util.annotations.ComponentWidth;
 import util.annotations.DisplayToString;
 import util.trace.TraceableInfo;

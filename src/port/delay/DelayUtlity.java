@@ -1,14 +1,13 @@
 package port.delay;
 
+import java.nio.ByteBuffer;
+
+import extraip.ADeltaQueue;
 import inputport.datacomm.ASendMessageForwarderFactory;
 import inputport.datacomm.duplex.buffer.DuplexBufferServerIPTrapperSelector;
 import inputport.datacomm.simplex.buffer.SimplexBufferClientIPTrapperSelector;
 import inputport.datacomm.simplex.buffer.SimplexBufferServerIPTrapperSelector;
-
-import java.nio.ByteBuffer;
-
 import util.trace.Tracer;
-import extraip.ADeltaQueue;
 // does not have instance methods as it cannot be inherited
 // with the main launching support
 public class DelayUtlity {

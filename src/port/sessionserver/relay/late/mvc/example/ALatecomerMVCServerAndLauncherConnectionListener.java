@@ -1,18 +1,17 @@
 package port.sessionserver.relay.late.mvc.example;
 
-import inputport.InputPort;
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
-
 import java.util.List;
 
-import port.sessionserver.relay.mvc.example.AnMVCServerConnectionListenerAndLauncher;
-import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
-import util.trace.Tracer;
 import examples.mvc.local.duplex.ADuplexFrostyAWTGUI;
 import examples.mvc.local.duplex.ADuplexFrostyConsoleUI;
 import examples.mvc.local.duplex.ADuplexFrostyVerticalGUI;
 import examples.mvc.local.duplex.DuplexFrostyModel;
 import examples.mvc.local.simplex.FrostyConsoleInteractor;
+import inputport.InputPort;
+import inputport.rpc.duplex.DuplexRPCClientInputPort;
+import port.sessionserver.relay.mvc.example.AnMVCServerConnectionListenerAndLauncher;
+import sessionport.datacomm.duplex.object.relayed.MessageWithSource;
+import util.trace.Tracer;
 
 public class ALatecomerMVCServerAndLauncherConnectionListener extends AnMVCServerConnectionListenerAndLauncher{	
 	List<MessageWithSource> messageList;

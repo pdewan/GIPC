@@ -1,7 +1,7 @@
 package examples.mvc.local.duplex;
 
-import util.models.PropertyListenerRegisterer;
 import examples.mvc.local.simplex.SimplexFrostyModel;
+import util.models.PropertyListenerRegisterer;
 
 public interface DuplexFrostyModel  extends SimplexFrostyModel, PropertyListenerRegisterer{
 	String getInput();

@@ -1,12 +1,11 @@
 package port.old;
 
-import inputport.ConnectionType;
-import inputport.DisconnectListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import extraip.DisconnectRegistrarAndNotifier;
+import inputport.ConnectionType;
+import inputport.DisconnectListener;
 
 //It may be a session notifying, so do not call it ConnectionNotifyingPort
 public class ADisconnectRegistrarAndNotifier implements DisconnectRegistrarAndNotifier {

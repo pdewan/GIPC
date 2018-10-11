@@ -1,7 +1,7 @@
 package examples.gipc.consensus.asynchronous;
 
-import util.trace.port.consensus.ConsensusTraceUtility;
 import examples.gipc.consensus.Member4;
+import util.trace.port.consensus.ConsensusTraceUtility;
 
 public class AsynchronousLearner4Launcher 
 //	extends AnAsymmetricMultiPartyLearnerLauncher 

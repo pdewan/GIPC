@@ -5,23 +5,20 @@ import java.net.InetAddress;
 import java.nio.channels.SocketChannel;
 
 import assignments.util.mainArgs.ClientArgsProcessor;
-import assignments.util.mainArgs.ServerPort;
 import examples.nio.manager.mvc.AMeaningOfLifeController;
 import examples.nio.manager.mvc.AMeaningOfLifeModel;
 import examples.nio.manager.mvc.AMeaningOfLifeView;
 import examples.nio.manager.mvc.MeaningOfLifeController;
 import examples.nio.manager.mvc.MeaningOfLifeModel;
 import examples.nio.manager.mvc.MeaningOfLifeView;
+import inputport.nio.manager.NIOManagerFactory;
+import inputport.nio.manager.factories.classes.AConnectCommandFactory;
+import inputport.nio.manager.factories.selectors.ConnectCommandFactorySelector;
 import util.annotations.Tags;
 import util.tags.DistributedTags;
 import util.trace.bean.BeanTraceUtility;
 import util.trace.factories.FactoryTraceUtility;
 import util.trace.port.nio.NIOTraceUtility;
-import inputport.nio.manager.AnNIOManager;
-import inputport.nio.manager.NIOManager;
-import inputport.nio.manager.NIOManagerFactory;
-import inputport.nio.manager.factories.classes.AConnectCommandFactory;
-import inputport.nio.manager.factories.selectors.ConnectCommandFactorySelector;
 /**
  * Performs client tasks together with the helper listener (observer) class - AMeaningOfLifeClientSender.
  * The entry point is launchClient.

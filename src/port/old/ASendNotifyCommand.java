@@ -1,8 +1,8 @@
 package port.old;
 
-import inputport.datacomm.simplex.buffer.SendRegistrarAndNotifier;
-
 import java.nio.ByteBuffer;
+
+import inputport.datacomm.simplex.buffer.SendRegistrarAndNotifier;
 
 public class ASendNotifyCommand implements Command {
 	SendRegistrarAndNotifier sendNotifier;

@@ -1,8 +1,8 @@
 package consensus.paxos;
 
-import sessionport.rpc.group.GIPCSessionRegistry;
 import consensus.AnAbstractConsensusMechanismFactory;
 import consensus.ConsensusMechanism;
+import sessionport.rpc.group.GIPCSessionRegistry;
 
 public class APaxosConsensusMechanismFactory<StateType> extends AnAbstractConsensusMechanismFactory<StateType> {
 

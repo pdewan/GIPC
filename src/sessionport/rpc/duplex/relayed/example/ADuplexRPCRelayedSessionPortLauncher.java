@@ -3,9 +3,6 @@ package sessionport.rpc.duplex.relayed.example;
 import inputport.ConnectionListener;
 import port.ParticipantChoice;
 import port.sessionserver.SessionServerLauncher;
-import sessionport.datacomm.duplex.object.ObjectDuplexSessionPortSelector;
-import sessionport.datacomm.duplex.object.direct.ADirectObjectDuplexSessionPortFactory;
-import sessionport.datacomm.duplex.object.relayed.ARelayingObjectDuplexSessionPortFactory;
 import sessionport.rpc.duplex.DuplexRPCSessionPort;
 import sessionport.rpc.duplex.DuplexRPCSessionPortSelector;
 

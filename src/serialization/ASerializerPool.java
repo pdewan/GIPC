@@ -1,19 +1,17 @@
 package serialization;
 
-import inputport.datacomm.simplex.buffer.SendRegistrar;
-import inputport.nio.manager.AScatterGatherSelectionManager;
-
 import java.io.NotSerializableException;
 import java.io.StreamCorruptedException;
 import java.nio.ByteBuffer;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+import inputport.datacomm.simplex.buffer.SendRegistrar;
+import inputport.nio.manager.AScatterGatherSelectionManager;
 import util.misc.HashIdentityMap;
 import util.misc.IdentityMap;
 import util.trace.Tracer;
 import util.trace.port.objects.BufferDeserializationInitiated;
-import util.trace.port.objects.ObjectSerializationInitiated;
 import util.trace.port.objects.SerializerPoolCreated;
 import util.trace.port.objects.SerializerReturnedToPool;
 import util.trace.port.objects.SerializerTakenFromPool;

@@ -1,9 +1,8 @@
 package replicatedserverport.datacomm.duplex.buffer;
 
-import inputport.datacomm.duplex.DuplexClientInputPort;
-
 import java.nio.ByteBuffer;
 
+import inputport.datacomm.duplex.DuplexClientInputPort;
 import multiserverport.datacomm.group.GroupMultiServerClientPort;
 import multiserverport.datacomm.group.buffer.BufferGroupMultiServerClientPortSelector;
 import port.ParticipantChoice;

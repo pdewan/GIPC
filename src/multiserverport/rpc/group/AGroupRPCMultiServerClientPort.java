@@ -1,16 +1,15 @@
 package multiserverport.rpc.group;
 
 
-import inputport.datacomm.group.GroupSendTrapper;
-import inputport.datacomm.group.GroupToUniSendTrapper;
-import inputport.datacomm.group.GroupTrapperFactory;
-import inputport.rpc.group.AGroupSerializableCallTrapperFactory;
-
 import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.Set;
 
+import inputport.datacomm.group.GroupSendTrapper;
+import inputport.datacomm.group.GroupToUniSendTrapper;
+import inputport.datacomm.group.GroupTrapperFactory;
+import inputport.rpc.group.AGroupSerializableCallTrapperFactory;
 import multiserverport.datacomm.group.GroupMultiServerClientPort;
 import multiserverport.rpc.duplex.ADuplexRPCMultiServerClientPort;
 import port.common.GlobalState;

@@ -1,10 +1,8 @@
 package util.trace.port.rpc;
 
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Proxy;
 import java.util.Arrays;
 
-import inputport.rpc.RemoteCall;
 import util.annotations.ComponentWidth;
 import util.annotations.DisplayToString;
 import util.trace.TraceableInfo;

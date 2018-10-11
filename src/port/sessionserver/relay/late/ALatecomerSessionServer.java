@@ -1,9 +1,8 @@
 package port.sessionserver.relay.late;
 
-import inputport.rpc.duplex.DuplexRPCServerInputPort;
-
 import java.util.List;
 
+import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import port.sessionserver.JoinInfo;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.Session;

@@ -1,10 +1,7 @@
 package sessionport.datacomm.duplex.object.example;
 
-import port.sessionserver.relay.ARelayerSupportingSessionServerLauncher;
-import port.sessionserver.relay.SessionServerRelayerLauncher;
-import port.sessionserver.relay.late.ALatecomerSessionServerLauncher;
-import sessionport.rpc.duplex.relayed.example.AnAliceDuplexRPCRelayedSessionPort;
 import bus.uigen.pipe.MainClassLaunchingUtility;
+import port.sessionserver.relay.late.ALatecomerSessionServerLauncher;
 
 public class DemoerOfDuplexObjectLatecomerRelayingSessionPort {
 	public static void main(String args[]) {

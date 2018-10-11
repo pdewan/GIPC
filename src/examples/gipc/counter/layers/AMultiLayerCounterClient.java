@@ -1,14 +1,10 @@
 package examples.gipc.counter.layers;
 
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
-
 import java.nio.ByteBuffer;
 
-import util.misc.ThreadSupport;
-import util.trace.port.objects.ObjectTraceUtility;
-import util.trace.port.rpc.RPCTraceUtility;
-import examples.gipc.counter.AGIPCCounterClient;
 import examples.gipc.counter.simple.ASimpleGIPCCounterClient;
+import inputport.rpc.duplex.DuplexRPCClientInputPort;
+import util.misc.ThreadSupport;
 /**
  * A class that shows that same port (message queue) can be used to send
  * bytebuffers, objects or remote procedure calls.

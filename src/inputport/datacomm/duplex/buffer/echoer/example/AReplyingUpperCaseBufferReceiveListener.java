@@ -1,9 +1,9 @@
 package inputport.datacomm.duplex.buffer.echoer.example;
+import java.nio.ByteBuffer;
+
 import inputport.InputPort;
 import inputport.datacomm.duplex.DuplexInputPort;
 import inputport.datacomm.simplex.buffer.example.AnUpperCaseBufferReceiveListener;
-
-import java.nio.ByteBuffer;
 
 public class AReplyingUpperCaseBufferReceiveListener extends AnUpperCaseBufferReceiveListener  {
 	public AReplyingUpperCaseBufferReceiveListener (InputPort anInputPort) {

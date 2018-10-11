@@ -1,5 +1,9 @@
 package inputport.rpc.duplex;
 
+import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Set;
+
 import inputport.datacomm.AReceiveRegistrarAndNotifier;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.ReceiveRegistrarAndNotifier;
@@ -12,11 +16,6 @@ import inputport.rpc.RPCRegistry;
 import inputport.rpc.RPCRegistrySelector;
 import inputport.rpc.ReceivedCallInvoker;
 import inputport.rpc.simplex.ASimplexRPCClientInputPort;
-
-import java.lang.reflect.Method;
-import java.util.List;
-import java.util.Set;
-
 import util.trace.port.AConnectionEvent;
 import util.trace.port.AReplaceConnectionEvent;
 import util.trace.port.ConnectiontEventBus;

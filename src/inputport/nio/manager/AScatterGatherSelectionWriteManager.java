@@ -1,12 +1,11 @@
 package inputport.nio.manager;
 
-import inputport.nio.manager.commands.HeaderWriteCommand;
-import inputport.nio.manager.commands.WriteCommand;
-import inputport.nio.manager.commands.classes.AHeaderWriteCommand;
-
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+import inputport.nio.manager.commands.HeaderWriteCommand;
+import inputport.nio.manager.commands.WriteCommand;
+import inputport.nio.manager.commands.classes.AHeaderWriteCommand;
 import util.trace.Tracer;
 
 

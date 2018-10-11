@@ -1,8 +1,8 @@
 package port.old;
 
+import extraip.ASendConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
-import extraip.ASendConnectionListener;
 
 public class PrintingTypedReceiveListener extends ASendConnectionListener implements ReceiveListener<Object> {
 	public PrintingTypedReceiveListener(

@@ -2,11 +2,11 @@ package sessionport.rpc.group.mvc.flexible.example;
 
 import java.beans.PropertyChangeEvent;
 
-import sessionport.rpc.group.GroupRPCSessionPort;
-import util.trace.Tracer;
 import examples.mvc.local.duplex.ADuplexFrostyModel;
 import examples.mvc.local.duplex.Counter;
 import examples.mvc.local.duplex.DuplexUpperCaser;
+import sessionport.rpc.group.GroupRPCSessionPort;
+import util.trace.Tracer;
 
 
 public class ASessionSendingCollaborativeFrostyModel extends ADuplexFrostyModel 

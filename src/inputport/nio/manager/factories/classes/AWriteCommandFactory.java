@@ -1,17 +1,12 @@
 package inputport.nio.manager.factories.classes;
 
-import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.commands.ConnectCommand;
-import inputport.nio.manager.commands.WriteCommand;
-import inputport.nio.manager.commands.classes.AConnectCommand;
-import inputport.nio.manager.commands.classes.AWriteCommand;
-import inputport.nio.manager.factories.ConnectCommandFactory;
-import inputport.nio.manager.factories.WriteCommandFactory;
-
-import java.net.InetAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
+
+import inputport.nio.manager.SelectionManager;
+import inputport.nio.manager.commands.WriteCommand;
+import inputport.nio.manager.commands.classes.AWriteCommand;
+import inputport.nio.manager.factories.WriteCommandFactory;
 
 /*
  * A factory for creating write commands. The main difference between

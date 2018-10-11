@@ -1,17 +1,14 @@
 package inputport.rpc.duplex;
 
-import inputport.ConnectionListener;
-import inputport.ConnectionType;
-import inputport.InputPort;
-
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+import inputport.ConnectionListener;
+import inputport.ConnectionType;
+import inputport.InputPort;
 import util.trace.Tracer;
-import util.trace.port.rpc.ReceivedObjectTransformed;
 import util.trace.port.rpc.ReceivedReturnValueQueued;
 import util.trace.port.rpc.RemoteCallBlockedForReturnValue;
-import util.trace.port.rpc.RemoteCallReturnValueDetermined;
 import util.trace.port.rpc.RemoteCallUnblockingWithReturnValue;
 
 public class AnRPCReturnValueQueue implements RPCReturnValueQueue, ConnectionListener {

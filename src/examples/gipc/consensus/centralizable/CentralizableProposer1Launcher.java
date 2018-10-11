@@ -1,6 +1,5 @@
 package examples.gipc.consensus.centralizable;
 
-import examples.gipc.consensus.ExampleMemberLauncher;
 import examples.gipc.consensus.Member1;
 import util.trace.port.consensus.ConsensusTraceUtility;
 

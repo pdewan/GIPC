@@ -1,6 +1,4 @@
 package inputport.datacomm;
-import java.nio.ByteBuffer;
-
 import inputport.InputPort;
 public class ASendMessageForwarderFactory<InAndOutMessageType> implements SendTrapperFactory<InAndOutMessageType, InAndOutMessageType> {
 	 SendTrapper<InAndOutMessageType, InAndOutMessageType> lastTrapper;

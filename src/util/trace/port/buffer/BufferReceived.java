@@ -1,14 +1,9 @@
 package util.trace.port.buffer;
 
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.SocketChannel;
 
 import inputport.ConnectionManager;
-import inputport.rpc.RemoteCall;
 import util.trace.TraceableInfo;
-import util.trace.port.rpc.ReceivedCallEndedOld;
 
 public class BufferReceived extends TraceableInfo {	
 	public BufferReceived(String aMessage, Object aFinder,

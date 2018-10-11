@@ -1,10 +1,9 @@
 package extraip;
 
-import inputport.InputPort;
-import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
-
 import java.nio.ByteBuffer;
 
+import inputport.InputPort;
+import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 import port.ATracingConnectionListener;
 
 

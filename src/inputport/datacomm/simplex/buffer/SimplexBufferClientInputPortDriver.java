@@ -1,9 +1,9 @@
 package inputport.datacomm.simplex.buffer;
 
+import java.nio.ByteBuffer;
+
 import inputport.ConnectionManager;
 import inputport.datacomm.NamingSender;
-
-import java.nio.ByteBuffer;
 
 
 //import old.UniNamingSender;

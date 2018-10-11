@@ -1,10 +1,9 @@
 package multiserverport.datacomm.simplex.object;
 
-import inputport.datacomm.simplex.SimplexClientInputPort;
-import inputport.datacomm.simplex.object.ASimplexObjectClientInputPort;
-
 import java.nio.ByteBuffer;
 
+import inputport.datacomm.simplex.SimplexClientInputPort;
+import inputport.datacomm.simplex.object.ASimplexObjectClientInputPort;
 import multiserverport.datacomm.simplex.SimplexMultiServerClientPort;
 
 public class AnObjectMultiServerClientPort extends ASimplexObjectClientInputPort implements SimplexMultiServerClientPort<Object>{

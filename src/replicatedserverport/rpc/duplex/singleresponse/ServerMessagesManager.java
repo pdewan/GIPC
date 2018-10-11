@@ -1,10 +1,9 @@
 package replicatedserverport.rpc.duplex.singleresponse;
 
-import inputport.ConnectionListener;
-
 import java.io.Serializable;
 import java.util.List;
 
+import inputport.ConnectionListener;
 import util.trace.TraceableListener;
 
 public interface ServerMessagesManager extends Serializable, ConnectionListener, TraceableListener {

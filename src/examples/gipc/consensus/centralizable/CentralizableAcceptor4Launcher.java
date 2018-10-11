@@ -1,8 +1,8 @@
 package examples.gipc.consensus.centralizable;
 
-import util.trace.port.consensus.ConsensusTraceUtility;
 import examples.gipc.consensus.AMeaningOfLifeVetoer;
 import examples.gipc.consensus.Member4;
+import util.trace.port.consensus.ConsensusTraceUtility;
 
 public class CentralizableAcceptor4Launcher 
 //	extends AnAsymmetricMultiPartyLearnerLauncher 

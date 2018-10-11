@@ -1,10 +1,9 @@
 package inputport.datacomm.simplex.object;
 
-import inputport.datacomm.AnAbstractReceiveTrapper;
-import inputport.datacomm.ReceiveNotifier;
-
 import java.nio.ByteBuffer;
 
+import inputport.datacomm.AnAbstractReceiveTrapper;
+import inputport.datacomm.ReceiveNotifier;
 import serialization.Serializer;
 import serialization.SerializerPoolSelector;
 import util.trace.Tracer;

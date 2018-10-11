@@ -1,11 +1,10 @@
 package rmi.equals.examples;
 
-import inputport.rpc.NamingRPC;
-
 import java.lang.reflect.Method;
 import java.rmi.RemoteException;
 
 import examples.mvc.rmi.duplex.DistributedRMICounter;
+import inputport.rpc.NamingRPC;
 
 
 public class ARemoteCounterStub implements DistributedRMICounter {

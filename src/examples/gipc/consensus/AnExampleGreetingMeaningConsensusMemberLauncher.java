@@ -1,11 +1,7 @@
 package examples.gipc.consensus;
 
-import port.sessionserver.SessionServerSelector;
 import consensus.ConsensusMechanism;
 import consensus.ConsensusMechanismFactory;
-import consensus.ConsensusMechanismSelector;
-import consensus.ConcurrencyKind;
-import consensus.ReplicationSynchrony;
 import consensus.sessionport.AConsensusMemberLauncher;
 
 public abstract class AnExampleGreetingMeaningConsensusMemberLauncher extends AConsensusMemberLauncher 

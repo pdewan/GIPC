@@ -2,10 +2,10 @@ package examples.mvc.local.duplex;
 
 import java.beans.PropertyChangeEvent;
 
-import util.models.PropertyListenerRegisterer;
-import util.trace.Tracer;
 import examples.mvc.local.simplex.ASimplexFrostyConsoleUI;
 import examples.mvc.local.simplex.SimplexFrostyModel;
+import util.models.PropertyListenerRegisterer;
+import util.trace.Tracer;
 
 public class ADuplexFrostyConsoleUI extends ASimplexFrostyConsoleUI implements DuplexUserInterfaceManager  {
 //	public ADuplexFrostyConsoleUI(DuplexFrostyModel aModel) {

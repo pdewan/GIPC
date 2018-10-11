@@ -1,15 +1,13 @@
 package inputport.rpc.duplex;
 
-import inputport.ConnectionListener;
-import inputport.ConnectionType;
-import inputport.InputPort;
-
 import java.util.HashMap;
 import java.util.Map;
 
+import inputport.ConnectionListener;
+import inputport.ConnectionType;
+import inputport.InputPort;
 import util.trace.Tracer;
 import util.trace.port.rpc.ReceivedObjectTransformed;
-import util.trace.port.rpc.RemoteCallBlockedForReturnValue;
 import util.trace.port.rpc.RemoteCallReceivedReturnValue;
 import util.trace.port.rpc.RemoteCallWaitingForReturnValue;
 import util.trace.port.rpc.ReturnValueQueueCreated;

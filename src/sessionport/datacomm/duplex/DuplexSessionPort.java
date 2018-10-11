@@ -1,8 +1,8 @@
 package sessionport.datacomm.duplex;
 
-import variableserverport.SimplexVariableServerClientPort;
 import inputport.datacomm.duplex.DuplexServerInputPort;
 import multiserverport.datacomm.duplex.DuplexMultiServerClientPort;
+import variableserverport.SimplexVariableServerClientPort;
 
 public interface DuplexSessionPort<MessageType> extends DuplexServerInputPort<MessageType>
 				,DuplexMultiServerClientPort<MessageType>, SessionConnections, SessionInfo, 

@@ -1,11 +1,8 @@
 package assignments.util.inputParameters;
 
-import consensus.ProposalState;
-import javafx.beans.binding.SetBinding;
 import util.interactiveMethodInvocation.ConsensusAlgorithm;
 import util.interactiveMethodInvocation.IPCMechanism;
 import util.trace.port.consensus.ProposalMade;
-import util.trace.port.consensus.ProposalStateChanged;
 import util.trace.port.consensus.ProposedStateSet;
 import util.trace.port.consensus.communication.CommunicationStateNames;
 

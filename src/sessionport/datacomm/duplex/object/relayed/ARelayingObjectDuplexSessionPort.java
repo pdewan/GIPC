@@ -1,5 +1,10 @@
 package sessionport.datacomm.duplex.object.relayed;
 
+import java.net.InetAddress;
+import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.Set;
+
 import inputport.AConnectRegistrarAndNotifier;
 import inputport.ConnectionListener;
 import inputport.ConnectionRegistrarAndNotifier;
@@ -14,12 +19,6 @@ import inputport.datacomm.simplex.buffer.ASendRegistrarAndNotifier;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 import inputport.datacomm.simplex.buffer.SendRegistrarAndNotifier;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
-
-import java.net.InetAddress;
-import java.nio.ByteBuffer;
-import java.util.List;
-import java.util.Set;
-
 import port.ParticipantChoice;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.ServerPortDescription;

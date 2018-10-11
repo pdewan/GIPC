@@ -1,8 +1,8 @@
 package inputport.nio.manager.factories.selectors;
 
-import util.trace.factories.SelectorFactorySet;
 import inputport.nio.manager.factories.WriteCommandFactory;
 import inputport.nio.manager.factories.classes.AWriteCommandFactory;
+import util.trace.factories.SelectorFactorySet;
 
 public class WriteCommandFactorySelector {
 	static WriteCommandFactory factory = new AWriteCommandFactory();

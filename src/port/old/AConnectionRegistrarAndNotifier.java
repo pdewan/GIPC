@@ -1,11 +1,11 @@
 package port.old;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import inputport.ConnectListener;
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
-
-import java.util.ArrayList;
-import java.util.List;
 
 //It may be a session notifying, so do not call it ConnectionNotifyingPort
 public class AConnectionRegistrarAndNotifier extends ADisconnectRegistrarAndNotifier implements PureConnectRegistrarAndNotifier {

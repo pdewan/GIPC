@@ -1,10 +1,9 @@
 package port.old;
 
-import inputport.datacomm.duplex.DuplexClientInputPort;
-import inputport.datacomm.duplex.object.DuplexObjectInputPortSelector;
-
 import java.util.Scanner;
 
+import inputport.datacomm.duplex.DuplexClientInputPort;
+import inputport.datacomm.duplex.object.DuplexObjectInputPortSelector;
 import util.trace.Tracer;
 
 

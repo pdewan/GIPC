@@ -1,10 +1,7 @@
 package inputport.rpc.duplex;
 
 
-import port.AnAbstractPortLauncher;
-import port.PortAccessKind;
 import port.PortKind;
-import port.PortMessageKind;
 public class AnAbstractDuplexRPCClientPortLauncher extends ADuplexRPCPortLauncher   {		
 
 //public class AnAbstractDuplexRPCClientPortLauncher extends AnAbstractPortLauncher   {		

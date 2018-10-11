@@ -1,9 +1,5 @@
 package inputport.nio.manager.commands.classes;
 
-import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.commands.ConnectCommand;
-import inputport.nio.manager.listeners.SocketChannelConnectListener;
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -13,11 +9,13 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
+import inputport.nio.manager.SelectionManager;
+import inputport.nio.manager.commands.ConnectCommand;
+import inputport.nio.manager.listeners.SocketChannelConnectListener;
 import util.trace.Tracer;
 import util.trace.port.nio.SocketChannelBlockingConfigured;
-import util.trace.port.nio.SocketChannelConnected;
 import util.trace.port.nio.SocketChannelConnectInitiated;
-import util.trace.port.nio.SocketChannelInterestOp;
+import util.trace.port.nio.SocketChannelConnected;
 import util.trace.port.nio.SocketChannelRegistered;
 
 public class AConnectCommand extends AnAbstractNIOCommand implements

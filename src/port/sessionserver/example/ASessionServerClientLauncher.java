@@ -1,5 +1,7 @@
 package port.sessionserver.example;
 
+import java.net.InetAddress;
+
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
@@ -11,9 +13,6 @@ import inputport.rpc.duplex.DuplexRPCInputPortSelector;
 import inputport.rpc.group.AGroupRPCInputPortLauncherSupport;
 import inputport.rpc.group.GroupRPCInputPortSelector;
 import inputport.rpc.group.GroupRPCServerInputPort;
-
-import java.net.InetAddress;
-
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.delay.example.AnEchoingObjectReceiveListener;

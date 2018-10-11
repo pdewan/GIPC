@@ -1,9 +1,7 @@
 package util.trace.port.rpc;
 
-import util.trace.TraceableInfo;
-import util.trace.port.MessageReceiveInfo;
-import inputport.rpc.RemoteCall;
 import inputport.rpc.duplex.AnAsynchronousSingleThreadDuplexReceivedCallInvoker;
+import util.trace.TraceableInfo;
 
 public class RemoteCallbackInfo extends TraceableInfo {
 

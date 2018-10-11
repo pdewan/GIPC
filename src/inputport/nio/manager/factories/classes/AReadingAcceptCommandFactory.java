@@ -1,11 +1,11 @@
 package inputport.nio.manager.factories.classes;
 
+import java.nio.channels.SelectionKey;
+import java.nio.channels.ServerSocketChannel;
+
 import inputport.nio.manager.SelectionManager;
 import inputport.nio.manager.commands.AcceptCommand;
 import inputport.nio.manager.commands.classes.AnAcceptCommand;
-
-import java.nio.channels.SelectionKey;
-import java.nio.channels.ServerSocketChannel;
 /**
  * A factory that creates an {@link AcceptCommand} that enables reads after
  * the accept operation finishes. Should be used by any application that 

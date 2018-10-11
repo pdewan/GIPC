@@ -1,15 +1,14 @@
 package port.causal;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.InputPort;
 import inputport.datacomm.AnAbstractReceiveTrapper;
 import inputport.datacomm.ReceiveNotifier;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import util.trace.Tracer;
 
 

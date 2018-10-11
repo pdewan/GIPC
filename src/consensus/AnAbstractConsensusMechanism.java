@@ -1,8 +1,5 @@
 package consensus;
 
-import inputport.ConnectionRegistrar;
-import inputport.ConnectionType;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,14 +9,11 @@ import java.util.Map;
 import java.util.Set;
 
 import consensus.asynchronous.sequential.LearnedKind;
+import inputport.ConnectionType;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
 import util.misc.ThreadSupport;
-import util.trace.Tracer;
-import util.trace.port.RemoteEndConnected;
 import util.trace.port.RemoteEndDisconnected;
-import util.trace.port.consensus.ProposalConsensusOccurred;
-import util.trace.port.consensus.ProposalLearnNotificationReceived;
 import util.trace.port.consensus.ProposalMade;
 import util.trace.port.consensus.ProposalStateChanged;
 import util.trace.port.consensus.ProposalWaitEnded;

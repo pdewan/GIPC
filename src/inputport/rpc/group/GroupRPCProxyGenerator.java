@@ -1,10 +1,9 @@
 package inputport.rpc.group;
 
-import inputport.rpc.DirectedRPCProxyGenerator;
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
+import inputport.rpc.DirectedRPCProxyGenerator;
 import util.misc.RemoteReflectionUtility;
 import util.trace.port.rpc.ProxyCreated;
 

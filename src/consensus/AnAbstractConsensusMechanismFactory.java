@@ -3,7 +3,6 @@ package consensus;
 import port.SessionChoice;
 import sessionport.rpc.group.GIPCLocateSessionRegistry;
 import sessionport.rpc.group.GIPCSessionRegistry;
-import sessionport.rpc.group.GroupRPCSessionPort;
 
 public abstract class AnAbstractConsensusMechanismFactory<StateType> implements ConsensusMechanismFactory<StateType>{
 //	protected  GIPCSessionRegistry gipcRegistry;

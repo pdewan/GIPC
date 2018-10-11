@@ -1,9 +1,9 @@
 package inputport.nio.manager.commands;
 
-import inputport.nio.manager.listeners.SocketChannelWriteListener;
-
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+
+import inputport.nio.manager.listeners.SocketChannelWriteListener;
 
 //not an extension of RequestResponse because request is made for the whole bounded buffer, not an individual one
 public interface WriteCommand extends Response{

@@ -1,9 +1,8 @@
 package port.old;
 
-import inputport.ConnectionListener;
-
 import java.util.Scanner;
 
+import inputport.ConnectionListener;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.relay.RelayerClientAndServerSupport;

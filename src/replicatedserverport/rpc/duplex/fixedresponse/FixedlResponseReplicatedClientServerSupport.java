@@ -2,8 +2,6 @@ package replicatedserverport.rpc.duplex.fixedresponse;
 
 import inputport.datacomm.TrapperFactory;
 import inputport.datacomm.simplex.object.ServerObjectTrapperSelector;
-import inputport.rpc.duplex.ADuplexCallTrapperFactory;
-import inputport.rpc.duplex.DuplexClientSerializableCallTrapperSelector;
 import replicatedserverport.datacomm.duplex.ADuplexMultiToReplicatedTrapperFactory;
 import replicatedserverport.datacomm.simplex.ClientMultiToReplicatedTrapperSelector;
 import replicatedserverport.datacomm.simplex.MultiToReplicatedTrapperFactory;

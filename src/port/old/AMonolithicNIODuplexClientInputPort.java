@@ -1,11 +1,10 @@
 package port.old;
 
-import inputport.nio.manager.SelectionManager;
-
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 
 import extraip.MonolithicNIODuplexClientInputPort;
+import inputport.nio.manager.SelectionManager;
 
 public class AMonolithicNIODuplexClientInputPort extends AMonolithicNIOClientInputPort implements MonolithicNIODuplexClientInputPort{
 	public AMonolithicNIODuplexClientInputPort(SelectionManager theSelectingRunnable,

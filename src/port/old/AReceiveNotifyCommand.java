@@ -1,8 +1,8 @@
 package port.old;
 
-import inputport.datacomm.ReceiveRegistrarAndNotifier;
-
 import java.nio.ByteBuffer;
+
+import inputport.datacomm.ReceiveRegistrarAndNotifier;
 
 public class AReceiveNotifyCommand implements Command {
 	ReceiveRegistrarAndNotifier receiptNotifier;

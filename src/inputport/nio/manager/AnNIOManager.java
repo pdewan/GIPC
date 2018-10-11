@@ -1,9 +1,13 @@
 package inputport.nio.manager;
 
+import java.net.InetAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+
 import inputport.nio.manager.commands.AcceptCommand;
 import inputport.nio.manager.commands.ConnectCommand;
 import inputport.nio.manager.commands.WriteCommand;
-import inputport.nio.manager.commands.classes.AWriteCommand;
 import inputport.nio.manager.factories.SelectionManagerFactory;
 import inputport.nio.manager.factories.selectors.AcceptCommandFactorySelector;
 import inputport.nio.manager.factories.selectors.ConnectCommandFactorySelector;
@@ -14,13 +18,6 @@ import inputport.nio.manager.listeners.SocketChannelConnectListener;
 import inputport.nio.manager.listeners.SocketChannelReadListener;
 import inputport.nio.manager.listeners.SocketChannelWriteListener;
 import inputport.nio.manager.listeners.WriteBoundedBufferListener;
-
-import java.net.InetAddress;
-import java.nio.ByteBuffer;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
-import java.util.Arrays;
-
 import util.trace.Tracer;
 import util.trace.port.nio.ListenableAcceptsEnabled;
 import util.trace.port.nio.ReadListenerAdded;

@@ -1,14 +1,13 @@
 package sessionport.datacomm.duplex.object.relayed;
 
+import java.util.Set;
+
 import inputport.ConnectionListener;
 import inputport.datacomm.NamingSender;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCInputPort;
-
-import java.util.Set;
-
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.SessionObserver;
 import sessionport.datacomm.duplex.SessionConnections;

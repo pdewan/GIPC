@@ -1,10 +1,10 @@
 package sessionport.datacomm.duplex.buffer;
 
+import java.nio.ByteBuffer;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.datacomm.duplex.DuplexServerInputPort;
-
-import java.nio.ByteBuffer;
 
 public class ASendingConnectListener implements ConnectionListener{
 	DuplexServerInputPort<ByteBuffer> sessionPort;

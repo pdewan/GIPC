@@ -1,10 +1,5 @@
 package variableserverport.datacomm.simplex.buffer;
 
-import inputport.ConnectionType;
-import inputport.datacomm.duplex.DuplexClientInputPort;
-import inputport.datacomm.duplex.DuplexInputPort;
-import inputport.datacomm.simplex.SimplexClientInputPort;
-
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import inputport.ConnectionType;
+import inputport.datacomm.duplex.DuplexClientInputPort;
+import inputport.datacomm.simplex.SimplexClientInputPort;
 import port.ParticipantChoice;
 import port.sessionserver.ASession;
 import port.sessionserver.SessionParticipantDescription;

@@ -1,5 +1,8 @@
 package inputport.datacomm.duplex.buffer.nio;
 
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.DuplexInputPortFactory;
 import inputport.datacomm.duplex.DuplexServerInputPort;
@@ -10,10 +13,6 @@ import inputport.datacomm.duplex.buffer.DuplexBufferGenericServerInputPort;
 import inputport.datacomm.duplex.buffer.DuplexClientInputPortDriver;
 import inputport.datacomm.duplex.buffer.DuplexServerInputPortDriver;
 import inputport.nio.manager.factories.SelectionManagerFactory;
-
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
-
 import util.trace.Tracer;
 
 

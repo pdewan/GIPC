@@ -1,12 +1,11 @@
 package port.sessionserver.relay.late.mvc.example;
 
+import java.util.List;
+
 import inputport.ConnectionListenerWithPort;
 import inputport.ConnectionType;
 import inputport.datacomm.ReceiveListener;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
-
-import java.util.List;
-
 import port.relay.mvc.example.GenericRelayingCollaborativeFrostyModel;
 import port.sessionserver.ServerPortDescription;
 import port.sessionserver.relay.mvc.example.ARelayerConnectionListener;

@@ -1,8 +1,8 @@
 package inputport.rpc.duplex.counter.example;
 
 
-import inputport.rpc.duplex.AnAbstractDuplexRPCServerPortLauncher;
 import examples.mvc.local.duplex.ACounter;
+import inputport.rpc.duplex.AnAbstractDuplexRPCServerPortLauncher;
 
 public class ADuplexCounterServerLauncher extends AnAbstractDuplexRPCServerPortLauncher implements DuplexCounterServerLauncher {
 	public ADuplexCounterServerLauncher(String aServerName,

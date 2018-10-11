@@ -1,11 +1,10 @@
 package inputport.datacomm.group.buffer;
 
-import inputport.datacomm.NamingSender;
-import inputport.datacomm.group.AnAbstractGroupToUniSendTrapper;
-
 import java.nio.ByteBuffer;
 import java.util.Collection;
-import java.util.Set;
+
+import inputport.datacomm.NamingSender;
+import inputport.datacomm.group.AnAbstractGroupToUniSendTrapper;
 
 public class AGroupToUniSendBufferForwarder extends AnAbstractGroupToUniSendTrapper<ByteBuffer, ByteBuffer>{
 	public AGroupToUniSendBufferForwarder(NamingSender<ByteBuffer>  aDestination) {

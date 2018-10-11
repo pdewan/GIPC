@@ -1,10 +1,9 @@
 package inputport.datacomm.simplex.buffer.mvc.example;
 
-import inputport.datacomm.ImplicitSender;
-
 import java.io.NotSerializableException;
 import java.nio.ByteBuffer;
 
+import inputport.datacomm.ImplicitSender;
 import serialization.Serializer;
 
 public class ASimplexBufferClientUpperCaseSendTrapper  implements ImplicitSender {

@@ -1,5 +1,7 @@
 package inputport.datacomm.duplex.buffer.echoer.example;
 
+import java.nio.ByteBuffer;
+
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
@@ -9,9 +11,6 @@ import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 import inputport.datacomm.simplex.buffer.example.ASimplexBufferServerInputPortLauncher;
 import inputport.datacomm.simplex.buffer.example.ATracingSendListener;
-
-import java.nio.ByteBuffer;
-
 import port.PortLauncherSupport;
 
 public class ADuplexBufferServerInputPortLauncher extends ASimplexBufferServerInputPortLauncher  {

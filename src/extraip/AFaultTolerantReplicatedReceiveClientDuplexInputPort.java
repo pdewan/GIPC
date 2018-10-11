@@ -1,6 +1,8 @@
 package extraip;
 
 
+import java.nio.ByteBuffer;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.datacomm.AReceiveRegistrarAndNotifier;
@@ -8,9 +10,6 @@ import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.ReceiveRegistrarAndNotifier;
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
-
-import java.nio.ByteBuffer;
-
 import multiserverport.datacomm.group.GroupMultiServerClientPort;
 import port.causal.AVectorTimeStamp;
 import port.causal.VectorTimeStamp;

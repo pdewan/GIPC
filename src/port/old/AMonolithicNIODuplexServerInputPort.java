@@ -1,11 +1,5 @@
 package port.old;
 
-import inputport.datacomm.duplex.NoMessageReceivedByResponderException;
-import inputport.datacomm.duplex.SendToUnkonwnRemoteNameException;
-import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.commands.WriteCommand;
-import inputport.nio.manager.commands.classes.AWriteCommand;
-
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 import java.util.HashMap;
@@ -13,6 +7,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import inputport.datacomm.duplex.NoMessageReceivedByResponderException;
+import inputport.datacomm.duplex.SendToUnkonwnRemoteNameException;
+import inputport.nio.manager.SelectionManager;
+import inputport.nio.manager.commands.WriteCommand;
+import inputport.nio.manager.commands.classes.AWriteCommand;
 import util.trace.Tracer;
 
 

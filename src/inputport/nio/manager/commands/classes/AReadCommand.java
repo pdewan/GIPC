@@ -1,10 +1,5 @@
 package inputport.nio.manager.commands.classes;
 
-import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.commands.ReadCommand;
-import inputport.nio.manager.listeners.SocketChannelCloseListener;
-import inputport.nio.manager.listeners.SocketChannelReadListener;
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -14,8 +9,11 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
 
+import inputport.nio.manager.SelectionManager;
+import inputport.nio.manager.commands.ReadCommand;
+import inputport.nio.manager.listeners.SocketChannelCloseListener;
+import inputport.nio.manager.listeners.SocketChannelReadListener;
 import util.trace.Tracer;
-import util.trace.port.nio.ReadRequestCreated;
 import util.trace.port.nio.SocketChannelFullMessageRead;
 import util.trace.port.nio.SocketChannelInterestOp;
 import util.trace.port.nio.SocketChannelRead;

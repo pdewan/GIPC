@@ -1,12 +1,6 @@
 package inputport.rpc.duplex.echoer.example;
 
 
-import inputport.ConnectionListener;
-import inputport.InputPort;
-import inputport.rpc.duplex.AnAbstractDuplexRPCClientPortLauncher;
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
-import inputport.rpc.duplex.mvc.singleuser.example.ADuplexRPCServerMVCLauncher;
-import port.ATracingConnectionListener;
 import examples.mvc.local.duplex.ACounter;
 import examples.mvc.local.duplex.ADuplexFrostyConsoleUI;
 import examples.mvc.local.duplex.ADuplexFrostyModel;
@@ -15,6 +9,12 @@ import examples.mvc.local.duplex.DuplexFrostyModel;
 import examples.mvc.local.duplex.DuplexUpperCaser;
 import examples.mvc.local.simplex.FrostyConsoleInteractor;
 import examples.mvc.local.simplex.SimplexUpperCaser;
+import inputport.ConnectionListener;
+import inputport.InputPort;
+import inputport.rpc.duplex.AnAbstractDuplexRPCClientPortLauncher;
+import inputport.rpc.duplex.DuplexRPCClientInputPort;
+import inputport.rpc.duplex.mvc.singleuser.example.ADuplexRPCServerMVCLauncher;
+import port.ATracingConnectionListener;
 
 
 

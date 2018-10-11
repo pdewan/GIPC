@@ -1,5 +1,9 @@
 package inputport.rpc.duplex;
 
+import java.lang.reflect.Method;
+import java.nio.ByteBuffer;
+import java.util.Set;
+
 import inputport.datacomm.SendTrapper;
 import inputport.datacomm.duplex.DuplexInputPort;
 import inputport.datacomm.duplex.DuplexServerInputPort;
@@ -7,16 +11,10 @@ import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 import inputport.rpc.RPCProxyGenerator;
 import inputport.rpc.simplex.ASimplexRPCServerInputPort;
-
-import java.lang.reflect.Method;
-import java.nio.ByteBuffer;
-import java.util.Set;
-
 import util.trace.Tracer;
 import util.trace.port.AConnectionEvent;
 import util.trace.port.AReplaceConnectionEvent;
 import util.trace.port.ConnectiontEventBus;
-import util.trace.port.rpc.RemoteCallInitiated;
 
 
 

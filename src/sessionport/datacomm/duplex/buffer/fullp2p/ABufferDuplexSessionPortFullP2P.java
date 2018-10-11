@@ -1,13 +1,12 @@
 package sessionport.datacomm.duplex.buffer.fullp2p;
 
+import java.net.InetAddress;
+import java.nio.ByteBuffer;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
-
-import java.net.InetAddress;
-import java.nio.ByteBuffer;
-
 import port.ParticipantChoice;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.ServerPortDescription;

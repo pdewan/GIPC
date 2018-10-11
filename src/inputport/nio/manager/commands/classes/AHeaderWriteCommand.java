@@ -1,13 +1,12 @@
 package inputport.nio.manager.commands.classes;
 
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
+
 import inputport.nio.manager.AScatterGatherSelectionManager;
 import inputport.nio.manager.MessagingSelectingRunnable;
 import inputport.nio.manager.commands.HeaderWriteCommand;
 import inputport.nio.manager.commands.WriteCommand;
-
-import java.nio.ByteBuffer;
-import java.nio.channels.SocketChannel;
-
 import util.trace.Tracer;
 
 

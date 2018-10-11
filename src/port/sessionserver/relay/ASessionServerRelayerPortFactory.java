@@ -1,12 +1,11 @@
 package port.sessionserver.relay;
 
+import java.net.InetAddress;
+
 import inputport.rpc.DirectedRPCProxyGenerator;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
 import inputport.rpc.duplex.DuplexRPCInputPortSelector;
 import inputport.rpc.group.GroupRPCServerInputPort;
-
-import java.net.InetAddress;
-
 import port.relay.ARelayerPortFactory;
 import port.sessionserver.AServerPortDescription;
 import port.sessionserver.ServerPortDescription;

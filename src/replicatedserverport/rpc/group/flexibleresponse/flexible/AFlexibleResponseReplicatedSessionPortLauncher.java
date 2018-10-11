@@ -6,7 +6,6 @@ import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
 import replicatedserverport.datacomm.duplex.ADuplexMultiToReplicatedPortLauncherSupport;
-import replicatedserverport.datacomm.duplex.earliest.AnEarliestAcceptingReplicatedPortLauncherSupport;
 import replicatedserverport.rpc.duplex.earliestresponse.AnEarliestAcceptingReplicatedDuplexRPCLauncherSupport;
 import replicatedserverport.rpc.duplex.singleresponse.ASingleResponseReplicatedPortLauncherSupport;
 import replicatedserverport.rpc.group.ReplicatedServerSessionPortSelector;

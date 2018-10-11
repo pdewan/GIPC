@@ -1,9 +1,9 @@
 package inputport.nio.manager;
 
+import java.nio.channels.SocketChannel;
+
 import inputport.nio.manager.commands.ReadCommand;
 import inputport.nio.manager.commands.classes.AScatterGatherReadCommand;
-
-import java.nio.channels.SocketChannel;
 
 
 

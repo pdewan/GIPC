@@ -4,8 +4,6 @@ import java.nio.ByteBuffer;
 
 import inputport.InputPort;
 import inputport.datacomm.NamingSender;
-import inputport.datacomm.SendTrapper;
-import inputport.datacomm.simplex.object.ASerializingForwarder;
 import inputport.datacomm.simplex.object.ASerializingForwarderFactory;
 import inputport.datacomm.simplex.object.SerializingForwarder;
 

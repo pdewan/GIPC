@@ -1,10 +1,8 @@
 package example.assignments.util.inputParameters;
 
-import assignments.util.inputParameters.ASimulationParametersController;
 import assignments.util.inputParameters.SimulationParametersListener;
 import util.interactiveMethodInvocation.ConsensusAlgorithm;
 import util.interactiveMethodInvocation.IPCMechanism;
-import util.interactiveMethodInvocation.SimulationParametersController;
 /**
  * Methods in this class are called when corresponding user commands are invoked.
  * These method simply print the method name and parameters.

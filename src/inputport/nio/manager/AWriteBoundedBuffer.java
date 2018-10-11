@@ -1,8 +1,5 @@
 package inputport.nio.manager;
 
-import inputport.nio.manager.commands.WriteCommand;
-import inputport.nio.manager.listeners.WriteBoundedBufferListener;
-
 import java.nio.channels.CancelledKeyException;
 import java.nio.channels.SelectableChannel;
 import java.nio.channels.SelectionKey;
@@ -12,10 +9,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
+import inputport.nio.manager.commands.WriteCommand;
+import inputport.nio.manager.listeners.WriteBoundedBufferListener;
 import util.trace.Tracer;
 import util.trace.port.nio.SocketChannelInterestOp;
 import util.trace.port.nio.WriteBufferIsEmpty;
-import util.trace.port.nio.WriteListenerAdded;
 import util.trace.port.nio.WriteRequestDequeued;
 import util.trace.port.nio.WriteRequestEnqueued;
 

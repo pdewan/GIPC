@@ -1,18 +1,17 @@
 package inputport.nio.manager;
 
-import inputport.nio.manager.commands.ReadCommand;
-import inputport.nio.manager.commands.RequestResponse;
-import inputport.nio.manager.commands.Response;
-import inputport.nio.manager.commands.WriteCommand;
-import inputport.nio.manager.listeners.SocketChannelCloseListener;
-import inputport.nio.manager.listeners.SocketChannelReadListener;
-
 import java.nio.channels.SelectableChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.nio.channels.spi.SelectorProvider;
 
+import inputport.nio.manager.commands.ReadCommand;
+import inputport.nio.manager.commands.RequestResponse;
+import inputport.nio.manager.commands.Response;
+import inputport.nio.manager.commands.WriteCommand;
+import inputport.nio.manager.listeners.SocketChannelCloseListener;
+import inputport.nio.manager.listeners.SocketChannelReadListener;
 import util.trace.Tracer;
 import util.trace.port.nio.SelectCalled;
 import util.trace.port.nio.SelectUnblocked;

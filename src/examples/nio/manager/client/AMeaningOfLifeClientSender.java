@@ -1,12 +1,10 @@
 package examples.nio.manager.client;
 
-import inputport.nio.manager.NIOManager;
-import inputport.nio.manager.NIOManagerFactory;
-
 import java.beans.PropertyChangeEvent;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
-import java.util.Scanner;
+
+import inputport.nio.manager.NIOManagerFactory;
 /**
  * Listens to model changes and sends them to the connected server through the
  * NIO manager.

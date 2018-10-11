@@ -1,20 +1,12 @@
 package consensus.paxos;
 
-import bus.uigen.widgets.universal.CentralUniversalWidget;
-import sessionport.rpc.group.GIPCSessionRegistry;
-import sun.security.util.PendingException;
-import util.annotations.IsAtomicShape;
-import util.trace.port.consensus.ProposalPrepareRequestReceived;
-import util.trace.port.consensus.ProposalPreparedNotificationSent;
-import util.trace.port.consensus.RemoteProposeRequestReceived;
-import util.trace.port.consensus.RemoteProposeRequestSent;
-import consensus.ConsensusMechanism;
 import consensus.ProposalFeedbackKind;
-import consensus.ProposalState;
 import consensus.ReplicationSynchrony;
 import consensus.central.ACentralizableConsensusMechanism;
-import consensus.synchronous.sequential.ASynchronousConsensusMechanism;
 import consensus.synchronous.sequential.AnAcceptedMulticastRunnable;
+import sessionport.rpc.group.GIPCSessionRegistry;
+import util.trace.port.consensus.ProposalPrepareRequestReceived;
+import util.trace.port.consensus.ProposalPreparedNotificationSent;
 
 public class APreparerConsensusMechanism<StateType> 
 	extends ACentralizableConsensusMechanism<StateType>

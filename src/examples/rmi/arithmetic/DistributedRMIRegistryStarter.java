@@ -1,6 +1,5 @@
 package examples.rmi.arithmetic;
 import java.rmi.registry.LocateRegistry;
-import java.util.Scanner;
 import java.util.concurrent.Semaphore;
 
 import util.annotations.Tags;

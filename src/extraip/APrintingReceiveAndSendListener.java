@@ -1,9 +1,9 @@
 package extraip;
 
+import java.nio.ByteBuffer;
+
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
-
-import java.nio.ByteBuffer;
 
 public class APrintingReceiveAndSendListener extends ASendConnectionListener implements ReceiveListener<ByteBuffer> {
 	

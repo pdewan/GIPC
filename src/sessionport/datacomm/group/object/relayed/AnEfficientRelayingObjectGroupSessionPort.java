@@ -1,14 +1,13 @@
 package sessionport.datacomm.group.object.relayed;
 
+import java.util.Collection;
+import java.util.Set;
+
 import inputport.datacomm.ReceiveTrapper;
 import inputport.datacomm.duplex.NoMessageReceivedByResponderException;
 import inputport.datacomm.group.GroupSendTrapper;
 import inputport.datacomm.group.GroupToUniSendTrapper;
 import inputport.rpc.duplex.DuplexRPCClientInputPort;
-
-import java.util.Collection;
-import java.util.Set;
-
 import port.ParticipantChoice;
 import sessionport.datacomm.duplex.object.relayed.ARelayingObjectDuplexSessionPort;
 import sessionport.datacomm.duplex.object.relayed.RelayingDuplexConnectionsManager;

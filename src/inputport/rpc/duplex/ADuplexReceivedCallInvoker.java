@@ -1,12 +1,11 @@
 package inputport.rpc.duplex;
 
-import inputport.datacomm.duplex.DuplexInputPort;
-import inputport.rpc.RPCRegistry;
-import inputport.rpc.simplex.ASimplexReceivedCallInvoker;
-
 import java.io.Serializable;
 import java.lang.reflect.Method;
 
+import inputport.datacomm.duplex.DuplexInputPort;
+import inputport.rpc.RPCRegistry;
+import inputport.rpc.simplex.ASimplexReceivedCallInvoker;
 import util.trace.Tracer;
 import util.trace.port.rpc.ReturnMessageCreated;
 import util.trace.port.rpc.SentObjectTransformed;

@@ -1,9 +1,9 @@
 package inputport.nio.manager.commands;
 
+import java.nio.channels.SocketChannel;
+
 import inputport.nio.manager.listeners.SocketChannelCloseListener;
 import inputport.nio.manager.listeners.SocketChannelReadListener;
-
-import java.nio.channels.SocketChannel;
 
 public interface ReadCommand extends RequestResponse {
 	public void addReadListener(SocketChannelReadListener theReadListener);

@@ -1,15 +1,14 @@
 package inputport.datacomm.duplex.buffer;
 
+import java.nio.ByteBuffer;
+import java.util.List;
+
 import inputport.datacomm.AReceiveRegistrarAndNotifier;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.ReceiveRegistrarAndNotifier;
 import inputport.datacomm.ReceiveTrapper;
 import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.simplex.buffer.AGenericSimplexBufferClientInputPort;
-
-import java.nio.ByteBuffer;
-import java.util.List;
-
 import util.trace.Tracer;
 import util.trace.port.AConnectionEvent;
 import util.trace.port.ConnectiontEventBus;

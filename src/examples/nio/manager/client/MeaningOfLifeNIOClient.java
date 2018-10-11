@@ -1,7 +1,5 @@
 package examples.nio.manager.client;
 
-import java.io.IOException;
-
 import inputport.nio.manager.listeners.SocketChannelConnectListener;
 
 public interface MeaningOfLifeNIOClient extends 

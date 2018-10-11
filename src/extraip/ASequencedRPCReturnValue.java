@@ -1,8 +1,8 @@
 package extraip;
 
-import inputport.rpc.duplex.RPCReturnValue;
-
 import java.io.Serializable;
+
+import inputport.rpc.duplex.RPCReturnValue;
 
 public class ASequencedRPCReturnValue implements RPCReturnValue {
 	Serializable returnValue;

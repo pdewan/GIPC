@@ -1,7 +1,5 @@
 package inputport.nio.manager;
 
-import util.trace.port.nio.NIOTraceUtility;
-
 public class NIOManagerFactory {
 	static NIOManager singleton;
 

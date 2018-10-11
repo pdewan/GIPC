@@ -1,9 +1,7 @@
 package util.trace.port.consensus;
 
-import inputport.rpc.RemoteCall;
 import util.annotations.ComponentWidth;
 import util.annotations.DisplayToString;
-import util.trace.TraceableInfo;
 import util.trace.port.rpc.RemoteCallbackInfo;
 @DisplayToString(true)
 @ComponentWidth(1000)

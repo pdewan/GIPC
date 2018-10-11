@@ -1,6 +1,5 @@
 package examples.gipc.consensus.paxos;
 
-import inputport.datacomm.group.GroupSendMessageForwarderSelector;
 import consensus.ConcurrencyKind;
 import consensus.ConsensusMechanismFactory;
 import consensus.ProposalState;

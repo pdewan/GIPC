@@ -1,20 +1,13 @@
 package examples.gipc.counter;
 
 
-import inputport.rpc.GIPCLocateRegistry;
-import inputport.rpc.GIPCRegistry;
-
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
-
 import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.rmi.counter.AnRMICounterServer;
 import examples.rmi.counter.CounterServerLauncher;
-import examples.rmi.counter.repository.ARemoteRepository;
-import examples.rmi.counter.repository.RemoteRepository;
 import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;
+import inputport.rpc.GIPCLocateRegistry;
+import inputport.rpc.GIPCRegistry;
 
 public class AGIPCCounterServer extends CounterServerLauncher implements SimpleRegistryAndCounterServer {	
 	public static void main (String[] args) {

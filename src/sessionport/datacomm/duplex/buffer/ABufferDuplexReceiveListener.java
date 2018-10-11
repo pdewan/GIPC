@@ -1,7 +1,7 @@
 package sessionport.datacomm.duplex.buffer;
-import inputport.datacomm.ReceiveListener;
-
 import java.nio.ByteBuffer;
+
+import inputport.datacomm.ReceiveListener;
 
 public class ABufferDuplexReceiveListener implements ReceiveListener<ByteBuffer> {
 

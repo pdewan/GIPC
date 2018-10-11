@@ -1,13 +1,13 @@
 package inputport.datacomm.simplex.object.mvc.example;
 
+import examples.mvc.local.simplex.ASimplexUpperCaser;
+import examples.mvc.local.simplex.SimplexUpperCaser;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.simplex.object.ASimplexObjectInputPortLauncherSupport;
 import inputport.datacomm.simplex.object.SimplexObjectInputPortSelector;
 import inputport.rpc.simplex.mvc.example.ASimplexRPCServerMVCLauncher;
 import port.PortLauncherSupport;
-import examples.mvc.local.simplex.ASimplexUpperCaser;
-import examples.mvc.local.simplex.SimplexUpperCaser;
 
 
 

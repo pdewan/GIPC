@@ -1,8 +1,8 @@
 package examples.gipc.counter.customization;
 
-import inputport.ConnectionListener;
-
 import java.util.List;
+
+import inputport.ConnectionListener;
 
 public interface CustomServerConnectionListener extends ConnectionListener{
 

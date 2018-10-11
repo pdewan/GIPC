@@ -1,5 +1,7 @@
 package replicatedsessionport.rpc.duplex.singleresponse.example;
 
+import java.util.Scanner;
+
 import inputport.InputPort;
 import inputport.rpc.RPCProxyGenerator;
 import inputport.rpc.RPCRegistry;
@@ -11,9 +13,6 @@ import inputport.rpc.duplex.example.AnotherEchoer;
 import inputport.rpc.group.example.ACounterWithObjectValue;
 import inputport.rpc.group.example.AGroupCounterAndSenderAwareSumPrinter;
 import inputport.rpc.group.example.GroupCounterAndSenderAwareSumPrinterAndCapitalizer;
-
-import java.util.Scanner;
-
 import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;

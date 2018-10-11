@@ -1,11 +1,11 @@
 package inputport.rpc.duplex.example;
 
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.duplex.ReplyRPCProxyGenerator;
 import inputport.rpc.simplex.example.AnUpperCasePrinter;
-
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 public class ADuplexCounterAndSenderAwareSummer extends AnUpperCasePrinter implements DuplexCounterAndSenderAwareSummer, Runnable{
 	protected DuplexRPCServerInputPort duplexRPCServerInputPort;
 	protected AnotherCounter counter;

@@ -1,17 +1,14 @@
 package staticsessionport.datacomm.duplex.buffer.fullp2p;
 
-import inputport.ConnectionType;
-import inputport.datacomm.duplex.DuplexClientInputPort;
-import inputport.datacomm.duplex.DuplexServerInputPort;
-import inputport.datacomm.duplex.buffer.AGenericDuplexBufferServerInputPort;
-import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
-import inputport.datacomm.simplex.SimplexClientInputPort;
-
 import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import inputport.ConnectionType;
+import inputport.datacomm.duplex.DuplexClientInputPort;
+import inputport.datacomm.duplex.DuplexServerInputPort;
+import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
 import multiserverport.datacomm.duplex.buffer.ABufferDuplexMultiServerConnectionsManager;
 import port.ParticipantChoice;
 import port.sessionserver.ServerPortDescription;

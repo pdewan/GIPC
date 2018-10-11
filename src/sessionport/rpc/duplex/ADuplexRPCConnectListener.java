@@ -5,8 +5,6 @@ import java.util.Set;
 
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
-import inputport.rpc.DirectedRPCProxyGenerator;
-import sessionport.rpc.duplex.DuplexRPCSessionPort;
 
 public class ADuplexRPCConnectListener implements ConnectionListener{
 	protected DuplexRPCSessionPort sessionPort;

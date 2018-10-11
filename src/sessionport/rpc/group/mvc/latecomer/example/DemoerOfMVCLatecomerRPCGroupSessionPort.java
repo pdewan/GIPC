@@ -1,7 +1,7 @@
 package sessionport.rpc.group.mvc.latecomer.example;
 
-import port.sessionserver.relay.late.ALatecomerSessionServerLauncher;
 import bus.uigen.pipe.MainClassLaunchingUtility;
+import port.sessionserver.relay.late.ALatecomerSessionServerLauncher;
 
 public class DemoerOfMVCLatecomerRPCGroupSessionPort {
 	public static void main(String args[]) {

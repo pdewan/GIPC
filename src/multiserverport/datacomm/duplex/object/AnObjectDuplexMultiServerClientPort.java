@@ -1,9 +1,8 @@
 package multiserverport.datacomm.duplex.object;
 
-import inputport.datacomm.duplex.object.ADuplexObjectClientInputPort;
-
 import java.nio.ByteBuffer;
 
+import inputport.datacomm.duplex.object.ADuplexObjectClientInputPort;
 import multiserverport.datacomm.duplex.DuplexMultiServerClientPort;
 
 

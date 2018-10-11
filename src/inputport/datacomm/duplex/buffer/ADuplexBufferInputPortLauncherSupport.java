@@ -1,10 +1,10 @@
 package inputport.datacomm.duplex.buffer;
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.duplex.DuplexInputPortFactory;
 import inputport.datacomm.duplex.buffer.nio.AnNIODuplexBufferInputPortFactory;
 import inputport.datacomm.simplex.buffer.ASimplexBufferInputPortLauncherSupport;
-
-import java.nio.ByteBuffer;
 
 
 public class ADuplexBufferInputPortLauncherSupport extends ASimplexBufferInputPortLauncherSupport {

@@ -1,8 +1,8 @@
 package inputport.datacomm.simplex.object.mvc.example;
 
+import examples.mvc.local.simplex.SimplexUpperCaser;
 import inputport.datacomm.ReceiveListener;
 import util.trace.Tracer;
-import examples.mvc.local.simplex.SimplexUpperCaser;
 
 public class ASimplexObjectServerUpperCaseReceiveTrapper implements ReceiveListener<Object>, Runnable {
 //	protected InputPort inputPort;

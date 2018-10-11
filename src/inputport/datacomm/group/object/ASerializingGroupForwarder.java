@@ -1,14 +1,12 @@
 package inputport.datacomm.group.object;
 
+import java.nio.ByteBuffer;
+import java.util.Collection;
+
 import inputport.InputPort;
 import inputport.datacomm.group.AnAbstractGroupSendTrapper;
 import inputport.datacomm.group.GroupNamingSender;
 import inputport.datacomm.simplex.buffer.SendRegistrar;
-
-import java.nio.ByteBuffer;
-import java.util.Collection;
-import java.util.Set;
-
 import serialization.Serializer;
 import serialization.SerializerPoolSelector;
 import util.trace.Tracer;

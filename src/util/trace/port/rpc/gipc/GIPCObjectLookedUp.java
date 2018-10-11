@@ -1,9 +1,6 @@
 package util.trace.port.rpc.gipc;
 
-import java.rmi.registry.Registry;
-
 import inputport.rpc.GIPCRegistry;
-import inputport.rpc.RemoteCall;
 import util.annotations.ComponentWidth;
 import util.annotations.DisplayToString;
 import util.trace.TraceableInfo;

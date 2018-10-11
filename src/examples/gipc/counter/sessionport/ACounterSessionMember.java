@@ -2,21 +2,16 @@ package examples.gipc.counter.sessionport;
 
 import java.nio.ByteBuffer;
 import java.rmi.RemoteException;
-import java.util.Arrays;
 import java.util.Set;
 
-import bus.uigen.visitors.AddListenersAdapterVisitor;
-import inputport.rpc.GIPCRegistry;
+import examples.gipc.counter.layers.AMultiLayeServerReceiveListener;
+import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
+import examples.mvc.rmi.duplex.DistributedRMICounter;
 import port.ATracingConnectionListener;
 import port.SessionChoice;
 import sessionport.rpc.group.GIPCLocateSessionRegistry;
 import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
-import examples.gipc.counter.layers.AMultiLayeServerReceiveListener;
-import examples.gipc.counter.layers.AMultiLayerCounterServer;
-import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
-import examples.mvc.rmi.duplex.DistributedRMICounter;
-import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;
 
 public class ACounterSessionMember implements CounterSessionMember {
 	protected static DistributedRMICounter counter;

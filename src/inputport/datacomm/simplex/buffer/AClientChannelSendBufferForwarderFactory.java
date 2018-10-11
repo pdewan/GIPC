@@ -1,9 +1,9 @@
 package inputport.datacomm.simplex.buffer;
 
+import java.nio.ByteBuffer;
+
 import inputport.InputPort;
 import inputport.datacomm.NamingSender;
-
-import java.nio.ByteBuffer;
 
 public class AClientChannelSendBufferForwarderFactory<ChannelType> implements ClientChannelBufferSendTrapperFactory<ChannelType> {
 

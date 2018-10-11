@@ -1,14 +1,13 @@
 package replicatedserverport.datacomm.simplex;
 
+import java.nio.ByteBuffer;
+import java.util.Set;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.datacomm.SendTrapper;
 import inputport.datacomm.simplex.SimplexClientInputPort;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
-
-import java.nio.ByteBuffer;
-import java.util.Set;
-
 import multiserverport.datacomm.group.GroupMultiServerClientPort;
 import util.trace.Tracer;
 import util.trace.port.AConnectionEvent;

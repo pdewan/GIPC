@@ -1,13 +1,13 @@
 package extraip;
 
+import java.lang.reflect.Method;
+
 import inputport.rpc.RemoteCall;
 import inputport.rpc.SerializableCall;
 import inputport.rpc.duplex.AnRPCReturnValueQueue;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
 import inputport.rpc.duplex.RPCReturnValue;
 import inputport.rpc.duplex.RPCReturnValueQueue;
-
-import java.lang.reflect.Method;
 
 public class ADuplexUniImplicitRPCFunctionHandler 
 	implements ReturnerOfFunctionCall{

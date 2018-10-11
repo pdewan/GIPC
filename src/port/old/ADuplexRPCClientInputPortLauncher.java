@@ -1,6 +1,8 @@
 package port.old;
 
 
+import java.util.Scanner;
+
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.simplex.object.example.AnEchoingObjectReceiveListener;
@@ -17,9 +19,6 @@ import inputport.rpc.duplex.example.AnotherCounter;
 import inputport.rpc.duplex.example.AnotherEchoer;
 import inputport.rpc.duplex.example.DuplexCounterAndSenderAwareSummer;
 import inputport.rpc.simplex.example.ASimplexRPCClientInputPortLauncher;
-
-import java.util.Scanner;
-
 import port.PortLauncherSupport;
 
 

@@ -1,14 +1,13 @@
 package replicatedserver.datacomm.duplex.anycast;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.InputPort;
 import inputport.datacomm.group.GroupSender;
 import inputport.rpc.RemoteCall;
-
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-
 import port.common.DistMisc;
 import replicatedserverport.datacomm.simplex.AnAbstractMultiToReplicatedSendTrapper;
 import util.misc.RemoteReflectionUtility;

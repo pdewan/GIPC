@@ -1,15 +1,13 @@
 package inputport.nio.manager;
 
-import inputport.nio.manager.commands.ReadCommand;
-import inputport.nio.manager.commands.classes.AReadCommand;
-import inputport.nio.manager.factories.selectors.ReadCommandFactorySelector;
-import inputport.nio.manager.listeners.SocketChannelReadListener;
-
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 import java.util.HashMap;
 import java.util.Map;
 
+import inputport.nio.manager.commands.ReadCommand;
+import inputport.nio.manager.factories.selectors.ReadCommandFactorySelector;
+import inputport.nio.manager.listeners.SocketChannelReadListener;
 import util.trace.port.nio.ReadRequestCreated;
 
 

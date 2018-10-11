@@ -1,9 +1,9 @@
 package inputport.datacomm.duplex.buffer;
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.NamingSender;
 import inputport.datacomm.simplex.buffer.SimplexBufferServerInputPortDriver;
-
-import java.nio.ByteBuffer;
 
 public interface DuplexServerInputPortDriver<RequestChannelType, ChannelType> extends 
 SimplexBufferServerInputPortDriver<RequestChannelType, ChannelType>, NamingSender<ByteBuffer> {

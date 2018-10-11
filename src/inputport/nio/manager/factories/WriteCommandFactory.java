@@ -1,10 +1,10 @@
 package inputport.nio.manager.factories;
 
-import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.commands.WriteCommand;
-
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+
+import inputport.nio.manager.SelectionManager;
+import inputport.nio.manager.commands.WriteCommand;
 
 public interface WriteCommandFactory {			
 	WriteCommand createWriteCommand (

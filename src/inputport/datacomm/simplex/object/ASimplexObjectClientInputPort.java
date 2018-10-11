@@ -1,14 +1,13 @@
 package inputport.datacomm.simplex.object;
 
+import java.nio.ByteBuffer;
+import java.util.Set;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.datacomm.SendTrapper;
 import inputport.datacomm.simplex.SimplexClientInputPort;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
-
-import java.nio.ByteBuffer;
-import java.util.Set;
-
 import util.trace.Tracer;
 import util.trace.port.AConnectionEvent;
 import util.trace.port.AReplaceConnectionEvent;

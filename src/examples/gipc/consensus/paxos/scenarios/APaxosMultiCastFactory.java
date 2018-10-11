@@ -1,11 +1,9 @@
 package examples.gipc.consensus.paxos.scenarios;
 
 import inputport.InputPort;
-import inputport.datacomm.NamingSender;
 import inputport.datacomm.group.GroupNamingSender;
 import inputport.datacomm.group.GroupSendTrapper;
 import inputport.datacomm.group.GroupSendTrapperFactory;
-import inputport.datacomm.group.object.MultipleSendGroupForwarderFactory;
 
 
 public class APaxosMultiCastFactory  implements GroupSendTrapperFactory{

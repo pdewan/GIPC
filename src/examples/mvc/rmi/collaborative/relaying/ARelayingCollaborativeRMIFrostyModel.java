@@ -3,9 +3,9 @@ package examples.mvc.rmi.collaborative.relaying;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import util.models.PropertyListenerRegisterer;
 import examples.mvc.rmi.collaborative.ACollaborativeRMIFrostyModel;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
+import util.models.PropertyListenerRegisterer;
 
 public class ARelayingCollaborativeRMIFrostyModel extends
 		ACollaborativeRMIFrostyModel implements PropertyChangeListener {

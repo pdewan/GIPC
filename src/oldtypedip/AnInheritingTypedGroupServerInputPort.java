@@ -1,13 +1,12 @@
 package oldtypedip;
 
 
-import inputport.datacomm.duplex.NoMessageReceivedByResponderException;
-
 import java.io.Serializable;
 import java.io.StreamCorruptedException;
 import java.nio.ByteBuffer;
 import java.util.Set;
 
+import inputport.datacomm.duplex.NoMessageReceivedByResponderException;
 import oldgroupip.AGroupServerInputPort;
 import serialization.Serializer;
 import serialization.SerializerPoolSelector;

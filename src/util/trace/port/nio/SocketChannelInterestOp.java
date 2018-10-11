@@ -2,9 +2,7 @@ package util.trace.port.nio;
 
 import java.nio.channels.SelectionKey;
 
-import inputport.rpc.RemoteCall;
 import util.trace.TraceableInfo;
-import util.trace.port.rpc.ReceivedCallEndedOld;
 
 public class SocketChannelInterestOp extends TraceableInfo {	
 	public SocketChannelInterestOp(String aMessage, Object aFinder, SelectionKey aSelectionKey, int aNewMask) {

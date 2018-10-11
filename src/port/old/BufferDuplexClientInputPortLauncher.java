@@ -1,12 +1,11 @@
 package port.old;
 
-import inputport.datacomm.duplex.DuplexClientInputPort;
-import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
-
 import java.nio.ByteBuffer;
 import java.util.Scanner;
 
 import extraip.APrintingReceiveAndSendListener;
+import inputport.datacomm.duplex.DuplexClientInputPort;
+import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
 
 
 

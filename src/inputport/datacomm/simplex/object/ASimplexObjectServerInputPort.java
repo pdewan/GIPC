@@ -1,5 +1,9 @@
 package inputport.datacomm.simplex.object;
 
+import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.Set;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.datacomm.AReceiveRegistrarAndNotifier;
@@ -7,11 +11,6 @@ import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.ReceiveRegistrarAndNotifier;
 import inputport.datacomm.ReceiveTrapper;
 import inputport.datacomm.simplex.SimplexServerInputPort;
-
-import java.nio.ByteBuffer;
-import java.util.List;
-import java.util.Set;
-
 import util.trace.Tracer;
 import util.trace.port.AConnectionEvent;
 import util.trace.port.ConnectiontEventBus;

@@ -4,7 +4,6 @@ package examples.rmi.counter.simple;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
 import examples.mvc.rmi.duplex.DistributedRMICounter;
 
 public class ASimpleRMICounterClient implements SimpleCounterClient{

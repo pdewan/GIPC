@@ -1,11 +1,11 @@
 package extraip;
 
+import java.nio.ByteBuffer;
+
 import inputport.InputPort;
 import inputport.datacomm.AReceiveMessageForwarderFactory;
 import inputport.datacomm.ReceiveNotifier;
 import inputport.datacomm.ReceiveTrapperFactory;
-
-import java.nio.ByteBuffer;
 
 public class ServerChannelBufferReceiverTrapperSelector {
 	static ReceiveTrapperFactory<ByteBuffer, ByteBuffer> receiveTrapperFactory = new AReceiveMessageForwarderFactory();

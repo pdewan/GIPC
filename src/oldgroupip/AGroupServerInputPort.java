@@ -1,14 +1,13 @@
 package oldgroupip;
 
+import java.nio.ByteBuffer;
+import java.util.Set;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.DisconnectListener;
 import inputport.datacomm.duplex.NoMessageReceivedByResponderException;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
-
-import java.nio.ByteBuffer;
-import java.util.Set;
-
 import port.old.AMonolithicNIODuplexInputPortFactory;
 import port.old.ByteBufferReceiveListener;
 import port.old.MonolithicDuplexServerInputPort;

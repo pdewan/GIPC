@@ -1,11 +1,10 @@
 package replicatedserverport.rpc.duplex.singleresponse;
 
+import java.util.List;
+
 import inputport.InputPort;
 import inputport.datacomm.AnAbstractReceiveTrapper;
 import inputport.datacomm.ReceiveNotifier;
-
-import java.util.List;
-
 import util.trace.Tracer;
 
 

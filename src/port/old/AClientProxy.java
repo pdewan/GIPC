@@ -1,9 +1,9 @@
 package port.old;
-import inputport.ConnectionType;
-
 import java.io.EOFException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+
+import inputport.ConnectionType;
 public class AClientProxy  implements ClientProxy  {
 	String clientName;
 	ConnectionSendReceiptNotifier listenablePort;

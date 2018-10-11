@@ -1,7 +1,6 @@
 package sessionport.datacomm.group.object.relayed;
 
 import java.util.Collection;
-import java.util.Set;
 
 import port.ParticipantChoice;
 import sessionport.datacomm.duplex.object.relayed.AMessageWithSource;

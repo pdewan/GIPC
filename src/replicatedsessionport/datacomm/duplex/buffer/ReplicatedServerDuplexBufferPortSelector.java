@@ -1,10 +1,9 @@
 package replicatedsessionport.datacomm.duplex.buffer;
 
-import inputport.datacomm.duplex.DuplexClientInputPort;
-import inputport.datacomm.duplex.DuplexServerInputPort;
-
 import java.nio.ByteBuffer;
 
+import inputport.datacomm.duplex.DuplexClientInputPort;
+import inputport.datacomm.duplex.DuplexServerInputPort;
 import replicatedsessionport.datacomm.duplex.ReplicatedSessionDuplexPortFactory;
 
 public class ReplicatedServerDuplexBufferPortSelector {

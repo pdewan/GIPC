@@ -1,5 +1,9 @@
 package variableserverport.datacomm.simplex.buffer;
 
+import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.Set;
+
 import inputport.AConnectRegistrarAndNotifier;
 import inputport.ConnectionListener;
 import inputport.ConnectionRegistrarAndNotifier;
@@ -12,11 +16,6 @@ import inputport.datacomm.SendTrapper;
 import inputport.datacomm.simplex.buffer.ASendRegistrarAndNotifier;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 import inputport.datacomm.simplex.buffer.SendRegistrarAndNotifier;
-
-import java.nio.ByteBuffer;
-import java.util.List;
-import java.util.Set;
-
 import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
 import sessionport.datacomm.duplex.buffer.example.ABufferDuplexSessionPortLauncher;

@@ -1,9 +1,8 @@
 package inputport.rpc;
 
-import inputport.rpc.simplex.SimplexRPC;
-
 import java.lang.reflect.Method;
 
+import inputport.rpc.simplex.SimplexRPC;
 import util.remote.InvocationHandlerWithProperties;
 
 public abstract class ANonCachingAbstractRPCProxyInvocationHandler implements

@@ -1,13 +1,10 @@
 package examples.gipc.counter.layers;
 
+import examples.gipc.counter.simple.ASimpleGIPCRegistryAndCounterServer;
+import inputport.datacomm.ReceiveListener;
+import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import util.trace.port.objects.ObjectTraceUtility;
 import util.trace.port.rpc.RPCTraceUtility;
-import inputport.datacomm.ReceiveListener;
-import inputport.datacomm.duplex.DuplexInputPort;
-import inputport.rpc.GIPCRegistry;
-import inputport.rpc.duplex.DuplexRPCClientInputPort;
-import inputport.rpc.duplex.DuplexRPCServerInputPort;
-import examples.gipc.counter.simple.ASimpleGIPCRegistryAndCounterServer;
 /**
  * A class to show how a server can receive bytebuffers, objects and RPC
  * calls on the same port (message queue) 

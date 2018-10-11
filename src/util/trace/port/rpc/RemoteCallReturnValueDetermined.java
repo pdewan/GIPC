@@ -1,6 +1,5 @@
 package util.trace.port.rpc;
 
-import inputport.rpc.duplex.RPCReturnValueQueue;
 import util.annotations.DisplayToString;
 import util.trace.TraceableInfo;
 @DisplayToString(true)

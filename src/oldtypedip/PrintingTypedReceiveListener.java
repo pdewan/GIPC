@@ -1,10 +1,9 @@
 package oldtypedip;
 
-import inputport.InputPort;
-
 import java.io.Serializable;
 
 import extraip.ASendConnectionListener;
+import inputport.InputPort;
 
 public class PrintingTypedReceiveListener extends ASendConnectionListener implements TypedReceiveListener {
 	public PrintingTypedReceiveListener(InputPort anInputPort) {

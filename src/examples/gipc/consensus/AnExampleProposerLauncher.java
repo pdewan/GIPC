@@ -1,7 +1,7 @@
 package examples.gipc.consensus;
 
-import util.misc.ThreadSupport;
 import consensus.ProposalState;
+import util.misc.ThreadSupport;
 
 public abstract class AnExampleProposerLauncher extends
 		AnExampleConsensusMemberLauncher {

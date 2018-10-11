@@ -1,5 +1,7 @@
 package replicatedserverport.datacomm.duplex;
 
+import java.util.List;
+
 import inputport.datacomm.AReceiveRegistrarAndNotifier;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.ReceiveRegistrarAndNotifier;
@@ -8,9 +10,6 @@ import inputport.datacomm.TrapperSelector;
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
-
-import java.util.List;
-
 import multiserverport.datacomm.group.GroupMultiServerClientPort;
 import replicatedserverport.datacomm.simplex.AReplicatedServerClientPort;
 import replicatedserverport.datacomm.simplex.ClientMultiToReplicatedTrapperSelector;

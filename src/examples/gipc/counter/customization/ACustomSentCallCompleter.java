@@ -1,12 +1,8 @@
 package examples.gipc.counter.customization;
 
-import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
-import inputport.datacomm.duplex.object.explicitreceive.ExplicitSourceReceive;
 import inputport.rpc.duplex.ADuplexSentCallCompleter;
 import inputport.rpc.duplex.DuplexRPCInputPort;
-import inputport.rpc.duplex.DuplexSentCallCompleter;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
-import inputport.rpc.duplex.RPCReturnValue;
 
 public class ACustomSentCallCompleter extends ADuplexSentCallCompleter	{
 	

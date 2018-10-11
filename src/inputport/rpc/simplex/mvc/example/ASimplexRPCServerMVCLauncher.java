@@ -1,5 +1,7 @@
 package inputport.rpc.simplex.mvc.example;
 
+import examples.mvc.local.simplex.ASimplexUpperCaser;
+import examples.mvc.local.simplex.SimplexUpperCaser;
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.rpc.simplex.SimplexRPCServerInputPort;
@@ -11,8 +13,6 @@ import port.PortKind;
 import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
-import examples.mvc.local.simplex.ASimplexUpperCaser;
-import examples.mvc.local.simplex.SimplexUpperCaser;
 
 
 

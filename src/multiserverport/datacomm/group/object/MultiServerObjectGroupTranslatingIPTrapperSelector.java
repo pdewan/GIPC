@@ -1,10 +1,10 @@
 package multiserverport.datacomm.group.object;
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.group.AGroupTrapperSelector;
 import inputport.datacomm.group.GroupTrapperSelector;
 import inputport.datacomm.group.object.ASerializingGroupForwarderFactory;
-
-import java.nio.ByteBuffer;
 
 
 public class MultiServerObjectGroupTranslatingIPTrapperSelector {

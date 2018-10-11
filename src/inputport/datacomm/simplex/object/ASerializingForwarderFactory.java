@@ -1,11 +1,9 @@
 package inputport.datacomm.simplex.object;
 
+import java.nio.ByteBuffer;
+
 import inputport.InputPort;
 import inputport.datacomm.NamingSender;
-import inputport.datacomm.SendTrapper;
-import inputport.datacomm.SendTrapperFactory;
-
-import java.nio.ByteBuffer;
 
 public class ASerializingForwarderFactory implements 
 //	SendTrapperFactory<Object, ByteBuffer> {

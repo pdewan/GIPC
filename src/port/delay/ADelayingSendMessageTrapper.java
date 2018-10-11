@@ -1,14 +1,13 @@
 package port.delay;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.InputPort;
 import inputport.datacomm.AnAbstractSendTrapper;
 import inputport.datacomm.NamingSender;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import util.misc.HashIdentityMap;
 import util.misc.IdentityMap;
 import util.trace.Tracer;

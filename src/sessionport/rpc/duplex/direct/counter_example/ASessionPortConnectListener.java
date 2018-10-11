@@ -1,9 +1,5 @@
 package sessionport.rpc.duplex.direct.counter_example;
 
-import java.util.List;
-
-import util.models.AListenableVector;
-import inputport.ConnectionListener;
 import inputport.ConnectionType;
 
 public class ASessionPortConnectListener implements SessionPortConnectionListener{

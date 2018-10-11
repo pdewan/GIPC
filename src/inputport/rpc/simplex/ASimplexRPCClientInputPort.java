@@ -1,5 +1,9 @@
 package inputport.rpc.simplex;
 
+import java.lang.reflect.Method;
+import java.nio.ByteBuffer;
+import java.util.Set;
+
 import inputport.ConnectionListener;
 import inputport.ConnectionType;
 import inputport.InputPort;
@@ -9,11 +13,6 @@ import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 import inputport.rpc.Marshaller;
 import inputport.rpc.MarshallerSelector;
 import inputport.rpc.RPCProxyGenerator;
-
-import java.lang.reflect.Method;
-import java.nio.ByteBuffer;
-import java.util.Set;
-
 import util.trace.Tracer;
 import util.trace.port.AConnectionEvent;
 import util.trace.port.AReplaceConnectionEvent;

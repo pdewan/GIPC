@@ -1,15 +1,14 @@
 package multiserverport.datacomm.duplex.buffer;
 
-import inputport.ConnectionType;
-import inputport.datacomm.duplex.DuplexClientInputPort;
-import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
-import inputport.datacomm.simplex.SimplexClientInputPort;
-
 import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.util.HashSet;
 import java.util.Set;
 
+import inputport.ConnectionType;
+import inputport.datacomm.duplex.DuplexClientInputPort;
+import inputport.datacomm.duplex.buffer.DuplexBufferInputPortSelector;
+import inputport.datacomm.simplex.SimplexClientInputPort;
 import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
 import util.trace.Tracer;

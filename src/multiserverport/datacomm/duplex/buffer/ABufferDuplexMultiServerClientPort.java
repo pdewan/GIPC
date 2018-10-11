@@ -1,10 +1,9 @@
 package multiserverport.datacomm.duplex.buffer;
 
-import inputport.ConnectionType;
-import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
-
 import java.nio.ByteBuffer;
 
+import inputport.ConnectionType;
+import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
 import multiserverport.datacomm.duplex.DuplexMultiServerClientPort;
 import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;

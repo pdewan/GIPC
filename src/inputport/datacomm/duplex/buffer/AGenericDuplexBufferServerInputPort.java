@@ -1,5 +1,7 @@
 package inputport.datacomm.duplex.buffer;
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.SendToUnconnectedPortException;
 import inputport.datacomm.SendTrapper;
 import inputport.datacomm.duplex.NoMessageReceivedByResponderException;
@@ -8,9 +10,6 @@ import inputport.datacomm.simplex.buffer.AGenericSimplexBufferServerInputPort;
 import inputport.datacomm.simplex.buffer.ASendRegistrarAndNotifier;
 import inputport.datacomm.simplex.buffer.ByteBufferSendListener;
 import inputport.datacomm.simplex.buffer.SendRegistrarAndNotifier;
-
-import java.nio.ByteBuffer;
-
 import util.trace.Tracer;
 import util.trace.port.AConnectionEvent;
 import util.trace.port.ConnectiontEventBus;

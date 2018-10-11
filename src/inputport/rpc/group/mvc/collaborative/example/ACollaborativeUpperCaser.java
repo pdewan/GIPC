@@ -1,9 +1,9 @@
 package inputport.rpc.group.mvc.collaborative.example;
 
-import inputport.rpc.duplex.DuplexRPCInputPort;
 import examples.mvc.local.duplex.ADuplexUpperCaser;
 import examples.mvc.local.duplex.Counter;
 import examples.mvc.rmi.collaborative.DisplayLibrary;
+import inputport.rpc.duplex.DuplexRPCInputPort;
 
 public class ACollaborativeUpperCaser extends ADuplexUpperCaser {
 	protected DuplexRPCInputPort rpcPort;

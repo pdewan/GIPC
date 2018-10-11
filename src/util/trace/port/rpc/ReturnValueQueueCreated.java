@@ -1,6 +1,5 @@
 package util.trace.port.rpc;
 
-import util.trace.TraceableInfo;
 import util.trace.port.GIPCQueueCreated;
 
 public class ReturnValueQueueCreated extends GIPCQueueCreated{

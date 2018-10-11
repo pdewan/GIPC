@@ -1,18 +1,17 @@
 package inputport.datacomm.simplex.buffer.nio;
 
-import inputport.ConnectionType;
-import inputport.datacomm.simplex.buffer.SimplexClientInputPortSkeleton;
-import inputport.nio.manager.AnNIOManager;
-import inputport.nio.manager.NIOManager;
-import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.factories.selectors.ConnectCommandFactorySelector;
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 
+import inputport.ConnectionType;
+import inputport.datacomm.simplex.buffer.SimplexClientInputPortSkeleton;
+import inputport.nio.manager.AnNIOManager;
+import inputport.nio.manager.NIOManager;
+import inputport.nio.manager.SelectionManager;
+import inputport.nio.manager.factories.selectors.ConnectCommandFactorySelector;
 import util.trace.Tracer;
 
 

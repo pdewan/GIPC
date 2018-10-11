@@ -2,14 +2,11 @@ package inputport.rpc;
 
 
 
-import inputport.rpc.simplex.SimplexRPC;
-
 import java.lang.reflect.Method;
 
+import inputport.rpc.simplex.SimplexRPC;
 import util.trace.Tracer;
 import util.trace.port.rpc.ProxyMethodForwardedToPort;
-import util.trace.port.rpc.RemoteCallFinished;
-import util.trace.port.rpc.RemoteCallInitiated;
 
 public  class AnRPCProxyInvocationHandler extends ACachingAbstractRPCProxyInvocationHandler {	
 	public AnRPCProxyInvocationHandler (SimplexRPC theRPCPort, String aDestination, Class aClass, String aName ) {

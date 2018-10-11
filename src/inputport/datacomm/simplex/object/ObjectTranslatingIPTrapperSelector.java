@@ -1,9 +1,9 @@
 package inputport.datacomm.simplex.object;
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.ATrapperSelector;
 import inputport.datacomm.TrapperSelector;
-
-import java.nio.ByteBuffer;
 
 
 public class ObjectTranslatingIPTrapperSelector {

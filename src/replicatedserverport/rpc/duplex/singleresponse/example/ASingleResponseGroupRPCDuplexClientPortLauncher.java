@@ -2,7 +2,6 @@ package replicatedserverport.rpc.duplex.singleresponse.example;
 
 import inputport.InputPort;
 import inputport.rpc.group.example.AGroupRPCClientInputPortLauncher;
-import inputport.rpc.group.example.AnOldGroupRPCClientInputPortLauncher;
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.sessionserver.SessionParticipantDescription;

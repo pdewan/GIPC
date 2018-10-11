@@ -1,7 +1,6 @@
 package port.sessionserver.relay.late;
 
 import java.util.Collection;
-import java.util.Set;
 
 import port.relay.Relayer;
 import sessionport.datacomm.duplex.object.relayed.MessageWithSource;

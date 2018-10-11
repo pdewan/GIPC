@@ -1,14 +1,14 @@
 package inputport.rpc.group;
 
+import java.io.Serializable;
+import java.util.Iterator;
+import java.util.Set;
+
 import inputport.InputPort;
 import inputport.rpc.RemoteCall;
 import inputport.rpc.duplex.ADuplexSentCallCompleter;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
 import inputport.rpc.duplex.RPCReturnValueQueue;
-
-import java.io.Serializable;
-import java.util.Iterator;
-import java.util.Set;
 
 
 public class AGroupArrayReturnerOfValueOfRemoteFunctionCall 

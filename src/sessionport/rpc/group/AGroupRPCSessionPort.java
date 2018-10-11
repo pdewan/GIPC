@@ -1,10 +1,9 @@
 package sessionport.rpc.group;
 
-import inputport.rpc.group.AGroupRPCServerInputPort;
-
 import java.util.List;
 import java.util.Set;
 
+import inputport.rpc.group.AGroupRPCServerInputPort;
 import port.ParticipantChoice;
 import port.sessionserver.SessionParticipantDescription;
 import sessionport.datacomm.group.GroupSessionPort;

@@ -1,12 +1,10 @@
 package inputport.nio.manager.factories;
 
+import java.net.InetAddress;
+import java.nio.channels.SocketChannel;
+
 import inputport.nio.manager.SelectionManager;
 import inputport.nio.manager.commands.ConnectCommand;
-
-import java.net.InetAddress;
-import java.nio.ByteBuffer;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
 
 public interface ConnectCommandFactory {
 	ConnectCommand createConnectCommand(SelectionManager aSelectionManager, SocketChannel aSocketChannel, InetAddress aServerHost, int aPort) ;

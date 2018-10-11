@@ -1,10 +1,9 @@
 package inputport.datacomm.duplex.buffer.echoer.example;
 
-import inputport.ConnectionType;
-import inputport.datacomm.duplex.DuplexInputPort;
-
 import java.nio.ByteBuffer;
 
+import inputport.ConnectionType;
+import inputport.datacomm.duplex.DuplexInputPort;
 import port.ATracingConnectionListener;
 
 public class AFrostyBufferConnectionListener extends ATracingConnectionListener {

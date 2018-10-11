@@ -1,6 +1,6 @@
 package port.old;
-import inputport.datacomm.simplex.buffer.SendRegistrarAndNotifier;
 import extraip.DisconnectRegistrarAndNotifier;
+import inputport.datacomm.simplex.buffer.SendRegistrarAndNotifier;
 
 public interface ConnectionSendNotifier extends PureConnectRegistrarAndNotifier, DisconnectRegistrarAndNotifier, SendRegistrarAndNotifier {
 

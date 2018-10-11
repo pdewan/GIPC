@@ -1,10 +1,9 @@
 package inputport.rpc.duplex;
 
 
-import inputport.rpc.ACachingAbstractRPCProxyInvocationHandler;
-
 import java.lang.reflect.Method;
 
+import inputport.rpc.ACachingAbstractRPCProxyInvocationHandler;
 import util.trace.port.rpc.RemoteCallFinished;
 import util.trace.port.rpc.RemoteCallInitiated;
 public  class AReplyRPCProxyInvocationHandler extends ACachingAbstractRPCProxyInvocationHandler {

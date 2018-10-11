@@ -1,14 +1,10 @@
 package consensus.central;
 
-import inputport.ConnectionType;
-import bus.uigen.widgets.universal.CentralUniversalWidget;
-import sessionport.rpc.group.GIPCSessionRegistry;
-import util.trace.port.consensus.RemoteProposeRequestReceived;
-import util.trace.port.consensus.RemoteProposeRequestSent;
-import consensus.ConsensusMechanism;
-import consensus.ProposalFeedbackKind;
 import consensus.ProposalState;
 import consensus.synchronous.sequential.ASynchronousConsensusMechanism;
+import inputport.ConnectionType;
+import sessionport.rpc.group.GIPCSessionRegistry;
+import util.trace.port.consensus.RemoteProposeRequestSent;
 
 public class ACentralizableClientConsensusMechanism<StateType> 
 	extends ASynchronousConsensusMechanism<StateType>

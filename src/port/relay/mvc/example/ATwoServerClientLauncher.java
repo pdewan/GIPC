@@ -1,6 +1,8 @@
 package port.relay.mvc.example;
 
 
+import examples.mvc.local.duplex.DuplexFrostyModel;
+import examples.mvc.local.duplex.DuplexUpperCaser;
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
@@ -11,8 +13,6 @@ import inputport.rpc.simplex.mvc.example.SimplexRPCServerMVCLauncher;
 import port.relay.ARelayer;
 import port.relay.Relayer;
 import port.relay.RelayerLauncher;
-import examples.mvc.local.duplex.DuplexFrostyModel;
-import examples.mvc.local.duplex.DuplexUpperCaser;
 
 public class ATwoServerClientLauncher extends ADuplexRPCClientMVCLauncher  {
 	String relayerHost, relayerId, relayerName;

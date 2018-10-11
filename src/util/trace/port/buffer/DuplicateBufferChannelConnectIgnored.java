@@ -1,14 +1,7 @@
 package util.trace.port.buffer;
 
-import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.SocketChannel;
-
 import inputport.ConnectionManager;
-import inputport.rpc.RemoteCall;
 import util.trace.TraceableInfo;
-import util.trace.port.rpc.ReceivedCallEndedOld;
 
 public class DuplicateBufferChannelConnectIgnored extends TraceableInfo {	
 	public DuplicateBufferChannelConnectIgnored(String aMessage, Object aFinder,

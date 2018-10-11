@@ -1,8 +1,6 @@
 package replicatedserverport.rpc.duplex.singleresponse;
 
 
-import inputport.ConnectionType;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import inputport.ConnectionType;
 import util.trace.TraceableBus;
 import util.trace.Tracer;
 import util.trace.port.ReplayStartInfo;

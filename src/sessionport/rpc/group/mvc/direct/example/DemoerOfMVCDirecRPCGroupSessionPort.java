@@ -1,7 +1,7 @@
 package sessionport.rpc.group.mvc.direct.example;
 
-import port.sessionserver.ASessionServerLauncher;
 import bus.uigen.pipe.MainClassLaunchingUtility;
+import port.sessionserver.ASessionServerLauncher;
 
 public class DemoerOfMVCDirecRPCGroupSessionPort {
 	public static void main(String args[]) {

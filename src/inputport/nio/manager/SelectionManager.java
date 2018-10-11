@@ -1,15 +1,15 @@
 package inputport.nio.manager;
 
+import java.nio.channels.SelectableChannel;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.Selector;
+import java.nio.channels.SocketChannel;
+
 import inputport.nio.manager.commands.ReadCommand;
 import inputport.nio.manager.commands.RequestResponse;
 import inputport.nio.manager.commands.WriteCommand;
 import inputport.nio.manager.listeners.SocketChannelCloseListener;
 import inputport.nio.manager.listeners.SocketChannelReadListener;
-
-import java.nio.channels.SelectableChannel;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.SocketChannel;
 
 public interface SelectionManager extends Runnable {	
 	public void putBufferedWrite (WriteCommand bufferedWrite);

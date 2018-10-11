@@ -1,6 +1,13 @@
 package inputport.rpc.simplex.mvc.example;
 
 
+import examples.mvc.local.simplex.ASimplexFrostyAWTGUI;
+import examples.mvc.local.simplex.ASimplexFrostyConsoleUI;
+import examples.mvc.local.simplex.ASimplexFrostyModel;
+import examples.mvc.local.simplex.ASimplexFrostyVerticalGUI;
+import examples.mvc.local.simplex.FrostyConsoleInteractor;
+import examples.mvc.local.simplex.SimplexFrostyModel;
+import examples.mvc.local.simplex.SimplexUpperCaser;
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.rpc.DirectedRPCProxyGenerator;
@@ -12,13 +19,6 @@ import port.PortAccessKind;
 import port.PortLauncherSupport;
 import port.SessionChoice;
 import port.sessionserver.SessionParticipantDescription;
-import examples.mvc.local.simplex.ASimplexFrostyAWTGUI;
-import examples.mvc.local.simplex.ASimplexFrostyConsoleUI;
-import examples.mvc.local.simplex.ASimplexFrostyModel;
-import examples.mvc.local.simplex.ASimplexFrostyVerticalGUI;
-import examples.mvc.local.simplex.FrostyConsoleInteractor;
-import examples.mvc.local.simplex.SimplexFrostyModel;
-import examples.mvc.local.simplex.SimplexUpperCaser;
 
 
 

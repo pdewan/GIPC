@@ -1,9 +1,8 @@
 package variableserverport.datacomm.duplex.buffer;
 
-import inputport.datacomm.ReceiveListener;
-
 import java.nio.ByteBuffer;
 
+import inputport.datacomm.ReceiveListener;
 import variableserverport.datacomm.simplex.buffer.SimplexBufferVariableServerConnectionsManager;
 
 

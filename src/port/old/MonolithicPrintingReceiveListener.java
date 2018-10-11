@@ -1,10 +1,9 @@
 package port.old;
 
-import inputport.InputPort;
-
 import java.nio.ByteBuffer;
 
 import extraip.ASendConnectionListener;
+import inputport.InputPort;
 
 
 public class MonolithicPrintingReceiveListener extends ASendConnectionListener implements ByteBufferReceiveListener {

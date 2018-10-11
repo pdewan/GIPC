@@ -4,9 +4,7 @@ import java.net.InetAddress;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 
-import inputport.datacomm.simplex.buffer.nio.AWritingConnectCommandFactory;
 import inputport.nio.manager.SelectionManager;
-import inputport.nio.manager.commands.AcceptCommand;
 import inputport.nio.manager.commands.ConnectCommand;
 import inputport.nio.manager.commands.classes.AConnectCommand;
 /**

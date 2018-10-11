@@ -1,11 +1,11 @@
 package extraip;
 
+import java.nio.ByteBuffer;
+
 import inputport.datacomm.simplex.SimplexInputPortFactory;
 import inputport.datacomm.simplex.SimplexServerInputPort;
 import inputport.datacomm.simplex.buffer.SimplexBufferInputPortSelector;
 import inputport.datacomm.simplex.buffer.nio.AnNIOSimplexBufferInputPortFactory;
-
-import java.nio.ByteBuffer;
 
 
 

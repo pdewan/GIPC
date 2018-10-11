@@ -1,13 +1,12 @@
 package replicatedserverport.rpc.group.relayed.latecomer.example;
 
+import java.util.Scanner;
+
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.group.GroupAllSender;
 import inputport.datacomm.simplex.buffer.example.ASimplexBufferClientInputPortLauncher;
-
-import java.util.Scanner;
-
 import port.ParticipantChoice;
 import port.PortLauncherSupport;
 import port.delay.DelayUtlity;

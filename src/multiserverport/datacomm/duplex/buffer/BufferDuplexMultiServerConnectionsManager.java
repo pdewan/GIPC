@@ -1,9 +1,8 @@
 package multiserverport.datacomm.duplex.buffer;
 
-import inputport.datacomm.ReceiveListener;
-
 import java.nio.ByteBuffer;
 
+import inputport.datacomm.ReceiveListener;
 import port.sessionserver.SessionParticipantDescription;
 import variableserverport.datacomm.simplex.buffer.SimplexBufferVariableServerConnectionsManager;
 
