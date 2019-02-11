@@ -20,6 +20,7 @@ public class ExampleSimulationParametersControllerUser  {
  * a false
  * i true
  * atomic true
+ * s "move 30 20"
  * e
  * l false
  * q 0
