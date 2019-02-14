@@ -23,6 +23,8 @@ public class ExampleSimulationParametersControllerUser  {
  * s "move 30 20"
  * e
  * l false
+ * t true
+ * t false
  * q 0
  */
 	public static void main(String[] args) {

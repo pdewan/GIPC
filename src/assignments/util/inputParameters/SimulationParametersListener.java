@@ -7,6 +7,13 @@ public interface SimulationParametersListener {
 	default void atomicBroadcast(boolean newValue) {
 		System.out.println("atomicBroadcast called with argument '" + newValue + "' but it has not been implemented.");
 	}
+	/**
+	 * toggle tracing
+	 */
+	default void trace(boolean newValue) {
+		System.out.println(
+				"trace called with argument '" + newValue + "' but it has not been implemented.");
+	}
 
 	/**
 	 * Send programmed input

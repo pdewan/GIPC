@@ -86,6 +86,11 @@ public class AnExampleSimulationParametersListener implements SimulationParamete
 	public void rejectMetaStateChange(boolean newValue) {
 		System.out.println("rejectMeataStateChange " + newValue);			
 	}
+	@Override
+	public void trace(boolean newValue) {
+		System.out.println(
+				"trace '" + newValue );
+	}
 
 	
 	
