@@ -1,15 +1,21 @@
 package examples.openmp;
 
 public class BarrierExample {
+	protected static boolean trace = true;
+	public static boolean isTrace() {
+		return trace;
+	}
+
+	public static void setTrace(boolean trace) {
+		BarrierExample.trace = trace;
+	}
+
 	public static void trace(Object... anArgs) {
-		int threadNum = 0;
-		int numThreads = 0;
-		if (numThreads > 0) {
-			System.out.print(numThreads + ":" + threadNum + ":");
-		}
-		System.out.print(Thread.currentThread());
+		
+		if (isTrace())
+			System.out.print(Thread.currentThread());
 		for (Object anArg : anArgs) {
-			System.out.print(":" + anArg);
+			System.out.print(" " + anArg);
 		}
 		System.out.println();
 	}
@@ -54,7 +60,7 @@ public class BarrierExample {
 		return retVal;
 	}
 
-	public static void roundSumAndToText(Float[] aList) {
+	public static void barrierRoundSumAndToText(Float[] aList) {
 		// omp parallel threadNum(2)
 		{
 			int aThreadNum = 0;
@@ -70,6 +76,25 @@ public class BarrierExample {
 				trace("Sum of rounded:" + aSum);
 			} else {
 				trace("After Barrier");
+				String aString = toText(aList);
+				trace("ToText of rounded:" + aString);
+			}
+
+		}
+	}
+	public static void roundSumAndToText(Float[] aList) {
+		// omp parallel threadNum(2)
+		{
+			int aThreadNum = 0;
+			int aNumThreads = 0;
+//			aThreadNum = OMP4J_THREAD_NUM;
+//			aNumThreads = OMP4J_NUM_THREADS;
+			round(aList, aThreadNum, aNumThreads);
+			// omp barrier
+			if (aThreadNum == 0) {
+				Float aSum = sum(aList);
+				trace("Sum of rounded:" + aSum);
+			} else {
 				String aString = toText(aList);
 				trace("ToText of rounded:" + aString);
 			}
