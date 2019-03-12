@@ -1,6 +1,6 @@
 package examples.openmp;
 
-public class ParallelAtomicExample {
+public class ParallelRandomExample {
 	protected static boolean trace = true;
 
 	public static boolean isTrace() {

@@ -1,17 +1,18 @@
 package examples.openmp;
 
-public class BarrierExample {
+public class SumToTextRoundExamples {
 	protected static boolean trace = true;
+
 	public static boolean isTrace() {
 		return trace;
 	}
 
-	public static void setTrace(boolean trace) {
-		BarrierExample.trace = trace;
+	public static void setTrace(boolean newVal) {
+		trace = newVal;
 	}
 
 	public static void trace(Object... anArgs) {
-		
+
 		if (isTrace())
 			System.out.print(Thread.currentThread());
 		for (Object anArg : anArgs) {
@@ -40,23 +41,33 @@ public class BarrierExample {
 //
 //		return retVal;
 //	}
+	public static Float parallelForSum(Float[] aList) {
+		Float retVal = (float) 0.0;
+		trace("Sum Started");
+		//omp parallel for
+		for (int i = 0; i < aList.length; i++) {
+			retVal += aList[i];
+		}
+		trace("Sum Ended:" + retVal);
+		return retVal;
+	}
 	public static Float sum(Float[] aList) {
 		Float retVal = (float) 0.0;
 		trace("Sum Started");
 		for (int i = 0; i < aList.length; i++) {
 			retVal += aList[i];
 		}
-		trace("Sum Ended");
+		trace("Sum Ended:" + retVal);
 		return retVal;
 	}
-
+	// cannot call it toString
 	public static String toText(Float[] aList) {
 		String retVal = "";
-		trace("To String Started");
+		trace("To Text Started");
 		for (int i = 0; i < aList.length; i++) {
 			retVal += aList[i];
 		}
-		trace("To String Ended");
+		trace("To Text Ended:" + retVal);
 		return retVal;
 	}
 
@@ -73,15 +84,51 @@ public class BarrierExample {
 			if (aThreadNum == 0) {
 				trace("After Barrier");
 				Float aSum = sum(aList);
-				trace("Sum of rounded:" + aSum);
+//				trace("Sum of rounded:" + aSum);
 			} else {
 				trace("After Barrier");
 				String aString = toText(aList);
-				trace("ToText of rounded:" + aString);
+//				trace("ToText of rounded:" + aString);
 			}
 
 		}
 	}
+
+	public static void sectionRoundSumAndToText(Float[] aList) {
+		// omp parallel threadNum(2)
+		{
+			int aThreadNum = 0;
+			int aNumThreads = 0;
+//			aThreadNum = OMP4J_THREAD_NUM;
+//			aNumThreads = OMP4J_NUM_THREADS;
+			round(aList, aThreadNum, aNumThreads);
+			trace("Before Barrier");
+			// omp barrier
+			{
+				// omp sections
+				{
+				// omp section
+				sum(aList);//cannot assign it to a variable
+				// omp section
+				toText(aList);//cannot assign it to a variable
+				}
+
+			}
+		}
+	}
+
+	public static void sectionSumAndToText(Float[] aList) {
+	// implicit parallel, explicit parallel does not work
+		// omp sections
+		{
+			// omp section
+			sum(aList);
+			// omp section
+			toText(aList);
+		}
+
+	}
+
 	public static void roundSumAndToText(Float[] aList) {
 		// omp parallel threadNum(2)
 		{

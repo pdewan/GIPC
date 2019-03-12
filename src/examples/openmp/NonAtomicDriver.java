@@ -5,8 +5,8 @@ public class NonAtomicDriver {
 //		AtomicExample.setTrace(false);
 //		ParallelAtomicExample.setTrace(false);
 		System.out.println("Single threaded random");
-		AtomicExample.printRandom();
+		RandomExample.printRandom();
 		System.out.println("Multi threaded random");
-		ParallelAtomicExample.printRandom();		
+		ParallelRandomExample.printRandom();		
 	}
 }
