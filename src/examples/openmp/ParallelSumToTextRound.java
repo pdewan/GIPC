@@ -1,6 +1,6 @@
 package examples.openmp;
 
-public class ParallelSumToTextRoundExamples {
+public class ParallelSumToTextRound {
 	protected static boolean trace = true;
 
 	public static boolean isTrace() {

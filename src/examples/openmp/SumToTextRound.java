@@ -1,6 +1,6 @@
 package examples.openmp;
 
-public class SumToTextRoundExamples {
+public class SumToTextRound {
 	protected static boolean trace = true;
 
 	public static boolean isTrace() {
@@ -60,6 +60,7 @@ public class SumToTextRoundExamples {
 		trace("Sum Ended:" + retVal);
 		return retVal;
 	}
+	
 	// cannot call it toString
 	public static String toText(Float[] aList) {
 		String retVal = "";

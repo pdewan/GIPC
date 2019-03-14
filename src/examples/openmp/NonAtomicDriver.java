@@ -7,6 +7,6 @@ public class NonAtomicDriver {
 		System.out.println("Single threaded random");
 		RandomExample.printRandom();
 		System.out.println("Multi threaded random");
-		ParallelRandomExample.printRandom();		
+		ParallelRandom.printRandom();		
 	}
 }
