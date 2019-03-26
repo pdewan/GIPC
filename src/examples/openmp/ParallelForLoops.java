@@ -21,14 +21,14 @@ public class ParallelForLoops {
 		System.out.println();
 	}
 
-	public static Float nonAtomicSum(Float[] aList) {
-		Float retVal = (float) 0.0;
+	public static float nonAtomicSum(float[] aList) {
+		float retVal = (float) 0.0;
 		trace("Sum Started");
 
 		/* === OMP CONTEXT === */
 		class OMPContext {
-			public Float[] param_aList;
-			public Float local_retVal;
+			public float[] param_aList;
+			public float local_retVal;
 		}
 		final OMPContext ompContext_QDV = new OMPContext();
 		ompContext_QDV.param_aList = aList;
@@ -52,16 +52,16 @@ public class ParallelForLoops {
 		return retVal;
 	}
 
-	public static Float reducingSum(Float[] aList) {
-		Float retVal = (float) 0.0;
+	public static float reducingSum(float[] aList) {
+		float retVal = (float) 0.0;
 		trace("Sum Started");
 		int aNumThreads = 2;
-		Float[] aSums = { (float) 0.0, (float) 0.0 };
+		float[] aSums = { (float) 0.0, (float) 0.0 };
 
 		/* === OMP CONTEXT === */
 		class OMPContext_7Xl {
-			public Float[] param_aList;
-			public Float[] local_aSums;
+			public float[] param_aList;
+			public float[] local_aSums;
 		}
 		final OMPContext_7Xl ompContext_OWA = new OMPContext_7Xl();
 		ompContext_OWA.param_aList = aList;
@@ -90,14 +90,14 @@ public class ParallelForLoops {
 		return retVal;
 	}
 
-	public static Float atomicSum(Float[] aList) {
-		Float retVal = (float) 0.0;
+	public static float atomicSum(float[] aList) {
+		float retVal = (float) 0.0;
 		trace("Sum Started");
 
 		/* === OMP CONTEXT === */
 		class OMPContext_jTL {
-			public Float[] param_aList;
-			public Float local_retVal;
+			public float[] param_aList;
+			public float local_retVal;
 		}
 		final OMPContext_jTL ompContext = new OMPContext_jTL();
 		ompContext.param_aList = aList;
@@ -126,14 +126,14 @@ public class ParallelForLoops {
 		return retVal;
 	}
 
-	public static Float nonAtomicExpandedSum(Float[] aList) {
-		Float retVal = (float) 0.0;
+	public static float nonAtomicExpandedSum(float[] aList) {
+		float retVal = (float) 0.0;
 		trace("Sum Started");
 
 		/* === OMP CONTEXT === */
 		class OMPContext_WGO {
-			public Float[] param_aList;
-			public Float local_retVal;
+			public float[] param_aList;
+			public float local_retVal;
 		}
 		final OMPContext_WGO ompContext_3SN = new OMPContext_WGO();
 		ompContext_3SN.param_aList = aList;
@@ -165,14 +165,14 @@ public class ParallelForLoops {
 		return retVal;
 	}
 
-	public static Float atomicExpandedSum(Float[] aList) {
-		Float retVal = (float) 0.0;
+	public static float atomicExpandedSum(float[] aList) {
+		float retVal = (float) 0.0;
 		trace("Sum Started");
 
 		/* === OMP CONTEXT === */
 		class OMPContext_Brf {
-			public Float[] param_aList;
-			public Float local_retVal;
+			public float[] param_aList;
+			public float local_retVal;
 		}
 		final OMPContext_Brf ompContext_4IG = new OMPContext_Brf();
 		ompContext_4IG.param_aList = aList;

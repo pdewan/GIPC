@@ -1,6 +1,6 @@
 package examples.openmp;
 
-public class PTestExample {
+public class ParallelTestExample {
 	static int[] a = { 1, 2, 3, 4, 5, 6, 7, 8 };
 	static int sum = 0;
 

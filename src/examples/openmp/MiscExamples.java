@@ -19,7 +19,7 @@ public class MiscExamples {
 		System.out.println();
 	}
 	
-	public static void round(Float[] aList) {
+	public static void round(float[] aList) {
 		// omp parallel for 
 		for (int i = 0; i < aList.length; i++) {
  		aList[i] = (float) Math.round(aList[i]);
@@ -32,7 +32,7 @@ public class MiscExamples {
 //		aNumThreads = OMP4J_NUM_THREADS;
 		return aNumThreads == 0 || (anIndex%aNumThreads ==  aThreadNum);
 	}
-	public static void round(Float[] aList, int aThreadNum, int aNumThreads) {
+	public static void round(float[] aList, int aThreadNum, int aNumThreads) {
 //		int aThreadNum = OMP4J_THREAD_NUM;
 //		int aNumThreads = OMP4J_NUM_THREADS;
 		trace("Round Started");
@@ -44,8 +44,8 @@ public class MiscExamples {
 		}
 	}
 	
-	public static Float sum(Float[] aList) {
-		Float retVal = (float) 0.0;
+	public static float sum(float[] aList) {
+		float retVal = (float) 0.0;
 		for (int i = 0; i < aList.length; i++) {
 			retVal += aList[i];
 			trace(retVal);
@@ -53,8 +53,8 @@ public class MiscExamples {
 		return retVal;
 	}
 	
-	public static Float sum(Float[] aList, int aThreadNum, int aNumThreads) {
-		Float retVal = (float) 0.0;
+	public static float sum(float[] aList, int aThreadNum, int aNumThreads) {
+		float retVal = (float) 0.0;
 		trace("Sum Started");
 		for (int i = 0; i < aList.length; i++) {
 			if (processIteration(i, aThreadNum, aNumThreads) ) {
@@ -66,7 +66,7 @@ public class MiscExamples {
 		return retVal;
 	}
 	
-	public static void roundSum(Float[] aList) {
+	public static void roundSum(float[] aList) {
 		//omp parallel threadNum(2)
 		{
 			int aThreadNum = 0;
@@ -74,7 +74,7 @@ public class MiscExamples {
 //			aThreadNum = OMP4J_THREAD_NUM;
 //			aNumThreads = OMP4J_NUM_THREADS;
 			round(aList, aThreadNum, aNumThreads);
-			Float aSum = sum(aList, aThreadNum, aNumThreads);
+			float aSum = sum(aList, aThreadNum, aNumThreads);
 			trace("Final Sum:" + aSum);			
 		}
 	}

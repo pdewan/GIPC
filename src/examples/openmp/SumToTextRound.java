@@ -28,8 +28,8 @@ public class SumToTextRound {
 		return aNumThreads == 0 || (anIndex % aNumThreads == aThreadNum);
 	}
 
-//	public static Float sum(Float[] aList, int aThreadNum, int aNumThreads) {
-//		Float retVal = (float) 0.0;
+//	public static float sum(float[] aList, int aThreadNum, int aNumThreads) {
+//		float retVal = (float) 0.0;
 //		trace("Sum Started");
 //		for (int i = 0; i < aList.length; i++) {
 //			if (processIteration(i, aThreadNum, aNumThreads) ) {
@@ -41,8 +41,8 @@ public class SumToTextRound {
 //
 //		return retVal;
 //	}
-	public static Float parallelForSum(Float[] aList) {
-		Float retVal = (float) 0.0;
+	public static float parallelForSum(float[] aList) {
+		float retVal = (float) 0.0;
 		trace("Sum Started");
 		//omp parallel for
 		for (int i = 0; i < aList.length; i++) {
@@ -51,8 +51,8 @@ public class SumToTextRound {
 		trace("Sum Ended:" + retVal);
 		return retVal;
 	}
-	public static Float sum(Float[] aList) {
-		Float retVal = (float) 0.0;
+	public static float sum(float[] aList) {
+		float retVal = (float) 0.0;
 		trace("Sum Started");
 		for (int i = 0; i < aList.length; i++) {
 			retVal += aList[i];
@@ -62,7 +62,7 @@ public class SumToTextRound {
 	}
 	
 	// cannot call it toString
-	public static String toText(Float[] aList) {
+	public static String toText(float[] aList) {
 		String retVal = "";
 		trace("To Text Started");
 		for (int i = 0; i < aList.length; i++) {
@@ -72,7 +72,7 @@ public class SumToTextRound {
 		return retVal;
 	}
 
-	public static void barrierRoundSumAndToText(Float[] aList) {
+	public static void barrierRoundSumAndToText(float[] aList) {
 		// omp parallel threadNum(2)
 		{
 			int aThreadNum = 0;
@@ -84,7 +84,7 @@ public class SumToTextRound {
 			// omp barrier
 			if (aThreadNum == 0) {
 				trace("After Barrier");
-				Float aSum = sum(aList);
+				float aSum = sum(aList);
 //				trace("Sum of rounded:" + aSum);
 			} else {
 				trace("After Barrier");
@@ -95,7 +95,7 @@ public class SumToTextRound {
 		}
 	}
 
-	public static void sectionRoundSumAndToText(Float[] aList) {
+	public static void sectionRoundSumAndToText(float[] aList) {
 		// omp parallel threadNum(2)
 		{
 			int aThreadNum = 0;
@@ -118,7 +118,7 @@ public class SumToTextRound {
 		}
 	}
 
-	public static void sectionSumAndToText(Float[] aList) {
+	public static void sectionSumAndToText(float[] aList) {
 	// implicit parallel, explicit parallel does not work
 		// omp sections
 		{
@@ -130,7 +130,7 @@ public class SumToTextRound {
 
 	}
 
-	public static void roundSumAndToText(Float[] aList) {
+	public static void roundSumAndToText(float[] aList) {
 		// omp parallel threadNum(2)
 		{
 			int aThreadNum = 0;
@@ -140,7 +140,7 @@ public class SumToTextRound {
 			round(aList, aThreadNum, aNumThreads);
 			// omp barrier
 			if (aThreadNum == 0) {
-				Float aSum = sum(aList);
+				float aSum = sum(aList);
 				trace("Sum of rounded:" + aSum);
 			} else {
 				String aString = toText(aList);
@@ -150,7 +150,7 @@ public class SumToTextRound {
 		}
 	}
 
-	public static void round(Float[] aList, int aThreadNum, int aNumThreads) {
+	public static void round(float[] aList, int aThreadNum, int aNumThreads) {
 
 		trace("Round Started:" + aThreadNum);
 		for (int i = 0; i < aList.length; i++) {

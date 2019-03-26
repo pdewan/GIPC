@@ -1,6 +1,6 @@
 package examples.openmp;
 
-public class PMiscExamples {
+public class ParallelMiscExamples {
 	public static String WHITES_SPACE = " ";
 	public static void trace(Object... anArgs) {
 		int threadNum = 0;
@@ -17,12 +17,12 @@ public class PMiscExamples {
 		System.out.println();
 	}
 	
-	public static void round(Float[] aList) {
+	public static void round(float[] aList) {
 		
 
 		/* === OMP CONTEXT === */
 class OMPContext {
-	public Float[] param_aList;
+	public float[] param_aList;
 }
 final OMPContext ompContext_atN = new OMPContext();
 ompContext_atN.param_aList = aList;
@@ -45,7 +45,7 @@ for (int i_7kX = 0; i_7kX < ompContext_atN.param_aList.length; i_7kX++) {	final 
 //		aNumThreads = OMP4J_NUM_THREADS;
 		return aNumThreads == 0 || (anIndex%aNumThreads ==  aThreadNum);
 	}
-	public static void round(Float[] aList, int aThreadNum, int aNumThreads) {
+	public static void round(float[] aList, int aThreadNum, int aNumThreads) {
 //		int aThreadNum = OMP4J_THREAD_NUM;
 //		int aNumThreads = OMP4J_NUM_THREADS;
 		trace("Round Started");
@@ -57,8 +57,8 @@ for (int i_7kX = 0; i_7kX < ompContext_atN.param_aList.length; i_7kX++) {	final 
 		}
 	}
 	
-	public static Float sum(Float[] aList) {
-		Float retVal = (float) 0.0;
+	public static float sum(float[] aList) {
+		float retVal = (float) 0.0;
 		for (int i = 0; i < aList.length; i++) {
 			retVal += aList[i];
 			trace(retVal);
@@ -66,8 +66,8 @@ for (int i_7kX = 0; i_7kX < ompContext_atN.param_aList.length; i_7kX++) {	final 
 		return retVal;
 	}
 	
-	public static Float sum(Float[] aList, int aThreadNum, int aNumThreads) {
-		Float retVal = (float) 0.0;
+	public static float sum(float[] aList, int aThreadNum, int aNumThreads) {
+		float retVal = (float) 0.0;
 		trace("Sum Started");
 		for (int i = 0; i < aList.length; i++) {
 			if (processIteration(i, aThreadNum, aNumThreads) ) {
@@ -78,12 +78,12 @@ for (int i_7kX = 0; i_7kX < ompContext_atN.param_aList.length; i_7kX++) {	final 
 		return retVal;
 	}
 	
-	public static void roundSum(Float[] aList) {
+	public static void roundSum(float[] aList) {
 		
 
 		/* === OMP CONTEXT === */
 class OMPContext_0Wv {
-	public Float[] param_aList;
+	public float[] param_aList;
 }
 final OMPContext_0Wv ompContext_i1p = new OMPContext_0Wv();
 ompContext_i1p.param_aList = aList;
@@ -99,7 +99,7 @@ for (int ompI = 0; ompI < 2; ompI++) {
 			aThreadNum = ompExecutor_YTG.getThreadNum();
 			aNumThreads = ompExecutor_YTG.getNumThreads();
 			round(ompContext_i1p.param_aList, aThreadNum, aNumThreads);
-			Float aSum = sum(ompContext_i1p.param_aList, aThreadNum, aNumThreads);
+			float aSum = sum(ompContext_i1p.param_aList, aThreadNum, aNumThreads);
 			trace("Final Sum:" + aSum);			
 		}		}
 	});

@@ -21,8 +21,8 @@ public class ForLoops {
 		System.out.println();
 	}
 
-	public static Float nonAtomicSum(Float[] aList) {
-		Float retVal = (float) 0.0;
+	public static float nonAtomicSum(float[] aList) {
+		float retVal = (float) 0.0;
 		trace("Sum Started");
 		// omp parallel for threadNum(2)
 		for (int i = 0; i < aList.length; i++) {
@@ -32,11 +32,11 @@ public class ForLoops {
 		trace("Sum Ended:" + retVal);
 		return retVal;
 	}
-	public static Float reducingSum(Float[] aList) {
-		Float retVal = (float) 0.0;
+	public static float reducingSum(float[] aList) {
+		float retVal = (float) 0.0;
 		trace("Sum Started");
 		int aNumThreads = 2;
-		Float[] aSums = {(float) 0.0, (float) 0.0};
+		float[] aSums = {(float) 0.0, (float) 0.0};
 		// omp parallel for threadNum(aNumThreads)
 		for (int i = 0; i < aList.length; i++) {
 			int aThreadNum = 0;
@@ -51,8 +51,8 @@ public class ForLoops {
 		return retVal;
 	}
 
-	public static Float atomicSum(Float[] aList) {
-		Float retVal = (float) 0.0;
+	public static float atomicSum(float[] aList) {
+		float retVal = (float) 0.0;
 		trace("Sum Started");
 		// omp parallel for threadNum(2)
 		for (int i = 0; i < aList.length; i++) {
@@ -66,8 +66,8 @@ public class ForLoops {
 		return retVal;
 	}
 
-	public static Float nonAtomicExpandedSum(Float[] aList) {
-		Float retVal = (float) 0.0;
+	public static float nonAtomicExpandedSum(float[] aList) {
+		float retVal = (float) 0.0;
 		trace("Sum Started");
 		// omp parallel for threadNum(2)
 		for (int i = 0; i < aList.length; i++) {
@@ -86,8 +86,8 @@ public class ForLoops {
 		return retVal;
 	}
 
-	public static Float atomicExpandedSum(Float[] aList) {
-		Float retVal = (float) 0.0;
+	public static float atomicExpandedSum(float[] aList) {
+		float retVal = (float) 0.0;
 		trace("Sum Started");
 		// omp parallel for threadNum(2)
 		for (int i = 0; i < aList.length; i++) {

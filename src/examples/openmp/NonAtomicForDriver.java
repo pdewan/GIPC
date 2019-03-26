@@ -4,15 +4,15 @@ import java.util.Arrays;
 
 public class NonAtomicForDriver {
 	public static void main (String[] args) {
-		Float[] anObjects = {(float) 5.0, (float) 5.0, (float) 5.0, (float) 5.0, (float) 5.0};
+		float[] aFloats = {(float) 5.0, (float) 5.0, (float) 5.0, (float) 5.0, (float) 5.0};
 		ForLoops.trace("Single Threaded Case");
-		ForLoops.trace(anObjects);
-		ForLoops.nonAtomicSum(anObjects);
+		ForLoops.trace(aFloats);
+		ForLoops.nonAtomicSum(aFloats);
 		ForLoops.trace("Multi Threaded Case");
-		Float[] anObjects2 = {(float) 5.0, (float) 5.0, (float) 5.0, (float) 5.0, (float) 5.0};
-		ParallelForLoops.trace(anObjects2);
-		ParallelForLoops.nonAtomicSum(anObjects2);
-		ParallelForLoops.trace(anObjects2);
+		float[] aFloatsParallel = {(float) 5.0, (float) 5.0, (float) 5.0, (float) 5.0, (float) 5.0};
+		ParallelForLoops.trace(aFloatsParallel);
+		ParallelForLoops.nonAtomicSum(aFloatsParallel);
+		ParallelForLoops.trace(aFloatsParallel);
 
 
 	}

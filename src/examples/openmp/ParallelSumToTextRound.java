@@ -28,8 +28,8 @@ public class ParallelSumToTextRound {
 		return aNumThreads == 0 || (anIndex % aNumThreads == aThreadNum);
 	}
 
-//	public static Float sum(Float[] aList, int aThreadNum, int aNumThreads) {
-//		Float retVal = (float) 0.0;
+//	public static float sum(float[] aList, int aThreadNum, int aNumThreads) {
+//		float retVal = (float) 0.0;
 //		trace("Sum Started");
 //		for (int i = 0; i < aList.length; i++) {
 //			if (processIteration(i, aThreadNum, aNumThreads) ) {
@@ -41,8 +41,8 @@ public class ParallelSumToTextRound {
 //
 //		return retVal;
 //	}
-	public static Float sum(Float[] aList) {
-		Float retVal = (float) 0.0;
+	public static float sum(float[] aList) {
+		float retVal = (float) 0.0;
 		trace("Sum Started");
 		for (int i = 0; i < aList.length; i++) {
 			retVal += aList[i];
@@ -51,7 +51,7 @@ public class ParallelSumToTextRound {
 		return retVal;
 	}
 	// cannot call it toString
-	public static String toText(Float[] aList) {
+	public static String toText(float[] aList) {
 		String retVal = "";
 		trace("To Text Started");
 		for (int i = 0; i < aList.length; i++) {
@@ -61,12 +61,12 @@ public class ParallelSumToTextRound {
 		return retVal;
 	}
 
-	public static void barrierRoundSumAndToText(Float[] aList) {
+	public static void barrierRoundSumAndToText(float[] aList) {
 		
 
 		/* === OMP CONTEXT === */
 class OMPContext {
-	public Float[] param_aList;
+	public float[] param_aList;
 }
 final OMPContext ompContext = new OMPContext();
 ompContext.param_aList = aList;
@@ -88,7 +88,7 @@ for (int ompI = 0; ompI < 2; ompI++) {
 			ompExecutor.hitBarrier("barrier");
 if (aThreadNum == 0) {
 				trace("After Barrier");
-				Float aSum = sum(ompContext.param_aList);
+				float aSum = sum(ompContext.param_aList);
 //				trace("Sum of rounded:" + aSum);
 			} else {
 				trace("After Barrier");
@@ -103,12 +103,12 @@ ompExecutor.waitForExecution();
 
 	}
 
-	public static void sectionRoundSumAndToText(Float[] aList) {
+	public static void sectionRoundSumAndToText(float[] aList) {
 		
 
 		/* === OMP CONTEXT === */
 class OMPContext_wmG {
-	public Float[] param_aList;
+	public float[] param_aList;
 }
 final OMPContext_wmG ompContext_KEi = new OMPContext_wmG();
 ompContext_KEi.param_aList = aList;
@@ -167,13 +167,13 @@ ompExecutor_mZK.waitForExecution();
 
 	}
 
-	public static void sectionSumAndToText(Float[] aList) {
+	public static void sectionSumAndToText(float[] aList) {
 
 		
 
 		/* === OMP CONTEXT === */
 class OMPContext_9sG {
-	public Float[] param_aList;
+	public float[] param_aList;
 }
 final OMPContext_9sG ompContext_5Xr = new OMPContext_9sG();
 ompContext_5Xr.param_aList = aList;
@@ -203,12 +203,12 @@ ompExecutor_AUa.waitForExecution();
 
 	}
 
-	public static void roundSumAndToText(Float[] aList) {
+	public static void roundSumAndToText(float[] aList) {
 		
 
 		/* === OMP CONTEXT === */
 class OMPContext_aoY {
-	public Float[] param_aList;
+	public float[] param_aList;
 }
 final OMPContext_aoY ompContext_oyo = new OMPContext_aoY();
 ompContext_oyo.param_aList = aList;
@@ -228,7 +228,7 @@ for (int ompI_NxT = 0; ompI_NxT < 2; ompI_NxT++) {
 
 			ompExecutor_Ssw.hitBarrier("barrier_e1w");
 if (aThreadNum == 0) {
-				Float aSum = sum(ompContext_oyo.param_aList);
+				float aSum = sum(ompContext_oyo.param_aList);
 				trace("Sum of rounded:" + aSum);
 			} else {
 				String aString = toText(ompContext_oyo.param_aList);
@@ -242,7 +242,7 @@ ompExecutor_Ssw.waitForExecution();
 
 	}
 
-	public static void round(Float[] aList, int aThreadNum, int aNumThreads) {
+	public static void round(float[] aList, int aThreadNum, int aNumThreads) {
 
 		trace("Round Started:" + aThreadNum);
 		for (int i = 0; i < aList.length; i++) {

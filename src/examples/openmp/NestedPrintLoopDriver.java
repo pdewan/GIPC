@@ -6,7 +6,7 @@ public class NestedPrintLoopDriver {
 		System.out.println("Single-Threaded");
 		MiscExamples.atomicPrint(aTable);
 		System.out.println("Multi-Threaded");
-		PMiscExamples.atomicPrint(aTable);
+		ParallelMiscExamples.atomicPrint(aTable);
 	}
 
 }
