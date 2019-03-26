@@ -5,7 +5,7 @@ public class AtomicDriver {
 //		AtomicExample.setTrace(false);
 //		ParallelAtomicExample.setTrace(false);
 		System.out.println("Single threaded random");
-		RandomExample.atomicPrintRandom();
+		Random.atomicPrintRandom();
 		System.out.println("Multi threaded random");
 		ParallelRandom.atomicPrintRandom();		
 	}

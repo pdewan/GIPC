@@ -1,6 +1,6 @@
 package examples.openmp;
 
-public class RandomExample {
+public class Random {
 	protected static boolean trace = true;
 	public static boolean isTrace() {
 		return trace;
