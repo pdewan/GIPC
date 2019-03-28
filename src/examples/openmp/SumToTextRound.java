@@ -168,7 +168,6 @@ public class SumToTextRound {
 	}
 
 	public static void round(float[] aList, int aThreadNum, int aNumThreads) {
-
 		trace("Round Started:" + aThreadNum);
 		for (int i = 0; i < aList.length; i++) {
 			if (processIteration(i, aThreadNum, aNumThreads)) {
@@ -185,7 +184,5 @@ public class SumToTextRound {
 			}
 		}
 		trace("Round Ended:" + aThreadNum);
-
 	}
-
 }
