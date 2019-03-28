@@ -71,6 +71,23 @@ public class SumToTextRound {
 		trace("To Text Ended:" + retVal);
 		return retVal;
 	}
+	public static void sumAndToText(float[] aList) {
+		// omp parallel threadNum(2)
+		{
+			int aThreadNum = 0;
+			int aNumThreads = 0;
+//			aThreadNum = OMP4J_THREAD_NUM;
+//			aNumThreads = OMP4J_NUM_THREADS;			
+			// omp barrier
+			if (aThreadNum == 0) {
+				float aSum = sum(aList);
+				trace("Sum of rounded:" + aSum);
+			} else {
+				String aString = toText(aList);
+				trace("ToText of rounded:" + aString);
+			}
+		}
+	}
 
 	public static void barrierRoundSumAndToText(float[] aList) {
 		// omp parallel threadNum(2)
