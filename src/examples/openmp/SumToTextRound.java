@@ -1,5 +1,7 @@
 package examples.openmp;
 
+import java.util.Arrays;
+
 public class SumToTextRound {
 	protected static boolean trace = true;
 
@@ -66,7 +68,7 @@ public class SumToTextRound {
 		String retVal = "";
 		trace("To Text Started");
 		for (int i = 0; i < aList.length; i++) {
-			retVal += aList[i];
+			retVal += " " + aList[i];
 		}
 		trace("To Text Ended:" + retVal);
 		return retVal;
@@ -146,8 +148,45 @@ public class SumToTextRound {
 		}
 
 	}
+	public static void threadUnawareRoundSumAndToText(float[] aList) {
+		// omp parallel threadNum(2)
+		{
+			int aThreadNum = 0;
+			int aNumThreads = 0;
+//			aThreadNum = OMP4J_THREAD_NUM;
+//			aNumThreads = OMP4J_NUM_THREADS;
+			round(aList, aThreadNum, aNumThreads);
+			// omp barrier
+//			if (aThreadNum == 0) {
+				float aSum = sum(aList);
+				trace("Sum of rounded:" + aSum);
+//			} else {
+				String aString = toText(aList);
+				trace("ToText of rounded:" + aString);
+			}
 
-	public static void roundSumAndToText(float[] aList) {
+//		}
+	}
+
+	public static void roundSumAndToTextNoBarrier(float[] aList) {
+		// omp parallel threadNum(2)
+		{
+			int aThreadNum = 0;
+			int aNumThreads = 0;
+//			aThreadNum = OMP4J_THREAD_NUM;
+//			aNumThreads = OMP4J_NUM_THREADS;
+			round(aList, aThreadNum, aNumThreads);
+			if (aThreadNum == 0) {
+				float aSum = sum(aList);
+				trace("Sum of rounded:" + aSum);
+			} else {
+				String aString = toText(aList);
+				trace("ToText of rounded:" + aString);
+			}
+
+		}
+	}
+	public static void roundSumAndToTextBarrier(float[] aList) {
 		// omp parallel threadNum(2)
 		{
 			int aThreadNum = 0;
@@ -168,7 +207,7 @@ public class SumToTextRound {
 	}
 
 	public static void round(float[] aList, int aThreadNum, int aNumThreads) {
-		trace("Round Started:" + aThreadNum);
+		trace("Round Started:" + aThreadNum + " " + Arrays.toString(aList));
 		for (int i = 0; i < aList.length; i++) {
 			if (processIteration(i, aThreadNum, aNumThreads)) {
 				if (aThreadNum == 1) {
@@ -183,6 +222,7 @@ public class SumToTextRound {
 				trace(aList[i]);
 			}
 		}
-		trace("Round Ended:" + aThreadNum);
+		trace("Round Ended:" + aThreadNum + " " + Arrays.toString(aList));
+
 	}
 }
