@@ -132,7 +132,6 @@ public class SumToTextRound {
 				// omp section
 				toText(aList);//cannot assign it to a variable
 				}
-
 			}
 		}
 	}

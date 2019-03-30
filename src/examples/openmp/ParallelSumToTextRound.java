@@ -43,6 +43,37 @@ public class ParallelSumToTextRound {
 //
 //		return retVal;
 //	}
+	public static float parallelForSum(float[] aList) {
+		float retVal = (float) 0.0;
+		trace("Sum Started");
+
+		/* === OMP CONTEXT === */
+		class OMPContext {
+			public float[] param_aList;
+			public float local_retVal;
+		}
+		final OMPContext ompContext = new OMPContext();
+		ompContext.param_aList = aList;
+		ompContext.local_retVal = retVal;
+		final org.omp4j.runtime.IOMPExecutor ompExecutor = new org.omp4j.runtime.DynamicExecutor(
+				Runtime.getRuntime().availableProcessors());
+		/* === /OMP CONTEXT === */
+		for (int i_VSm = 0; i_VSm < ompContext.param_aList.length; i_VSm++) {
+			final int i = i_VSm;
+			ompExecutor.execute(new Runnable() {
+				@Override
+				public void run() {
+
+					ompContext.local_retVal += ompContext.param_aList[i];
+				}
+			});
+		}
+		ompExecutor.waitForExecution();
+
+		trace("Sum Ended:" + retVal);
+		return retVal;
+	}
+
 	public static float sum(float[] aList) {
 		float retVal = (float) 0.0;
 		trace("Sum Started");
@@ -52,227 +83,254 @@ public class ParallelSumToTextRound {
 		trace("Sum Ended:" + retVal);
 		return retVal;
 	}
+
 	// cannot call it toString
 	public static String toText(float[] aList) {
 		String retVal = "";
 		trace("To Text Started");
 		for (int i = 0; i < aList.length; i++) {
-			retVal += aList[i];
+			retVal += " " + aList[i];
 		}
-		trace("To String Ended:" + retVal);
+		trace("To Text Ended:" + retVal);
 		return retVal;
 	}
 
-	public static void barrierRoundSumAndToText(float[] aList) {
-		
+	public static void sumAndToText(float[] aList) {
 
 		/* === OMP CONTEXT === */
-class OMPContext {
-	public float[] param_aList;
-}
-final OMPContext ompContext = new OMPContext();
-ompContext.param_aList = aList;
-final org.omp4j.runtime.IOMPExecutor ompExecutor = new org.omp4j.runtime.DynamicExecutor(2);
-/* === /OMP CONTEXT === */
-for (int ompI = 0; ompI < 2; ompI++) {
-	ompExecutor.execute(new Runnable(){
-		@Override
-		public void run() {
-{
-			int aThreadNum = 0;
-			int aNumThreads = 0;
-//			aThreadNum = OMP4J_THREAD_NUM;
-//			aNumThreads = OMP4J_NUM_THREADS;
-			round(ompContext.param_aList, aThreadNum, aNumThreads);
-			trace("Before Barrier");
-			
+		class OMPContext_qIQ {
+			public float[] param_aList;
+		}
+		final OMPContext_qIQ ompContext_1BB = new OMPContext_qIQ();
+		ompContext_1BB.param_aList = aList;
+		final org.omp4j.runtime.IOMPExecutor ompExecutor_dxr = new org.omp4j.runtime.DynamicExecutor(2);
+		/* === /OMP CONTEXT === */
+		for (int ompI = 0; ompI < 2; ompI++) {
+			ompExecutor_dxr.execute(new Runnable() {
+				@Override
+				public void run() {
+					{
+						int aThreadNum = 0;
+						int aNumThreads = 0;
+						aThreadNum = ompExecutor_dxr.getThreadNum();
+						aNumThreads = ompExecutor_dxr.getNumThreads();
 
-			ompExecutor.hitBarrier("barrier");
-if (aThreadNum == 0) {
-				trace("After Barrier");
-				float aSum = sum(ompContext.param_aList);
-//				trace("Sum of rounded:" + aSum);
-			} else {
-				trace("After Barrier");
-				String aString = toText(ompContext.param_aList);
-//				trace("ToText of rounded:" + aString);
-			}
+						ompExecutor_dxr.hitBarrier("barrier");
+						if (aThreadNum == 0) {
+							float aSum = sum(ompContext_1BB.param_aList);
+							trace("Sum of rounded:" + aSum);
+						} else {
+							String aString = toText(ompContext_1BB.param_aList);
+							trace("ToText of rounded:" + aString);
+						}
+					}
+				}
+			});
+		}
+		ompExecutor_dxr.waitForExecution();
 
-		}		}
-	});
-}
-ompExecutor.waitForExecution();
+	}
+
+	public static void barrierRoundSumAndToText(float[] aList) {
+
+		/* === OMP CONTEXT === */
+		class OMPContext_GVt {
+			public float[] param_aList;
+		}
+		final OMPContext_GVt ompContext_ATj = new OMPContext_GVt();
+		ompContext_ATj.param_aList = aList;
+		final org.omp4j.runtime.IOMPExecutor ompExecutor_H7C = new org.omp4j.runtime.DynamicExecutor(2);
+		/* === /OMP CONTEXT === */
+		for (int ompI_RP2 = 0; ompI_RP2 < 2; ompI_RP2++) {
+			ompExecutor_H7C.execute(new Runnable() {
+				@Override
+				public void run() {
+					{
+						int aThreadNum = 0;
+						int aNumThreads = 0;
+						aThreadNum = ompExecutor_H7C.getThreadNum();
+						aNumThreads = ompExecutor_H7C.getNumThreads();
+						round(ompContext_ATj.param_aList, aThreadNum, aNumThreads);
+						trace("Before Barrier");
+
+						ompExecutor_H7C.hitBarrier("barrier_HRx");
+						if (aThreadNum == 0) {
+							trace("After Barrier");
+							float aSum = sum(ompContext_ATj.param_aList);
+							trace("Sum of rounded:" + aSum);
+						} else {
+							trace("After Barrier");
+							String aString = toText(ompContext_ATj.param_aList);
+							trace("ToText of rounded:" + aString);
+						}
+
+					}
+				}
+			});
+		}
+		ompExecutor_H7C.waitForExecution();
 
 	}
 
 	public static void sectionRoundSumAndToText(float[] aList) {
-		
 
 		/* === OMP CONTEXT === */
-class OMPContext_wmG {
-	public float[] param_aList;
-}
-final OMPContext_wmG ompContext_KEi = new OMPContext_wmG();
-ompContext_KEi.param_aList = aList;
-final org.omp4j.runtime.IOMPExecutor ompExecutor_mZK = new org.omp4j.runtime.DynamicExecutor(2);
-/* === /OMP CONTEXT === */
-for (int ompI_Poe = 0; ompI_Poe < 2; ompI_Poe++) {
-	ompExecutor_mZK.execute(new Runnable(){
-		@Override
-		public void run() {
-{
-			int aThreadNum = 0;
-			int aNumThreads = 0;
-//			aThreadNum = OMP4J_THREAD_NUM;
-//			aNumThreads = OMP4J_NUM_THREADS;
-			round(ompContext_KEi.param_aList, aThreadNum, aNumThreads);
-			trace("Before Barrier");
-			
+		class OMPContext_1Pc {
+			public float[] param_aList;
+		}
+		final OMPContext_1Pc ompContext_Ygy = new OMPContext_1Pc();
+		ompContext_Ygy.param_aList = aList;
+		final org.omp4j.runtime.IOMPExecutor ompExecutor_mpw = new org.omp4j.runtime.DynamicExecutor(2);
+		/* === /OMP CONTEXT === */
+		for (int ompI_R1s = 0; ompI_R1s < 2; ompI_R1s++) {
+			ompExecutor_mpw.execute(new Runnable() {
+				@Override
+				public void run() {
+					{
+						int aThreadNum = 0;
+						int aNumThreads = 0;
+						aThreadNum = ompExecutor_mpw.getThreadNum();
+						aNumThreads = ompExecutor_mpw.getNumThreads();
+						round(ompContext_Ygy.param_aList, aThreadNum, aNumThreads);
+						trace("Before Barrier");
 
-			ompExecutor_mZK.hitBarrier("barrier_wdh");
-{
-				
+						ompExecutor_mpw.hitBarrier("barrier_iK4");
+						{
 
-				/* === OMP CONTEXT === */
-class OMPContext_smv {
-}
-final OMPContext_smv ompContext_BZN = new OMPContext_smv();
-final org.omp4j.runtime.IOMPExecutor ompExecutor_xRI = new org.omp4j.runtime.DynamicExecutor(Runtime.getRuntime().availableProcessors());
-/* === /OMP CONTEXT === */
-for (int ompI_clq = 0; ompI_clq < Runtime.getRuntime().availableProcessors(); ompI_clq++) {
-	final int ompJ_A4g = ompI_clq;
-	ompExecutor_xRI.execute(new Runnable(){
-		@Override
-		public void run() {
-{
-				
+							/* === OMP CONTEXT === */
+							class OMPContext_wkk {
+							}
+							final OMPContext_wkk ompContext_iVk = new OMPContext_wkk();
+							final org.omp4j.runtime.IOMPExecutor ompExecutor_lRg = new org.omp4j.runtime.DynamicExecutor(
+									Runtime.getRuntime().availableProcessors());
+							/* === /OMP CONTEXT === */
+							for (int ompI_mqT = 0; ompI_mqT < Runtime.getRuntime().availableProcessors(); ompI_mqT++) {
+								final int ompJ_eiY = ompI_mqT;
+								ompExecutor_lRg.execute(new Runnable() {
+									@Override
+									public void run() {
+										{
 
-				if (ompJ_A4g == 0) {
-sum(ompContext_KEi.param_aList);}
+											if (ompJ_eiY == 0) {
+												sum(ompContext_Ygy.param_aList);
+											}
 //cannot assign it to a variable
-				
 
-				else if (ompJ_A4g == 1) {
-toText(ompContext_KEi.param_aList);}
+											else if (ompJ_eiY == 1) {
+												toText(ompContext_Ygy.param_aList);
+											}
 //cannot assign it to a variable
-				}		}
-	});
-}
-ompExecutor_xRI.waitForExecution();
+										}
+									}
+								});
+							}
+							ompExecutor_lRg.waitForExecution();
 
-
-			}
-		}		}
-	});
-}
-ompExecutor_mZK.waitForExecution();
+						}
+					}
+				}
+			});
+		}
+		ompExecutor_mpw.waitForExecution();
 
 	}
 
 	public static void sectionSumAndToText(float[] aList) {
-
-		
-
-		/* === OMP CONTEXT === */
-class OMPContext_9sG {
-	public float[] param_aList;
-}
-final OMPContext_9sG ompContext_5Xr = new OMPContext_9sG();
-ompContext_5Xr.param_aList = aList;
-final org.omp4j.runtime.IOMPExecutor ompExecutor_AUa = new org.omp4j.runtime.DynamicExecutor(Runtime.getRuntime().availableProcessors());
-/* === /OMP CONTEXT === */
-for (int ompI_lg2 = 0; ompI_lg2 < Runtime.getRuntime().availableProcessors(); ompI_lg2++) {
-	final int ompJ = ompI_lg2;
-	ompExecutor_AUa.execute(new Runnable(){
-		@Override
-		public void run() {
-{
-			
-
-			if (ompJ == 0) {
-sum(ompContext_5Xr.param_aList);}
-
-			
-
-			else if (ompJ == 1) {
-toText(ompContext_5Xr.param_aList);}
-
-		}		}
-	});
-}
-ompExecutor_AUa.waitForExecution();
-
-
-	}
-
-	public static void roundSumAndToText(float[] aList) {
+		// implicit parallel, explicit parallel does not work
 
 		/* === OMP CONTEXT === */
-		class OMPContext_aoY {
+		class OMPContext_Mrp {
 			public float[] param_aList;
 		}
-		final OMPContext_aoY ompContext_oyo = new OMPContext_aoY();
-		ompContext_oyo.param_aList = aList;
-		final org.omp4j.runtime.IOMPExecutor ompExecutor_Ssw = new org.omp4j.runtime.DynamicExecutor(
-				2);
+		final OMPContext_Mrp ompContext_72U = new OMPContext_Mrp();
+		ompContext_72U.param_aList = aList;
+		final org.omp4j.runtime.IOMPExecutor ompExecutor_6II = new org.omp4j.runtime.DynamicExecutor(
+				Runtime.getRuntime().availableProcessors());
 		/* === /OMP CONTEXT === */
-		for (int ompI_NxT = 0; ompI_NxT < 2; ompI_NxT++) {
-			ompExecutor_Ssw.execute(new Runnable() {
+		for (int ompI_xph = 0; ompI_xph < Runtime.getRuntime().availableProcessors(); ompI_xph++) {
+			final int ompJ = ompI_xph;
+			ompExecutor_6II.execute(new Runnable() {
 				@Override
 				public void run() {
 					{
-						int aThreadNum = 0;
-						int aNumThreads = 0;
-						// aThreadNum = OMP4J_THREAD_NUM;
-						// aNumThreads = OMP4J_NUM_THREADS;
-						round(ompContext_oyo.param_aList, aThreadNum,
-								aNumThreads);
 
-						ompExecutor_Ssw.hitBarrier("barrier_e1w");
-						if (aThreadNum == 0) {
-							float aSum = sum(ompContext_oyo.param_aList);
-							trace("Sum of rounded:" + aSum);
-						} else {
-							String aString = toText(ompContext_oyo.param_aList);
-							trace("ToText of rounded:" + aString);
+						if (ompJ == 0) {
+							sum(ompContext_72U.param_aList);
+						}
+
+						else if (ompJ == 1) {
+							toText(ompContext_72U.param_aList);
 						}
 
 					}
 				}
 			});
 		}
-		ompExecutor_Ssw.waitForExecution();
+		ompExecutor_6II.waitForExecution();
 
 	}
+
+	public static void threadUnawareRoundSumAndToText(float[] aList) {
+
+		/* === OMP CONTEXT === */
+		class OMPContext_IYx {
+			public float[] param_aList;
+		}
+		final OMPContext_IYx ompContext_9sW = new OMPContext_IYx();
+		ompContext_9sW.param_aList = aList;
+		final org.omp4j.runtime.IOMPExecutor ompExecutor_gYA = new org.omp4j.runtime.DynamicExecutor(2);
+		/* === /OMP CONTEXT === */
+		for (int ompI_QtE = 0; ompI_QtE < 2; ompI_QtE++) {
+			ompExecutor_gYA.execute(new Runnable() {
+				@Override
+				public void run() {
+					{
+						int aThreadNum = 0;
+						int aNumThreads = 0;
+						aThreadNum = ompExecutor_gYA.getThreadNum();
+						aNumThreads = ompExecutor_gYA.getNumThreads();
+						round(ompContext_9sW.param_aList, aThreadNum, aNumThreads);
+						// omp barrier
+//			if (aThreadNum == 0) {
+						float aSum = sum(ompContext_9sW.param_aList);
+						trace("Sum of rounded:" + aSum);
+//			} else {
+						String aString = toText(ompContext_9sW.param_aList);
+						trace("ToText of rounded:" + aString);
+					}
+				}
+			});
+		}
+		ompExecutor_gYA.waitForExecution();
+
+//		}
+	}
+
 	public static void roundSumAndToTextNoBarrier(float[] aList) {
 
 		/* === OMP CONTEXT === */
-		class OMPContext_aoY {
+		class OMPContext_RjH {
 			public float[] param_aList;
 		}
-		final OMPContext_aoY ompContext_oyo = new OMPContext_aoY();
-		ompContext_oyo.param_aList = aList;
-		final org.omp4j.runtime.IOMPExecutor ompExecutor_Ssw = new org.omp4j.runtime.DynamicExecutor(
-				2);
+		final OMPContext_RjH ompContext_rck = new OMPContext_RjH();
+		ompContext_rck.param_aList = aList;
+		final org.omp4j.runtime.IOMPExecutor ompExecutor_ic9 = new org.omp4j.runtime.DynamicExecutor(2);
 		/* === /OMP CONTEXT === */
-		for (int ompI_NxT = 0; ompI_NxT < 2; ompI_NxT++) {
-			ompExecutor_Ssw.execute(new Runnable() {
+		for (int ompI_3kW = 0; ompI_3kW < 2; ompI_3kW++) {
+			ompExecutor_ic9.execute(new Runnable() {
 				@Override
 				public void run() {
 					{
 						int aThreadNum = 0;
 						int aNumThreads = 0;
-						// aThreadNum = OMP4J_THREAD_NUM;
-						// aNumThreads = OMP4J_NUM_THREADS;
-						round(ompContext_oyo.param_aList, aThreadNum,
-								aNumThreads);
-
-//						ompExecutor_Ssw.hitBarrier("barrier_e1w");
+						aThreadNum = ompExecutor_ic9.getThreadNum();
+						aNumThreads = ompExecutor_ic9.getNumThreads();
+						round(ompContext_rck.param_aList, aThreadNum, aNumThreads);
 						if (aThreadNum == 0) {
-							float aSum = sum(ompContext_oyo.param_aList);
+							float aSum = sum(ompContext_rck.param_aList);
 							trace("Sum of rounded:" + aSum);
 						} else {
-							String aString = toText(ompContext_oyo.param_aList);
+							String aString = toText(ompContext_rck.param_aList);
 							trace("ToText of rounded:" + aString);
 						}
 
@@ -280,13 +338,50 @@ ompExecutor_AUa.waitForExecution();
 				}
 			});
 		}
-		ompExecutor_Ssw.waitForExecution();
+		ompExecutor_ic9.waitForExecution();
+
+	}
+
+	public static void roundSumAndToTextBarrier(float[] aList) {
+
+		/* === OMP CONTEXT === */
+		class OMPContext_mbF {
+			public float[] param_aList;
+		}
+		final OMPContext_mbF ompContext_ewM = new OMPContext_mbF();
+		ompContext_ewM.param_aList = aList;
+		final org.omp4j.runtime.IOMPExecutor ompExecutor_XSv = new org.omp4j.runtime.DynamicExecutor(2);
+		/* === /OMP CONTEXT === */
+		for (int ompI_Ipc = 0; ompI_Ipc < 2; ompI_Ipc++) {
+			ompExecutor_XSv.execute(new Runnable() {
+				@Override
+				public void run() {
+					{
+						int aThreadNum = 0;
+						int aNumThreads = 0;
+						aThreadNum = ompExecutor_XSv.getThreadNum();
+						aNumThreads = ompExecutor_XSv.getNumThreads();
+						round(ompContext_ewM.param_aList, aThreadNum, aNumThreads);
+						trace("Before Barrier");
+						ompExecutor_XSv.hitBarrier("barrier_p1R");
+						if (aThreadNum == 0) {
+							float aSum = sum(ompContext_ewM.param_aList);
+							trace("Sum of rounded:" + aSum);
+						} else {
+							String aString = toText(ompContext_ewM.param_aList);
+							trace("ToText of rounded:" + aString);
+						}
+
+					}
+				}
+			});
+		}
+		ompExecutor_XSv.waitForExecution();
 
 	}
 
 	public static void round(float[] aList, int aThreadNum, int aNumThreads) {
-
-		trace("Round Started:" + Arrays.toString(aList));
+		trace("Round Started:" + aThreadNum + " " + Arrays.toString(aList));
 		for (int i = 0; i < aList.length; i++) {
 			if (processIteration(i, aThreadNum, aNumThreads)) {
 				if (aThreadNum == 1) {
@@ -301,8 +396,7 @@ ompExecutor_AUa.waitForExecution();
 				trace(aList[i]);
 			}
 		}
-		trace("Round Ended:" + Arrays.toString(aList));
+		trace("Round Ended:" + aThreadNum + " " + Arrays.toString(aList));
 
 	}
-
 }
