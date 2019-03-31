@@ -1,6 +1,6 @@
 package examples.openmp;
 
-public class ParallelForLoops {
+public class ParallelSumForLoops {
 	protected static boolean trace = true;
 
 	public static boolean isTrace() {
