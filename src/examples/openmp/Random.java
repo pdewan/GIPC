@@ -30,4 +30,9 @@ public class Random {
 		trace(Math.random());
 		}
 	}
+	public static void atomicPrintRandomForkJoin() {
+		trace("Forking");
+		atomicPrintRandom();
+		trace("Joined");	
+	}
 }

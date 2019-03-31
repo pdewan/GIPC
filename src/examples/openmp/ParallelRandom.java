@@ -66,4 +66,9 @@ public class ParallelRandom {
 		ompExecutor_QzD.waitForExecution();
 
 	}
+	public static void atomicPrintRandomForkJoin() {
+		trace("Forking");
+		atomicPrintRandom();
+		trace("Joined");	
+	}
 }
