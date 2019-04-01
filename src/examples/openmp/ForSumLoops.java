@@ -71,7 +71,7 @@ public class ForSumLoops {
 		trace("Sum Started");
 		int aNumThreads = 2;
 		float[] aSums = {0.0f, 0.0f};
-		// omp parallel for threadNum(aNumThreads)
+		// omp parallel for threadNum(aNumThreads) schedule(static, 128)
 		for (int i = 0; i < aList.length; i++) {
 			int aThreadNum = 0;
 //			aThreadNum = OMP4J_THREAD_NUM;
