@@ -14,8 +14,14 @@ public class ASimpleGIPCCounterClient implements SimpleCounterClient {
 												// server increment operation
 
 	public static void init(String aClientName) {
+		/*
+		 * Disabling remote invocation of toString() and other Object methods
+		 */
 		ACachingAbstractRPCProxyInvocationHandler
 				.setInvokeObjectMethodsRemotely(false);
+		/*
+		 * Normal registry client interaction
+		 */
 		gipcRegistry = GIPCLocateRegistry.getRegistry(SERVER_HOST_NAME,
 				SERVER_PORT, aClientName);
 		if (gipcRegistry == null) {
@@ -25,7 +31,9 @@ public class ASimpleGIPCCounterClient implements SimpleCounterClient {
 		}
 		counter = (DistributedRMICounter) gipcRegistry.lookup(
 				DistributedRMICounter.class, COUNTER_NAME);
-
+		/*
+		 * In GIPC connect listeners can be added for the underlying data channel
+		 */
 		gipcRegistry.getInputPort().addConnectionListener(
 				new ATracingConnectionListener(gipcRegistry.getInputPort()));
 	}

@@ -6,7 +6,10 @@ import inputport.rpc.RPCRegistry;
 import inputport.rpc.duplex.ADuplexReceivedCallInvoker;
 import inputport.rpc.duplex.LocalRemoteReferenceTranslator;
 
-
+/**
+ * Simply traces relevant calls in its GIPC superclass. See the assignment
+ * to determine which of these methods you need to trap in your implementation
+ */
 public class ACustomReceivedCallInvoker extends ADuplexReceivedCallInvoker {
 	
 	public ACustomReceivedCallInvoker(LocalRemoteReferenceTranslator aRemoteHandler, DuplexInputPort<Object> aReplier, RPCRegistry theRPCRegistry) {

@@ -8,6 +8,17 @@ import util.misc.ThreadSupport;
 /**
  * A class that shows that same port (message queue) can be used to send
  * bytebuffers, objects or remote procedure calls.
+ * 
+ * All three kinds of communication result in the increment() method to
+ * be called in the remote server. 
+ * 
+ * The client gets the underlying data port from the RPC registry
+ * and uses it to send to the server first a byte buffer and then an object.
+ * The server receive listener listens to these two values and calls locally
+ * the increment method based on the increment values in these messages.
+ * 
+ * Next it calls the increment() procedure directly in the server using its superclass.
+ * In addition it calls the getValue() method directly in the server using its superclass
  *
  */
 public class AMultiLayerCounterClient extends ASimpleGIPCCounterClient {

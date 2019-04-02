@@ -11,6 +11,9 @@ import port.ATracingConnectionListener;
 public class ASimpleGIPCRegistryAndCounterServer  implements SimpleRegistryAndCounterServer{	
 	protected static DistributedRMICounter counter;
 	protected static GIPCRegistry gipcRegistry;
+	/**
+	 * Register remote object and add connect listener
+	 */
 	protected static void init() {
 		gipcRegistry = GIPCLocateRegistry.createRegistry(SERVER_PORT);
 		counter = new ADistributedInheritingRMICounter();			

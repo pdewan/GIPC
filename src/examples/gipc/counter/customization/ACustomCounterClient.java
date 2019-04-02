@@ -14,7 +14,8 @@ public class ACustomCounterClient extends AMultiLayerCounterClient{
 	public static final int NUM_RECEIVES = 4;
 
 	/*
-	 * Ask the factory setter to set factories
+	 * Ask the factory setter to set factories. Look at ATracingFactorySetter
+	 * to see how the factories are set
 	 */
 	public static void setFactories() {
 		if (FactorySetterFactory.getSingleton() != null) {
@@ -22,39 +23,6 @@ public class ACustomCounterClient extends AMultiLayerCounterClient{
 		}
 	}
 	
-//	/**
-//	 * Method called by the server and client to change the custom components
-//	 */
-//	public static void setFactories() {
-//		/*
-//		 * Two alternatives for received call invoker factory, with one
-//		 * commented out. This factory determines the object that 
-//		 * actually calls a method of a remote object in response to
-//		 * a received message
-//		 */
-//		DuplexReceivedCallInvokerSelector.setReceivedCallInvokerFactory(
-//				new ACustomDuplexReceivedCallInvokerFactory());		
-////		DuplexReceivedCallInvokerSelector.setReceivedCallInvokerFactory(
-////				new AnAsynchronousCustomDuplexReceivedCallInvokerFactory());
-//		
-//		/*
-//		 * Determines the object that processes return value, if any, of
-//		 * a remote call
-//		 */
-//		DuplexSentCallCompleterSelector.setDuplexSentCallCompleterFactory(
-//				new ACustomSentCallCompleterFactory());
-//		
-//		/*
-//		 * Determines the ports  for sending and
-//		 * receiving objects
-//		 */
-//		DuplexObjectInputPortSelector.setDuplexInputPortFactory(
-//				new ACustomDuplexObjectInputPortFactory());
-//		/*
-//		 * This is for the serializer assignment, determines the serializer
-//		 */
-//		SerializerSelector.setSerializerFactory(new ACustomSerializerFactory());	
-//	}
 	
 	/**
 	 * Code for making explicit receive calls to receive messages
@@ -83,17 +51,7 @@ public class ACustomCounterClient extends AMultiLayerCounterClient{
 		AMultiLayerCounterClient.launchClient(aClientName);
 		doReceive();
 	}
-//	public static void main (String[] args) {
-//		ObjectTraceUtility.setTracing();
-//		RPCTraceUtility.setTracing();		
-//		setFactories();
-//		init("Client 1");
-//		setPort();
-//		sendByteBuffers();
-//		sendObjects();
-//		doOperations();	
-//		doReceive();
-//	}
+
 	
 
 }

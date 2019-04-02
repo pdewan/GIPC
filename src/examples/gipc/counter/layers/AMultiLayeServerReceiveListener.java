@@ -9,8 +9,7 @@ import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.simplex.buffer.AGenericSimplexBufferServerInputPort;
 /**
  * Example of a GIPC receive listener, which is like the NIO manager
- * listener except it listens to objects, which may be byte buffers
- * 
+ * listener except it listens to objects, which may be byte buffers * 
  *
  */
 public class AMultiLayeServerReceiveListener extends
