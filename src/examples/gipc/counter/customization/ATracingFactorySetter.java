@@ -39,8 +39,16 @@ public class ATracingFactorySetter implements FactorySetter{
 		 * each of the set factories, ACustomDuplexReceivedCallInvokerFactory and
 		 * AnAsynchronousCustomDuplexReceivedCallInvokerFactory
 		 */
+		/*
+		 * Make the selector thread invoke remote calls directtly - the synchronous
+		 * threading approach to handling incoming procedure calls.
+		 */
 		DuplexReceivedCallInvokerSelector.setReceivedCallInvokerFactory(
-				new ACustomDuplexReceivedCallInvokerFactory());		
+				new ACustomDuplexReceivedCallInvokerFactory());	
+		/*
+		 * Make the selector thread invoke remote calls through a separate
+		 * thread, the asynchronous threading approach to handling incoming procedure calls.
+		 */
 //		DuplexReceivedCallInvokerSelector.setReceivedCallInvokerFactory(
 //				new AnAsynchronousCustomDuplexReceivedCallInvokerFactory());
 		
