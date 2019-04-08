@@ -40,8 +40,6 @@ public class ForWordCountLoops {
 	}
 	public static Map<String, Integer> wordCount(String[] aWords) {
 		Map<String, Integer> aWordCount = new HashMap();
-		float[] aSums = {0.0f, 0.0f};
-		// omp parallel for threadNum(aNumThreads) 
 		for (int i = 0; i < aWords.length; i++) {
 			add (aWordCount, aWords[i], 1);
 		}		
