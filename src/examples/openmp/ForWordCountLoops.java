@@ -47,7 +47,6 @@ public class ForWordCountLoops {
 	}
 	public static Map<String, Integer> reducableWordCount(String[] aWords) {
 		Map<String, Integer> aWordCount = new HashMap();
-		float[] aSums = {0.0f, 0.0f};
 		// omp parallel for threadNum(aNumThreads) reduction(mapAdd:aWordCount)
 		for (int i = 0; i < aWords.length; i++) {
 			Map<String, Integer> anAddition = new HashMap();
