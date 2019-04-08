@@ -25,7 +25,7 @@ public class ForSumLoops {
 	}
 
 	public static float nonAtomicSum(float[] aList) {
-		float retVal = (float) 0.0;
+		float retVal = 0.0f;
 		trace("Sum Started");
 		// omp parallel for threadNum(2)
 		for (int i = 0; i < aList.length; i++) {

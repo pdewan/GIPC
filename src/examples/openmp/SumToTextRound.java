@@ -23,7 +23,7 @@ public class SumToTextRound {
 		System.out.println();
 	}
 
-	public static boolean processIteration(int anIndex, int aThreadNum, int aNumThreads) {
+	public static boolean processIteration(int anIndex, int aStart, int aLimit, int aStepSize, int aThreadNum, int aNumThreads) {
 
 //		aThreadNum = OMP4J_THREAD_NUM;
 //		aNumThreads = OMP4J_NUM_THREADS;
@@ -212,7 +212,7 @@ public class SumToTextRound {
 	public static void round(float[] aList, int aThreadNum, int aNumThreads) {
 		trace("Round Started:" + aThreadNum + " " + Arrays.toString(aList));
 		for (int i = 0; i < aList.length; i++) {
-			if (processIteration(i, aThreadNum, aNumThreads)) {
+			if (processIteration(i, 0, 0, 1, aThreadNum, aNumThreads)) {
 				if (aThreadNum == 1) {
 					try {
 						Thread.sleep(1);
