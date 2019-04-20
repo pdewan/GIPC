@@ -22,6 +22,10 @@ public class ADuplexCallReceiveTrapper extends ASimplexCallReceiveTrapper {
 //		SerializableCallReceiveInfo.newCase(this, destination, duplexRPCInputPort.getLocalName(), (SerializableCall) 
 //		Tracer.info(this, " Processing serialized call:" + aMessage + " from:" + aSource);
 		DuplexSentCallCompleter callCompleter = ((DuplexCallTrapperSharedState)  duplexRPCInputPort.getSendTrapper().getSharedSenderReceiverState()).duplexSentCallCompleter;
+		if (callCompleter == null) {
+			System.err.println("Call completer is null for " + duplexRPCInputPort + ". Not processing incoming message: " + aMessage );
+			return;
+		}
 		if (!(callCompleter.maybeProcessReturnValue(aSource, aMessage))) {
 			
 			if (receivedCallInvoker != null &&   receivedCallInvoker instanceof AsynchronousDuplexReceivedCallInvoker) {

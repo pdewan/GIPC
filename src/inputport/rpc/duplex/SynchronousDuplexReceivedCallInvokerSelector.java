@@ -15,6 +15,9 @@ public class SynchronousDuplexReceivedCallInvokerSelector {
 	}
 	public static void setReceivedCallInvokerFactory(
 			DuplexReceivedCallInvokerFactory receivedCallInvokerFactory) {
+		if (receivedCallInvokerFactory == null) {
+			System.err.println("Setting null factory in:" + SynchronousDuplexReceivedCallInvokerSelector.class );
+		}
 		SynchronousDuplexReceivedCallInvokerSelector.receivedCallInvokerFactory = receivedCallInvokerFactory;
 	}
 

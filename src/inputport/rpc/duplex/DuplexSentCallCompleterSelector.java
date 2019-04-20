@@ -10,6 +10,9 @@ public class DuplexSentCallCompleterSelector {
 
 	public static void setDuplexSentCallCompleterFactory(
 			DuplexSentCallCompleterFactory newVal) {
+		if (newVal == null) {
+			System.err.println("Null factory set in " + DuplexSentCallCompleterSelector.class);
+		}
 		duplexSentCallCompleterFactory = newVal;
 	}
 	
