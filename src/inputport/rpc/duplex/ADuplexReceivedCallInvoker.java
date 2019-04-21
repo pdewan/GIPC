@@ -19,6 +19,7 @@ public class ADuplexReceivedCallInvoker extends ASimplexReceivedCallInvoker
 			LocalRemoteReferenceTranslator aLocalRemoteReferenceTranslator,
 			DuplexInputPort<Object> aReplier, RPCRegistry theRPCRegistry) {
 		super(theRPCRegistry);
+		System.out.println("Received call invoker replier:" + replier );
 		replier = aReplier;
 		localRemoteReferenceTranslator = aLocalRemoteReferenceTranslator;
 	}
@@ -50,11 +51,19 @@ public class ADuplexReceivedCallInvoker extends ASimplexReceivedCallInvoker
 			SentObjectTransformed.newCase(this, retVal,
 					possiblyTransformedRetVal, aRetType);
 		}
+		RPCReturnValue anRPCReturnValue = createRPCReturnValue((Serializable) possiblyTransformedRetVal,
+				false); // need a special reply call for the case when
+		// we have a replicated port
+		System.out.println("Returning  to " + aSource + " val " + anRPCReturnValue);
+//		replier.reply(
+//				aSource,
+//				createRPCReturnValue((Serializable) possiblyTransformedRetVal,
+//						false)); // need a special reply call for the case when
+//									// we have a replicated port
 		replier.reply(
 				aSource,
-				createRPCReturnValue((Serializable) possiblyTransformedRetVal,
-						false)); // need a special reply call for the case when
-									// we have a replicated port
+				anRPCReturnValue);
+				
 	}
 
 	@Override

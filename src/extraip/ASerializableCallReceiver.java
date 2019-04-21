@@ -27,8 +27,12 @@ public class ASerializableCallReceiver implements ReceivedCallInvoker  {
 	}
 	void handleReturnValue(Object retVal, Boolean anIsException) {
 		if (retVal != null) {
-//			portSender.send (new AnRPCReturnValue((Serializable) retVal));		
-			portSender.send (createRPCReturnValue((Serializable) retVal, anIsException));
+//			portSender.send (new AnRPCReturnValue((Serializable) retVal));	
+			RPCReturnValue aReturnValue = createRPCReturnValue((Serializable) retVal, anIsException);
+//			portSender.send (createRPCReturnValue((Serializable) retVal, anIsException));
+			System.out.println("Returning return value: " + aReturnValue + " to " + portSender);
+			portSender.send (aReturnValue);
+
 		}
 	}
 	

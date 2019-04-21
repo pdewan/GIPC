@@ -55,6 +55,7 @@ public class AMultiLayerCounterClient extends ASimpleGIPCCounterClient {
 	}
 	public static void launchClient(String aClientName) {
 //		AMultiLayerCounterServer.setTracing(); 
+		System.out.println("launching " + aClientName);
 		init(aClientName); // get proxies, init registry
 		setPort(); 
 		ThreadSupport.sleep(WAIT_TIME_BETWEEEN_SENDS);
