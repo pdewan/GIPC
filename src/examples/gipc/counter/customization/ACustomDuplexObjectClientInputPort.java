@@ -2,6 +2,7 @@ package examples.gipc.counter.customization;
 
 import java.nio.ByteBuffer;
 
+import inputport.datacomm.ReceiveRegistrarAndNotifier;
 import inputport.datacomm.duplex.DuplexClientInputPort;
 import inputport.datacomm.duplex.object.ADuplexObjectClientInputPort;
 import inputport.datacomm.duplex.object.explicitreceive.ReceiveReturnMessage;
@@ -14,6 +15,14 @@ public class ACustomDuplexObjectClientInputPort extends ADuplexObjectClientInput
 			DuplexClientInputPort<ByteBuffer> aBBClientInputPort) {
 		super(aBBClientInputPort);
 	}
+	/**
+	 * Changes the notifier that invokes receive listeners
+	 */
+	@Override
+	protected ReceiveRegistrarAndNotifier<Object> createReceiveRegistrarAndNotifier() {
+		return new ACustomReceiveNotifier();
+	}
+	
 	/**
 	 * Simply traces the sends dispatched to the sueprclass, does nothing more
 	 */
