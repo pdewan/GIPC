@@ -2,22 +2,24 @@ package examples.mvc.local.duplex;
 
 
 import bus.uigen.ObjectEditor;
+import util.trace.Tracer;
 
 
 public class ACounter implements Counter{
 	public ACounter() {
 		super();
 	}
-	Integer value = 0;	
+	protected Integer value = 0;	
 	public Object getValue() {
-		System.out.println("getValue called (locally or remotely)");
+		Tracer.info(this, "getValue called (locally or remotely)");
 		if (value < 0) throw new IllegalStateException();
-		System.out.println("getValue returns:" + value);
+		Tracer.info(this, "getValue returns:" + value);
 
 		return value;
 	}	
+	
 	public void increment(int val) {
-		System.out.println("Increment called (locally or remotely):" + val);
+		Tracer.info(this, "Increment called (locally or remotely):" + val);
 		value += val;
 	}	
 	@Override
