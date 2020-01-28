@@ -3,11 +3,11 @@ package rmi.equals.examples;
 import java.lang.reflect.Method;
 import java.rmi.RemoteException;
 
-import examples.mvc.rmi.duplex.DistributedRMICounter;
+import examples.rmi.counter.DistributedCounter;
 import inputport.rpc.NamingRPC;
 
 
-public class ARemoteCounterStub implements DistributedRMICounter {
+public class ARemoteCounterStub implements DistributedCounter {
 	NamingRPC rpcPort;
 	String destination;
 	public void init(NamingRPC anRPCPort, String aDestination) {
@@ -16,9 +16,9 @@ public class ARemoteCounterStub implements DistributedRMICounter {
 	}
 	public Object getValue() {	
 		try {		
-			Method method = DistributedRMICounter.class.getMethod("getValue");
+			Method method = DistributedCounter.class.getMethod("getValue");
 			Object[] args = {};
-			return (Integer) rpcPort.call(destination, DistributedRMICounter.class.getName(), method, args);
+			return (Integer) rpcPort.call(destination, DistributedCounter.class.getName(), method, args);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
@@ -27,9 +27,9 @@ public class ARemoteCounterStub implements DistributedRMICounter {
 	@Override
 	public void increment(int val) throws RemoteException {
 		try {		
-			Method method = DistributedRMICounter.class.getMethod("increment", Integer.TYPE);
+			Method method = DistributedCounter.class.getMethod("increment", Integer.TYPE);
 			Object[] args = {val};
-			rpcPort.call(destination, DistributedRMICounter.class.getName(), method, args);
+			rpcPort.call(destination, DistributedCounter.class.getName(), method, args);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

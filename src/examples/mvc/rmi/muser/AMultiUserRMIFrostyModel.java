@@ -2,13 +2,13 @@ package examples.mvc.rmi.muser;
 
 import examples.mvc.local.duplex.DuplexFrostyModel;
 import examples.mvc.rmi.duplex.ADistributedRMIFrostyModel;
-import examples.mvc.rmi.duplex.DistributedRMICounter;
+import examples.rmi.counter.DistributedCounter;
 
 
 public class AMultiUserRMIFrostyModel extends ADistributedRMIFrostyModel implements DuplexFrostyModel {
 	protected String userName;
 	public AMultiUserRMIFrostyModel(MultiUserRMIUpperCaser anUpperCaser, 
-											DistributedRMICounter aCounter,
+											DistributedCounter aCounter,
 											String aUserName) {
 		super(anUpperCaser, aCounter);
 		userName = aUserName;

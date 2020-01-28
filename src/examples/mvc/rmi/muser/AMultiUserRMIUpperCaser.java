@@ -6,19 +6,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import examples.mvc.rmi.duplex.ADistributedRMIUpperCaser;
-import examples.mvc.rmi.duplex.DistributedRMICounter;
+import examples.rmi.counter.DistributedCounter;
 
 public class AMultiUserRMIUpperCaser extends ADistributedRMIUpperCaser
 		implements MultiUserRMIUpperCaser {
-	protected Map<String, DistributedRMICounter> nameToCounter = new HashMap();	
-	protected DistributedRMICounter getCounterProxy(String aUserName) {
+	protected Map<String, DistributedCounter> nameToCounter = new HashMap();	
+	protected DistributedCounter getCounterProxy(String aUserName) {
 		try {
-			DistributedRMICounter counter = nameToCounter.get(aUserName);
+			DistributedCounter counter = nameToCounter.get(aUserName);
 			if (counter == null) {
 
 				Registry rmiRegistry = LocateRegistry.getRegistry();
-				counter = (DistributedRMICounter) rmiRegistry.lookup(aUserName
-						+ DistributedRMICounter.class.getName());
+				counter = (DistributedCounter) rmiRegistry.lookup(aUserName
+						+ DistributedCounter.class.getName());
 				nameToCounter.put(aUserName, counter);
 			}
 			return counter;

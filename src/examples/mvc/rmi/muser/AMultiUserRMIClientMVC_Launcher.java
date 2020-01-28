@@ -3,7 +3,7 @@ package examples.mvc.rmi.muser;
 import examples.mvc.local.duplex.DuplexFrostyModel;
 import examples.mvc.local.simplex.ProgramLauncher;
 import examples.mvc.rmi.duplex.ADistributedRMIClientMVC_Launcher;
-import examples.mvc.rmi.duplex.DistributedRMICounter;
+import examples.rmi.counter.DistributedCounter;
 
 public class AMultiUserRMIClientMVC_Launcher extends
 		ADistributedRMIClientMVC_Launcher implements ProgramLauncher {
@@ -21,7 +21,7 @@ public class AMultiUserRMIClientMVC_Launcher extends
 			MultiUserRMIUpperCaser upperCasePrinter = (MultiUserRMIUpperCaser) serverRMIRegistry
 					.lookup(upperCaserName());
 			return new AMultiUserRMIFrostyModel(upperCasePrinter,
-					(DistributedRMICounter) getCounter(), name);
+					(DistributedCounter) getCounter(), name);
 
 		} catch (Exception e) {
 			e.printStackTrace();

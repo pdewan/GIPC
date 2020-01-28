@@ -4,8 +4,8 @@ import java.rmi.server.UnicastRemoteObject;
 
 import examples.mvc.local.duplex.DuplexFrostyModel;
 import examples.mvc.local.simplex.ProgramLauncher;
-import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.mvc.rmi.muser.AMultiUserRMIClientMVC_Launcher;
+import examples.rmi.counter.DistributedCounter;
 
 public class ARelayingCollaborativeRMIClientMVC_Launcher extends
 		AMultiUserRMIClientMVC_Launcher implements ProgramLauncher {
@@ -28,7 +28,7 @@ public class ARelayingCollaborativeRMIClientMVC_Launcher extends
 					.lookup(upperCaserName());
 			return new ARelayingCollaborativeRMIFrostyModel(upperCasePrinter,
 					(DistributedRMIEchoer) getEchoer(),
-					(DistributedRMICounter) getCounter(), name);
+					(DistributedCounter) getCounter(), name);
 
 		} catch (Exception e) {
 			e.printStackTrace();

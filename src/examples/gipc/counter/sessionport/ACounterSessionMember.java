@@ -5,8 +5,8 @@ import java.rmi.RemoteException;
 import java.util.Set;
 
 import examples.gipc.counter.layers.AMultiLayeServerReceiveListener;
-import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
-import examples.mvc.rmi.duplex.DistributedRMICounter;
+import examples.rmi.counter.ADistributedCounter;
+import examples.rmi.counter.DistributedCounter;
 import port.ATracingConnectionListener;
 import port.SessionChoice;
 import sessionport.rpc.group.GIPCLocateSessionRegistry;
@@ -14,7 +14,7 @@ import sessionport.rpc.group.GIPCSessionRegistry;
 import sessionport.rpc.group.GroupRPCSessionPort;
 
 public class ACounterSessionMember implements CounterSessionMember {
-	protected static DistributedRMICounter counter;
+	protected static DistributedCounter counter;
 	protected static GIPCSessionRegistry gipcRegistry;
 	protected static GroupRPCSessionPort groupRPCSessionPort;
 	protected static short numMembersToWaitFor = 3;
@@ -25,7 +25,7 @@ public class ACounterSessionMember implements CounterSessionMember {
 				"mysession", "localhost", aPortNumber, aMyName,
 				sessionChoice, 
 				numMembersToWaitFor);
-		counter = new ADistributedInheritingRMICounter();
+		counter = new ADistributedCounter();
 		gipcRegistry.rebind(COUNTER_NAME, counter);
 		groupRPCSessionPort = gipcRegistry.getSessionPort();
 		
@@ -51,15 +51,15 @@ public class ACounterSessionMember implements CounterSessionMember {
 		try {
 			Set<String> aMembers = gipcRegistry.getAllMembers();
 			for (String aMember : aMembers) {
-				DistributedRMICounter aMemberCounter = (DistributedRMICounter) gipcRegistry
+				DistributedCounter aMemberCounter = (DistributedCounter) gipcRegistry
 						.lookup(aMember, COUNTER_NAME);
 				aMemberCounter.increment(Integer.parseInt(aMember));
 			}
-			DistributedRMICounter anAllRemoteCounter = (DistributedRMICounter) gipcRegistry
+			DistributedCounter anAllRemoteCounter = (DistributedCounter) gipcRegistry
 						.lookupAllRemote(COUNTER_NAME);
 //			anAllRemoteCounter.increment(2);
 			System.out.println("All remote counter values:" + anAllRemoteCounter.getValue());
-			DistributedRMICounter anAllRemoteAndMeCounter = (DistributedRMICounter) gipcRegistry
+			DistributedCounter anAllRemoteAndMeCounter = (DistributedCounter) gipcRegistry
 					.lookupAll(COUNTER_NAME);
 //		anAllRemoteCounter.increment(2);
 		System.out.println("All remote and me counter values:" + anAllRemoteAndMeCounter.getValue());

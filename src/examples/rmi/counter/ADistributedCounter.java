@@ -1,17 +1,17 @@
-package examples.mvc.rmi.duplex;
+package examples.rmi.counter;
 
 import java.rmi.RemoteException;
 
 import examples.mvc.local.duplex.ACounter;
 
 
-public class ADistributedInheritingRMICounter extends ACounter implements DistributedRMICounter{
+public class ADistributedCounter extends ACounter implements DistributedCounter{
 	@Override
 	public boolean equals(Object otherObject) {
-		if (!(otherObject instanceof DistributedRMICounter))
+		if (!(otherObject instanceof DistributedCounter))
 				return super.equals(otherObject);
 		try {
-			return getValue().equals(((DistributedRMICounter) otherObject).getValue());
+			return getValue().equals(((DistributedCounter) otherObject).getValue());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return false;

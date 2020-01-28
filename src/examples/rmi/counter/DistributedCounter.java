@@ -1,10 +1,10 @@
-package examples.mvc.rmi.duplex;
+package examples.rmi.counter;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 
-public interface DistributedRMICounter extends Remote {
+public interface DistributedCounter extends Remote {
 	void increment(int val) throws RemoteException;
 	Object getValue() throws RemoteException;
 }

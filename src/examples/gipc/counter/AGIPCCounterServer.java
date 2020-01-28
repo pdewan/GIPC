@@ -1,25 +1,25 @@
 package examples.gipc.counter;
 
 
-import examples.mvc.rmi.duplex.ADistributedInheritingRMICounter;
-import examples.mvc.rmi.duplex.DistributedRMICounter;
-import examples.rmi.counter.AnRMICounterServer;
-import examples.rmi.counter.CounterServerLauncher;
+import examples.rmi.counter.ADistributedCounter;
+import examples.rmi.counter.CounterServer;
+import examples.rmi.counter.DistributedCounter;
+import examples.rmi.counter.RMICounterServerLauncher;
 import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;
 import inputport.rpc.GIPCLocateRegistry;
 import inputport.rpc.GIPCRegistry;
 
-public class AGIPCCounterServer extends CounterServerLauncher implements SimpleRegistryAndCounterServer {	
+public class AGIPCCounterServer implements SimpleRegistryAndCounterServer {	
 	public static void main (String[] args) {
 		try {
 			GIPCRegistry gipcRegistry = GIPCLocateRegistry.createRegistry(SERVER_PORT);
-			DistributedRMICounter counter1 = new ADistributedInheritingRMICounter();
-			DistributedRMICounter counter2 = new ADistributedInheritingRMICounter();
+			DistributedCounter counter1 = new ADistributedCounter();
+			DistributedCounter counter2 = new ADistributedCounter();
 
-			gipcRegistry.rebind(COUNTER1, counter1);
-			gipcRegistry.rebind(COUNTER2, counter2);	
-			DistributedRMICounter fetchedCounter = (DistributedRMICounter) gipcRegistry.lookup(DistributedRMICounter.class, COUNTER1);
-			AnRMICounterServer.doOperations(counter1, counter2, fetchedCounter);
+			gipcRegistry.rebind(CounterServer.COUNTER1, counter1);
+			gipcRegistry.rebind(CounterServer.COUNTER2, counter2);	
+			DistributedCounter fetchedCounter = (DistributedCounter) gipcRegistry.lookup(DistributedCounter.class, CounterServer.COUNTER1);
+			RMICounterServerLauncher.doOperations(counter1, counter2, fetchedCounter);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		

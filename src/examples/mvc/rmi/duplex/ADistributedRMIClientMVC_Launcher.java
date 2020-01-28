@@ -9,11 +9,13 @@ import examples.mvc.local.duplex.ADuplexFrostyLauncher;
 import examples.mvc.local.duplex.Counter;
 import examples.mvc.local.duplex.DuplexFrostyModel;
 import examples.mvc.local.simplex.ProgramLauncher;
+import examples.rmi.counter.ADistributedCounter;
+import examples.rmi.counter.DistributedCounter;
 
 public class ADistributedRMIClientMVC_Launcher extends ADuplexFrostyLauncher implements ProgramLauncher{
 	protected String name;
 	protected Registry serverRMIRegistry;
-	public static final String COUNTER_NAME = DistributedRMICounter.class.getName();	
+	public static final String COUNTER_NAME = DistributedCounter.class.getName();	
 	public ADistributedRMIClientMVC_Launcher(String aName, String aServerHost) {
 		name = aName;
 		try {
@@ -31,7 +33,7 @@ public class ADistributedRMIClientMVC_Launcher extends ADuplexFrostyLauncher imp
 		try {
 		DistributedRMIUpperCaser upperCasePrinter = 
 			(DistributedRMIUpperCaser) serverRMIRegistry.lookup(upperCaserName());
-		return new ADistributedRMIFrostyModel(upperCasePrinter,  (DistributedRMICounter) getCounter());
+		return new ADistributedRMIFrostyModel(upperCasePrinter,  (DistributedCounter) getCounter());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -43,7 +45,7 @@ public class ADistributedRMIClientMVC_Launcher extends ADuplexFrostyLauncher imp
 	}
 	@Override
 	protected Counter getCounter() {
-		DistributedRMICounter counter = new ADistributedInheritingRMICounter();
+		DistributedCounter counter = new ADistributedCounter();
 		try {
 		UnicastRemoteObject.exportObject(counter, 0);
 		Registry clientRMIRegistry = LocateRegistry.getRegistry();

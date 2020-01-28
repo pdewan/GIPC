@@ -22,9 +22,7 @@ public class AnObservableCounter extends ACounter implements ObservableCounter {
 		Integer oldValue = value;
 		super.increment(anIncrement);
 		processPropertyChangeEvent( 
-		  new PropertyChangeEvent(this, "Value", oldValue, value));
-		
+		  new PropertyChangeEvent(this, "Value", oldValue, value));	
 		
 	}
-
 }

@@ -5,9 +5,10 @@ import java.rmi.server.UnicastRemoteObject;
 
 import examples.mvc.local.duplex.ACounter;
 import examples.mvc.local.duplex.Counter;
+import examples.rmi.counter.DistributedCounter;
 
 
-public class ADistributedDelegatingRMICounter extends UnicastRemoteObject implements DistributedRMICounter{
+public class ADistributedDelegatingRMICounter extends UnicastRemoteObject implements DistributedCounter{
 	public ADistributedDelegatingRMICounter() throws RemoteException {
 		super();
 	}
@@ -20,10 +21,10 @@ public class ADistributedDelegatingRMICounter extends UnicastRemoteObject implem
 	}	
 	@Override
 	public boolean equals(Object otherObject) {
-		if (!(otherObject instanceof DistributedRMICounter))
+		if (!(otherObject instanceof DistributedCounter))
 				return super.equals(otherObject);
 		try {
-			return getValue().equals(((DistributedRMICounter) otherObject).getValue());
+			return getValue().equals(((DistributedCounter) otherObject).getValue());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return false;

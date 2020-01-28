@@ -2,9 +2,9 @@ package rmi.equals.examples;
 
 import java.rmi.RemoteException;
 
-import examples.mvc.rmi.duplex.DistributedRMICounter;
+import examples.rmi.counter.DistributedCounter;
 
 
-public interface ComparableCounter extends DistributedRMICounter{
+public interface ComparableCounter extends DistributedCounter{
 	public ComparableCounter greater(ComparableCounter aCounter) throws RemoteException;
 }

@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 import java.rmi.RemoteException;
 
 import examples.gipc.counter.simple.ASimpleGIPCRegistryAndCounterServer;
-import examples.mvc.rmi.duplex.DistributedRMICounter;
+import examples.rmi.counter.DistributedCounter;
 import inputport.datacomm.ReceiveListener;
 import inputport.datacomm.simplex.buffer.AGenericSimplexBufferServerInputPort;
 /**
@@ -14,9 +14,9 @@ import inputport.datacomm.simplex.buffer.AGenericSimplexBufferServerInputPort;
  */
 public class AMultiLayeServerReceiveListener extends
 		ASimpleGIPCRegistryAndCounterServer implements ReceiveListener {
-	protected DistributedRMICounter counter;
+	protected DistributedCounter counter;
 
-	public AMultiLayeServerReceiveListener(DistributedRMICounter aCounter) {
+	public AMultiLayeServerReceiveListener(DistributedCounter aCounter) {
 		counter = aCounter;	}
 	/**
 	 * Increments counter based on message received

@@ -5,12 +5,13 @@ import java.rmi.RemoteException;
 import examples.mvc.local.duplex.ADuplexFrostyModel;
 import examples.mvc.local.duplex.Counter;
 import examples.mvc.local.duplex.DuplexFrostyModel;
+import examples.rmi.counter.DistributedCounter;
 
 
 public class ADistributedRMIFrostyModel extends ADuplexFrostyModel implements DuplexFrostyModel {
 	protected DistributedRMIUpperCaser upperCaser;
 	public ADistributedRMIFrostyModel(DistributedRMIUpperCaser anUpperCaser,
-											DistributedRMICounter aCounter) {
+											DistributedCounter aCounter) {
 		super(null,  (Counter) aCounter);
 		upperCaser = anUpperCaser;
 	}

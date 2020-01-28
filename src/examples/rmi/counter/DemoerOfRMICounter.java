@@ -12,9 +12,9 @@ public class DemoerOfRMICounter {
 //        System.out.println("Current dir using System:" +currentDir);
 		
 		Class[] classes = {
-				DistributedRMIRegistryStarter.class,
-				AnRMICounterServer.class,
-				AnRMICounterClient.class
+				RMIRegistryStarter.class,
+				RMICounterServerLauncher.class,
+				RMICounterClientLauncher.class
 
 				
 		};

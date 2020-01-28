@@ -4,7 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import examples.mvc.rmi.collaborative.ACollaborativeRMIFrostyModel;
-import examples.mvc.rmi.duplex.DistributedRMICounter;
+import examples.rmi.counter.DistributedCounter;
 import util.models.PropertyListenerRegisterer;
 
 public class ARelayingCollaborativeRMIFrostyModel extends
@@ -12,7 +12,7 @@ public class ARelayingCollaborativeRMIFrostyModel extends
 	DistributedRMIEchoer echoer;
 	public ARelayingCollaborativeRMIFrostyModel(
 			RelayingCollaborativeRMIUpperCaser anUpperCaser,
-			DistributedRMIEchoer anEchoer, DistributedRMICounter aCounter,
+			DistributedRMIEchoer anEchoer, DistributedCounter aCounter,
 			String aUserName) {
 		super(anUpperCaser, aCounter, aUserName);
 		echoer = anEchoer;

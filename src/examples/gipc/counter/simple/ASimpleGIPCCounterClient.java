@@ -1,6 +1,6 @@
 package examples.gipc.counter.simple;
 
-import examples.mvc.rmi.duplex.DistributedRMICounter;
+import examples.rmi.counter.DistributedCounter;
 import examples.rmi.counter.simple.SimpleCounterClient;
 import inputport.rpc.ACachingAbstractRPCProxyInvocationHandler;
 import inputport.rpc.GIPCLocateRegistry;
@@ -8,7 +8,7 @@ import inputport.rpc.GIPCRegistry;
 import port.ATracingConnectionListener;
 
 public class ASimpleGIPCCounterClient implements SimpleCounterClient {
-	protected static DistributedRMICounter counter;
+	protected static DistributedCounter counter;
 	protected static GIPCRegistry gipcRegistry;
 	public static final int RPC_INCREMENT = 1; // value passed by rpc call to
 												// server increment operation
@@ -29,8 +29,8 @@ public class ASimpleGIPCCounterClient implements SimpleCounterClient {
 					+ SERVER_HOST_NAME + ":" + SERVER_PORT);
 			System.exit(-1);
 		}
-		counter = (DistributedRMICounter) gipcRegistry.lookup(
-				DistributedRMICounter.class, COUNTER_NAME);
+		counter = (DistributedCounter) gipcRegistry.lookup(
+				DistributedCounter.class, COUNTER_NAME);
 		/*
 		 * In GIPC connect listeners can be added for the underlying data channel
 		 */

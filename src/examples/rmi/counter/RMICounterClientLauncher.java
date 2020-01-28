@@ -4,10 +4,8 @@ package examples.rmi.counter;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-import examples.mvc.rmi.duplex.DistributedRMICounter;
-
-public class AnRMICounterClient extends CounterServerLauncher{
-	public static void doOperations(DistributedRMICounter counter11 , DistributedRMICounter counter12, DistributedRMICounter counter2) {
+public class RMICounterClientLauncher   {
+	public static void doOperations(DistributedCounter counter11 , DistributedCounter counter12, DistributedCounter counter2) {
 		try {
 		System.out.println(counter12 == counter11);
 		System.out.println(counter12.equals(counter11));
@@ -26,9 +24,9 @@ public class AnRMICounterClient extends CounterServerLauncher{
 		try {
 			Registry rmiRegistry = LocateRegistry.getRegistry();
 
-			DistributedRMICounter counter11 = (DistributedRMICounter) rmiRegistry.lookup(COUNTER1);
-			DistributedRMICounter counter12 = (DistributedRMICounter) rmiRegistry.lookup(COUNTER1);
-			DistributedRMICounter counter2 = (DistributedRMICounter) rmiRegistry.lookup(COUNTER2);
+			DistributedCounter counter11 = (DistributedCounter) rmiRegistry.lookup(CounterServer.COUNTER1);
+			DistributedCounter counter12 = (DistributedCounter) rmiRegistry.lookup(CounterServer.COUNTER1);
+			DistributedCounter counter2 = (DistributedCounter) rmiRegistry.lookup(CounterServer.COUNTER2);
 			doOperations(counter11, counter12, counter2);
 			
 		} catch (Exception e) {

@@ -1,13 +1,13 @@
 package examples.mvc.rmi.collaborative;
 
 
-import examples.mvc.rmi.duplex.DistributedRMICounter;
 import examples.mvc.rmi.muser.AMultiUserRMIFrostyModel;
+import examples.rmi.counter.DistributedCounter;
 
 
 public class ACollaborativeRMIFrostyModel extends AMultiUserRMIFrostyModel {
 	public ACollaborativeRMIFrostyModel(CollaborativeRMIUpperCaser anUpperCaser, 
-											DistributedRMICounter aCounter,
+											DistributedCounter aCounter,
 											String aUserName) {
 		super(anUpperCaser, aCounter, aUserName);
 		try {
