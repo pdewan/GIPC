@@ -1,7 +1,7 @@
 package examples.gipc.counter;
 
 
-import examples.rmi.counter.ADistributedCounter;
+import examples.rmi.counter.ADistributedObservableCounter;
 import examples.rmi.counter.CounterServer;
 import examples.rmi.counter.DistributedCounter;
 import examples.rmi.counter.RMICounterServerLauncher;
@@ -13,8 +13,8 @@ public class AGIPCCounterServer implements SimpleRegistryAndCounterServer {
 	public static void main (String[] args) {
 		try {
 			GIPCRegistry gipcRegistry = GIPCLocateRegistry.createRegistry(SERVER_PORT);
-			DistributedCounter counter1 = new ADistributedCounter();
-			DistributedCounter counter2 = new ADistributedCounter();
+			DistributedCounter counter1 = new ADistributedObservableCounter();
+			DistributedCounter counter2 = new ADistributedObservableCounter();
 
 			gipcRegistry.rebind(CounterServer.COUNTER1, counter1);
 			gipcRegistry.rebind(CounterServer.COUNTER2, counter2);	

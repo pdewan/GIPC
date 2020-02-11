@@ -27,6 +27,8 @@ public class RMICounterClientLauncher   {
 			DistributedCounter counter11 = (DistributedCounter) rmiRegistry.lookup(CounterServer.COUNTER1);
 			DistributedCounter counter12 = (DistributedCounter) rmiRegistry.lookup(CounterServer.COUNTER1);
 			DistributedCounter counter2 = (DistributedCounter) rmiRegistry.lookup(CounterServer.COUNTER2);
+			counter11.increment(-25);
+		    System.out.println ("Client:" + counter11.getValue());
 			doOperations(counter11, counter12, counter2);
 			
 		} catch (Exception e) {

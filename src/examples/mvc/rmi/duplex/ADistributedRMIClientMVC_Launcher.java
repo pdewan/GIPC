@@ -9,7 +9,7 @@ import examples.mvc.local.duplex.ADuplexFrostyLauncher;
 import examples.mvc.local.duplex.Counter;
 import examples.mvc.local.duplex.DuplexFrostyModel;
 import examples.mvc.local.simplex.ProgramLauncher;
-import examples.rmi.counter.ADistributedCounter;
+import examples.rmi.counter.ADistributedObservableCounter;
 import examples.rmi.counter.DistributedCounter;
 
 public class ADistributedRMIClientMVC_Launcher extends ADuplexFrostyLauncher implements ProgramLauncher{
@@ -45,7 +45,7 @@ public class ADistributedRMIClientMVC_Launcher extends ADuplexFrostyLauncher imp
 	}
 	@Override
 	protected Counter getCounter() {
-		DistributedCounter counter = new ADistributedCounter();
+		DistributedCounter counter = new ADistributedObservableCounter();
 		try {
 		UnicastRemoteObject.exportObject(counter, 0);
 		Registry clientRMIRegistry = LocateRegistry.getRegistry();

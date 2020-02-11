@@ -7,7 +7,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
-import examples.rmi.counter.ADistributedCounter;
+import examples.rmi.counter.ADistributedObservableCounter;
 import examples.rmi.counter.DistributedCounter;
 
 public class AnRMIRepositoryClientLauncher extends RemoteRepositoryLauncher{
@@ -15,7 +15,7 @@ public class AnRMIRepositoryClientLauncher extends RemoteRepositoryLauncher{
 		try {
 			Registry rmiRegistry = LocateRegistry.getRegistry();
 			RemoteRepository counterRepository = (RemoteRepository) rmiRegistry.lookup(COUNTER_REPOSITORY);
-			DistributedCounter exportedCounter = new ADistributedCounter();
+			DistributedCounter exportedCounter = new ADistributedObservableCounter();
 			UnicastRemoteObject.exportObject(exportedCounter, 0);
 			counterRepository.deposit(exportedCounter);
 			exportedCounter.increment(1);				

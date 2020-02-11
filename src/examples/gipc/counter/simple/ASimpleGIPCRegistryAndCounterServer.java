@@ -1,7 +1,7 @@
 package examples.gipc.counter.simple;
 
 
-import examples.rmi.counter.ADistributedCounter;
+import examples.rmi.counter.ADistributedObservableCounter;
 import examples.rmi.counter.DistributedCounter;
 import examples.rmi.counter.simple.SimpleRegistryAndCounterServer;
 import inputport.rpc.GIPCLocateRegistry;
@@ -16,7 +16,7 @@ public class ASimpleGIPCRegistryAndCounterServer  implements SimpleRegistryAndCo
 	 */
 	protected static void init() {
 		gipcRegistry = GIPCLocateRegistry.createRegistry(SERVER_PORT);
-		counter = new ADistributedCounter();			
+		counter = new ADistributedObservableCounter();			
 		gipcRegistry.rebind(COUNTER_NAME, counter);	
 		gipcRegistry.getInputPort().addConnectionListener(new ATracingConnectionListener(gipcRegistry.getInputPort()));
 	}

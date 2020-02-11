@@ -6,7 +6,7 @@ import examples.mvc.AnObservableCounter;
 import examples.mvc.local.duplex.ACounter;
 
 
-public class ADistributedCounter extends ACounter implements DistributedCounter{
+public class ADistributedObservableCounter extends AnObservableCounter implements DistributedCounter{
 	@Override
 	public boolean equals(Object otherObject) {
 		if (!(otherObject instanceof DistributedCounter))

@@ -5,7 +5,7 @@ import java.rmi.RemoteException;
 import java.util.Set;
 
 import examples.gipc.counter.layers.AMultiLayeServerReceiveListener;
-import examples.rmi.counter.ADistributedCounter;
+import examples.rmi.counter.ADistributedObservableCounter;
 import examples.rmi.counter.DistributedCounter;
 import port.ATracingConnectionListener;
 import port.SessionChoice;
@@ -25,7 +25,7 @@ public class ACounterSessionMember implements CounterSessionMember {
 				"mysession", "localhost", aPortNumber, aMyName,
 				sessionChoice, 
 				numMembersToWaitFor);
-		counter = new ADistributedCounter();
+		counter = new ADistributedObservableCounter();
 		gipcRegistry.rebind(COUNTER_NAME, counter);
 		groupRPCSessionPort = gipcRegistry.getSessionPort();
 		

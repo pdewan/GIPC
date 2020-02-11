@@ -12,7 +12,7 @@ public class ACounter implements Counter{
 	protected Integer value = 0;	
 	public Object getValue() {
 		Tracer.info(this, "getValue called (locally or remotely)");
-		if (value < 0) throw new IllegalStateException();
+//		if (value < 0) throw new IllegalStateException();
 		Tracer.info(this, "getValue returns:" + value);
 
 		return value;
