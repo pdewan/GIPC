@@ -2,8 +2,8 @@ package sessionport.rpc.duplex.direct.counter_example;
 
 import java.util.Scanner;
 
-import examples.mvc.local.duplex.ACounter;
-import examples.mvc.local.duplex.Counter;
+import examples.counter.ACounter;
+import examples.counter.Counter;
 import inputport.ConnectionListener;
 import inputport.InputPort;
 import inputport.datacomm.simplex.object.ObjectTranslatingIPTrapperSelector;

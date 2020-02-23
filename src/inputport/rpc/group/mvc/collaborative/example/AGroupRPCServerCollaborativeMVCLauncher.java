@@ -1,6 +1,6 @@
 package inputport.rpc.group.mvc.collaborative.example;
 
-import examples.mvc.local.duplex.Counter;
+import examples.counter.Counter;
 import examples.mvc.local.simplex.SimplexUpperCaser;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.duplex.mvc.multiuser.example.AMultiUserDuplexRPCServerMVCLauncher;

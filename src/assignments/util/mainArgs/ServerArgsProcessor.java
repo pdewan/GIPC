@@ -34,14 +34,21 @@ public class ServerArgsProcessor {
 	 * Extracts the NIO port from argument #0,  if it exists, returns default
 	 * port
 	 */
-	public static int getServerPort(String[] args){
+	public static int getNIOServerPort(String[] args){
 		return args.length > NIO_PORT_ARG_INDEX ?
 				Integer.parseInt(args[NIO_PORT_ARG_INDEX]):
 					ServerPort.SERVER_PORT;
 	}
+	/**
+	 * Extracts the NIO port from argument #0,  if it exists, returns default
+	 * port. This method kept for legacy reasons.
+	 */
+	public static int getServerPort(String[] args){
+		return getNIOServerPort(args);
+	}
 		
 	/**
-	 * Extracts the registry hostname from argument #1,  if it exists, returns default
+	 * Extracts the RMI registry hostname from argument #1,  if it exists, returns default
 	 * hostname (localhost) otherwise
 	 */
 	public static String getRegistryHost(String[] args){
@@ -51,7 +58,7 @@ public class ServerArgsProcessor {
 	}
 
 	/**
-	 * Extracts the Registry RMI port from argument #2,  if it exists, returns default
+	 * Extracts the RMI Registry port from argument #2,  if it exists, returns default
 	 * port
 	 */
 	public static int getRegistryPort(String[] args){

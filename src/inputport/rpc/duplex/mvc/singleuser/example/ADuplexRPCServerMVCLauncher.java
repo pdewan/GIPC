@@ -1,7 +1,7 @@
 package inputport.rpc.duplex.mvc.singleuser.example;
 
+import examples.counter.Counter;
 import examples.mvc.local.duplex.ADuplexUpperCaser;
-import examples.mvc.local.duplex.Counter;
 import examples.mvc.local.simplex.SimplexUpperCaser;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.simplex.mvc.example.ASimplexRPCServerMVCLauncher;

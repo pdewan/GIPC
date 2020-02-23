@@ -2,8 +2,8 @@ package port.relay.mvc.example;
 
 import java.beans.PropertyChangeEvent;
 
+import examples.counter.Counter;
 import examples.mvc.local.duplex.ADuplexFrostyModel;
-import examples.mvc.local.duplex.Counter;
 import examples.mvc.local.duplex.DuplexUpperCaser;
 import port.relay.Relayer;
 import sessionport.datacomm.duplex.object.relayed.AMessageWithSource;

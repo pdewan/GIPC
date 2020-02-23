@@ -1,10 +1,10 @@
-package examples.mvc;
+package examples.mvc.counter;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import examples.mvc.local.duplex.ACounter;
+import examples.counter.ACounter;
 
 public class AnObservableCounter extends ACounter implements ObservableCounter {
 	protected PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);

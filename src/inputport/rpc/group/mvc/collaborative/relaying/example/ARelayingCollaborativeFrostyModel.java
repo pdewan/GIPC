@@ -3,8 +3,8 @@ package inputport.rpc.group.mvc.collaborative.relaying.example;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import examples.counter.Counter;
 import examples.mvc.local.duplex.ADuplexFrostyModel;
-import examples.mvc.local.duplex.Counter;
 import examples.mvc.rmi.collaborative.relaying.Echoer;
 
 

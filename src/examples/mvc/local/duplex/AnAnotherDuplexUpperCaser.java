@@ -1,5 +1,6 @@
 package examples.mvc.local.duplex;
 
+import examples.counter.Counter;
 import examples.mvc.local.simplex.ASimplexUpperCaser;
 import examples.mvc.rmi.collaborative.relaying.Echoer;
 

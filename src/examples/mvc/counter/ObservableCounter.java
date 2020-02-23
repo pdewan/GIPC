@@ -1,6 +1,6 @@
-package examples.mvc;
+package examples.mvc.counter;
 
-import examples.mvc.local.duplex.Counter;
+import examples.counter.Counter;
 import util.models.PropertyListenerRegisterer;
 
 public interface ObservableCounter extends Counter, PropertyListenerRegisterer {

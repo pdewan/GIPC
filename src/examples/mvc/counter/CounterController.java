@@ -1,4 +1,4 @@
-package examples.mvc;
+package examples.mvc.counter;
 
 public interface CounterController {
 

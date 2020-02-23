@@ -1,5 +1,6 @@
 package examples.mvc.local.duplex;
 
+import examples.counter.Counter;
 import examples.mvc.local.simplex.SimplexFrostyModel;
 import util.models.PropertyListenerRegisterer;
 

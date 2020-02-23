@@ -2,8 +2,8 @@ package examples.rmi.mvc.counter;
 
 import java.util.Scanner;
 
-import examples.mvc.CounterController;
-import examples.mvc.local.duplex.Counter;
+import examples.counter.Counter;
+import examples.mvc.counter.CounterController;
 import util.trace.Tracer;
 
 public class ADistributedCounterController implements CounterController {

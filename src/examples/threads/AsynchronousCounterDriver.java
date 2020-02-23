@@ -1,7 +1,7 @@
 package examples.threads;
 
-import examples.mvc.CounterDriver;
-import examples.mvc.ModelFactory;
+import examples.mvc.counter.CounterDriver;
+import examples.mvc.counter.ModelFactory;
 import util.trace.Tracer;
 
 public class AsynchronousCounterDriver extends CounterDriver {

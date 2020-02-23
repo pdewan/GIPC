@@ -1,4 +1,4 @@
-package examples.mvc.local.duplex;
+package examples.counter;
 
 
 import bus.uigen.ObjectEditor;
@@ -11,16 +11,17 @@ public class ACounter implements Counter{
 	}
 	protected Integer value = 0;	
 	public Object getValue() {
-		Tracer.info(this, "getValue called (locally or remotely)");
 //		if (value < 0) throw new IllegalStateException();
-		Tracer.info(this, "getValue returns:" + value);
+		Tracer.info(this, "GetValue returning:" + value);
 
 		return value;
 	}	
 	
-	public void increment(int val) {
-		Tracer.info(this, "Increment called (locally or remotely):" + val);
-		value += val;
+	public void increment(int anIncrement) {
+		Tracer.info(this, "Increment called with: "+ anIncrement);
+		Tracer.info(this, "Num Threads: "+ Thread.getAllStackTraces().size());
+
+		value += anIncrement;
 	}	
 	@Override
 	public boolean equals(Object otherObject) {

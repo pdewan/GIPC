@@ -1,4 +1,4 @@
-package examples.mvc;
+package examples.mvc.counter;
 
 import bus.uigen.ObjectEditor;
 import util.trace.Tracer;

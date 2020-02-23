@@ -1,4 +1,4 @@
-package examples.mvc;
+package examples.mvc.counter;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

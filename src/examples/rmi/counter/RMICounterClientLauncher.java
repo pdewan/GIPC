@@ -9,9 +9,9 @@ public class RMICounterClientLauncher   {
 		try {
 		System.out.println(counter12 == counter11);
 		System.out.println(counter12.equals(counter11));
-		System.out.println(counter11.hashCode() == counter12.hashCode());
+//		System.out.println(counter11.hashCode() == counter12.hashCode());
 		System.out.println(counter11.equals(counter2));
-		System.out.println(counter11.hashCode() == counter2.hashCode());
+//		System.out.println(counter11.hashCode() == counter2.hashCode());
 		System.out.println(counter12);
 		counter11.increment(1);
 		counter2.increment(1);
@@ -27,7 +27,7 @@ public class RMICounterClientLauncher   {
 			DistributedCounter counter11 = (DistributedCounter) rmiRegistry.lookup(CounterServer.COUNTER1);
 			DistributedCounter counter12 = (DistributedCounter) rmiRegistry.lookup(CounterServer.COUNTER1);
 			DistributedCounter counter2 = (DistributedCounter) rmiRegistry.lookup(CounterServer.COUNTER2);
-			counter11.increment(-25);
+//			counter11.increment(-25);
 		    System.out.println ("Client:" + counter11.getValue());
 			doOperations(counter11, counter12, counter2);
 			

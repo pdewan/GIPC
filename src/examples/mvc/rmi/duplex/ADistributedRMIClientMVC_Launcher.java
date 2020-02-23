@@ -5,8 +5,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+import examples.counter.Counter;
 import examples.mvc.local.duplex.ADuplexFrostyLauncher;
-import examples.mvc.local.duplex.Counter;
 import examples.mvc.local.duplex.DuplexFrostyModel;
 import examples.mvc.local.simplex.ProgramLauncher;
 import examples.rmi.counter.ADistributedObservableCounter;

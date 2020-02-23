@@ -2,8 +2,8 @@ package examples.rmi.counter;
 
 import java.rmi.RemoteException;
 
-import examples.mvc.AnObservableCounter;
-import examples.mvc.local.duplex.ACounter;
+import examples.counter.ACounter;
+import examples.mvc.counter.AnObservableCounter;
 
 
 public class ADistributedCounter extends ACounter implements DistributedCounter{

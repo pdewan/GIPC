@@ -3,7 +3,7 @@ package examples.threads;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeSupport;
 
-import examples.mvc.AnObservableCounter;
+import examples.mvc.counter.AnObservableCounter;
 import examples.threads.synchronization.ABoundedBuffer;
 import examples.threads.synchronization.BoundedBuffer;
 import util.trace.Tracer;

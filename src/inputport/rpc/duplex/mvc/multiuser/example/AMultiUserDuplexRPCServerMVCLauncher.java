@@ -1,6 +1,6 @@
 package inputport.rpc.duplex.mvc.multiuser.example;
 
-import examples.mvc.local.duplex.Counter;
+import examples.counter.Counter;
 import inputport.rpc.duplex.DuplexRPCServerInputPort;
 import inputport.rpc.duplex.ReplyRPCProxyGenerator;
 import inputport.rpc.duplex.mvc.singleuser.example.ADuplexRPCServerMVCLauncher;

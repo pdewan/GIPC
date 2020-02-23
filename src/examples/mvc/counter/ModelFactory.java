@@ -1,4 +1,4 @@
-package examples.mvc;
+package examples.mvc.counter;
 
 public class ModelFactory {
 	protected static ObservableCounter observableCounter = new AnObservableCounter();

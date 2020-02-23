@@ -12,14 +12,14 @@ import java.util.Arrays;
  * localhost
  * 
  * Pass the main args of your client to the various methods of this class to
- * get the specified or defiult values * 
+ * get the specified or default values * 
  *
  */
 public class ClientArgsProcessor {
 	public static final int HOST_ARG_INDEX = 0;	
 	public static final int NIO_PORT_ARG_INDEX = 1;
 	public static final int CLIENT_NAME_ARG_INDEX = 2;
-	public static final String DEFAULT_CLIENT_NAME = "Generic Client";
+	public static final String DEFAULT_CLIENT_NAME = "Generic Client:" + Math.random();
 	public static final String DEFAULT_HEADLESS_VALUE = "false";
 
 	public static final int HEADLESS_ARG_INDEX = 3;
@@ -35,26 +35,33 @@ public class ClientArgsProcessor {
 	}
 	
 	/**
-	 * Extracts the server hostname from argument #0,  if it exists, returns default
+	 * Extracts the server host name (NIO, GIPC, RMI) from argument #0,  if it exists, returns default
 	 * hostname (localhost) otherwise
 	 */
 	public static String getServerHost(String[] args){
 		return args.length > HOST_ARG_INDEX?
 				args[HOST_ARG_INDEX]:
 				"localhost";
-	}	
+	}
 	/**
-	 * Extracts the server port from argument #1,  if it exists, returns default
-	 * port otherwise
+	 * Extracts the NIO server port from argument #1,  if it exists, returns default
+	 * port otherwise. Relevant only when using NIO.
 	 */
-	public static int getServerPort(String[] args){
+	public static int getNIOServerPort(String[] args){
 		return args.length > NIO_PORT_ARG_INDEX ?
 				Integer.parseInt(args[NIO_PORT_ARG_INDEX]):
 				ServerPort.SERVER_PORT;
 	}
 	/**
+	 * Extracts the NIO server port from argument #1,  if it exists, returns default
+	 * port otherwise. This method name is kept for legacy reasons.
+	 */
+	public static int getServerPort(String[] args){
+		return getServerPort(args);
+	}
+	/**
 	 * Extracts the client name from argument #2,  if it exists, returns default
-	 * value (false) otherwise
+	 * value (false) otherwise. Relevant only when using GIPC. 
 	 */
 	public static String getClientName(String[] args){
 		return args.length > CLIENT_NAME_ARG_INDEX?
@@ -63,7 +70,7 @@ public class ClientArgsProcessor {
 	}
 	/**
 	 * Extracts the headless property from argument #3,  if it exists, returns default
-	 * value otherwise
+	 * value otherwise. Relevant only in the Atmosphere assignment.
 	 */
 	public static String getHeadless(String[] args){
 		return args.length > HEADLESS_ARG_INDEX?
@@ -71,7 +78,7 @@ public class ClientArgsProcessor {
 				DEFAULT_HEADLESS_VALUE;
 	}
 	/**
-	 * Extracts the registry hostname from argument #4,  if it exists, returns server
+	 * Extracts the RMI registry hostname from argument #4,  if it exists, returns server
 	 * hostname otherwise
 	 */
 	public static String getRegistryHost(String[] args){
@@ -80,7 +87,7 @@ public class ClientArgsProcessor {
 				getServerHost(args);
 	}
 	/**
-	 * Extracts the registry port from argument #5,  if it exists, returns default
+	 * Extracts the RMI registry port from argument #5,  if it exists, returns default
 	 * port otherwise
 	 */
 	public static int getRegistryPort(String[] args){

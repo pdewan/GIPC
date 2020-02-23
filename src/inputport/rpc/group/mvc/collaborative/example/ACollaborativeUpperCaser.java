@@ -1,7 +1,7 @@
 package inputport.rpc.group.mvc.collaborative.example;
 
+import examples.counter.Counter;
 import examples.mvc.local.duplex.ADuplexUpperCaser;
-import examples.mvc.local.duplex.Counter;
 import examples.mvc.rmi.collaborative.DisplayLibrary;
 import inputport.rpc.duplex.DuplexRPCInputPort;
 

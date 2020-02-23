@@ -3,6 +3,8 @@ package examples.mvc.local.duplex;
 
 import bus.uigen.OEFrame;
 import bus.uigen.ObjectEditor;
+import examples.counter.ACounter;
+import examples.counter.Counter;
 import examples.mvc.local.simplex.ASimplexFrostyLauncher;
 import examples.mvc.local.simplex.FrostyConsoleInteractor;
 import examples.mvc.local.simplex.ProgramLauncher;

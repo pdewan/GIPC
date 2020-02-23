@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import examples.rmi.counter.ADistributedObservableCounter;
+import util.trace.Tracer;
 
 public class ADistributedRemotelyObservableCounter extends ADistributedObservableCounter implements DistributedObservableCounter{
 	protected List<RemotePropertyChangeListener> remoteListeners= new ArrayList<>();
@@ -26,7 +27,9 @@ public class ADistributedRemotelyObservableCounter extends ADistributedObservabl
 	protected void processPropertyChangeEvent(PropertyChangeEvent aPropertyChangeEvent) {
 		for (RemotePropertyChangeListener aListener:remoteListeners) {
 			try {
+				Tracer.info(this, "Before callback to listener:" + aListener);
 				aListener.propertyChange(aPropertyChangeEvent);
+				Tracer.info(this, "After callback to listener:" + aListener);
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}

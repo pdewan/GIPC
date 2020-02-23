@@ -2,8 +2,8 @@ package examples.mvc.rmi.duplex;
 
 import java.rmi.RemoteException;
 
+import examples.counter.Counter;
 import examples.mvc.local.duplex.ADuplexFrostyModel;
-import examples.mvc.local.duplex.Counter;
 import examples.mvc.local.duplex.DuplexFrostyModel;
 import examples.rmi.counter.DistributedCounter;
 

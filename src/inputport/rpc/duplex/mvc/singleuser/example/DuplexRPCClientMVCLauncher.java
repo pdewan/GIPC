@@ -1,6 +1,6 @@
 package inputport.rpc.duplex.mvc.singleuser.example;
 
-import examples.mvc.local.duplex.ACounter;
+import examples.counter.ACounter;
 import inputport.rpc.simplex.mvc.example.SimplexRPCClientMVCLauncher;
 
 public interface DuplexRPCClientMVCLauncher extends SimplexRPCClientMVCLauncher  {

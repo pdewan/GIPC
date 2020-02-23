@@ -3,7 +3,7 @@ package inputport.rpc.group.mvc.collaborative.relaying.example;
 import java.util.HashMap;
 import java.util.Map;
 
-import examples.mvc.local.duplex.Counter;
+import examples.counter.Counter;
 import examples.mvc.rmi.collaborative.relaying.Echoer;
 import inputport.rpc.duplex.DuplexRPCInputPort;
 import inputport.rpc.group.mvc.collaborative.example.ACollaborativeUpperCaser;

@@ -1,10 +1,10 @@
 package inputport.rpc.duplex.echoer.example;
 
 
-import examples.mvc.local.duplex.ACounter;
+import examples.counter.ACounter;
+import examples.counter.Counter;
 import examples.mvc.local.duplex.ADuplexFrostyConsoleUI;
 import examples.mvc.local.duplex.ADuplexFrostyModel;
-import examples.mvc.local.duplex.Counter;
 import examples.mvc.local.duplex.DuplexFrostyModel;
 import examples.mvc.local.duplex.DuplexUpperCaser;
 import examples.mvc.local.simplex.FrostyConsoleInteractor;

@@ -1,7 +1,7 @@
 package inputport.rpc.duplex.counter.example;
 
 
-import examples.mvc.local.duplex.Counter;
+import examples.counter.Counter;
 import inputport.rpc.duplex.AnAbstractDuplexRPCClientPortLauncher;
 
 public class ADuplexCounterClientLauncher extends  AnAbstractDuplexRPCClientPortLauncher    {

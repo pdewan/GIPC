@@ -24,6 +24,9 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 	
 	protected int delay = 0;
 	
+	protected boolean trace = false;
+	
+	
 	@Override
 	public synchronized Boolean isAtomicBroadcast() {
 		return atomicBroadcast;
@@ -157,6 +160,17 @@ public abstract class AnAbstractSimulationParametersBean implements SimulationPa
 	public void rejectMetaStateChange(boolean newValue) {
 		setRejectMetaStateChange(newValue);
 	}
-
+	@Override
+	public void trace(boolean newValue) {
+		setTrace(newValue);
+	}
+	@Override
+	public boolean isTrace() {
+		return trace;
+	}
+	@Override
+	public void setTrace(boolean trace) {
+		this.trace = trace;
+	}
 	
 }

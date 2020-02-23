@@ -1,6 +1,6 @@
 package inputport.rpc.duplex.echoer.example;
+import examples.counter.Counter;
 import examples.mvc.local.duplex.ADuplexUpperCaser;
-import examples.mvc.local.duplex.Counter;
 import examples.mvc.local.duplex.DuplexUpperCaser;
 import inputport.ConnectionListener;
 import inputport.InputPort;

@@ -1,8 +1,8 @@
-package examples.mvc;
+package examples.mvc.counter;
 
 import java.util.Scanner;
 
-import examples.mvc.local.duplex.Counter;
+import examples.counter.Counter;
 import util.trace.Tracer;
 
 public class ACounterController implements CounterController {

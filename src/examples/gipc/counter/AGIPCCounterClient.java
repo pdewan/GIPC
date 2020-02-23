@@ -1,6 +1,7 @@
 package examples.gipc.counter;
 
 
+import examples.counter.Counter;
 import examples.rmi.counter.ADistributedObservableCounter;
 import examples.rmi.counter.CounterServer;
 import examples.rmi.counter.DistributedCounter;
@@ -22,7 +23,9 @@ public class AGIPCCounterClient implements SimpleCounterClient{
 			GIPCRegistry gipcRegistry = GIPCLocateRegistry.getRegistry(SERVER_HOST_NAME, SERVER_PORT, "client");
 //			test(gipcRegistry, DistributedRMICounter.class);
 			ACachingAbstractRPCProxyInvocationHandler.setInvokeObjectMethodsRemotely(true);
-//			test(gipcRegistry, DistributedRMICounter.class);
+//			test(gipcRegistry, Counter.class);
+
+//			test(gipcRegistry, DistributedCounter.class);
 			test(gipcRegistry, ADistributedObservableCounter.class);
 			
 		} catch (Exception e) {

@@ -2,8 +2,8 @@ package examples.serialization.counter;
 
 import java.rmi.RemoteException;
 
-import examples.mvc.local.duplex.ACounter;
-import examples.mvc.local.duplex.Counter;
+import examples.counter.ACounter;
+import examples.counter.Counter;
 import examples.rmi.counter.ADistributedCounter;
 import examples.rmi.counter.DistributedCounter;
 

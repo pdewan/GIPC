@@ -41,6 +41,10 @@ public interface SimulationParametersBean extends SimulationParametersListener {
 	public void setRejectMetaStateChange(boolean rejectMetaStateChange);
 	public boolean isRejectMetaStateChange();
 
+	boolean isTrace();
+
+	void setTrace(boolean trace);
+
 
 
 }

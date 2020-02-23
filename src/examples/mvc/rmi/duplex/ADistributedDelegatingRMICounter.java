@@ -3,8 +3,8 @@ package examples.mvc.rmi.duplex;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import examples.mvc.local.duplex.ACounter;
-import examples.mvc.local.duplex.Counter;
+import examples.counter.ACounter;
+import examples.counter.Counter;
 import examples.rmi.counter.DistributedCounter;
 
 

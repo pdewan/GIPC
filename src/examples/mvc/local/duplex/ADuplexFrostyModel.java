@@ -3,6 +3,7 @@ package examples.mvc.local.duplex;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import examples.counter.Counter;
 import examples.mvc.local.simplex.ASimplexFrostyModel;
 import util.annotations.Explanation;
 import util.trace.Tracer;
