@@ -57,7 +57,7 @@ public class ClientArgsProcessor {
 	 * port otherwise. This method name is kept for legacy reasons.
 	 */
 	public static int getServerPort(String[] args){
-		return getServerPort(args);
+		return getNIOServerPort(args);
 	}
 	/**
 	 * Extracts the client name from argument #2,  if it exists, returns default

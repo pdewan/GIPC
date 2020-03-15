@@ -18,7 +18,7 @@ public class ACounter implements Counter{
 	}	
 	
 	public void increment(int anIncrement) {
-		Tracer.info(this, "Increment called with: "+ anIncrement);
+		Tracer.info(this, "Increment called with: "+ anIncrement + " thread system identity code:" + System.identityHashCode(Thread.currentThread()));
 		Tracer.info(this, "Num Threads: "+ Thread.getAllStackTraces().size());
 
 		value += anIncrement;

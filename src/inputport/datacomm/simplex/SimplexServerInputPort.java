@@ -5,8 +5,8 @@ import inputport.ServerInputPort;
 public interface SimplexServerInputPort<MessageType> extends 
 				ServerInputPort, BasicReceivingPort<MessageType>,
 				// adding this because a server port becomes 
-				//  a session port which needs to have a logical end point
 				RemoteEndPointProperties 
+				//  a session port which needs to have a logical end point
 				
 //				ReceiveRegistrarAndNotifier<MessageType>, 
 //				ReceiveTrapperSetter<MessageType, MessageType>, LastSenderQueryable

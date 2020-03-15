@@ -15,7 +15,7 @@ public class ADistributedCounterController implements CounterController {
 	public void processInput() {
 		Scanner aScanner = new Scanner(System.in);
 		while (true) {
-			Tracer.info(this, "Increment (or " + QUIT + " ?");
+			Tracer.info(this, "Increment (or " + QUIT + " ) ?");
 			String aLine = aScanner.nextLine();
 			if (QUIT.equals(aLine)) {
 				break;
