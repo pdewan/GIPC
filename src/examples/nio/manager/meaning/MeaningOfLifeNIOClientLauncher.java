@@ -1,6 +1,6 @@
-package examples.nio.manager;
+package examples.nio.manager.meaning;
 
-import examples.nio.manager.client.AMeaningOfLifeNIOClient;
+import examples.nio.manager.meaning.client.AMeaningOfLifeNIOClient;
 
 public class MeaningOfLifeNIOClientLauncher {
 	public static void main(String[] args) {

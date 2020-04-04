@@ -1,4 +1,4 @@
-package examples.nio.manager.client;
+package examples.nio.manager.meaning.client;
 
 import inputport.nio.manager.listeners.SocketChannelConnectListener;
 

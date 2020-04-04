@@ -11,9 +11,9 @@ public  class AnAbstractNIOCommand {
 	
 	public AnAbstractNIOCommand(AbstractSelectableChannel aChannel, Integer aNextInterestOps) {
 		nextInterestOps = aNextInterestOps;
-		if (nextInterestOps != null) {
-			SelectorRequestNextInterestOp.newCase(this, aChannel, aNextInterestOps);
-		}
+//		if (nextInterestOps != null) {
+//			SelectorRequestNextInterestOp.newCase(this, aChannel, aNextInterestOps);
+//		}
 	}
 	protected Integer postCommandInterestOps() {
 		return nextInterestOps;

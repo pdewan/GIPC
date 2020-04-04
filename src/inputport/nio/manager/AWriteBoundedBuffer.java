@@ -58,8 +58,10 @@ public class AWriteBoundedBuffer implements WriteBoundedBuffer {
 		SelectionKey key = channel.keyFor(selectionManager.getSelector());
 		try {
 			key.interestOps(savedInterestOps);
-			Tracer.info(this, "New interestops op for:" + channel + " are:" +key.interestOps());
-			SocketChannelInterestOp.newCase(this, key, 0);
+//			Tracer.info(this, "New interestops op for:" + channel + " are:" +key.interestOps());
+//			Tracer.info(this, "New interestops op for:" + channel + " are:" +key.interestOps());
+
+			SocketChannelInterestOp.newCase(this, key, savedInterestOps);
 
 			
 		} catch (CancelledKeyException cke) { // we get this on socket close for some reason

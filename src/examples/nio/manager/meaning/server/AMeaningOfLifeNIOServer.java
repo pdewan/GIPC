@@ -1,4 +1,4 @@
-package examples.nio.manager.server;
+package examples.nio.manager.meaning.server;
 
 import java.net.InetSocketAddress;
 import java.nio.channels.ServerSocketChannel;

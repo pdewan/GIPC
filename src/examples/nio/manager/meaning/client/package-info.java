@@ -6,4 +6,4 @@
  * @author Dewan
  *
  */
-package examples.nio.manager.client;
+package examples.nio.manager.meaning.client;

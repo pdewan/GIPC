@@ -19,7 +19,7 @@ public class ADuplexReceivedCallInvoker extends ASimplexReceivedCallInvoker
 			LocalRemoteReferenceTranslator aLocalRemoteReferenceTranslator,
 			DuplexInputPort<Object> aReplier, RPCRegistry theRPCRegistry) {
 		super(theRPCRegistry);
-		System.out.println("Received call invoker replier:" + replier );
+//		System.out.println("Received call invoker replier:" + replier );
 		replier = aReplier;
 		localRemoteReferenceTranslator = aLocalRemoteReferenceTranslator;
 	}

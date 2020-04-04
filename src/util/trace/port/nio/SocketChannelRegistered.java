@@ -11,7 +11,7 @@ public class SocketChannelRegistered extends SocketChannelInfo {
 	public static SocketChannelRegistered newCase(Object aSource, 			
 			AbstractSelectableChannel aSocketChannel, Selector aSelector, int aNewMask) {    	
 		String aMessage = 
-				"Ops:" + aNewMask + ",  Selector:" + aSelector + ", " +
+				"Ops:" + SocketChannelInterestOp.toStringInterestOp(aNewMask) + ",  Selector:" + aSelector + ", " +
 				aSocketChannel ;
 				     			
 		SocketChannelRegistered retVal = new SocketChannelRegistered(aMessage, aSource, aSocketChannel, aSelector, aNewMask);

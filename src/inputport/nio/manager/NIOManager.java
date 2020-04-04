@@ -12,7 +12,7 @@ import inputport.nio.manager.listeners.SocketChannelReadListener;
 import inputport.nio.manager.listeners.SocketChannelWriteListener;
 import inputport.nio.manager.listeners.WriteBoundedBufferListener;
 
-public interface NIOManager {
+public interface NIOManager {	
 	/**
 	 * Requests that  an accept operation be invoked each time it can be executed (an incoming
 	 * connect request is received) on the ServerSocketChannel and registers 

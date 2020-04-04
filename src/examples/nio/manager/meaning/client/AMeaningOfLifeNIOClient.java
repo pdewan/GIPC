@@ -1,4 +1,4 @@
-package examples.nio.manager.client;
+package examples.nio.manager.meaning.client;
 
 import java.io.IOException;
 import java.net.InetAddress;

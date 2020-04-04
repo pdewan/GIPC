@@ -1,4 +1,4 @@
-package examples.nio.manager.server;
+package examples.nio.manager.meaning.server;
 
 import assignments.util.mainArgs.ServerPort;
 import inputport.nio.manager.listeners.SocketChannelAcceptListener;

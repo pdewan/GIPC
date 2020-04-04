@@ -1,7 +1,7 @@
-package examples.nio.manager;
+package examples.nio.manager.meaning;
 
 import assignments.util.mainArgs.ClientArgsProcessor;
-import examples.nio.manager.client.AMeaningOfLifeNIOClient;
+import examples.nio.manager.meaning.client.AMeaningOfLifeNIOClient;
 import util.trace.port.nio.NIOTraceUtility;
 
 public class AliceMeaningOfLifeNIOClient {

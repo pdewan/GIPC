@@ -1,4 +1,4 @@
-package examples.nio.manager.server;
+package examples.nio.manager.meaning.server;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;

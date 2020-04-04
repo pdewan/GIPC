@@ -8,4 +8,4 @@
  * @author Dewan
  *
  */
-package examples.nio.manager;
+package examples.nio.manager.meaning;

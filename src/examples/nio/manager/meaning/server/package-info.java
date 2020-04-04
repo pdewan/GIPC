@@ -6,4 +6,4 @@
  * @author Dewan
  *
  */
-package examples.nio.manager.server;
+package examples.nio.manager.meaning.server;

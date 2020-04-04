@@ -1,6 +1,6 @@
-package examples.nio.manager;
+package examples.nio.manager.meaning;
 
-import examples.nio.manager.server.AMeaningOfLifeNIOServer;
+import examples.nio.manager.meaning.server.AMeaningOfLifeNIOServer;
 
 public class MeaningOfLifeNIOServerLauncher  {
 
