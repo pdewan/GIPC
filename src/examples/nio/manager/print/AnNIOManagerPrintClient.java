@@ -32,25 +32,27 @@ public class AnNIOManagerPrintClient implements SocketChannelConnectListener, So
 		setFactories();
 		initialize(aServerPort);
 	}
-	protected void setFactories() {		
+
+	protected void setFactories() {
 		ConnectCommandFactorySelector.setFactory(new AConnectCommandFactory(0));
 	}
+
 	public void processInput() {
 		scanner = new Scanner(System.in);
 		while (true) {
 			System.out.println("Enter a line of input to be printed remotely");
-		String aNextLine = scanner.nextLine();
-		//wrap writes to the buffer and then flips it
-		ByteBuffer aWriteMessage = ByteBuffer.wrap(aNextLine.getBytes()); 
-		
-		nioManager.write(socketChannel, aWriteMessage, this);
+			String aNextLine = scanner.nextLine();
+			// wrap writes to the buffer and then flips it
+			ByteBuffer aWriteMessage = ByteBuffer.wrap(aNextLine.getBytes());
+			nioManager.write(socketChannel, aWriteMessage, this);
 		}
-		
 	}
+
 	protected void setTracing() {
 		FactoryTraceUtility.setTracing();
 		NIOTraceUtility.setTracing();
 	}
+
 	protected void initialize(int aServerPort) {
 		try {
 			socketChannel = SocketChannel.open();
@@ -58,21 +60,22 @@ public class AnNIOManagerPrintClient implements SocketChannelConnectListener, So
 			nioManager.connect(socketChannel, aServerAddress, aServerPort, this);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}		
-	}
-	
-	@Override
-	public void connected(SocketChannel aSocketChannel) {
-	
-	}
-	@Override
-	public void notConnected(SocketChannel theSocketChannel, Exception e) {
-		
-	}
-	@Override
-	public void written(SocketChannel socketChannel, ByteBuffer theWriteBuffer, int sendId) {
-		
+		}
 	}
 
+	@Override
+	public void connected(SocketChannel aSocketChannel) {
+
+	}
+
+	@Override
+	public void notConnected(SocketChannel theSocketChannel, Exception e) {
+
+	}
+
+	@Override
+	public void written(SocketChannel socketChannel, ByteBuffer theWriteBuffer, int sendId) {
+
+	}
 
 }
