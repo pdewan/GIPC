@@ -91,7 +91,7 @@ public class AnAcceptCommand extends AnAbstractNIOCommand implements AcceptComma
 //			newSocketChannel.register(selectingRunnable.getSelector(), SelectionKey.OP_READ);	
 			newSocketChannel.register(selectingRunnable.getSelector(), aNextInterestOps);	
 
-			SocketChannelRegistered.newCase(this, newSocketChannel, selectingRunnable.getSelector(), SelectionKey.OP_READ);
+			SocketChannelRegistered.newCase(this, newSocketChannel, selectingRunnable.getSelector(), aNextInterestOps);
 			try {
 				for (SocketChannelAcceptListener listener:listeners)
 					listener.socketChannelAccepted(serverSocketChannel, newSocketChannel);

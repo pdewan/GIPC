@@ -74,9 +74,10 @@ public class AnNIOManager implements NIOManager{
 		SocketChannelWriteRequested.newCase(this, channel, byteBuffer, listeners);
 //		WriteCommand bufferedWrite = new AWriteCommand(selectionManager, channel, byteBuffer);
 		WriteCommand bufferedWrite = WriteCommandFactorySelector.getFactory().createWriteCommand(selectionManager, channel, byteBuffer);
-
+		if (listeners != null) {
 		for (SocketChannelWriteListener listener:listeners) {
 			bufferedWrite.addwriteListener(listener);
+		}
 		}
 		Tracer.info(this, "Created buffered write and associated it with listeners");
 		selectionManager.putBufferedWrite(bufferedWrite);		
