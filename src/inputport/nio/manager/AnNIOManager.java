@@ -9,6 +9,8 @@ import inputport.nio.manager.commands.AcceptCommand;
 import inputport.nio.manager.commands.ConnectCommand;
 import inputport.nio.manager.commands.WriteCommand;
 import inputport.nio.manager.factories.SelectionManagerFactory;
+import inputport.nio.manager.factories.classes.AConnectCommandFactory;
+import inputport.nio.manager.factories.classes.AnAcceptCommandFactory;
 import inputport.nio.manager.factories.selectors.AcceptCommandFactorySelector;
 import inputport.nio.manager.factories.selectors.ConnectCommandFactorySelector;
 import inputport.nio.manager.factories.selectors.WriteCommandFactorySelector;
@@ -40,12 +42,21 @@ public class AnNIOManager implements NIOManager{
 //	public AnObservableNIOManager() {
 //		selectionManager = SelectionManagerFactory.getSelectionManager();
 //	}
+	@Override
+	public void enableListenableAccepts(ServerSocketChannel aChannel,
+			Integer anInitialInterestOps,
+			SocketChannelAcceptListener... aListeners) {
+		AcceptCommandFactorySelector.setFactory(new AnAcceptCommandFactory(anInitialInterestOps));
+		enableListenableAccepts(aChannel, aListeners);
+		
+	}
+			
 	
-	public void enableListenableAccepts(ServerSocketChannel channel,
+	public void enableListenableAccepts(ServerSocketChannel aChannel,
 			SocketChannelAcceptListener... listeners) {
-		ListenableAcceptsEnabled.newCase(this, channel, listeners);
+		ListenableAcceptsEnabled.newCase(this, aChannel, listeners);
 		AcceptCommand acceptRequestResponse = 
-				AcceptCommandFactorySelector.getFactory().createAcceptCommand(selectionManager, channel);
+				AcceptCommandFactorySelector.getFactory().createAcceptCommand(selectionManager, aChannel);
 //			new AnAcceptCommand(selectionManager, channel);
 		for (SocketChannelAcceptListener listener:listeners) {
 			acceptRequestResponse.addAcceptListener(listener);
@@ -53,6 +64,12 @@ public class AnNIOManager implements NIOManager{
 		selectionManager.putRequestResponse(acceptRequestResponse);	
 		Tracer.info(this, "Waking up selector to process newly queued accept request");
 		
+	}
+	@Override
+	public void connect(SocketChannel aChannel, InetAddress aServerHost,
+			int aPort, Integer anInitialInterestOps, SocketChannelConnectListener... aListeners) {
+		ConnectCommandFactorySelector.setFactory(new AConnectCommandFactory(anInitialInterestOps));
+		connect(aChannel, aServerHost, aPort, aListeners);
 	}
 	@Override
 	public void connect(SocketChannel channel, InetAddress theServerHost,

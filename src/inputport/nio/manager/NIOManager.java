@@ -12,7 +12,18 @@ import inputport.nio.manager.listeners.SocketChannelReadListener;
 import inputport.nio.manager.listeners.SocketChannelWriteListener;
 import inputport.nio.manager.listeners.WriteBoundedBufferListener;
 
-public interface NIOManager {	
+public interface NIOManager {
+	/**
+	 * Requests that  an accept operation be invoked each time it can be executed (an incoming
+	 * connect request is received) on the ServerSocketChannel and registers 
+	 * one or more listeners to be invoked 	each time the operation completes execution.
+	 * Specifies the initialInterestOps of the 
+	 * @param aChannel
+	 * @param anInitialInterestOps
+	 * @param aListeners
+	 */
+	void enableListenableAccepts(ServerSocketChannel aChannel, Integer anInitialInterestOps,
+			SocketChannelAcceptListener[] aListeners);
 	/**
 	 * Requests that  an accept operation be invoked each time it can be executed (an incoming
 	 * connect request is received) on the ServerSocketChannel and registers 
@@ -68,4 +79,7 @@ public interface NIOManager {
 	 */
 	void addWriteBoundedBufferListener(SocketChannel aSocketChannel,
 			WriteBoundedBufferListener aListener);
+	
+	void connect(SocketChannel aChannel, InetAddress aServerHost, int aPort, Integer anInitialInterestOps,
+			SocketChannelConnectListener[] aListeners);
 }

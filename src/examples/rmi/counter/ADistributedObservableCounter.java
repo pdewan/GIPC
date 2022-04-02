@@ -13,7 +13,9 @@ public class ADistributedObservableCounter extends AnObservableCounter implement
 				return super.equals(otherObject);
 		try {
 			return getValue().equals(((DistributedCounter) otherObject).getValue());
-		} catch (RemoteException e) {
+//		} catch (RemoteException e) {
+		} catch (Exception e) {
+
 			e.printStackTrace();
 			return false;
 		}
