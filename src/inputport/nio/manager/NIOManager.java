@@ -17,13 +17,14 @@ public interface NIOManager {
 	 * Requests that  an accept operation be invoked each time it can be executed (an incoming
 	 * connect request is received) on the ServerSocketChannel and registers 
 	 * one or more listeners to be invoked 	each time the operation completes execution.
-	 * Specifies the initialInterestOps of the 
+	 * Specifies the initialInterestOps of the connected channel to filter out incoming messages
+	 * Will automatically set the SelectionKey.ACCEPT_OP interestop of factory channel
 	 * @param aChannel
 	 * @param anInitialInterestOps
 	 * @param aListeners
 	 */
-	void enableListenableAccepts(ServerSocketChannel aChannel, Integer anInitialInterestOps,
-			SocketChannelAcceptListener[] aListeners);
+	void enableListenableAccepts(ServerSocketChannel aChannel, Integer anInitialIncomingInterestOps,
+			SocketChannelAcceptListener... aListener);
 	/**
 	 * Requests that  an accept operation be invoked each time it can be executed (an incoming
 	 * connect request is received) on the ServerSocketChannel and registers 
@@ -42,11 +43,13 @@ public interface NIOManager {
      * @param aPort
      * @param listeners
      */
-	public void connect(SocketChannel aSocketChannel, InetAddress aServerHost, int aPort, SocketChannelConnectListener... listeners);
+	public void connect(SocketChannel aSocketChannel, InetAddress aServerHost, int aPort,
+			SocketChannelConnectListener... listeners);
 	/**
 	 * Requests that a byte buffer be written on the socketchannel and registers
 	 * a list of listener to be invoked when the write completes (so that it can
 	 * use the ByteBuffer for something else, for instance)
+	 * Will automatically set the SelectionKey.CONNECT_OP interestop of aChannel
 	 * @param aSocketChannel
 	 * @param aByteBuffer
 	 * @param listeners
@@ -79,7 +82,17 @@ public interface NIOManager {
 	 */
 	void addWriteBoundedBufferListener(SocketChannel aSocketChannel,
 			WriteBoundedBufferListener aListener);
-	
-	void connect(SocketChannel aChannel, InetAddress aServerHost, int aPort, Integer anInitialInterestOps,
-			SocketChannelConnectListener[] aListeners);
+	  /**
+     * Requests an asynchronous invocation of the connect NIO operation and 
+     * registers one or more listeners to be invoked when the operation completes execution
+     * later.
+     * Initial interestops are the allowed operations based on incoming messages (
+     * SelectionKey.ACCEPT_OP, SelectionKey.READ_OP) of the connected channel
+     * @param aSocketChannel
+     * @param aServerHost
+     * @param aPort
+     * @param listeners
+     */
+	void connect(SocketChannel aChannel, InetAddress aServerHost, int aPort, Integer anInitialIncomingInterestOps,
+			SocketChannelConnectListener... listeners);
 }
