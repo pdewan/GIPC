@@ -23,7 +23,7 @@ public interface NIOManager {
 	 * @param anInitialInterestOps
 	 * @param aListeners
 	 */
-	void enableListenableAccepts(ServerSocketChannel aChannel, Integer anInitialIncomingInterestOps,
+	void enableListenableAccepts(ServerSocketChannel aChannel, Integer aNewChannelInterestOps,
 			SocketChannelAcceptListener... aListener);
 	/**
 	 * Requests that  an accept operation be invoked each time it can be executed (an incoming
@@ -33,6 +33,7 @@ public interface NIOManager {
 	 * @param aChannel
 	 * @param aListener
 	 */
+	@Deprecated
     public void enableListenableAccepts(ServerSocketChannel aChannel, SocketChannelAcceptListener... aListener);
     /**
      * Requests an asynchronous invocation of the connect NIO operation and 
@@ -43,6 +44,7 @@ public interface NIOManager {
      * @param aPort
      * @param listeners
      */
+    @Deprecated
 	public void connect(SocketChannel aSocketChannel, InetAddress aServerHost, int aPort,
 			SocketChannelConnectListener... listeners);
 	/**
@@ -93,6 +95,6 @@ public interface NIOManager {
      * @param aPort
      * @param listeners
      */
-	void connect(SocketChannel aChannel, InetAddress aServerHost, int aPort, Integer anInitialIncomingInterestOps,
+	void connect(SocketChannel aChannel, InetAddress aServerHost, int aPort, Integer aPostConnectInterestOp,
 			SocketChannelConnectListener... listeners);
 }

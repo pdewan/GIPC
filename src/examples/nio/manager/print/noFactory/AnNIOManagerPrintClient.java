@@ -2,26 +2,15 @@ package examples.nio.manager.print.noFactory;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Scanner;
-
 import inputport.nio.manager.NIOManager;
 import inputport.nio.manager.NIOManagerFactory;
-import inputport.nio.manager.factories.classes.AConnectCommandFactory;
-import inputport.nio.manager.factories.classes.AReadingAcceptCommandFactory;
-import inputport.nio.manager.factories.classes.AReadingWritingConnectCommandFactory;
-import inputport.nio.manager.factories.selectors.AcceptCommandFactorySelector;
-import inputport.nio.manager.factories.selectors.ConnectCommandFactorySelector;
 import inputport.nio.manager.listeners.SocketChannelConnectListener;
-import inputport.nio.manager.listeners.SocketChannelReadListener;
 import inputport.nio.manager.listeners.SocketChannelWriteListener;
 import util.trace.factories.FactoryTraceUtility;
 import util.trace.port.nio.NIOTraceUtility;
-import util.trace.port.nio.SocketChannelBound;
 
 public class AnNIOManagerPrintClient implements SocketChannelConnectListener, SocketChannelWriteListener {
 	protected NIOManager nioManager = NIOManagerFactory.getSingleton();
@@ -66,20 +55,20 @@ public class AnNIOManagerPrintClient implements SocketChannelConnectListener, So
 			e.printStackTrace();
 		}
 	}
-
+	
+	// implementing connect listener with dummy methods
 	@Override
 	public void connected(SocketChannel aSocketChannel) {
 
 	}
-
 	@Override
 	public void notConnected(SocketChannel theSocketChannel, Exception e) {
 
 	}
-
+	
+	// implementing write listener with dummy methods
 	@Override
-	public void written(SocketChannel socketChannel, ByteBuffer theWriteBuffer, int sendId) {
+	public void written(SocketChannel socketChannel, ByteBuffer aWriteBuffer, int sendId) {
 
 	}
-
 }

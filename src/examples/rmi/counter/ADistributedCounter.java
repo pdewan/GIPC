@@ -20,4 +20,10 @@ public class ADistributedCounter extends ACounter implements DistributedCounter{
 			return false;
 		}
 	}	
+//	void test() {
+//		ADistributedCounter aCounter = new ADistributedCounter();
+//		aCounter.increment(2);
+//		aCounter.foo();
+//	}
+	
 }

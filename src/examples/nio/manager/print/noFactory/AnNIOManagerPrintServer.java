@@ -6,17 +6,8 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-
-
 import inputport.nio.manager.NIOManager;
 import inputport.nio.manager.NIOManagerFactory;
-import inputport.nio.manager.factories.classes.AReadingAcceptCommandFactory;
-import inputport.nio.manager.factories.classes.AnAcceptCommandFactory;
-import inputport.nio.manager.factories.selectors.AcceptCommandFactorySelector;
-import inputport.nio.manager.listeners.SocketChannelAcceptListener;
-import inputport.nio.manager.listeners.SocketChannelReadListener;
-import inputport.nio.manager.listeners.SocketChannelWriteListener;
-import inputport.nio.manager.listeners.WriteBoundedBufferListener;
 import util.trace.factories.FactoryTraceUtility;
 import util.trace.port.nio.NIOTraceUtility;
 import util.trace.port.nio.SocketChannelBound;
