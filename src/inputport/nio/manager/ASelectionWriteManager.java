@@ -49,8 +49,20 @@ public class ASelectionWriteManager implements SelectionWriteManager  {
 	}
 	@Override
 	public WriteBoundedBuffer getBufferedWriteBoundedBuffer(SocketChannel channel) {
+		WriteBoundedBuffer bufferedWriteBoundedBuffer = null;
+		try {
 
-		WriteBoundedBuffer bufferedWriteBoundedBuffer = channelToBufferedWriteBoundedBuffer.get(channel);
+//		WriteBoundedBuffer bufferedWriteBoundedBuffer = channelToBufferedWriteBoundedBuffer.get(channel);
+		 bufferedWriteBoundedBuffer = channelToBufferedWriteBoundedBuffer.get(channel);
+
+		} catch (Exception e) {
+			if (channel == null) {
+				System.out.println("Null channel passed to getBufferedWriteBoundedBuffer, future actions will be erroneous");
+			}
+			e.printStackTrace();
+
+			return null;
+		}
 
 		if (bufferedWriteBoundedBuffer == null) {
 			bufferedWriteBoundedBuffer =  new AWriteBoundedBuffer(selectionManager, channel);
